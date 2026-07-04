@@ -2,12 +2,15 @@
 """
 update_docs.py
 Scan all HTML learning pages and regenerate the auto-generated sections
-in README.md and index.html.
+in README.md, index.html, and each sub-page.
 
 Sentinel markers used:
-  README.md : <!-- AUTO-TABLE-START --> / <!-- AUTO-TABLE-END -->
-              <!-- AUTO-FILES-START --> / <!-- AUTO-FILES-END -->
-  index.html: <!-- AUTO-CARDS-START --> / <!-- AUTO-CARDS-END -->
+  README.md  : <!-- AUTO-TABLE-START --> / <!-- AUTO-TABLE-END -->
+               <!-- AUTO-FILES-START --> / <!-- AUTO-FILES-END -->
+  index.html : <!-- AUTO-CARDS-START --> / <!-- AUTO-CARDS-END -->
+  sub-pages  : <!-- AUTO-BACK-NAV-START --> / <!-- AUTO-BACK-NAV-END -->
+               (sticky "back to home" nav bar; injected right after <body>
+               on first run, updated in-place on subsequent runs)
 """
 
 import re
@@ -41,6 +44,34 @@ ARROW_SVG = (
     '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor"'
     ' stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">'
     '<path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>'
+)
+
+BACK_NAV_START = "<!-- AUTO-BACK-NAV-START -->"
+BACK_NAV_END   = "<!-- AUTO-BACK-NAV-END -->"
+
+BACK_NAV_HTML = (
+    '<style id="auto-back-nav-style">\n'
+    '#auto-back-nav{position:sticky;top:0;z-index:999;'
+    'background:rgba(249,250,251,.9);backdrop-filter:blur(8px);'
+    '-webkit-backdrop-filter:blur(8px);border-bottom:1px solid #e5e7eb;'
+    'display:flex;align-items:center;padding:0 20px;height:44px;}\n'
+    '@media(prefers-color-scheme:dark){'
+    '#auto-back-nav{background:rgba(13,17,23,.9);border-bottom-color:#2d333b;}}\n'
+    '#auto-back-nav a{display:inline-flex;align-items:center;gap:6px;'
+    'text-decoration:none;color:#4b5563;font-size:14px;font-weight:600;'
+    'font-family:-apple-system,BlinkMacSystemFont,"PingFang SC",'
+    '"Hiragino Sans GB","Microsoft YaHei",Roboto,Arial,sans-serif;}\n'
+    '@media(prefers-color-scheme:dark){#auto-back-nav a{color:#9da7b3;}}\n'
+    '</style>\n'
+    '<nav id="auto-back-nav">\n'
+    '  <a href="index.html">\n'
+    '    <svg width="16" height="16" viewBox="0 0 24 24" fill="none"'
+    ' stroke="currentColor" stroke-width="2.4" stroke-linecap="round"'
+    ' stroke-linejoin="round">'
+    '<path d="M19 12H5"/><path d="m12 19-7-7 7-7"/></svg>\n'
+    '    暑假成长加油站\n'
+    '  </a>\n'
+    '</nav>'
 )
 
 
@@ -212,12 +243,44 @@ def update_index(pages: list[dict]) -> bool:
     return False
 
 
+def update_subpage_back_nav(path: Path) -> bool:
+    original = path.read_text(encoding="utf-8")
+    if BACK_NAV_START in original:
+        updated = replace_between(original, BACK_NAV_START, BACK_NAV_END, BACK_NAV_HTML)
+    else:
+        # First run: inject sentinel block right after <body ...>
+        nav_block = f"{BACK_NAV_START}\n{BACK_NAV_HTML}\n{BACK_NAV_END}"
+        updated = re.sub(
+            r'(<body[^>]*>)',
+            lambda m: m.group(0) + "\n" + nav_block,
+            original,
+            count=1,
+        )
+        if updated == original:
+            print(f"  WARNING: could not inject back nav into {path.name} (no <body> found)")
+            return False
+    if updated != original:
+        path.write_text(updated, encoding="utf-8")
+        print(f"  {path.name}: back nav injected/updated.")
+        return True
+    return False
+
+
+def update_subpages(pages: list[dict]) -> bool:
+    changed = False
+    for p in pages:
+        if update_subpage_back_nav(ROOT / p["file"]):
+            changed = True
+    return changed
+
+
 def main() -> int:
     pages = collect_pages()
     print(f"Found {len(pages)} page(s): {[p['file'] for p in pages]}")
     changed_readme = update_readme(pages)
     changed_index = update_index(pages)
-    return 0 if (changed_readme or changed_index) else 1
+    changed_subpages = update_subpages(pages)
+    return 0 if (changed_readme or changed_index or changed_subpages) else 1
 
 
 if __name__ == "__main__":
