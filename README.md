@@ -7,6 +7,7 @@
 <!-- AUTO-TABLE-START -->
 | 页面 | 在线地址 |
 |---|---|
+| 作文是怎么"长"出来的 · 五年级写作创作过程 | https://beupgo.github.io/grade5-chinese-essay-process.html |
 | 写作提升训练 | https://beupgo.github.io/grade5-chinese-writing.html |
 | 北京五年级数学 · 母题学习系统 | https://beupgo.github.io/grade5-math.html |
 | 分数专题 · 彻底学会分数 | https://beupgo.github.io/g6-math-fractions.html |
@@ -29,6 +30,7 @@
 ```
 .
 ├─ index.html      # 导航首页
+├─ grade5-chinese-essay-process.html  # 作文是怎么"长"出来的 · 五年级写作创作过程
 ├─ grade5-chinese-writing.html  # 写作提升训练
 ├─ grade5-math.html  # 北京五年级数学 · 母题学习系统
 ├─ g6-math-fractions.html  # 分数专题 · 彻底学会分数

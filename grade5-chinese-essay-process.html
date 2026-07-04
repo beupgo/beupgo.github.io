@@ -1,0 +1,738 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="format-detection" content="telephone=no">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<title>作文是怎么"长"出来的 · 五年级写作创作过程</title>
+<style>
+/* =====================================================================
+   TIER 1 · GLOBAL / PRIMITIVE — compact mirror of genius-design-tokens
+   Brand driven by --brand-h / --brand-s. Warm "书卷" hue.
+   ===================================================================== */
+*, *::before, *::after { box-sizing: border-box; }
+:root{
+  --brand-h: 18;            /* warm terracotta — bookish, warm */
+  --brand-s: 62%;
+  /* primary tonal scale */
+  --g-primary-50:  hsl(var(--brand-h), var(--brand-s), 96%);
+  --g-primary-100: hsl(var(--brand-h), var(--brand-s), 91%);
+  --g-primary-200: hsl(var(--brand-h), var(--brand-s), 83%);
+  --g-primary-400: hsl(var(--brand-h), var(--brand-s), 62%);
+  --g-primary-500: hsl(var(--brand-h), var(--brand-s), 54%);
+  --g-primary-600: hsl(var(--brand-h), var(--brand-s), 47%);
+  --g-primary-700: hsl(var(--brand-h), var(--brand-s), 39%);
+  --g-primary-800: hsl(var(--brand-h), var(--brand-s), 31%);
+  /* neutral */
+  --g-neutral-0:#fff; --g-neutral-50:#faf9f6; --g-neutral-100:#f3f1ec;
+  --g-neutral-200:#e7e3da; --g-neutral-300:#d5cfc2; --g-neutral-400:#a89f8f;
+  --g-neutral-500:#786f5f; --g-neutral-600:#544b3d; --g-neutral-700:#3a332a;
+  --g-neutral-800:#262019; --g-neutral-900:#171310; --g-neutral-950:#0f0c0a;
+  /* functional */
+  --g-green-500:#16a34a; --g-green-100:#dcfce7; --g-green-700:#15803d;
+  --g-amber-500:#d97706; --g-amber-100:#fef3c7; --g-amber-700:#b45309;
+  --g-red-500:#dc2626;   --g-red-100:#fbe4de;   --g-red-700:#b91c1c;
+  --g-cyan-500:#0e7c96;  --g-cyan-100:#d5eff4;  --g-cyan-700:#0e6178;
+  /* spacing (4px base) */
+  --g-sp-1:4px; --g-sp-2:8px; --g-sp-3:12px; --g-sp-4:16px; --g-sp-5:20px;
+  --g-sp-6:24px; --g-sp-8:32px; --g-sp-10:40px; --g-sp-12:48px; --g-sp-16:64px;
+  /* radius */
+  --g-r-sm:6px; --g-r-md:10px; --g-r-lg:14px; --g-r-xl:18px; --g-r-full:999px;
+  /* type */
+  --g-font:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Hiragino Sans GB","Microsoft YaHei",Roboto,sans-serif;
+  --g-fs-xs:12px; --g-fs-sm:13px; --g-fs-base:15px; --g-fs-md:16px;
+  --g-fs-lg:18px; --g-fs-xl:22px; --g-fs-2xl:28px; --g-fs-3xl:34px;
+  --g-fw-regular:400; --g-fw-medium:500; --g-fw-semibold:600; --g-fw-bold:700;
+  --g-lh-tight:1.35; --g-lh-base:1.75;
+  /* motion */
+  --g-dur-fast:120ms; --g-dur-base:200ms; --g-ease:cubic-bezier(.4,0,.2,1);
+  /* breakpoints (reference values) sm640 md768 lg1024 */
+  /* icon sizes */
+  --g-icon-xs:14px; --g-icon-sm:16px; --g-icon-md:20px; --g-icon-lg:24px;
+  --g-icon-xl:32px; --g-icon-2xl:40px; --g-icon-stroke:2; --g-icon-stroke-thin:1.6;
+}
+/* =====================================================================
+   TIER 2 · SEMANTIC / ALIAS
+   ===================================================================== */
+:root{
+  --s-brand:var(--g-primary-600); --s-brand-hover:var(--g-primary-700);
+  --s-brand-active:var(--g-primary-800);
+  --s-brand-subtle:var(--g-primary-50); --s-brand-subtle-2:var(--g-primary-100);
+  --s-on-brand:#fff;
+  --s-bg:#f6f4ef; --s-surface:var(--g-neutral-0); --s-surface-sunken:var(--g-neutral-50);
+  --s-surface-hover:var(--g-neutral-100);
+  --s-text:var(--g-neutral-900); --s-text-secondary:var(--g-neutral-600);
+  --s-text-muted:var(--g-neutral-400); --s-on-fill:#fff;
+  --s-border:var(--g-neutral-200); --s-border-strong:var(--g-neutral-300);
+  --s-success:var(--g-green-500); --s-success-bg:var(--g-green-100); --s-success-text:var(--g-green-700);
+  --s-warning:var(--g-amber-500); --s-warning-bg:var(--g-amber-100); --s-warning-text:var(--g-amber-700);
+  --s-danger:var(--g-red-500);   --s-danger-bg:var(--g-red-100);   --s-danger-text:var(--g-red-700);
+  --s-info:var(--g-cyan-500);    --s-info-bg:var(--g-cyan-100);    --s-info-text:var(--g-cyan-700);
+  --s-shadow-sm:0 1px 2px rgba(60,40,20,.06),0 1px 3px rgba(60,40,20,.09);
+  --s-shadow-md:0 6px 16px -4px rgba(60,40,20,.12),0 2px 6px -2px rgba(60,40,20,.08);
+  --s-shadow-lg:0 20px 40px -12px rgba(60,40,20,.22);
+  --s-transition:var(--g-dur-base) var(--g-ease);
+  /* icon semantic roles */
+  --s-icon-color:var(--s-text); --s-icon-muted:var(--s-text-muted);
+  --s-icon-brand:var(--s-brand); --s-icon-on-brand:var(--s-on-brand);
+}
+[data-theme="dark"]{
+  --g-primary-50:hsl(var(--brand-h),var(--brand-s),16%);
+  --g-primary-100:hsl(var(--brand-h),var(--brand-s),20%);
+  --s-brand:var(--g-primary-500); --s-brand-hover:var(--g-primary-400); --s-brand-active:var(--g-primary-400);
+  --s-bg:var(--g-neutral-950); --s-surface:#1a1611; --s-surface-sunken:#211b14; --s-surface-hover:#2a231a;
+  --s-text:#f0ebe3; --s-text-secondary:#b8afa1; --s-text-muted:#8a8072;
+  --s-border:#332b21; --s-border-strong:#463c2e;
+  --s-success-bg:#0c2e18; --s-warning-bg:#3a2606; --s-danger-bg:#3a1512; --s-info-bg:#0a2b34;
+  --s-success-text:#4ade80; --s-warning-text:#fbbf24; --s-danger-text:#f87171; --s-info-text:#38c5df;
+  --s-shadow-sm:0 1px 2px rgba(0,0,0,.5); --s-shadow-md:0 6px 16px rgba(0,0,0,.55); --s-shadow-lg:0 20px 40px rgba(0,0,0,.6);
+}
+/* =====================================================================
+   TIER 3 · COMPONENT + layout token layer (--c-*)
+   ===================================================================== */
+:root{
+  /* fluid reading column: tracks the viewport up to a cap, widens on big screens */
+  --c-container-read: min(92vw, 860px);
+  --c-container-pad: clamp(var(--g-sp-4), 4vw, var(--g-sp-8));
+  --c-grid-gutter: clamp(var(--g-sp-3), 2.4vw, var(--g-sp-4));
+  --c-section-gap: clamp(var(--g-sp-6), 4vw, var(--g-sp-8));
+  --c-card-bg:var(--s-surface); --c-card-border:var(--s-border);
+  --c-card-radius:var(--g-r-lg); --c-card-shadow:var(--s-shadow-sm); --c-card-pad:var(--g-sp-4);
+  --c-icon-inline:var(--g-icon-sm); --c-icon-card:var(--g-icon-xl); --c-icon-nav:var(--g-icon-lg);
+}
+/* =====================================================================
+   BASE
+   ===================================================================== */
+html,body{margin:0;padding:0;}
+body{
+  font-family:var(--g-font); background:var(--s-bg); color:var(--s-text);
+  line-height:var(--g-lh-base); font-size:var(--g-fs-base);
+  -webkit-font-smoothing:antialiased;
+  transition:background var(--s-transition),color var(--s-transition);
+  padding:env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);
+}
+.wrap{ width:var(--c-container-read); margin:0 auto; padding:0 var(--c-container-pad) var(--g-sp-16); }
+
+/* icon base */
+.ico{ display:inline-block; width:1em; height:1em; flex:none; vertical-align:-.125em;
+  fill:none; stroke:currentColor; stroke-width:var(--g-icon-stroke);
+  stroke-linecap:round; stroke-linejoin:round; color:var(--s-icon-color); }
+.ico--sm{width:var(--g-icon-sm);height:var(--g-icon-sm);}
+.ico--md{width:var(--g-icon-md);height:var(--g-icon-md);}
+.ico--lg{width:var(--g-icon-lg);height:var(--g-icon-lg);}
+.ico--xl{width:var(--g-icon-xl);height:var(--g-icon-xl);stroke-width:var(--g-icon-stroke-thin);}
+.ico--xl use{stroke-width:var(--g-icon-stroke-thin);}
+.ico--brand{color:var(--s-icon-brand);} .ico--muted{color:var(--s-icon-muted);}
+.ico--on-brand{color:var(--s-icon-on-brand);}
+.ico--spin{animation:ico-spin var(--g-dur-base) linear;}
+@keyframes ico-spin{to{transform:rotate(360deg);}}
+
+/* ---------- theme toggle (sticky) ---------- */
+.topbar{ position:sticky; top:0; z-index:100;
+  backdrop-filter:saturate(1.4) blur(8px);
+  background:color-mix(in srgb, var(--s-bg) 82%, transparent);
+  border-bottom:1px solid var(--s-border);
+  display:flex; align-items:center; justify-content:space-between;
+  padding:var(--g-sp-2) var(--c-container-pad); margin-bottom:var(--g-sp-4);}
+.topbar .brandline{display:flex;align-items:center;gap:var(--g-sp-2);font-weight:var(--g-fw-bold);font-size:var(--g-fs-sm);color:var(--s-text-secondary);}
+.topbar .brandline .ico{color:var(--s-brand);}
+.tgl{ display:inline-flex;align-items:center;gap:var(--g-sp-2); cursor:pointer;
+  border:1px solid var(--s-border-strong); background:var(--s-surface); color:var(--s-text-secondary);
+  border-radius:var(--g-r-full); padding:6px 12px; font-size:var(--g-fs-sm); font-weight:var(--g-fw-medium);
+  transition:var(--s-transition); min-height:34px;}
+.tgl:hover{border-color:var(--s-brand);color:var(--s-brand);}
+
+/* ---------- hero (compact band: title left · stats right) ---------- */
+.hero{ color:var(--s-on-brand); border-radius:var(--g-r-lg);
+  padding:var(--g-sp-4) var(--g-sp-5);
+  margin:var(--g-sp-1) 0 var(--g-sp-4);
+  background:linear-gradient(120deg,var(--g-primary-500),var(--g-primary-700));
+  box-shadow:var(--s-shadow-md); position:relative; overflow:hidden;
+  display:flex; align-items:center; justify-content:space-between; gap:var(--g-sp-4); flex-wrap:wrap;}
+.hero::after{content:"";position:absolute;right:-30px;top:-40px;width:110px;height:110px;background:rgba(255,255,255,.09);border-radius:50%;}
+.hero .htext{position:relative;min-width:min(100%,15rem);flex:1 1 auto;}
+.hero .kicker{ display:inline-flex;align-items:center;gap:5px; font-size:var(--g-fs-xs); letter-spacing:1.5px;
+  background:rgba(255,255,255,.18); padding:2px 10px; border-radius:var(--g-r-full); margin-bottom:var(--g-sp-2);}
+.hero h1{ font-size:var(--g-fs-xl); margin:0; font-weight:var(--g-fw-bold); letter-spacing:.5px; line-height:var(--g-lh-tight);}
+.hero p{ font-size:var(--g-fs-sm); margin:4px 0 0; opacity:.94;}
+.hero .stats{ display:flex; gap:var(--g-sp-2); position:relative; flex-wrap:wrap;}
+.hero .stat{ background:rgba(255,255,255,.14); border-radius:var(--g-r-md); padding:var(--g-sp-1) var(--g-sp-3); text-align:center; min-width:60px;}
+.hero .stat b{display:block;font-size:var(--g-fs-md);font-weight:var(--g-fw-bold);line-height:1.2;}
+.hero .stat span{font-size:var(--g-fs-xs);opacity:.9;}
+
+/* ---------- section heading ---------- */
+.sec{ display:flex; align-items:center; gap:var(--g-sp-3); margin:var(--g-sp-8) 0 var(--g-sp-4); }
+.sec .badge{ flex:none; width:40px;height:40px;border-radius:var(--g-r-md);
+  background:var(--s-brand); color:var(--s-on-brand);
+  display:flex;align-items:center;justify-content:center; box-shadow:var(--s-shadow-md);}
+.sec .badge .ico{color:var(--s-on-brand);}
+.sec h2{ font-size:var(--g-fs-lg); margin:0; font-weight:var(--g-fw-bold); line-height:var(--g-lh-tight);}
+.sec .sub{ font-size:var(--g-fs-sm); color:var(--s-text-secondary); margin-top:2px;}
+
+/* ---------- card ---------- */
+.card{ background:var(--c-card-bg); border:1px solid var(--c-card-border);
+  border-radius:var(--c-card-radius); box-shadow:var(--c-card-shadow);
+  padding:var(--c-card-pad); margin-bottom:var(--g-sp-3);}
+.card h3{ display:flex; align-items:center; gap:var(--g-sp-2); margin:0 0 var(--g-sp-2);
+  font-size:var(--g-fs-md); font-weight:var(--g-fw-semibold); line-height:var(--g-lh-tight);}
+.card h3 .ico{ color:var(--s-brand); }
+.card p{ margin:0 0 var(--g-sp-2); color:var(--s-text-secondary);}
+.card p:last-child{margin-bottom:0;}
+.card p b, .card li b{color:var(--s-text);}
+
+/* two-column card grid on wider screens */
+.grid2{ display:grid; grid-template-columns:1fr; gap:var(--c-grid-gutter);}
+@media(min-width:640px){ .grid2{grid-template-columns:1fr 1fr;} }
+
+.lead{ font-size:var(--g-fs-base); color:var(--s-text-secondary); margin:0 0 var(--g-sp-4); padding:0 2px;}
+
+/* ---------- example / tip callouts (clean, label-led) ---------- */
+.box{ position:relative; border-radius:var(--g-r-md); padding:var(--g-sp-3) var(--g-sp-4);
+  margin:var(--g-sp-3) 0; font-size:var(--g-fs-base); line-height:var(--g-lh-base);
+  color:var(--s-text); background:var(--s-surface); border:1px solid var(--s-border);}
+.box:last-child{margin-bottom:0;}
+.box .lbl{ display:flex;align-items:center;gap:6px; font-weight:var(--g-fw-semibold);
+  font-size:var(--g-fs-xs); margin-bottom:5px; letter-spacing:.2px; color:var(--s-text-secondary);}
+.box .lbl .ico{color:var(--s-text-muted);}
+/* role signalled only by the small labeled header — no colored rail */
+.box.good .lbl,.box.good .lbl .ico{color:var(--s-info-text);}
+.box.warn .lbl,.box.warn .lbl .ico{color:var(--s-warning-text);}
+.box.bad .lbl,.box.bad .lbl .ico{color:var(--s-danger-text);}
+.box.ok .lbl,.box.ok .lbl .ico{color:var(--s-success-text);}
+
+/* before/after comparison */
+.ba{ display:grid; grid-template-columns:1fr; gap:var(--g-sp-2); margin:var(--g-sp-3) 0;}
+@media(min-width:560px){.ba{grid-template-columns:1fr 1fr;}}
+.ba .col{ border-radius:var(--g-r-md); padding:var(--g-sp-3) var(--g-sp-4); font-size:var(--g-fs-base);}
+.ba .before{ background:var(--s-surface-sunken); color:var(--s-text-secondary); border:1px dashed var(--s-border-strong);}
+.ba .after{ background:var(--s-brand-subtle); color:var(--s-text); border:1px solid var(--s-brand-subtle-2);}
+.ba .t{ display:flex;align-items:center;gap:6px; font-weight:var(--g-fw-semibold); font-size:var(--g-fs-xs); margin-bottom:6px;}
+.ba .before .t{color:var(--s-text-muted);}
+.ba .after .t{color:var(--s-brand);}
+
+/* checklist */
+ul.checks{list-style:none;padding:0;margin:var(--g-sp-2) 0 0;}
+ul.checks li{ position:relative; padding:var(--g-sp-2) 0 var(--g-sp-2) 30px;
+  color:var(--s-text-secondary); font-size:var(--g-fs-base);
+  border-bottom:1px solid var(--s-border);}
+ul.checks li:last-child{border-bottom:0;}
+ul.checks li .ico{ position:absolute; left:0; top:12px; color:var(--s-brand); width:var(--g-icon-sm); height:var(--g-icon-sm);}
+
+/* mini chip row (senses etc.) */
+.chips{display:flex;flex-wrap:wrap;gap:var(--g-sp-2);margin:var(--g-sp-2) 0 0;}
+.chip{ display:inline-flex;align-items:center;gap:5px; background:var(--s-surface-sunken);
+  color:var(--s-text-secondary); border:1px solid var(--s-border);
+  padding:5px 10px; border-radius:var(--g-r-full); font-size:var(--g-fs-sm);font-weight:var(--g-fw-medium);}
+.chip .ico{color:var(--s-brand);}
+
+/* week plan rows */
+.week{ display:grid; grid-template-columns:64px 1fr; border:1px solid var(--s-border);
+  border-radius:var(--g-r-md); overflow:hidden; margin-bottom:var(--g-sp-2); box-shadow:var(--s-shadow-sm);}
+.week .d{ background:var(--s-brand); color:var(--s-on-brand); display:flex;flex-direction:column;
+  align-items:center;justify-content:center; font-weight:var(--g-fw-bold); font-size:var(--g-fs-sm); padding:var(--g-sp-2);}
+.week .c{ background:var(--s-surface); padding:var(--g-sp-3) var(--g-sp-4); font-size:var(--g-fs-base); color:var(--s-text-secondary);}
+.week .c b{color:var(--s-text);}
+
+/* ---------- annotated essay sample (范文批注) ---------- */
+.essay{ background:var(--s-surface); border:1px solid var(--s-border); border-radius:var(--g-r-lg);
+  padding:var(--g-sp-4) var(--g-sp-5); margin-top:var(--g-sp-3); box-shadow:var(--s-shadow-sm);}
+.essay .etitle{ display:flex;align-items:center;gap:8px; font-weight:var(--g-fw-semibold);
+  font-size:var(--g-fs-sm); color:var(--s-brand); margin:0 0 var(--g-sp-3);
+  padding-bottom:var(--g-sp-2); border-bottom:1px solid var(--s-border);}
+.essay .etitle .name{ margin-left:auto; font-size:var(--g-fs-xs); color:var(--s-text-muted); font-weight:var(--g-fw-regular);}
+.essay p{ margin:0 0 var(--g-sp-2); color:var(--s-text); line-height:var(--g-lh-base); font-size:var(--g-fs-base);}
+.essay p:last-of-type{margin-bottom:0;}
+.essay mark{ background:transparent; color:inherit; padding:0;
+  font-weight:var(--g-fw-medium);
+  background-image:linear-gradient(var(--s-brand-subtle),var(--s-brand-subtle));
+  background-repeat:no-repeat; background-position:0 88%; background-size:100% 34%;
+  box-decoration-break:clone; -webkit-box-decoration-break:clone;}
+@supports(background-image:linear-gradient(color-mix(in srgb,red,transparent),red)){
+  .essay mark{ background-image:linear-gradient(
+    color-mix(in srgb,var(--s-brand) 24%,transparent),
+    color-mix(in srgb,var(--s-brand) 24%,transparent)); } }
+.essay .note{ display:flex;align-items:flex-start;gap:6px; margin-top:var(--g-sp-3);
+  font-size:var(--g-fs-sm); color:var(--s-text-secondary); border-top:1px dashed var(--s-border-strong); padding-top:var(--g-sp-2);}
+.essay .note .ico{color:var(--s-brand);flex:none;margin-top:3px;}
+.essay .note b{color:var(--s-text);}
+
+/* ---------- SPA view switch: tutorial <-> example detail page ---------- */
+.view{display:none;}
+.view.active{display:block;}
+
+/* per-step "查看更多" entry — sits at the RIGHT of the section heading */
+.sec .more{ margin-left:auto; flex:none; display:inline-flex; align-items:center; gap:6px;
+  cursor:pointer; font-family:inherit; font-size:var(--g-fs-sm); font-weight:var(--g-fw-semibold);
+  color:var(--s-brand); background:var(--s-brand-subtle); border:1px solid var(--s-brand-subtle-2);
+  border-radius:var(--g-r-full); padding:6px 14px; transition:var(--s-transition); white-space:nowrap;}
+.sec .more:hover{ background:var(--s-brand); color:var(--s-on-brand); border-color:var(--s-brand);}
+.sec .more .ico{width:var(--g-icon-sm);height:var(--g-icon-sm);}
+@media(max-width:559px){ .sec .more span.t{display:none;} }
+
+/* detail page (a full SPA view, not a modal) */
+.dpage{ min-height:calc(100vh - 60px); display:flex; flex-direction:column;}
+.dpage .dtop{ position:sticky; top:52px; z-index:20;
+  display:flex; align-items:center; gap:var(--g-sp-3); flex-wrap:wrap;
+  padding:var(--g-sp-3) 0; margin-bottom:var(--g-sp-4);
+  background:var(--s-bg); border-bottom:1px solid var(--s-border);}
+.dback{ display:inline-flex; align-items:center; gap:6px; cursor:pointer; font-family:inherit;
+  font-size:var(--g-fs-sm); font-weight:var(--g-fw-semibold); color:var(--s-text-secondary);
+  background:var(--s-surface); border:1px solid var(--s-border-strong); border-radius:var(--g-r-md);
+  padding:0 var(--g-sp-3); height:38px; transition:var(--s-transition);}
+.dback:hover{border-color:var(--s-brand);color:var(--s-brand);}
+.dback .ico{width:var(--g-icon-sm);height:var(--g-icon-sm);transform:rotate(180deg);}
+.dpage .dtitle{ display:flex;align-items:center;gap:var(--g-sp-2);
+  font-size:var(--g-fs-lg); font-weight:var(--g-fw-bold); color:var(--s-text);}
+.dpage .dtitle .ico{color:var(--s-brand);}
+.dpage .dcount{ font-size:var(--g-fs-xs); font-weight:var(--g-fw-semibold);
+  color:var(--s-brand); background:var(--s-brand-subtle); border-radius:var(--g-r-full); padding:2px 10px;}
+.dpage .dtools{ display:flex; gap:var(--g-sp-2); margin-left:auto; align-items:center;}
+/* vertical tile of examples — fills at least one screen height */
+.dpage .dlist{ display:grid; grid-template-columns:1fr; gap:var(--g-sp-4);
+  transition:opacity var(--g-dur-base) var(--g-ease); flex:1 1 auto;
+  align-content:start; padding-bottom:var(--g-sp-8);}
+@media(min-width:760px){ .dpage .dlist{ grid-template-columns:1fr 1fr; } }
+.dpage .dlist.flip{opacity:0;}
+.dpage .dlist .essay{margin-top:0; margin-bottom:0;}
+/* <essay-card> is a light-DOM custom element; display:contents lets its inner
+   .essay participate directly in the parent grid. Cards fade/slide in as they
+   are appended asynchronously (async template rendering), one rAF chunk at a time. */
+essay-card{ display:contents; }
+essay-card .essay{ animation:essay-in var(--g-dur-base) var(--g-ease) both; }
+@keyframes essay-in{ from{opacity:0; transform:translateY(6px);} to{opacity:1; transform:none;} }
+@media(prefers-reduced-motion:reduce){ essay-card .essay{ animation:none; } }
+/* small chip-buttons reused in the detail page toolbar */
+.btn-sm{ display:inline-flex;align-items:center;justify-content:center;gap:6px;
+  cursor:pointer; font-family:inherit; font-weight:var(--g-fw-semibold);
+  border-radius:var(--g-r-md); padding:0 var(--g-sp-4); height:38px; font-size:var(--g-fs-sm);
+  transition:var(--s-transition); white-space:nowrap; border:1px solid var(--s-border-strong);
+  background:var(--s-surface); color:var(--s-text-secondary);}
+.btn-sm .ico{width:var(--g-icon-sm);height:var(--g-icon-sm);}
+.btn-sm:hover{border-color:var(--s-brand);color:var(--s-brand);}
+.btn-sm.primary{ background:var(--s-brand); color:var(--s-on-brand); border-color:var(--s-brand);}
+.btn-sm.primary:hover{ background:var(--s-brand-hover); color:var(--s-on-brand); border-color:var(--s-brand-hover);}
+/* inline annotation used inside essay HTML */
+.anno{ color:var(--s-text-muted); font-size:var(--g-fs-xs); font-weight:var(--g-fw-medium);}
+/* ---------- random prompt generator ---------- */
+.gen{ background:var(--s-surface); border:1px solid var(--s-border);
+  border-radius:var(--g-r-lg); box-shadow:var(--s-shadow-md); overflow:hidden;}
+/* — level 1: toolbar header (filters live here, on a tinted band) — */
+.gen .gbar{ display:flex; align-items:center; gap:var(--g-sp-2); flex-wrap:wrap;
+  padding:var(--g-sp-3) var(--g-sp-4); background:var(--s-surface-sunken);
+  border-bottom:1px solid var(--s-border);}
+.gen .flabel{ display:inline-flex;align-items:center;gap:5px; font-size:var(--g-fs-xs);
+  font-weight:var(--g-fw-bold); color:var(--s-text-secondary);
+  padding-right:var(--g-sp-2); margin-right:var(--g-sp-1); border-right:1px solid var(--s-border);}
+.gen .flabel .ico{color:var(--s-brand);}
+.fchip{ cursor:pointer; border:1px solid var(--s-border-strong); background:var(--s-surface);
+  color:var(--s-text-secondary); border-radius:var(--g-r-full); padding:5px 14px; font-size:var(--g-fs-sm);
+  font-weight:var(--g-fw-medium); transition:var(--s-transition); min-height:32px;}
+.fchip[aria-pressed="true"]{ background:var(--s-brand); color:var(--s-on-brand); border-color:var(--s-brand);}
+/* — level 2: the result body (the focal point) — */
+.gen .prow{ display:flex; align-items:stretch; gap:var(--g-sp-4); flex-wrap:wrap;
+  padding:var(--g-sp-5) var(--g-sp-4);}
+.gen .display{ flex:1 1 18rem; display:flex; flex-direction:column; gap:var(--g-sp-3);
+  transition:opacity var(--g-dur-base) var(--g-ease);}
+.gen .display .typ{ display:inline-flex;align-items:center;gap:6px; align-self:flex-start;
+  background:var(--s-brand-subtle); color:var(--s-brand); font-size:var(--g-fs-xs); font-weight:var(--g-fw-bold);
+  letter-spacing:.5px; padding:4px 12px; border-radius:var(--g-r-full);}
+.gen .display .q{ font-size:var(--g-fs-2xl); font-weight:var(--g-fw-bold); color:var(--s-text);
+  line-height:var(--g-lh-tight); letter-spacing:-.5px;}
+.gen .display .hint{ display:inline-flex;align-items:center;gap:6px;
+  font-size:var(--g-fs-sm); color:var(--s-text-muted); }
+.gen .display .hint .ico{color:var(--s-text-muted);}
+.gen .display.flip{opacity:0;}
+/* — level 3: docked actions, clearly secondary — */
+.gen-actions{display:flex;flex-direction:column;gap:var(--g-sp-2);align-items:stretch;justify-content:center;flex:0 0 auto;min-width:9.5rem;}
+.btn{ display:inline-flex;align-items:center;justify-content:center;gap:6px;
+  border:none; cursor:pointer; font-family:inherit; font-weight:var(--g-fw-semibold);
+  border-radius:var(--g-r-sm); padding:0 var(--g-sp-4); height:40px; font-size:var(--g-fs-sm);
+  transition:var(--s-transition); white-space:nowrap;}
+.btn .ico{width:var(--g-icon-sm);height:var(--g-icon-sm);}
+.btn-primary{ background:var(--s-brand); color:var(--s-on-brand); box-shadow:var(--s-shadow-sm);}
+.btn-primary:hover{background:var(--s-brand-hover);} .btn-primary:active{background:var(--s-brand-active);transform:translateY(1px);}
+.btn-ghost{ background:var(--s-surface); color:var(--s-text-secondary); border:1px solid var(--s-border-strong);}
+.btn-ghost:hover{border-color:var(--s-brand);color:var(--s-brand);}
+/* mobile: buttons go full-width row under the display */
+@media(max-width:559px){
+  .gen .prow{flex-direction:column;}
+  .gen-actions{flex-direction:row;align-items:stretch;width:100%;min-width:0;}
+  .gen-actions .btn{flex:1 1 0;}
+}
+
+.footer{ text-align:center; color:var(--s-text-muted); font-size:var(--g-fs-sm);
+  margin-top:var(--c-section-gap); padding-top:var(--g-sp-6); border-top:1px solid var(--s-border);}
+.footer .marks{display:flex;gap:6px;justify-content:center;flex-wrap:wrap;margin-bottom:var(--g-sp-3);}
+.footer .mk{ display:inline-flex;align-items:center;gap:5px; background:var(--s-brand-subtle);
+  color:var(--s-brand); font-size:var(--g-fs-xs); font-weight:var(--g-fw-semibold); padding:4px 10px; border-radius:var(--g-r-full);}
+
+@media(min-width:768px){ :root{--c-card-pad:var(--g-sp-5);} }
+
+/* ===== wide-screen tiers: widen the fluid column & densify grids ===== */
+@media(min-width:1024px){
+  :root{ --c-container-read: min(90vw, 1040px); }
+  .grid2{ grid-template-columns:repeat(2,1fr); }
+}
+@media(min-width:1280px){
+  :root{ --c-container-read: min(88vw, 1200px); }
+  /* four technique cards go 4-up on desktop to use the extra width */
+  .grid2{ grid-template-columns:repeat(4,1fr); }
+}
+
+/* =====================================================================
+   PAGE-SPECIFIC · "作文创作过程" 分步流程组件
+   (reuses tokens/icons; adds a numbered vertical process rail + growing-draft panel)
+   ===================================================================== */
+/* vertical numbered process rail: each stage is a node on a spine */
+.flow{ position:relative; margin:var(--g-sp-4) 0 0; padding-left:0; }
+.stage{ position:relative; padding-left:56px; margin-bottom:var(--g-sp-6); }
+.stage:last-child{ margin-bottom:0; }
+/* the spine connecting stages */
+.stage::before{ content:""; position:absolute; left:19px; top:40px; bottom:-24px;
+  width:2px; background:var(--s-border-strong); }
+.stage:last-child::before{ display:none; }
+.stage .num{ position:absolute; left:0; top:0; width:40px; height:40px;
+  border-radius:var(--g-r-full); background:var(--s-brand); color:var(--s-on-brand);
+  display:flex; align-items:center; justify-content:center; z-index:1;
+  font-weight:var(--g-fw-bold); font-size:var(--g-fs-md); box-shadow:var(--s-shadow-md); }
+.stage .shead{ display:flex; align-items:baseline; gap:var(--g-sp-2); flex-wrap:wrap;
+  min-height:40px; }
+.stage .shead .stitle{ font-size:var(--g-fs-lg); font-weight:var(--g-fw-bold);
+  color:var(--s-text); line-height:var(--g-lh-tight); }
+.stage .shead .stag{ font-size:var(--g-fs-xs); font-weight:var(--g-fw-semibold);
+  color:var(--s-brand); background:var(--s-brand-subtle); border:1px solid var(--s-brand-subtle-2);
+  border-radius:var(--g-r-full); padding:2px 10px; }
+.stage .sbody{ margin-top:var(--g-sp-3); }
+
+/* "问自己" question prompts inside a stage — a clean numbered Q/A list,
+   no repeated icons (the card <h3> already carries the section icon). */
+.qa{ margin:var(--g-sp-3) 0 0; counter-reset:qa; }
+.qa .q{ display:flex; align-items:flex-start; gap:10px; margin-bottom:var(--g-sp-1);
+  font-size:var(--g-fs-base); color:var(--s-text); font-weight:var(--g-fw-semibold); }
+.qa .q::before{ counter-increment:qa; content:counter(qa);
+  flex:none; width:20px; height:20px; margin-top:2px; border-radius:var(--g-r-full);
+  background:var(--s-brand-subtle); color:var(--s-brand);
+  font-size:var(--g-fs-xs); font-weight:var(--g-fw-bold);
+  display:flex; align-items:center; justify-content:center; }
+.qa .a{ margin:0 0 var(--g-sp-3) 30px; color:var(--s-text-secondary); font-size:var(--g-fs-base); }
+.qa .a:last-child{ margin-bottom:0; }
+.qa .a b{ color:var(--s-text); }
+
+/* skeleton outline (骨架) — a labeled 3-part frame */
+.frame{ display:grid; grid-template-columns:1fr; gap:var(--g-sp-2); margin-top:var(--g-sp-2); }
+.frame .part{ display:grid; grid-template-columns:auto 1fr; align-items:stretch; gap:0;
+  border:1px solid var(--s-border); border-radius:var(--g-r-md); overflow:hidden; }
+.frame .part .k{ display:flex; flex-direction:column; align-items:center; justify-content:center;
+  gap:2px; background:var(--s-surface-sunken); color:var(--s-brand); font-weight:var(--g-fw-bold);
+  font-size:var(--g-fs-sm); padding:var(--g-sp-2) var(--g-sp-3); min-width:70px;
+  border-right:1px solid var(--s-border); text-align:center; }
+.frame .part .k small{ font-size:var(--g-fs-xs); color:var(--s-text-muted); font-weight:var(--g-fw-regular); }
+.frame .part .v{ padding:var(--g-sp-3) var(--g-sp-4); font-size:var(--g-fs-base); color:var(--s-text-secondary); }
+.frame .part .v b{ color:var(--s-text); }
+
+/* the "growing draft" — a running manuscript that visibly gains text each stage.
+   the freshly-added text is highlighted so kids SEE what got added this round. */
+.draft{ background:var(--s-surface); border:1px solid var(--s-border); border-radius:var(--g-r-lg);
+  box-shadow:var(--s-shadow-sm); overflow:hidden; margin-top:var(--g-sp-3); }
+.draft .dhd{ display:flex; align-items:center; gap:8px; flex-wrap:wrap;
+  padding:var(--g-sp-2) var(--g-sp-4); background:var(--s-surface-sunken);
+  border-bottom:1px solid var(--s-border); font-size:var(--g-fs-sm);
+  font-weight:var(--g-fw-semibold); color:var(--s-text-secondary); }
+.draft .dhd .ico{ color:var(--s-brand); }
+.draft .dhd .grow{ margin-left:auto; font-size:var(--g-fs-xs); color:var(--s-brand);
+  background:var(--s-brand-subtle); border-radius:var(--g-r-full); padding:2px 10px; font-weight:var(--g-fw-bold); }
+.draft .dtxt{ padding:var(--g-sp-4) var(--g-sp-5); }
+.draft .dtxt p{ margin:0 0 var(--g-sp-2); color:var(--s-text); line-height:var(--g-lh-base); font-size:var(--g-fs-base); }
+.draft .dtxt p:last-child{ margin-bottom:0; }
+/* text carried over from a previous stage reads calmer */
+.draft .dtxt .old{ color:var(--s-text-secondary); }
+/* newly added text this stage — same underline treatment as essay <mark> */
+.draft .dtxt .add{ color:var(--s-text); font-weight:var(--g-fw-medium);
+  background-image:linear-gradient(var(--s-brand-subtle),var(--s-brand-subtle));
+  background-repeat:no-repeat; background-position:0 90%; background-size:100% 32%;
+  box-decoration-break:clone; -webkit-box-decoration-break:clone; }
+@supports(background-image:linear-gradient(color-mix(in srgb,red,transparent),red)){
+  .draft .dtxt .add{ background-image:linear-gradient(
+    color-mix(in srgb,var(--s-brand) 26%,transparent),
+    color-mix(in srgb,var(--s-brand) 26%,transparent)); } }
+
+/* final annotated essay: two columns on wide screens — essay left, margin notes right */
+.review{ display:grid; grid-template-columns:1fr; gap:var(--g-sp-3); margin-top:var(--g-sp-3); }
+@media(min-width:860px){ .review{ grid-template-columns:1.6fr 1fr; align-items:start; }
+  /* align the note cards with the essay BODY (not the title bar):
+     offset = essay top padding + etitle line + its padding-bottom + margin-bottom */
+  .notecol{ padding-top:calc(var(--g-sp-4) + var(--g-lh-base) * var(--g-fs-sm) + var(--g-sp-2) + var(--g-sp-3)); }
+}
+.notecol{ display:flex; flex-direction:column; gap:var(--g-sp-2); }
+.notecol .nt{ display:flex; align-items:flex-start; gap:8px; background:var(--s-surface);
+  border:1px solid var(--s-border); border-left:3px solid var(--s-brand);
+  border-radius:var(--g-r-md); padding:var(--g-sp-3) var(--g-sp-3); box-shadow:var(--s-shadow-sm);
+  font-size:var(--g-fs-sm); color:var(--s-text-secondary); }
+.notecol .nt .ico{ color:var(--s-brand); flex:none; margin-top:2px; }
+.notecol .nt b{ color:var(--s-text); }
+.notecol .nt .tag{ display:inline-block; font-size:var(--g-fs-xs); font-weight:var(--g-fw-bold);
+  color:var(--s-brand); margin-right:5px; }
+
+
+.flow{ transition:opacity var(--g-dur-base) var(--g-ease); }
+.topicseq{ margin-left:auto; font-size:var(--g-fs-xs); font-weight:var(--g-fw-semibold);
+  color:var(--s-brand); background:var(--s-brand-subtle); border:1px solid var(--s-brand-subtle-2);
+  border-radius:var(--g-r-full); padding:2px 10px; }
+.card h3{ flex-wrap:wrap; }
+</style>
+</head>
+<body>
+
+<!-- ===== inlined icon sprite (Lucide, ISC) ===== -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+<symbol id="ic-eye" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2.062 12.348a1 1 0 0 1 0-.696 10.75 10.75 0 0 1 19.876 0 1 1 0 0 1 0 .696 10.75 10.75 0 0 1-19.876 0"/><circle cx="12" cy="12" r="3"/></symbol>
+<symbol id="ic-layers" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12.83 2.18a2 2 0 0 0-1.66 0L2.6 6.08a1 1 0 0 0 0 1.83l8.58 3.91a2 2 0 0 0 1.66 0l8.58-3.9a1 1 0 0 0 0-1.83z"/><path d="M2 12a1 1 0 0 0 .58.91l8.6 3.91a2 2 0 0 0 1.65 0l8.58-3.9A1 1 0 0 0 22 12"/><path d="M2 17a1 1 0 0 0 .58.91l8.6 3.91a2 2 0 0 0 1.65 0l8.58-3.9A1 1 0 0 0 22 17"/></symbol>
+<symbol id="ic-layout" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="18" x="3" y="3" rx="2"/><path d="M3 9h18"/><path d="M9 21V9"/></symbol>
+<symbol id="ic-book" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 7v14"/><path d="M3 18a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h5a4 4 0 0 1 4 4 4 4 0 0 1 4-4h5a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1h-6a3 3 0 0 0-3 3 3 3 0 0 0-3-3z"/></symbol>
+<symbol id="ic-edit" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21.174 6.812a1 1 0 0 0-3.986-3.987L3.842 16.174a2 2 0 0 0-.5.83l-1.321 4.352a.5.5 0 0 0 .623.622l4.353-1.32a2 2 0 0 0 .83-.497z"/><path d="m15 5 4 4"/></symbol>
+<symbol id="ic-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></symbol>
+<symbol id="ic-calendar" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 2v4"/><path d="M16 2v4"/><rect width="18" height="18" x="3" y="4" rx="2"/><path d="M3 10h18"/></symbol>
+<symbol id="ic-refresh" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 0 1 9-9 9.75 9.75 0 0 1 6.74 2.74L21 8"/><path d="M21 3v5h-5"/><path d="M21 12a9 9 0 0 1-9 9 9.75 9.75 0 0 1-6.74-2.74L3 16"/><path d="M8 16H3v5"/></symbol>
+<symbol id="ic-list" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 5h.01"/><path d="M3 12h.01"/><path d="M3 19h.01"/><path d="M8 5h13"/><path d="M8 12h13"/><path d="M8 19h13"/></symbol>
+<symbol id="ic-target" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></symbol>
+<symbol id="ic-sparkles" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11.017 2.814a1 1 0 0 1 1.966 0l1.051 5.558a2 2 0 0 0 1.594 1.594l5.558 1.051a1 1 0 0 1 0 1.966l-5.558 1.051a2 2 0 0 0-1.594 1.594l-1.051 5.558a1 1 0 0 1-1.966 0l-1.051-5.558a2 2 0 0 0-1.594-1.594l-5.558-1.051a1 1 0 0 1 0-1.966l5.558-1.051a2 2 0 0 0 1.594-1.594z"/><path d="M20 2v4"/><path d="M22 4h-4"/><circle cx="4" cy="20" r="2"/></symbol>
+<symbol id="ic-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2"/><path d="M12 20v2"/><path d="m4.93 4.93 1.41 1.41"/><path d="m17.66 17.66 1.41 1.41"/><path d="M2 12h2"/><path d="M20 12h2"/><path d="m6.34 17.66-1.41 1.41"/><path d="m19.07 4.93-1.41 1.41"/></symbol>
+<symbol id="ic-cloud-rain" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 14.899A7 7 0 1 1 15.71 8h1.79a4.5 4.5 0 0 1 2.5 8.242"/><path d="M16 14v6"/><path d="M8 14v6"/><path d="M12 16v6"/></symbol>
+<symbol id="ic-snowflake" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m10 20-1.25-2.5L6 18"/><path d="M10 4 8.75 6.5 6 6"/><path d="m14 20 1.25-2.5L18 18"/><path d="m14 4 1.25 2.5L18 6"/><path d="m17 21-3-6h-4"/><path d="m17 3-3 6 1.5 3"/><path d="M2 12h6.5L10 9"/><path d="m20 10-1.5 2 1.5 2"/><path d="M22 12h-6.5L14 15"/><path d="m4 10 1.5 2L4 14"/><path d="m7 21 3-6-1.5-3"/><path d="m7 3 3 6h4"/></symbol>
+<symbol id="ic-message-square" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 17a2 2 0 0 1-2 2H6.828a2 2 0 0 0-1.414.586l-2.202 2.202A.71.71 0 0 1 2 21.286V5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2z"/></symbol>
+<symbol id="ic-quote" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 3a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2 1 1 0 0 1 1 1v1a2 2 0 0 1-2 2 1 1 0 0 0-1 1v2a1 1 0 0 0 1 1 6 6 0 0 0 6-6V5a2 2 0 0 0-2-2z"/><path d="M5 3a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2 1 1 0 0 1 1 1v1a2 2 0 0 1-2 2 1 1 0 0 0-1 1v2a1 1 0 0 0 1 1 6 6 0 0 0 6-6V5a2 2 0 0 0-2-2z"/></symbol>
+<symbol id="ic-award" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m15.477 12.89 1.515 8.526a.5.5 0 0 1-.81.47l-3.58-2.687a1 1 0 0 0-1.197 0l-3.586 2.686a.5.5 0 0 1-.81-.469l1.514-8.526"/><circle cx="12" cy="8" r="6"/></symbol>
+<symbol id="ic-smile" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M8 14s1.5 2 4 2 4-2 4-2"/><line x1="9" x2="9.01" y1="9" y2="9"/><line x1="15" x2="15.01" y1="9" y2="9"/></symbol>
+<symbol id="ic-star" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z"/></symbol>
+<symbol id="ic-arrow-right" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></symbol>
+</svg>
+
+<div class="topbar">
+  <span class="brandline"><svg class="ico ico--md"><use href="#ic-edit"/></svg> 一步步写好一篇作文</span>
+  <button class="tgl" id="themeToggle" aria-label="切换深浅色">
+    <svg class="ico ico--sm"><use href="#ic-sun" id="themeIcon"/></svg><span id="themeLabel">夜间</span>
+  </button>
+</div>
+
+<div class="wrap">
+
+<div class="hero">
+  <div class="htext">
+    <span class="kicker"><svg class="ico ico--sm"><use href="#ic-edit"/></svg> 北京 · 小学五年级 · 写作过程课</span>
+    <h1>一篇作文是怎么"长"出来的</h1>
+    <p>从一个题目开始,先搭骨架、再一层层填内容,看着它慢慢变成一篇完整的好作文</p>
+  </div>
+  <div class="stats">
+    <div class="stat"><b>6</b><span>创作步骤</span></div>
+    <div class="stat"><b id="statGenre">记事</b><span>当前体裁</span></div>
+    <div class="stat"><b>10</b><span>范文批注</span></div>
+  </div>
+</div>
+
+<p class="lead">写作文不是坐下来"一口气想到哪写到哪",而是<b>像盖房子一样</b>:先想清楚要盖什么(审题立意)、再打好地基和框架(搭骨架)、然后一间一间地装修(分步填内容)。这份手册用同一个题目 <b id="leadTitle">《一次难忘的运动会》</b>,带你走完从空白到成篇的全过程——每一步都能看到作文"长高了多少"。</p>
+
+<!-- 示范题目卡 -->
+<div class="card">
+  <h3><svg class="ico ico--md"><use href="#ic-target"/></svg> 本次示范题目 <span class="topicseq" id="topicSeq">1 / 4</span></h3>
+  <div class="box good">
+    <span class="lbl"><svg class="ico ico--sm"><use href="#ic-book"/></svg> 题目</span>
+    <b id="cardTitle">《一次难忘的运动会》</b>　<span class="anno" id="cardReq">要求:写一件亲身经历的事,写清过程,写出真情实感,不少于450字</span>
+  </div>
+  <p>下面的每一步,我们都围绕这个题目往前走一小步。想看别的体裁?点右上角的<b>"换一个题目重新演示"</b>,同样的六步会套用到一个全新的题目上。</p>
+</div>
+
+<!-- ============ 分步流程 ============ -->
+<div class="sec">
+  <span class="badge"><svg class="ico ico--md"><use href="#ic-layers"/></svg></span>
+  <div>
+    <h2>六步创作流程</h2>
+    <div class="sub">跟着编号一步步走,看作文一点点变长</div>
+  </div>
+  <button class="more" id="btnRegen" type="button">
+    <svg class="ico ico--sm"><use href="#ic-refresh"/></svg><span class="t">换一个题目重新演示</span>
+  </button>
+</div>
+
+<div class="flow" id="flow"></div><!-- /flow (rendered by JS) -->
+
+<!-- 回顾:作文是怎么长出来的 -->
+<div class="sec">
+  <span class="badge"><svg class="ico ico--md"><use href="#ic-refresh"/></svg></span>
+  <div>
+    <h2>回头看:它是怎么一步步长出来的</h2>
+    <div class="sub">同一个题目,每一步只做一件事</div>
+  </div>
+</div>
+<div class="grid2">
+  <div class="card"><h3><svg class="ico ico--sm"><use href="#ic-eye"/></svg> 第 1 步 · 审题立意</h3><p>问三个问题,定下"一句话中心"。<b>成果:一句话。</b></p></div>
+  <div class="card"><h3><svg class="ico ico--sm"><use href="#ic-layout"/></svg> 第 2 步 · 搭骨架</h3><p>列凤头/猪肚/豹尾提纲。<b>成果:三段框架。</b></p></div>
+  <div class="card"><h3><svg class="ico ico--sm"><use href="#ic-sun"/></svg> 第 3 步 · 填开头</h3><p>用声音和动作入题。<b>成果:第一段成形。</b></p></div>
+  <div class="card"><h3><svg class="ico ico--sm"><use href="#ic-target"/></svg> 第 4 步 · 填中间</h3><p>慢镜头+细节+声音写足过程。<b>成果:核心段最长。</b></p></div>
+  <div class="card"><h3><svg class="ico ico--sm"><use href="#ic-check"/></svg> 第 5 步 · 填结尾</h3><p>以小见大、首尾呼应。<b>成果:全文成篇。</b></p></div>
+  <div class="card"><h3><svg class="ico ico--sm"><use href="#ic-award"/></svg> 第 6 步 · 批注定稿</h3><p>对照批注检查每处亮点。<b>成果:交出好作文。</b></p></div>
+</div>
+
+<!-- 换题目自己练 -->
+<div class="sec">
+  <span class="badge"><svg class="ico ico--md"><use href="#ic-edit"/></svg></span>
+  <div>
+    <h2>换个题目,照着做一遍</h2>
+    <div class="sub">同样的六步,适用于任何记事作文</div>
+  </div>
+</div>
+<div class="card">
+  <p>试着把下面任意一个题目,按第 1 到第 6 步走一遍。你会发现:<b>写作文不难,难的是不肯一步一步来。</b></p>
+  <div class="chips">
+    <span class="chip"><svg class="ico ico--sm"><use href="#ic-star"/></svg> 一次难忘的比赛</span>
+    <span class="chip"><svg class="ico ico--sm"><use href="#ic-smile"/></svg> 那一次,我真高兴</span>
+    <span class="chip"><svg class="ico ico--sm"><use href="#ic-award"/></svg> 一件让我自豪的事</span>
+    <span class="chip"><svg class="ico ico--sm"><use href="#ic-message-square"/></svg> 我学会了 ______</span>
+    <span class="chip"><svg class="ico ico--sm"><use href="#ic-book"/></svg> 难忘的一课</span>
+  </div>
+</div>
+
+<div class="footer">
+  <div class="marks">
+    <span class="mk"><svg class="ico ico--sm"><use href="#ic-layers"/></svg> 六步成篇</span>
+    <span class="mk"><svg class="ico ico--sm"><use href="#ic-edit"/></svg> 看得见的写作过程</span>
+    <span class="mk"><svg class="ico ico--sm"><use href="#ic-award"/></svg> 范文带批注</span>
+  </div>
+  北京 · 小学五年级写作创作过程手册 · 适配 iPad 与手机阅读
+</div>
+
+</div><!-- /wrap -->
+
+<script>
+var TOPICS=[{"title": "一次难忘的运动会", "genre": "记事 · 写一件事", "req": "写一件亲身经历的事,写清过程,写出真情实感,不少于450字", "eye": "难忘", "stage1": {"qa": [["题眼是哪个词?", "<b>\"难忘\"</b>是题眼。所以重点不是把运动会从头到尾流水账记一遍,而是要写出<b>为什么让我难忘</b>——是激动、是感动,还是不甘心?"], ["我要写哪一件具体的事?", "不写\"整个运动会\",只挑<b>一个最打动我的瞬间</b>:比如我参加的 4×100 米接力,最后一棒被反超又追回来的那几秒。小切口才写得深。"], ["我想让读者感受到什么?", "这就是<b>立意</b>:我想表达\"团队一起拼、永不放弃\"的那股劲儿。全文都要为这句话服务。"]], "result": "<b>一句话中心:</b>通过接力赛最后一棒的逆转,写出\"团队齐心、永不放弃\"带给我的震撼与难忘。"}, "stage2": {"intro": "好作文有清晰的三段结构。先把每部分\"要放什么\"写成一句话,骨架稳了,填内容就不会跑偏。", "frame": [["凤头", "开头", "<b>开门见山点\"难忘\"。</b>用一个画面或一句话,把读者一下子带到赛场:发令枪、呐喊声。"], ["猪肚", "中间", "<b>详写接力的全过程(重点)。</b>交接棒→我落后→我拼命追→最后一步反超。这里要慢下来,写细节。"], ["豹尾", "结尾", "<b>点题+升华。</b>由这场比赛,想到\"齐心\"和\"不放弃\",呼应开头的\"难忘\"。"]], "result": "一张三段提纲。<b>此时还没有一个完整句子</b>,但房子的框架已经立起来了。"}, "stage3": {"before": "秋天到了,学校开运动会,我很开心,那天让我很难忘。", "after": "\"砰!\"发令枪一响,操场瞬间被喊声点燃。而我攥紧接力棒站在第四棒的位置,手心全是汗——那一刻,我永远忘不了。", "draft": "\"砰!\"发令枪一响,整个操场瞬间被呐喊声点燃。红色的塑胶跑道上,运动员像离弦的箭冲了出去。而我,攥紧那根接力棒,站在第四棒的位置上,手心里全是汗。那一天的这一幕,我到现在都忘不了。", "note": "用声音(\"砰!\")和动作(\"攥紧\"\"手心全是汗\")开头,比直接说\"很难忘\"更能让读者身临其境。"}, "stage4": {"checks": ["把\"我很紧张\"换成身体的反应:腿在抖、心跳到嗓子眼。", "把\"跑得很快\"拆成慢镜头:接棒、蹬地、摆臂、超过对手。", "加一句队友的喊话或自己的心里话,让画面有声音。"], "old": "\"砰!\"发令枪一响,整个操场瞬间被呐喊声点燃……那一天的这一幕,我到现在都忘不了。", "add": "前三棒过后,我们班竟然落到了第三。轮到我接棒时,前面的对手已经领先了大半个身位。\"接棒!\"随着队友嘶哑的喊声,那根还带着他手心温度的棒子拍进我掌心。我几乎是本能地蹬地、摆臂,风在耳边呼呼地响。我死死盯着前方那个红色的背影,一步、两步……距离在一点点缩短。\"追上去!加油——\"看台上全班同学的喊声像潮水一样涌过来。最后十米,我用尽全身力气向前一扑,几乎和对手同时冲过终点线。", "note": "三件法宝都用上了:<b>语言/心理</b>(\"接棒!\"\"追上去!加油——\")、<b>慢镜头动作</b>(蹬地、摆臂→一步、两步→最后十米)、<b>五感描写</b>(\"风在耳边呼呼地响\"\"手心温度\")。这一段最长,因为它是\"难忘\"的核心。"}, "stage5": {"before": "这次运动会真难忘,我以后还想再参加。", "after": "我们最终赢了半个身位。可比名次更让我难忘的,是那根一次次被稳稳递出的接力棒——原来,一个人跑不动的路,一群人一起,就能冲到终点。", "old": ["\"砰!\"发令枪一响……我到现在都忘不了。", "前三棒过后,我们班竟然落到了第三……几乎和对手同时冲过终点线。"], "add": "成绩公布,我们班以半个身位的优势拿下第一!队友们把我团团围住,又跳又叫。可比名次更让我难忘的,是那根被一次次稳稳递出的接力棒——原来,一个人跑不动的路,一群人一起接力,就能冲到终点。这场运动会,我永远都忘不了。", "result": "结尾从\"接力棒\"这个小物件引出\"齐心、不放弃\"的大道理,并回扣开头的\"忘不了\",<b>首尾呼应</b>,全文正式成篇。"}, "essay": {"words": "约500字", "paras": [[["\"砰!\"", 1], ["发令枪一响,整个操场瞬间被呐喊声点燃。红色的塑胶跑道上,运动员像离弦的箭冲了出去。而我,", 0], ["攥紧那根接力棒", 1], [",站在第四棒的位置上,", 0], ["手心里全是汗", 1], ["。那一天的这一幕,我", 0], ["到现在都忘不了", 1], ["。", 0]], [["前三棒过后,我们班竟然落到了第三", 1], ["。轮到我接棒时,前面的对手已经", 0], ["领先了大半个身位", 1], ["。\"接棒!\"随着队友嘶哑的喊声,那根", 0], ["还带着他手心温度的棒子", 1], ["拍进我掌心。我几乎是本能地", 0], ["蹬地、摆臂", 1], [",风在耳边呼呼地响。我死死盯着前方那个红色的背影,", 0], ["一步、两步", 1], ["……距离在一点点缩短。\"追上去!加油——\"看台上全班同学的喊声像潮水一样涌过来。", 0], ["最后十米", 1], [",我用尽全身力气向前一扑,几乎和对手同时冲过终点线。", 0]], [["成绩公布,我们班以半个身位的优势拿下第一!队友们把我团团围住,又跳又叫。可比名次更让我难忘的,是那根被一次次稳稳递出的接力棒——原来,", 0], ["一个人跑不动的路,一群人一起接力,就能冲到终点", 1], ["。这场运动会,我", 0], ["永远都忘不了", 1], ["。", 0]]], "verdict": "选材小而集中,过程详略得当,情感真实。开头有声有色,结尾以小见大,是一篇结构完整、有感染力的记事文。", "notes": [["开头", "用声音\"砰!\"和动作\"攥紧那根接力棒\"\"手心里全是汗\"入题,画面感强,直接点出\"忘不了\"。"], ["悬念", "\"落到了第三\"\"领先了大半个身位\"先制造落差,读者才会替你着急。"], ["细节", "\"还带着他手心温度的棒子\"是神来之笔——把看不见的紧张,写成了摸得到的温度。"], ["慢镜头", "\"蹬地、摆臂\"\"一步、两步\"\"最后十米\"把几秒钟拉长,紧张感十足。"], ["以小见大", "结尾从\"接力棒\"引出\"一个人跑不动的路,一群人一起接力,就能冲到终点\",立意自然升华。"], ["首尾呼应", "开头\"到现在都忘不了\"、结尾\"永远都忘不了\",紧扣题眼\"难忘\",结构圆满。"]]}}, {"title": "我的语文老师", "genre": "写人 · 写一个人", "req": "抓住人物的一两个特点,用具体事例把人写活,写出真情实感,不少于450字", "eye": "我的", "stage1": {"qa": [["写人要抓什么?", "写人不能面面俱到,要<b>抓住一两个最鲜明的特点</b>。我的语文老师最打动我的,是她<b>眼睛里那股温柔又较真的劲儿</b>——温柔待人,却对每个字较真。"], ["用哪件小事来表现?", "光说\"她很负责\"是空的。要挑<b>一件具体的小事</b>:那次我作文本上一个错别字,她用红笔圈了三遍,还留了一行批语。小事最见人。"], ["我想让读者记住什么?", "<b>立意</b>:我想写出她\"温柔里的认真\",以及这份认真怎样悄悄改变了我。全文都为这句话服务。"]], "result": "<b>一句话中心:</b>通过\"红笔圈错字\"这件小事,写出语文老师温柔又较真的特点,以及她对我的影响。"}, "stage2": {"intro": "写人也讲三段:先立起人物的样子,再用事例撑住特点,最后写出他对我的意义。", "frame": [["凤头", "开头", "<b>用一个画面亮出人物。</b>不写\"我的老师姓王\",而是先给一个特写:她推眼镜、拿红笔的样子。"], ["猪肚", "中间", "<b>详写\"红笔圈错字\"这件事(重点)。</b>她怎么发现、怎么圈、说了什么话。用动作和语言表现\"较真\"。"], ["豹尾", "结尾", "<b>点出人物对我的意义。</b>由这支红笔,写到我从此不再马虎,呼应开头的\"温柔又较真\"。"]], "result": "一张三段提纲。人物的\"样子—事例—意义\"都排好了位置,接下来只管往里填血肉。"}, "stage3": {"before": "我的语文老师姓王,她很温柔,也很负责,我很喜欢她。", "after": "她总爱把红笔别在耳后,讲到动情处,眼睛会亮得像盛着光。可只要作文本上有一个错字,那双温柔的眼睛立刻变得认真起来。", "draft": "我的语文老师姓王。她个子不高,总爱把一支红笔别在耳后。讲课讲到动情处,她的眼睛会亮得像盛着光。可只要谁的作文本上出现一个错别字,那双温柔的眼睛立刻会变得认真起来——温柔里带着一股较真,这就是我的王老师。", "note": "开头不直接说\"负责\",而是用\"红笔别在耳后\"\"眼睛亮得像盛着光\"两个画面,把人物立起来,再点出\"温柔又较真\"。"}, "stage4": {"checks": ["把\"她很认真\"换成看得见的动作:她俯下身、用红笔一圈、又一圈。", "加一句她的原话,让人物开口说话,比作者转述更有力。", "写一点我当时的心理:从不以为意,到脸有点发烫。"], "old": "我的语文老师姓王……温柔里带着一股较真,这就是我的王老师。", "add": "记得那次作文,我把\"燥热\"写成了\"躁热\"。发下本子时,我看见那个字被红笔圈了整整三圈,旁边还有一行小字:\"火气用火字旁,心情才用足字旁哦。\"下课后她把我叫到讲台边,俯下身,指着那个字轻轻问:\"知道错在哪儿了吗?\"她的语气很轻,我的脸却有点发烫。就为这一个字,她翻出了字典,一笔一画讲给我听。那一刻我忽然明白,她较真的不是分数,是我们对每一个字的态度。", "note": "三件法宝都用上了:<b>动作</b>(俯下身、红笔圈三圈)、<b>语言</b>(\"知道错在哪儿了吗?\")、<b>心理</b>(\"脸却有点发烫\")。用一件小事,把\"较真\"写得看得见、摸得着。"}, "stage5": {"before": "王老师真是个好老师,我永远喜欢她。", "after": "从那以后,我再没写错过那个字。原来一支小小的红笔,圈住的不只是错字,还有一个孩子对文字的敬畏。", "old": ["我的语文老师姓王……这就是我的王老师。", "记得那次作文,我把\"燥热\"写成了\"躁热\"……是我们对每一个字的态度。"], "add": "从那以后,我再没写错过那个字。每当提起笔,我总会想起她别在耳后的红笔,想起她俯身问我时温柔又认真的眼神。原来一支小小的红笔,圈住的不只是一个错字,还有一个孩子对文字的敬畏。这,就是我的王老师。", "result": "结尾从\"红笔\"这个小物件收束,写出人物对\"我\"的影响,并回扣开头的\"温柔又较真\",<b>首尾呼应</b>,人物立住了。"}, "essay": {"words": "约480字", "paras": [[["我的语文老师姓王。她个子不高,", 0], ["总爱把一支红笔别在耳后", 1], ["。讲课讲到动情处,她的眼睛会", 0], ["亮得像盛着光", 1], ["。可只要谁的作文本上出现一个错别字,", 0], ["那双温柔的眼睛立刻会变得认真起来", 1], ["——温柔里带着一股较真,这就是我的王老师。", 0]], [["记得那次作文,我把\"燥热\"写成了\"躁热\"。发下本子时,我看见那个字被", 0], ["红笔圈了整整三圈", 1], [",旁边还有一行小字:\"火气用火字旁,心情才用足字旁哦。\"下课后她把我叫到讲台边,", 0], ["俯下身,指着那个字轻轻问:\"知道错在哪儿了吗?\"", 1], ["她的语气很轻,", 0], ["我的脸却有点发烫", 1], ["。就为这一个字,她翻出了字典,一笔一画讲给我听。那一刻我忽然明白,", 0], ["她较真的不是分数,是我们对每一个字的态度", 1], ["。", 0]], [["从那以后,我再没写错过那个字。每当提起笔,我总会想起她别在耳后的红笔。原来一支小小的红笔,", 0], ["圈住的不只是一个错字,还有一个孩子对文字的敬畏", 1], ["。这,就是我的王老师。", 0]]], "verdict": "抓住\"温柔又较真\"一个特点,用\"红笔圈错字\"一件小事写透,动作、语言、心理俱全,人物形象鲜活,是一篇成功的写人文。", "notes": [["亮相", "\"红笔别在耳后\"\"眼睛亮得像盛着光\"两个画面开头,不说\"负责\"却让人物先立起来。"], ["特点", "\"温柔的眼睛立刻变得认真\"一句,点出人物\"温柔又较真\"的核心特点。"], ["动作", "\"红笔圈了整整三圈\"\"俯下身\"把抽象的\"认真\"变成看得见的动作。"], ["语言", "借老师原话\"知道错在哪儿了吗?\"让人物开口,比作者转述更有分量。"], ["心理", "\"我的脸却有点发烫\"写出\"我\"的触动,侧面烘托老师的分量。"], ["以小见大", "\"圈住的不只是错字,还有敬畏\",由小红笔升华出人物意义,首尾呼应。"]]}}, {"title": "校园的秋天", "genre": "写景 · 写一处景", "req": "按一定顺序描写景物,抓住特点,融入感受,做到情景交融,不少于450字", "eye": "秋天", "stage1": {"qa": [["题眼是哪个词?", "<b>\"秋天\"</b>是题眼,但重点不是罗列\"有树、有花、有草\",而是要写出<b>校园秋天独有的样子和味道</b>——梧桐叶怎么黄、桂花怎么香。"], ["按什么顺序写?", "写景最怕乱。我决定按<b>移步换景</b>的顺序:从校门口的梧桐道,走到教学楼前的桂花树,再到操场边的草地。顺序清楚,读者才跟得上。"], ["我想传达什么心情?", "<b>立意</b>:我想写出秋天校园的宁静与温暖,以及我对校园的喜爱。做到<b>情景交融</b>,景里带着情。"]], "result": "<b>一句话中心:</b>按\"梧桐道→桂花树→草地\"的顺序,写出校园秋天的美,表达我对校园的喜爱。"}, "stage2": {"intro": "写景的三段:开头点出季节和总印象,中间按顺序分层描写,结尾把景和情收在一起。", "frame": [["凤头", "开头", "<b>点季节,给总印象。</b>用一个画面告诉读者:秋天来了,校园换上了金色的衣裳。"], ["猪肚", "中间", "<b>按顺序分层写景(重点)。</b>梧桐道的落叶→桂花树的香气→草地上的阳光。一处一层,抓住颜色、声音、气味。"], ["豹尾", "结尾", "<b>情景交融。</b>由眼前的秋景,写出我对校园的喜爱与留恋,呼应开头。"]], "result": "一张三段提纲。写景的\"顺序\"最关键,现在路线定好了,填内容就不会东一句西一句。"}, "stage3": {"before": "秋天来了,我们的校园变得很漂亮,到处都很好看。", "after": "不知什么时候,校门口的梧桐已悄悄换上了金黄的衣裳。风一吹,叶子打着旋儿飘下来,像给校园铺了一地碎金——秋天,来到了我们的校园。", "draft": "不知从什么时候起,校门口那排高大的梧桐,悄悄换上了金黄的衣裳。秋风一吹,叶子打着旋儿轻轻飘落,像给整条小路铺上了一地碎金。踩上去,发出\"沙沙\"的轻响。啊,秋天,已经来到了我们的校园。", "note": "开头不说\"很漂亮\",而是用\"金黄的衣裳\"\"一地碎金\"\"沙沙的轻响\"把秋天的颜色和声音写出来,画面一下就有了。"}, "stage4": {"checks": ["写颜色:梧桐是金黄,桂花是米粒似的小黄花,草地是深深浅浅的绿。", "写气味和声音:桂花的甜香、落叶的沙沙声,让景\"活\"起来。", "加一个比喻或拟人,让景物有了神态,比如\"桂花躲在叶间\"。"], "old": "不知从什么时候起,校门口那排高大的梧桐……秋天,已经来到了我们的校园。", "add": "沿着梧桐道往里走,一阵甜甜的香气忽然钻进鼻子——是教学楼前的那棵桂花树开了。米粒似的小黄花,一簇簇躲在浓绿的叶子间,不仔细找还发现不了,香气却早已飘满了整个走廊。再往前是操场边的草地,秋天的太阳不再火辣,暖洋洋地洒下来,草叶上还挂着没干的露珠,一闪一闪,像撒了一地的小星星。几只麻雀在草地上蹦来蹦去,叽叽喳喳,谁也不肯先走。", "note": "三件法宝都用上了:<b>移步换景</b>的顺序(梧桐道→桂花树→草地)、<b>多感官</b>(甜香、暖阳、露珠)、<b>比喻拟人</b>(\"像撒了一地小星星\"\"谁也不肯先走\"),景色立刻鲜活。"}, "stage5": {"before": "校园的秋天真美啊,我真喜欢这里。", "after": "我爱校园的秋天,爱这一地碎金、满园甜香。它把最温柔的颜色,都轻轻涂在了我们成长的地方。", "old": ["不知从什么时候起,校门口那排高大的梧桐……秋天,已经来到了我们的校园。", "沿着梧桐道往里走……谁也不肯先走。"], "add": "我在草地边站了很久,舍不得走。我爱校园的秋天,爱这一地碎金,爱这满园甜香,也爱那暖暖的阳光。它把一年里最温柔的颜色,都轻轻涂在了我们成长的地方。愿这抹金黄,能一直留在我的记忆里。", "result": "结尾把\"金黄\"\"甜香\"\"阳光\"这些景收回来,再落到\"喜爱与留恋\"的情上,做到<b>情景交融、首尾呼应</b>,全文成篇。"}, "essay": {"words": "约500字", "paras": [[["不知从什么时候起,校门口那排高大的梧桐,", 0], ["悄悄换上了金黄的衣裳", 1], ["。秋风一吹,叶子打着旋儿轻轻飘落,", 0], ["像给整条小路铺上了一地碎金", 1], ["。踩上去,", 0], ["发出\"沙沙\"的轻响", 1], ["。啊,秋天,已经来到了我们的校园。", 0]], [["沿着梧桐道往里走,", 0], ["一阵甜甜的香气忽然钻进鼻子", 1], ["——是教学楼前的那棵桂花树开了。", 0], ["米粒似的小黄花,一簇簇躲在浓绿的叶子间", 1], [",不仔细找还发现不了,香气却早已飘满了整个走廊。再往前是操场边的草地,秋天的太阳不再火辣,暖洋洋地洒下来,草叶上还挂着没干的露珠,一闪一闪,", 0], ["像撒了一地的小星星", 1], ["。几只麻雀在草地上蹦来蹦去,叽叽喳喳,", 0], ["谁也不肯先走", 1], ["。", 0]], [["我在草地边站了很久,舍不得走。我爱校园的秋天,爱这一地碎金,爱这满园甜香,也爱那暖暖的阳光。", 0], ["它把一年里最温柔的颜色,都轻轻涂在了我们成长的地方", 1], ["。愿这抹金黄,能一直留在我的记忆里。", 0]]], "verdict": "按移步换景的顺序描写,颜色、气味、声音俱全,比喻拟人自然,结尾情景交融,是一篇层次清晰、有感染力的写景文。", "notes": [["总印象", "\"悄悄换上了金黄的衣裳\"\"一地碎金\"开头,先给校园秋天一个鲜明的总印象。"], ["声音", "\"沙沙的轻响\"用听觉写落叶,让静止的画面有了声音。"], ["顺序", "\"沿着梧桐道往里走\"\"再往前\"是移步换景的路标,写景不乱。"], ["嗅觉", "\"甜甜的香气忽然钻进鼻子\"从气味写桂花,比只写颜色更有层次。"], ["比喻拟人", "\"像撒了一地的小星星\"\"谁也不肯先走\"让露珠和麻雀都活了起来。"], ["情景交融", "结尾\"最温柔的颜色涂在成长的地方\",由景入情,首尾呼应。"]]}}, {"title": "假如我有一支神笔", "genre": "想象 · 写想象作文", "req": "大胆想象,情节合理,想象要为一个中心服务,写出真情实感,不少于450字", "eye": "假如", "stage1": {"qa": [["题眼是哪个词?", "<b>\"假如\"</b>是题眼,说明这是<b>想象作文</b>。可以天马行空,但不能乱想——想象要<b>为一个中心服务</b>,不能变成\"神笔许愿大全\"。"], ["神笔用来做什么最有意义?", "不写\"画糖果、画玩具\"这种小愿望。我想让神笔去做一件<b>真正温暖的事</b>:给山区的小朋友画一所明亮的学校。有意义的想象才动人。"], ["我想表达什么?", "<b>立意</b>:我想表达\"如果有能力,我愿意把它用在帮助别人身上\"。全文的想象都为这个善良的心愿服务。"]], "result": "<b>一句话中心:</b>假如我有一支神笔,我要用它为山区的小朋友画一所学校,表达我愿意帮助别人的心愿。"}, "stage2": {"intro": "想象作文也要三段:开头得到神笔,中间用神笔做有意义的事,结尾回到现实点明心愿。", "frame": [["凤头", "开头", "<b>制造惊喜,得到神笔。</b>用一个奇妙的画面让\"我\"意外得到神笔,把读者带进想象世界。"], ["猪肚", "中间", "<b>详写用神笔画学校(重点)。</b>我画了什么、山区小朋友有什么变化。想象要具体、有画面。"], ["豹尾", "结尾", "<b>回到现实,点明心愿。</b>梦醒了,但那份\"想帮助别人\"的心愿是真的,呼应开头。"]], "result": "一张三段提纲。想象虽自由,但有了\"得到→使用→升华\"的骨架,就不会写散。"}, "stage3": {"before": "假如我有一支神笔,我会画很多很多东西,那该多好啊。", "after": "那天夜里,一支闪着金光的笔轻轻落在我的枕边。我半信半疑地在纸上画了一只苹果——它竟\"扑\"地一声,滚到了我的手心,还带着果香!", "draft": "那天夜里,我做了一个奇妙的梦。一支闪着淡淡金光的笔,轻轻落在我的枕边。我半信半疑地拿起它,在纸上画了一只红苹果。话音未落,那苹果竟\"扑\"的一声跳出纸面,稳稳滚进我的手心,还带着一股清甜的果香!我惊呆了——原来,这真是一支神笔!", "note": "开头不喊\"那该多好\",而是用\"金光的笔\"\"苹果扑地跳出纸面\"这样具体的奇妙画面,让读者一下相信了这个想象世界。"}, "stage4": {"checks": ["想象要具体:不说\"画了学校\",而要画出教室、操场、窗户的样子。", "写出变化和反应:山区小朋友看到学校时的表情和动作。", "加一点\"我\"的心理,让善良的心愿有温度,而不只是炫耀神笔。"], "old": "那天夜里,我做了一个奇妙的梦……原来,这真是一支神笔!", "add": "我想起了电视里那些山区的小朋友——他们要走好几个小时的山路,在漏风的教室里读书。于是我握紧神笔,在纸上认真地画了起来:明亮的教室、宽阔的操场、一排排崭新的课桌,还有教室外一片开满野花的小院。画完,一所漂亮的学校真的立在了山谷里!孩子们背着书包跑进来,又蹦又跳,一个扎羊角辫的小女孩仰起脸,笑得眼睛都眯成了一条缝。看着他们,我的心里也甜甜的、暖暖的。", "note": "三件法宝都用上了:<b>具体想象</b>(教室、操场、开满野花的小院)、<b>人物反应</b>(\"又蹦又跳\"\"眼睛眯成一条缝\")、<b>我的心理</b>(\"甜甜的、暖暖的\")。想象因为有了细节和温度,才真正打动人。"}, "stage5": {"before": "梦醒了,原来是一场梦,但我很开心。", "after": "梦醒了,神笔不见了。可我摸了摸胸口,那份想为别人做点什么的心愿,却真真切切地留了下来——也许,它比神笔更神奇。", "old": ["那天夜里,我做了一个奇妙的梦……原来,这真是一支神笔!", "我想起了电视里那些山区的小朋友……我的心里也甜甜的、暖暖的。"], "add": "\"叮铃铃——\"闹钟响了,梦醒了,那支神笔也不见了。我怔怔地望着窗外的朝阳,摸了摸胸口。神笔是假的,可那份\"想为别人做点什么\"的心愿,却真真切切地留在了我的心里。我想,只要好好读书、努力长大,总有一天,我不用神笔,也能为他们盖起一所真正的学校。", "result": "结尾从\"梦\"回到\"现实\",把想象升华成一个真实的志向,做到<b>虚实结合、首尾呼应</b>,想象作文就有了分量。"}, "essay": {"words": "约510字", "paras": [[["那天夜里,我做了一个奇妙的梦。", 0], ["一支闪着淡淡金光的笔,轻轻落在我的枕边", 1], ["。我半信半疑地拿起它,在纸上画了一只红苹果。话音未落,", 0], ["那苹果竟\"扑\"的一声跳出纸面,稳稳滚进我的手心", 1], [",还带着一股清甜的果香!我惊呆了——原来,这真是一支神笔!", 0]], [["我想起了电视里那些山区的小朋友——他们要走好几个小时的山路,在漏风的教室里读书。于是我握紧神笔,认真地画了起来:", 0], ["明亮的教室、宽阔的操场、一排排崭新的课桌,还有教室外一片开满野花的小院", 1], ["。画完,一所漂亮的学校真的立在了山谷里!孩子们背着书包跑进来,", 0], ["又蹦又跳,一个扎羊角辫的小女孩笑得眼睛都眯成了一条缝", 1], ["。看着他们,", 0], ["我的心里也甜甜的、暖暖的", 1], ["。", 0]], [["\"叮铃铃——\"闹钟响了,梦醒了,那支神笔也不见了。我摸了摸胸口。神笔是假的,可", 0], ["那份\"想为别人做点什么\"的心愿,却真真切切地留在了我的心里", 1], ["。我想,只要好好读书、努力长大,", 0], ["总有一天,我不用神笔,也能为他们盖起一所真正的学校", 1], ["。", 0]]], "verdict": "想象大胆而合理,始终围绕\"帮助别人\"的中心,细节具体、情感真挚,结尾虚实结合、立意升华,是一篇优秀的想象文。", "notes": [["入境", "\"金光的笔\"\"苹果扑地跳出纸面\"用具体画面开头,让读者立刻相信这个想象世界。"], ["选材", "不画糖果玩具,而是想到\"山区小朋友\",让想象一开始就有了善意的方向。"], ["具体", "\"明亮的教室、开满野花的小院\"把\"画学校\"写得看得见,想象才不空。"], ["反应", "\"又蹦又跳\"\"眼睛眯成一条缝\"用小朋友的反应,侧面写出神笔的意义。"], ["心理", "\"甜甜的、暖暖的\"写出\"我\"帮助别人后的满足,让想象有了温度。"], ["虚实结合", "结尾从梦回到现实,升华为\"努力长大盖真学校\",首尾呼应,想象有了分量。"]]}}];
+
+(function(){
+  var flow=document.getElementById('flow');
+  var idx=0;
+  function esc(x){return x;} // content is pre-sanitized, ASCII quotes only
+
+  function seg(parts){ // parts: [[text,isMark],...] -> html with <mark>
+    var h='';
+    for(var i=0;i<parts.length;i++){
+      var t=parts[i][0], m=parts[i][1];
+      h+= m? ('<mark>'+t+'</mark>') : t;
+    }
+    return h;
+  }
+
+  function build(t){
+    var s1=t.stage1, s2=t.stage2, s3=t.stage3, s4=t.stage4, s5=t.stage5, e=t.essay;
+    var qa1='';
+    for(var i=0;i<s1.qa.length;i++){
+      qa1+='<div class="q">'+s1.qa[i][0]+'</div>'
+          +'<div class="a">'+s1.qa[i][1]+'</div>';
+    }
+    var frame='';
+    for(var i=0;i<s2.frame.length;i++){
+      var f=s2.frame[i];
+      frame+='<div class="part"><div class="k">'+f[0]+'<small>'+f[1]+'</small></div><div class="v">'+f[2]+'</div></div>';
+    }
+    var checks='';
+    for(var i=0;i<s4.checks.length;i++){
+      checks+='<li><svg class="ico"><use href="#ic-check"/></svg>'+s4.checks[i]+'</li>';
+    }
+    var s5old='';
+    for(var i=0;i<s5.old.length;i++){ s5old+='<p class="old">'+s5.old[i]+'</p>'; }
+    var paras='';
+    for(var i=0;i<e.paras.length;i++){ paras+='<p>'+seg(e.paras[i])+'</p>'; }
+    var notes='';
+    for(var i=0;i<e.notes.length;i++){
+      notes+='<div class="nt"><svg class="ico ico--sm"><use href="#ic-star"/></svg><span><span class="tag">'+e.notes[i][0]+'</span>'+e.notes[i][1]+'</span></div>';
+    }
+
+    return ''
+    // STAGE 1
+    +'<div class="stage"><div class="num">1</div>'
+    +'<div class="shead"><span class="stitle">审题立意</span><span class="stag">先想清楚"写什么、想说什么"</span></div>'
+    +'<div class="sbody"><div class="card"><h3><svg class="ico ico--md"><use href="#ic-eye"/></svg> 拿到题目,先问自己三个问题</h3><div class="qa">'+qa1+'</div></div>'
+    +'<div class="box ok"><span class="lbl"><svg class="ico ico--sm"><use href="#ic-check"/></svg> 这一步的成果</span>'+s1.result+'</div></div></div>'
+    // STAGE 2
+    +'<div class="stage"><div class="num">2</div>'
+    +'<div class="shead"><span class="stitle">搭骨架</span><span class="stag">凤头 · 猪肚 · 豹尾</span></div>'
+    +'<div class="sbody"><div class="card"><h3><svg class="ico ico--md"><use href="#ic-layout"/></svg> 先列提纲,不急着写句子</h3><p>'+s2.intro+'</p><div class="frame">'+frame+'</div></div>'
+    +'<div class="box ok"><span class="lbl"><svg class="ico ico--sm"><use href="#ic-check"/></svg> 这一步的成果</span>'+s2.result+'</div></div></div>'
+    // STAGE 3
+    +'<div class="stage"><div class="num">3</div>'
+    +'<div class="shead"><span class="stitle">填"凤头"——写开头</span><span class="stag">让第一句就抓住人</span></div>'
+    +'<div class="sbody"><div class="ba">'
+    +'<div class="col before"><div class="t"><svg class="ico ico--sm"><use href="#ic-cloud-rain"/></svg> 平淡的开头</div>'+s3.before+'</div>'
+    +'<div class="col after"><div class="t"><svg class="ico ico--sm"><use href="#ic-sun"/></svg> 有画面的开头</div>'+s3.after+'</div></div>'
+    +'<div class="draft"><div class="dhd"><svg class="ico ico--sm"><use href="#ic-edit"/></svg> 作文当前进度<span class="grow">+ 开头段</span></div>'
+    +'<div class="dtxt"><p><span class="add">'+s3.draft+'</span></p></div></div>'
+    +'<div class="box warn"><span class="lbl"><svg class="ico ico--sm"><use href="#ic-sparkles"/></svg> 推敲</span>'+s3.note+'</div></div></div>'
+    // STAGE 4
+    +'<div class="stage"><div class="num">4</div>'
+    +'<div class="shead"><span class="stitle">填"猪肚"——写中间</span><span class="stag">最重要的一段,慢慢写、写细节</span></div>'
+    +'<div class="sbody"><div class="card"><h3><svg class="ico ico--md"><use href="#ic-list"/></svg> 用"三件法宝"把过程写活</h3>'
+    +'<div class="chips"><span class="chip"><svg class="ico ico--sm"><use href="#ic-eye"/></svg> 五感描写</span>'
+    +'<span class="chip"><svg class="ico ico--sm"><use href="#ic-message-square"/></svg> 语言/心理</span>'
+    +'<span class="chip"><svg class="ico ico--sm"><use href="#ic-target"/></svg> 慢镜头/细节</span></div>'
+    +'<ul class="checks">'+checks+'</ul></div>'
+    +'<div class="draft"><div class="dhd"><svg class="ico ico--sm"><use href="#ic-edit"/></svg> 作文当前进度<span class="grow">+ 经过段(重点)</span></div>'
+    +'<div class="dtxt"><p class="old">'+s4.old+'</p><p><span class="add">'+s4.add+'</span></p></div></div>'
+    +'<div class="box warn"><span class="lbl"><svg class="ico ico--sm"><use href="#ic-sparkles"/></svg> 推敲</span>'+s4.note+'</div></div></div>'
+    // STAGE 5
+    +'<div class="stage"><div class="num">5</div>'
+    +'<div class="shead"><span class="stitle">填"豹尾"——写结尾</span><span class="stag">短而有力,点题升华</span></div>'
+    +'<div class="sbody"><div class="ba">'
+    +'<div class="col before"><div class="t"><svg class="ico ico--sm"><use href="#ic-cloud-rain"/></svg> 泄气的结尾</div>'+s5.before+'</div>'
+    +'<div class="col after"><div class="t"><svg class="ico ico--sm"><use href="#ic-sun"/></svg> 有回味的结尾</div>'+s5.after+'</div></div>'
+    +'<div class="draft"><div class="dhd"><svg class="ico ico--sm"><use href="#ic-edit"/></svg> 作文当前进度<span class="grow">+ 结尾段 · 全文成篇</span></div>'
+    +'<div class="dtxt">'+s5old+'<p><span class="add">'+s5.add+'</span></p></div></div>'
+    +'<div class="box ok"><span class="lbl"><svg class="ico ico--sm"><use href="#ic-check"/></svg> 这一步的成果</span>'+s5.result+'</div></div></div>'
+    // STAGE 6
+    +'<div class="stage"><div class="num">6</div>'
+    +'<div class="shead"><span class="stitle">完整范文 + 批注</span><span class="stag">把四段拼起来,看老师怎么点评</span></div>'
+    +'<div class="sbody"><p class="lead">把前面几步填好的段落连起来,就是下面这篇完整作文。右侧(手机上在下方)的批注,告诉你<b>每一处好在哪里</b>——这些正是前面每一步刻意做的功课。</p>'
+    +'<div class="review"><div class="essay">'
+    +'<div class="etitle"><svg class="ico ico--sm"><use href="#ic-quote"/></svg>完整范文<span class="name">'+t.title2+' · '+e.words+'</span></div>'
+    +paras
+    +'<div class="note"><svg class="ico ico--sm"><use href="#ic-award"/></svg><span><b>总评:</b>'+e.verdict+'</span></div></div>'
+    +'<div class="notecol">'+notes+'</div></div></div></div>';
+  }
+
+  function render(i){
+    var t=TOPICS[i];
+    t.title2='《'+t.title+'》';
+    flow.style.opacity='0';
+    var seq=(i+1)+' / '+TOPICS.length;
+    window.setTimeout(function(){
+      flow.innerHTML=build(t);
+      document.getElementById('leadTitle').textContent='《'+t.title+'》';
+      document.getElementById('statGenre').textContent=t.genre.split(' ')[0];
+      document.getElementById('topicSeq').textContent=seq;
+      document.getElementById('cardTitle').textContent='《'+t.title+'》';
+      document.getElementById('cardReq').textContent='要求:'+t.req;
+      flow.style.opacity='1';
+      try{ document.querySelector('.sec .badge').scrollIntoView({behavior:'smooth',block:'start'}); }catch(e){}
+    }, 180);
+  }
+
+  document.getElementById('btnRegen').addEventListener('click',function(){
+    idx=(idx+1)%TOPICS.length;
+    render(idx);
+  });
+
+  // first paint (no fade delay on load)
+  flow.innerHTML=build((function(){var t=TOPICS[0];t.title2='《'+t.title+'》';return t;})());
+  flow.style.opacity='1';
+})();
+
+(function(){
+  var btn=document.getElementById('themeToggle');
+  var icon=document.getElementById('themeIcon');
+  var label=document.getElementById('themeLabel');
+  btn.addEventListener('click',function(){
+    var dark=document.documentElement.getAttribute('data-theme')==='dark';
+    if(dark){document.documentElement.removeAttribute('data-theme');icon.setAttribute('href','#ic-sun');label.textContent='夜间';}
+    else{document.documentElement.setAttribute('data-theme','dark');icon.setAttribute('href','#ic-star');label.textContent='日间';}
+  });
+})();
+</script>
+</body>
+</html>
