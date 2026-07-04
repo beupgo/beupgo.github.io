@@ -1,0 +1,552 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="theme-color" content="#4f46e5">
+<title>多边形面积专题 · 割补转化思想</title>
+<style>
+:root{
+  --brand-h:232; --brand-s:84%;
+  --g-font:-apple-system,BlinkMacSystemFont,"PingFang SC","Hiragino Sans GB","Microsoft YaHei",Roboto,Arial,sans-serif;
+  --g-mono:"SF Mono",ui-monospace,Menlo,Consolas,monospace;
+  --brand:hsl(var(--brand-h),var(--brand-s),56%);
+  --brand-strong:hsl(var(--brand-h),var(--brand-s),48%);
+  --brand-subtle:hsl(var(--brand-h),var(--brand-s),97%);
+  --brand-subtle-2:hsl(var(--brand-h),var(--brand-s),93%);
+  --warn:#f59e0b; --warn-bg:#fffbeb; --warn-text:#b45309;
+  --ok:#10b981; --ok-bg:#ecfdf5; --ok-text:#047857;
+  --surface:#fff; --sunken:#f9fafb;
+  --text:#111827; --text-2:#4b5563; --text-3:#9ca3af;
+  --border:#e5e7eb;
+  --shadow:0 1px 2px rgba(16,24,40,.04),0 6px 20px rgba(16,24,40,.06);
+  --r-lg:18px; --r-md:12px; --r-sm:8px; --r-full:999px;
+  --fig-a:#6366f1; --fig-b:#f59e0b; --fig-c:#10b981; --fig-d:#ec4899;
+}
+@media (prefers-color-scheme: dark){
+  :root{
+    --brand:hsl(var(--brand-h),var(--brand-s),64%);
+    --brand-strong:hsl(var(--brand-h),var(--brand-s),72%);
+    --brand-subtle:hsl(var(--brand-h),var(--brand-s),16%);
+    --brand-subtle-2:hsl(var(--brand-h),var(--brand-s),22%);
+    --warn-bg:#3a2c0a; --warn-text:#fbbf24;
+    --ok-bg:#0b2e22; --ok-text:#34d399;
+    --surface:#161b22; --sunken:#0d1117;
+    --text:#e6edf3; --text-2:#9da7b3; --text-3:#6b7684;
+    --border:#2d333b;
+    --shadow:0 1px 2px rgba(0,0,0,.3),0 6px 20px rgba(0,0,0,.35);
+    --fig-a:#818cf8; --fig-b:#fbbf24; --fig-c:#34d399; --fig-d:#f472b6;
+  }
+}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent;}
+html,body{margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{font-family:var(--g-font);background:var(--sunken);color:var(--text);-webkit-font-smoothing:antialiased;line-height:1.6;}
+.page{width:100%;max-width:760px;margin:0 auto;padding:0 clamp(16px,4vw,32px) calc(env(safe-area-inset-bottom) + 56px);}
+@media(min-width:768px){
+  .page{max-width:920px;}
+  .grid2{display:grid;grid-template-columns:1fr 1fr;gap:14px;align-items:start;}
+  .grid2>.card{margin-bottom:0;}
+}
+@media(min-width:1100px){
+  .page{max-width:1040px;}
+}
+
+/* 顶部 */
+.hero{text-align:center;padding:calc(env(safe-area-inset-top) + 34px) 8px 24px;}
+.hero .badge{display:inline-flex;align-items:center;gap:6px;padding:6px 14px;border-radius:var(--r-full);background:var(--brand-subtle);color:var(--brand-strong);font-size:13px;font-weight:600;margin-bottom:14px;}
+.hero .badge svg{width:15px;height:15px;}
+.hero h1{font-size:26px;margin:0 0 8px;font-weight:800;letter-spacing:-.02em;}
+.hero p{margin:0;color:var(--text-2);font-size:14px;}
+
+/* 章节导航 */
+.toc{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin:0 0 26px;}
+.toc a{text-decoration:none;font-size:13px;font-weight:600;color:var(--text-2);background:var(--surface);border:1px solid var(--border);border-radius:var(--r-full);padding:7px 13px;transition:.15s;}
+.toc a:active{transform:scale(.96);}
+@media(hover:hover){.toc a:hover{border-color:var(--brand);color:var(--brand-strong);}}
+
+/* 章节 */
+.sec{margin-bottom:34px;scroll-margin-top:16px;}
+.sec-head{display:flex;align-items:center;gap:10px;margin-bottom:14px;}
+.sec-head .n{flex:none;width:30px;height:30px;border-radius:var(--r-md);background:var(--brand);color:#fff;font-size:15px;font-weight:800;display:flex;align-items:center;justify-content:center;}
+.sec-head h2{margin:0;font-size:19px;font-weight:800;}
+.sec-head .sub{color:var(--text-3);font-size:12px;font-weight:600;margin-top:1px;}
+
+/* 分数(竖排:分子/分数线/分母) */
+.frac{display:inline-flex;flex-direction:column;align-items:center;justify-content:center;vertical-align:middle;line-height:1;margin:0 2px;font-weight:700;}
+.frac .fn{padding:0 4px 1px;border-bottom:1.6px solid currentColor;}
+.frac .fd{padding:1px 4px 0;}
+
+/* 公式条 */
+.formula{display:flex;align-items:center;justify-content:center;gap:6px;flex-wrap:wrap;background:var(--brand-subtle);border:1px solid var(--brand-subtle-2);border-radius:var(--r-md);padding:11px 12px;margin:10px 0;font-size:15px;font-weight:800;color:var(--brand-strong);}
+
+/* 卡片 */
+.card{background:var(--surface);border:1px solid var(--border);border-radius:var(--r-lg);padding:16px;margin-bottom:14px;box-shadow:var(--shadow);}
+.card-t{display:flex;align-items:center;gap:8px;font-size:15px;font-weight:700;margin:0 0 10px;}
+.card-t svg{width:18px;height:18px;flex:none;color:var(--brand-strong);}
+.card p{margin:0 0 8px;font-size:14px;color:var(--text-2);}
+.card p:last-child{margin-bottom:0;}
+.card b{color:var(--text);}
+.key{color:var(--brand-strong);font-weight:700;}
+
+/* 图示区 */
+.fig{background:var(--sunken);border:1px solid var(--border);border-radius:var(--r-md);padding:14px 12px;text-align:center;margin:10px 0;}
+.fig svg{max-width:100%;height:auto;display:block;margin:0 auto;}
+.fig figcaption{margin-top:8px;font-size:12px;color:var(--text-3);}
+
+/* 母题 */
+.mother{border:1.5px solid var(--brand-subtle-2);border-radius:var(--r-lg);overflow:hidden;margin:14px 0;box-shadow:var(--shadow);}
+.mother-head{display:flex;align-items:center;gap:10px;padding:12px 14px;background:var(--brand-subtle);}
+.mother-head .no{flex:none;width:30px;height:30px;border-radius:var(--r-md);background:var(--brand);color:#fff;font-size:14px;font-weight:800;display:flex;align-items:center;justify-content:center;}
+.mother-head h3{margin:0;font-size:15px;font-weight:800;color:var(--text);flex:1;}
+.mother-head .tagm{flex:none;font-size:11px;font-weight:800;color:var(--brand-strong);background:var(--surface);border:1px solid var(--brand-subtle-2);padding:3px 9px;border-radius:var(--r-full);}
+.mother-body{padding:14px;}
+.model{display:flex;gap:8px;align-items:flex-start;background:var(--brand-subtle);border-radius:var(--r-md);padding:10px 12px;margin-top:10px;font-size:13px;color:var(--text-2);}
+.model svg{width:16px;height:16px;flex:none;color:var(--brand-strong);margin-top:2px;}
+.model b{color:var(--brand-strong);}
+
+/* 例题 */
+.eg{border:1px solid var(--border);border-radius:var(--r-md);overflow:hidden;margin:12px 0;}
+.eg-q{background:var(--sunken);padding:10px 13px;font-size:14px;font-weight:600;display:flex;gap:8px;}
+.eg-q .tag{flex:none;color:var(--brand-strong);font-weight:800;}
+.eg-body{padding:12px 13px;}
+.eg-step{display:flex;gap:9px;font-size:13.5px;color:var(--text-2);margin-bottom:8px;}
+.eg-step:last-of-type{margin-bottom:0;}
+.eg-step .d{flex:none;width:19px;height:19px;border-radius:var(--r-full);background:var(--brand-subtle-2);color:var(--brand-strong);font-size:11px;font-weight:800;display:flex;align-items:center;justify-content:center;margin-top:1px;}
+.eg-ans{margin-top:10px;display:inline-flex;align-items:center;gap:6px;background:var(--ok-bg);color:var(--ok-text);font-weight:800;font-size:14px;padding:6px 12px;border-radius:var(--r-full);}
+.eg-ans svg{width:15px;height:15px;}
+
+/* 类型徽标 */
+.types{display:flex;flex-wrap:wrap;gap:8px;margin:4px 0 12px;}
+.types .t{font-size:12.5px;font-weight:700;padding:5px 11px;border-radius:var(--r-full);background:var(--brand-subtle);color:var(--brand-strong);}
+
+/* 易错 */
+.warn{background:var(--warn-bg);border:1px solid var(--warn);border-radius:var(--r-md);padding:11px 13px;margin-top:10px;}
+.warn-h{display:flex;align-items:center;gap:6px;font-size:13px;font-weight:800;color:var(--warn-text);margin-bottom:6px;}
+.warn-h svg{width:15px;height:15px;}
+.warn ul{margin:0;padding-left:18px;}
+.warn li{font-size:13px;color:var(--text-2);margin-bottom:4px;}
+.warn li:last-child{margin-bottom:0;}
+
+/* 口诀 */
+.tip{display:flex;gap:9px;background:var(--brand-subtle);border-radius:var(--r-md);padding:11px 13px;margin-top:10px;font-size:13.5px;color:var(--text-2);}
+.tip svg{width:17px;height:17px;flex:none;color:var(--brand-strong);margin-top:1px;}
+.tip b{color:var(--brand-strong);}
+
+/* 自测 折叠 */
+.quiz{background:var(--surface);border:1px solid var(--border);border-radius:var(--r-md);margin-bottom:10px;overflow:hidden;}
+.quiz>summary{list-style:none;cursor:pointer;padding:12px 14px;font-size:14px;font-weight:600;display:flex;align-items:center;gap:9px;}
+.quiz>summary::-webkit-details-marker{display:none;}
+.quiz>summary .q-n{flex:none;width:22px;height:22px;border-radius:var(--r-full);background:var(--brand-subtle-2);color:var(--brand-strong);font-size:12px;font-weight:800;display:flex;align-items:center;justify-content:center;}
+.quiz>summary .chev{margin-left:auto;color:var(--text-3);transition:.2s;}
+.quiz>summary .chev svg{width:18px;height:18px;display:block;}
+.quiz[open]>summary .chev{transform:rotate(180deg);}
+.quiz .ans-body{padding:0 14px 13px 45px;font-size:13.5px;color:var(--text-2);border-top:1px dashed var(--border);padding-top:11px;}
+.quiz .ans-body .final{color:var(--ok-text);font-weight:800;}
+.quiz .ans-body .stepline{margin:0 0 6px;}
+
+.foot{text-align:center;color:var(--text-3);font-size:12px;padding:8px 0;}
+</style>
+</head>
+<body>
+<div class="page">
+
+  <div class="hero">
+    <span class="badge">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2 2 7l10 5 10-5-10-5Z"/><path d="m2 17 10 5 10-5"/><path d="m2 12 10 5 10-5"/></svg>
+      多边形面积专题 · 人教版五年级
+    </span>
+    <h1>割补转化 · 面积怎么算</h1>
+    <p>把不会算的图形,剪一剪、拼一拼,变成会算的长方形 —— 这就是转化思想</p>
+  </div>
+
+  <nav class="toc">
+    <a href="#s1">1 核心:转化思想</a>
+    <a href="#s2">2 平行四边形</a>
+    <a href="#s3">3 三角形</a>
+    <a href="#s4">4 梯形</a>
+    <a href="#s5">5 组合图形</a>
+    <a href="#s6">6 母题精讲</a>
+    <a href="#s7">7 闯关自测</a>
+  </nav>
+
+  <!-- ============ 1 核心思想 ============ -->
+  <section class="sec" id="s1">
+    <div class="sec-head"><div class="n">1</div><div><h2>核心:转化思想</h2><div class="sub">一切面积公式,都从长方形推出来</div></div></div>
+
+    <div class="card">
+      <div class="card-t"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15V6a2 2 0 0 0-2-2H9"/><path d="m3 3 18 18"/><path d="M13 21H5a2 2 0 0 1-2-2V9"/></svg>为什么要"转化"</div>
+      <p>长方形的面积我们最熟悉:<b>长 × 宽</b>。遇到平行四边形、三角形、梯形这些"不会直接算"的图形,办法只有一个 —— 用<span class="key">剪、拼、割、补</span>把它变成一个和它<b>面积相等</b>的长方形(或已学过的图形),再套公式。</p>
+      <div class="fig">
+        <svg viewBox="0 0 300 110" width="300" height="110" role="img" aria-label="转化思想:各种图形都转化成长方形">
+          <polygon points="30,75 50,35 95,35 75,75" fill="var(--fig-a)" fill-opacity="0.18" stroke="var(--fig-a)" stroke-width="1.5"/>
+          <text x="62" y="90" text-anchor="middle" font-size="10" fill="var(--fig-a)">平行四边形</text>
+          <polygon points="120,75 145,35 170,75" fill="var(--fig-c)" fill-opacity="0.18" stroke="var(--fig-c)" stroke-width="1.5"/>
+          <text x="145" y="90" text-anchor="middle" font-size="10" fill="var(--fig-c)">三角形</text>
+          <polygon points="205,75 220,35 255,35 270,75" fill="var(--fig-d)" fill-opacity="0.18" stroke="var(--fig-d)" stroke-width="1.5"/>
+          <text x="237" y="90" text-anchor="middle" font-size="10" fill="var(--fig-d)">梯形</text>
+          <text x="150" y="104" text-anchor="middle" font-size="11" fill="var(--brand-strong)" font-weight="700">全部转化成长方形来算</text>
+        </svg>
+        <figcaption>平行四边形、三角形、梯形,最终都"变身"成长方形</figcaption>
+      </div>
+    </div>
+
+    <div class="tip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18h6"/><path d="M10 22h4"/><path d="M15.09 14c.18-.98.65-1.74 1.41-2.5A4.65 4.65 0 0 0 18 8 6 6 0 0 0 6 8c0 1 .23 2.23 1.5 3.5A4.61 4.61 0 0 1 8.91 14"/></svg><span><b>一句话记住:</b>剪拼前后,<b>面积不变</b>。只要拼成长方形,答案就出来了。</span></div>
+  </section>
+
+  <!-- ============ 2 平行四边形 ============ -->
+  <section class="sec" id="s2">
+    <div class="sec-head"><div class="n">2</div><div><h2>平行四边形面积</h2><div class="sub">沿高剪下,平移拼成长方形</div></div></div>
+
+    <div class="card">
+      <div class="card-t"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m3 20 5-16h13l-5 16z"/></svg>公式怎么来的</div>
+      <p>沿着一条<b>高</b>把平行四边形剪成一个三角形和一个梯形,把三角形<b>平移</b>到另一边,正好拼成一个长方形。这个长方形的<span class="key">长 = 平行四边形的底</span>、<span class="key">宽 = 平行四边形的高</span>。</p>
+      <div class="fig">
+        <svg viewBox="0 0 320 130" width="320" height="130" role="img" aria-label="平行四边形剪拼成长方形">
+          <g>
+            <polygon points="30,95 120,95 150,40 60,40" fill="var(--fig-a)" fill-opacity="0.16" stroke="var(--fig-a)" stroke-width="1.5"/>
+            <polygon points="120,40 150,40 120,95" fill="var(--fig-c)" fill-opacity="0.25" stroke="var(--fig-c)" stroke-width="1.2"/>
+            <line x1="120" y1="40" x2="120" y2="95" stroke="var(--fig-b)" stroke-width="1.4" stroke-dasharray="4 3"/>
+            <text x="75" y="110" text-anchor="middle" font-size="11" fill="var(--text-3)">底</text>
+            <text x="126" y="70" font-size="11" fill="var(--fig-b)">高</text>
+          </g>
+          <path d="M165 67 h24" stroke="var(--brand-strong)" stroke-width="1.6" marker-end="url(#a2)"/>
+          <defs><marker id="a2" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0 0 L6 3 L0 6 z" fill="var(--brand-strong)"/></marker></defs>
+          <g>
+            <rect x="205" y="40" width="90" height="55" fill="var(--fig-a)" fill-opacity="0.16" stroke="var(--fig-a)" stroke-width="1.5"/>
+            <polygon points="205,95 205,40 235,40" fill="var(--fig-c)" fill-opacity="0.25" stroke="var(--fig-c)" stroke-width="1.2" stroke-dasharray="4 3"/>
+            <text x="250" y="110" text-anchor="middle" font-size="11" fill="var(--text-3)">长 = 底</text>
+            <text x="300" y="70" font-size="11" fill="var(--fig-b)">宽 = 高</text>
+          </g>
+        </svg>
+        <figcaption>把左边的三角形平移到右边,平行四边形就变成了长方形</figcaption>
+      </div>
+      <div class="formula">平行四边形面积 = 底 × 高　(S = a × h)</div>
+    </div>
+
+    <div class="eg">
+      <div class="eg-q"><span class="tag">例</span><span>一个平行四边形,底 12 厘米,高 5 厘米。面积是多少?</span></div>
+      <div class="eg-body">
+        <div class="eg-step"><span class="d">1</span><span>直接套公式:面积 = 底 × 高</span></div>
+        <div class="eg-step"><span class="d">2</span><span>= 12 × 5 = <b>60</b>(平方厘米)</span></div>
+        <div class="eg-ans"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>面积 60 平方厘米</div>
+      </div>
+    </div>
+
+    <div class="warn">
+      <div class="warn-h"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z"/><path d="M12 9v4"/><path d="M12 17h.01"/></svg>最容易错的地方</div>
+      <ul>
+        <li><b>底和高必须对应、必须垂直</b>。斜边不是高!高是从一个顶点向对边画的垂直线段。</li>
+        <li>题目常故意给出<b>斜边长度</b>来干扰,别拿斜边当高去乘。</li>
+        <li>底变了,对应的高也要跟着变 —— 用哪条底,就配哪条高。</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ============ 3 三角形 ============ -->
+  <section class="sec" id="s3">
+    <div class="sec-head"><div class="n">3</div><div><h2>三角形面积</h2><div class="sub">两个一样的三角形,拼成平行四边形</div></div></div>
+
+    <div class="card">
+      <div class="card-t"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 2 20h20z"/></svg>公式怎么来的</div>
+      <p>用<b>两个完全一样</b>的三角形,可以拼成一个平行四边形。这个平行四边形的底和高,就是三角形的底和高。所以<span class="key">三角形面积 = 拼成的平行四边形面积的一半</span>。</p>
+      <div class="fig">
+        <svg viewBox="0 0 300 120" width="300" height="120" role="img" aria-label="两个三角形拼成平行四边形">
+          <polygon points="20,90 100,90 60,30" fill="var(--fig-c)" fill-opacity="0.2" stroke="var(--fig-c)" stroke-width="1.5"/>
+          <line x1="60" y1="30" x2="60" y2="90" stroke="var(--fig-b)" stroke-width="1.3" stroke-dasharray="4 3"/>
+          <text x="60" y="104" text-anchor="middle" font-size="10" fill="var(--text-3)">底</text>
+          <text x="66" y="62" font-size="10" fill="var(--fig-b)">高</text>
+          <path d="M120 62 h28" stroke="var(--brand-strong)" stroke-width="1.6" marker-end="url(#a3)"/>
+          <defs><marker id="a3" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0 0 L6 3 L0 6 z" fill="var(--brand-strong)"/></marker></defs>
+          <polygon points="170,90 250,90 210,30" fill="var(--fig-c)" fill-opacity="0.2" stroke="var(--fig-c)" stroke-width="1.4"/>
+          <polygon points="250,90 210,30 290,30" fill="var(--fig-a)" fill-opacity="0.16" stroke="var(--fig-a)" stroke-width="1.4"/>
+          <text x="230" y="104" text-anchor="middle" font-size="10" fill="var(--text-3)">拼成平行四边形</text>
+        </svg>
+        <figcaption>两个相同三角形倒过来一拼,就是一个平行四边形</figcaption>
+      </div>
+      <div class="formula">三角形面积 = 底 × 高 ÷ 2　(S = a × h ÷ 2)</div>
+    </div>
+
+    <div class="eg">
+      <div class="eg-q"><span class="tag">例</span><span>一个三角形,底 8 厘米,高 6 厘米。面积是多少?</span></div>
+      <div class="eg-body">
+        <div class="eg-step"><span class="d">1</span><span>套公式:面积 = 底 × 高 ÷ 2</span></div>
+        <div class="eg-step"><span class="d">2</span><span>= 8 × 6 ÷ 2 = 48 ÷ 2 = <b>24</b>(平方厘米)</span></div>
+        <div class="eg-ans"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>面积 24 平方厘米</div>
+      </div>
+    </div>
+
+    <div class="warn">
+      <div class="warn-h"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z"/><path d="M12 9v4"/><path d="M12 17h.01"/></svg>最容易错的地方</div>
+      <ul>
+        <li><b>千万别忘了 ÷ 2！</b>这是三角形面积最高频的错误。</li>
+        <li>底和高要<b>互相垂直、成对使用</b>。三角形有三条底、三条高,选哪条底就用哪条高。</li>
+        <li>等底等高的三角形,面积一定相等(哪怕形状不同)。</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ============ 4 梯形 ============ -->
+  <section class="sec" id="s4">
+    <div class="sec-head"><div class="n">4</div><div><h2>梯形面积</h2><div class="sub">两个一样的梯形,也能拼成平行四边形</div></div></div>
+
+    <div class="card">
+      <div class="card-t"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20 8 4h8l4 16z"/></svg>公式怎么来的</div>
+      <p>用<b>两个完全一样</b>的梯形,倒过来拼在一起,又拼成一个平行四边形。这个平行四边形的<b>底 = 上底 + 下底</b>,高不变。所以<span class="key">梯形面积 = (上底 + 下底) × 高 ÷ 2</span>。</p>
+      <div class="fig">
+        <svg viewBox="0 0 330 120" width="330" height="120" role="img" aria-label="两个梯形拼成平行四边形">
+          <polygon points="20,90 110,90 85,40 45,40" fill="var(--fig-d)" fill-opacity="0.18" stroke="var(--fig-d)" stroke-width="1.5"/>
+          <text x="65" y="34" text-anchor="middle" font-size="10" fill="var(--text-3)">上底</text>
+          <text x="65" y="104" text-anchor="middle" font-size="10" fill="var(--text-3)">下底</text>
+          <path d="M124 62 h18" stroke="var(--brand-strong)" stroke-width="1.6" marker-end="url(#a4)"/>
+          <defs><marker id="a4" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0 0 L6 3 L0 6 z" fill="var(--brand-strong)"/></marker></defs>
+          <polygon points="155,90 245,90 220,40 180,40" fill="var(--fig-d)" fill-opacity="0.18" stroke="var(--fig-d)" stroke-width="1.4"/>
+          <polygon points="245,90 285,90 310,40 220,40" fill="var(--fig-a)" fill-opacity="0.16" stroke="var(--fig-a)" stroke-width="1.4"/>
+          <text x="222" y="104" text-anchor="middle" font-size="10" fill="var(--text-3)">底 = 上底+下底</text>
+        </svg>
+        <figcaption>两个梯形一正一倒拼起来,长边正好是"上底+下底"</figcaption>
+      </div>
+      <div class="formula">梯形面积 = (上底 + 下底) × 高 ÷ 2</div>
+    </div>
+
+    <div class="eg">
+      <div class="eg-q"><span class="tag">例</span><span>一个梯形,上底 4 米,下底 10 米,高 6 米。面积是多少?</span></div>
+      <div class="eg-body">
+        <div class="eg-step"><span class="d">1</span><span>先算上底 + 下底:4 + 10 = 14(米)</span></div>
+        <div class="eg-step"><span class="d">2</span><span>面积 = 14 × 6 ÷ 2 = 84 ÷ 2 = <b>42</b>(平方米)</span></div>
+        <div class="eg-ans"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>面积 42 平方米</div>
+      </div>
+    </div>
+
+    <div class="tip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18h6"/><path d="M10 22h4"/><path d="M15.09 14c.18-.98.65-1.74 1.41-2.5A4.65 4.65 0 0 0 18 8 6 6 0 0 0 6 8c0 1 .23 2.23 1.5 3.5A4.61 4.61 0 0 1 8.91 14"/></svg><span><b>联系起来记:</b>把上底看成 0,梯形就"缩"成三角形 —— (0+下底)×高÷2,正好是三角形公式!三个公式其实是一家人。</span></div>
+  </section>
+
+  <!-- ============ 5 组合图形 ============ -->
+  <section class="sec" id="s5">
+    <div class="sec-head"><div class="n">5</div><div><h2>组合图形</h2><div class="sub">分割 or 添补:化整为零 / 补成整体</div></div></div>
+
+    <div class="card">
+      <div class="card-t"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>两种基本方法</div>
+      <p>不规则的组合图形,有两条通路:</p>
+      <div class="types">
+        <span class="t">① 分割法:切成几个学过的图形,面积相加</span>
+        <span class="t">② 添补法:补成大图形,再减掉多的部分</span>
+      </div>
+      <div class="fig">
+        <svg viewBox="0 0 300 120" width="300" height="120" role="img" aria-label="组合图形分割法与添补法">
+          <g>
+            <polygon points="20,90 20,40 60,40 60,20 110,20 110,90" fill="var(--fig-a)" fill-opacity="0.14" stroke="var(--fig-a)" stroke-width="1.4"/>
+            <line x1="60" y1="40" x2="60" y2="90" stroke="var(--fig-b)" stroke-width="1.2" stroke-dasharray="4 3"/>
+            <text x="65" y="112" text-anchor="middle" font-size="10" fill="var(--fig-b)">① 分割成 2 块</text>
+          </g>
+          <g>
+            <polygon points="180,90 180,40 220,40 220,20 270,20 270,90" fill="var(--fig-c)" fill-opacity="0.14" stroke="var(--fig-c)" stroke-width="1.4"/>
+            <rect x="180" y="20" width="90" height="70" fill="none" stroke="var(--fig-d)" stroke-width="1.2" stroke-dasharray="4 3"/>
+            <text x="225" y="112" text-anchor="middle" font-size="10" fill="var(--fig-d)">② 补成大长方形</text>
+          </g>
+        </svg>
+        <figcaption>左:切成两块相加;右:补成大长方形后减去多补的一小块</figcaption>
+      </div>
+    </div>
+
+    <div class="eg">
+      <div class="eg-q"><span class="tag">例</span><span>一个"L 形"菜地:整体是长 10 米、宽 8 米的长方形,右上角缺了一个长 4 米、宽 3 米的小长方形。菜地面积是多少?</span></div>
+      <div class="eg-body">
+        <div class="eg-step"><span class="d">1</span><span>用<b>添补法</b>:先当作完整大长方形 = 10 × 8 = 80(平方米)</span></div>
+        <div class="eg-step"><span class="d">2</span><span>减去缺口:4 × 3 = 12(平方米)</span></div>
+        <div class="eg-step"><span class="d">3</span><span>菜地 = 80 − 12 = <b>68</b>(平方米)</span></div>
+        <div class="eg-ans"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>菜地面积 68 平方米</div>
+      </div>
+    </div>
+
+    <div class="warn">
+      <div class="warn-h"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z"/><path d="M12 9v4"/><path d="M12 17h.01"/></svg>最容易错的地方</div>
+      <ul>
+        <li>分割后,每一小块的<b>底和高要从图里重新找准</b>,不能直接用整体的数据。</li>
+        <li>添补法别忘了<b>最后要减去</b>多补的部分。</li>
+        <li>先想好用分割还是添补 —— 哪种切出来的都是"学过的图形",就用哪种。</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ============ 6 母题精讲 ============ -->
+  <section class="sec" id="s6">
+    <div class="sec-head"><div class="n">6</div><div><h2>母题精讲</h2><div class="sub">4 类"一图打通一片"的经典母题</div></div></div>
+    <p class="card" style="margin-bottom:16px;color:var(--text-2);font-size:13.5px;box-shadow:none;">"母题"= 一类题的通用模型。下面 4 张图的思路吃透,换数字、换图形,你都能照样解。</p>
+
+    <div class="mother">
+      <div class="mother-head"><div class="no">母1</div><h3>已知面积,倒着求底或高</h3><span class="tagm">逆运算</span></div>
+      <div class="mother-body">
+        <div class="eg-q" style="border:0;padding:0 0 4px;background:none;">一个平行四边形面积 96 平方厘米,底 16 厘米。它的高是多少?</div>
+        <div class="fig">
+          <svg viewBox="0 0 260 90" width="260" height="90" role="img" aria-label="已知面积求高">
+            <polygon points="30,70 60,25 200,25 170,70" fill="var(--fig-a)" fill-opacity="0.16" stroke="var(--fig-a)" stroke-width="1.5"/>
+            <line x1="60" y1="25" x2="60" y2="70" stroke="var(--fig-b)" stroke-width="1.4" stroke-dasharray="4 3"/>
+            <text x="115" y="84" text-anchor="middle" font-size="11" fill="var(--text-3)">底 16,面积 96,高 = ?</text>
+          </svg>
+          <figcaption>面积 = 底 × 高 → 高 = 面积 ÷ 底</figcaption>
+        </div>
+        <div class="eg-step"><span class="d">1</span><span>由"面积 = 底 × 高"倒推:高 = 面积 ÷ 底</span></div>
+        <div class="eg-step"><span class="d">2</span><span>高 = 96 ÷ 16 = <b>6</b>(厘米)</span></div>
+        <div class="model"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v20"/><path d="m17 5-5-3-5 3"/><path d="m17 19-5 3-5-3"/></svg><span><b>母题模型:</b>公式会倒着用。三角形/梯形因为有"÷2",倒推时要<b>先把 ÷2 还原(×2)</b>,再除。</span></div>
+      </div>
+    </div>
+
+    <div class="mother">
+      <div class="mother-head"><div class="no">母2</div><h3>三角形逆运算 · 先还原 ×2</h3><span class="tagm">逆运算</span></div>
+      <div class="mother-body">
+        <div class="eg-q" style="border:0;padding:0 0 4px;background:none;">一个三角形面积 30 平方厘米,高 5 厘米。它的底是多少?</div>
+        <div class="fig">
+          <svg viewBox="0 0 260 90" width="260" height="90" role="img" aria-label="三角形已知面积求底">
+            <polygon points="40,70 130,20 220,70" fill="var(--fig-c)" fill-opacity="0.2" stroke="var(--fig-c)" stroke-width="1.5"/>
+            <line x1="130" y1="20" x2="130" y2="70" stroke="var(--fig-b)" stroke-width="1.3" stroke-dasharray="4 3"/>
+            <text x="136" y="48" font-size="10" fill="var(--fig-b)">高5</text>
+            <text x="130" y="86" text-anchor="middle" font-size="11" fill="var(--text-3)">面积 30,底 = ?</text>
+          </svg>
+          <figcaption>先把面积 ×2 还原成平行四边形,再除以高</figcaption>
+        </div>
+        <div class="eg-step"><span class="d">1</span><span>三角形面积 = 底 × 高 ÷ 2,先两边 ×2:底 × 高 = 30 × 2 = 60</span></div>
+        <div class="eg-step"><span class="d">2</span><span>底 = 60 ÷ 5 = <b>12</b>(厘米)</span></div>
+        <div class="model"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v20"/><path d="m17 5-5-3-5 3"/><path d="m17 19-5 3-5-3"/></svg><span><b>母题模型:</b>见"÷2"的图形求底/高,口诀是<b>"先乘 2、再相除"</b>。梯形则是 面积 ×2 ÷ 高 = 上底+下底。</span></div>
+      </div>
+    </div>
+
+    <div class="mother">
+      <div class="mother-head"><div class="no">母3</div><h3>组合图形 · 分割求和</h3><span class="tagm">分割法</span></div>
+      <div class="mother-body">
+        <div class="eg-q" style="border:0;padding:0 0 4px;background:none;">一块地形状是"房子形":下面是长 8 米、宽 5 米的长方形,上面盖着一个底 8 米、高 3 米的三角形。总面积?</div>
+        <div class="fig">
+          <svg viewBox="0 0 200 130" width="200" height="130" role="img" aria-label="房子形组合图形">
+            <polygon points="50,50 100,20 150,50" fill="var(--fig-c)" fill-opacity="0.2" stroke="var(--fig-c)" stroke-width="1.4"/>
+            <rect x="50" y="50" width="100" height="60" fill="var(--fig-a)" fill-opacity="0.14" stroke="var(--fig-a)" stroke-width="1.4"/>
+            <line x1="50" y1="50" x2="150" y2="50" stroke="var(--text-3)" stroke-width="1" stroke-dasharray="3 2"/>
+            <text x="100" y="84" text-anchor="middle" font-size="10" fill="var(--fig-a)">长方形 8×5</text>
+            <text x="100" y="42" text-anchor="middle" font-size="9" fill="var(--fig-c)">三角形 底8 高3</text>
+            <text x="100" y="124" text-anchor="middle" font-size="10" fill="var(--text-3)">上下两块相加</text>
+          </svg>
+          <figcaption>沿虚线切开:上三角 + 下长方形,分别求面积再相加</figcaption>
+        </div>
+        <div class="eg-step"><span class="d">1</span><span>下面长方形:8 × 5 = 40(平方米)</span></div>
+        <div class="eg-step"><span class="d">2</span><span>上面三角形:8 × 3 ÷ 2 = 12(平方米)</span></div>
+        <div class="eg-step"><span class="d">3</span><span>总面积:40 + 12 = <b>52</b>(平方米)</span></div>
+        <div class="model"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v20"/><path d="m17 5-5-3-5 3"/><path d="m17 19-5 3-5-3"/></svg><span><b>母题模型:</b>分割法 = 切成几个熟悉图形,<b>各算各的再相加</b>。切割线尽量沿着已知长度画。</span></div>
+      </div>
+    </div>
+
+    <div class="mother">
+      <div class="mother-head"><div class="no">母4</div><h3>阴影面积 · 大减小</h3><span class="tagm">添补法</span></div>
+      <div class="mother-body">
+        <div class="eg-q" style="border:0;padding:0 0 4px;background:none;">一个长 12 厘米、宽 8 厘米的长方形里,挖掉一个底 12 厘米、高 8 厘米的三角形。剩下的阴影面积是多少?</div>
+        <div class="fig">
+          <svg viewBox="0 0 220 110" width="220" height="110" role="img" aria-label="长方形挖去三角形求阴影">
+            <polygon points="30,20 180,20 180,90" fill="var(--fig-b)" fill-opacity="0.30" stroke="none"/>
+            <polygon points="30,20 180,90 30,90" fill="none" stroke="var(--fig-c)" stroke-width="1.3" stroke-dasharray="4 3"/>
+            <rect x="30" y="20" width="150" height="70" fill="none" stroke="var(--fig-a)" stroke-width="1.5"/>
+            <line x1="30" y1="20" x2="180" y2="90" stroke="var(--text-3)" stroke-width="1.2"/>
+            <text x="140" y="42" font-size="10" fill="var(--warn-text)" font-weight="700">阴影</text>
+            <text x="70" y="80" font-size="9" fill="var(--fig-c)">挖去的三角形</text>
+            <text x="105" y="107" text-anchor="middle" font-size="10" fill="var(--text-3)">长方形 − 三角形 = 阴影</text>
+          </svg>
+          <figcaption>阴影 = 整个长方形 − 挖掉的三角形</figcaption>
+        </div>
+        <div class="eg-step"><span class="d">1</span><span>长方形面积:12 × 8 = 96(平方厘米)</span></div>
+        <div class="eg-step"><span class="d">2</span><span>三角形面积:12 × 8 ÷ 2 = 48(平方厘米)</span></div>
+        <div class="eg-step"><span class="d">3</span><span>阴影 = 96 − 48 = <b>48</b>(平方厘米)</span></div>
+        <div class="model"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v20"/><path d="m17 5-5-3-5 3"/><path d="m17 19-5 3-5-3"/></svg><span><b>母题模型:</b>求阴影,先看它 = <b>哪个大图形 − 哪个小图形</b>。等底等高时,三角形恰好是长方形的一半。</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 7 闯关自测 ============ -->
+  <section class="sec" id="s7">
+    <div class="sec-head"><div class="n">7</div><div><h2>闯关自测</h2><div class="sub">先自己画图、列式,再点开对答案</div></div></div>
+
+    <details class="quiz">
+      <summary><span class="q-n">1</span>平行四边形底 15 厘米、高 4 厘米,面积多少?<span class="chev"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></span></summary>
+      <div class="ans-body">
+        <p class="stepline">平行四边形:底 × 高 = 15 × 4。</p>
+        <p class="final">= 60 平方厘米。</p>
+      </div>
+    </details>
+
+    <details class="quiz">
+      <summary><span class="q-n">2</span>三角形底 10 厘米、高 7 厘米,面积多少?(别忘 ÷2)<span class="chev"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></span></summary>
+      <div class="ans-body">
+        <p class="stepline">三角形:底 × 高 ÷ 2 = 10 × 7 ÷ 2 = 70 ÷ 2。</p>
+        <p class="final">= 35 平方厘米。</p>
+      </div>
+    </details>
+
+    <details class="quiz">
+      <summary><span class="q-n">3</span>梯形上底 3、下底 7、高 4(单位:米),面积多少?<span class="chev"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></span></summary>
+      <div class="ans-body">
+        <p class="stepline">(上底+下底) × 高 ÷ 2 = (3+7) × 4 ÷ 2 = 40 ÷ 2。</p>
+        <p class="final">= 20 平方米。</p>
+      </div>
+    </details>
+
+    <details class="quiz">
+      <summary><span class="q-n">4</span>平行四边形面积 72 平方厘米、高 8 厘米,底是多少?(逆运算)<span class="chev"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></span></summary>
+      <div class="ans-body">
+        <p class="stepline">底 = 面积 ÷ 高 = 72 ÷ 8。</p>
+        <p class="final">= 9 厘米。</p>
+      </div>
+    </details>
+
+    <details class="quiz">
+      <summary><span class="q-n">5</span>三角形面积 24 平方厘米、底 8 厘米,高是多少?(先 ×2)<span class="chev"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></span></summary>
+      <div class="ans-body">
+        <p class="stepline">底 × 高 = 24 × 2 = 48;高 = 48 ÷ 8。</p>
+        <p class="final">= 6 厘米。</p>
+      </div>
+    </details>
+
+    <details class="quiz">
+      <summary><span class="q-n">6</span>"L 形"地:大长方形 12×9,右下角缺一块 5×4。面积多少?(添补法)<span class="chev"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></span></summary>
+      <div class="ans-body">
+        <p class="stepline">大长方形 12×9 = 108;缺口 5×4 = 20;108 − 20。</p>
+        <p class="final">= 88 平方单位。</p>
+      </div>
+    </details>
+
+    <details class="quiz">
+      <summary><span class="q-n">7</span>"房子形":下长方形 6×4,上三角形底 6、高 3。总面积?(分割法)<span class="chev"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></span></summary>
+      <div class="ans-body">
+        <p class="stepline">长方形 6×4 = 24;三角形 6×3÷2 = 9;24 + 9。</p>
+        <p class="final">= 33 平方单位。</p>
+      </div>
+    </details>
+
+    <details class="quiz">
+      <summary><span class="q-n">8</span>长 10、宽 6 的长方形里挖去等底等高的三角形,阴影多少?<span class="chev"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></span></summary>
+      <div class="ans-body">
+        <p class="stepline">长方形 10×6 = 60;三角形 10×6÷2 = 30;阴影 = 60 − 30。等底等高时三角形正好是长方形的一半。</p>
+        <p class="final">= 30 平方单位。</p>
+      </div>
+    </details>
+  </section>
+
+  <div class="foot">多边形面积专题 · 依据人教版教材整理 · 供个人学习使用</div>
+</div>
+<script>
+/* 锚点内部跳转:拦截 TOC 点击,手动滚动,避免在预览/代理环境里触发整页导航 */
+(function(){
+  function onTap(e){
+    var a=e.target;
+    while(a&&a.nodeName!=='A'){a=a.parentNode;}
+    if(!a)return;
+    var href=a.getAttribute('href')||'';
+    if(href.charAt(0)!=='#'||href.length<2)return;
+    var el=document.getElementById(href.slice(1));
+    if(!el)return;
+    e.preventDefault();
+    if(el.scrollIntoView){el.scrollIntoView({behavior:'smooth',block:'start'});}
+    else{window.scrollTo(0,el.offsetTop-16);}
+  }
+  var toc=document.querySelector('.toc');
+  if(toc){toc.addEventListener('click',onTap,false);}
+})();
+</script>
+</body>
+</html>
