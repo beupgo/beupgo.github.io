@@ -4,11 +4,14 @@
 
 ## 在线访问
 
-| 年级 | 在线地址 |
+<!-- AUTO-TABLE-START -->
+| 页面 | 在线地址 |
 |---|---|
-| 五年级 | https://beupgo.github.io/grade5-math.html |
-| 六年级 | https://beupgo.github.io/grade6-math.html |
+| 北京五年级数学 · 母题学习系统 | https://beupgo.github.io/grade5-math.html |
+| 分数专题 · 彻底学会分数 | https://beupgo.github.io/g6-math-fractions.html |
+| 北京六年级数学 · 母题学习系统 | https://beupgo.github.io/grade6-math.html |
 | 导航首页 | https://beupgo.github.io/ |
+<!-- AUTO-TABLE-END -->
 
 ## 功能特点
 
@@ -20,13 +23,16 @@
 
 ## 目录结构
 
+<!-- AUTO-FILES-START -->
 ```
 .
-├─ index.html      # 导航首页(五 / 六年级入口)
-├─ grade5-math.html # 五年级数学(15 个单元)
-├─ grade6-math.html # 六年级数学(12 个单元)
+├─ index.html      # 导航首页
+├─ grade5-math.html  # 北京五年级数学 · 母题学习系统
+├─ g6-math-fractions.html  # 分数专题 · 彻底学会分数
+└─ grade6-math.html  # 北京六年级数学 · 母题学习系统
 └─ README.md
 ```
+<!-- AUTO-FILES-END -->
 
 > 仓库里的文件建议使用英文名 `grade5-math.html` / `grade6-math.html`。
 > 中文文件名(如「五年级数学.html」)在 GitHub Pages 链接里需要 URL 编码,容易出错,不推荐直接作为线上路径。

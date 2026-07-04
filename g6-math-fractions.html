@@ -1,0 +1,550 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="theme-color" content="#4f46e5">
+<title>分数专题 · 彻底学会分数</title>
+<style>
+:root{
+  --brand-h:232; --brand-s:84%;
+  --g-font:-apple-system,BlinkMacSystemFont,"PingFang SC","Hiragino Sans GB","Microsoft YaHei",Roboto,Arial,sans-serif;
+  --g-mono:"SF Mono",ui-monospace,Menlo,Consolas,monospace;
+  --brand:hsl(var(--brand-h),var(--brand-s),56%);
+  --brand-strong:hsl(var(--brand-h),var(--brand-s),48%);
+  --brand-subtle:hsl(var(--brand-h),var(--brand-s),97%);
+  --brand-subtle-2:hsl(var(--brand-h),var(--brand-s),93%);
+  --warn:#f59e0b; --warn-bg:#fffbeb; --warn-text:#b45309;
+  --ok:#10b981; --ok-bg:#ecfdf5; --ok-text:#047857;
+  --surface:#fff; --sunken:#f9fafb;
+  --text:#111827; --text-2:#4b5563; --text-3:#9ca3af;
+  --border:#e5e7eb;
+  --shadow:0 1px 2px rgba(16,24,40,.04),0 6px 20px rgba(16,24,40,.06);
+  --r-lg:18px; --r-md:12px; --r-sm:8px; --r-full:999px;
+}
+@media (prefers-color-scheme: dark){
+  :root{
+    --brand:hsl(var(--brand-h),var(--brand-s),64%);
+    --brand-strong:hsl(var(--brand-h),var(--brand-s),72%);
+    --brand-subtle:hsl(var(--brand-h),var(--brand-s),16%);
+    --brand-subtle-2:hsl(var(--brand-h),var(--brand-s),22%);
+    --warn-bg:#3a2c0a; --warn-text:#fbbf24;
+    --ok-bg:#0b2e22; --ok-text:#34d399;
+    --surface:#161b22; --sunken:#0d1117;
+    --text:#e6edf3; --text-2:#9da7b3; --text-3:#6b7684;
+    --border:#2d333b;
+    --shadow:0 1px 2px rgba(0,0,0,.3),0 6px 20px rgba(0,0,0,.35);
+  }
+}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent;}
+html,body{margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{font-family:var(--g-font);background:var(--sunken);color:var(--text);-webkit-font-smoothing:antialiased;line-height:1.6;}
+.page{width:100%;max-width:760px;margin:0 auto;padding:0 clamp(16px,4vw,32px) calc(env(safe-area-inset-bottom) + 56px);}
+/* 平板(iPad 竖屏/横屏)与桌面:放宽容器,内容双栏更充分利用宽度 */
+@media(min-width:768px){
+  .page{max-width:920px;}
+  .grid2{display:grid;grid-template-columns:1fr 1fr;gap:14px;align-items:start;}
+  .grid2>.card{margin-bottom:0;}
+}
+@media(min-width:1100px){
+  .page{max-width:1040px;}
+}
+
+/* 顶部 */
+.hero{text-align:center;padding:calc(env(safe-area-inset-top) + 34px) 8px 24px;}
+.hero .badge{display:inline-flex;align-items:center;gap:6px;padding:6px 14px;border-radius:var(--r-full);background:var(--brand-subtle);color:var(--brand-strong);font-size:13px;font-weight:600;margin-bottom:14px;}
+.hero .badge svg{width:15px;height:15px;}
+.hero h1{font-size:26px;margin:0 0 8px;font-weight:800;letter-spacing:-.02em;}
+.hero p{margin:0;color:var(--text-2);font-size:14px;}
+
+/* 章节导航 */
+.toc{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin:0 0 26px;}
+.toc a{text-decoration:none;font-size:13px;font-weight:600;color:var(--text-2);background:var(--surface);border:1px solid var(--border);border-radius:var(--r-full);padding:7px 13px;transition:.15s;}
+.toc a:active{transform:scale(.96);}
+@media(hover:hover){.toc a:hover{border-color:var(--brand);color:var(--brand-strong);}}
+
+/* 章节 */
+.sec{margin-bottom:34px;scroll-margin-top:16px;}
+.sec-head{display:flex;align-items:center;gap:10px;margin-bottom:14px;}
+.sec-head .n{flex:none;width:30px;height:30px;border-radius:var(--r-md);background:var(--brand);color:#fff;font-size:15px;font-weight:800;display:flex;align-items:center;justify-content:center;}
+.sec-head h2{margin:0;font-size:19px;font-weight:800;}
+.sec-head .sub{color:var(--text-3);font-size:12px;font-weight:600;margin-top:1px;}
+
+/* 卡片 */
+.card{background:var(--surface);border:1px solid var(--border);border-radius:var(--r-lg);padding:16px;margin-bottom:14px;box-shadow:var(--shadow);}
+.card-t{display:flex;align-items:center;gap:8px;font-size:15px;font-weight:700;margin:0 0 10px;}
+.card-t svg{width:18px;height:18px;flex:none;color:var(--brand-strong);}
+.card p{margin:0 0 8px;font-size:14px;color:var(--text-2);}
+.card p:last-child{margin-bottom:0;}
+.card b{color:var(--text);}
+.key{color:var(--brand-strong);font-weight:700;}
+
+/* 分数组件 */
+.frac{display:inline-flex;flex-direction:column;align-items:center;vertical-align:middle;line-height:1.05;margin:0 2px;font-weight:700;}
+.frac>span{display:block;padding:0 4px;}
+.frac>.n{border-bottom:1.8px solid currentColor;}
+.frac.lg{font-size:20px;}
+.frac.lg>span{padding:0 5px;}
+
+/* 表达式条 */
+.expr{display:flex;align-items:center;flex-wrap:wrap;gap:4px 8px;background:var(--brand-subtle);border-radius:var(--r-md);padding:12px 14px;font-size:19px;font-weight:700;color:var(--text);margin:10px 0;justify-content:center;}
+.expr .op{color:var(--text-3);}
+.expr.calc{font-size:16px;}
+
+/* 例题 */
+.eg{border:1px solid var(--border);border-radius:var(--r-md);overflow:hidden;margin:12px 0;}
+.eg-q{background:var(--sunken);padding:10px 13px;font-size:14px;font-weight:600;display:flex;gap:8px;}
+.eg-q .tag{flex:none;color:var(--brand-strong);font-weight:800;}
+.eg-body{padding:12px 13px;}
+.eg-step{display:flex;gap:9px;font-size:13.5px;color:var(--text-2);margin-bottom:8px;}
+.eg-step:last-of-type{margin-bottom:0;}
+.eg-step .d{flex:none;width:19px;height:19px;border-radius:var(--r-full);background:var(--brand-subtle-2);color:var(--brand-strong);font-size:11px;font-weight:800;display:flex;align-items:center;justify-content:center;margin-top:1px;}
+.eg-ans{margin-top:10px;display:inline-flex;align-items:center;gap:6px;background:var(--ok-bg);color:var(--ok-text);font-weight:800;font-size:14px;padding:6px 12px;border-radius:var(--r-full);}
+.eg-ans svg{width:15px;height:15px;}
+
+/* 类型徽标 */
+.types{display:flex;flex-wrap:wrap;gap:8px;margin:4px 0 12px;}
+.types .t{font-size:12.5px;font-weight:700;padding:5px 11px;border-radius:var(--r-full);background:var(--brand-subtle);color:var(--brand-strong);}
+
+/* 易错 */
+.warn{background:var(--warn-bg);border:1px solid var(--warn);border-radius:var(--r-md);padding:11px 13px;margin-top:10px;}
+.warn-h{display:flex;align-items:center;gap:6px;font-size:13px;font-weight:800;color:var(--warn-text);margin-bottom:6px;}
+.warn-h svg{width:15px;height:15px;}
+.warn ul{margin:0;padding-left:18px;}
+.warn li{font-size:13px;color:var(--text-2);margin-bottom:4px;}
+.warn li:last-child{margin-bottom:0;}
+.bad{color:#dc2626;font-weight:700;} .good{color:var(--ok-text);font-weight:700;}
+
+/* 对比 好/坏 */
+.cmp{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:10px;}
+@media(max-width:440px){.cmp{grid-template-columns:1fr;}}
+.cmp .box{border-radius:var(--r-md);padding:10px 12px;font-size:13.5px;}
+.cmp .x{background:#fef2f2;border:1px solid #fecaca;color:#991b1b;}
+.cmp .o{background:var(--ok-bg);border:1px solid var(--ok);color:var(--ok-text);}
+@media (prefers-color-scheme: dark){.cmp .x{background:#3a1414;border-color:#7f1d1d;color:#fca5a5;}}
+.cmp .box .h{font-weight:800;display:flex;align-items:center;gap:5px;margin-bottom:5px;}
+.cmp .box .h svg{width:14px;height:14px;}
+
+/* 口诀 */
+.tip{display:flex;gap:9px;background:var(--brand-subtle);border-radius:var(--r-md);padding:11px 13px;margin-top:10px;font-size:13.5px;color:var(--text-2);}
+.tip svg{width:17px;height:17px;flex:none;color:var(--brand-strong);margin-top:1px;}
+.tip b{color:var(--brand-strong);}
+
+/* 自测 折叠 */
+.quiz{background:var(--surface);border:1px solid var(--border);border-radius:var(--r-md);margin-bottom:10px;overflow:hidden;}
+.quiz>summary{list-style:none;cursor:pointer;padding:12px 14px;font-size:14px;font-weight:600;display:flex;align-items:center;gap:9px;}
+.quiz>summary::-webkit-details-marker{display:none;}
+.quiz>summary .q-n{flex:none;width:22px;height:22px;border-radius:var(--r-full);background:var(--brand-subtle-2);color:var(--brand-strong);font-size:12px;font-weight:800;display:flex;align-items:center;justify-content:center;}
+.quiz>summary .chev{margin-left:auto;color:var(--text-3);transition:.2s;}
+.quiz>summary .chev svg{width:18px;height:18px;display:block;}
+.quiz[open]>summary .chev{transform:rotate(180deg);}
+.quiz .ans-body{padding:0 14px 13px 45px;font-size:13.5px;color:var(--text-2);border-top:1px dashed var(--border);padding-top:11px;}
+.quiz .ans-body .final{color:var(--ok-text);font-weight:800;}
+.quiz .ans-body .stepline{margin:0 0 6px;}
+
+/* 分层闯关:难度标题条 + 星级 */
+.tier{display:flex;align-items:center;gap:9px;margin:18px 0 10px;}
+.tier .lv{flex:none;display:inline-flex;align-items:center;gap:5px;padding:5px 12px;border-radius:var(--r-full);font-size:13px;font-weight:800;}
+.tier .lv svg{width:14px;height:14px;}
+.tier .lv.l1{background:#ecfdf5;color:#047857;}
+.tier .lv.l2{background:var(--brand-subtle);color:var(--brand-strong);}
+.tier .lv.l3{background:#fff7ed;color:#c2410c;}
+.tier .lv.l4{background:#faf5ff;color:#7e22ce;}
+@media (prefers-color-scheme: dark){
+  .tier .lv.l1{background:#0b2e22;color:#34d399;}
+  .tier .lv.l3{background:#3a2405;color:#fdba74;}
+  .tier .lv.l4{background:#2a1840;color:#d8b4fe;}
+}
+.tier .dsc{font-size:12px;color:var(--text-3);font-weight:600;}
+.tier:first-of-type{margin-top:4px;}
+.q-badge{margin-left:8px;font-size:11px;font-weight:700;color:var(--text-3);}
+
+.foot{text-align:center;color:var(--text-3);font-size:12px;padding:8px 0;}
+</style>
+</head>
+<body>
+<div class="page">
+
+  <div class="hero">
+    <span class="badge">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1 0-5H20"/></svg>
+      分数专题 · 人教版
+    </span>
+    <h1>彻底学会分数</h1>
+    <p>从"是什么"到"怎么用",覆盖各种变种题型</p>
+  </div>
+
+  <nav class="toc">
+    <a href="#s1">1 分数是什么</a>
+    <a href="#s2">2 性质·约分通分</a>
+    <a href="#s3">3 四则运算</a>
+    <a href="#s4">4 变种题型</a>
+    <a href="#s5">5 应用与陷阱</a>
+    <a href="#s6">6 分层闯关</a>
+  </nav>
+
+  <!-- ===== 1 概念 ===== -->
+  <section class="sec" id="s1">
+    <div class="sec-head"><span class="n">1</span><div><h2>分数是什么</h2><div class="sub">把"1"平均分,取其中几份</div></div></div>
+
+    <div class="card">
+      <div class="card-t"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 2a10 10 0 0 1 0 20"/></svg>一个分数的三个部分</div>
+      <p>把单位"1"<b>平均分成若干份</b>,表示这样一份或几份的数,就是分数。</p>
+      <div class="expr">
+        <span class="frac lg"><span class="n">3</span><span>4</span></span>
+        <span style="font-size:13px;font-weight:600;color:var(--text-2);margin-left:8px;text-align:left;">
+          分子 3 = 取了 3 份<br>分数线 = 平均分(即"÷")<br>分母 4 = 平均分成 4 份
+        </span>
+      </div>
+      <div class="tip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18h6"/><path d="M10 22h4"/><path d="M12 2a7 7 0 0 0-4 12.7c.4.4.6.9.6 1.3h6.8c0-.4.2-.9.6-1.3A7 7 0 0 0 12 2z"/></svg><span><b>关键:</b>分母决定"每份多大",分子决定"取了几份"。分母越大,每份越小。</span></div>
+    </div>
+
+    <div class="card">
+      <div class="card-t"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="m19 9-5 5-4-4-3 3"/></svg>真分数 · 假分数 · 带分数</div>
+      <div class="types">
+        <span class="t">真分数 < 1</span>
+        <span class="t">假分数 ≥ 1</span>
+        <span class="t">带分数 = 整数 + 真分数</span>
+      </div>
+      <p><b>真分数:</b>分子 < 分母,如 <span class="frac"><span class="n">2</span><span>3</span></span>,不到 1。</p>
+      <p><b>假分数:</b>分子 ≥ 分母,如 <span class="frac"><span class="n">7</span><span>4</span></span>,等于或大于 1。</p>
+      <p><b>带分数:</b>把假分数写成"整数+真分数",如 <span class="frac"><span class="n">7</span><span>4</span></span> = 1<span class="frac"><span class="n">3</span><span>4</span></span>(7÷4=1 余 3)。</p>
+      <div class="cmp">
+        <div class="box o"><div class="h"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>假分数→带分数</div>7/4:7÷4=1……3,写作 1 又 3/4</div>
+        <div class="box o"><div class="h"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>带分数→假分数</div>2 又 1/3:2×3+1=7,写作 7/3</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 2 性质 ===== -->
+  <section class="sec" id="s2">
+    <div class="sec-head"><span class="n">2</span><div><h2>基本性质 · 约分 · 通分</h2><div class="sub">大小不变的"变形术"</div></div></div>
+
+    <div class="card">
+      <div class="card-t"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 3H5a2 2 0 0 0-2 2v3"/><path d="M21 8V5a2 2 0 0 0-2-2h-3"/><path d="M3 16v3a2 2 0 0 0 2 2h3"/><path d="M16 21h3a2 2 0 0 0 2-2v-3"/></svg>分数的基本性质</div>
+      <p>分子和分母<b>同时乘或除以相同的数(0 除外),分数大小不变</b>。这是约分和通分的根据。</p>
+      <div class="expr calc">
+        <span class="frac"><span class="n">1</span><span>2</span></span><span class="op">=</span>
+        <span class="frac"><span class="n">2</span><span>4</span></span><span class="op">=</span>
+        <span class="frac"><span class="n">3</span><span>6</span></span>
+        <span style="font-size:12px;color:var(--text-3);margin-left:6px;">(分子分母同乘 2、3)</span>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-t"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/></svg>约分:化成最简分数</div>
+      <p>分子分母<b>同时除以最大公因数</b>,直到分子分母只有公因数 1(互质)。</p>
+      <div class="eg">
+        <div class="eg-q"><span class="tag">例</span>把 <span class="frac"><span class="n">18</span><span>24</span></span> 约成最简分数。</div>
+        <div class="eg-body">
+          <div class="eg-step"><span class="d">1</span>找 18 和 24 的最大公因数:6。</div>
+          <div class="eg-step"><span class="d">2</span>分子分母同时除以 6:18÷6=3,24÷6=4。</div>
+          <span class="eg-ans"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>= 3/4(最简)</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-t"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14"/><path d="M5 12h14"/></svg>通分:化成同分母</div>
+      <p>把几个分母不同的分数,<b>化成分母相同、大小不变</b>的分数,便于比较大小和加减。分母取<b>最小公倍数</b>。</p>
+      <div class="eg">
+        <div class="eg-q"><span class="tag">例</span>通分 <span class="frac"><span class="n">2</span><span>3</span></span> 和 <span class="frac"><span class="n">1</span><span>4</span></span>。</div>
+        <div class="eg-body">
+          <div class="eg-step"><span class="d">1</span>3 和 4 的最小公倍数是 12。</div>
+          <div class="eg-step"><span class="d">2</span>2/3 分子分母同乘 4 = 8/12;1/4 同乘 3 = 3/12。</div>
+          <span class="eg-ans"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>8/12 与 3/12</span>
+        </div>
+      </div>
+      <div class="warn">
+        <div class="warn-h"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m21.73 18-8-14a2 2 0 0 0-3.46 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z"/><path d="M12 9v4"/><path d="M12 17h.01"/></svg>常见错误</div>
+        <ul>
+          <li>约分时<span class="bad">只除分子或只除分母</span> → 必须<span class="good">同时除</span>。</li>
+          <li>通分只换分母、<span class="bad">忘了分子跟着乘</span> → 大小就变了。</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 3 四则运算 ===== -->
+  <section class="sec" id="s3">
+    <div class="sec-head"><span class="n">3</span><div><h2>四则运算</h2><div class="sub">加减看分母,乘除看规则</div></div></div>
+
+    <div class="card">
+      <div class="card-t"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M12 5v14"/></svg>加法 · 减法</div>
+      <p><b>同分母:</b>分母不变,分子相加减。<b>异分母:</b>先通分,再按同分母算。结果能约分要约成最简。</p>
+      <div class="expr calc"><span class="frac"><span class="n">2</span><span>3</span></span><span class="op">+</span><span class="frac"><span class="n">1</span><span>4</span></span><span class="op">=</span><span class="frac"><span class="n">8</span><span>12</span></span><span class="op">+</span><span class="frac"><span class="n">3</span><span>12</span></span><span class="op">=</span><span class="frac"><span class="n">11</span><span>12</span></span></div>
+    </div>
+
+    <div class="card">
+      <div class="card-t"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><circle cx="12" cy="6" r="1"/><circle cx="12" cy="18" r="1"/></svg>乘法</div>
+      <p><b>分子乘分子,分母乘分母</b>。能约分的先约再乘更简单。整数当作分母为 1 的分数。</p>
+      <div class="expr calc"><span class="frac"><span class="n">2</span><span>3</span></span><span class="op">×</span><span class="frac"><span class="n">3</span><span>4</span></span><span class="op">=</span><span class="frac"><span class="n">2×3</span><span>3×4</span></span><span class="op">=</span><span class="frac"><span class="n">6</span><span>12</span></span><span class="op">=</span><span class="frac"><span class="n">1</span><span>2</span></span></div>
+      <div class="tip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18h6"/><path d="M10 22h4"/><path d="M12 2a7 7 0 0 0-4 12.7c.4.4.6.9.6 1.3h6.8c0-.4.2-.9.6-1.3A7 7 0 0 0 12 2z"/></svg><span>一个数乘真分数,结果<b>比原数小</b>;乘假分数,结果比原数大——这点在"求几分之几是多少"里很关键。</span></div>
+    </div>
+
+    <div class="card">
+      <div class="card-t"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><circle cx="12" cy="6" r="1"/><circle cx="12" cy="18" r="1"/></svg>除法:除号变乘号,除数翻倒数</div>
+      <p>除以一个数,<b>等于乘这个数的倒数</b>。被除数不动,只改两处:÷ 变 ×,除数分子分母上下调换。</p>
+      <div class="expr calc"><span class="frac"><span class="n">3</span><span>4</span></span><span class="op">÷</span><span class="frac"><span class="n">2</span><span>3</span></span><span class="op">=</span><span class="frac"><span class="n">3</span><span>4</span></span><span class="op" style="color:var(--ok-text)">×</span><span class="frac"><span class="n">3</span><span>2</span></span><span class="op">=</span><span class="frac"><span class="n">9</span><span>8</span></span></div>
+      <div class="cmp">
+        <div class="box x"><div class="h"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>错</div>把被除数也取了倒数</div>
+        <div class="box o"><div class="h"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>对</div>只把除数翻倒数,0 没有倒数</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 4 变种题型 ===== -->
+  <section class="sec" id="s4">
+    <div class="sec-head"><span class="n">4</span><div><h2>变种题型全解</h2><div class="sub">同一个知识,换个问法就是新题</div></div></div>
+
+    <div class="card">
+      <div class="card-t"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"/><circle cx="12" cy="12" r="3"/></svg>类型一:求一个数的几分之几是多少</div>
+      <p>"是多少" → <b>用乘法</b>:单位"1"× 分率。</p>
+      <div class="eg">
+        <div class="eg-q"><span class="tag">题</span>一本书 120 页,已读 <span class="frac"><span class="n">2</span><span>3</span></span>,读了多少页?</div>
+        <div class="eg-body">
+          <div class="eg-step"><span class="d">1</span>单位"1"是全书 120 页。</div>
+          <div class="eg-step"><span class="d">2</span>已读 = 120 × 2/3 = 80。</div>
+          <span class="eg-ans"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>读了 80 页</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-t"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"/><circle cx="12" cy="12" r="3"/></svg>类型二:已知几分之几是多少,求单位"1"</div>
+      <p>已知"部分"和它占的<b>分率</b>,求整体 → <b>用除法</b>:部分 ÷ 分率。</p>
+      <div class="eg">
+        <div class="eg-q"><span class="tag">题</span>已读 80 页,正好是全书的 <span class="frac"><span class="n">2</span><span>3</span></span>,全书多少页?</div>
+        <div class="eg-body">
+          <div class="eg-step"><span class="d">1</span>80 页对应分率 2/3,求单位"1"。</div>
+          <div class="eg-step"><span class="d">2</span>全书 = 80 ÷ 2/3 = 80 × 3/2 = 120。</div>
+          <span class="eg-ans"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>全书 120 页</span>
+        </div>
+      </div>
+      <div class="tip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18h6"/><path d="M10 22h4"/><path d="M12 2a7 7 0 0 0-4 12.7c.4.4.6.9.6 1.3h6.8c0-.4.2-.9.6-1.3A7 7 0 0 0 12 2z"/></svg><span><b>一句话判断乘除:</b>单位"1"已知求部分→<b>乘</b>;单位"1"未知求整体→<b>除</b>。</span></div>
+    </div>
+
+    <div class="card">
+      <div class="card-t"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"/><circle cx="12" cy="12" r="3"/></svg>类型三:求一个数是另一个数的几分之几</div>
+      <p>"几分之几" → <b>比较量 ÷ 单位"1"</b>,结果是分数。</p>
+      <div class="eg">
+        <div class="eg-q"><span class="tag">题</span>男生 12 人,女生 18 人,男生是女生的几分之几?</div>
+        <div class="eg-body">
+          <div class="eg-step"><span class="d">1</span>"是女生的" → 女生是单位"1"。</div>
+          <div class="eg-step"><span class="d">2</span>12 ÷ 18 = 12/18 = 2/3。</div>
+          <span class="eg-ans"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>男生是女生的 2/3</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-t"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"/><circle cx="12" cy="12" r="3"/></svg>类型四:比一个数多/少几分之几</div>
+      <p>"多几分之几" → 先算<b>单位"1" × 分率</b>得到"多出的量",再加(或减)。</p>
+      <div class="eg">
+        <div class="eg-q"><span class="tag">题</span>甲数 60,乙数比甲数多 <span class="frac"><span class="n">1</span><span>4</span></span>,乙数是多少?</div>
+        <div class="eg-body">
+          <div class="eg-step"><span class="d">1</span>"比甲数多" → 甲数 60 是单位"1"。</div>
+          <div class="eg-step"><span class="d">2</span>方法① 多出的量 = 60 × 1/4 = 15,乙 = 60 + 15 = 75。</div>
+          <div class="eg-step"><span class="d">3</span>方法② 乙占甲的 (1 + 1/4) = 5/4,乙 = 60 × 5/4 = 75。</div>
+          <span class="eg-ans"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>乙数 = 75</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-t"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"/><circle cx="12" cy="12" r="3"/></svg>类型五:分数比较大小</div>
+      <p>三招:<b>同分母比分子</b>(分子大的大);<b>同分子比分母</b>(分母小的大);<b>都不同先通分</b>或化成小数比。</p>
+      <div class="eg">
+        <div class="eg-q"><span class="tag">题</span>比较 <span class="frac"><span class="n">3</span><span>5</span></span> 和 <span class="frac"><span class="n">5</span><span>8</span></span> 谁大?</div>
+        <div class="eg-body">
+          <div class="eg-step"><span class="d">1</span>通分,5 和 8 最小公倍数 40。</div>
+          <div class="eg-step"><span class="d">2</span>3/5 = 24/40,5/8 = 25/40。</div>
+          <span class="eg-ans"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>5/8 > 3/5</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-t"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"/><circle cx="12" cy="12" r="3"/></svg>类型六:分数、小数、百分数互化</div>
+      <div class="cmp">
+        <div class="box o"><div class="h">分数→小数</div>分子 ÷ 分母,3/4 = 3÷4 = 0.75</div>
+        <div class="box o"><div class="h">小数→分数</div>看位数写分母,0.75 = 75/100 = 3/4</div>
+        <div class="box o"><div class="h">分数→百分数</div>先化小数再×100%,3/4 = 75%</div>
+        <div class="box o"><div class="h">百分数→分数</div>去掉% 除以 100,75% = 3/4</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 5 应用与陷阱 ===== -->
+  <section class="sec" id="s5">
+    <div class="sec-head"><span class="n">5</span><div><h2>综合应用 · 易错陷阱</h2><div class="sub">读懂题,先找准单位"1"</div></div></div>
+
+    <div class="card">
+      <div class="card-t"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m12 14 4-4"/><path d="M3.34 19a10 10 0 1 1 17.32 0"/></svg>解分数应用题的通用三步</div>
+      <div class="eg-body" style="padding:0;">
+        <div class="eg-step"><span class="d">1</span><b>找单位"1":</b>"是谁的""比谁""占谁"——"的/比/占"后面那个量就是单位"1"。</div>
+        <div class="eg-step"><span class="d">2</span><b>判乘除:</b>单位"1"已知 → 乘;单位"1"未知 → 除。</div>
+        <div class="eg-step"><span class="d">3</span><b>对分率:</b>看清求的量对应哪个分率(有没有"多/少""剩下")。</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-t"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"/><circle cx="12" cy="12" r="3"/></svg>陷阱题:两个 1/2 不一样大</div>
+      <div class="eg">
+        <div class="eg-q"><span class="tag">题</span>甲绳用去它的 1/2,乙绳用去 1/2 米,谁用得多?</div>
+        <div class="eg-body">
+          <p style="margin:0 0 6px;">"1/2"是<b>分率</b>(占甲的一半),"1/2 米"是<b>具体长度</b>。绳子长度不知道,<b>无法确定谁多</b>——除非知道甲绳到底多长。</p>
+          <span class="eg-ans"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>不能确定(带单位≠分率)</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-t"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m21.73 18-8-14a2 2 0 0 0-3.46 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z"/><path d="M12 9v4"/><path d="M12 17h.01"/></svg>高频易错清单</div>
+      <div class="warn" style="margin-top:0;border:none;background:transparent;padding:0;">
+        <ul style="padding-left:18px;">
+          <li>把<span class="bad">带单位的量</span>(1/2 米)当成<span class="bad">分率</span>(1/2)。</li>
+          <li>应用题<span class="bad">找错单位"1"</span> → 乘除用反。</li>
+          <li>加减法<span class="bad">异分母没通分</span>就直接加分子。</li>
+          <li>除法把<span class="bad">被除数也取倒数</span>。</li>
+          <li>计算完<span class="bad">忘记约成最简分数</span>。</li>
+          <li>"比多/少几分之几"直接乘,<span class="bad">忘了 1±分率</span>。</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 6 分层闯关 ===== -->
+  <section class="sec" id="s6">
+    <div class="sec-head"><span class="n">6</span><div><h2>分层闯关</h2><div class="sub">从基础到挑战,拾级而上;点开每题看分步解析</div></div></div>
+
+    <!-- 第 1 关:基础 -->
+    <div class="tier">
+      <span class="lv l1"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15 8.5 22 9.3 17 14 18.2 21 12 17.6 5.8 21 7 14 2 9.3 9 8.5 12 2"/></svg>第 1 关 · 基础</span>
+      <span class="dsc">概念、约分通分、单步计算 —— 打牢地基</span>
+    </div>
+
+    <details class="quiz">
+      <summary><span class="q-n">1</span>把 24/36 约成最简分数。<span class="chev"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></span></summary>
+      <div class="ans-body">最大公因数 12,同除以 12:24÷12=2,36÷12=3。<span class="final">答:2/3。</span></div>
+    </details>
+
+    <details class="quiz">
+      <summary><span class="q-n">2</span>比较 5/8 和 7/12 谁大。<span class="chev"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></span></summary>
+      <div class="ans-body">通分,8 与 12 最小公倍数 24:5/8=15/24,7/12=14/24。<span class="final">答:5/8 > 7/12。</span></div>
+    </details>
+
+    <details class="quiz">
+      <summary><span class="q-n">3</span>2/3 + 3/4 = ?<span class="chev"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></span></summary>
+      <div class="ans-body">通分,分母 12:8/12 + 9/12 = 17/12 = 1 又 5/12。<span class="final">答:17/12(即 1 又 5/12)。</span></div>
+    </details>
+
+    <details class="quiz">
+      <summary><span class="q-n">4</span>5/6 ÷ 2/3 = ?<span class="chev"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></span></summary>
+      <div class="ans-body">除号变乘、除数翻倒数:5/6 × 3/2 = 15/12 = 5/4。<span class="final">答:5/4。</span></div>
+    </details>
+
+    <!-- 第 2 关:进阶 -->
+    <div class="tier">
+      <span class="lv l2"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15 8.5 22 9.3 17 14 18.2 21 12 17.6 5.8 21 7 14 2 9.3 9 8.5 12 2"/></svg>第 2 关 · 进阶</span>
+      <span class="dsc">找单位"1"、乘除混用的基础应用题</span>
+    </div>
+
+    <details class="quiz">
+      <summary><span class="q-n">5</span>一箱苹果 40 个,吃了 2/5,还剩多少个?<span class="chev"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></span></summary>
+      <div class="ans-body"><p class="stepline">法① 吃了 40×2/5=16,剩 40−16=24。</p><p class="stepline">法② 剩下占 1−2/5=3/5,40×3/5=24。</p><span class="final">答:还剩 24 个。</span></div>
+    </details>
+
+    <details class="quiz">
+      <summary><span class="q-n">6</span>看了 30 页,正好是全书的 3/8,全书多少页?<span class="chev"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></span></summary>
+      <div class="ans-body">单位"1"=全书(未知),用除:30 ÷ 3/8 = 30 × 8/3 = 80。<span class="final">答:全书 80 页。</span></div>
+    </details>
+
+    <details class="quiz">
+      <summary><span class="q-n">7</span>今年产量 500 吨,比去年多 1/4,去年多少吨?<span class="chev"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></span></summary>
+      <div class="ans-body">"比去年多"→去年是单位"1"(未知)。今年占去年 1+1/4=5/4。去年 = 500 ÷ 5/4 = 500 × 4/5 = 400。<span class="final">答:去年 400 吨。</span></div>
+    </details>
+
+    <details class="quiz">
+      <summary><span class="q-n">8</span>一根绳长 6 米,先用去 1/3,又用去余下的 1/2,还剩几米?<span class="chev"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></span></summary>
+      <div class="ans-body"><p class="stepline">用去 1/3:6×1/3=2,余 6−2=4 米。</p><p class="stepline">又用去"余下的 1/2":单位"1"变成余下的 4 米,4×1/2=2,剩 4−2=2 米。</p><span class="final">答:还剩 2 米。<span class="q-badge">关键:两个分率对应的单位"1"不同</span></span></div>
+    </details>
+
+    <!-- 第 3 关:综合 -->
+    <div class="tier">
+      <span class="lv l3"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15 8.5 22 9.3 17 14 18.2 21 12 17.6 5.8 21 7 14 2 9.3 9 8.5 12 2"/></svg>第 3 关 · 综合</span>
+      <span class="dsc">多步骤、单位"1"转换、量率对应</span>
+    </div>
+
+    <details class="quiz">
+      <summary><span class="q-n">9</span>男生占全班的 3/5,女生有 16 人,全班多少人?<span class="chev"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></span></summary>
+      <div class="ans-body"><p class="stepline">男生占 3/5 → 女生占 1−3/5=2/5。</p><p class="stepline">女生 16 人对应 2/5,全班=16÷2/5=16×5/2=40。</p><span class="final">答:全班 40 人。<span class="q-badge">量率对应:先把 16 对准它的分率 2/5</span></span></div>
+    </details>
+
+    <details class="quiz">
+      <summary><span class="q-n">10</span>甲数是乙数的 4/5,乙数是丙数的 5/6,甲数是丙数的几分之几?<span class="chev"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></span></summary>
+      <div class="ans-body">连乘:甲/丙 = (甲/乙)×(乙/丙) = 4/5 × 5/6 = 20/30 = 2/3。<span class="final">答:甲数是丙数的 2/3。</span></div>
+    </details>
+
+    <details class="quiz">
+      <summary><span class="q-n">11</span>一本书,第一天读了全书的 1/4,第二天读了 30 页,两天正好读了一半,全书多少页?<span class="chev"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></span></summary>
+      <div class="ans-body"><p class="stepline">两天共 1/2,第一天 1/4,则第二天占 1/2−1/4=1/4。</p><p class="stepline">30 页对应 1/4,全书=30÷1/4=120。</p><span class="final">答:全书 120 页。<span class="q-badge">把"具体页数"对准它的分率</span></span></div>
+    </details>
+
+    <details class="quiz">
+      <summary><span class="q-n">12</span>水果店运来苹果和梨共 90 千克,苹果是梨的 4/5,苹果、梨各多少千克?<span class="chev"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></span></summary>
+      <div class="ans-body"><p class="stepline">设梨为单位"1",苹果=4/5,共 1+4/5=9/5。</p><p class="stepline">梨=90÷9/5=90×5/9=50;苹果=90−50=40。</p><span class="final">答:苹果 40 千克,梨 50 千克。<span class="q-badge">和倍问题:总量÷总份率=单位"1"</span></span></div>
+    </details>
+
+    <!-- 第 4 关:挑战 -->
+    <div class="tier">
+      <span class="lv l4"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15 8.5 22 9.3 17 14 18.2 21 12 17.6 5.8 21 7 14 2 9.3 9 8.5 12 2"/></svg>第 4 关 · 挑战</span>
+      <span class="dsc">奥数思维:抓不变量、假设法、逆推</span>
+    </div>
+
+    <details class="quiz">
+      <summary><span class="q-n">13</span>一堆煤,第一次用去总数的 2/5,第二次用去余下的 3/4,这时还剩 6 吨。这堆煤原来多少吨?<span class="chev"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></span></summary>
+      <div class="ans-body"><p class="stepline">逆推:第一次后余下 1−2/5=3/5。</p><p class="stepline">第二次用去"余下的 3/4",还剩余下的 1/4;6 吨对应"余下的 1/4",故余下=6÷1/4=24 吨。</p><p class="stepline">24 吨是总数的 3/5,总数=24÷3/5=40。</p><span class="final">答:原来 40 吨。<span class="q-badge">分层还原:一步步倒着算回去</span></span></div>
+    </details>
+
+    <details class="quiz">
+      <summary><span class="q-n">14</span>甲、乙两人共有邮票若干,甲给乙 12 张后两人相等。原来甲比乙多几张?若原来甲的邮票是乙的 5/3,乙原来多少张?<span class="chev"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></span></summary>
+      <div class="ans-body"><p class="stepline">甲给乙 12 张后相等,说明原来甲比乙多 12×2=24 张。</p><p class="stepline">甲=乙×5/3,甲−乙=乙×(5/3−1)=乙×2/3=24,乙=24÷2/3=36。</p><span class="final">答:原来甲比乙多 24 张;乙原来 36 张。<span class="q-badge">差率对应:差量÷差的分率</span></span></div>
+    </details>
+
+    <details class="quiz">
+      <summary><span class="q-n">15</span>一项工程,甲单独做 10 天完成,乙单独做 15 天完成。两人合作,几天完成?<span class="chev"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></span></summary>
+      <div class="ans-body"><p class="stepline">把工程看作单位"1"。甲每天 1/10,乙每天 1/15。</p><p class="stepline">合作每天 1/10+1/15=3/30+2/30=5/30=1/6。</p><p class="stepline">所需天数=1÷1/6=6。</p><span class="final">答:合作 6 天完成。<span class="q-badge">工程问题:工作总量设为"1",效率用分数</span></span></div>
+    </details>
+
+    <details class="quiz">
+      <summary><span class="q-n">16</span>一杯纯牛奶,喝掉 1/4 后加满水搅匀;再喝掉 1/4 又加满水搅匀。此时杯中牛奶占多少?<span class="chev"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></span></summary>
+      <div class="ans-body"><p class="stepline">每次"喝 1/4 再加满",相当于牛奶剩下 3/4。</p><p class="stepline">两次后牛奶 = 1 × 3/4 × 3/4 = 9/16。</p><span class="final">答:牛奶占 9/16。<span class="q-badge">连续变化:每次都乘同一个"保留率"</span></span></div>
+    </details>
+  </section>
+
+  <div class="foot">分数专题 · 依据人教版教材整理 · 供个人学习使用</div>
+</div>
+<script>
+/* 锚点内部跳转:拦截 TOC 点击,手动滚动,避免在预览/代理环境里触发整页导航 */
+(function(){
+  function onTap(e){
+    var a=e.target;
+    while(a&&a.nodeName!=='A'){a=a.parentNode;}
+    if(!a)return;
+    var href=a.getAttribute('href')||'';
+    if(href.charAt(0)!=='#'||href.length<2)return;
+    var el=document.getElementById(href.slice(1));
+    if(!el)return;
+    e.preventDefault();
+    if(el.scrollIntoView){el.scrollIntoView({behavior:'smooth',block:'start'});}
+    else{window.scrollTo(0,el.offsetTop-16);}
+  }
+  var toc=document.querySelector('.toc');
+  if(toc){toc.addEventListener('click',onTap,false);}
+})();
+</script>
+</body>
+</html>

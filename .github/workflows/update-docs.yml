@@ -1,0 +1,46 @@
+name: Auto-update docs
+
+# Trigger when any content HTML page is pushed to main.
+# index.html is excluded because it is one of the files this workflow writes.
+on:
+  push:
+    branches: [main]
+    paths:
+      - '*.html'
+      - '!index.html'
+
+jobs:
+  update-docs:
+    # Skip commits made by this workflow itself to avoid infinite loops.
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Regenerate README and index
+        id: regen
+        run: |
+          python .github/scripts/update_docs.py
+          echo "exit_code=$?" >> "$GITHUB_OUTPUT"
+
+      - name: Commit and push if changed
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add README.md index.html
+          if git diff --staged --quiet; then
+            echo "No changes to commit."
+          else
+            git commit -m "docs: auto-update README and index [skip ci]"
+            git push
+          fi
