@@ -6,7 +6,7 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="default">
 <meta name="theme-color" content="#4f46e5">
-<title>小学数学 · 五 / 六年级</title>
+<title>暑假成长加油站 · 小学语数英复习导航</title>
 <style>
 :root{
   --brand-h:232; --brand-s:84%;
@@ -41,14 +41,17 @@
 html,body{margin:0;padding:0;}
 body{
   font-family:var(--g-font);
-  background:var(--sunken);
+  background:
+    radial-gradient(1200px 560px at 8% -10%, rgba(79,70,229,.12), transparent 52%),
+    radial-gradient(960px 500px at 95% 8%, rgba(14,165,233,.12), transparent 48%),
+    var(--sunken);
   color:var(--text);
   min-height:100vh;
   display:flex;flex-direction:column;align-items:center;
   padding:calc(env(safe-area-inset-top) + 40px) 20px calc(env(safe-area-inset-bottom) + 40px);
   -webkit-font-smoothing:antialiased;
 }
-.wrap{width:100%;max-width:560px;}
+.wrap{width:100%;max-width:1120px;}
 .hero{text-align:center;margin-bottom:32px;}
 .hero .badge{
   display:inline-flex;align-items:center;gap:6px;
@@ -57,10 +60,10 @@ body{
   font-size:13px;font-weight:600;margin-bottom:16px;
 }
 .hero .badge svg{width:15px;height:15px;}
-.hero h1{font-size:28px;line-height:1.25;margin:0 0 10px;font-weight:800;letter-spacing:-.02em;}
-.hero p{margin:0;color:var(--text-2);font-size:15px;line-height:1.6;}
-.cards{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
-@media (max-width:440px){.cards{grid-template-columns:1fr;}}
+.hero h1{font-size:clamp(28px,4vw,42px);line-height:1.22;margin:0 0 10px;font-weight:800;letter-spacing:-.02em;}
+.hero p{margin:0 auto;color:var(--text-2);font-size:clamp(15px,1.7vw,18px);line-height:1.65;max-width:42em;}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:18px;}
+@media (max-width:520px){.cards{grid-template-columns:1fr;}}
 .card{
   display:flex;flex-direction:column;
   background:var(--surface);
@@ -75,12 +78,13 @@ body{
 .card:active{transform:scale(.98);}
 @media (hover:hover){.card:hover{transform:translateY(-3px);border-color:var(--brand);box-shadow:0 8px 28px rgba(79,70,229,.18);}}
 .card .top{display:flex;align-items:center;gap:12px;margin-bottom:14px;}
+.card .top > div:not(.icon){min-width:0;flex:1;}
 .card .icon{
-  flex:none;width:46px;height:46px;border-radius:var(--r-md);
+  flex:none;width:30px;height:30px;border-radius:var(--r-sm);
   background:var(--brand-subtle);color:var(--brand-strong);
-  display:flex;align-items:center;justify-content:center;font-size:22px;font-weight:800;
+  display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:800;
 }
-.card h2{margin:0;font-size:18px;font-weight:700;}
+.card h2{margin:0;font-size:clamp(15px,1.2vw,20px);font-weight:800;line-height:1.25;letter-spacing:-.02em;word-break:keep-all;}
 .card .grade-en{font-size:12px;color:var(--text-3);font-weight:600;letter-spacing:.04em;margin-top:2px;}
 .card .desc{color:var(--text-2);font-size:13px;line-height:1.6;margin:0 0 16px;flex:1;}
 .card .go{
@@ -104,10 +108,10 @@ body{
   <div class="hero">
     <span class="badge">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1 0-5H20"/></svg>
-      人教版 · 小学数学
+      人教版 · 小学语文 / 数学 / 英语
     </span>
-    <h1>小学数学知识点学习</h1>
-    <p>图形化讲解 · 母题精讲 · 生活应用<br>选择年级开始学习</p>
+    <h1>暑假成长加油站</h1>
+    <p>语文、数学、英语一起复习，轻松闯关、每天进步一点点，快乐迎接新学期。</p>
   </div>
 
   <div class="cards">
@@ -116,11 +120,11 @@ body{
       <div class="top">
         <div class="icon">5</div>
         <div>
-          <h2>五年级写作提升训练手册</h2>
+          <h2>写作提升训练</h2>
           <div class="grade-en">GRADE 5 · CHINESE</div>
         </div>
       </div>
-      <p class="desc">五年级写作提升训练手册</p>
+      <p class="desc">写作提升训练</p>
       <span class="go">开始学习
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
       </span>
@@ -149,6 +153,20 @@ body{
         </div>
       </div>
       <p class="desc">分数专题 · 彻底学会分数</p>
+      <span class="go">开始学习
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+      </span>
+    </a>
+
+    <a class="card" href="g6-math-geometric-thinking.html">
+      <div class="top">
+        <div class="icon">6</div>
+        <div>
+          <h2>图形思想专题</h2>
+          <div class="grade-en">GRADE 6 · MATH</div>
+        </div>
+      </div>
+      <p class="desc">图形思想专题 · 用画图解数学题</p>
       <span class="go">开始学习
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
       </span>

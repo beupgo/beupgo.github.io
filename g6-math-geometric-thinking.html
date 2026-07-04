@@ -1,0 +1,626 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="theme-color" content="#4f46e5">
+<title>图形思想专题 · 用画图解数学题</title>
+<style>
+:root{
+  --brand-h:232; --brand-s:84%;
+  --g-font:-apple-system,BlinkMacSystemFont,"PingFang SC","Hiragino Sans GB","Microsoft YaHei",Roboto,Arial,sans-serif;
+  --g-mono:"SF Mono",ui-monospace,Menlo,Consolas,monospace;
+  --brand:hsl(var(--brand-h),var(--brand-s),56%);
+  --brand-strong:hsl(var(--brand-h),var(--brand-s),48%);
+  --brand-subtle:hsl(var(--brand-h),var(--brand-s),97%);
+  --brand-subtle-2:hsl(var(--brand-h),var(--brand-s),93%);
+  --warn:#f59e0b; --warn-bg:#fffbeb; --warn-text:#b45309;
+  --ok:#10b981; --ok-bg:#ecfdf5; --ok-text:#047857;
+  --surface:#fff; --sunken:#f9fafb;
+  --text:#111827; --text-2:#4b5563; --text-3:#9ca3af;
+  --border:#e5e7eb;
+  --shadow:0 1px 2px rgba(16,24,40,.04),0 6px 20px rgba(16,24,40,.06);
+  --r-lg:18px; --r-md:12px; --r-sm:8px; --r-full:999px;
+  --fig-a:#6366f1; --fig-b:#f59e0b; --fig-c:#10b981; --fig-d:#ec4899;
+}
+@media (prefers-color-scheme: dark){
+  :root{
+    --brand:hsl(var(--brand-h),var(--brand-s),64%);
+    --brand-strong:hsl(var(--brand-h),var(--brand-s),72%);
+    --brand-subtle:hsl(var(--brand-h),var(--brand-s),16%);
+    --brand-subtle-2:hsl(var(--brand-h),var(--brand-s),22%);
+    --warn-bg:#3a2c0a; --warn-text:#fbbf24;
+    --ok-bg:#0b2e22; --ok-text:#34d399;
+    --surface:#161b22; --sunken:#0d1117;
+    --text:#e6edf3; --text-2:#9da7b3; --text-3:#6b7684;
+    --border:#2d333b;
+    --shadow:0 1px 2px rgba(0,0,0,.3),0 6px 20px rgba(0,0,0,.35);
+    --fig-a:#818cf8; --fig-b:#fbbf24; --fig-c:#34d399; --fig-d:#f472b6;
+  }
+}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent;}
+html,body{margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{font-family:var(--g-font);background:var(--sunken);color:var(--text);-webkit-font-smoothing:antialiased;line-height:1.6;}
+.page{width:100%;max-width:760px;margin:0 auto;padding:0 clamp(16px,4vw,32px) calc(env(safe-area-inset-bottom) + 56px);}
+@media(min-width:768px){
+  .page{max-width:920px;}
+  .grid2{display:grid;grid-template-columns:1fr 1fr;gap:14px;align-items:start;}
+  .grid2>.card{margin-bottom:0;}
+}
+@media(min-width:1100px){
+  .page{max-width:1040px;}
+}
+
+/* 顶部 */
+.hero{text-align:center;padding:calc(env(safe-area-inset-top) + 34px) 8px 24px;}
+.hero .badge{display:inline-flex;align-items:center;gap:6px;padding:6px 14px;border-radius:var(--r-full);background:var(--brand-subtle);color:var(--brand-strong);font-size:13px;font-weight:600;margin-bottom:14px;}
+.hero .badge svg{width:15px;height:15px;}
+.hero h1{font-size:26px;margin:0 0 8px;font-weight:800;letter-spacing:-.02em;}
+.hero p{margin:0;color:var(--text-2);font-size:14px;}
+
+/* 章节导航 */
+.toc{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin:0 0 26px;}
+.toc a{text-decoration:none;font-size:13px;font-weight:600;color:var(--text-2);background:var(--surface);border:1px solid var(--border);border-radius:var(--r-full);padding:7px 13px;transition:.15s;}
+.toc a:active{transform:scale(.96);}
+@media(hover:hover){.toc a:hover{border-color:var(--brand);color:var(--brand-strong);}}
+
+/* 章节 */
+.sec{margin-bottom:34px;scroll-margin-top:16px;}
+.sec-head{display:flex;align-items:center;gap:10px;margin-bottom:14px;}
+.sec-head .n{flex:none;width:30px;height:30px;border-radius:var(--r-md);background:var(--brand);color:#fff;font-size:15px;font-weight:800;display:flex;align-items:center;justify-content:center;}
+.sec-head h2{margin:0;font-size:19px;font-weight:800;}
+.sec-head .sub{color:var(--text-3);font-size:12px;font-weight:600;margin-top:1px;}
+
+/* 分数(竖排:分子/分数线/分母) */
+.frac{display:inline-flex;flex-direction:column;align-items:center;justify-content:center;vertical-align:middle;line-height:1;margin:0 2px;font-weight:700;}
+.frac .fn{padding:0 4px 1px;border-bottom:1.6px solid currentColor;}
+.frac .fd{padding:1px 4px 0;}
+
+/* 卡片 */
+.card{background:var(--surface);border:1px solid var(--border);border-radius:var(--r-lg);padding:16px;margin-bottom:14px;box-shadow:var(--shadow);}
+.card-t{display:flex;align-items:center;gap:8px;font-size:15px;font-weight:700;margin:0 0 10px;}
+.card-t svg{width:18px;height:18px;flex:none;color:var(--brand-strong);}
+.card p{margin:0 0 8px;font-size:14px;color:var(--text-2);}
+.card p:last-child{margin-bottom:0;}
+.card b{color:var(--text);}
+.key{color:var(--brand-strong);font-weight:700;}
+
+/* 图示区 */
+.fig{background:var(--sunken);border:1px solid var(--border);border-radius:var(--r-md);padding:14px 12px;text-align:center;margin:10px 0;}
+.fig svg{max-width:100%;height:auto;display:block;margin:0 auto;}
+.fig figcaption{margin-top:8px;font-size:12px;color:var(--text-3);}
+
+/* 母题 */
+.mother{border:1.5px solid var(--brand-subtle-2);border-radius:var(--r-lg);overflow:hidden;margin:14px 0;box-shadow:var(--shadow);}
+.mother-head{display:flex;align-items:center;gap:10px;padding:12px 14px;background:var(--brand-subtle);}
+.mother-head .no{flex:none;width:30px;height:30px;border-radius:var(--r-md);background:var(--brand);color:#fff;font-size:14px;font-weight:800;display:flex;align-items:center;justify-content:center;}
+.mother-head h3{margin:0;font-size:15px;font-weight:800;color:var(--text);flex:1;}
+.mother-head .tagm{flex:none;font-size:11px;font-weight:800;color:var(--brand-strong);background:var(--surface);border:1px solid var(--brand-subtle-2);padding:3px 9px;border-radius:var(--r-full);}
+.mother-body{padding:14px;}
+.model{display:flex;gap:8px;align-items:flex-start;background:var(--brand-subtle);border-radius:var(--r-md);padding:10px 12px;margin-top:10px;font-size:13px;color:var(--text-2);}
+.model svg{width:16px;height:16px;flex:none;color:var(--brand-strong);margin-top:2px;}
+.model b{color:var(--brand-strong);}
+
+/* 例题 */
+.eg{border:1px solid var(--border);border-radius:var(--r-md);overflow:hidden;margin:12px 0;}
+.eg-q{background:var(--sunken);padding:10px 13px;font-size:14px;font-weight:600;display:flex;gap:8px;}
+.eg-q .tag{flex:none;color:var(--brand-strong);font-weight:800;}
+.eg-body{padding:12px 13px;}
+.eg-step{display:flex;gap:9px;font-size:13.5px;color:var(--text-2);margin-bottom:8px;}
+.eg-step:last-of-type{margin-bottom:0;}
+.eg-step .d{flex:none;width:19px;height:19px;border-radius:var(--r-full);background:var(--brand-subtle-2);color:var(--brand-strong);font-size:11px;font-weight:800;display:flex;align-items:center;justify-content:center;margin-top:1px;}
+.eg-ans{margin-top:10px;display:inline-flex;align-items:center;gap:6px;background:var(--ok-bg);color:var(--ok-text);font-weight:800;font-size:14px;padding:6px 12px;border-radius:var(--r-full);}
+.eg-ans svg{width:15px;height:15px;}
+
+/* 类型徽标 */
+.types{display:flex;flex-wrap:wrap;gap:8px;margin:4px 0 12px;}
+.types .t{font-size:12.5px;font-weight:700;padding:5px 11px;border-radius:var(--r-full);background:var(--brand-subtle);color:var(--brand-strong);}
+
+/* 易错 */
+.warn{background:var(--warn-bg);border:1px solid var(--warn);border-radius:var(--r-md);padding:11px 13px;margin-top:10px;}
+.warn-h{display:flex;align-items:center;gap:6px;font-size:13px;font-weight:800;color:var(--warn-text);margin-bottom:6px;}
+.warn-h svg{width:15px;height:15px;}
+.warn ul{margin:0;padding-left:18px;}
+.warn li{font-size:13px;color:var(--text-2);margin-bottom:4px;}
+.warn li:last-child{margin-bottom:0;}
+
+/* 口诀 */
+.tip{display:flex;gap:9px;background:var(--brand-subtle);border-radius:var(--r-md);padding:11px 13px;margin-top:10px;font-size:13.5px;color:var(--text-2);}
+.tip svg{width:17px;height:17px;flex:none;color:var(--brand-strong);margin-top:1px;}
+.tip b{color:var(--brand-strong);}
+
+/* 自测 折叠 */
+.quiz{background:var(--surface);border:1px solid var(--border);border-radius:var(--r-md);margin-bottom:10px;overflow:hidden;}
+.quiz>summary{list-style:none;cursor:pointer;padding:12px 14px;font-size:14px;font-weight:600;display:flex;align-items:center;gap:9px;}
+.quiz>summary::-webkit-details-marker{display:none;}
+.quiz>summary .q-n{flex:none;width:22px;height:22px;border-radius:var(--r-full);background:var(--brand-subtle-2);color:var(--brand-strong);font-size:12px;font-weight:800;display:flex;align-items:center;justify-content:center;}
+.quiz>summary .chev{margin-left:auto;color:var(--text-3);transition:.2s;}
+.quiz>summary .chev svg{width:18px;height:18px;display:block;}
+.quiz[open]>summary .chev{transform:rotate(180deg);}
+.quiz .ans-body{padding:0 14px 13px 45px;font-size:13.5px;color:var(--text-2);border-top:1px dashed var(--border);padding-top:11px;}
+.quiz .ans-body .final{color:var(--ok-text);font-weight:800;}
+.quiz .ans-body .stepline{margin:0 0 6px;}
+
+.foot{text-align:center;color:var(--text-3);font-size:12px;padding:8px 0;}
+</style>
+</head>
+<body>
+<div class="page">
+
+  <div class="hero">
+    <span class="badge">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2 2 7l10 5 10-5-10-5Z"/><path d="m2 17 10 5 10-5"/><path d="m2 12 10 5 10-5"/></svg>
+      图形思想专题 · 人教版
+    </span>
+    <h1>用画图解数学题</h1>
+    <p>数形结合 —— 把看不见的关系画成看得见的图,难题一眼看穿</p>
+  </div>
+
+  <nav class="toc">
+    <a href="#s1">1 为什么要画图</a>
+    <a href="#s2">2 线段图</a>
+    <a href="#s3">3 面积图</a>
+    <a href="#s4">4 图形规律</a>
+    <a href="#s5">5 集合·韦恩图</a>
+    <a href="#s6">6 母题精讲</a>
+    <a href="#s7">7 闯关自测</a>
+  </nav>
+
+  <!-- ============ 1 为什么要画图 ============ -->
+  <section class="sec" id="s1">
+    <div class="sec-head"><div class="n">1</div><div><h2>为什么要画图</h2><div class="sub">图形思想 = 小学最好用的解题武器</div></div></div>
+
+    <div class="card">
+      <div class="card-t"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9.5 2A2.5 2.5 0 0 1 12 4.5v15a2.5 2.5 0 0 1-4.96.44 2.5 2.5 0 0 1-2.96-3.08 3 3 0 0 1-.34-5.58 2.5 2.5 0 0 1 1.32-4.24 2.5 2.5 0 0 1 1.98-3A2.5 2.5 0 0 1 9.5 2Z"/><path d="M14.5 2A2.5 2.5 0 0 0 12 4.5v15a2.5 2.5 0 0 0 4.96.44 2.5 2.5 0 0 0 2.96-3.08 3 3 0 0 0 .34-5.58 2.5 2.5 0 0 0-1.32-4.24 2.5 2.5 0 0 0-1.98-3A2.5 2.5 0 0 0 14.5 2Z"/></svg>一句话记住它</div>
+      <p><b>文字读三遍还绕不清的关系,画一张图,答案就浮出来了。</b>这就是"<span class="key">数形结合</span>"——把抽象的数量关系,变成看得见、摸得着的图形。</p>
+      <p>华罗庚爷爷有句名言:"<b>数缺形时少直观,形少数时难入微。</b>"意思是——数和形要结合起来,才能又直观又精确。</p>
+    </div>
+
+    <div class="card">
+      <div class="card-t"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12h20"/><path d="M12 2v20"/><circle cx="12" cy="12" r="4"/></svg>画图能帮我们做三件事</div>
+      <div class="fig">
+        <svg viewBox="0 0 320 130" width="320" height="130" role="img" aria-label="画图的三大作用">
+          <g font-size="11" text-anchor="middle">
+            <rect x="12" y="20" width="90" height="70" rx="10" fill="var(--brand-subtle)" stroke="var(--brand)" stroke-width="1.2"/>
+            <text x="57" y="46" fill="var(--fig-a)" font-weight="700" font-size="18">看清</text>
+            <text x="57" y="70" fill="var(--text-3)">谁多谁少</text>
+            <rect x="115" y="20" width="90" height="70" rx="10" fill="var(--brand-subtle)" stroke="var(--brand)" stroke-width="1.2"/>
+            <text x="160" y="46" fill="var(--fig-b)" font-weight="700" font-size="18">找到</text>
+            <text x="160" y="70" fill="var(--text-3)">对应关系</text>
+            <rect x="218" y="20" width="90" height="70" rx="10" fill="var(--brand-subtle)" stroke="var(--brand)" stroke-width="1.2"/>
+            <text x="263" y="46" fill="var(--fig-c)" font-weight="700" font-size="18">想到</text>
+            <text x="263" y="70" fill="var(--text-3)">列式方法</text>
+            <text x="160" y="112" fill="var(--text-2)" font-size="12">先画图 → 再列式 → 后计算</text>
+          </g>
+        </svg>
+        <figcaption>图不是"美术作业",是解题的第一步:先把题目画出来</figcaption>
+      </div>
+      <div class="tip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18h6"/><path d="M10 22h4"/><path d="M15.09 14c.18-.98.65-1.74 1.41-2.5A4.65 4.65 0 0 0 18 8 6 6 0 0 0 6 8c0 1 .23 2.23 1.5 3.5A4.61 4.61 0 0 1 8.91 14"/></svg><span><b>做题口诀:</b>读一句、画一句;画完图,题就做完一半了。</span></div>
+    </div>
+  </section>
+
+  <!-- ============ 2 线段图 ============ -->
+  <section class="sec" id="s2">
+    <div class="sec-head"><div class="n">2</div><div><h2>线段图</h2><div class="sub">最常用:倍数、和差、分数关系全靠它</div></div></div>
+
+    <div class="card">
+      <div class="card-t"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M5 9v6"/><path d="M19 9v6"/></svg>什么是线段图</div>
+      <p>用<b>一条线段的长短</b>表示数量的多少。谁多线段就长,谁少就短;倍数关系就画成"几段一样长"。<span class="key">和、差、倍、分数</span>这类关系,画线段图最清楚。</p>
+      <div class="types">
+        <span class="t">和差问题</span><span class="t">和倍问题</span><span class="t">差倍问题</span><span class="t">分数应用题</span>
+      </div>
+    </div>
+
+    <div class="eg">
+      <div class="eg-q"><span class="tag">例</span><span>小明和小红共有邮票 <b>60</b> 张,小明比小红多 <b>12</b> 张。两人各有多少张?</span></div>
+      <div class="eg-body">
+        <div class="fig">
+          <svg viewBox="0 0 300 120" width="300" height="120" role="img" aria-label="和差问题线段图">
+            <g font-size="11">
+              <text x="6" y="34" fill="var(--text-2)">小红</text>
+              <line x1="46" y1="30" x2="176" y2="30" stroke="var(--fig-a)" stroke-width="9" stroke-linecap="round"/>
+              <text x="6" y="70" fill="var(--text-2)">小明</text>
+              <line x1="46" y1="66" x2="176" y2="66" stroke="var(--fig-a)" stroke-width="9" stroke-linecap="round"/>
+              <line x1="176" y1="66" x2="230" y2="66" stroke="var(--fig-b)" stroke-width="9" stroke-linecap="round"/>
+              <text x="203" y="58" fill="var(--fig-b)" text-anchor="middle" font-weight="700">多12</text>
+              <path d="M46 88 H230" stroke="var(--text-3)" stroke-width="1"/>
+              <path d="M46 84 v8 M230 84 v8" stroke="var(--text-3)" stroke-width="1"/>
+              <text x="138" y="106" fill="var(--text-3)" text-anchor="middle">总和 60</text>
+            </g>
+          </svg>
+          <figcaption>先把小明"多出来的 12 张"从总数里去掉,剩下的就是 2 个小红</figcaption>
+        </div>
+        <div class="eg-step"><span class="d">1</span><span>去掉多的部分:60 − 12 = 48(相当于 2 个小红)</span></div>
+        <div class="eg-step"><span class="d">2</span><span>小红:48 ÷ 2 = <b>24</b> 张</span></div>
+        <div class="eg-step"><span class="d">3</span><span>小明:24 + 12 = <b>36</b> 张</span></div>
+        <div class="eg-ans"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>小红 24 张,小明 36 张</div>
+      </div>
+    </div>
+
+    <div class="eg">
+      <div class="eg-q"><span class="tag">例</span><span>果园里桃树是梨树的 <b>3</b> 倍,桃树比梨树多 <b>40</b> 棵。两种树各有多少棵?</span></div>
+      <div class="eg-body">
+        <div class="fig">
+          <svg viewBox="0 0 300 120" width="300" height="120" role="img" aria-label="差倍问题线段图">
+            <g font-size="11">
+              <text x="6" y="34" fill="var(--text-2)">梨树</text>
+              <line x1="52" y1="30" x2="102" y2="30" stroke="var(--fig-c)" stroke-width="9" stroke-linecap="round"/>
+              <text x="6" y="70" fill="var(--text-2)">桃树</text>
+              <line x1="52" y1="66" x2="102" y2="66" stroke="var(--fig-c)" stroke-width="9" stroke-linecap="round"/>
+              <line x1="102" y1="66" x2="152" y2="66" stroke="var(--fig-a)" stroke-width="9" stroke-linecap="round"/>
+              <line x1="152" y1="66" x2="202" y2="66" stroke="var(--fig-a)" stroke-width="9" stroke-linecap="round"/>
+              <path d="M102 88 H202" stroke="var(--fig-b)" stroke-width="1"/>
+              <path d="M102 84 v8 M202 84 v8" stroke="var(--fig-b)" stroke-width="1"/>
+              <text x="152" y="106" fill="var(--fig-b)" text-anchor="middle" font-weight="700">多出 = 40 = 2 份</text>
+            </g>
+          </svg>
+          <figcaption>桃树是 3 份、梨树是 1 份,多出来的 2 份正好是 40 棵</figcaption>
+        </div>
+        <div class="eg-step"><span class="d">1</span><span>多的份数:3 − 1 = 2(份)对应 40 棵</span></div>
+        <div class="eg-step"><span class="d">2</span><span>1 份(梨树):40 ÷ 2 = <b>20</b> 棵</span></div>
+        <div class="eg-step"><span class="d">3</span><span>桃树:20 × 3 = <b>60</b> 棵</span></div>
+        <div class="eg-ans"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>梨树 20 棵,桃树 60 棵</div>
+      </div>
+    </div>
+
+    <div class="warn">
+      <div class="warn-h"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z"/><path d="M12 9v4"/><path d="M12 17h.01"/></svg>画线段图易错点</div>
+      <ul>
+        <li>倍数关系要画成<b>等长的几段</b>,别随手画长短不一。</li>
+        <li>"多的部分""少的部分"要单独标出来,别和主线段混在一起。</li>
+        <li>先想清楚<b>把谁当 1 份</b>(标准量),再画其它线段。</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ============ 3 面积图 ============ -->
+  <section class="sec" id="s3">
+    <div class="sec-head"><div class="n">3</div><div><h2>面积图</h2><div class="sub">乘法、分数乘分数、鸡兔同笼都能画</div></div></div>
+
+    <div class="card">
+      <div class="card-t"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18"/><path d="M9 3v18"/></svg>什么是面积图</div>
+      <p>用<b>长方形的面积</b>表示"两个量相乘"。长表示一个量、宽表示另一个量,面积就是它们的积。分数乘分数、连续变化的问题,面积图看得最直观。</p>
+    </div>
+
+    <div class="eg">
+      <div class="eg-q"><span class="tag">例</span><span>一块地的 <span class="frac"><span class="fn">3</span><span class="fd">4</span></span> 种蔬菜,蔬菜地的 <span class="frac"><span class="fn">2</span><span class="fd">3</span></span> 种西红柿。西红柿占整块地的几分之几?</span></div>
+      <div class="eg-body">
+        <div class="fig">
+          <svg viewBox="0 0 220 170" width="220" height="170" role="img" aria-label="分数乘分数嵌套面积图">
+            <rect x="30" y="20" width="160" height="120" fill="none" stroke="var(--text-3)" stroke-width="1.4"/>
+            <rect x="30" y="20" width="120" height="120" fill="var(--fig-a)" fill-opacity="0.14"/>
+            <rect x="30" y="60" width="120" height="80" fill="var(--fig-b)" fill-opacity="0.34"/>
+            <line x1="70" y1="20" x2="70" y2="140" stroke="var(--text-3)" stroke-width="0.8"/>
+            <line x1="110" y1="20" x2="110" y2="140" stroke="var(--text-3)" stroke-width="0.8"/>
+            <line x1="150" y1="20" x2="150" y2="140" stroke="var(--text-3)" stroke-width="1.2"/>
+            <line x1="30" y1="60" x2="150" y2="60" stroke="var(--fig-b)" stroke-width="1"/>
+            <text x="90" y="14" text-anchor="middle" fill="var(--fig-a)" font-size="11" font-weight="700">先取 3/4(蔬菜地)</text>
+            <text x="90" y="103" text-anchor="middle" fill="var(--fig-b)" font-size="11" font-weight="700">这块的 2/3</text>
+            <text x="110" y="157" text-anchor="middle" fill="var(--text-2)" font-size="11">深色 = 3/4 里再取 2/3</text>
+            <text x="110" y="169" text-anchor="middle" fill="var(--text-3)" font-size="10">6 格 / 共 12 格 = 1/2</text>
+          </svg>
+          <figcaption>先竖切留下 3/4 的蔬菜地,再在这块里横切取 2/3,深色就是西红柿</figcaption>
+        </div>
+        <div class="eg-step"><span class="d">1</span><span>先取整块地的 3/4(蔬菜地),<b>再</b>在这 3/4 里取它的 2/3,不是两块地重叠</span></div>
+        <div class="eg-step"><span class="d">2</span><span>列式:<span class="frac"><span class="fn">3</span><span class="fd">4</span></span> × <span class="frac"><span class="fn">2</span><span class="fd">3</span></span> = <span class="frac"><span class="fn">6</span><span class="fd">12</span></span> = <span class="frac"><span class="fn">1</span><span class="fd">2</span></span></span></div>
+        <div class="eg-ans"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>西红柿占整块地的 1/2</div>
+      </div>
+    </div>
+
+    <div class="eg">
+      <div class="eg-q"><span class="tag">例</span><span>鸡兔同笼:头共 <b>10</b> 个,脚共 <b>28</b> 只。鸡、兔各几只?</span></div>
+      <div class="eg-body">
+        <div class="fig">
+          <svg viewBox="0 0 260 150" width="260" height="150" role="img" aria-label="鸡兔同笼面积图">
+            <rect x="30" y="20" width="200" height="80" fill="var(--fig-a)" fill-opacity="0.12" stroke="var(--text-3)" stroke-width="1.2"/>
+            <rect x="30" y="60" width="200" height="40" fill="var(--fig-b)" fill-opacity="0.30" stroke="var(--fig-b)" stroke-width="1.2"/>
+            <text x="130" y="16" text-anchor="middle" fill="var(--text-2)" font-size="11">10 个头(宽)</text>
+            <text x="18" y="62" text-anchor="middle" fill="var(--text-2)" font-size="11" transform="rotate(-90 18 62)">脚</text>
+            <text x="130" y="52" text-anchor="middle" fill="var(--fig-a)" font-size="11">先假设都是鸡:每头 2 脚</text>
+            <text x="130" y="84" text-anchor="middle" fill="var(--fig-b)" font-size="11" font-weight="700">多出的脚 = 兔多的部分</text>
+            <text x="130" y="120" text-anchor="middle" fill="var(--text-3)" font-size="11">假设 2×10=20;实际 28;多 8 只脚</text>
+            <text x="130" y="138" text-anchor="middle" fill="var(--text-3)" font-size="11">每只兔比鸡多 2 脚 → 兔 = 8÷2 = 4</text>
+          </svg>
+          <figcaption>假设法 = 把"多出的脚"想成兔子比鸡多的那两条腿</figcaption>
+        </div>
+        <div class="eg-step"><span class="d">1</span><span>假设 10 只全是鸡:脚 = 2 × 10 = 20(只)</span></div>
+        <div class="eg-step"><span class="d">2</span><span>实际多出:28 − 20 = 8(只脚)</span></div>
+        <div class="eg-step"><span class="d">3</span><span>每换 1 只兔多 2 脚:兔 = 8 ÷ 2 = <b>4</b> 只,鸡 = 10 − 4 = <b>6</b> 只</span></div>
+        <div class="eg-ans"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>鸡 6 只,兔 4 只</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 4 图形规律 ============ -->
+  <section class="sec" id="s4">
+    <div class="sec-head"><div class="n">4</div><div><h2>图形找规律</h2><div class="sub">数与形:用图形看穿数字规律</div></div></div>
+
+    <div class="card">
+      <div class="card-t"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="5" cy="5" r="2"/><circle cx="12" cy="5" r="2"/><circle cx="19" cy="5" r="2"/><circle cx="5" cy="12" r="2"/><circle cx="12" cy="12" r="2"/><circle cx="5" cy="19" r="2"/></svg>把数字摆成图形</div>
+      <p>很多数字规律,单看数字很难发现;<b>摆成小圆点、小方块</b>后,规律一眼就看出来了。这就是人教版六年级"<span class="key">数与形</span>"的核心思想。</p>
+    </div>
+
+    <div class="eg">
+      <div class="eg-q"><span class="tag">母题</span><span>1 + 3 + 5 + 7 + … 连续奇数相加,和有什么规律?</span></div>
+      <div class="eg-body">
+        <div class="fig">
+          <svg viewBox="0 0 300 120" width="300" height="120" role="img" aria-label="连续奇数和等于平方数">
+            <g>
+              <rect x="20" y="80" width="18" height="18" rx="3" fill="var(--fig-a)" fill-opacity="0.5"/>
+              <text x="29" y="114" text-anchor="middle" font-size="11" fill="var(--text-3)">1=1²</text>
+
+              <g transform="translate(70,0)">
+                <rect x="0" y="80" width="18" height="18" rx="3" fill="var(--fig-a)" fill-opacity="0.5"/>
+                <rect x="20" y="80" width="18" height="18" rx="3" fill="var(--fig-b)" fill-opacity="0.6"/>
+                <rect x="0" y="60" width="18" height="18" rx="3" fill="var(--fig-b)" fill-opacity="0.6"/>
+                <rect x="20" y="60" width="18" height="18" rx="3" fill="var(--fig-b)" fill-opacity="0.6"/>
+                <text x="19" y="114" text-anchor="middle" font-size="11" fill="var(--text-3)">1+3=2²</text>
+              </g>
+
+              <g transform="translate(150,0)">
+                <rect x="0" y="80" width="18" height="18" rx="3" fill="var(--fig-a)" fill-opacity="0.5"/>
+                <rect x="20" y="80" width="18" height="18" rx="3" fill="var(--fig-b)" fill-opacity="0.6"/>
+                <rect x="0" y="60" width="18" height="18" rx="3" fill="var(--fig-b)" fill-opacity="0.6"/>
+                <rect x="20" y="60" width="18" height="18" rx="3" fill="var(--fig-b)" fill-opacity="0.6"/>
+                <rect x="40" y="80" width="18" height="18" rx="3" fill="var(--fig-c)" fill-opacity="0.6"/>
+                <rect x="40" y="60" width="18" height="18" rx="3" fill="var(--fig-c)" fill-opacity="0.6"/>
+                <rect x="0" y="40" width="18" height="18" rx="3" fill="var(--fig-c)" fill-opacity="0.6"/>
+                <rect x="20" y="40" width="18" height="18" rx="3" fill="var(--fig-c)" fill-opacity="0.6"/>
+                <rect x="40" y="40" width="18" height="18" rx="3" fill="var(--fig-c)" fill-opacity="0.6"/>
+                <text x="29" y="114" text-anchor="middle" font-size="11" fill="var(--text-3)">1+3+5=3²</text>
+              </g>
+              <text x="255" y="72" font-size="13" fill="var(--brand-strong)" font-weight="700">→ n²</text>
+            </g>
+          </svg>
+          <figcaption>每加一个奇数,正方形就"长大一圈",拼出的正好是完全平方数</figcaption>
+        </div>
+        <div class="eg-step"><span class="d">1</span><span>1 个 = 1×1;前 2 个奇数和 = 2×2;前 3 个 = 3×3……</span></div>
+        <div class="eg-step"><span class="d">2</span><span>规律:<b>前 n 个连续奇数的和 = n²</b></span></div>
+        <div class="eg-step"><span class="d">3</span><span>例:1+3+5+…+19(共 10 个)= 10² = <b>100</b></span></div>
+        <div class="eg-ans"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>连续奇数的和 = 个数的平方(n²)</div>
+      </div>
+    </div>
+
+    <div class="tip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18h6"/><path d="M10 22h4"/><path d="M15.09 14c.18-.98.65-1.74 1.41-2.5A4.65 4.65 0 0 0 18 8 6 6 0 0 0 6 8c0 1 .23 2.23 1.5 3.5A4.61 4.61 0 0 1 8.91 14"/></svg><span><b>迁移:</b>1+2+3+…+n 可以摆成"半个长方形",和 = n×(n+1)÷2。图一画,公式就记住了。</span></div>
+  </section>
+
+  <!-- ============ 5 韦恩图 ============ -->
+  <section class="sec" id="s5">
+    <div class="sec-head"><div class="n">5</div><div><h2>集合·韦恩图</h2><div class="sub">"既…又…""重复计算"类问题的克星</div></div></div>
+
+    <div class="card">
+      <div class="card-t"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="12" r="7"/><circle cx="15" cy="12" r="7"/></svg>什么是韦恩图</div>
+      <p>用<b>两个圆圈</b>表示两类事物,<b>重叠的部分</b>就是"两样都占"的。凡是出现"<span class="key">既参加…又参加…</span>""重复报名"这类词,画韦恩图最清楚。</p>
+    </div>
+
+    <div class="eg">
+      <div class="eg-q"><span class="tag">例</span><span>班里报名:参加语文小组 <b>18</b> 人,数学小组 <b>15</b> 人,两个都参加的 <b>6</b> 人。至少参加一个小组的共几人?</span></div>
+      <div class="eg-body">
+        <div class="fig">
+          <svg viewBox="0 0 260 150" width="260" height="150" role="img" aria-label="韦恩图">
+            <circle cx="100" cy="75" r="60" fill="var(--fig-a)" fill-opacity="0.14" stroke="var(--fig-a)" stroke-width="1.5"/>
+            <circle cx="160" cy="75" r="60" fill="var(--fig-b)" fill-opacity="0.14" stroke="var(--fig-b)" stroke-width="1.5"/>
+            <text x="70" y="80" text-anchor="middle" font-size="13" fill="var(--fig-a)" font-weight="700">12</text>
+            <text x="130" y="80" text-anchor="middle" font-size="13" fill="var(--brand-strong)" font-weight="700">6</text>
+            <text x="190" y="80" text-anchor="middle" font-size="13" fill="var(--fig-b)" font-weight="700">9</text>
+            <text x="65" y="30" text-anchor="middle" font-size="11" fill="var(--fig-a)">语文 18</text>
+            <text x="195" y="30" text-anchor="middle" font-size="11" fill="var(--fig-b)">数学 15</text>
+            <text x="130" y="145" text-anchor="middle" font-size="11" fill="var(--text-3)">中间 6 只能算一次!</text>
+          </svg>
+          <figcaption>重叠的 6 人被"数了两次",要减掉一次</figcaption>
+        </div>
+        <div class="eg-step"><span class="d">1</span><span>只语文:18 − 6 = 12;只数学:15 − 6 = 9</span></div>
+        <div class="eg-step"><span class="d">2</span><span>总人数 = 12 + 6 + 9 = <b>27</b> 人</span></div>
+        <div class="eg-step"><span class="d">3</span><span>公式记法:18 + 15 − 6 = <b>27</b>(加起来再减掉重复的)</span></div>
+        <div class="eg-ans"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>至少参加一个的共 27 人</div>
+      </div>
+    </div>
+
+    <div class="warn">
+      <div class="warn-h"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z"/><path d="M12 9v4"/><path d="M12 17h.01"/></svg>最容易错的地方</div>
+      <ul>
+        <li>直接 18+15=33 就答,<b>忘了减掉重复的 6 人</b>。</li>
+        <li>题目给的"18 人"是<b>包含重叠</b>的总数,别当成"只参加语文"。</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ============ 6 母题精讲 ============ -->
+  <section class="sec" id="s6">
+    <div class="sec-head"><div class="n">6</div><div><h2>母题精讲</h2><div class="sub">4 道"一图打通一类题"的经典母题</div></div></div>
+    <p class="card" style="margin-bottom:16px;color:var(--text-2);font-size:13.5px;box-shadow:none;">"母题"= 一类题的通用模型。掌握下面 4 张图的画法与思路,换数字、换背景,你都能照样解出来。</p>
+
+    <div class="mother">
+      <div class="mother-head"><div class="no">母1</div><h3>盈亏问题 · 用线段图找"每份差"</h3><span class="tagm">线段图</span></div>
+      <div class="mother-body">
+        <div class="eg-q" style="border:0;padding:0 0 4px;background:none;">分苹果:每人 5 个多 4 个,每人 7 个少 6 个。多少人?多少苹果?</div>
+        <div class="fig">
+          <svg viewBox="0 0 300 100" width="300" height="100" role="img" aria-label="盈亏问题线段图">
+            <line x1="20" y1="35" x2="200" y2="35" stroke="var(--fig-a)" stroke-width="9" stroke-linecap="round"/>
+            <line x1="200" y1="35" x2="240" y2="35" stroke="var(--fig-c)" stroke-width="9" stroke-linecap="round"/>
+            <text x="220" y="27" text-anchor="middle" font-size="11" fill="var(--fig-c)">多4</text>
+            <line x1="20" y1="65" x2="240" y2="65" stroke="var(--fig-a)" stroke-width="9" stroke-linecap="round"/>
+            <line x1="240" y1="65" x2="270" y2="65" stroke="var(--fig-b)" stroke-width="9" stroke-linecap="round"/>
+            <text x="255" y="57" text-anchor="middle" font-size="11" fill="var(--fig-b)">少6</text>
+            <text x="14" y="30" text-anchor="end" font-size="10" fill="var(--text-3)">5个/人</text>
+            <text x="14" y="60" text-anchor="end" font-size="10" fill="var(--text-3)">7个/人</text>
+            <text x="150" y="92" text-anchor="middle" font-size="11" fill="var(--text-2)">两次总差 = 4+6 = 10;每人差 = 7−5 = 2</text>
+          </svg>
+          <figcaption>两条线段一比,总差÷每份差=人数</figcaption>
+        </div>
+        <div class="eg-step"><span class="d">1</span><span>两次相差:4 + 6 = 10(个)</span></div>
+        <div class="eg-step"><span class="d">2</span><span>每人相差:7 − 5 = 2(个)</span></div>
+        <div class="eg-step"><span class="d">3</span><span>人数:10 ÷ 2 = <b>5</b> 人;苹果:5×5 + 4 = <b>29</b> 个</span></div>
+        <div class="model"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v20"/><path d="m17 5-5-3-5 3"/><path d="m17 19-5 3-5-3"/></svg><span><b>母题模型:</b>人数 = 两次总差 ÷ 每份之差。一盈一亏就相加,同盈/同亏就相减。</span></div>
+      </div>
+    </div>
+
+    <div class="mother">
+      <div class="mother-head"><div class="no">母2</div><h3>分数应用题 · 线段图找"量率对应"</h3><span class="tagm">线段图</span></div>
+      <div class="mother-body">
+        <div class="eg-q" style="border:0;padding:0 0 4px;background:none;">一本书,第一天读了全书的 <span class="frac"><span class="fn">1</span><span class="fd">4</span></span>,第二天读了 30 页,还剩 45 页。全书多少页?</div>
+        <div class="fig">
+          <svg viewBox="0 0 300 90" width="300" height="90" role="img" aria-label="量率对应线段图">
+            <line x1="20" y1="40" x2="90" y2="40" stroke="var(--fig-a)" stroke-width="12" stroke-linecap="butt"/>
+            <line x1="90" y1="40" x2="170" y2="40" stroke="var(--fig-b)" stroke-width="12" stroke-linecap="butt"/>
+            <line x1="170" y1="40" x2="280" y2="40" stroke="var(--fig-c)" stroke-width="12" stroke-linecap="butt"/>
+            <text x="55" y="24" text-anchor="middle" font-size="10" fill="var(--fig-a)">第1天 1/4</text>
+            <text x="130" y="24" text-anchor="middle" font-size="10" fill="var(--fig-b)">第2天 30页</text>
+            <text x="225" y="24" text-anchor="middle" font-size="10" fill="var(--fig-c)">剩 45页</text>
+            <text x="150" y="70" text-anchor="middle" font-size="11" fill="var(--text-2)">全书 = 单位"1"</text>
+          </svg>
+          <figcaption>把全书看成 1,先算"30+45"对应的分率</figcaption>
+        </div>
+        <div class="eg-step"><span class="d">1</span><span>30+45=75 页,对应的分率 = 1 − 1/4 = 3/4</span></div>
+        <div class="eg-step"><span class="d">2</span><span>全书:75 ÷ 3/4 = <b>100</b> 页</span></div>
+        <div class="model"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v20"/><path d="m17 5-5-3-5 3"/><path d="m17 19-5 3-5-3"/></svg><span><b>母题模型:</b>找到"<b>具体量</b>"和它"<b>对应的分率</b>",用具体量 ÷ 分率 = 单位"1"。</span></div>
+      </div>
+    </div>
+
+    <div class="mother">
+      <div class="mother-head"><div class="no">母3</div><h3>相遇·行程 · 用线段图理清方向</h3><span class="tagm">线段图</span></div>
+      <div class="mother-body">
+        <div class="eg-q" style="border:0;padding:0 0 4px;background:none;">两地相距 300 千米,甲车每小时 60 千米、乙车每小时 40 千米,同时相向出发,几小时相遇?</div>
+        <div class="fig">
+          <svg viewBox="0 0 300 90" width="300" height="90" role="img" aria-label="相遇问题线段图">
+            <line x1="20" y1="45" x2="280" y2="45" stroke="var(--text-3)" stroke-width="2"/>
+            <circle cx="20" cy="45" r="4" fill="var(--fig-a)"/><circle cx="280" cy="45" r="4" fill="var(--fig-b)"/>
+            <path d="M40 45 h40" stroke="var(--fig-a)" stroke-width="3" marker-end="url(#ar1)"/>
+            <path d="M260 45 h-40" stroke="var(--fig-b)" stroke-width="3" marker-end="url(#ar2)"/>
+            <defs>
+              <marker id="ar1" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0 0 L6 3 L0 6 z" fill="var(--fig-a)"/></marker>
+              <marker id="ar2" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0 0 L6 3 L0 6 z" fill="var(--fig-b)"/></marker>
+            </defs>
+            <text x="30" y="30" font-size="10" fill="var(--fig-a)">甲 60</text>
+            <text x="245" y="30" font-size="10" fill="var(--fig-b)">乙 40</text>
+            <text x="150" y="78" text-anchor="middle" font-size="11" fill="var(--text-2)">全程 300,每小时共走 60+40=100</text>
+          </svg>
+          <figcaption>相向而行:两人每小时"合走"的路程 = 速度和</figcaption>
+        </div>
+        <div class="eg-step"><span class="d">1</span><span>速度和:60 + 40 = 100(千米/时)</span></div>
+        <div class="eg-step"><span class="d">2</span><span>相遇时间:300 ÷ 100 = <b>3</b> 小时</span></div>
+        <div class="model"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v20"/><path d="m17 5-5-3-5 3"/><path d="m17 19-5 3-5-3"/></svg><span><b>母题模型:</b>相遇时间 = 总路程 ÷ 速度和。画箭头方向,一眼分清"相向(加)"还是"追及(减)"。</span></div>
+      </div>
+    </div>
+
+    <div class="mother">
+      <div class="mother-head"><div class="no">母4</div><h3>周期问题 · 用图圈出"一组"</h3><span class="tagm">规律图</span></div>
+      <div class="mother-body">
+        <div class="eg-q" style="border:0;padding:0 0 4px;background:none;">按"红、黄、蓝"顺序不断挂灯笼,第 50 个是什么颜色?</div>
+        <div class="fig">
+          <svg viewBox="0 0 300 70" width="300" height="70" role="img" aria-label="周期问题">
+            <g>
+              <circle cx="40" cy="30" r="12" fill="#ef4444" fill-opacity="0.75"/>
+              <circle cx="80" cy="30" r="12" fill="#f59e0b" fill-opacity="0.8"/>
+              <circle cx="120" cy="30" r="12" fill="#3b82f6" fill-opacity="0.7"/>
+              <rect x="24" y="12" width="112" height="36" rx="8" fill="none" stroke="var(--brand)" stroke-width="1.5" stroke-dasharray="4 3"/>
+              <text x="80" y="63" text-anchor="middle" font-size="10" fill="var(--brand-strong)">1 组 = 3 个</text>
+              <circle cx="170" cy="30" r="12" fill="#ef4444" fill-opacity="0.75"/>
+              <circle cx="210" cy="30" r="12" fill="#f59e0b" fill-opacity="0.8"/>
+              <circle cx="250" cy="30" r="12" fill="#3b82f6" fill-opacity="0.7"/>
+              <text x="285" y="35" font-size="14" fill="var(--text-3)">…</text>
+            </g>
+          </svg>
+          <figcaption>每 3 个一组循环,用除法看"落在第几个"</figcaption>
+        </div>
+        <div class="eg-step"><span class="d">1</span><span>一组 3 个:50 ÷ 3 = 16 组 …… 余 <b>2</b></span></div>
+        <div class="eg-step"><span class="d">2</span><span>余 2,就是每组的第 2 个 → <b>黄色</b></span></div>
+        <div class="model"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v20"/><path d="m17 5-5-3-5 3"/><path d="m17 19-5 3-5-3"/></svg><span><b>母题模型:</b>先圈出"一组"有几个,再用总数 ÷ 每组个数,<b>看余数</b>就知道落在组里第几个(余 0 = 最后一个)。</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 7 闯关自测 ============ -->
+  <section class="sec" id="s7">
+    <div class="sec-head"><div class="n">7</div><div><h2>闯关自测</h2><div class="sub">先自己画图,再点开看答案</div></div></div>
+
+    <details class="quiz">
+      <summary><span class="q-n">1</span>甲乙两数和是 80,甲比乙多 20。甲、乙各是多少?(画线段图)<span class="chev"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></span></summary>
+      <div class="ans-body">
+        <p class="stepline">和差问题:去掉多的 20 → (80−20)÷2 = 30 = 乙;甲 = 30+20 = 50。</p>
+        <p class="final">甲 50,乙 30。</p>
+      </div>
+    </details>
+
+    <details class="quiz">
+      <summary><span class="q-n">2</span>一根绳子对折两次后,每段长 3 米。原来长多少米?(画折叠图)<span class="chev"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></span></summary>
+      <div class="ans-body">
+        <p class="stepline">对折 1 次分 2 段,对折 2 次分 2×2 = 4 段。画图:整根被平分成 4 段。</p>
+        <p class="final">3 × 4 = 12 米。</p>
+      </div>
+    </details>
+
+    <details class="quiz">
+      <summary><span class="q-n">3</span>科技节:参加机器人 20 人,编程 16 人,两样都参加 5 人。至少参加一样的多少人?(画韦恩图)<span class="chev"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></span></summary>
+      <div class="ans-body">
+        <p class="stepline">两圈重叠 5 人只算一次:20 + 16 − 5。</p>
+        <p class="final">= 31 人。</p>
+      </div>
+    </details>
+
+    <details class="quiz">
+      <summary><span class="q-n">4</span>果园苹果树是梨树的 4 倍,比梨树多 60 棵。各多少棵?(画倍数线段图)<span class="chev"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></span></summary>
+      <div class="ans-body">
+        <p class="stepline">差倍问题:苹果 4 份、梨 1 份,多出 3 份 = 60。1 份 = 60÷3 = 20。</p>
+        <p class="final">梨 20 棵,苹果 80 棵。</p>
+      </div>
+    </details>
+
+    <details class="quiz">
+      <summary><span class="q-n">5</span>1+3+5+7+9+11+13 = ?(用平方数规律,不许硬加)<span class="chev"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></span></summary>
+      <div class="ans-body">
+        <p class="stepline">一共 7 个连续奇数,和 = 7²。</p>
+        <p class="final">= 49。</p>
+      </div>
+    </details>
+
+    <details class="quiz">
+      <summary><span class="q-n">6</span>笼子里鸡兔共 12 只,脚共 34 只。鸡、兔各几只?(画假设面积图)<span class="chev"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></span></summary>
+      <div class="ans-body">
+        <p class="stepline">假设全是鸡:2×12 = 24 只脚;实际多 34−24 = 10;每只兔多 2 脚,兔 = 10÷2 = 5。</p>
+        <p class="final">兔 5 只,鸡 7 只。</p>
+      </div>
+    </details>
+
+    <details class="quiz">
+      <summary><span class="q-n">7</span>一堆糖,每人分 4 颗多 3 颗,每人分 6 颗少 5 颗。多少人?多少糖?(盈亏,画线段图)<span class="chev"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></span></summary>
+      <div class="ans-body">
+        <p class="stepline">总差 = 3+5 = 8;每份差 = 6−4 = 2;人数 = 8÷2 = 4;糖 = 4×4+3 = 19。</p>
+        <p class="final">4 人,19 颗糖。</p>
+      </div>
+    </details>
+
+    <details class="quiz">
+      <summary><span class="q-n">8</span>按"○○△□"重复排,第 30 个是什么图形?(周期问题,圈一组)<span class="chev"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></span></summary>
+      <div class="ans-body">
+        <p class="stepline">一组 4 个:30 ÷ 4 = 7 组余 2,落在每组第 2 个。</p>
+        <p class="final">第 2 个是 ○,所以是圆(○)。</p>
+      </div>
+    </details>
+  </section>
+
+  <div class="foot">图形思想专题 · 依据人教版教材整理 · 供个人学习使用</div>
+</div>
+<script>
+/* 锚点内部跳转:拦截 TOC 点击,手动滚动,避免在预览/代理环境里触发整页导航 */
+(function(){
+  function onTap(e){
+    var a=e.target;
+    while(a&&a.nodeName!=='A'){a=a.parentNode;}
+    if(!a)return;
+    var href=a.getAttribute('href')||'';
+    if(href.charAt(0)!=='#'||href.length<2)return;
+    var el=document.getElementById(href.slice(1));
+    if(!el)return;
+    e.preventDefault();
+    if(el.scrollIntoView){el.scrollIntoView({behavior:'smooth',block:'start'});}
+    else{window.scrollTo(0,el.offsetTop-16);}
+  }
+  var toc=document.querySelector('.toc');
+  if(toc){toc.addEventListener('click',onTap,false);}
+})();
+</script>
+</body>
+</html>
