@@ -6,12 +6,12 @@
 
 | 年级 | 在线地址 |
 |---|---|
-| 五年级 | https://<username>.github.io/<repo>/grade5.html |
-| 六年级 | https://<username>.github.io/<repo>/grade6.html |
-| 导航首页 | https://<username>.github.io/<repo>/ |
+| 五年级 | https://cucygh.github.io/<repo>/grade5.html |
+| 六年级 | https://cucygh.github.io/<repo>/grade6.html |
+| 导航首页 | https://cucygh.github.io/<repo>/ |
 
-> 把 `<username>` 换成你的 GitHub 用户名,`<repo>` 换成仓库名。
-> 若仓库名就叫 `<username>.github.io`,则去掉路径里的 `/<repo>`,直接是 `https://<username>.github.io/grade5.html`。
+> 把 `<repo>` 换成仓库名。
+> 若仓库名就叫 `cucygh.github.io`,则去掉路径里的 `/<repo>`,直接是 `https://cucygh.github.io/grade5.html`。
 
 ## 功能特点
 
@@ -47,7 +47,7 @@
 1. 新建一个 GitHub 仓库(如 `math-notes`),把 `grade5.html`、`grade6.html`、`index.html`、`README.md` 上传到仓库根目录。
 2. 进入仓库 **Settings → Pages**。
 3. **Build and deployment → Source** 选 **Deploy from a branch**;**Branch** 选 `main`(或 `master`),目录选 `/ (root)`,点 **Save**。
-4. 等 1–2 分钟,页面顶部会出现发布地址 `https://<username>.github.io/<repo>/`,即可访问。
+4. 等 1–2 分钟,页面顶部会出现发布地址 `https://cucygh.github.io/<repo>/`,即可访问。
 
 > 小技巧:iPad / iPhone 用 Safari 打开在线地址后,点分享 → **添加到主屏幕**,即可像 App 一样全屏使用。
 
