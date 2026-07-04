@@ -1,0 +1,558 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="theme-color" content="#4f46e5">
+<title>因数与倍数专题 · 数的秘密</title>
+<style>
+:root{
+  --brand-h:232; --brand-s:84%;
+  --g-font:-apple-system,BlinkMacSystemFont,"PingFang SC","Hiragino Sans GB","Microsoft YaHei",Roboto,Arial,sans-serif;
+  --g-mono:"SF Mono",ui-monospace,Menlo,Consolas,monospace;
+  --brand:hsl(var(--brand-h),var(--brand-s),56%);
+  --brand-strong:hsl(var(--brand-h),var(--brand-s),48%);
+  --brand-subtle:hsl(var(--brand-h),var(--brand-s),97%);
+  --brand-subtle-2:hsl(var(--brand-h),var(--brand-s),93%);
+  --warn:#f59e0b; --warn-bg:#fffbeb; --warn-text:#b45309;
+  --ok:#10b981; --ok-bg:#ecfdf5; --ok-text:#047857;
+  --surface:#fff; --sunken:#f9fafb;
+  --text:#111827; --text-2:#4b5563; --text-3:#9ca3af;
+  --border:#e5e7eb;
+  --shadow:0 1px 2px rgba(16,24,40,.04),0 6px 20px rgba(16,24,40,.06);
+  --r-lg:18px; --r-md:12px; --r-sm:8px; --r-full:999px;
+  --fig-a:#6366f1; --fig-b:#f59e0b; --fig-c:#10b981; --fig-d:#ec4899;
+}
+@media (prefers-color-scheme: dark){
+  :root{
+    --brand:hsl(var(--brand-h),var(--brand-s),64%);
+    --brand-strong:hsl(var(--brand-h),var(--brand-s),72%);
+    --brand-subtle:hsl(var(--brand-h),var(--brand-s),16%);
+    --brand-subtle-2:hsl(var(--brand-h),var(--brand-s),22%);
+    --warn-bg:#3a2c0a; --warn-text:#fbbf24;
+    --ok-bg:#0b2e22; --ok-text:#34d399;
+    --surface:#161b22; --sunken:#0d1117;
+    --text:#e6edf3; --text-2:#9da7b3; --text-3:#6b7684;
+    --border:#2d333b;
+    --shadow:0 1px 2px rgba(0,0,0,.3),0 6px 20px rgba(0,0,0,.35);
+    --fig-a:#818cf8; --fig-b:#fbbf24; --fig-c:#34d399; --fig-d:#f472b6;
+  }
+}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent;}
+html,body{margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{font-family:var(--g-font);background:var(--sunken);color:var(--text);-webkit-font-smoothing:antialiased;line-height:1.6;}
+.page{width:100%;max-width:760px;margin:0 auto;padding:0 clamp(16px,4vw,32px) calc(env(safe-area-inset-bottom) + 56px);}
+@media(min-width:768px){
+  .page{max-width:920px;}
+  .grid2{display:grid;grid-template-columns:1fr 1fr;gap:14px;align-items:start;}
+  .grid2>.card{margin-bottom:0;}
+}
+@media(min-width:1100px){
+  .page{max-width:1040px;}
+}
+
+/* 顶部 */
+.hero{text-align:center;padding:calc(env(safe-area-inset-top) + 34px) 8px 24px;}
+.hero .badge{display:inline-flex;align-items:center;gap:6px;padding:6px 14px;border-radius:var(--r-full);background:var(--brand-subtle);color:var(--brand-strong);font-size:13px;font-weight:600;margin-bottom:14px;}
+.hero .badge svg{width:15px;height:15px;}
+.hero h1{font-size:26px;margin:0 0 8px;font-weight:800;letter-spacing:-.02em;}
+.hero p{margin:0;color:var(--text-2);font-size:14px;}
+
+/* 章节导航 */
+.toc{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin:0 0 26px;}
+.toc a{text-decoration:none;font-size:13px;font-weight:600;color:var(--text-2);background:var(--surface);border:1px solid var(--border);border-radius:var(--r-full);padding:7px 13px;transition:.15s;}
+.toc a:active{transform:scale(.96);}
+@media(hover:hover){.toc a:hover{border-color:var(--brand);color:var(--brand-strong);}}
+
+/* 章节 */
+.sec{margin-bottom:34px;scroll-margin-top:16px;}
+.sec-head{display:flex;align-items:center;gap:10px;margin-bottom:14px;}
+.sec-head .n{flex:none;width:30px;height:30px;border-radius:var(--r-md);background:var(--brand);color:#fff;font-size:15px;font-weight:800;display:flex;align-items:center;justify-content:center;}
+.sec-head h2{margin:0;font-size:19px;font-weight:800;}
+.sec-head .sub{color:var(--text-3);font-size:12px;font-weight:600;margin-top:1px;}
+
+/* 分数(竖排:分子/分数线/分母) */
+.frac{display:inline-flex;flex-direction:column;align-items:center;justify-content:center;vertical-align:middle;line-height:1;margin:0 2px;font-weight:700;}
+.frac .fn{padding:0 4px 1px;border-bottom:1.6px solid currentColor;}
+.frac .fd{padding:1px 4px 0;}
+
+/* 公式条 */
+.formula{display:flex;align-items:center;justify-content:center;gap:6px;flex-wrap:wrap;background:var(--brand-subtle);border:1px solid var(--brand-subtle-2);border-radius:var(--r-md);padding:11px 12px;margin:10px 0;font-size:15px;font-weight:800;color:var(--brand-strong);}
+
+/* 卡片 */
+.card{background:var(--surface);border:1px solid var(--border);border-radius:var(--r-lg);padding:16px;margin-bottom:14px;box-shadow:var(--shadow);}
+.card-t{display:flex;align-items:center;gap:8px;font-size:15px;font-weight:700;margin:0 0 10px;}
+.card-t svg{width:18px;height:18px;flex:none;color:var(--brand-strong);}
+.card p{margin:0 0 8px;font-size:14px;color:var(--text-2);}
+.card p:last-child{margin-bottom:0;}
+.card b{color:var(--text);}
+.key{color:var(--brand-strong);font-weight:700;}
+
+/* 图示区 */
+.fig{background:var(--sunken);border:1px solid var(--border);border-radius:var(--r-md);padding:14px 12px;text-align:center;margin:10px 0;}
+.fig svg{max-width:100%;height:auto;display:block;margin:0 auto;}
+.fig figcaption{margin-top:8px;font-size:12px;color:var(--text-3);}
+
+/* 母题 */
+.mother{border:1.5px solid var(--brand-subtle-2);border-radius:var(--r-lg);overflow:hidden;margin:14px 0;box-shadow:var(--shadow);}
+.mother-head{display:flex;align-items:center;gap:10px;padding:12px 14px;background:var(--brand-subtle);}
+.mother-head .no{flex:none;width:30px;height:30px;border-radius:var(--r-md);background:var(--brand);color:#fff;font-size:14px;font-weight:800;display:flex;align-items:center;justify-content:center;}
+.mother-head h3{margin:0;font-size:15px;font-weight:800;color:var(--text);flex:1;}
+.mother-head .tagm{flex:none;font-size:11px;font-weight:800;color:var(--brand-strong);background:var(--surface);border:1px solid var(--brand-subtle-2);padding:3px 9px;border-radius:var(--r-full);}
+.mother-body{padding:14px;}
+.model{display:flex;gap:8px;align-items:flex-start;background:var(--brand-subtle);border-radius:var(--r-md);padding:10px 12px;margin-top:10px;font-size:13px;color:var(--text-2);}
+.model svg{width:16px;height:16px;flex:none;color:var(--brand-strong);margin-top:2px;}
+.model b{color:var(--brand-strong);}
+
+/* 例题 */
+.eg{border:1px solid var(--border);border-radius:var(--r-md);overflow:hidden;margin:12px 0;}
+.eg-q{background:var(--sunken);padding:10px 13px;font-size:14px;font-weight:600;display:flex;gap:8px;}
+.eg-q .tag{flex:none;color:var(--brand-strong);font-weight:800;}
+.eg-body{padding:12px 13px;}
+.eg-step{display:flex;gap:9px;font-size:13.5px;color:var(--text-2);margin-bottom:8px;}
+.eg-step:last-of-type{margin-bottom:0;}
+.eg-step .d{flex:none;width:19px;height:19px;border-radius:var(--r-full);background:var(--brand-subtle-2);color:var(--brand-strong);font-size:11px;font-weight:800;display:flex;align-items:center;justify-content:center;margin-top:1px;}
+.eg-ans{margin-top:10px;display:inline-flex;align-items:center;gap:6px;background:var(--ok-bg);color:var(--ok-text);font-weight:800;font-size:14px;padding:6px 12px;border-radius:var(--r-full);}
+.eg-ans svg{width:15px;height:15px;}
+
+/* 类型徽标 */
+.types{display:flex;flex-wrap:wrap;gap:8px;margin:4px 0 12px;}
+.types .t{display:inline-flex;align-items:center;gap:6px;font-size:12.5px;font-weight:700;padding:5px 11px;border-radius:var(--r-full);background:var(--brand-subtle);color:var(--brand-strong);}
+.types .t svg{width:14px;height:14px;flex:none;}
+.types .t.yes{background:var(--ok-bg);color:var(--ok-text);}
+.types .t.no{background:var(--warn-bg);color:var(--warn-text);}
+
+/* 易错 */
+.warn{background:var(--warn-bg);border:1px solid var(--warn);border-radius:var(--r-md);padding:11px 13px;margin-top:10px;}
+.warn-h{display:flex;align-items:center;gap:6px;font-size:13px;font-weight:800;color:var(--warn-text);margin-bottom:6px;}
+.warn-h svg{width:15px;height:15px;}
+.warn ul{margin:0;padding-left:18px;}
+.warn li{font-size:13px;color:var(--text-2);margin-bottom:4px;}
+.warn li:last-child{margin-bottom:0;}
+
+/* 口诀 */
+.tip{display:flex;gap:9px;background:var(--brand-subtle);border-radius:var(--r-md);padding:11px 13px;margin-top:10px;font-size:13.5px;color:var(--text-2);}
+.tip svg{width:17px;height:17px;flex:none;color:var(--brand-strong);margin-top:1px;}
+.tip b{color:var(--brand-strong);}
+
+/* 自测 折叠 */
+.quiz{background:var(--surface);border:1px solid var(--border);border-radius:var(--r-md);margin-bottom:10px;overflow:hidden;}
+.quiz>summary{list-style:none;cursor:pointer;padding:12px 14px;font-size:14px;font-weight:600;display:flex;align-items:center;gap:9px;}
+.quiz>summary::-webkit-details-marker{display:none;}
+.quiz>summary .q-n{flex:none;width:22px;height:22px;border-radius:var(--r-full);background:var(--brand-subtle-2);color:var(--brand-strong);font-size:12px;font-weight:800;display:flex;align-items:center;justify-content:center;}
+.quiz>summary .chev{margin-left:auto;color:var(--text-3);transition:.2s;}
+.quiz>summary .chev svg{width:18px;height:18px;display:block;}
+.quiz[open]>summary .chev{transform:rotate(180deg);}
+.quiz .ans-body{padding:0 14px 13px 45px;font-size:13.5px;color:var(--text-2);border-top:1px dashed var(--border);padding-top:11px;}
+.quiz .ans-body .final{color:var(--ok-text);font-weight:800;}
+.quiz .ans-body .stepline{margin:0 0 6px;}
+
+/* 解方程步骤(等号对齐) */
+.solve{background:var(--sunken);border:1px solid var(--border);border-radius:var(--r-md);padding:12px 14px;margin:10px 0;font-family:var(--g-mono);}
+.solve .row{display:flex;align-items:baseline;gap:8px;margin-bottom:6px;font-size:15px;font-weight:700;color:var(--text);}
+.solve .row:last-child{margin-bottom:0;}
+.solve .row .lhs{min-width:96px;text-align:right;}
+.solve .row .op{color:var(--text-3);}
+.solve .row .note{font-family:var(--g-font);font-size:12px;font-weight:600;color:var(--brand-strong);margin-left:auto;}
+.solve .row.res{color:var(--ok-text);}
+.solve .row.res .lhs{color:var(--ok-text);}
+
+/* 运算定律卡 */
+.law{display:flex;flex-direction:column;gap:5px;background:var(--surface);border:1px solid var(--border);border-left:3px solid var(--brand);border-radius:var(--r-md);padding:11px 13px;margin-bottom:10px;}
+.law .lname{font-size:13.5px;font-weight:800;color:var(--text);display:flex;align-items:center;gap:6px;}
+.law .lname .k{font-size:11px;font-weight:700;color:var(--brand-strong);background:var(--brand-subtle);padding:2px 7px;border-radius:var(--r-full);}
+.law .lf{font-family:var(--g-mono);font-size:14px;font-weight:700;color:var(--brand-strong);}
+
+
+/* 数字方格(因数/倍数展示) */
+.numgrid{display:flex;flex-wrap:wrap;gap:7px;margin:8px 0;}
+.numgrid .num{min-width:34px;text-align:center;font-family:var(--g-mono);font-size:14px;font-weight:700;padding:6px 9px;border-radius:var(--r-sm);background:var(--brand-subtle);color:var(--brand-strong);border:1px solid var(--brand-subtle-2);}
+.numgrid .num.hl{background:var(--ok-bg);color:var(--ok-text);border-color:var(--ok);}
+.numgrid .num.mut{background:var(--sunken);color:var(--text-3);}
+
+.foot{text-align:center;color:var(--text-3);font-size:12px;padding:8px 0;}
+</style>
+</head>
+<body>
+<div class="page">
+
+  <div class="hero">
+    <span class="badge">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M8 12h8"/><path d="M12 8v8"/></svg>
+      因数与倍数专题 · 人教版五年级
+    </span>
+    <h1>数的秘密 · 因数与倍数</h1>
+    <p>一个数能被谁整除、又是谁的倍数 —— 搞清楚因数、倍数、质数、合数,数的世界就清晰了</p>
+  </div>
+
+  <nav class="toc">
+    <a href="#s1">1 因数与倍数</a>
+    <a href="#s2">2 找因数·找倍数</a>
+    <a href="#s3">3 2·3·5的特征</a>
+    <a href="#s4">4 质数与合数</a>
+    <a href="#s5">5 分解质因数</a>
+    <a href="#s6">6 母题精讲</a>
+    <a href="#s7">7 闯关自测</a>
+  </nav>
+
+  <!-- ========== §1 ========== -->
+  <section class="sec" id="s1">
+    <div class="sec-head">
+      <div class="n">1</div>
+      <div><h2>因数与倍数是什么</h2><div class="sub">一对"整除关系"里的两个身份</div></div>
+    </div>
+
+    <div class="card">
+      <p>在整数除法里,如果 <span class="key">a ÷ b = c</span> 没有余数(能整除),我们就说:<b>b 和 c 都是 a 的因数</b>,<b>a 是 b 和 c 的倍数</b>。</p>
+      <p>比如 <b>12 ÷ 3 = 4</b>:3 和 4 是 12 的因数,12 是 3 的倍数、也是 4 的倍数。因数和倍数,说的是<b>两个数之间的关系</b>,不能单独说"某个数是因数"。</p>
+      <div class="formula">a ÷ b = c(无余数)→ b、c 是因数,a 是倍数</div>
+      <div class="warn">
+        <div class="warn-h">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m21.7 18-8-14a2 2 0 0 0-3.4 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.7-3Z"/><path d="M12 9v4"/><path d="M12 17h.01"/></svg>
+          三个约定
+        </div>
+        <ul>
+          <li>这里研究的都是<b>非 0 自然数</b>(不含 0 和小数)。</li>
+          <li><b>1 是所有非 0 自然数的因数</b>;每个数<b>都是它自己的因数,也是它自己的倍数</b>。</li>
+          <li>一个数的<b>最小因数是 1,最大因数是它本身</b>;<b>最小倍数是它本身,没有最大倍数</b>。</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== §2 ========== -->
+  <section class="sec" id="s2">
+    <div class="sec-head">
+      <div class="n">2</div>
+      <div><h2>找因数、找倍数</h2><div class="sub">不重复、不遗漏</div></div>
+    </div>
+
+    <div class="card">
+      <div class="card-t">找因数:一对一对地找</div>
+      <p>用<b>乘法想</b>:哪两个数相乘得这个数?一对一对写,写到两个数接近为止,就不会漏。</p>
+      <div class="eg">
+        <div class="eg-q"><span class="tag">例</span><span>找出 36 的所有因数</span></div>
+        <div class="eg-body">
+          <div class="eg-step"><span class="d">1</span><span>1 × 36、2 × 18、3 × 12、4 × 9、6 × 6</span></div>
+          <div class="eg-step"><span class="d">2</span><span>成对写出(6×6 只算一个 6):</span></div>
+          <div class="numgrid">
+            <span class="num">1</span><span class="num">2</span><span class="num">3</span><span class="num">4</span><span class="num">6</span><span class="num">9</span><span class="num">12</span><span class="num">18</span><span class="num">36</span>
+          </div>
+          <div class="eg-ans">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
+            36 共有 9 个因数
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-t">找倍数:用这个数依次乘 1、2、3…</div>
+      <p>一个数的倍数有<b>无数个</b>,最小的是它本身。</p>
+      <div class="eg">
+        <div class="eg-q"><span class="tag">例</span><span>写出 3 的倍数(从小到大)</span></div>
+        <div class="eg-body">
+          <div class="numgrid">
+            <span class="num hl">3</span><span class="num hl">6</span><span class="num hl">9</span><span class="num hl">12</span><span class="num hl">15</span><span class="num mut">…</span>
+          </div>
+          <p style="margin-top:8px;">3×1=3、3×2=6、3×3=9……写不完,所以最后加省略号。</p>
+        </div>
+      </div>
+      <div class="tip">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18h6"/><path d="M10 22h4"/><path d="M12 2a7 7 0 0 0-4 12.7c.6.5 1 1.3 1 2.3h6c0-1 .4-1.8 1-2.3A7 7 0 0 0 12 2Z"/></svg>
+        <span><b>对比记:</b>因数是<b>有限</b>个(最大是自己),倍数是<b>无限</b>个(最小是自己)。</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== §3 ========== -->
+  <section class="sec" id="s3">
+    <div class="sec-head">
+      <div class="n">3</div>
+      <div><h2>2、3、5 的倍数特征</h2><div class="sub">一眼看出能不能整除</div></div>
+    </div>
+
+    <div class="card">
+      <div class="law">
+        <div class="lname"><span class="k">2</span>的倍数(偶数)</div>
+        <div class="lf">个位是 0、2、4、6、8</div>
+      </div>
+      <div class="law">
+        <div class="lname"><span class="k">5</span>的倍数</div>
+        <div class="lf">个位是 0 或 5</div>
+      </div>
+      <div class="law">
+        <div class="lname"><span class="k">3</span>的倍数</div>
+        <div class="lf">各位数字之和是 3 的倍数</div>
+      </div>
+      <p style="margin-top:10px;"><b>奇数与偶数:</b>是 2 的倍数的数叫<span class="key">偶数</span>(含 0);不是 2 的倍数的叫<span class="key">奇数</span>。</p>
+      <div class="eg">
+        <div class="eg-q"><span class="tag">例</span><span>判断 372 能否被 3 整除</span></div>
+        <div class="eg-body">
+          <div class="eg-step"><span class="d">1</span><span>各位相加:3 + 7 + 2 = 12</span></div>
+          <div class="eg-step"><span class="d">2</span><span>12 是 3 的倍数 → 372 就是 3 的倍数</span></div>
+          <div class="eg-ans">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
+            能被 3 整除
+          </div>
+        </div>
+      </div>
+      <div class="warn">
+        <div class="warn-h">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m21.7 18-8-14a2 2 0 0 0-3.4 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.7-3Z"/><path d="M12 9v4"/><path d="M12 17h.01"/></svg>
+          注意
+        </div>
+        <ul>
+          <li>判断 3 的倍数看<b>各位之和</b>,不能只看个位(这点和 2、5 不同)。</li>
+          <li><b>既是 2 又是 5 的倍数</b> → 个位一定是 0;<b>既是 2、3、5 的倍数</b> → 个位是 0 且各位和是 3 的倍数(如 30、60、90)。</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== §4 ========== -->
+  <section class="sec" id="s4">
+    <div class="sec-head">
+      <div class="n">4</div>
+      <div><h2>质数与合数</h2><div class="sub">看因数的个数分类</div></div>
+    </div>
+
+    <div class="card">
+      <p>按<b>因数的个数</b>,把非 0 自然数分成三类:</p>
+      <div class="types">
+        <span class="t">1 → 只有 1 个因数(既不是质数也不是合数)</span>
+        <span class="t yes"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>质数:只有 1 和它本身 2 个因数</span>
+        <span class="t no"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>合数:除了 1 和本身还有别的因数(≥3 个)</span>
+      </div>
+      <p style="margin-top:6px;"><b>20 以内的质数</b>(要背熟):</p>
+      <div class="numgrid">
+        <span class="num hl">2</span><span class="num hl">3</span><span class="num hl">5</span><span class="num hl">7</span><span class="num hl">11</span><span class="num hl">13</span><span class="num hl">17</span><span class="num hl">19</span>
+      </div>
+      <div class="tip">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18h6"/><path d="M10 22h4"/><path d="M12 2a7 7 0 0 0-4 12.7c.6.5 1 1.3 1 2.3h6c0-1 .4-1.8 1-2.3A7 7 0 0 0 12 2Z"/></svg>
+        <span><b>关键提醒:</b><b>2 是最小的质数,也是唯一的偶质数</b>;<b>1 既不是质数也不是合数</b>。</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== §5 ========== -->
+  <section class="sec" id="s5">
+    <div class="sec-head">
+      <div class="n">5</div>
+      <div><h2>分解质因数</h2><div class="sub">把合数写成质数相乘</div></div>
+    </div>
+
+    <div class="card">
+      <p>把一个合数<b>用几个质数相乘</b>表示出来,叫分解质因数。常用<b>短除法</b>:每次用一个质数去除,除到商是质数为止。</p>
+      <div class="eg">
+        <div class="eg-q"><span class="tag">例</span><span>把 60 分解质因数</span></div>
+        <div class="eg-body">
+          <figure class="fig">
+            <svg viewBox="0 0 200 150" width="200" height="150" role="img" aria-label="60的短除法">
+              <text x="70" y="24" text-anchor="middle" font-size="15" font-weight="700" fill="var(--text)">60</text>
+              <path d="M40 30 v14 h60" fill="none" stroke="var(--brand-strong)" stroke-width="1.6"/>
+              <text x="26" y="40" text-anchor="middle" font-size="14" font-weight="700" fill="var(--fig-a)">2</text>
+              <text x="70" y="62" text-anchor="middle" font-size="15" font-weight="700" fill="var(--text)">30</text>
+              <path d="M40 68 v14 h60" fill="none" stroke="var(--brand-strong)" stroke-width="1.6"/>
+              <text x="26" y="78" text-anchor="middle" font-size="14" font-weight="700" fill="var(--fig-a)">2</text>
+              <text x="70" y="100" text-anchor="middle" font-size="15" font-weight="700" fill="var(--text)">15</text>
+              <path d="M40 106 v14 h60" fill="none" stroke="var(--brand-strong)" stroke-width="1.6"/>
+              <text x="26" y="116" text-anchor="middle" font-size="14" font-weight="700" fill="var(--fig-a)">3</text>
+              <text x="70" y="138" text-anchor="middle" font-size="15" font-weight="700" fill="var(--fig-c)">5</text>
+              <text x="150" y="138" text-anchor="middle" font-size="12" fill="var(--text-3)">商是质数</text>
+            </svg>
+            <figcaption>依次用质数 2、2、3 去除,最后商 5 是质数</figcaption>
+          </figure>
+          <div class="formula">60 = 2 × 2 × 3 × 5</div>
+        </div>
+      </div>
+      <div class="tip">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18h6"/><path d="M10 22h4"/><path d="M12 2a7 7 0 0 0-4 12.7c.6.5 1 1.3 1 2.3h6c0-1 .4-1.8 1-2.3A7 7 0 0 0 12 2Z"/></svg>
+        <span><b>技巧:</b>每次<b>从最小的质数 2 开始</b>试;能被 2 除就一直除,不能了再换 3、5、7……分解结果里<b>只能有质数</b>。</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== §6 母题 ========== -->
+  <section class="sec" id="s6">
+    <div class="sec-head">
+      <div class="n">6</div>
+      <div><h2>母题精讲</h2><div class="sub">4 类必考模型</div></div>
+    </div>
+
+    <div class="mother">
+      <div class="mother-head">
+        <div class="no">母1</div>
+        <h3>找齐因数型:填数使 □ 是 24 的因数</h3>
+        <span class="tagm">成对找</span>
+      </div>
+      <div class="mother-body">
+        <div class="eg-q" style="padding-left:0;background:none;">24 的因数有哪些?</div>
+        <div class="numgrid">
+          <span class="num">1</span><span class="num">2</span><span class="num">3</span><span class="num">4</span><span class="num">6</span><span class="num">8</span><span class="num">12</span><span class="num">24</span>
+        </div>
+        <div class="model">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/></svg>
+          <span><b>模型:</b>1×24、2×12、3×8、4×6 成对写,共 8 个,不重不漏。</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="mother">
+      <div class="mother-head">
+        <div class="no">母2</div>
+        <h3>倍数特征型:组数使能被 3 整除</h3>
+        <span class="tagm">看数字和</span>
+      </div>
+      <div class="mother-body">
+        <div class="eg-q" style="padding-left:0;background:none;">在 4 □ 8 的 □ 里填什么,使这个三位数是 3 的倍数?</div>
+        <div class="solve">
+          <div class="row"><span class="lhs">4 + □ + 8</span><span class="op">=</span><span>12 + □</span></div>
+          <div class="row res"><span class="lhs">□</span><span class="op">=</span><span>0、3、6、9</span></div>
+        </div>
+        <div class="model">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/></svg>
+          <span><b>模型:</b>3 的倍数看各位之和。要 12+□ 是 3 的倍数,□ 取能补齐的数字。</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="mother">
+      <div class="mother-head">
+        <div class="no">母3</div>
+        <h3>质数合数判断型</h3>
+        <span class="tagm">数因数</span>
+      </div>
+      <div class="mother-body">
+        <div class="eg-q" style="padding-left:0;background:none;">判断 51 是质数还是合数。</div>
+        <div class="solve">
+          <div class="row"><span class="lhs">51</span><span class="op">=</span><span>3 × 17</span><span class="note">试除:3 能整除</span></div>
+          <div class="row res"><span class="lhs">结论</span><span class="op">→</span><span>是合数</span></div>
+        </div>
+        <div class="model">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/></svg>
+          <span><b>模型:</b>能找到"1 和本身"以外的因数 → 合数。别被"看着像质数"骗了(51、57、91 都是合数)。</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="mother">
+      <div class="mother-head">
+        <div class="no">母4</div>
+        <h3>分解质因数型:28</h3>
+        <span class="tagm">短除法</span>
+      </div>
+      <div class="mother-body">
+        <div class="solve">
+          <div class="row"><span class="lhs">28</span><span class="op">=</span><span>2 × 14</span></div>
+          <div class="row"><span class="lhs"></span><span class="op">=</span><span>2 × 2 × 7</span><span class="note">14 再拆</span></div>
+          <div class="row res"><span class="lhs">28</span><span class="op">=</span><span>2 × 2 × 7</span></div>
+        </div>
+        <div class="model">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/></svg>
+          <span><b>模型:</b>从 2 开始一直除,除到商是质数。结果里全部是质数才算分解完成。</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== §7 自测 ========== -->
+  <section class="sec" id="s7">
+    <div class="sec-head">
+      <div class="n">7</div>
+      <div><h2>闯关自测</h2><div class="sub">点开看答案 · 先答再对</div></div>
+    </div>
+
+    <details class="quiz">
+      <summary><span class="q-n">1</span><span>18 的所有因数有哪些?</span><span class="chev"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></span></summary>
+      <div class="ans-body">
+        <p class="stepline">1×18、2×9、3×6 成对写</p>
+        <p class="final">1、2、3、6、9、18(共 6 个)</p>
+      </div>
+    </details>
+
+    <details class="quiz">
+      <summary><span class="q-n">2</span><span>写出 4 的前 5 个倍数</span><span class="chev"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></span></summary>
+      <div class="ans-body">
+        <p class="stepline">4×1、4×2、4×3、4×4、4×5</p>
+        <p class="final">4、8、12、16、20</p>
+      </div>
+    </details>
+
+    <details class="quiz">
+      <summary><span class="q-n">3</span><span>630 能同时被 2、3、5 整除吗?</span><span class="chev"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></span></summary>
+      <div class="ans-body">
+        <p class="stepline">个位 0 → 是 2、5 的倍数;6+3+0=9 → 是 3 的倍数</p>
+        <p class="final">能,同时被 2、3、5 整除</p>
+      </div>
+    </details>
+
+    <details class="quiz">
+      <summary><span class="q-n">4</span><span>20 以内最大的质数是几?最小的合数是几?</span><span class="chev"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></span></summary>
+      <div class="ans-body">
+        <p class="stepline">20 以内质数:2,3,5,7,11,13,17,19;最小合数是 4</p>
+        <p class="final">最大质数 19,最小合数 4</p>
+      </div>
+    </details>
+
+    <details class="quiz">
+      <summary><span class="q-n">5</span><span>1 是质数还是合数?</span><span class="chev"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></span></summary>
+      <div class="ans-body">
+        <p class="stepline">1 只有 1 个因数(它自己)</p>
+        <p class="final">都不是 —— 1 既不是质数也不是合数</p>
+      </div>
+    </details>
+
+    <details class="quiz">
+      <summary><span class="q-n">6</span><span>把 30 分解质因数</span><span class="chev"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></span></summary>
+      <div class="ans-body">
+        <p class="stepline">30 = 2 × 15 = 2 × 3 × 5</p>
+        <p class="final">30 = 2 × 3 × 5</p>
+      </div>
+    </details>
+
+    <details class="quiz">
+      <summary><span class="q-n">7</span><span>一个数既是 36 的因数,又是 3 的倍数,这样的数有几个?</span><span class="chev"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></span></summary>
+      <div class="ans-body">
+        <p class="stepline">36 的因数:1,2,3,4,6,9,12,18,36;其中是 3 的倍数的:3,6,9,12,18,36</p>
+        <p class="final">共 6 个</p>
+      </div>
+    </details>
+
+    <details class="quiz">
+      <summary><span class="q-n">8</span><span>判断 57 是质数还是合数</span><span class="chev"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></span></summary>
+      <div class="ans-body">
+        <p class="stepline">5+7=12 是 3 的倍数 → 57 能被 3 整除:57 = 3 × 19</p>
+        <p class="final">是合数(易错!别当成质数)</p>
+      </div>
+    </details>
+  </section>
+
+  <div class="foot">因数与倍数专题 · 依据人教版教材整理 · 供个人学习使用</div>
+
+</div>
+
+
+<script>
+/* 锚点内部跳转:拦截 TOC 点击,手动滚动,避免在预览/代理环境里触发整页导航 */
+(function(){
+  function onTap(e){
+    var a=e.target;
+    while(a&&a.nodeName!=='A'){a=a.parentNode;}
+    if(!a)return;
+    var href=a.getAttribute('href')||'';
+    if(href.charAt(0)!=='#'||href.length<2)return;
+    var el=document.getElementById(href.slice(1));
+    if(!el)return;
+    e.preventDefault();
+    if(el.scrollIntoView){el.scrollIntoView({behavior:'smooth',block:'start'});}
+    else{window.scrollTo(0,el.offsetTop-16);}
+  }
+  var toc=document.querySelector('.toc');
+  if(toc){toc.addEventListener('click',onTap,false);}
+})();
+</script>
+</body>
+</html>
