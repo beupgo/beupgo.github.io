@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="theme-color" content="#4f46e5">
+<title>分数除法应用题专题 · 找准单位1</title>
+<style>
+:root{
+  --brand-h:232; --brand-s:84%;
+  --g-font:-apple-system,BlinkMacSystemFont,"PingFang SC","Hiragino Sans GB","Microsoft YaHei",Roboto,Arial,sans-serif;
+  --g-mono:"SF Mono",ui-monospace,Menlo,Consolas,monospace;
+  --brand:hsl(var(--brand-h),var(--brand-s),56%);
+  --brand-strong:hsl(var(--brand-h),var(--brand-s),48%);
+  --brand-subtle:hsl(var(--brand-h),var(--brand-s),97%);
+  --brand-subtle-2:hsl(var(--brand-h),var(--brand-s),93%);
+  --warn:#f59e0b; --warn-bg:#fffbeb; --warn-text:#b45309;
+  --ok:#10b981; --ok-bg:#ecfdf5; --ok-text:#047857;
+  --surface:#fff; --sunken:#f9fafb;
+  --text:#111827; --text-2:#4b5563; --text-3:#9ca3af;
+  --border:#e5e7eb;
+  --shadow:0 1px 2px rgba(16,24,40,.04),0 6px 20px rgba(16,24,40,.06);
+  --r-lg:18px; --r-md:12px; --r-sm:8px; --r-full:999px;
+  --fig-a:#6366f1; --fig-b:#f59e0b; --fig-c:#10b981; --fig-d:#ec4899;
+}
+@media (prefers-color-scheme: dark){
+  :root{
+    --brand:hsl(var(--brand-h),var(--brand-s),64%);
+    --brand-strong:hsl(var(--brand-h),var(--brand-s),72%);
+    --brand-subtle:hsl(var(--brand-h),var(--brand-s),16%);
+    --brand-subtle-2:hsl(var(--brand-h),var(--brand-s),22%);
+    --warn-bg:#3a2c0a; --warn-text:#fbbf24;
+    --ok-bg:#0b2e22; --ok-text:#34d399;
+    --surface:#161b22; --sunken:#0d1117;
+    --text:#e6edf3; --text-2:#9da7b3; --text-3:#6b7684;
+    --border:#2d333b;
+    --shadow:0 1px 2px rgba(0,0,0,.3),0 6px 20px rgba(0,0,0,.35);
+    --fig-a:#818cf8; --fig-b:#fbbf24; --fig-c:#34d399; --fig-d:#f472b6;
+  }
+}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent;}
+html,body{margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{font-family:var(--g-font);background:var(--sunken);color:var(--text);-webkit-font-smoothing:antialiased;line-height:1.6;}
+.page{width:100%;max-width:760px;margin:0 auto;padding:0 clamp(16px,4vw,32px) calc(env(safe-area-inset-bottom) + 56px);}
+@media(min-width:768px){
+  .page{max-width:920px;}
+  .grid2{display:grid;grid-template-columns:1fr 1fr;gap:14px;align-items:start;}
+  .grid2>.card{margin-bottom:0;}
+}
+@media(min-width:1100px){
+  .page{max-width:1040px;}
+}
+
+/* 顶部 */
+.hero{text-align:center;padding:calc(env(safe-area-inset-top) + 34px) 8px 24px;}
+.hero .badge{display:inline-flex;align-items:center;gap:6px;padding:6px 14px;border-radius:var(--r-full);background:var(--brand-subtle);color:var(--brand-strong);font-size:13px;font-weight:600;margin-bottom:14px;}
+.hero .badge svg{width:15px;height:15px;}
+.hero h1{font-size:26px;margin:0 0 8px;font-weight:800;letter-spacing:-.02em;}
+.hero p{margin:0;color:var(--text-2);font-size:14px;}
+
+/* 章节导航 */
+.toc{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin:0 0 26px;}
+.toc a{text-decoration:none;font-size:13px;font-weight:600;color:var(--text-2);background:var(--surface);border:1px solid var(--border);border-radius:var(--r-full);padding:7px 13px;transition:.15s;}
+.toc a:active{transform:scale(.96);}
+@media(hover:hover){.toc a:hover{border-color:var(--brand);color:var(--brand-strong);}}
+
+/* 章节 */
+.sec{margin-bottom:34px;scroll-margin-top:16px;}
+.sec-head{display:flex;align-items:center;gap:10px;margin-bottom:14px;}
+.sec-head .n{flex:none;width:30px;height:30px;border-radius:var(--r-md);background:var(--brand);color:#fff;font-size:15px;font-weight:800;display:flex;align-items:center;justify-content:center;}
+.sec-head h2{margin:0;font-size:19px;font-weight:800;}
+.sec-head .sub{color:var(--text-3);font-size:12px;font-weight:600;margin-top:1px;}
+
+/* 分数(竖排:分子/分数线/分母) */
+.frac{display:inline-flex;flex-direction:column;align-items:center;justify-content:center;vertical-align:middle;line-height:1;margin:0 2px;font-weight:700;}
+.frac .fn{padding:0 4px 1px;border-bottom:1.6px solid currentColor;}
+.frac .fd{padding:1px 4px 0;}
+
+/* 公式条 */
+.formula{display:flex;align-items:center;justify-content:center;gap:6px;flex-wrap:wrap;background:var(--brand-subtle);border:1px solid var(--brand-subtle-2);border-radius:var(--r-md);padding:11px 12px;margin:10px 0;font-size:15px;font-weight:800;color:var(--brand-strong);}
+
+/* 卡片 */
+.card{background:var(--surface);border:1px solid var(--border);border-radius:var(--r-lg);padding:16px;margin-bottom:14px;box-shadow:var(--shadow);}
+.card-t{display:flex;align-items:center;gap:8px;font-size:15px;font-weight:700;margin:0 0 10px;}
+.card-t svg{width:18px;height:18px;flex:none;color:var(--brand-strong);}
+.card p{margin:0 0 8px;font-size:14px;color:var(--text-2);}
+.card p:last-child{margin-bottom:0;}
+.card b{color:var(--text);}
+.key{color:var(--brand-strong);font-weight:700;}
+
+/* 图示区 */
+.fig{background:var(--sunken);border:1px solid var(--border);border-radius:var(--r-md);padding:14px 12px;text-align:center;margin:10px 0;}
+.fig svg{max-width:100%;height:auto;display:block;margin:0 auto;}
+.fig figcaption{margin-top:8px;font-size:12px;color:var(--text-3);}
+
+/* 母题 */
+.mother{border:1.5px solid var(--brand-subtle-2);border-radius:var(--r-lg);overflow:hidden;margin:14px 0;box-shadow:var(--shadow);}
+.mother-head{display:flex;align-items:center;gap:10px;padding:12px 14px;background:var(--brand-subtle);}
+.mother-head .no{flex:none;width:30px;height:30px;border-radius:var(--r-md);background:var(--brand);color:#fff;font-size:14px;font-weight:800;display:flex;align-items:center;justify-content:center;}
+.mother-head h3{margin:0;font-size:15px;font-weight:800;color:var(--text);flex:1;}
+.mother-head .tagm{flex:none;font-size:11px;font-weight:800;color:var(--brand-strong);background:var(--surface);border:1px solid var(--brand-subtle-2);padding:3px 9px;border-radius:var(--r-full);}
+.mother-body{padding:14px;}
+.model{display:flex;gap:8px;align-items:flex-start;background:var(--brand-subtle);border-radius:var(--r-md);padding:10px 12px;margin-top:10px;font-size:13px;color:var(--text-2);}
+.model svg{width:16px;height:16px;flex:none;color:var(--brand-strong);margin-top:2px;}
+.model b{color:var(--brand-strong);}
+
+/* 例题 */
+.eg{border:1px solid var(--border);border-radius:var(--r-md);overflow:hidden;margin:12px 0;}
+.eg-q{background:var(--sunken);padding:10px 13px;font-size:14px;font-weight:600;display:flex;gap:8px;}
+.eg-q .tag{flex:none;color:var(--brand-strong);font-weight:800;}
+.eg-body{padding:12px 13px;}
+.eg-step{display:flex;gap:9px;font-size:13.5px;color:var(--text-2);margin-bottom:8px;}
+.eg-step:last-of-type{margin-bottom:0;}
+.eg-step .d{flex:none;width:19px;height:19px;border-radius:var(--r-full);background:var(--brand-subtle-2);color:var(--brand-strong);font-size:11px;font-weight:800;display:flex;align-items:center;justify-content:center;margin-top:1px;}
+.eg-ans{margin-top:10px;display:inline-flex;align-items:center;gap:6px;background:var(--ok-bg);color:var(--ok-text);font-weight:800;font-size:14px;padding:6px 12px;border-radius:var(--r-full);}
+.eg-ans svg{width:15px;height:15px;}
+
+/* 类型徽标 */
+.types{display:flex;flex-wrap:wrap;gap:8px;margin:4px 0 12px;}
+.types .t{display:inline-flex;align-items:center;gap:6px;font-size:12.5px;font-weight:700;padding:5px 11px;border-radius:var(--r-full);background:var(--brand-subtle);color:var(--brand-strong);}
+.types .t svg{width:14px;height:14px;flex:none;}
+.types .t.yes{background:var(--ok-bg);color:var(--ok-text);}
+.types .t.no{background:var(--warn-bg);color:var(--warn-text);}
+
+/* 易错 */
+.warn{background:var(--warn-bg);border:1px solid var(--warn);border-radius:var(--r-md);padding:11px 13px;margin-top:10px;}
+.warn-h{display:flex;align-items:center;gap:6px;font-size:13px;font-weight:800;color:var(--warn-text);margin-bottom:6px;}
+.warn-h svg{width:15px;height:15px;}
+.warn ul{margin:0;padding-left:18px;}
+.warn li{font-size:13px;color:var(--text-2);margin-bottom:4px;}
+.warn li:last-child{margin-bottom:0;}
+
+/* 口诀 */
+.tip{display:flex;gap:9px;background:var(--brand-subtle);border-radius:var(--r-md);padding:11px 13px;margin-top:10px;font-size:13.5px;color:var(--text-2);}
+.tip svg{width:17px;height:17px;flex:none;color:var(--brand-strong);margin-top:1px;}
+.tip b{color:var(--brand-strong);}
+
+/* 自测 折叠 */
+.quiz{background:var(--surface);border:1px solid var(--border);border-radius:var(--r-md);margin-bottom:10px;overflow:hidden;}
+.quiz>summary{list-style:none;cursor:pointer;padding:12px 14px;font-size:14px;font-weight:600;display:flex;align-items:center;gap:9px;}
+.quiz>summary::-webkit-details-marker{display:none;}
+.quiz>summary .q-n{flex:none;width:22px;height:22px;border-radius:var(--r-full);background:var(--brand-subtle-2);color:var(--brand-strong);font-size:12px;font-weight:800;display:flex;align-items:center;justify-content:center;}
+.quiz>summary .chev{margin-left:auto;color:var(--text-3);transition:.2s;}
+.quiz>summary .chev svg{width:18px;height:18px;display:block;}
+.quiz[open]>summary .chev{transform:rotate(180deg);}
+.quiz .ans-body{padding:0 14px 13px 45px;font-size:13.5px;color:var(--text-2);border-top:1px dashed var(--border);padding-top:11px;}
+.quiz .ans-body .final{color:var(--ok-text);font-weight:800;}
+.quiz .ans-body .stepline{margin:0 0 6px;}
+
+/* 解方程步骤(等号对齐) */
+.solve{background:var(--sunken);border:1px solid var(--border);border-radius:var(--r-md);padding:12px 14px;margin:10px 0;font-family:var(--g-mono);}
+.solve .row{display:flex;align-items:baseline;gap:8px;margin-bottom:6px;font-size:15px;font-weight:700;color:var(--text);}
+.solve .row:last-child{margin-bottom:0;}
+.solve .row .lhs{min-width:96px;text-align:right;}
+.solve .row .op{color:var(--text-3);}
+.solve .row .note{font-family:var(--g-font);font-size:12px;font-weight:600;color:var(--brand-strong);margin-left:auto;}
+.solve .row.res{color:var(--ok-text);}
+.solve .row.res .lhs{color:var(--ok-text);}
+
+/* 运算定律卡 */
+.law{display:flex;flex-direction:column;gap:5px;background:var(--surface);border:1px solid var(--border);border-left:3px solid var(--brand);border-radius:var(--r-md);padding:11px 13px;margin-bottom:10px;}
+.law .lname{font-size:13.5px;font-weight:800;color:var(--text);display:flex;align-items:center;gap:6px;}
+.law .lname .k{font-size:11px;font-weight:700;color:var(--brand-strong);background:var(--brand-subtle);padding:2px 7px;border-radius:var(--r-full);}
+.law .lf{font-family:var(--g-mono);font-size:14px;font-weight:700;color:var(--brand-strong);}
+
+.foot{text-align:center;color:var(--text-3);font-size:12px;padding:8px 0;}
+</style>
+</head>
+<body>
+<div class="page">
+
+  <div class="hero">
+    <span class="badge">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="5" x2="5" y2="19"/><circle cx="6.5" cy="6.5" r="2.5"/><circle cx="17.5" cy="17.5" r="2.5"/></svg>
+      分数除法应用题 · 人教版六年级
+    </span>
+    <h1>找准"单位1" · 分数除法应用题</h1>
+    <p>分数应用题最关键的一步 —— 先找出"谁是单位 1"。单位 1 已知用乘法,单位 1 未知用除法</p>
+  </div>
+
+  <nav class="toc">
+    <a href="#s1">1 什么是单位1</a>
+    <a href="#s2">2 乘法还是除法</a>
+    <a href="#s3">3 求单位1</a>
+    <a href="#s4">4 多几分之几</a>
+    <a href="#s5">5 画线段图</a>
+    <a href="#s6">6 母题精讲</a>
+    <a href="#s7">7 闯关自测</a>
+  </nav>
+
+  <!-- ========== §1 ========== -->
+  <section class="sec" id="s1">
+    <div class="sec-head">
+      <div class="n">1</div>
+      <div><h2>核心:找准"单位 1"</h2><div class="sub">所有分数应用题的起点</div></div>
+    </div>
+
+    <div class="card">
+      <p>分数应用题里,总有一个量被<b>当作标准、平均分成若干份</b>,这个"整体"就是<span class="key">单位 1</span>。其它量都是它的"几分之几"。</p>
+      <p>怎么找?看<b>"占""是""比""相当于"这些词后面</b>的那个量,通常就是单位 1。</p>
+      <div class="types">
+        <span class="t">用了全长的 <span class="frac"><span class="fn">2</span><span class="fd">5</span></span> → 单位1 = 全长</span>
+        <span class="t">男生是全班的 <span class="frac"><span class="fn">5</span><span class="fd">9</span></span> → 单位1 = 全班</span>
+        <span class="t">今年比去年多 <span class="frac"><span class="fn">1</span><span class="fd">6</span></span> → 单位1 = 去年</span>
+      </div>
+      <div class="tip">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18h6"/><path d="M10 22h4"/><path d="M12 2a7 7 0 0 0-4 12.7c.6.5 1 1.3 1 2.3h6c0-1 .4-1.8 1-2.3A7 7 0 0 0 12 2Z"/></svg>
+        <span><b>找单位1口诀:</b>"比、占、是、相当于"—— <b>后面跟着谁,谁就是单位 1</b>。分率永远是"和单位1相比"得来的。</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== §2 ========== -->
+  <section class="sec" id="s2">
+    <div class="sec-head">
+      <div class="n">2</div>
+      <div><h2>判断:该乘还是该除</h2><div class="sub">一条铁律</div></div>
+    </div>
+
+    <div class="card">
+      <div class="formula">单位1<b style="color:var(--ok-text)"> 已知</b> → 用<b style="color:var(--ok-text)">乘法</b>　|　单位1<b style="color:var(--warn-text)"> 未知</b> → 用<b style="color:var(--warn-text)">除法</b></div>
+      <div class="grid2">
+        <div class="card" style="margin:0;box-shadow:none;">
+          <div class="card-t">单位1 已知 → 乘法</div>
+          <p>全书 300 页,看了 <span class="frac"><span class="fn">3</span><span class="fd">5</span></span>,看了多少页?</p>
+          <div class="solve">
+            <div class="row res"><span class="lhs"></span><span class="op"></span><span>300 × <span class="frac"><span class="fn">3</span><span class="fd">5</span></span> = 180 页</span></div>
+          </div>
+        </div>
+        <div class="card" style="margin:0;box-shadow:none;">
+          <div class="card-t">单位1 未知 → 除法</div>
+          <p>看了 <span class="frac"><span class="fn">3</span><span class="fd">5</span></span> 正好是 180 页,全书多少页?</p>
+          <div class="solve">
+            <div class="row res"><span class="lhs"></span><span class="op"></span><span>180 ÷ <span class="frac"><span class="fn">3</span><span class="fd">5</span></span> = 300 页</span></div>
+          </div>
+        </div>
+      </div>
+      <div class="tip">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18h6"/><path d="M10 22h4"/><path d="M12 2a7 7 0 0 0-4 12.7c.6.5 1 1.3 1 2.3h6c0-1 .4-1.8 1-2.3A7 7 0 0 0 12 2Z"/></svg>
+        <span>关键就一句:<b>要求的是单位 1 本身,就用除法;单位 1 已经知道,就用乘法</b>。</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== §3 ========== -->
+  <section class="sec" id="s3">
+    <div class="sec-head">
+      <div class="n">3</div>
+      <div><h2>求单位 1:除法基本型</h2><div class="sub">已知"几分之几是多少"求整体</div></div>
+    </div>
+
+    <div class="card">
+      <div class="card-t">数量 ÷ 对应分率 = 单位1</div>
+      <p>关键是找到"这个具体数量"对应的<b>分率</b>是多少,再用<b>除法</b>还原出整体。</p>
+      <div class="eg">
+        <div class="eg-q"><span class="tag">例</span><span>一本书看了 <span class="frac"><span class="fn">3</span><span class="fd">5</span></span>,正好是 180 页。全书有多少页?</span></div>
+        <div class="eg-body">
+          <div class="eg-step"><span class="d">1</span><span>单位1 = 全书页数(未知)→ 用除法。</span></div>
+          <div class="eg-step"><span class="d">2</span><span>180 页对应的分率是 <span class="frac"><span class="fn">3</span><span class="fd">5</span></span>。</span></div>
+          <div class="solve">
+            <div class="row"><span class="lhs">全书</span><span class="op">=</span><span>180 ÷ <span class="frac"><span class="fn">3</span><span class="fd">5</span></span></span></div>
+            <div class="row"><span class="lhs"></span><span class="op">=</span><span>180 × <span class="frac"><span class="fn">5</span><span class="fd">3</span></span></span><span class="note">除以分数=乘倒数</span></div>
+            <div class="row res"><span class="lhs"></span><span class="op">=</span><span>300 页</span></div>
+          </div>
+          <div class="eg-ans">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
+            全书 300 页
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== §4 ========== -->
+  <section class="sec" id="s4">
+    <div class="sec-head">
+      <div class="n">4</div>
+      <div><h2>"多/少几分之几"型</h2><div class="sub">先算对应分率</div></div>
+    </div>
+
+    <div class="card">
+      <div class="card-t">对应分率 = 1 ± 几分之几</div>
+      <p>题目说"用去 / 剩下 / 比……多 / 比……少"时,那个<b>具体数量对应的分率不是原分率</b>,要先用 <b>1 加或减</b> 算出来。</p>
+      <div class="formula">用去 a → 剩下对应 (1 − a)　|　多 a → 现量对应 (1 + a)</div>
+      <div class="eg">
+        <div class="eg-q"><span class="tag">例</span><span>一根钢管用去 <span class="frac"><span class="fn">2</span><span class="fd">5</span></span> 后,还剩 90 米。这根钢管原来多少米?</span></div>
+        <div class="eg-body">
+          <div class="eg-step"><span class="d">1</span><span>单位1 = 原长(未知)→ 除法。</span></div>
+          <div class="eg-step"><span class="d">2</span><span>剩下 90 米对应分率 = 1 − <span class="frac"><span class="fn">2</span><span class="fd">5</span></span> = <span class="frac"><span class="fn">3</span><span class="fd">5</span></span>。</span></div>
+          <div class="solve">
+            <div class="row"><span class="lhs">原长</span><span class="op">=</span><span>90 ÷ <span class="frac"><span class="fn">3</span><span class="fd">5</span></span></span></div>
+            <div class="row res"><span class="lhs"></span><span class="op">=</span><span>150 米</span></div>
+          </div>
+          <div class="eg-ans">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
+            原来 150 米
+          </div>
+        </div>
+      </div>
+      <div class="warn">
+        <div class="warn-h">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m21.7 18-8-14a2 2 0 0 0-3.4 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.7-3Z"/><path d="M12 9v4"/><path d="M12 17h.01"/></svg>
+          最易错
+        </div>
+        <ul>
+          <li>90 米对应的是<b>"剩下"的分率(1−<span class="frac"><span class="fn">2</span><span class="fd">5</span></span>)</b>,<b>不是</b> <span class="frac"><span class="fn">2</span><span class="fd">5</span></span>!数量要和它<b>对应的分率</b>配对。</li>
+          <li>"用去 <span class="frac"><span class="fn">2</span><span class="fd">5</span></span>"是分率,不是 <span class="frac"><span class="fn">2</span><span class="fd">5</span></span> 米,不能直接加减具体数量。</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== §5 ========== -->
+  <section class="sec" id="s5">
+    <div class="sec-head">
+      <div class="n">5</div>
+      <div><h2>画线段图理清关系</h2><div class="sub">让分率和数量对上号</div></div>
+    </div>
+
+    <div class="card">
+      <p>解不出来时,<b>画一条线段代表单位 1</b>,把已知的分率和数量标上去,对应关系一目了然。</p>
+      <figure class="fig">
+        <svg viewBox="0 0 320 120" width="320" height="120" role="img" aria-label="钢管用去五分之二剩下五分之三线段图">
+          <!-- 单位1 整条 -->
+          <text x="10" y="26" font-size="11" fill="var(--text-3)">原长(单位1)</text>
+          <!-- 5等分:总长250,每份50,从x=20到x=270 -->
+          <rect x="20" y="34" width="100" height="26" fill="var(--fig-b)" fill-opacity="0.22" stroke="var(--fig-b)" stroke-width="1.4"/>
+          <rect x="120" y="34" width="150" height="26" fill="var(--fig-c)" fill-opacity="0.22" stroke="var(--fig-c)" stroke-width="1.4"/>
+          <!-- 等分虚线 -->
+          <line x1="70" y1="34" x2="70" y2="60" stroke="var(--text-3)" stroke-width="1" stroke-dasharray="3 3"/>
+          <line x1="170" y1="34" x2="170" y2="60" stroke="var(--text-3)" stroke-width="1" stroke-dasharray="3 3"/>
+          <line x1="220" y1="34" x2="220" y2="60" stroke="var(--text-3)" stroke-width="1" stroke-dasharray="3 3"/>
+          <!-- 用去 2/5 括号 -->
+          <path d="M20 68 v6 h100 v-6" fill="none" stroke="var(--fig-b)" stroke-width="1.4"/>
+          <text x="70" y="88" text-anchor="middle" font-size="11" font-weight="700" fill="var(--fig-b)">用去 2/5</text>
+          <!-- 剩下 3/5 括号 -->
+          <path d="M120 68 v6 h150 v-6" fill="none" stroke="var(--fig-c)" stroke-width="1.4"/>
+          <text x="195" y="88" text-anchor="middle" font-size="11" font-weight="700" fill="var(--fig-c)">剩下 3/5 = 90 米</text>
+          <text x="145" y="110" text-anchor="middle" font-size="11" fill="var(--text-3)">90 ÷ 3/5 = 150 米(原长)</text>
+        </svg>
+        <figcaption>整条线段 = 单位1(原长);画出后就能看清"90 米对应 3/5"</figcaption>
+      </figure>
+      <div class="tip">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18h6"/><path d="M10 22h4"/><path d="M12 2a7 7 0 0 0-4 12.7c.6.5 1 1.3 1 2.3h6c0-1 .4-1.8 1-2.3A7 7 0 0 0 12 2Z"/></svg>
+        <span><b>画图三步:</b>① 整条线段设为单位1;② 按分母平均分份;③ 把"具体数量"标在它对应的那几份上 —— 数量与分率就对齐了。</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== §6 母题 ========== -->
+  <section class="sec" id="s6">
+    <div class="sec-head">
+      <div class="n">6</div>
+      <div><h2>母题精讲</h2><div class="sub">4 类必考模型</div></div>
+    </div>
+
+    <div class="mother">
+      <div class="mother-head">
+        <div class="no">母1</div>
+        <h3>基本型:"是……的几分之几"</h3>
+        <span class="tagm">直接除</span>
+      </div>
+      <div class="mother-body">
+        <div class="eg-q" style="padding-left:0;background:none;">甲数是乙数的 <span class="frac"><span class="fn">3</span><span class="fd">4</span></span>,甲数是 36,乙数是多少?</div>
+        <div class="solve">
+          <div class="row"><span class="lhs">乙(单位1)</span><span class="op">=</span><span>36 ÷ <span class="frac"><span class="fn">3</span><span class="fd">4</span></span></span></div>
+          <div class="row res"><span class="lhs"></span><span class="op">=</span><span>48</span></div>
+        </div>
+        <div class="model">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/></svg>
+          <span><b>模型:</b>"甲是乙的 <span class="frac"><span class="fn">3</span><span class="fd">4</span></span>" → 单位1是乙。求乙就用甲 ÷ 分率。</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="mother">
+      <div class="mother-head">
+        <div class="no">母2</div>
+        <h3>"用去/剩下"型</h3>
+        <span class="tagm">1 减分率</span>
+      </div>
+      <div class="mother-body">
+        <div class="eg-q" style="padding-left:0;background:none;">一桶油用去 <span class="frac"><span class="fn">3</span><span class="fd">8</span></span>,还剩 50 千克,原来有多少千克?</div>
+        <div class="solve">
+          <div class="row"><span class="lhs">剩下分率</span><span class="op">=</span><span>1 − <span class="frac"><span class="fn">3</span><span class="fd">8</span></span> = <span class="frac"><span class="fn">5</span><span class="fd">8</span></span></span></div>
+          <div class="row"><span class="lhs">原有</span><span class="op">=</span><span>50 ÷ <span class="frac"><span class="fn">5</span><span class="fd">8</span></span></span></div>
+          <div class="row res"><span class="lhs"></span><span class="op">=</span><span>80 千克</span></div>
+        </div>
+        <div class="model">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/></svg>
+          <span><b>模型:</b>剩下的量 ÷(1 − 用去分率)= 原量。数量配对应的分率。</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="mother">
+      <div class="mother-head">
+        <div class="no">母3</div>
+        <h3>"比……少"型(降价)</h3>
+        <span class="tagm">1 减分率</span>
+      </div>
+      <div class="mother-body">
+        <div class="eg-q" style="padding-left:0;background:none;">一件商品现价比原价降了 <span class="frac"><span class="fn">1</span><span class="fd">5</span></span>,现价 160 元,原价多少元?</div>
+        <div class="solve">
+          <div class="row"><span class="lhs">现价分率</span><span class="op">=</span><span>1 − <span class="frac"><span class="fn">1</span><span class="fd">5</span></span> = <span class="frac"><span class="fn">4</span><span class="fd">5</span></span></span></div>
+          <div class="row"><span class="lhs">原价</span><span class="op">=</span><span>160 ÷ <span class="frac"><span class="fn">4</span><span class="fd">5</span></span></span></div>
+          <div class="row res"><span class="lhs"></span><span class="op">=</span><span>200 元</span></div>
+        </div>
+        <div class="model">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/></svg>
+          <span><b>模型:</b>"比原价降 <span class="frac"><span class="fn">1</span><span class="fd">5</span></span>" → 单位1是原价。现价对应 (1−<span class="frac"><span class="fn">1</span><span class="fd">5</span></span>)。</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="mother">
+      <div class="mother-head">
+        <div class="no">母4</div>
+        <h3>"比……多"型(增长)</h3>
+        <span class="tagm">1 加分率</span>
+      </div>
+      <div class="mother-body">
+        <div class="eg-q" style="padding-left:0;background:none;">今年产量比去年增加了 <span class="frac"><span class="fn">1</span><span class="fd">6</span></span>,今年 84 吨,去年多少吨?</div>
+        <div class="solve">
+          <div class="row"><span class="lhs">今年分率</span><span class="op">=</span><span>1 + <span class="frac"><span class="fn">1</span><span class="fd">6</span></span> = <span class="frac"><span class="fn">7</span><span class="fd">6</span></span></span></div>
+          <div class="row"><span class="lhs">去年</span><span class="op">=</span><span>84 ÷ <span class="frac"><span class="fn">7</span><span class="fd">6</span></span></span></div>
+          <div class="row res"><span class="lhs"></span><span class="op">=</span><span>72 吨</span></div>
+        </div>
+        <div class="model">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/></svg>
+          <span><b>模型:</b>"比去年多 <span class="frac"><span class="fn">1</span><span class="fd">6</span></span>" → 单位1是去年。今年对应 (1+<span class="frac"><span class="fn">1</span><span class="fd">6</span></span>)。</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== §7 自测 ========== -->
+  <section class="sec" id="s7">
+    <div class="sec-head">
+      <div class="n">7</div>
+      <div><h2>闯关自测</h2><div class="sub">点开看答案 · 先做再对</div></div>
+    </div>
+
+    <details class="quiz">
+      <summary><span class="q-n">1</span><span>一个数的 <span class="frac"><span class="fn">3</span><span class="fd">7</span></span> 是 21,这个数是多少?</span><span class="chev"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></span></summary>
+      <div class="ans-body">
+        <p class="stepline">单位1未知 → 21 ÷ <span class="frac"><span class="fn">3</span><span class="fd">7</span></span> = 21 × <span class="frac"><span class="fn">7</span><span class="fd">3</span></span></p>
+        <p class="final">= 49</p>
+      </div>
+    </details>
+
+    <details class="quiz">
+      <summary><span class="q-n">2</span><span>修一条路,修了 <span class="frac"><span class="fn">2</span><span class="fd">5</span></span> 后还剩 90 米,这条路全长多少米?</span><span class="chev"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></span></summary>
+      <div class="ans-body">
+        <p class="stepline">剩下对应 1 − <span class="frac"><span class="fn">2</span><span class="fd">5</span></span> = <span class="frac"><span class="fn">3</span><span class="fd">5</span></span> → 90 ÷ <span class="frac"><span class="fn">3</span><span class="fd">5</span></span></p>
+        <p class="final">= 150 米</p>
+      </div>
+    </details>
+
+    <details class="quiz">
+      <summary><span class="q-n">3</span><span>某数比甲多 <span class="frac"><span class="fn">1</span><span class="fd">3</span></span>,这个数是 48,甲是多少?</span><span class="chev"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></span></summary>
+      <div class="ans-body">
+        <p class="stepline">单位1是甲 → 48 对应 (1+<span class="frac"><span class="fn">1</span><span class="fd">3</span></span>)=<span class="frac"><span class="fn">4</span><span class="fd">3</span></span> → 48 ÷ <span class="frac"><span class="fn">4</span><span class="fd">3</span></span></p>
+        <p class="final">= 36</p>
+      </div>
+    </details>
+
+    <details class="quiz">
+      <summary><span class="q-n">4</span><span>一个数的 <span class="frac"><span class="fn">3</span><span class="fd">8</span></span> 是 15,这个数是多少?</span><span class="chev"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></span></summary>
+      <div class="ans-body">
+        <p class="stepline">15 ÷ <span class="frac"><span class="fn">3</span><span class="fd">8</span></span> = 15 × <span class="frac"><span class="fn">8</span><span class="fd">3</span></span></p>
+        <p class="final">= 40</p>
+      </div>
+    </details>
+
+    <details class="quiz">
+      <summary><span class="q-n">5</span><span>一件衣服降价 <span class="frac"><span class="fn">1</span><span class="fd">4</span></span> 后卖 300 元,原价多少元?</span><span class="chev"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></span></summary>
+      <div class="ans-body">
+        <p class="stepline">现价对应 1 − <span class="frac"><span class="fn">1</span><span class="fd">4</span></span> = <span class="frac"><span class="fn">3</span><span class="fd">4</span></span> → 300 ÷ <span class="frac"><span class="fn">3</span><span class="fd">4</span></span></p>
+        <p class="final">= 400 元</p>
+      </div>
+    </details>
+
+    <details class="quiz">
+      <summary><span class="q-n">6</span><span>今年比去年少 <span class="frac"><span class="fn">1</span><span class="fd">10</span></span>,今年 270 件,去年多少件?</span><span class="chev"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></span></summary>
+      <div class="ans-body">
+        <p class="stepline">今年对应 1 − <span class="frac"><span class="fn">1</span><span class="fd">10</span></span> = <span class="frac"><span class="fn">9</span><span class="fd">10</span></span> → 270 ÷ <span class="frac"><span class="fn">9</span><span class="fd">10</span></span></p>
+        <p class="final">= 300 件</p>
+      </div>
+    </details>
+
+    <details class="quiz">
+      <summary><span class="q-n">7</span><span>男生 25 人,正好是全班的 <span class="frac"><span class="fn">5</span><span class="fd">9</span></span>,全班多少人?</span><span class="chev"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></span></summary>
+      <div class="ans-body">
+        <p class="stepline">单位1是全班 → 25 ÷ <span class="frac"><span class="fn">5</span><span class="fd">9</span></span> = 25 × <span class="frac"><span class="fn">9</span><span class="fd">5</span></span></p>
+        <p class="final">= 45 人</p>
+      </div>
+    </details>
+
+    <details class="quiz">
+      <summary><span class="q-n">8</span><span>一袋米花去 <span class="frac"><span class="fn">5</span><span class="fd">8</span></span> 后还剩 150 千克,原来有多少千克?</span><span class="chev"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></span></summary>
+      <div class="ans-body">
+        <p class="stepline">剩下对应 1 − <span class="frac"><span class="fn">5</span><span class="fd">8</span></span> = <span class="frac"><span class="fn">3</span><span class="fd">8</span></span> → 150 ÷ <span class="frac"><span class="fn">3</span><span class="fd">8</span></span></p>
+        <p class="final">= 400 千克</p>
+      </div>
+    </details>
+  </section>
+
+  <div class="foot">分数除法应用题专题 · 依据人教版教材整理 · 供个人学习使用</div>
+
+</div>
+
+
+<script>
+/* 锚点内部跳转:拦截 TOC 点击,手动滚动,避免在预览/代理环境里触发整页导航 */
+(function(){
+  function onTap(e){
+    var a=e.target;
+    while(a&&a.nodeName!=='A'){a=a.parentNode;}
+    if(!a)return;
+    var href=a.getAttribute('href')||'';
+    if(href.charAt(0)!=='#'||href.length<2)return;
+    var el=document.getElementById(href.slice(1));
+    if(!el)return;
+    e.preventDefault();
+    if(el.scrollIntoView){el.scrollIntoView({behavior:'smooth',block:'start'});}
+    else{window.scrollTo(0,el.offsetTop-16);}
+  }
+  var toc=document.querySelector('.toc');
+  if(toc){toc.addEventListener('click',onTap,false);}
+})();
+</script>
+</body>
+</html>

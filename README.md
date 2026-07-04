@@ -9,13 +9,16 @@
 |---|---|
 | 运算定律专题 · 拆数凑整巧算 | https://beupgo.github.io/g4-math-simple-calc.html |
 | 简易方程专题 · 从天平到解方程 | https://beupgo.github.io/g5-math-equation.html |
+| 因数与倍数专题 · 数的秘密 | https://beupgo.github.io/g5-math-factors-multiples.html |
 | 多边形面积专题 · 割补转化思想 | https://beupgo.github.io/g5-math-polygon-area.html |
 | 作文是怎么"长"出来的 · 五年级写作创作过程 | https://beupgo.github.io/grade5-chinese-essay-process.html |
 | 写作提升训练 | https://beupgo.github.io/grade5-chinese-writing.html |
 | 北京五年级数学 · 母题学习系统 | https://beupgo.github.io/grade5-math.html |
+| 分数除法应用题专题 · 找准单位1 | https://beupgo.github.io/g6-math-fraction-division.html |
 | 分数专题 · 彻底学会分数 | https://beupgo.github.io/g6-math-fractions.html |
 | 图形思想专题 · 用画图解数学题 | https://beupgo.github.io/g6-math-geometric-thinking.html |
 | 北京六年级数学 · 母题学习系统 | https://beupgo.github.io/grade6-math.html |
+| 英语冒险岛 · 3-6年级暑假 | https://beupgo.github.io/english5.html |
 | 导航首页 | https://beupgo.github.io/ |
 <!-- AUTO-TABLE-END -->
 
@@ -35,13 +38,16 @@
 ├─ index.html      # 导航首页
 ├─ g4-math-simple-calc.html  # 运算定律专题 · 拆数凑整巧算
 ├─ g5-math-equation.html  # 简易方程专题 · 从天平到解方程
+├─ g5-math-factors-multiples.html  # 因数与倍数专题 · 数的秘密
 ├─ g5-math-polygon-area.html  # 多边形面积专题 · 割补转化思想
 ├─ grade5-chinese-essay-process.html  # 作文是怎么"长"出来的 · 五年级写作创作过程
 ├─ grade5-chinese-writing.html  # 写作提升训练
 ├─ grade5-math.html  # 北京五年级数学 · 母题学习系统
+├─ g6-math-fraction-division.html  # 分数除法应用题专题 · 找准单位1
 ├─ g6-math-fractions.html  # 分数专题 · 彻底学会分数
 ├─ g6-math-geometric-thinking.html  # 图形思想专题 · 用画图解数学题
-└─ grade6-math.html  # 北京六年级数学 · 母题学习系统
+├─ grade6-math.html  # 北京六年级数学 · 母题学习系统
+└─ english5.html  # 英语冒险岛 · 3-6年级暑假
 └─ README.md
 ```
 <!-- AUTO-FILES-END -->
