@@ -1,0 +1,1254 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="format-detection" content="telephone=no">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<title>五年级写作提升训练手册</title>
+<style>
+/* =====================================================================
+   TIER 1 · GLOBAL / PRIMITIVE — compact mirror of genius-design-tokens
+   Brand driven by --brand-h / --brand-s. Warm "书卷" hue.
+   ===================================================================== */
+*, *::before, *::after { box-sizing: border-box; }
+:root{
+  --brand-h: 18;            /* warm terracotta — bookish, warm */
+  --brand-s: 62%;
+  /* primary tonal scale */
+  --g-primary-50:  hsl(var(--brand-h), var(--brand-s), 96%);
+  --g-primary-100: hsl(var(--brand-h), var(--brand-s), 91%);
+  --g-primary-200: hsl(var(--brand-h), var(--brand-s), 83%);
+  --g-primary-400: hsl(var(--brand-h), var(--brand-s), 62%);
+  --g-primary-500: hsl(var(--brand-h), var(--brand-s), 54%);
+  --g-primary-600: hsl(var(--brand-h), var(--brand-s), 47%);
+  --g-primary-700: hsl(var(--brand-h), var(--brand-s), 39%);
+  --g-primary-800: hsl(var(--brand-h), var(--brand-s), 31%);
+  /* neutral */
+  --g-neutral-0:#fff; --g-neutral-50:#faf9f6; --g-neutral-100:#f3f1ec;
+  --g-neutral-200:#e7e3da; --g-neutral-300:#d5cfc2; --g-neutral-400:#a89f8f;
+  --g-neutral-500:#786f5f; --g-neutral-600:#544b3d; --g-neutral-700:#3a332a;
+  --g-neutral-800:#262019; --g-neutral-900:#171310; --g-neutral-950:#0f0c0a;
+  /* functional */
+  --g-green-500:#16a34a; --g-green-100:#dcfce7; --g-green-700:#15803d;
+  --g-amber-500:#d97706; --g-amber-100:#fef3c7; --g-amber-700:#b45309;
+  --g-red-500:#dc2626;   --g-red-100:#fbe4de;   --g-red-700:#b91c1c;
+  --g-cyan-500:#0e7c96;  --g-cyan-100:#d5eff4;  --g-cyan-700:#0e6178;
+  /* spacing (4px base) */
+  --g-sp-1:4px; --g-sp-2:8px; --g-sp-3:12px; --g-sp-4:16px; --g-sp-5:20px;
+  --g-sp-6:24px; --g-sp-8:32px; --g-sp-10:40px; --g-sp-12:48px; --g-sp-16:64px;
+  /* radius */
+  --g-r-sm:6px; --g-r-md:10px; --g-r-lg:14px; --g-r-xl:18px; --g-r-full:999px;
+  /* type */
+  --g-font:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Hiragino Sans GB","Microsoft YaHei",Roboto,sans-serif;
+  --g-fs-xs:12px; --g-fs-sm:13px; --g-fs-base:15px; --g-fs-md:16px;
+  --g-fs-lg:18px; --g-fs-xl:22px; --g-fs-2xl:28px; --g-fs-3xl:34px;
+  --g-fw-regular:400; --g-fw-medium:500; --g-fw-semibold:600; --g-fw-bold:700;
+  --g-lh-tight:1.35; --g-lh-base:1.75;
+  /* motion */
+  --g-dur-fast:120ms; --g-dur-base:200ms; --g-ease:cubic-bezier(.4,0,.2,1);
+  /* breakpoints (reference values) sm640 md768 lg1024 */
+  /* icon sizes */
+  --g-icon-xs:14px; --g-icon-sm:16px; --g-icon-md:20px; --g-icon-lg:24px;
+  --g-icon-xl:32px; --g-icon-2xl:40px; --g-icon-stroke:2; --g-icon-stroke-thin:1.6;
+}
+/* =====================================================================
+   TIER 2 · SEMANTIC / ALIAS
+   ===================================================================== */
+:root{
+  --s-brand:var(--g-primary-600); --s-brand-hover:var(--g-primary-700);
+  --s-brand-active:var(--g-primary-800);
+  --s-brand-subtle:var(--g-primary-50); --s-brand-subtle-2:var(--g-primary-100);
+  --s-on-brand:#fff;
+  --s-bg:#f6f4ef; --s-surface:var(--g-neutral-0); --s-surface-sunken:var(--g-neutral-50);
+  --s-surface-hover:var(--g-neutral-100);
+  --s-text:var(--g-neutral-900); --s-text-secondary:var(--g-neutral-600);
+  --s-text-muted:var(--g-neutral-400); --s-on-fill:#fff;
+  --s-border:var(--g-neutral-200); --s-border-strong:var(--g-neutral-300);
+  --s-success:var(--g-green-500); --s-success-bg:var(--g-green-100); --s-success-text:var(--g-green-700);
+  --s-warning:var(--g-amber-500); --s-warning-bg:var(--g-amber-100); --s-warning-text:var(--g-amber-700);
+  --s-danger:var(--g-red-500);   --s-danger-bg:var(--g-red-100);   --s-danger-text:var(--g-red-700);
+  --s-info:var(--g-cyan-500);    --s-info-bg:var(--g-cyan-100);    --s-info-text:var(--g-cyan-700);
+  --s-shadow-sm:0 1px 2px rgba(60,40,20,.06),0 1px 3px rgba(60,40,20,.09);
+  --s-shadow-md:0 6px 16px -4px rgba(60,40,20,.12),0 2px 6px -2px rgba(60,40,20,.08);
+  --s-shadow-lg:0 20px 40px -12px rgba(60,40,20,.22);
+  --s-transition:var(--g-dur-base) var(--g-ease);
+  /* icon semantic roles */
+  --s-icon-color:var(--s-text); --s-icon-muted:var(--s-text-muted);
+  --s-icon-brand:var(--s-brand); --s-icon-on-brand:var(--s-on-brand);
+}
+[data-theme="dark"]{
+  --g-primary-50:hsl(var(--brand-h),var(--brand-s),16%);
+  --g-primary-100:hsl(var(--brand-h),var(--brand-s),20%);
+  --s-brand:var(--g-primary-500); --s-brand-hover:var(--g-primary-400); --s-brand-active:var(--g-primary-400);
+  --s-bg:var(--g-neutral-950); --s-surface:#1a1611; --s-surface-sunken:#211b14; --s-surface-hover:#2a231a;
+  --s-text:#f0ebe3; --s-text-secondary:#b8afa1; --s-text-muted:#8a8072;
+  --s-border:#332b21; --s-border-strong:#463c2e;
+  --s-success-bg:#0c2e18; --s-warning-bg:#3a2606; --s-danger-bg:#3a1512; --s-info-bg:#0a2b34;
+  --s-success-text:#4ade80; --s-warning-text:#fbbf24; --s-danger-text:#f87171; --s-info-text:#38c5df;
+  --s-shadow-sm:0 1px 2px rgba(0,0,0,.5); --s-shadow-md:0 6px 16px rgba(0,0,0,.55); --s-shadow-lg:0 20px 40px rgba(0,0,0,.6);
+}
+/* =====================================================================
+   TIER 3 · COMPONENT + layout token layer (--c-*)
+   ===================================================================== */
+:root{
+  /* fluid reading column: tracks the viewport up to a cap, widens on big screens */
+  --c-container-read: min(92vw, 860px);
+  --c-container-pad: clamp(var(--g-sp-4), 4vw, var(--g-sp-8));
+  --c-grid-gutter: clamp(var(--g-sp-3), 2.4vw, var(--g-sp-4));
+  --c-section-gap: clamp(var(--g-sp-6), 4vw, var(--g-sp-8));
+  --c-card-bg:var(--s-surface); --c-card-border:var(--s-border);
+  --c-card-radius:var(--g-r-lg); --c-card-shadow:var(--s-shadow-sm); --c-card-pad:var(--g-sp-4);
+  --c-icon-inline:var(--g-icon-sm); --c-icon-card:var(--g-icon-xl); --c-icon-nav:var(--g-icon-lg);
+}
+/* =====================================================================
+   BASE
+   ===================================================================== */
+html,body{margin:0;padding:0;}
+body{
+  font-family:var(--g-font); background:var(--s-bg); color:var(--s-text);
+  line-height:var(--g-lh-base); font-size:var(--g-fs-base);
+  -webkit-font-smoothing:antialiased;
+  transition:background var(--s-transition),color var(--s-transition);
+  padding:env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);
+}
+.wrap{ width:var(--c-container-read); margin:0 auto; padding:0 var(--c-container-pad) var(--g-sp-16); }
+
+/* icon base */
+.ico{ display:inline-block; width:1em; height:1em; flex:none; vertical-align:-.125em;
+  fill:none; stroke:currentColor; stroke-width:var(--g-icon-stroke);
+  stroke-linecap:round; stroke-linejoin:round; color:var(--s-icon-color); }
+.ico--sm{width:var(--g-icon-sm);height:var(--g-icon-sm);}
+.ico--md{width:var(--g-icon-md);height:var(--g-icon-md);}
+.ico--lg{width:var(--g-icon-lg);height:var(--g-icon-lg);}
+.ico--xl{width:var(--g-icon-xl);height:var(--g-icon-xl);stroke-width:var(--g-icon-stroke-thin);}
+.ico--xl use{stroke-width:var(--g-icon-stroke-thin);}
+.ico--brand{color:var(--s-icon-brand);} .ico--muted{color:var(--s-icon-muted);}
+.ico--on-brand{color:var(--s-icon-on-brand);}
+.ico--spin{animation:ico-spin var(--g-dur-base) linear;}
+@keyframes ico-spin{to{transform:rotate(360deg);}}
+
+/* ---------- theme toggle (sticky) ---------- */
+.topbar{ position:sticky; top:0; z-index:100;
+  backdrop-filter:saturate(1.4) blur(8px);
+  background:color-mix(in srgb, var(--s-bg) 82%, transparent);
+  border-bottom:1px solid var(--s-border);
+  display:flex; align-items:center; justify-content:space-between;
+  padding:var(--g-sp-2) var(--c-container-pad); margin-bottom:var(--g-sp-4);}
+.topbar .brandline{display:flex;align-items:center;gap:var(--g-sp-2);font-weight:var(--g-fw-bold);font-size:var(--g-fs-sm);color:var(--s-text-secondary);}
+.topbar .brandline .ico{color:var(--s-brand);}
+.tgl{ display:inline-flex;align-items:center;gap:var(--g-sp-2); cursor:pointer;
+  border:1px solid var(--s-border-strong); background:var(--s-surface); color:var(--s-text-secondary);
+  border-radius:var(--g-r-full); padding:6px 12px; font-size:var(--g-fs-sm); font-weight:var(--g-fw-medium);
+  transition:var(--s-transition); min-height:34px;}
+.tgl:hover{border-color:var(--s-brand);color:var(--s-brand);}
+
+/* ---------- hero (compact band: title left · stats right) ---------- */
+.hero{ color:var(--s-on-brand); border-radius:var(--g-r-lg);
+  padding:var(--g-sp-4) var(--g-sp-5);
+  margin:var(--g-sp-1) 0 var(--g-sp-4);
+  background:linear-gradient(120deg,var(--g-primary-500),var(--g-primary-700));
+  box-shadow:var(--s-shadow-md); position:relative; overflow:hidden;
+  display:flex; align-items:center; justify-content:space-between; gap:var(--g-sp-4); flex-wrap:wrap;}
+.hero::after{content:"";position:absolute;right:-30px;top:-40px;width:110px;height:110px;background:rgba(255,255,255,.09);border-radius:50%;}
+.hero .htext{position:relative;min-width:min(100%,15rem);flex:1 1 auto;}
+.hero .kicker{ display:inline-flex;align-items:center;gap:5px; font-size:var(--g-fs-xs); letter-spacing:1.5px;
+  background:rgba(255,255,255,.18); padding:2px 10px; border-radius:var(--g-r-full); margin-bottom:var(--g-sp-2);}
+.hero h1{ font-size:var(--g-fs-xl); margin:0; font-weight:var(--g-fw-bold); letter-spacing:.5px; line-height:var(--g-lh-tight);}
+.hero p{ font-size:var(--g-fs-sm); margin:4px 0 0; opacity:.94;}
+.hero .stats{ display:flex; gap:var(--g-sp-2); position:relative; flex-wrap:wrap;}
+.hero .stat{ background:rgba(255,255,255,.14); border-radius:var(--g-r-md); padding:var(--g-sp-1) var(--g-sp-3); text-align:center; min-width:60px;}
+.hero .stat b{display:block;font-size:var(--g-fs-md);font-weight:var(--g-fw-bold);line-height:1.2;}
+.hero .stat span{font-size:var(--g-fs-xs);opacity:.9;}
+
+/* ---------- section heading ---------- */
+.sec{ display:flex; align-items:center; gap:var(--g-sp-3); margin:var(--g-sp-8) 0 var(--g-sp-4); }
+.sec .badge{ flex:none; width:40px;height:40px;border-radius:var(--g-r-md);
+  background:var(--s-brand); color:var(--s-on-brand);
+  display:flex;align-items:center;justify-content:center; box-shadow:var(--s-shadow-md);}
+.sec .badge .ico{color:var(--s-on-brand);}
+.sec h2{ font-size:var(--g-fs-lg); margin:0; font-weight:var(--g-fw-bold); line-height:var(--g-lh-tight);}
+.sec .sub{ font-size:var(--g-fs-sm); color:var(--s-text-secondary); margin-top:2px;}
+
+/* ---------- card ---------- */
+.card{ background:var(--c-card-bg); border:1px solid var(--c-card-border);
+  border-radius:var(--c-card-radius); box-shadow:var(--c-card-shadow);
+  padding:var(--c-card-pad); margin-bottom:var(--g-sp-3);}
+.card h3{ display:flex; align-items:center; gap:var(--g-sp-2); margin:0 0 var(--g-sp-2);
+  font-size:var(--g-fs-md); font-weight:var(--g-fw-semibold); line-height:var(--g-lh-tight);}
+.card h3 .ico{ color:var(--s-brand); }
+.card p{ margin:0 0 var(--g-sp-2); color:var(--s-text-secondary);}
+.card p:last-child{margin-bottom:0;}
+.card p b, .card li b{color:var(--s-text);}
+
+/* two-column card grid on wider screens */
+.grid2{ display:grid; grid-template-columns:1fr; gap:var(--c-grid-gutter);}
+@media(min-width:640px){ .grid2{grid-template-columns:1fr 1fr;} }
+
+.lead{ font-size:var(--g-fs-base); color:var(--s-text-secondary); margin:0 0 var(--g-sp-4); padding:0 2px; max-width:74ch;}
+
+/* ---------- example / tip callouts (clean, label-led) ---------- */
+.box{ position:relative; border-radius:var(--g-r-md); padding:var(--g-sp-3) var(--g-sp-4);
+  margin:var(--g-sp-3) 0; font-size:var(--g-fs-base); line-height:var(--g-lh-base);
+  color:var(--s-text); background:var(--s-surface); border:1px solid var(--s-border);}
+.box:last-child{margin-bottom:0;}
+.box .lbl{ display:inline-flex;align-items:center;gap:6px; font-weight:var(--g-fw-semibold);
+  font-size:var(--g-fs-xs); margin-bottom:5px; letter-spacing:.2px; color:var(--s-text-secondary);}
+.box .lbl .ico{color:var(--s-text-muted);}
+/* role signalled only by the small labeled header — no colored rail */
+.box.good .lbl,.box.good .lbl .ico{color:var(--s-info-text);}
+.box.warn .lbl,.box.warn .lbl .ico{color:var(--s-warning-text);}
+.box.bad .lbl,.box.bad .lbl .ico{color:var(--s-danger-text);}
+.box.ok .lbl,.box.ok .lbl .ico{color:var(--s-success-text);}
+
+/* before/after comparison */
+.ba{ display:grid; grid-template-columns:1fr; gap:var(--g-sp-2); margin:var(--g-sp-3) 0;}
+@media(min-width:560px){.ba{grid-template-columns:1fr 1fr;}}
+.ba .col{ border-radius:var(--g-r-md); padding:var(--g-sp-3) var(--g-sp-4); font-size:var(--g-fs-base);}
+.ba .before{ background:var(--s-surface-sunken); color:var(--s-text-secondary); border:1px dashed var(--s-border-strong);}
+.ba .after{ background:var(--s-brand-subtle); color:var(--s-text); border:1px solid var(--s-brand-subtle-2);}
+.ba .t{ display:flex;align-items:center;gap:6px; font-weight:var(--g-fw-semibold); font-size:var(--g-fs-xs); margin-bottom:6px;}
+.ba .before .t{color:var(--s-text-muted);}
+.ba .after .t{color:var(--s-brand);}
+
+/* checklist */
+ul.checks{list-style:none;padding:0;margin:var(--g-sp-2) 0 0;}
+ul.checks li{ position:relative; padding:var(--g-sp-2) 0 var(--g-sp-2) 30px;
+  color:var(--s-text-secondary); font-size:var(--g-fs-base);
+  border-bottom:1px solid var(--s-border);}
+ul.checks li:last-child{border-bottom:0;}
+ul.checks li .ico{ position:absolute; left:0; top:12px; color:var(--s-brand); width:var(--g-icon-sm); height:var(--g-icon-sm);}
+
+/* mini chip row (senses etc.) */
+.chips{display:flex;flex-wrap:wrap;gap:var(--g-sp-2);margin:var(--g-sp-2) 0 0;}
+.chip{ display:inline-flex;align-items:center;gap:5px; background:var(--s-surface-sunken);
+  color:var(--s-text-secondary); border:1px solid var(--s-border);
+  padding:5px 10px; border-radius:var(--g-r-full); font-size:var(--g-fs-sm);font-weight:var(--g-fw-medium);}
+.chip .ico{color:var(--s-brand);}
+
+/* week plan rows */
+.week{ display:grid; grid-template-columns:64px 1fr; border:1px solid var(--s-border);
+  border-radius:var(--g-r-md); overflow:hidden; margin-bottom:var(--g-sp-2); box-shadow:var(--s-shadow-sm);}
+.week .d{ background:var(--s-brand); color:var(--s-on-brand); display:flex;flex-direction:column;
+  align-items:center;justify-content:center; font-weight:var(--g-fw-bold); font-size:var(--g-fs-sm); padding:var(--g-sp-2);}
+.week .c{ background:var(--s-surface); padding:var(--g-sp-3) var(--g-sp-4); font-size:var(--g-fs-base); color:var(--s-text-secondary);}
+.week .c b{color:var(--s-text);}
+
+/* ---------- annotated essay sample (范文批注) ---------- */
+.essay{ background:var(--s-surface); border:1px solid var(--s-border); border-radius:var(--g-r-lg);
+  padding:var(--g-sp-4) var(--g-sp-5); margin-top:var(--g-sp-3); box-shadow:var(--s-shadow-sm);}
+.essay .etitle{ display:flex;align-items:center;gap:8px; font-weight:var(--g-fw-semibold);
+  font-size:var(--g-fs-sm); color:var(--s-brand); margin:0 0 var(--g-sp-3);
+  padding-bottom:var(--g-sp-2); border-bottom:1px solid var(--s-border);}
+.essay .etitle .name{ margin-left:auto; font-size:var(--g-fs-xs); color:var(--s-text-muted); font-weight:var(--g-fw-regular);}
+.essay p{ margin:0 0 var(--g-sp-2); color:var(--s-text); line-height:var(--g-lh-base); font-size:var(--g-fs-base);}
+.essay p:last-of-type{margin-bottom:0;}
+.essay mark{ background:transparent; color:inherit; padding:0;
+  font-weight:var(--g-fw-medium);
+  background-image:linear-gradient(var(--s-brand-subtle),var(--s-brand-subtle));
+  background-repeat:no-repeat; background-position:0 88%; background-size:100% 34%;
+  box-decoration-break:clone; -webkit-box-decoration-break:clone;}
+@supports(background-image:linear-gradient(color-mix(in srgb,red,transparent),red)){
+  .essay mark{ background-image:linear-gradient(
+    color-mix(in srgb,var(--s-brand) 24%,transparent),
+    color-mix(in srgb,var(--s-brand) 24%,transparent)); } }
+.essay .note{ display:flex;align-items:flex-start;gap:6px; margin-top:var(--g-sp-3);
+  font-size:var(--g-fs-sm); color:var(--s-text-secondary); border-top:1px dashed var(--s-border-strong); padding-top:var(--g-sp-2);}
+.essay .note .ico{color:var(--s-brand);flex:none;margin-top:3px;}
+.essay .note b{color:var(--s-text);}
+
+/* ---------- SPA view switch: tutorial <-> example detail page ---------- */
+.view{display:none;}
+.view.active{display:block;}
+
+/* per-step "查看更多" entry — sits at the RIGHT of the section heading */
+.sec .more{ margin-left:auto; flex:none; display:inline-flex; align-items:center; gap:6px;
+  cursor:pointer; font-family:inherit; font-size:var(--g-fs-sm); font-weight:var(--g-fw-semibold);
+  color:var(--s-brand); background:var(--s-brand-subtle); border:1px solid var(--s-brand-subtle-2);
+  border-radius:var(--g-r-full); padding:6px 14px; transition:var(--s-transition); white-space:nowrap;}
+.sec .more:hover{ background:var(--s-brand); color:var(--s-on-brand); border-color:var(--s-brand);}
+.sec .more .ico{width:var(--g-icon-sm);height:var(--g-icon-sm);}
+@media(max-width:559px){ .sec .more span.t{display:none;} }
+
+/* detail page (a full SPA view, not a modal) */
+.dpage{ min-height:calc(100vh - 60px); display:flex; flex-direction:column;}
+.dpage .dtop{ position:sticky; top:52px; z-index:20;
+  display:flex; align-items:center; gap:var(--g-sp-3); flex-wrap:wrap;
+  padding:var(--g-sp-3) 0; margin-bottom:var(--g-sp-4);
+  background:var(--s-bg); border-bottom:1px solid var(--s-border);}
+.dback{ display:inline-flex; align-items:center; gap:6px; cursor:pointer; font-family:inherit;
+  font-size:var(--g-fs-sm); font-weight:var(--g-fw-semibold); color:var(--s-text-secondary);
+  background:var(--s-surface); border:1px solid var(--s-border-strong); border-radius:var(--g-r-md);
+  padding:0 var(--g-sp-3); height:38px; transition:var(--s-transition);}
+.dback:hover{border-color:var(--s-brand);color:var(--s-brand);}
+.dback .ico{width:var(--g-icon-sm);height:var(--g-icon-sm);transform:rotate(180deg);}
+.dpage .dtitle{ display:flex;align-items:center;gap:var(--g-sp-2);
+  font-size:var(--g-fs-lg); font-weight:var(--g-fw-bold); color:var(--s-text);}
+.dpage .dtitle .ico{color:var(--s-brand);}
+.dpage .dcount{ font-size:var(--g-fs-xs); font-weight:var(--g-fw-semibold);
+  color:var(--s-brand); background:var(--s-brand-subtle); border-radius:var(--g-r-full); padding:2px 10px;}
+.dpage .dtools{ display:flex; gap:var(--g-sp-2); margin-left:auto; align-items:center;}
+/* vertical tile of examples — fills at least one screen height */
+.dpage .dlist{ display:grid; grid-template-columns:1fr; gap:var(--g-sp-4);
+  transition:opacity var(--g-dur-base) var(--g-ease); flex:1 1 auto;
+  align-content:start; padding-bottom:var(--g-sp-8);}
+@media(min-width:760px){ .dpage .dlist{ grid-template-columns:1fr 1fr; } }
+.dpage .dlist.flip{opacity:0;}
+.dpage .dlist .essay{margin-top:0; margin-bottom:0;}
+/* <essay-card> is a light-DOM custom element; display:contents lets its inner
+   .essay participate directly in the parent grid. Cards fade/slide in as they
+   are appended asynchronously (async template rendering), one rAF chunk at a time. */
+essay-card{ display:contents; }
+essay-card .essay{ animation:essay-in var(--g-dur-base) var(--g-ease) both; }
+@keyframes essay-in{ from{opacity:0; transform:translateY(6px);} to{opacity:1; transform:none;} }
+@media(prefers-reduced-motion:reduce){ essay-card .essay{ animation:none; } }
+/* small chip-buttons reused in the detail page toolbar */
+.btn-sm{ display:inline-flex;align-items:center;justify-content:center;gap:6px;
+  cursor:pointer; font-family:inherit; font-weight:var(--g-fw-semibold);
+  border-radius:var(--g-r-md); padding:0 var(--g-sp-4); height:38px; font-size:var(--g-fs-sm);
+  transition:var(--s-transition); white-space:nowrap; border:1px solid var(--s-border-strong);
+  background:var(--s-surface); color:var(--s-text-secondary);}
+.btn-sm .ico{width:var(--g-icon-sm);height:var(--g-icon-sm);}
+.btn-sm:hover{border-color:var(--s-brand);color:var(--s-brand);}
+.btn-sm.primary{ background:var(--s-brand); color:var(--s-on-brand); border-color:var(--s-brand);}
+.btn-sm.primary:hover{ background:var(--s-brand-hover); color:var(--s-on-brand); border-color:var(--s-brand-hover);}
+/* inline annotation used inside essay HTML */
+.anno{ color:var(--s-text-muted); font-size:var(--g-fs-xs); font-weight:var(--g-fw-medium);}
+/* ---------- random prompt generator ---------- */
+.gen{ background:var(--s-surface); border:1px solid var(--s-border);
+  border-radius:var(--g-r-lg); box-shadow:var(--s-shadow-md); overflow:hidden;}
+/* — level 1: toolbar header (filters live here, on a tinted band) — */
+.gen .gbar{ display:flex; align-items:center; gap:var(--g-sp-2); flex-wrap:wrap;
+  padding:var(--g-sp-3) var(--g-sp-4); background:var(--s-surface-sunken);
+  border-bottom:1px solid var(--s-border);}
+.gen .flabel{ display:inline-flex;align-items:center;gap:5px; font-size:var(--g-fs-xs);
+  font-weight:var(--g-fw-bold); color:var(--s-text-secondary);
+  padding-right:var(--g-sp-2); margin-right:var(--g-sp-1); border-right:1px solid var(--s-border);}
+.gen .flabel .ico{color:var(--s-brand);}
+.fchip{ cursor:pointer; border:1px solid var(--s-border-strong); background:var(--s-surface);
+  color:var(--s-text-secondary); border-radius:var(--g-r-full); padding:5px 14px; font-size:var(--g-fs-sm);
+  font-weight:var(--g-fw-medium); transition:var(--s-transition); min-height:32px;}
+.fchip[aria-pressed="true"]{ background:var(--s-brand); color:var(--s-on-brand); border-color:var(--s-brand);}
+/* — level 2: the result body (the focal point) — */
+.gen .prow{ display:flex; align-items:stretch; gap:var(--g-sp-4); flex-wrap:wrap;
+  padding:var(--g-sp-5) var(--g-sp-4);}
+.gen .display{ flex:1 1 18rem; display:flex; flex-direction:column; gap:var(--g-sp-3);
+  transition:opacity var(--g-dur-base) var(--g-ease);}
+.gen .display .typ{ display:inline-flex;align-items:center;gap:6px; align-self:flex-start;
+  background:var(--s-brand-subtle); color:var(--s-brand); font-size:var(--g-fs-xs); font-weight:var(--g-fw-bold);
+  letter-spacing:.5px; padding:4px 12px; border-radius:var(--g-r-full);}
+.gen .display .q{ font-size:var(--g-fs-2xl); font-weight:var(--g-fw-bold); color:var(--s-text);
+  line-height:var(--g-lh-tight); letter-spacing:-.5px;}
+.gen .display .hint{ display:inline-flex;align-items:center;gap:6px;
+  font-size:var(--g-fs-sm); color:var(--s-text-muted); }
+.gen .display .hint .ico{color:var(--s-text-muted);}
+.gen .display.flip{opacity:0;}
+/* — level 3: docked actions, clearly secondary — */
+.gen-actions{display:flex;flex-direction:column;gap:var(--g-sp-2);align-items:stretch;justify-content:center;flex:0 0 auto;min-width:9.5rem;}
+.btn{ display:inline-flex;align-items:center;justify-content:center;gap:6px;
+  border:none; cursor:pointer; font-family:inherit; font-weight:var(--g-fw-semibold);
+  border-radius:var(--g-r-sm); padding:0 var(--g-sp-4); height:40px; font-size:var(--g-fs-sm);
+  transition:var(--s-transition); white-space:nowrap;}
+.btn .ico{width:var(--g-icon-sm);height:var(--g-icon-sm);}
+.btn-primary{ background:var(--s-brand); color:var(--s-on-brand); box-shadow:var(--s-shadow-sm);}
+.btn-primary:hover{background:var(--s-brand-hover);} .btn-primary:active{background:var(--s-brand-active);transform:translateY(1px);}
+.btn-ghost{ background:var(--s-surface); color:var(--s-text-secondary); border:1px solid var(--s-border-strong);}
+.btn-ghost:hover{border-color:var(--s-brand);color:var(--s-brand);}
+/* mobile: buttons go full-width row under the display */
+@media(max-width:559px){
+  .gen .prow{flex-direction:column;}
+  .gen-actions{flex-direction:row;align-items:stretch;width:100%;min-width:0;}
+  .gen-actions .btn{flex:1 1 0;}
+}
+
+.footer{ text-align:center; color:var(--s-text-muted); font-size:var(--g-fs-sm);
+  margin-top:var(--c-section-gap); padding-top:var(--g-sp-6); border-top:1px solid var(--s-border);}
+.footer .marks{display:flex;gap:6px;justify-content:center;flex-wrap:wrap;margin-bottom:var(--g-sp-3);}
+.footer .mk{ display:inline-flex;align-items:center;gap:5px; background:var(--s-brand-subtle);
+  color:var(--s-brand); font-size:var(--g-fs-xs); font-weight:var(--g-fw-semibold); padding:4px 10px; border-radius:var(--g-r-full);}
+
+@media(min-width:768px){ :root{--c-card-pad:var(--g-sp-5);} }
+
+/* ===== wide-screen tiers: widen the fluid column & densify grids ===== */
+@media(min-width:1024px){
+  :root{ --c-container-read: min(90vw, 1040px); }
+  .grid2{ grid-template-columns:repeat(2,1fr); }
+}
+@media(min-width:1280px){
+  :root{ --c-container-read: min(88vw, 1200px); }
+  /* four technique cards go 4-up on desktop to use the extra width */
+  .grid2{ grid-template-columns:repeat(4,1fr); }
+}
+</style>
+</head>
+<body>
+
+<!-- ===== inlined icon sprite (Lucide, ISC) ===== -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+<symbol id="ic-eye" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2.062 12.348a1 1 0 0 1 0-.696 10.75 10.75 0 0 1 19.876 0 1 1 0 0 1 0 .696 10.75 10.75 0 0 1-19.876 0"/><circle cx="12" cy="12" r="3"/></symbol>
+<symbol id="ic-layers" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12.83 2.18a2 2 0 0 0-1.66 0L2.6 6.08a1 1 0 0 0 0 1.83l8.58 3.91a2 2 0 0 0 1.66 0l8.58-3.9a1 1 0 0 0 0-1.83z"/><path d="M2 12a1 1 0 0 0 .58.91l8.6 3.91a2 2 0 0 0 1.65 0l8.58-3.9A1 1 0 0 0 22 12"/><path d="M2 17a1 1 0 0 0 .58.91l8.6 3.91a2 2 0 0 0 1.65 0l8.58-3.9A1 1 0 0 0 22 17"/></symbol>
+<symbol id="ic-layout" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="18" x="3" y="3" rx="2"/><path d="M3 9h18"/><path d="M9 21V9"/></symbol>
+<symbol id="ic-book" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 7v14"/><path d="M3 18a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h5a4 4 0 0 1 4 4 4 4 0 0 1 4-4h5a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1h-6a3 3 0 0 0-3 3 3 3 0 0 0-3-3z"/></symbol>
+<symbol id="ic-edit" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21.174 6.812a1 1 0 0 0-3.986-3.987L3.842 16.174a2 2 0 0 0-.5.83l-1.321 4.352a.5.5 0 0 0 .623.622l4.353-1.32a2 2 0 0 0 .83-.497z"/><path d="m15 5 4 4"/></symbol>
+<symbol id="ic-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></symbol>
+<symbol id="ic-calendar" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 2v4"/><path d="M16 2v4"/><rect width="18" height="18" x="3" y="4" rx="2"/><path d="M3 10h18"/></symbol>
+<symbol id="ic-refresh" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 0 1 9-9 9.75 9.75 0 0 1 6.74 2.74L21 8"/><path d="M21 3v5h-5"/><path d="M21 12a9 9 0 0 1-9 9 9.75 9.75 0 0 1-6.74-2.74L3 16"/><path d="M8 16H3v5"/></symbol>
+<symbol id="ic-list" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 5h.01"/><path d="M3 12h.01"/><path d="M3 19h.01"/><path d="M8 5h13"/><path d="M8 12h13"/><path d="M8 19h13"/></symbol>
+<symbol id="ic-target" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></symbol>
+<symbol id="ic-sparkles" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11.017 2.814a1 1 0 0 1 1.966 0l1.051 5.558a2 2 0 0 0 1.594 1.594l5.558 1.051a1 1 0 0 1 0 1.966l-5.558 1.051a2 2 0 0 0-1.594 1.594l-1.051 5.558a1 1 0 0 1-1.966 0l-1.051-5.558a2 2 0 0 0-1.594-1.594l-5.558-1.051a1 1 0 0 1 0-1.966l5.558-1.051a2 2 0 0 0 1.594-1.594z"/><path d="M20 2v4"/><path d="M22 4h-4"/><circle cx="4" cy="20" r="2"/></symbol>
+<symbol id="ic-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2"/><path d="M12 20v2"/><path d="m4.93 4.93 1.41 1.41"/><path d="m17.66 17.66 1.41 1.41"/><path d="M2 12h2"/><path d="M20 12h2"/><path d="m6.34 17.66-1.41 1.41"/><path d="m19.07 4.93-1.41 1.41"/></symbol>
+<symbol id="ic-cloud-rain" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 14.899A7 7 0 1 1 15.71 8h1.79a4.5 4.5 0 0 1 2.5 8.242"/><path d="M16 14v6"/><path d="M8 14v6"/><path d="M12 16v6"/></symbol>
+<symbol id="ic-snowflake" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m10 20-1.25-2.5L6 18"/><path d="M10 4 8.75 6.5 6 6"/><path d="m14 20 1.25-2.5L18 18"/><path d="m14 4 1.25 2.5L18 6"/><path d="m17 21-3-6h-4"/><path d="m17 3-3 6 1.5 3"/><path d="M2 12h6.5L10 9"/><path d="m20 10-1.5 2 1.5 2"/><path d="M22 12h-6.5L14 15"/><path d="m4 10 1.5 2L4 14"/><path d="m7 21 3-6-1.5-3"/><path d="m7 3 3 6h4"/></symbol>
+<symbol id="ic-message-square" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 17a2 2 0 0 1-2 2H6.828a2 2 0 0 0-1.414.586l-2.202 2.202A.71.71 0 0 1 2 21.286V5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2z"/></symbol>
+<symbol id="ic-quote" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 3a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2 1 1 0 0 1 1 1v1a2 2 0 0 1-2 2 1 1 0 0 0-1 1v2a1 1 0 0 0 1 1 6 6 0 0 0 6-6V5a2 2 0 0 0-2-2z"/><path d="M5 3a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2 1 1 0 0 1 1 1v1a2 2 0 0 1-2 2 1 1 0 0 0-1 1v2a1 1 0 0 0 1 1 6 6 0 0 0 6-6V5a2 2 0 0 0-2-2z"/></symbol>
+<symbol id="ic-award" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m15.477 12.89 1.515 8.526a.5.5 0 0 1-.81.47l-3.58-2.687a1 1 0 0 0-1.197 0l-3.586 2.686a.5.5 0 0 1-.81-.469l1.514-8.526"/><circle cx="12" cy="8" r="6"/></symbol>
+<symbol id="ic-smile" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M8 14s1.5 2 4 2 4-2 4-2"/><line x1="9" x2="9.01" y1="9" y2="9"/><line x1="15" x2="15.01" y1="9" y2="9"/></symbol>
+<symbol id="ic-star" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z"/></symbol>
+<symbol id="ic-arrow-right" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></symbol>
+</svg>
+
+<div class="topbar">
+  <span class="brandline"><svg class="ico ico--md"><use href="#ic-book"/></svg> 五年级写作训练</span>
+  <button class="tgl" id="themeToggle" aria-label="切换深浅色">
+    <svg class="ico ico--sm"><use href="#ic-sun" id="themeIcon"/></svg><span id="themeLabel">夜间</span>
+  </button>
+</div>
+
+<div class="wrap">
+
+<div id="viewMain" class="view active">
+
+  <div class="hero">
+    <div class="htext">
+      <span class="kicker"><svg class="ico ico--sm"><use href="#ic-sparkles"/></svg> 北京 · 小学五年级</span>
+      <h1>写作提升训练手册</h1>
+      <p>把"不会写、写不长、写得空",变成"有话说、写得活、能打动人"</p>
+    </div>
+    <div class="stats">
+      <div class="stat"><b>5</b><span>核心能力</span></div>
+      <div class="stat"><b>15′</b><span>每天投入</span></div>
+      <div class="stat"><b>∞</b><span>随机题目</span></div>
+    </div>
+  </div>
+
+  <p class="lead">沿着 <b>观察 → 素材 → 结构 → 语言 → 修改</b> 五步展开,每步都用"平淡写法 vs 升级写法"的对比示例讲透,并配范文批注。每天 15 分钟,一学期见明显进步。</p>
+
+  <!-- ============ 1 观察 ============ -->
+  <div class="sec">
+    <div class="badge"><svg class="ico ico--lg"><use href="#ic-eye"/></svg></div>
+    <div><h2>第一步 · 学会观察</h2><div class="sub">写作从"看见"开始 —— 解决"没什么可写"</div></div>
+    <button class="more" data-open="1"><svg class="ico"><use href="#ic-book"/></svg><span class="t">查看更多范例</span></button>
+  </div>
+
+  <div class="card">
+    <h3><svg class="ico ico--md"><use href="#ic-eye"/></svg>调动五种感官,把画面写"满"</h3>
+    <p>好文章不是"看到什么写什么",而是把眼睛、耳朵、鼻子、舌头、皮肤的感受都调动起来。同一件事,感官越多,画面越立体。</p>
+    <div class="chips">
+      <span class="chip"><svg class="ico ico--sm"><use href="#ic-eye"/></svg>看:颜色 形状 动作</span>
+      <span class="chip"><svg class="ico ico--sm"><use href="#ic-message-square"/></svg>听:声音 节奏</span>
+      <span class="chip"><svg class="ico ico--sm"><use href="#ic-sparkles"/></svg>闻:气味</span>
+      <span class="chip"><svg class="ico ico--sm"><use href="#ic-smile"/></svg>尝:味道</span>
+      <span class="chip"><svg class="ico ico--sm"><use href="#ic-star"/></svg>摸:温度 质感</span>
+    </div>
+    <div class="ba">
+      <div class="col before"><div class="t"><svg class="ico ico--sm"><use href="#ic-cloud-rain"/></svg>只用眼睛</div>天下雨了,雨很大。</div>
+      <div class="col after"><div class="t"><svg class="ico ico--sm"><use href="#ic-sparkles"/></svg>调动五感</div>雨点<b>啪啪</b>打在窗户上(听),空气里飘着<b>泥土的腥味</b>(闻),我伸手接了一滴,<b>凉丝丝</b>的(触)。</div>
+    </div>
+    <div class="ba">
+      <div class="col before"><div class="t"><svg class="ico ico--sm"><use href="#ic-smile"/></svg>只说"好吃"</div>妈妈做的红烧肉真好吃。</div>
+      <div class="col after"><div class="t"><svg class="ico ico--sm"><use href="#ic-sparkles"/></svg>调动五感</div>红亮的肉块<b>颤巍巍</b>的(看),还没夹起就<b>香气扑鼻</b>(闻),咬一口<b>甜咸交织、入口即化</b>(尝)。</div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h3><svg class="ico ico--md"><use href="#ic-target"/></svg>用"放大镜"盯住一个细节</h3>
+    <p>不要什么都写,选<b>最打动你的一个点</b>放大来写。写人抓一个动作、写景抓一处变化、写物抓一个特点。</p>
+    <div class="ba">
+      <div class="col before"><div class="t">笼统</div>爷爷很老了。</div>
+      <div class="col after"><div class="t">放大细节</div>爷爷的手背上<b>爬满了皱纹</b>,像老树皮;他<b>眯着眼</b>穿针,试了三次线才穿进去。</div>
+    </div>
+    <div class="box good"><span class="lbl"><svg class="ico ico--sm"><use href="#ic-sparkles"/></svg>每日小练习</span>准备一个小本子,每天写 1 张"观察卡片":一朵云的样子、同学的一个动作、食堂的一道菜——80 字左右,日积月累就是素材库。</div>
+    <div class="essay">
+      <div class="etitle"><svg class="ico ico--sm"><use href="#ic-quote"/></svg>范文印证 · 观察<span class="name">《清晨的早餐摊》片段</span></div>
+      <p>天刚蒙蒙亮,巷口的早餐摊已经<mark>支起了白汽腾腾的蒸笼</mark>(看)。老板<mark>"啪"地掀开笼盖</mark>(听),一股<mark>葱油混着面香</mark>的味道扑了过来(闻)。我接过热乎乎的包子,<mark>指尖被烫得直缩</mark>(触),咬一口,<mark>汤汁在嘴里烫得直打转</mark>(尝)。</p>
+      <div class="note"><svg class="ico ico--sm"><use href="#ic-target"/></svg><span><b>推敲:</b>短短两句写活了一个早餐摊——五种感官全部到位。把每个 <mark>高亮处</mark> 遮住读一遍,你会发现画面立刻"瘪"了下去,这就是感官细节的力量。</span></div>
+    </div>
+  </div>
+
+  <!-- ============ 2 素材 ============ -->
+  <div class="sec">
+    <div class="badge"><svg class="ico ico--lg"><use href="#ic-layers"/></svg></div>
+    <div><h2>第二步 · 积累素材</h2><div class="sub">让脑子里有"库存" —— 解决"写不长、内容空"</div></div>
+    <button class="more" data-open="2"><svg class="ico"><use href="#ic-book"/></svg><span class="t">查看更多范例</span></button>
+  </div>
+
+  <div class="card">
+    <h3><svg class="ico ico--md"><use href="#ic-book"/></svg>建立三个素材本</h3>
+    <ul class="checks">
+      <li><svg class="ico"><use href="#ic-check"/></svg><b>好词好句本:</b>读书遇到的精彩句子抄下来,旁边注明"能用在什么场景"。</li>
+      <li><svg class="ico"><use href="#ic-check"/></svg><b>生活素材本:</b>记自己经历的事——第一次做饭、和好朋友吵架又和好。</li>
+      <li><svg class="ico"><use href="#ic-check"/></svg><b>金句名言本:</b>收集古诗、谚语、名人名言,写作时点缀提升。</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h3><svg class="ico ico--md"><use href="#ic-quote"/></svg>让积累"能用出来":一句话三变</h3>
+    <p>抄了不用等于没抄。学一个好句式,就换 3 个场景仿写一遍,它才真正变成你的。</p>
+    <div class="box good"><span class="lbl"><svg class="ico ico--sm"><use href="#ic-quote"/></svg>范句</span>阳光<b>像金色的丝线</b>,从树叶的缝隙里洒下来。</div>
+    <ul class="checks">
+      <li><svg class="ico"><use href="#ic-arrow-right"/></svg>仿写(雪):雪花<b>像白色的蝴蝶</b>,从灰蒙蒙的天空中飘下来。</li>
+      <li><svg class="ico"><use href="#ic-arrow-right"/></svg>仿写(灯):台灯<b>像温柔的月光</b>,轻轻落在我的作业本上。</li>
+      <li><svg class="ico"><use href="#ic-arrow-right"/></svg>仿写(笑):她的笑容<b>像一朵盛开的花</b>,把整间教室都照亮了。</li>
+    </ul>
+    <div class="box warn"><span class="lbl"><svg class="ico ico--sm"><use href="#ic-book"/></svg>每天读 20 分钟</span>读优秀儿童文学、散文、故事集。读时多问一句:<b>作者是怎么把这件事写生动的?</b></div>
+    <div class="essay">
+      <div class="etitle"><svg class="ico ico--sm"><use href="#ic-quote"/></svg>范文印证 · 素材<span class="name">《我的书桌》片段</span></div>
+      <p>台灯<mark>像温柔的月光</mark>,轻轻落在作业本上。窗外偶尔飘来几声鸟叫,我想起爸爸常说的那句话——<mark>"不积跬步,无以至千里"</mark>,便又低下头,一笔一画地写了起来。</p>
+      <div class="note"><svg class="ico ico--sm"><use href="#ic-sparkles"/></svg><span><b>推敲:</b>第一处 <mark>高亮</mark> 是把"一句话三变"里仿写的好句直接用上,第二处 <mark>高亮</mark> 是"金句本"里的名言。<b>平时的积累,就是这样一句一句"用"进文章里的。</b></span></div>
+    </div>
+  </div>
+
+  <!-- ============ 3 结构 ============ -->
+  <div class="sec">
+    <div class="badge"><svg class="ico ico--lg"><use href="#ic-layout"/></svg></div>
+    <div><h2>第三步 · 搭好结构</h2><div class="sub">先想清楚"怎么排",再动笔 —— 解决"写得乱、没条理"</div></div>
+    <button class="more" data-open="3"><svg class="ico"><use href="#ic-book"/></svg><span class="t">查看更多范例</span></button>
+  </div>
+
+  <div class="card">
+    <h3><svg class="ico ico--md"><use href="#ic-list"/></svg>通用框架:任何题目都能套的"三段式"</h3>
+    <p>不管写什么,一篇文章都可以拆成三大块。这套框架对<b>写事、写人、写景、想象</b>全都通用——先记住它,再根据题目往里填内容。</p>
+    <div class="week"><div class="d">凤头</div><div class="c"><b>开头要小而亮:</b>一两句话点出对象或悬念,让人想读下去。切忌"废话开场"(如"今天我要写……")。</div></div>
+    <div class="week"><div class="d">猪肚</div><div class="c"><b>中间要充实:</b>用具体的事、画面、细节把内容"撑满",这是全文最长、最花力气的部分。</div></div>
+    <div class="week"><div class="d">豹尾</div><div class="c"><b>结尾要短而有力:</b>点出感受或道理,和开头呼应,一句话收住,不喊空口号。</div></div>
+  </div>
+
+  <div class="card">
+    <h3><svg class="ico ico--md"><use href="#ic-target"/></svg>动笔前的"提纲三问"</h3>
+    <p>列提纲不用写整句,只回答三个问题,顺序就出来了——这一步能帮任何题目理清思路。</p>
+    <ul class="checks">
+      <li><svg class="ico"><use href="#ic-check"/></svg><b>写什么?</b>这篇文章的中心是什么?(一句话说清)</li>
+      <li><svg class="ico"><use href="#ic-check"/></svg><b>按什么顺序?</b>时间顺序 / 空间顺序 / 由总到分——选一种。</li>
+      <li><svg class="ico"><use href="#ic-check"/></svg><b>哪里写详、哪里写略?</b>最能表现中心的地方写详,其余一笔带过。</li>
+    </ul>
+    <div class="box good"><span class="lbl"><svg class="ico ico--sm"><use href="#ic-target"/></svg>详略口诀</span>问自己:这篇文章最想让读者记住<b>哪一个画面</b>?——那就是要写"详"的地方,其他都为它让路。</div>
+  </div>
+
+  <div class="card">
+    <h3><svg class="ico ico--md"><use href="#ic-sparkles"/></svg>按题目类型套结构(对应随机题库)</h3>
+    <p>把上面的通用框架落到<b>四类常见题目</b>上,每类给一个可直接套用的"猪肚"排法。抽到题目后先对号入座:</p>
+  </div>
+
+  <div class="grid2">
+    <div class="card">
+      <h3><svg class="ico ico--md"><use href="#ic-calendar"/></svg>写事 · 起因→经过→高潮</h3>
+      <p>按<b>时间顺序</b>推进,把最触动你的一个瞬间放大写细。</p>
+      <div class="box good"><span class="lbl">示例 · 《雨中送伞》</span>起因:放学突降大雨,只剩我在校门口 → 经过:焦急等待 → <b>高潮(详写)</b>:妈妈把伞几乎全罩在我头上,自己半边湿透 → 结尾:那把倾斜的伞最温暖。</div>
+    </div>
+    <div class="card">
+      <h3><svg class="ico ico--md"><use href="#ic-smile"/></svg>写人 · 特点→事例→印象</h3>
+      <p>先立一个<b>鲜明特点</b>,再用一两件小事证明它,别只堆形容词。</p>
+      <div class="box good"><span class="lbl">示例 · 《我的同桌》</span>特点:他特别爱较真 → 事例(详写):为一道题的答案和老师争论到下课 → 结尾:正是这股认真劲儿让我佩服。</div>
+    </div>
+    <div class="card">
+      <h3><svg class="ico ico--md"><use href="#ic-sun"/></svg>写景 · 移步换景 / 由远到近</h3>
+      <p>按<b>空间或时间顺序</b>走,调动五感,让景物有变化、有层次。</p>
+      <div class="box good"><span class="lbl">示例 · 《校园的早晨》</span>校门口的晨雾(远)→ 操场上的第一缕阳光(近)→ 教室里的读书声(细)→ 结尾:清晨的校园像刚睡醒一样清新。</div>
+    </div>
+    <div class="card">
+      <h3><svg class="ico ico--md"><use href="#ic-sparkles"/></svg>想象 · 设定→展开→回扣</h3>
+      <p>先立一个<b>合理的假设</b>,再展开有趣的情节,最后回到现实点明感受。</p>
+      <div class="box good"><span class="lbl">示例 · 《假如我会飞》</span>设定:某天醒来能飞了 → 展开(详写):飞越故宫、俯瞰长城的所见所感 → 结尾:醒来虽是梦,却更想努力"飞"向理想。</div>
+    </div>
+  </div>
+
+  <div class="essay">
+    <div class="etitle"><svg class="ico ico--sm"><use href="#ic-book"/></svg>范文精读 · 三段式结构怎么落地<span class="name">《一次难忘的拔河比赛》· 记事</span></div>
+    <p><mark>"加油!加油!"操场上的喊声一浪高过一浪。</mark>那是上周的班级拔河赛,直到现在我一想起来,手心还会冒汗。<span style="color:var(--s-text-muted);font-size:var(--g-fs-xs);">← 凤头:一句现场声音开头,不绕弯子</span></p>
+    <p>比赛开始了,粗麻绳被我们攥得死死的。<mark>我把脚死死顶住地面的横线,身子几乎躺了下去,双手火辣辣地疼,可我一点也不敢松。</mark>红领巾在绳子中间来回抖动,一会儿被拉过来,一会儿又被扯过去。李明的脸涨得通红,王芳的辫子都散了,谁也不肯退一步。就在对方快要赢的时候,班长一声"一——二——",我们像商量好了似的,同时向后一沉——红领巾终于慢慢挪到了我们这边!<span style="color:var(--s-text-muted);font-size:var(--g-fs-xs);">← 猪肚:把最紧张的一段放大,写动作、写细节</span></p>
+    <p><mark>那一刻我才明白,原来"团结"两个字,是要用力气一起攥出来的。</mark><span style="color:var(--s-text-muted);font-size:var(--g-fs-xs);">← 豹尾:不喊口号,用一句自己的感受收住</span></p>
+    <div class="note"><svg class="ico ico--sm"><use href="#ic-sparkles"/></svg><span><b>反复推敲:</b>初稿结尾原是"这次比赛真让我难忘"。太空。改成"团结是用力气一起攥出来的",把"难忘"变成一个具体、只属于拔河的感受——<b>结尾要回扣开头的事,而不是喊一句放哪都行的话。</b></span></div>
+  </div>
+
+  <!-- ============ 4 语言 ============ -->
+  <div class="sec">
+    <div class="badge"><svg class="ico ico--lg"><use href="#ic-edit"/></svg></div>
+    <div><h2>第四步 · 锤炼语言</h2><div class="sub">让文字活起来 —— 解决"句子干巴巴"</div></div>
+    <button class="more" data-open="4"><svg class="ico"><use href="#ic-book"/></svg><span class="t">查看更多范例</span></button>
+  </div>
+
+  <div class="grid2">
+    <div class="card">
+      <h3><svg class="ico ico--md"><use href="#ic-sparkles"/></svg>技巧一 · 比喻拟人</h3>
+      <p>把抽象变具体,把静的写成动的。</p>
+      <div class="ba" style="grid-template-columns:1fr">
+        <div class="col before"><div class="t">平淡</div>风吹着树叶。</div>
+        <div class="col after"><div class="t">拟人</div>风娃娃调皮地摇着树叶,沙沙地笑。</div>
+      </div>
+    </div>
+    <div class="card">
+      <h3><svg class="ico ico--md"><use href="#ic-target"/></svg>技巧二 · 动作分解</h3>
+      <p>不写"他很生气",用动作让读者自己感受到。</p>
+      <div class="ba" style="grid-template-columns:1fr">
+        <div class="col before"><div class="t">平淡</div>他很生气。</div>
+        <div class="col after"><div class="t">动作</div>他攥紧拳头,脸涨得通红,把书重重摔在桌上。</div>
+      </div>
+    </div>
+    <div class="card">
+      <h3><svg class="ico ico--md"><use href="#ic-smile"/></svg>技巧三 · 写心理</h3>
+      <p>让读者知道你当时在想什么、怕什么、盼什么。</p>
+      <div class="ba" style="grid-template-columns:1fr">
+        <div class="col before"><div class="t">平淡</div>轮到我上台了。</div>
+        <div class="col after"><div class="t">心理</div>轮到我了,心怦怦直跳,手心全是汗,真想找个地缝钻进去。</div>
+      </div>
+    </div>
+    <div class="card">
+      <h3><svg class="ico ico--md"><use href="#ic-star"/></svg>技巧四 · 换掉万能词</h3>
+      <p>少用"很/非常/特别",换成更准确、更有画面的词。</p>
+      <div class="ba" style="grid-template-columns:1fr">
+        <div class="col before"><div class="t">平淡</div>天很热,我很累。</div>
+        <div class="col after"><div class="t">精准</div>太阳像火球炙烤大地,我累得两条腿像灌了铅。</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h3><svg class="ico ico--md"><use href="#ic-message-square"/></svg>对话描写:分行 + 带神态</h3>
+    <div class="box warn"><span class="lbl"><svg class="ico ico--sm"><use href="#ic-sparkles"/></svg>口诀</span>说话内容 + 谁在说 + 怎么说(神态/动作)。三者齐全,人物才立体。</div>
+    <div class="ba">
+      <div class="col before"><div class="t">干巴巴</div>弟弟说他不去。妈妈说必须去。</div>
+      <div class="col after"><div class="t">有神态</div>"我不去!"弟弟<b>嘟着嘴,把头扭到一边</b>。<br>"必须去。"妈妈<b>放下碗,盯着他的眼睛</b>,一字一顿地说。</div>
+    </div>
+  </div>
+
+  <div class="essay">
+    <div class="etitle"><svg class="ico ico--sm"><use href="#ic-book"/></svg>范文精读 · 四种技巧一起用<span class="name">《第一次做饭》· 片段</span></div>
+    <p>我把鸡蛋往碗边一磕,<mark>蛋液"啪"地流了出来,金黄金黄的,像一小汪太阳。</mark><span style="color:var(--s-text-muted);font-size:var(--g-fs-xs);">← ①比喻:蛋液像"一小汪太阳"</span> 油锅"滋啦"一响,吓得我<mark>猛地往后一跳,举着铲子的手在半空中僵住,半天不敢伸过去。</mark><span style="color:var(--s-text-muted);font-size:var(--g-fs-xs);">← ②动作分解:跳、举、僵、不敢伸</span> <mark>心里直打鼓:万一溅到手上怎么办?可要是喊妈妈,又怕她笑话我胆小。</mark><span style="color:var(--s-text-muted);font-size:var(--g-fs-xs);">← ③写心理:怕又不服气</span> 我咬咬牙,把蛋液倒下去,只听"哗——",鸡蛋<mark>一下子鼓起了金黄的边,香味直往鼻子里钻。</mark><span style="color:var(--s-text-muted);font-size:var(--g-fs-xs);">← ④精准词:"鼓起""直往……钻",不用"很香"</span></p>
+    <div class="note"><svg class="ico ico--sm"><use href="#ic-sparkles"/></svg><span><b>反复推敲:</b>这段初稿只有一句"我把鸡蛋打进锅里,炒好了,很香"。加技巧后,同一件事变成了看得见、听得到、感受得到的画面。<b>技巧不是堆辞藻,而是把"一句话带过"的地方,拆成读者能身临其境的细节。</b></span></div>
+  </div>
+
+  <!-- ============ 5 修改 ============ -->
+  <div class="sec">
+    <div class="badge"><svg class="ico ico--lg"><use href="#ic-refresh"/></svg></div>
+    <div><h2>第五步 · 反复修改</h2><div class="sub">好文章是改出来的 —— 解决"写完就交、不检查"</div></div>
+    <button class="more" data-open="5"><svg class="ico"><use href="#ic-book"/></svg><span class="t">查看更多范例</span></button>
+  </div>
+
+  <div class="card">
+    <h3><svg class="ico ico--md"><use href="#ic-list"/></svg>写完后的自查清单</h3>
+    <ul class="checks">
+      <li><svg class="ico"><use href="#ic-check"/></svg>有没有错别字、用错的标点?</li>
+      <li><svg class="ico"><use href="#ic-check"/></svg>句子是否通顺,有没有读起来别扭的地方?</li>
+      <li><svg class="ico"><use href="#ic-check"/></svg>重点段落写得够细吗?次要内容是否太啰嗦?</li>
+      <li><svg class="ico"><use href="#ic-check"/></svg>开头和结尾是否呼应了主题?</li>
+      <li><svg class="ico"><use href="#ic-check"/></svg>能不能再加一两个生动的细节或比喻?</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h3><svg class="ico ico--md"><use href="#ic-edit"/></svg>三个立竿见影的修改动作</h3>
+    <div class="ba" style="grid-template-columns:1fr">
+      <div class="col after"><div class="t"><svg class="ico ico--sm"><use href="#ic-message-square"/></svg>动作一 · 大声读一遍</div>读得磕巴的地方,往往就是要改的地方。</div>
+    </div>
+    <div class="ba" style="grid-template-columns:1fr">
+      <div class="col after"><div class="t"><svg class="ico ico--sm"><use href="#ic-target"/></svg>动作二 · 给关键句"加料"</div>找出最重要的一句,补一个比喻或一个动作,让它更亮。</div>
+    </div>
+    <div class="ba" style="grid-template-columns:1fr">
+      <div class="col after"><div class="t"><svg class="ico ico--sm"><use href="#ic-refresh"/></svg>动作三 · 删掉重复的话</div>同样的意思只说一次,啰嗦是作文的大敌。</div>
+    </div>
+    <div class="box ok"><span class="lbl"><svg class="ico ico--sm"><use href="#ic-award"/></svg>记住</span>第一遍是"写出来",第二遍才是"写好"。愿意改的孩子,进步最快。</div>
+  </div>
+
+  <!-- ============ 训练计划 ============ -->
+  <div class="sec">
+    <div class="badge"><svg class="ico ico--lg"><use href="#ic-calendar"/></svg></div>
+    <div><h2>每周训练计划</h2><div class="sub">每天 15 分钟,循序渐进</div></div>
+  </div>
+  <div class="card">
+    <div class="week"><div class="d">周一</div><div class="c"><b>观察日:</b>写 1 张观察小卡片(约 80 字)。</div></div>
+    <div class="week"><div class="d">周二</div><div class="c"><b>阅读日:</b>读 20 分钟,摘抄 3 个好句并仿写 1 句。</div></div>
+    <div class="week"><div class="d">周三</div><div class="c"><b>片段日:</b>练一个片段(一段对话 / 一处景物描写)。</div></div>
+    <div class="week"><div class="d">周四</div><div class="c"><b>结构日:</b>选一个题目只列提纲,不写正文。</div></div>
+    <div class="week"><div class="d">周五</div><div class="c"><b>成文日:</b>完成一篇小作文(300–400 字)。</div></div>
+    <div class="week"><div class="d">周末</div><div class="c"><b>修改日:</b>按自查清单改一遍,再大声读给自己听。</div></div>
+  </div>
+
+  <!-- ============ 随机出题 ============ -->
+  <div class="sec">
+    <div class="badge"><svg class="ico ico--lg"><use href="#ic-sparkles"/></svg></div>
+    <div><h2>随机作文题</h2><div class="sub">点一下换一题,贴近北京孩子的生活</div></div>
+  </div>
+  <div class="gen">
+    <div class="gbar" id="filterRow">
+      <span class="flabel"><svg class="ico ico--sm"><use href="#ic-layers"/></svg>题型</span>
+      <button class="fchip" data-cat="all" aria-pressed="true">全部</button>
+      <button class="fchip" data-cat="写事" aria-pressed="false">写事</button>
+      <button class="fchip" data-cat="写人" aria-pressed="false">写人</button>
+      <button class="fchip" data-cat="写景" aria-pressed="false">写景</button>
+      <button class="fchip" data-cat="想象" aria-pressed="false">想象</button>
+    </div>
+    <div class="prow">
+      <div class="display" id="display">
+        <span class="typ" id="pType"><svg class="ico ico--sm"><use href="#ic-target"/></svg>点击换一题</span>
+        <div class="q" id="pTitle">准备好了吗?</div>
+        <div class="hint" id="pHint"><svg class="ico ico--sm"><use href="#ic-arrow-right"/></svg>点"换一题"抽取你的写作题目</div>
+      </div>
+      <div class="gen-actions">
+        <button class="btn btn-primary" id="rollBtn"><svg class="ico ico--md"><use href="#ic-refresh" id="rollIcon"/></svg>换一题</button>
+        <button class="btn btn-ghost" id="copyBtn"><svg class="ico ico--md"><use href="#ic-list"/></svg>复制题目</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">
+    <div class="marks">
+      <span class="mk"><svg class="ico ico--sm"><use href="#ic-eye"/></svg>观察</span>
+      <span class="mk"><svg class="ico ico--sm"><use href="#ic-layers"/></svg>积累</span>
+      <span class="mk"><svg class="ico ico--sm"><use href="#ic-layout"/></svg>结构</span>
+      <span class="mk"><svg class="ico ico--sm"><use href="#ic-edit"/></svg>语言</span>
+      <span class="mk"><svg class="ico ico--sm"><use href="#ic-refresh"/></svg>修改</span>
+    </div>
+    坚持练习 · 每天一点点<br>五年级写作提升训练手册
+  </div>
+
+</div><!-- /#viewMain -->
+
+<!-- ============ 范例详情页(SPA 视图,可返回;纵向平铺,可换一批) ============ -->
+<div id="viewDetail" class="view">
+  <div class="dpage">
+    <div class="dtop">
+      <button class="dback" id="dBack"><svg class="ico"><use href="#ic-arrow-right"/></svg>返回手册</button>
+      <span class="dtitle"><svg class="ico ico--md"><use href="#ic-book"/></svg><span id="dTitle">范例</span></span>
+      <span class="dcount" id="dCount"></span>
+      <span class="dtools">
+        <button class="btn-sm primary" id="dMore"><svg class="ico"><use href="#ic-refresh"/></svg>换一批范例</button>
+      </span>
+    </div>
+    <div class="dlist" id="dList"></div>
+  </div>
+</div>
+
+<!-- Card skeleton cloned by the <essay-card> Web Component. Cloning a parsed
+     <template> is far cheaper than re-parsing an HTML string per card, and lets
+     us fill only the dynamic slots — the key to fast, incremental rendering. -->
+<template id="tpl-essay">
+  <div class="essay">
+    <div class="etitle"><svg class="ico ico--sm"><use href="#ic-quote"/></svg>范例学习<span class="name"></span></div>
+    <div class="ebody"></div>
+    <div class="note"><svg class="ico ico--sm"><use href="#ic-sparkles"/></svg><span><b>推敲:</b><span class="notetext"></span></span></div>
+  </div>
+</template>
+
+</div>
+
+<script>
+/* ---------- theme toggle ---------- */
+(function(){
+  var btn=document.getElementById('themeToggle');
+  var icon=document.getElementById('themeIcon');
+  var label=document.getElementById('themeLabel');
+  btn.addEventListener('click',function(){
+    var dark=document.documentElement.getAttribute('data-theme')==='dark';
+    if(dark){document.documentElement.removeAttribute('data-theme');icon.setAttribute('href','#ic-sun');label.textContent='夜间';}
+    else{document.documentElement.setAttribute('data-theme','dark');icon.setAttribute('href','#ic-star');label.textContent='日间';}
+  });
+})();
+
+/* ---------- random prompt generator ---------- */
+(function(){
+  var PROMPTS=[
+    {cat:'写事',t:'《一次难忘的秋游》',h:'写香山 / 颐和园 / 公园的出行,重点写最打动你的一个画面。'},
+    {cat:'写事',t:'《我家的一件小事》',h:'从小事写出家人间的爱,注意对话和神态描写。'},
+    {cat:'写事',t:'《第一次______》',h:'补全题目(做饭 / 骑车 / 演讲),写清楚心理变化的过程。'},
+    {cat:'写事',t:'《那一次,我真勇敢》',h:'选一件让你战胜害怕的事,把犹豫到勇敢的心理写细。'},
+    {cat:'写事',t:'《一次有趣的实验课》',h:'按"起因—经过—发现"的顺序,详写最惊喜的瞬间。'},
+    {cat:'写事',t:'《记一次班级活动》',h:'运动会 / 联欢会,详略得当,突出一个最热闹的场面。'},
+    {cat:'写人',t:'《我的好朋友》',h:'用一两件具体的事表现"好",不要只罗列优点。'},
+    {cat:'写人',t:'《我最敬佩的一个人》',h:'抓住一个动作或一句话,写出他为什么值得敬佩。'},
+    {cat:'写人',t:'《我的同桌》',h:'用外貌 + 一件小事,把这个人写"活",让人一看就认得。'},
+    {cat:'写人',t:'《校园里的"陌生人"》',h:'写保安、食堂阿姨或清洁工,观察一个平时被忽略的细节。'},
+    {cat:'写景',t:'《冬天的第一场雪》',h:'调动五感写雪景,再写雪中发生的一件小事。'},
+    {cat:'写景',t:'《校园的早晨》',h:'按时间或空间顺序,写出光线、声音和气味的变化。'},
+    {cat:'写景',t:'《雨中的街道》',h:'用比喻和拟人,把雨声、行人、灯光写得有画面感。'},
+    {cat:'写景',t:'《秋天的银杏大道》',h:'抓住颜色的变化,写一处北京秋天最美的地方。'},
+    {cat:'想象',t:'《假如我会______》',h:'补全题目(飞 / 隐身 / 时间倒流),让想象合理又有趣。'},
+    {cat:'想象',t:'《二十年后的我》',h:'想象未来的一天,写清楚你在做什么、周围什么样。'},
+    {cat:'想象',t:'《一支铅笔的旅行》',h:'把自己当成一支铅笔,用它的视角讲一个故事。'},
+    {cat:'想象',t:'《如果动物会说话》',h:'选一只熟悉的动物,想象它对人类说的一段心里话。'}
+  ];
+  var CAT_ICON={'写事':'#ic-calendar','写人':'#ic-smile','写景':'#ic-sun','想象':'#ic-sparkles'};
+  var pool=PROMPTS.slice(), current='all', last=-1;
+
+  var display=document.getElementById('display');
+  var pType=document.getElementById('pType');
+  var pTitle=document.getElementById('pTitle');
+  var pHint=document.getElementById('pHint');
+  var rollBtn=document.getElementById('rollBtn');
+  var rollIcon=document.getElementById('rollIcon');
+  var copyBtn=document.getElementById('copyBtn');
+
+  function rebuild(){
+    pool=(current==='all')?PROMPTS.slice():PROMPTS.filter(function(p){return p.cat===current;});
+    last=-1;
+  }
+  function roll(){
+    if(!pool.length)return;
+    var i;
+    do{ i=Math.floor(Math.random()*pool.length); }while(pool.length>1 && i===last);
+    last=i;
+    var p=pool[i];
+    display.classList.add('flip');
+    rollIcon && rollIcon.parentElement.classList.add('ico--spin');
+    setTimeout(function(){
+      pType.innerHTML='<svg class="ico ico--sm"><use href="'+(CAT_ICON[p.cat]||'#ic-target')+'"/></svg>'+p.cat;
+      pTitle.textContent=p.t;
+      pHint.innerHTML='<svg class="ico ico--sm"><use href="#ic-arrow-right"/></svg>'+p.h;
+      display.classList.remove('flip');
+    },180);
+    setTimeout(function(){ rollIcon && rollIcon.parentElement.classList.remove('ico--spin'); },240);
+  }
+  rollBtn.addEventListener('click',roll);
+
+  document.getElementById('filterRow').addEventListener('click',function(e){
+    var b=e.target.closest('.fchip'); if(!b)return;
+    current=b.getAttribute('data-cat');
+    Array.prototype.forEach.call(this.querySelectorAll('.fchip'),function(c){
+      c.setAttribute('aria-pressed', c===b ? 'true':'false');
+    });
+    rebuild(); roll();
+  });
+
+  copyBtn.addEventListener('click',function(){
+    var txt=pTitle.textContent+'  ('+pHint.textContent+')';
+    var done=function(){ var old=copyBtn.innerHTML; copyBtn.innerHTML='<svg class="ico ico--md"><use href="#ic-check"/></svg>已复制'; setTimeout(function(){copyBtn.innerHTML=old;},1400); };
+    if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(txt).then(done).catch(done);}
+    else{ var ta=document.createElement('textarea');ta.value=txt;document.body.appendChild(ta);ta.select();try{document.execCommand('copy');}catch(e){}document.body.removeChild(ta);done(); }
+  });
+})();
+
+/* ---------- per-step example detail panels ---------- */
+(function(){
+  /* Each step has a bank of annotated model essays.
+     title = 范文标题;  html = 正文(含 <mark> 高亮与行内批注);
+     note = 推敲说明。 全部走 .essay 组件样式,与页面一致。 */
+  var BANK={
+    1:[ /* 观察 */
+      {title:'《课间十分钟》', html:'下课铃一响,操场立刻<mark>沸腾</mark>了(听)。红色的塑胶跑道被太阳晒得<mark>发烫</mark>(触),空气里飘着<mark>青草被踩碎的清香</mark>(闻)。几个男生追着一个足球,<mark>球鞋擦地"吱吱"作响</mark>(听),额头上的汗珠<mark>亮晶晶</mark>地滚下来(看)。', note:'一个课间,五感齐上:听、触、闻、看轮番出场,画面就"满"了。遮住任意一处高亮再读,场面立刻变平。'},
+      {title:'《奶奶的厨房》', html:'走进厨房,一股<mark>饭菜的热气</mark>扑在脸上(触)。奶奶正在灶前忙活,锅里的汤<mark>"咕嘟咕嘟"冒着泡</mark>(听、看),<mark>排骨的浓香</mark>顺着门缝往外钻(闻)。我偷偷尝了一口,<mark>鲜得直咂嘴</mark>(尝)。', note:'把"奶奶做饭"这件小事,用五感放大成一个立体的场景——这就是"看见"到"写活"的距离。'},
+      {title:'《雨后的操场》', html:'雨停了,操场上<mark>亮堂堂</mark>的(看)。水洼里倒映着<mark>被洗得发蓝的天</mark>(看),踩上去<mark>"啪叽"一声溅起水花</mark>(听、触)。泥土散发出<mark>湿润的腥甜味</mark>(闻),深吸一口,<mark>整个人都清爽了</mark>(感受)。', note:'同样写景,先抓颜色(看)、再抓声音触感(听触)、最后落到气味与心里的感受,层层递进。'},
+      {title:'《菜市场的早晨》', html:'刚走到门口,<mark>各种气味一下子涌了过来</mark>——鱼腥、菜香、还有热豆浆的甜(闻)。摊主们<mark>此起彼伏地吆喝</mark>(听),案板上的刀<mark>"笃笃笃"剁得飞快</mark>(听、看)。我伸手摸了摸番茄,<mark>凉丝丝、圆滚滚的</mark>(触)。', note:'把"热闹"拆成气味、声音、触感三层来写,读者仿佛也挤进了那个早市。'},
+      {title:'《冬日的清晨》', html:'推开门,<mark>一股冷气直往鼻子里钻</mark>(触、闻)。院子里<mark>结了一层白霜,踩上去咯吱咯吱响</mark>(看、听)。远处传来<mark>扫雪的"沙沙"声</mark>(听),呼出的白气<mark>在眼前散成一小团雾</mark>(看)。', note:'寒冷看不见,却能借冷气、白霜、脚步声、白雾这些细节"看见"——这就是把感受写实。'},
+      {title:'《放学路上》', html:'夕阳把影子<mark>拉得老长</mark>(看)。路边小吃摊飘来<mark>烤红薯焦甜的香味</mark>(闻),勾得人肚子<mark>咕咕直叫</mark>(听、感受)。晚风一吹,<mark>凉凉的、痒痒的</mark>(触),书包带子<mark>一颠一颠地磨着肩膀</mark>(触)。', note:'一段普通的放学路,靠影子、香味、风感、书包的摩擦,变成了有温度的画面。'},
+      {title:'《春天的田野》', html:'走进田野,<mark>眼前一片嫩绿</mark>(看)。油菜花<mark>黄灿灿地铺到天边</mark>(看),引来蜜蜂<mark>"嗡嗡"地忙个不停</mark>(听)。风里<mark>裹着一股淡淡的花香</mark>(闻),我张开双臂,<mark>暖烘烘的阳光落满全身</mark>(触、感受)。', note:'从大片颜色写到局部声音,再到气味和身体的暖意,五感由大到小、由外到内,层次分明。'},
+      {title:'《热闹的年夜饭》', html:'厨房里<mark>叮叮当当</mark>响个不停(听)。桌上<mark>红烧鱼冒着热气</mark>(看),<mark>饺子的香味满屋子飘</mark>(闻)。爷爷倒上一杯酒,<mark>"滋"地抿了一口</mark>(听、看)。窗外<mark>鞭炮"噼里啪啦"炸开</mark>(听),我夹起一个饺子,<mark>烫得直哈气</mark>(触、感受)。', note:'把"年味"拆成声音、颜色、气味、触感,屋里屋外一起写,热闹就扑面而来。'},
+      {title:'《图书馆的午后》', html:'图书馆里<mark>静得能听见翻书的"沙沙"声</mark>(听)。阳光<mark>斜斜地照进来,在书页上镀了层金</mark>(看)。空气里有<mark>旧纸张淡淡的味道</mark>(闻),手指划过书脊,<mark>凉凉的、滑滑的</mark>(触),心也跟着<mark>静了下来</mark>(感受)。', note:'"安静"最难写;借翻书声反衬静,再用光线、气味、触感层层铺垫,静的氛围就有了。'},
+      {title:'《海边拾贝》', html:'海浪<mark>一波一波地扑上来</mark>(看、听),<mark>凉丝丝的海水漫过脚背</mark>(触)。空气里<mark>咸咸的、腥腥的</mark>(闻),踩在沙滩上<mark>软绵绵地陷下去</mark>(触)。我弯腰捡起一枚贝壳,<mark>放在耳边,竟听见了"呜呜"的海声</mark>(听、感受)。', note:'视、听、触、闻齐上阵,最后落到贝壳里的"海声"这个小惊喜,让画面既满又有回味。'},
+      {title:'《雪地里玩耍》', html:'雪停了,天地间<mark>白茫茫一片</mark>(看)。踩上去<mark>"咯吱咯吱"响,像踩碎了饼干</mark>(听)。我抓起一把雪,<mark>冰凉刺骨,却又软绵绵的</mark>(触),团成雪球扔出去,<mark>"啪"地在墙上开了花</mark>(听、看)。冷风灌进领口,<mark>脖子一激灵</mark>(触、感受)。', note:'雪是白的、静的,可作者偏偏写出了声音和触感,让静止的雪"动"了起来。'},
+      {title:'《清晨的公园》', html:'天刚蒙蒙亮,公园里<mark>雾气还没散尽</mark>(看)。露珠挂在草尖上,<mark>晶莹得像一串小灯泡</mark>(看)。远处传来<mark>老人打太极时轻缓的呼喝</mark>(听),空气<mark>清清凉凉的,带着草木的湿气</mark>(触、闻),深吸一口,<mark>整个人都醒透了</mark>(感受)。', note:'清晨的"清"很抽象,靠雾、露珠、呼喝声、湿气这些具体的东西,把"清新"写成了看得见摸得着的画面。'},
+      {title:'《雷雨前》', html:'天色<mark>忽地暗了下来</mark>(看),乌云<mark>压得低低的,像要掉下来</mark>(看)。一阵狂风卷过,树叶<mark>"哗啦哗啦"翻卷</mark>(听),空气里<mark>闷得让人喘不过气</mark>(触、感受)。远处一道闪电,<mark>"咔嚓"一声炸响</mark>(听),豆大的雨点<mark>砸在窗玻璃上</mark>(听、看)。', note:'雷雨前的"闷",靠低云、狂风、闷热、雷声一层层堆出来,读到最后仿佛自己也屏住了呼吸。'},
+      {title:'《外婆家的院子》', html:'推开吱呀作响的木门(听),院子里<mark>爬满了绿油油的丝瓜藤</mark>(看)。墙角的鸡<mark>"咯咯"地刨着土</mark>(听、看),晒着的被子<mark>散发出太阳晒过的暖香</mark>(闻)。我一屁股坐进竹椅,<mark>竹条凉丝丝地贴着后背</mark>(触),舒服得<mark>直想打个盹</mark>(感受)。', note:'木门、丝瓜藤、鸡、被子、竹椅——把院子里最不起眼的小物一件件写细,乡下老家的气息就出来了。'},
+      {title:'《游泳池边》', html:'还没进池,<mark>一股淡淡的消毒水味先钻进鼻子</mark>(闻)。池水<mark>蓝汪汪的,晃着细碎的光</mark>(看)。我下水的一瞬,<mark>凉意从脚底直窜到头顶</mark>(触),四周<mark>全是拍水声和孩子的尖叫</mark>(听),泡久了,<mark>手指头皱得像小核桃</mark>(看、感受)。', note:'从消毒水味写到入水的凉、周围的吵、泡皱的手指,五感依次登场,一次游泳被写得活灵活现。'},
+      {title:'《秋天的银杏道》', html:'一走进银杏道,<mark>满眼都是金灿灿的黄</mark>(看)。风一吹,叶子<mark>打着旋儿飘下来,"簌簌"地响</mark>(看、听)。脚下的落叶<mark>踩上去松松软软</mark>(触),空气里<mark>有股干爽的、微微发苦的叶香</mark>(闻),整条路<mark>安静得像一幅画</mark>(感受)。', note:'颜色、声音、触感、气味逐一登场,最后一句"像一幅画"把前面所有感受收拢,秋意就浓了。'},
+      {title:'《医院的走廊》', html:'走廊里<mark>白得晃眼,静得让人心里发紧</mark>(看、感受)。<mark>消毒水的味道无处不在</mark>(闻),偶尔传来<mark>推车轮子"吱吱"滑过地面的声音</mark>(听)。我攥紧妈妈的手,<mark>她的掌心也是凉的</mark>(触),两个人都<mark>不说话</mark>(感受)。', note:'写"紧张不安",没用一个"怕"字,靠惨白的墙、消毒味、凉手心把心情藏进了场景里。'},
+      {title:'《夏夜纳凉》', html:'太阳落山,暑气<mark>才慢慢退了些</mark>(触、感受)。院子里<mark>蒲扇"啪嗒啪嗒"地摇</mark>(听),蚊香<mark>飘出一缕青烟和淡淡的药香</mark>(看、闻)。天上<mark>星星密密麻麻</mark>(看),远处<mark>蛙声一片接着一片</mark>(听),吃一口冰镇西瓜,<mark>甜津津、凉丝丝的</mark>(尝、触)。', note:'蒲扇、蚊香、星星、蛙声、西瓜——夏夜的悠闲全靠这些细节,读着读着自己也想躺下乘凉了。'},
+      {title:'《清晨的早餐铺》', html:'天还没亮,早餐铺就<mark>热气腾腾</mark>了(看)。蒸笼一掀,<mark>白汽"呼"地冒起来</mark>(看、触),<mark>包子的肉香扑面而来</mark>(闻)。老板<mark>手脚麻利地颠着锅,"哗啦"一声</mark>(听、看),我咬一口刚出锅的煎饺,<mark>外皮焦脆,汤汁"滋"地烫了嘴</mark>(尝、触)。', note:'一家小小的早餐铺,靠热气、肉香、颠锅声、烫嘴的煎饺,写出了市井的烟火气。'},
+      {title:'《春雨绵绵》', html:'春雨<mark>细细密密地下着,像扯不断的丝线</mark>(看)。落在伞上<mark>"沙沙"轻响</mark>(听),落在脸上<mark>凉丝丝、痒酥酥的</mark>(触)。远处的山<mark>被雨雾罩得朦朦胧胧</mark>(看),空气里<mark>满是泥土和青草的清新</mark>(闻),连心情都<mark>跟着润了起来</mark>(感受)。', note:'春雨的"柔",靠丝线般的雨、轻响、凉痒的触感一层层写出,和夏天的暴雨完全是两种笔法。'},
+      {title:'《爷爷的鱼竿》', html:'河边静悄悄的,只有<mark>浮标在水面轻轻一点一点</mark>(看)。爷爷<mark>眯着眼,一动不动</mark>(看),烟斗里<mark>飘出一缕辛辣的烟味</mark>(闻)。忽然浮标<mark>"噗"地沉了下去</mark>(看),爷爷手腕一抖,<mark>鱼线"嗖"地绷紧</mark>(听、看),一条鱼<mark>甩着水花蹦上了岸</mark>(看、听)。', note:'钓鱼最考验"等"的功夫;作者用浮标、烟味、静止的爷爷把"等"写足,再让鱼一跃而起,一静一动格外精彩。'},
+      {title:'《校运会跳远》', html:'轮到我了,<mark>心"咚咚"直跳</mark>(听、感受)。助跑时<mark>风在耳边呼呼地刮</mark>(听、触),踏板一蹬,<mark>整个人像被弹了起来</mark>(感受)。落进沙坑的一刹那,<mark>细沙"哗"地溅到腿上,痒痒的</mark>(听、触),我回头一看,<mark>脚印远远甩在了后面</mark>(看)。', note:'跳远只有短短几秒,作者却拆出了心跳、风声、腾空、落沙,把一瞬间放慢成了慢镜头。'},
+      {title:'《厨房里的妈妈》', html:'妈妈系着围裙,<mark>案板上"当当当"切着菜</mark>(听、看)。油锅一热,<mark>"刺啦"一声,香味腾地窜了上来</mark>(听、闻)。她<mark>额头上沁着一层细汗</mark>(看),抬手<mark>用袖子胡乱抹了一把</mark>(看)。我凑过去尝一口,<mark>咸淡正好,鲜得眉毛都要掉了</mark>(尝、感受)。', note:'切菜声、油锅声、香味、汗珠、抹汗的动作——把"妈妈做饭"写成一连串鲜活的镜头,爱就藏在细节里。'},
+      {title:'《雨中送伞》', html:'放学时<mark>雨下得正急</mark>(看),我缩在屋檐下<mark>直跺脚</mark>(看、感受)。忽然看见妈妈<mark>撑着伞深一脚浅一脚地跑来</mark>(看),裤脚<mark>全溅湿了</mark>(看)。她把伞<mark>大半都倾到我这边</mark>(看),自己<mark>半个肩膀在雨里淋着</mark>(看)。我心里<mark>又暖又酸</mark>(感受)。', note:'没有一句"妈妈爱我",可湿透的裤脚、倾斜的伞、淋湿的肩膀,把母爱写得让人鼻子发酸。'},
+      {title:'《清晨的菜园》', html:'菜园里<mark>还挂着昨夜的露水</mark>(看)。青菜叶<mark>绿得发亮</mark>(看),西红柿<mark>红扑扑地压弯了枝</mark>(看)。我伸手一摸,<mark>叶子上的露珠"啪"地滚下来,凉凉的</mark>(触)。空气里<mark>满是泥土和菜叶的清香</mark>(闻),几只早起的鸟<mark>在篱笆上"叽叽喳喳"</mark>(听)。', note:'露水、亮绿、红番茄、鸟叫——把一个普通的菜园写得水灵灵的,靠的就是这些看得见摸得着的细节。'},
+      {title:'《爬山途中》', html:'越往上走,<mark>腿越像灌了铅</mark>(触、感受)。汗水<mark>顺着下巴一滴一滴往下掉</mark>(看、触),嗓子<mark>干得直冒烟</mark>(感受)。山风一吹,<mark>浑身的汗"唰"地凉了</mark>(触)。终于登顶,<mark>脚下的云海白茫茫地翻涌</mark>(看),我张开嘴大喊,<mark>回声在山谷里荡开</mark>(听),一身的累<mark>全飞走了</mark>(感受)。', note:'爬山的"累"和登顶的"畅快",靠灌铅的腿、滴汗、凉透的风、翻涌的云海一路铺陈,苦尽甘来才格外动人。'},
+      {title:'《除夕守岁》', html:'夜已深,窗外<mark>鞭炮声还断断续续地响</mark>(听)。屋里<mark>暖气烘得人脸发烫</mark>(触),电视里<mark>春晚的笑声一阵接一阵</mark>(听)。桌上<mark>瓜子壳堆成了小山</mark>(看),奶奶<mark>眯着眼打起了盹</mark>(看)。零点一到,<mark>满城的烟花"轰"地炸亮了夜空</mark>(听、看),我们<mark>齐声喊"新年好"</mark>(听)。', note:'守岁的温馨与热闹,靠鞭炮、暖气、瓜子壳、打盹的奶奶、绽放的烟花层层烘托,年味就在这些细节里。'},
+      {title:'《雨天的教室》', html:'窗外的雨<mark>"哗哗"地下个不停</mark>(听),玻璃上<mark>爬满了歪歪扭扭的水痕</mark>(看)。教室里<mark>有点闷,还带着一股潮乎乎的书本味</mark>(触、闻)。老师的粉笔<mark>在黑板上"沙沙"地写</mark>(听),我望着窗外发呆,<mark>思绪也跟着雨丝飘远了</mark>(感受)。', note:'下雨天特有的闷、潮、走神,靠雨声、水痕、书本味、粉笔声一点点写出来,画面立刻有了那种慵懒的雨天感。'},
+      {title:'《集市买年货》', html:'腊月的集市<mark>挤得水泄不通</mark>(看)。红灯笼、春联<mark>把街面染得一片喜庆</mark>(看),叫卖声<mark>一浪高过一浪</mark>(听)。炒货摊前<mark>飘着糖炒栗子焦甜的香</mark>(闻),我买了一袋,<mark>剥开一颗,烫手又香糯</mark>(触、尝)。人挨着人往前挪,<mark>棉袄都被挤得暖烘烘的</mark>(触、感受)。', note:'办年货的热闹,靠红灯笼、叫卖声、栗子香、拥挤的人流一齐涌来,"年"的味道就扑面而至。'},
+      {title:'《清晨的操场跑步》', html:'天刚亮,操场上<mark>雾气还没散</mark>(看)。我沿着跑道跑起来,<mark>呼吸"呼哧呼哧"地喘</mark>(听),冷空气<mark>吸进肺里凉飕飕的</mark>(触)。跑到第三圈,<mark>额头开始冒汗</mark>(触),腿也<mark>渐渐发沉</mark>(感受)。可跑完最后一圈,<mark>浑身热乎乎的,连脑子都清醒了</mark>(触、感受)。', note:'晨跑的由冷到热、由轻到累再到畅快,靠呼吸声、凉气、汗、沉腿一路写下来,过程感十足。'},
+      {title:'《台风夜》', html:'台风来的那夜,<mark>风像发了狂,"呜呜"地嚎</mark>(听)。窗户<mark>被吹得"咣咣"直响,像随时要碎</mark>(听、看)。雨<mark>横着往玻璃上泼</mark>(看),树枝<mark>被压得几乎贴到地面</mark>(看)。屋里<mark>忽然停了电,黑得伸手不见五指</mark>(看),我<mark>心里"咯噔"一下,紧紧攥住了被角</mark>(感受)。', note:'台风的"凶",靠嚎叫的风、乱响的窗、横泼的雨、压弯的树、突然的黑一层层加码,读得人也跟着心慌。'},
+      {title:'《田里割稻》', html:'晌午的太阳<mark>火辣辣地烤着</mark>(触)。稻田里<mark>金黄一片,沉甸甸地垂着头</mark>(看),镰刀<mark>"唰唰"地割过去</mark>(听)。汗水<mark>顺着脊背往下淌,衣服全湿透了</mark>(触、感受),稻叶<mark>划在胳膊上,又痒又疼</mark>(触)。可望着身后<mark>一排排码好的稻捆</mark>(看),心里<mark>又踏实又欢喜</mark>(感受)。', note:'割稻的辛苦与丰收的喜悦交织,靠烈日、割声、汗水、划痒、稻捆一路写实,劳动的滋味全在里头。'},
+      {title:'《雪后的清晨》', html:'一夜大雪,推开门<mark>一片刺眼的白</mark>(看)。屋檐上<mark>挂着一排晶亮的冰凌</mark>(看),踩在雪地里<mark>"咯吱咯吱"地陷下去</mark>(听、触)。远处<mark>连狗叫都听得格外清脆</mark>(听),我呵一口气,<mark>白雾在冷空气里散开</mark>(看、触),鼻尖<mark>冻得通红,却一点不想回屋</mark>(触、感受)。', note:'雪后的静与冷,靠刺眼的白、冰凌、脚步声、清脆的狗叫、冻红的鼻尖写得又美又真切。'},
+      {title:'《厨房里熬粥》', html:'清晨的厨房<mark>雾蒙蒙的</mark>(看)。砂锅里的粥<mark>"咕嘟咕嘟"翻着小泡</mark>(听、看),<mark>米香混着淡淡的甜,满屋子都是</mark>(闻)。我掀开锅盖,<mark>一股热气"呼"地扑到脸上</mark>(触),舀一勺尝尝,<mark>软糯糯、甜丝丝,烫得直吸气</mark>(尝、触)。', note:'熬粥这件小事,靠雾气、冒泡声、米香、烫嘴的甜,写出了清晨厨房那份暖融融的家常味。'},
+      {title:'《雨林研学》', html:'一走进雨林,<mark>湿热的空气像一层膜裹住全身</mark>(触、感受)。头顶<mark>枝叶密得几乎遮住了天</mark>(看),各种虫鸣鸟叫<mark>此起彼伏地响成一片</mark>(听)。脚下<mark>落叶又厚又软,踩上去闷闷的</mark>(触、听),空气里<mark>满是腐叶和青苔的潮气</mark>(闻)。', note:'陌生的雨林,靠湿热、密叶、虫鸣、软落叶、潮气一齐涌来,把"闷、密、野"的感觉写得身临其境。'},
+      {title:'《傍晚的江边》', html:'夕阳<mark>把整条江染成了金红色</mark>(看)。江水<mark>缓缓地流,泛着碎碎的金光</mark>(看),远处<mark>货船拉响了低沉的汽笛</mark>(听)。江风<mark>带着水汽,凉凉地拂过脸</mark>(触、闻),几只白鹭<mark>贴着水面滑翔</mark>(看)。我坐在堤上,<mark>心一下子静了下来</mark>(感受)。', note:'傍晚江边的开阔与安宁,靠金红的江、碎金、汽笛、江风、白鹭层层铺开,最后落到心里的"静",余味悠长。'},
+      {title:'《运动会拔河》', html:'哨声一响,两队<mark>同时往后死命地拽</mark>(看)。绳子<mark>绷得像根铁棍</mark>(看、触),队员们<mark>脸憋得通红,青筋直冒</mark>(看)。啦啦队<mark>喊得声嘶力竭</mark>(听),我们<mark>脚死死抵住地面,一寸一寸往回夺</mark>(触、看)。红布条<mark>终于"唰"地过了线</mark>(看),全班<mark>"哇"地跳了起来</mark>(听、感受)。', note:'拔河的紧张与拼劲,靠绷直的绳、憋红的脸、青筋、呐喊、抵地的脚一路加码,最后欢呼收尾,酣畅淋漓。'},
+      {title:'《清明扫墓》', html:'山路上<mark>雾气湿湿的,飘着细雨</mark>(看、触)。松柏<mark>绿得发暗,一动不动</mark>(看),空气里<mark>有股青草和泥土的腥气</mark>(闻)。爷爷<mark>默默地拔着墓前的杂草</mark>(看),没人说话,<mark>只有雨点打在伞上的"嗒嗒"声</mark>(听)。我心里<mark>沉甸甸的,说不出的怀念</mark>(感受)。', note:'扫墓的肃穆与哀思,靠湿雾、发暗的松柏、拔草的动作、雨声、沉甸甸的心一层层烘出,不着一"悲"字而悲意自现。'},
+      {title:'《暑假捉知了》', html:'晌午的树林<mark>热得发烫</mark>(触),知了<mark>"知了知了"叫得人心烦</mark>(听)。我举着竹竿<mark>屏住呼吸,一点点靠近</mark>(感受),阳光<mark>透过叶缝,在地上洒下晃动的光斑</mark>(看)。竿头的胶<mark>"啪"地粘住了知了</mark>(听、看),它<mark>拼命扑棱着翅膀</mark>(看),我<mark>心里乐开了花</mark>(感受)。', note:'捉知了的专注与惊喜,靠燥热、蝉鸣、屏息、光斑、扑棱的翅膀写得活灵活现,童年的夏天一下就回来了。'},
+      {title:'《清晨的海港》', html:'天刚亮,海港里<mark>渔船一艘挨着一艘</mark>(看)。海水<mark>"哗啦哗啦"地拍着船身</mark>(听),空气里<mark>咸腥味浓得化不开</mark>(闻)。渔民们<mark>喊着号子往岸上搬鱼筐</mark>(听),活鱼<mark>在筐里"啪啪"地蹦</mark>(听、看),海鸥<mark>贴着桅杆盘旋尖叫</mark>(看、听)。', note:'渔港清晨的忙碌与鲜活,靠拍船声、咸腥味、号子、蹦跳的鱼、海鸥一齐登场,画面又满又有生气。'},
+      {title:'《大扫除》', html:'周末大扫除,<mark>全家都动了起来</mark>(看)。抹布<mark>擦过桌面"吱吱"作响</mark>(听),扫帚<mark>把灰尘扬得满屋飞</mark>(看),呛得我<mark>直打喷嚏</mark>(感受)。妈妈<mark>把窗户擦得亮得能照出人影</mark>(看),空气里<mark>飘着一股清爽的肥皂味</mark>(闻)。忙活完,<mark>屋子敞亮得让人心里也舒坦</mark>(看、感受)。', note:'大扫除的忙与畅快,靠擦桌声、飞尘、喷嚏、亮窗、肥皂味写得热热闹闹,收尾一句"心里舒坦"点出好心情。'},
+      {title:'《雨后彩虹》', html:'雨刚停,天边<mark>忽然架起一道彩虹</mark>(看)。它<mark>红橙黄绿,一层挨着一层,清清楚楚</mark>(看),横跨在<mark>还挂着水珠的山头上</mark>(看)。空气<mark>洗过一般清新</mark>(闻、感受),几个孩子<mark>指着天空又蹦又叫</mark>(看、听)。我看得<mark>入了迷,连眨眼都舍不得</mark>(感受)。', note:'彩虹的绚丽与惊喜,靠分明的七色、水珠的山头、清新的空气、雀跃的孩子写得鲜活,最后"舍不得眨眼"把喜爱写足。'},
+      {title:'《冬夜的火锅》', html:'窗外<mark>北风"呼呼"地刮</mark>(听),屋里的火锅<mark>"咕嘟咕嘟"翻着红油</mark>(听、看)。<mark>麻辣的香气熏得人直流口水</mark>(闻),我夹起一片肉<mark>在锅里一涮</mark>(看),送进嘴里<mark>又烫又鲜,辣得直吸气</mark>(尝、触)。一家人<mark>围着热气说说笑笑</mark>(看、感受),浑身<mark>暖烘烘的</mark>(触)。', note:'冬夜火锅的温暖,靠北风反衬、翻滚的红油、麻辣香、烫嘴的肉、围坐的笑声写出,冷与暖的对比让温馨加倍。'},
+      {title:'《春游赏花》', html:'公园里<mark>桃花开得正艳</mark>(看)。粉的、白的<mark>一树连着一树,像天边的云霞</mark>(看),风一吹<mark>花瓣簌簌地飘下来</mark>(看、听)。空气里<mark>甜丝丝的花香直往鼻子里钻</mark>(闻),蜜蜂<mark>"嗡嗡"地在花间忙</mark>(听)。我伸手接住一片花瓣,<mark>软软的、凉凉的</mark>(触、感受)。', note:'赏花的烂漫,靠成片的桃花、飘落的花瓣、甜香、蜜蜂、掌心的花瓣写得浪漫又真切,读着仿佛也置身花海。'},
+      {title:'《修车铺的师傅》', html:'修车铺里<mark>油污味浓浓的</mark>(闻)。师傅<mark>蹲在地上,手上、脸上全是黑油</mark>(看),扳手<mark>"咔咔"地拧着螺丝</mark>(听)。他<mark>额头上沁着汗,也顾不上擦</mark>(看),嘴里<mark>叼着半截烟</mark>(看)。忙活半天,他<mark>把车一推,"好了"两个字说得干脆利落</mark>(听、感受)。', note:'一个修车师傅的形象,靠油污味、黑手、拧螺丝声、汗、叼烟、干脆的话写活,朴实的劳动者跃然纸上。'},
+      {title:'《夏日午后的蝉》', html:'午后<mark>热浪一阵阵地滚</mark>(触),知了<mark>在树上扯着嗓子拼命地叫</mark>(听),叫得人<mark>昏昏欲睡</mark>(感受)。柏油马路<mark>被晒得直冒白气</mark>(看),连狗都<mark>趴在树荫下吐着舌头</mark>(看)。偶尔一丝风<mark>热乎乎地拂过,连汗都吹不干</mark>(触、感受)。', note:'盛夏的"热"和"闷",靠热浪、蝉鸣、冒白气的马路、吐舌的狗、吹不干的汗写得让人也想找片阴凉。'},
+      {title:'《课堂上的实验》', html:'老师<mark>把镁条凑近火苗</mark>(看),教室里<mark>安静得能听见自己的心跳</mark>(听、感受)。忽然,镁条<mark>"呲"地燃起一团刺眼的白光</mark>(听、看),大家<mark>"哇"地齐声惊呼</mark>(听),有人<mark>下意识捂住了眼睛</mark>(看)。空气里<mark>飘起一丝呛人的焦味</mark>(闻),我盯着那团白光,<mark>心跳还在"咚咚"地响</mark>(感受)。', note:'一个化学小实验,靠静默、白光、惊呼、捂眼、焦味写出"惊奇"的全过程,读者也仿佛坐在了实验室里。'},
+      {title:'《雨夜归家》', html:'雨<mark>密密地下着,街灯晕成一团团黄光</mark>(看)。我踩着水洼往家走,<mark>鞋子早灌满了水,"咕叽咕叽"响</mark>(听、触)。远远地,<mark>看见自家窗口透出一点暖黄的灯</mark>(看),心里<mark>"咯噔"一下,暖了</mark>(感受)。推开门,<mark>饭菜的热气扑了满脸</mark>(触、闻)。', note:'雨夜的冷与到家的暖形成对比,靠晕开的街灯、灌水的鞋、窗口的灯、扑面的饭香,把"家"的温暖写到了心里。'},
+      {title:'《清晨的鸟鸣》', html:'天还没全亮,窗外<mark>就叽叽喳喳地闹开了</mark>(听)。一只鸟<mark>"啾"地起个头</mark>(听),立刻<mark>惹来一片应和</mark>(听)。晨光<mark>从窗帘缝里挤进来,在墙上画了道亮边</mark>(看),空气<mark>清清凉凉,还带着点露水的湿气</mark>(触、闻)。我赖在被窝里,<mark>听着听着,心也软软的</mark>(感受)。', note:'清晨的"醒",靠一声鸟鸣引出满窗应和,再配上晨光、凉气,把慵懒又美好的清晨写得让人不舍起床。'},
+      {title:'《打谷场上》', html:'打谷场上<mark>金黄的稻谷堆成了小山</mark>(看)。脱粒机<mark>"轰隆隆"地响个不停</mark>(听),扬起的谷壳<mark>在阳光里飞成一片金雾</mark>(看)。空气里<mark>满是新谷干爽的香气</mark>(闻),大人们<mark>脸上淌着汗,却笑得合不拢嘴</mark>(看、感受)。我抓起一把谷粒,<mark>沉甸甸、暖烘烘的</mark>(触)。', note:'丰收的场面,靠谷堆、机器声、金雾、谷香、汗中带笑、暖谷粒一齐呈现,喜庆而扎实,劳动的欢喜溢于言表。'},
+      {title:'《雾中的早晨》', html:'清晨<mark>浓雾锁住了整条街</mark>(看)。三步开外<mark>人影就模模糊糊的</mark>(看),路灯<mark>只剩下一圈朦胧的光晕</mark>(看)。空气<mark>湿漉漉、凉沁沁的,吸一口满是水汽</mark>(触、闻)。远处<mark>传来自行车铃"叮铃铃"的响,却看不见车</mark>(听),整个世界<mark>安静得有点不真实</mark>(感受)。', note:'大雾的朦胧与静谧,靠模糊的人影、朦胧的灯、湿凉的空气、看不见来源的车铃写出,那种梦幻般的静就浮现了。'},
+      {title:'《热闹的庙会》', html:'庙会上<mark>人头攒动,挤都挤不动</mark>(看)。锣鼓<mark>"咚咚锵锵"地敲得震天响</mark>(听),糖画摊前<mark>飘着焦糖甜腻的香</mark>(闻)。舞龙的队伍<mark>把长龙舞得上下翻飞</mark>(看),鞭炮<mark>"噼啪"炸响,火药味呛人</mark>(听、闻)。我举着糖葫芦<mark>咬一口,酸甜的汁水直沁牙</mark>(尝)。', note:'庙会的红火,靠拥挤、锣鼓、糖香、舞龙、鞭炮、糖葫芦一股脑地铺陈,五感全开,热闹得几乎要从纸上溢出来。'},
+      {title:'《雨打芭蕉》', html:'雨点<mark>"啪嗒啪嗒"地砸在芭蕉叶上</mark>(听),一声比一声<mark>清脆</mark>(听)。宽大的叶子<mark>被打得一颤一颤</mark>(看),叶面上<mark>水珠聚了又滚,滚了又聚</mark>(看)。窗内<mark>凉意丝丝地渗进来</mark>(触),我趴在窗台上<mark>听得入了神,连作业都忘了写</mark>(听、感受)。', note:'雨打芭蕉的清幽,靠砸叶的脆响、颤动的叶、滚动的水珠、丝丝凉意写出,是一种安静又诗意的雨天美。'},
+      {title:'《爷爷的收音机》', html:'午后,爷爷<mark>拧开那台老收音机</mark>(看)。"沙沙"的电流声里,<mark>飘出一段咿咿呀呀的戏</mark>(听)。阳光<mark>斜照进来,尘埃在光柱里慢慢地浮</mark>(看),爷爷<mark>眯着眼,手指在膝盖上轻轻打着拍子</mark>(看)。屋里<mark>静静的,只有戏声和爷爷偶尔的哼唱</mark>(听、感受)。', note:'一个午后的安宁,靠电流声、戏曲、光柱里的尘埃、打拍子的手指写出,爷爷的悠闲与岁月的静好都在其中。'},
+      {title:'《雪天等公交》', html:'站台上<mark>雪花打着旋儿往下落</mark>(看),等车的人<mark>都缩着脖子直跺脚</mark>(看)。寒风<mark>像小刀子一样刮脸</mark>(触),我的手<mark>冻得又红又僵</mark>(看、触)。远远地,<mark>公交车拖着两道车灯从雪雾里钻出来</mark>(看),"嗤"地一声停稳(听),车门一开,<mark>一股暖气"呼"地涌了出来</mark>(触、感受)。', note:'雪天候车的冷与上车的暖形成对比,靠旋落的雪、跺脚、刮脸的风、僵手、涌出的暖气,把"冷"写透,"暖"才动人。'},
+      {title:'《老屋的阁楼》', html:'推开阁楼的小门,<mark>一股陈旧的木头味扑面而来</mark>(闻)。阳光<mark>从瓦缝里漏下几道细细的光柱</mark>(看),灰尘<mark>在光里静静地飞</mark>(看)。地板<mark>踩上去"吱呀吱呀"地叫</mark>(听),我伸手摸过旧木箱,<mark>指尖沾了一层厚厚的灰,凉丝丝的</mark>(触)。这里<mark>安静得像藏着一段旧时光</mark>(感受)。', note:'探访老阁楼的怀旧感,靠木头味、漏下的光、飞灰、吱呀的地板、积灰写出,"旧时光"的味道全在这些细节里。'},
+      {title:'《田埂上的黄昏》', html:'太阳<mark>快落到山那头了,天边烧起一片橘红</mark>(看)。田埂上<mark>青草被晚风吹得沙沙地伏</mark>(看、听),远处<mark>传来几声牛的"哞哞"叫</mark>(听)。空气里<mark>混着稻香和泥土的暖气</mark>(闻),我赤脚踩在田埂上,<mark>泥土软软的、温温的</mark>(触),整颗心<mark>都跟着慢了下来</mark>(感受)。', note:'乡村黄昏的宁静悠远,靠橘红的天、伏动的青草、牛叫、稻香、温软的泥土写出,末句"心慢下来"点出那份惬意。'},
+      {title:'《除夕包饺子》', html:'一家人围坐在桌前包饺子,<mark>说说笑笑,热闹得很</mark>(听、感受)。妈妈<mark>擀皮的擀面杖"咕噜咕噜"地转</mark>(听、看),爸爸<mark>笨手笨脚地捏,饺子歪歪扭扭</mark>(看),惹得大家<mark>哈哈大笑</mark>(听)。厨房里<mark>肉馅混着葱姜的香直往外飘</mark>(闻),我偷捏一个,<mark>面粉沾了满手,凉凉的</mark>(触)。', note:'包饺子的温馨热闹,靠笑声、擀皮声、歪饺子、笑、肉香、沾手的面粉写出,一家人的团圆味就在这些细节里。'},
+      {title:'《暴晒后的雷阵雨》', html:'闷了一整天,傍晚<mark>忽然狂风大作</mark>(触)。豆大的雨点<mark>"啪啪"砸在滚烫的地面上</mark>(听、看),腾起<mark>一股又腥又热的水汽</mark>(闻、触)。转眼间,雨<mark>就织成了一张密不透风的网</mark>(看),"哗哗"的雨声<mark>盖过了一切</mark>(听)。空气<mark>一下子凉了下来,人也清爽了</mark>(触、感受)。', note:'雷阵雨的"急"与"爽",靠狂风、砸地的雨、腥热水汽、雨网、清凉写出,由闷到爽的转变一气呵成。'},
+      {title:'《清晨的豆浆摊》', html:'天没亮,豆浆摊前<mark>就排起了小队</mark>(看)。大锅里的豆浆<mark>"咕嘟咕嘟"翻着白沫</mark>(听、看),<mark>浓浓的豆香一个劲儿往外冒</mark>(闻)。老板<mark>麻利地舀浆、撒糖,动作行云流水</mark>(看)。我捧过一碗,<mark>热气烫着手心</mark>(触),嘬一口,<mark>又烫又甜又香,浑身都暖了</mark>(尝、感受)。', note:'一碗豆浆的市井温情,靠排队、翻沫、豆香、麻利的动作、烫手的碗、香甜写出,清晨的烟火气扑面而来。'},
+    ],
+    2:[ /* 素材运用 */
+      {title:'《窗前的月光》', html:'夜深了,<mark>月光像清凉的水</mark>,静静淌进窗子(仿写好句)。我合上书,忽然想起语文课上学的那句<mark>"举头望明月,低头思故乡"</mark>(金句本),心里竟也泛起一点想家的滋味。', note:'第一处是"一句话三变"里的仿写好句,第二处是"金句本"里的古诗。积累就是这样一句句"用"进文章。'},
+      {title:'《爷爷的老槐树》', html:'院子里那棵老槐树,<mark>枝叶像撑开的大伞</mark>,替我们挡住了整个夏天的太阳(仿写好句)。爷爷常坐在树下摇蒲扇,念叨着<mark>"前人栽树,后人乘凉"</mark>(谚语本)。那时我不懂,如今才明白他话里的意思。', note:'比喻句来自"好句本"的仿写,谚语来自"金句本"。两处积累一前一后,文章立刻有了厚度。'},
+      {title:'《运动会上》', html:'发令枪一响,同学们<mark>像离弦的箭一样冲了出去</mark>(仿写好句)。我在场边扯着嗓子喊,忽然懂了老师说的<mark>"友谊第一,比赛第二"</mark>(名言本)——名次没那么重要,一起拼过才最难忘。', note:'把积累的比喻和名言分别用在"叙事"和"点题"两处,素材各归其位,不生硬。'},
+      {title:'《雪后初晴》', html:'一夜大雪,世界<mark>白得晃眼</mark>。我想起摘抄本上那句<mark>"忽如一夜春风来,千树万树梨花开"</mark>(古诗本),眼前的雪松果然像挂满了梨花。我又添了一句<mark>雪压青松,青松挺且直</mark>(仿写好句),越看越觉得那松有股精神。', note:'古诗写景,仿写句添神;把积累的诗句和自创的好句叠用,雪景既美又有气节。'},
+      {title:'《读书的乐趣》', html:'我最爱窝在窗边读书。<mark>书就像一位不说话的老师</mark>(仿写好句),总在我困惑时轻轻点醒我。每当读到入迷,便真切体会到<mark>"读书破万卷,下笔如有神"</mark>(名言本)的道理——读得多了,笔下自然就有了话说。', note:'比喻先点"书之好",名言再证"读之效",一喻一言把读书的意义说得既形象又有分量。'},
+      {title:'《坚持的力量》', html:'练琴的日子枯燥又漫长。妈妈鼓励我:<mark>"只要功夫深,铁杵磨成针"</mark>(谚语本)。我把这句话贴在琴谱上,<mark>像给自己点了一盏灯</mark>(仿写好句)。半年后弹出完整的曲子时,我忽然懂了,坚持真能把不可能变成可能。', note:'谚语立志、比喻添彩,把"坚持"这个大道理落在练琴的小事上,道理就不空了。'},
+      {title:'《秋天的枫叶》', html:'深秋,满山的枫叶<mark>红得像燃烧的火</mark>(仿写好句)。我捡起一片夹进书里,想起那句<mark>"停车坐爱枫林晚,霜叶红于二月花"</mark>(古诗本)。原来古人早就把这份红,写进了千年的诗里。', note:'先用比喻写眼前的红,再引古诗把这份红"接"到千年之前，眼前景和心中诗融为一体。'},
+      {title:'《一次失败》', html:'这次考砸了,我难过得直掉眼泪。爸爸拍拍我的肩:<mark>"失败是成功之母"</mark>(名言本)。他说得轻,我却记得牢,<mark>像在心里种下了一颗种子</mark>(仿写好句)。后来我一点点补起来,成绩终于追了上来。', note:'名言用来安慰、比喻用来写"记在心里",一句劝、一句形象,把从失败到振作的心路写得真切。'},
+      {title:'《春雨》', html:'清明前后，春雨<mark>细得像牛毛，密得像蛛网</mark>(仿写好句)。田里的秧苗喝饱了水，绿得发亮。奶奶笑着说:<mark>"春雨贵如油"</mark>(谚语本)，庄稼人盼的就是这场好雨。', note:'比喻写"雨之细密"，谚语点"雨之珍贵"，一形象一实用，春雨的样子和意义都齐了。'},
+      {title:'《母爱》', html:'深夜我发烧，妈妈整宿没合眼。那一刻我真正读懂了<mark>"谁言寸草心，报得三春晖"</mark>(古诗本)。她的爱<mark>像春天的阳光，无声地洒满我的每一天</mark>(仿写好句)，我却总是后知后觉。', note:'古诗点母爱之深、比喻写母爱之暖，一句借前人之口，一句抒自己之情，情感层层加深。'},
+      {title:'《登高远望》', html:'爬到山顶，眼前豁然开朗。远山<mark>一层淡似一层，像水墨晕开</mark>(仿写好句)。我忍不住吟起那句<mark>"会当凌绝顶，一览众山小"</mark>(古诗本)，胸中的豪气一下子被点燃了。', note:'比喻绘景、古诗抒怀，写景之后借诗言志，登顶的开阔与豪迈就都出来了。'},
+      {title:'《书桌前的台灯》', html:'每晚做作业，那盏台灯<mark>像一个忠实的伙伴，静静陪着我</mark>(仿写好句)。困了想偷懒时，我就想起爸爸常说的<mark>"一寸光阴一寸金，寸金难买寸光阴"</mark>(谚语本)，赶紧打起精神，把心收回到书本上。', note:'比喻写陪伴、谚语催勤奋，从写物自然过渡到自勉，素材用得顺理成章。'},
+      {title:'《友谊》', html:'我和同桌闹了别扭，好几天没说话。后来一起完成小组作业，又和好如初。我忽然明白<mark>"海内存知己，天涯若比邻"</mark>(古诗本)的意思，真正的朋友<mark>就像书里的书签，走到哪都彼此惦记着</mark>(仿写好句)。', note:'古诗点"知己之贵"、比喻写"朋友之亲"，从一件小事升华到对友谊的理解。'},
+      {title:'《冬天的梅花》', html:'数九寒天，别的花早谢了，唯有那株梅<mark>顶着风雪，开得格外精神</mark>。我想起<mark>"宝剑锋从磨砺出，梅花香自苦寒来"</mark>(名言本)。梅花<mark>像一个不服输的斗士</mark>(仿写好句)，越冷，反倒越香。', note:'名言点"苦寒出香"的道理、比喻塑"斗士"的形象，借物喻人，梅的品格就立住了。'},
+      {title:'《田野的黄昏》', html:'夕阳西下，田野<mark>被染成了一片金黄</mark>(仿写好句)。归巢的鸟儿掠过天空，让我想起<mark>"落霞与孤鹜齐飞，秋水共长天一色"</mark>(古诗本)。虽是乡间小景，却也藏着这般辽阔的美。', note:'先用比喻写眼前的金黄，再引名句把小景"放大"成辽阔画卷，普通黄昏也有了诗意。'},
+      {title:'《一次义卖》', html:'义卖那天，同学们忙前忙后，谁也不喊累。看着善款一点点凑齐，我懂了<mark>"赠人玫瑰，手有余香"</mark>(谚语本)。帮助别人的快乐<mark>像一股暖流，悄悄流进了每个人心里</mark>(仿写好句)。', note:'谚语点"助人之乐"、比喻写"快乐之暖"，从一次活动升华到对善意的体会，自然不做作。'},
+      {title:'《清晨的公园》', html:'晨光里，露珠<mark>在草尖上滚来滚去，像撒了一地的碎钻</mark>(仿写好句)。打太极的老人动作舒缓，让我想起那句<mark>"一年之计在于春，一日之计在于晨"</mark>(谚语本)。这样的清晨，最不该辜负。', note:'比喻绘晨景之美、谚语点惜晨之理，写景与说理相接，画面里藏着劝勉。'},
+      {title:'《月夜思乡》', html:'独在他乡，抬头见月，格外圆。那一刻，<mark>"露从今夜白，月是故乡明"</mark>(古诗本)一下子涌上心头。乡愁<mark>像这清冷的月光，静静地铺满了整张床</mark>(仿写好句)，怎么也睡不着。', note:'古诗写"月圆思乡"、比喻写"乡愁弥漫"，借诗起兴、以喻收束，思乡之情缓缓流淌。'},
+      {title:'《植树节》', html:'我们在山坡上种下一排小树苗。老师说:<mark>"十年树木，百年树人"</mark>(名言本)，种树和成长是一个道理。看着小树在风里轻轻摇，<mark>它们像一群刚入学的孩子，稚嫩又充满希望</mark>(仿写好句)。', note:'名言点"育人如种树"、比喻把树苗写成孩子，借物寓意，植树的意义就深了一层。'},
+      {title:'《面对困难》', html:'这道数学题我算了半天也不得其解，几乎想放弃。忽然想起<mark>"世上无难事，只怕有心人"</mark>(谚语本)，便定下心来重新读题。<mark>思路像被拨开的云，渐渐透出了光</mark>(仿写好句)，我终于把它解了出来。', note:'谚语立志、比喻写"豁然开朗"，把一道难题的攻克过程写得既有决心又有画面感。'},
+      {title:'《秋收时节》', html:'金秋十月，稻穗<mark>沉甸甸地低着头，像一片金色的海</mark>(仿写好句)。农民伯伯的脸上写满笑意，让我想起<mark>"谁知盘中餐，粒粒皆辛苦"</mark>(古诗本)。这一粒粒粮食，都是汗水换来的。', note:'比喻绘丰收之景、古诗点粮食之贵，从眼前的美景引向对劳动的敬意。'},
+      {title:'《晨读》', html:'清晨的校园里，读书声<mark>此起彼伏，像一片欢快的鸟鸣</mark>(仿写好句)。我捧着课本大声朗读，想起那句<mark>"书读百遍，其义自见"</mark>(谚语本)——读着读着，那些难懂的句子竟渐渐明白了。', note:'比喻写读书声之美、谚语点朗读之效，把"晨读"写得既有画面又有道理。'},
+      {title:'《雨中的荷花》', html:'夏雨过后，池塘里的荷花<mark>亭亭玉立，水珠在叶上滚成一颗颗珍珠</mark>(仿写好句)。我想起<mark>"接天莲叶无穷碧，映日荷花别样红"</mark>(古诗本)，眼前的景，正应了这千古名句。', note:'比喻写荷之娇、古诗写荷之盛，眼前小景与千古名句一对照，荷的美就更立体了。'},
+      {title:'《不服输的我》', html:'跳绳比赛我落了后，心里憋着一股劲。妈妈说:<mark>"胜不骄，败不馁"</mark>(名言本)。我把这话记在心上，每天多练二十分钟，<mark>像一头认准了路的小牛，闷头往前冲</mark>(仿写好句)。下次比赛，我终于进了前三。', note:'名言正心态、比喻写干劲，把从失利到进步的过程写得既有态度又有形象。'},
+      {title:'《除夕之夜》', html:'窗外烟花<mark>"砰"地炸开，在夜空里绽成一朵朵火树银花</mark>(仿写好句)。全家围坐守岁，我忽然想起<mark>"爆竹声中一岁除，春风送暖入屠苏"</mark>(古诗本)。原来千百年来，人们迎新年的欢喜都是一样的。', note:'比喻绘烟花之绚、古诗点迎新之乐，眼前的年味和古人的年味在诗句里悄然相连。'},
+      {title:'《环保小卫士》', html:'我们把公园里的垃圾一点点捡干净。看着草地重新变得清爽，我懂了<mark>"勿以善小而不为"</mark>(名言本)。哪怕是弯个腰的小事，<mark>也像给地球擦亮了一小块玻璃</mark>(仿写好句)。', note:'名言点"小善可为"、比喻写行动的意义，从一次捡垃圾升华到环保的理念，小中见大。'},
+      {title:'《雪中送炭》', html:'我忘带雨伞，正发愁，同桌默默把她的伞递了过来。那一刻我真切体会到<mark>"患难见真情"</mark>(谚语本)。她的这把伞<mark>像冬日里的一炉火，一下子暖到了我心里</mark>(仿写好句)。', note:'谚语点"真情可贵"、比喻写"温暖入心"，一件小事因这两处积累而有了分量。'},
+      {title:'《攀登书山》', html:'面对厚厚的一摞书，我有些犯怵。老师笑着写下<mark>"书山有路勤为径，学海无涯苦作舟"</mark>(名言本)。原来知识<mark>就像一座山，只要一步一步往上爬，总能看到更美的风景</mark>(仿写好句)。', note:'名言立志、比喻写"登山之趣"，把畏难化作向上的动力，读书的意义一下就清晰了。'},
+      {title:'《雨后的彩虹》', html:'暴雨初歇，天边<mark>忽然架起一道七彩的桥</mark>(仿写好句)。爸爸说:<mark>"不经历风雨，怎么见彩虹"</mark>(名言本)。我望着那道虹，心里也亮堂堂的——原来困难过后，总有美好在等着。', note:'比喻绘彩虹之美、名言点"苦尽甘来"，借景说理，把一道彩虹写出了人生的味道。'},
+      {title:'《一寸光阴》', html:'暑假头几天，我总想着"来日方长"，作业一拖再拖。直到假期快结束，才慌了神，这才懂得<mark>"少壮不努力，老大徒伤悲"</mark>(古诗本)。时间<mark>像握在手里的沙，越是不在意，漏得越快</mark>(仿写好句)。', note:'古诗点"惜时"之理、比喻写"时光易逝"，用一次拖延的教训把道理讲得真切又有画面。'},
+      {title:'《山间小溪》', html:'山谷里，一条小溪<mark>叮叮咚咚，像在弹一支永远不累的曲子</mark>(仿写好句)。溪水清得能看见底下的鹅卵石，让我想起<mark>"清泉石上流"</mark>(古诗本)。这一路的清凉，把爬山的累全带走了。', note:'比喻写溪声之美、古诗写溪水之清，眼前的活泼小景与古诗的清幽意境相映成趣。'},
+      {title:'《一次合作》', html:'运动会入场式，我们班练了整整两周，才走得整齐。这让我懂得<mark>"人心齐，泰山移"</mark>(谚语本)。当五十个人步调一致地走过主席台时，<mark>那种齐整，像一股拧成一股绳的劲</mark>(仿写好句)，让人热血沸腾。', note:'谚语点"团结之力"、比喻写"齐心之感"，从一次排练升华到对集体力量的体会。'},
+      {title:'《晚归的父亲》', html:'深夜，父亲拖着疲惫的身子回家，肩上<mark>还落着白天的尘土</mark>。我心里一酸，想起那句<mark>"慈父之爱子，非为报也"</mark>(名言本)。父亲的爱<mark>像沉默的大山，从不说什么，却一直稳稳地扛着这个家</mark>(仿写好句)。', note:'名言点"父爱无私"、比喻塑"大山"般的父亲，一句借古、一句写今，父爱的厚重就出来了。'},
+      {title:'《春天的柳树》', html:'河边的柳树抽出了新芽，<mark>柔软的枝条垂到水面，像一位少女在梳理长发</mark>(仿写好句)。微风一吹，让我想起<mark>"碧玉妆成一树高，万条垂下绿丝绦"</mark>(古诗本)。原来古人早把这份美，写尽了。', note:'比喻把柳树写成梳发的少女、古诗把柳枝比作绿丝绦，一新一古，柳的柔美跃然纸上。'},
+      {title:'《面对嘲笑》', html:'我朗诵时结巴了，引来几声哄笑，脸涨得通红。可我想起<mark>"走自己的路，让别人说去吧"</mark>(名言本)，便深吸一口气继续读下去。那份坚持<mark>像一堵墙，把那些嘲笑都挡在了外面</mark>(仿写好句)。', note:'名言立心态、比喻写"抵御嘲笑"，把一次窘迫化作坚持的勇气，人物内心就丰满了。'},
+      {title:'《稻田守望》', html:'傍晚，稻田里<mark>蛙声一片接着一片，像在开一场热闹的音乐会</mark>(仿写好句)。爷爷坐在田埂上，慢悠悠地念:<mark>"稻花香里说丰年，听取蛙声一片"</mark>(古诗本)。那份丰收在望的喜悦，全写在他的脸上。', note:'比喻写蛙声之闹、古诗点丰年之盼，眼前的田园与词中的意境交融，喜悦之情油然而生。'},
+      {title:'《一次道歉》', html:'我错怪了好朋友，好几天都不好意思开口。妈妈说:<mark>"知错能改，善莫大焉"</mark>(名言本)。我鼓起勇气去认了错，心里<mark>像卸下了一块大石头，一下子轻松了</mark>(仿写好句)，我们又和好了。', note:'名言点"改过之善"、比喻写"释然之轻"，把一次道歉的心路写得既有道理又有实感。'},
+      {title:'《夏夜观星》', html:'仲夏的夜空，星星<mark>密密麻麻，像撒在黑丝绒上的碎银</mark>(仿写好句)。我躺在竹席上数星星，想起<mark>"天阶夜色凉如水，卧看牵牛织女星"</mark>(古诗本)。凉风习习，竟不知不觉看到了深夜。', note:'比喻绘星空之美、古诗写观星之趣，眼前的夏夜和古诗的意境重叠，惬意悠长。'},
+      {title:'《坚守诚信》', html:'我答应帮同学带的书，差点忘了，想想还是特意跑回家取来。老师说得好:<mark>"言必信，行必果"</mark>(名言本)。守信<mark>就像给自己攒下的存款，一次次积累，别人才会真正信你</mark>(仿写好句)。', note:'名言点"守信"之则、比喻写"信誉如存款"，把抽象的诚信讲得具体可感。'},
+      {title:'《雪地里的脚印》', html:'清晨的雪地上，我踩下一串脚印，<mark>整整齐齐，像一行没写完的诗</mark>(仿写好句)。回头望去，忽然想起<mark>"踏雪寻梅"</mark>四个字(古诗本)。可惜没有梅，倒把心情踩得又新又亮。', note:'比喻把脚印写成"没写完的诗"、化用"踏雪寻梅"添雅趣，一件小事被写出了诗意。'},
+      {title:'《一堂难忘的课》', html:'老师讲到岳飞"精忠报国"，全班安静得出奇。那句<mark>"莫等闲，白了少年头，空悲切"</mark>(古诗本)深深印进我心里。它<mark>像一记警钟，敲得我坐直了身子</mark>(仿写好句)，暗暗下定了好好读书的决心。', note:'古诗点"惜时报国"、比喻写"警醒之感"，把课堂的震动和内心的触动一并写出。'},
+      {title:'《帮妈妈做饭》', html:'我笨手笨脚地学着炒菜，油溅了一手。妈妈笑着说:<mark>"熟能生巧"</mark>(谚语本)，多练几次就好了。果然，练到第三回，我翻锅的动作<mark>竟也像模像样，有了几分大厨的架势</mark>(仿写好句)。', note:'谚语点"多练则巧"、比喻写"渐入佳境"，把学做饭的进步写得既真实又带点得意。'},
+      {title:'《秋日私语》', html:'秋风起，落叶<mark>打着旋儿飘下来，像一只只金色的蝴蝶</mark>(仿写好句)。我踩着满地的叶，忽然想起<mark>"停车坐爱枫林晚"</mark>(古诗本)那份闲情。原来秋天，是最适合放慢脚步的季节。', note:'比喻写落叶之美、古诗添闲适之情，眼前的秋景与古人的闲情相映，秋意就浓了。'},
+      {title:'《不怕失败》', html:'科学小实验我连做了三次都失败，急得直跺脚。爸爸说:<mark>"失败乃成功之母"</mark>(谚语本)，让我别灰心。第四次，我终于成功了，那份喜悦<mark>像久旱后的一场甘霖</mark>(仿写好句)，格外痛快。', note:'谚语点"失败可贵"、比喻写"成功之喜"，把从失败到成功的坚持和欣喜都写足了。'},
+      {title:'《晨曦中的校园》', html:'清晨的校园，第一缕阳光<mark>爬上教学楼，给白墙镀上了一层暖金</mark>(仿写好句)。琅琅书声里，我想起那句<mark>"黑发不知勤学早，白首方悔读书迟"</mark>(古诗本)，便打起精神，翻开了课本。', note:'比喻绘晨光之暖、古诗点勤学之要，从写景自然过渡到自勉，一气呵成。'},
+      {title:'《爷爷的教诲》', html:'爷爷常摸着我的头说:<mark>"吃得苦中苦，方为人上人"</mark>(谚语本)。那时我不懂，直到自己咬牙练完一整套字帖，才明白他的用心。爷爷的话<mark>像一盏灯，照着我一步步往前走</mark>(仿写好句)。', note:'谚语点"吃苦成才"、比喻写"教诲如灯"，把长辈的叮咛和自己的成长交织在一起。'},
+      {title:'《雨巷漫步》', html:'细雨中，青石板路<mark>被打得油亮，倒映着两旁灰白的墙</mark>(仿写好句)。撑着伞慢慢走，我忽然想起<mark>"沾衣欲湿杏花雨，吹面不寒杨柳风"</mark>(古诗本)。这江南的春雨，果然温柔得能沁到心里。', note:'比喻绘雨巷之景、古诗点春雨之柔，眼前的江南与诗中的意境融为一体，韵味悠长。'},
+      {title:'《一次让座》', html:'公交车上，我把座位让给一位老奶奶，她连声道谢。那一刻，妈妈平日说的<mark>"老吾老，以及人之老"</mark>(名言本)忽然有了分量。帮助别人的暖意<mark>像一颗小太阳，先照亮了自己</mark>(仿写好句)。', note:'名言点"敬老之德"、比喻写"助人之暖"，从一次让座升华到对善意的体会，真挚不空。'},
+      {title:'《寒梅傲雪》', html:'大雪压枝，那株梅却<mark>倔强地绽出点点红蕊</mark>。我不由得念出<mark>"墙角数枝梅，凌寒独自开"</mark>(古诗本)。它<mark>像一位不惧严寒的哨兵，越是风雪，越挺得笔直</mark>(仿写好句)，让人肃然起敬。', note:'古诗点"凌寒独开"、比喻塑"哨兵"的形象，借梅写志，梅的傲骨和精神就立住了。'},
+      {title:'《学骑自行车》', html:'学骑车时我摔了好几跤，膝盖都破了。爸爸鼓励我:<mark>"哪里跌倒，就从哪里爬起来"</mark>(名言本)。我擦干眼泪重新上车，终于骑稳的那一刻，<mark>风从耳边呼呼掠过，像在为我喝彩</mark>(仿写好句)。', note:'名言立志、比喻写"成功之畅"，把学骑车的挫折和成功的喜悦都写得生动有力。'},
+      {title:'《田间劳作》', html:'跟着爷爷下田，才半晌我就腰酸背痛。爷爷擦着汗说:<mark>"一分耕耘，一分收获"</mark>(谚语本)。望着一垄垄整齐的秧苗，<mark>它们像列队的士兵，等着长成满田的希望</mark>(仿写好句)，我心里的累一下轻了。', note:'谚语点"耕耘有获"、比喻写秧苗如士兵，把劳动的辛苦和期盼一并写出，朴实有味。'},
+      {title:'《校园的桂花》', html:'金秋时节，校园里的桂花开了，<mark>那股甜香隔着老远就直往鼻子里钻</mark>。我想起那句<mark>"人闲桂花落，夜静春山空"</mark>(古诗本)。虽是白日的喧闹校园，可闻着这香，心也<mark>像被熨帖过一样，静了下来</mark>(仿写好句)。', note:'古诗写桂花之幽、比喻写"心静如熨"，眼前的香与诗中的静相融，闹中取静，别有韵味。'},
+      {title:'《面对表扬》', html:'我的作文被当众念了出来，同学们都鼓掌，我美滋滋的。可妈妈提醒我:<mark>"虚心使人进步，骄傲使人落后"</mark>(名言本)。她的话<mark>像一盆清水，浇醒了我发热的头脑</mark>(仿写好句)，我暗暗告诉自己不能翘尾巴。', note:'名言点"戒骄"之理、比喻写"清醒之凉"，把面对表扬时的心态调整写得真切可感。'},
+      {title:'《河边垂钓》', html:'周末陪爷爷钓鱼，一坐就是一下午。浮标一动不动，我早坐不住了，爷爷却说:<mark>"心急吃不了热豆腐"</mark>(谚语本)。等待<mark>像熬一锅慢火的汤，急不得</mark>(仿写好句)。果然，太阳偏西时，一条大鱼上了钩。', note:'谚语点"耐心"之道、比喻写"等待如熬汤"，把钓鱼时的"等"写出了道理和滋味。'},
+      {title:'《清晨的农家》', html:'天刚亮，农家的炊烟<mark>袅袅升起，像一条条系在屋顶的白丝带</mark>(仿写好句)。公鸡打鸣，让我想起<mark>"暧暧远人村，依依墟里烟"</mark>(古诗本)。这寻常的农家清晨，竟藏着陶渊明笔下的悠然。', note:'比喻写炊烟之美、古诗点田园之悠，眼前的农家与陶诗的意境交融，宁静而美好。'},
+      {title:'《坚持晨跑》', html:'冬天的清晨又黑又冷，被窝暖得让人不想起。可我想起<mark>"贵有恒，何必三更起五更眠"</mark>(名言本)，还是咬牙钻出了被窝。跑起来后，寒气渐消，<mark>身上像点着了一炉小火，越跑越暖</mark>(仿写好句)。', note:'名言点"贵在坚持"、比喻写"跑后之暖"，把晨跑的克服和畅快都写得真实有力。'},
+      {title:'《雨中的小蚂蚁》', html:'一场急雨，小蚂蚁<mark>被冲得东倒西歪，却仍死死抱住一片草叶</mark>。这让我想起<mark>"千磨万击还坚劲，任尔东西南北风"</mark>(古诗本)。这小小的生命<mark>像一位不肯低头的勇士，风雨越大，抓得越牢</mark>(仿写好句)。', note:'古诗点"坚劲不屈"、比喻塑"勇士"形象，借一只小蚂蚁写出坚韧，以小见大。'},
+      {title:'《学做家务》', html:'我第一次学叠被子，怎么弄都皱巴巴的。奶奶笑着说:<mark>"万事开头难"</mark>(谚语本)，让我别急。练了几天，被子终于叠得<mark>方方正正，像一块豆腐</mark>(仿写好句)，我心里美滋滋的。', note:'谚语点"开头难"之理、比喻写"叠得工整"，把学做家务的过程写得真实又有画面感。'},
+      {title:'《告别母校》', html:'毕业那天，望着熟悉的教学楼，鼻子一酸。那句<mark>"海内存知己，天涯若比邻"</mark>(古诗本)忽然涌上心头。六年的同窗情<mark>像一坛越陈越香的酒，藏在心底，历久弥新</mark>(仿写好句)。', note:'古诗点"知己长存"、比喻写"情谊如酒"，把离别的不舍和珍重写得深沉动人。'},
+      {title:'《一次演讲》', html:'上台前我紧张得手心冒汗，脑子一片空白。老师悄悄对我说:<mark>"艺高人胆大"</mark>(谚语本)，你准备得那么足，怕什么。这句话<mark>像一颗定心丸，让我一下子稳住了神</mark>(仿写好句)，最终讲得很顺利。', note:'谚语点"底气来自准备"、比喻写"定心之效"，把演讲前的紧张到镇定写得真切自然。'},
+    ],
+    3:[ /* 结构 */
+      {title:'《我的植物朋友》· 写物', html:'<p><mark>我的窗台上,住着一盆倔强的仙人掌。</mark><span class="anno">← 凤头:一句点出对象+特点</span></p><p>它<mark>浑身长满了刺</mark>,像一只竖起尖毛的小刺猬。别的花草几天不浇水就蔫了,它却<mark>半个月没喝水,依旧挺得笔直</mark>,连尖刺都透着一股不服输的劲儿。有一回我忘了它整整一个月,回来一看,它竟<mark>顶开硬壳,冒出了一朵嫩黄的小花</mark>。<span class="anno">← 猪肚:用具体细节把"倔强"写实</span></p><p><mark>原来最不起眼的坚持,也能开出让人惊讶的花。</mark><span class="anno">← 豹尾:由物及理,一句收住</span></p>', note:'同样的"凤头·猪肚·豹尾",套在"写物"上一样成立:开头立特点,中间用事例撑,结尾借物说理。'},
+      {title:'《难忘的一堂课》· 写事', html:'<p><mark>那节科学课,老师端来了一盆水和一个鸡蛋。</mark><span class="anno">← 凤头:设置悬念,让人想读</span></p><p>只见他把鸡蛋放进清水里,鸡蛋<mark>"咚"地沉到了盆底</mark>。接着他一勺一勺往水里加盐,教室里静得<mark>能听见搅拌的"沙沙"声</mark>。忽然,鸡蛋<mark>晃晃悠悠地浮了起来</mark>!同学们<mark>"哇"地一下叫出了声</mark>。老师笑着说:这就是浮力的秘密。<span class="anno">← 猪肚:按"沉→加盐→浮"的顺序详写最惊喜处</span></p><p><mark>原来科学不在课本里,就藏在这一盆盐水中。</mark><span class="anno">← 豹尾:回扣开头,点出收获</span></p>', note:'"猪肚"部分严格按时间顺序推进,把最惊奇的"鸡蛋浮起"写成高潮,详略分明。'},
+      {title:'《我的好朋友》· 写人', html:'<p><mark>我有一个爱笑的同桌,一笑起来眼睛就眯成了两条缝。</mark><span class="anno">← 凤头:抓住人物最鲜明的特点</span></p><p>她最爱帮人。有一次我忘带尺子,她<mark>二话不说把自己的折成两半,递给我一半</mark>。上次我摔破了膝盖,是她<mark>一路扶着我,慢慢挪到医务室</mark>,自己的鞋都跑掉了一只也顾不上。谁遇到难处,她总是<mark>第一个伸手</mark>。<span class="anno">← 猪肚:用两件具体的事把"爱帮人"写实</span></p><p><mark>有这样一个朋友,连阴天都觉得是晴的。</mark><span class="anno">← 豹尾:抒情收束,点出这份情谊</span></p>', note:'写人要"一人一事一特点":抓住"爱帮人"这个特点,用折尺子、扶人两件小事撑起来,人物就立住了。'},
+      {title:'《家乡的小河》· 写景', html:'<p><mark>我家门前有一条小河,一年四季都不肯闲着。</mark><span class="anno">← 凤头:总起,点出小河"一年四季"的特点</span></p><p>春天,河水<mark>叮咚叮咚,唱着刚化冻的歌</mark>;夏天,我们<mark>光着脚丫在里头摸鱼捉虾,笑声溅得满河都是</mark>;秋天,河面<mark>飘满了金黄的落叶,像铺了一层碎金</mark>;冬天,它<mark>结了厚厚的冰,成了我们天然的溜冰场</mark>。<span class="anno">← 猪肚:按春夏秋冬四季分层写景</span></p><p><mark>这条小河,盛着我一整个童年的欢乐。</mark><span class="anno">← 豹尾:由景及情,收束全篇</span></p>', note:'写景可按"四季"为序,一季一景一活动,层次清楚;结尾把景和情连起来,景就有了温度。'},
+      {title:'《记一次拔河比赛》· 写活动', html:'<p><mark>"加油!加油!"操场上的喊声,快把天都掀翻了。</mark><span class="anno">← 凤头:用现场的喊声开头,先声夺人</span></p><p>哨声一响,两队<mark>同时往后死命地拽</mark>。绳子<mark>绷得像根铁棍</mark>,我们<mark>脸憋得通红,青筋直冒</mark>,脚<mark>死死抵住地面,一寸一寸往回夺</mark>。眼看红布条就要过线,对方猛一发力,又被拉了回去,大家<mark>心都提到了嗓子眼</mark>。<span class="anno">← 猪肚:详写最激烈的拉锯瞬间</span></p><p><mark>虽然最后输了,可那股拧成一股绳的劲,我一辈子忘不了。</mark><span class="anno">← 豹尾:淡化输赢,升华到精神</span></p>', note:'写活动要抓住"最激烈的一刻"放慢写:绷绳、憋脸、抵脚,把紧张一层层铺满;结尾不写输赢,写感受,立意就高了。'},
+      {title:'《学骑自行车》· 写事', html:'<p><mark>那个暑假,我下定决心要学会骑自行车。</mark><span class="anno">← 凤头:交代事件+决心,简洁有力</span></p><p>一开始,车把<mark>像喝醉了酒,左右直晃</mark>,我刚蹬两下就<mark>"哐当"摔在地上</mark>,膝盖磨破了皮。爸爸在后头扶着,一遍遍喊"眼睛看前方"。我摔了七八回,终于有一次,<mark>爸爸悄悄松了手,车子竟稳稳地往前滑</mark>。风从耳边呼呼地过,我兴奋得大叫起来。<span class="anno">← 猪肚:按"晃倒→坚持→成功"顺序详写</span></p><p><mark>原来很多"不可能",只差一个咬牙坚持的自己。</mark><span class="anno">← 豹尾:由事及理,点出坚持的意义</span></p>', note:'把学骑车拆成"晃→摔→稳"三步,详写摔与稳的对比,过程感十足;结尾从一件小事悟出道理。'},
+      {title:'《我的爸爸》· 写人', html:'<p><mark>我的爸爸是个"手机迷",却也是个说到做到的人。</mark><span class="anno">← 凤头:用"矛盾"点出人物特点,引人好奇</span></p><p>他答应陪我去爬山,前一晚还熬夜赶工。第二天一早,他<mark>顶着两个黑眼圈,却准时把我从床上拎了起来</mark>。爬到半山我走不动了,他<mark>二话不说把我背在背上,一步一喘地往上挪</mark>,后背的汗把我的裤子都浸湿了。<span class="anno">← 猪肚:用背我上山的细节写"守信与爱"</span></p><p><mark>爸爸的爱,从不挂在嘴边,却全扛在肩上。</mark><span class="anno">← 豹尾:抒情收束,点出父爱</span></p>', note:'写人先立一个"矛盾"的特点(手机迷+守信),再用背我上山的细节推翻表面印象,人物就有了层次。'},
+      {title:'《校园的梧桐树》· 写景', html:'<p><mark>教学楼前,那棵老梧桐,是我们全班的老朋友。</mark><span class="anno">← 凤头:总起,把树写成"老朋友"</span></p><p>春天,它<mark>抽出嫩绿的新叶,像举起千万只小手</mark>;夏天,它<mark>撑开浓密的绿伞,给我们遮出一片阴凉</mark>;秋天,叶子<mark>黄了,打着旋儿落满一地,踩上去沙沙响</mark>;冬天,光秃秃的枝干<mark>顶着雪,静静地守着校园</mark>。<span class="anno">← 猪肚:按四季分层,写树的变化</span></p><p><mark>它站在那儿,看着一届届学生来了又走,像一位不说话的守望者。</mark><span class="anno">← 豹尾:拟人升华,点出陪伴与守望</span></p>', note:'同是四季写景,落点在"陪伴"上;结尾把树拟人成"守望者",立意就深了。'},
+      {title:'《一次做饭》· 写事', html:'<p><mark>妈妈生病了,今天的晚饭,我来做。</mark><span class="anno">← 凤头:交代起因,一句设下情境</span></p><p>我学着妈妈的样子淘米、切菜。切土豆时,刀<mark>在手里直打滑,切得大大小小</mark>。炒菜时,油一下锅就<mark>"噼啪"乱溅,吓得我直往后躲</mark>。手忙脚乱一通,饭菜<mark>虽然卖相难看,却总算端上了桌</mark>。妈妈尝了一口,眼圈红了。<span class="anno">← 猪肚:详写做饭的手忙脚乱</span></p><p><mark>这一顿饭我才懂,妈妈天天做的,原来这么不容易。</mark><span class="anno">← 豹尾:由事生情,懂得体谅</span></p>', note:'把做饭的笨拙过程写细(打滑、乱溅、卖相差),真实又有趣;结尾由己及人,体谅了妈妈。'},
+      {title:'《雨中的城市》· 写景', html:'<p><mark>一场大雨,把整座城市泡进了水墨里。</mark><span class="anno">← 凤头:用比喻总起,定下"水墨"的基调</span></p><p>街上<mark>五颜六色的伞,像开满了一河的花</mark>。车灯<mark>在湿漉漉的路面上拉出长长的光带</mark>,红的、黄的,晃动着,揉碎了。行人<mark>踮着脚,深一脚浅一脚地躲着水洼</mark>,却也有孩子故意<mark>"啪叽"踩进去,溅起一片水花</mark>。<span class="anno">← 猪肚:抓伞、车灯、行人三个画面细写</span></p><p><mark>雨中的城市,忙碌里藏着一点难得的浪漫。</mark><span class="anno">← 豹尾:点出雨城的独特韵味</span></p>', note:'写景不必写全城,抓伞、车灯、行人三个镜头就够;结尾点出"忙碌里的浪漫",景中含情。'},
+      {title:'《我的老师》· 写人', html:'<p><mark>我们的语文老师,有一双会"说话"的眼睛。</mark><span class="anno">← 凤头:抓住"会说话的眼睛"这一特征</span></p><p>我们做小动作,她<mark>不出声,只把目光轻轻一扫,教室立刻安静了</mark>。谁答对了难题,她的眼睛<mark>会亮起来,像藏着两颗星星</mark>。有回我考砸了不敢抬头,她走过来,<mark>那眼神里没有责备,只有"别怕,再来一次"</mark>。<span class="anno">← 猪肚:用三个场景写眼睛的不同神情</span></p><p><mark>那双眼睛,比任何话都更懂我们。</mark><span class="anno">← 豹尾:收束,点出这份默契</span></p>', note:'写人可"抓一个特征放大写":只写"眼睛",却写出了严厉、欣喜、鼓励三种情境,以点带面。'},
+      {title:'《难忘的运动会》· 写活动', html:'<p><mark>一年一度的运动会,终于在同学们的欢呼里拉开了帷幕。</mark><span class="anno">← 凤头:总起,点明运动会开幕</span></p><p>最激动人心的是接力赛。发令枪一响,第一棒<mark>像离弦的箭冲了出去</mark>。交棒时<mark>差点掉棒,全场"啊"地惊呼</mark>。轮到最后一棒的小明,他<mark>咬紧牙关,把对手一个个甩在身后</mark>,冲线的瞬间,我们全班<mark>跳起来抱作一团</mark>。<span class="anno">← 猪肚:聚焦接力赛,详写最紧张的一棒</span></p><p><mark>名次早已忘了,可那一起呐喊的下午,永远留在了记忆里。</mark><span class="anno">← 豹尾:淡化输赢,留住情谊</span></p>', note:'活动那么多,只详写"接力赛"一个高潮,其余略过;结尾淡化名次、重情谊,立意更高。'},
+      {title:'《我家的小狗》· 写物', html:'<p><mark>我家养了一只叫"豆豆"的小狗,是个十足的"小馋鬼"。</mark><span class="anno">← 凤头:一句点出对象+特点"馋"</span></p><p>每到饭点,它就<mark>蹲在桌边,眼巴巴地盯着我的碗,口水都快滴下来了</mark>。你若假装没看见,它便<mark>用爪子轻轻扒你的裤脚,呜呜地撒娇</mark>。有回我把肉骨头藏起来,它竟<mark>满屋子嗅,愣是从沙发底下把它翻了出来</mark>。<span class="anno">← 猪肚:用三个细节把"馋"写得活灵活现</span></p><p><mark>有了豆豆,家里的每个角落都多了一份闹腾的欢喜。</mark><span class="anno">← 豹尾:抒情收束,点出陪伴之乐</span></p>', note:'写小动物抓一个特点"馋",用蹲守、撒娇、翻找三个细节写足;结尾抒情,点出它带来的快乐。'},
+      {title:'《拜访敬老院》· 写事', html:'<p><mark>重阳节那天,我们去敬老院看望老人。</mark><span class="anno">← 凤头:交代时间+事件</span></p><p>一位白发奶奶拉着我的手,<mark>絮絮地讲她年轻时的事,眼睛湿润润的</mark>。我们给老人们<mark>唱歌、捶背、剪指甲</mark>,一位爷爷<mark>笑得满脸的皱纹都舒展开了</mark>。临走时,奶奶<mark>一直把我们送到门口,挥手挥了好久</mark>。<span class="anno">← 猪肚:按"倾听→服务→告别"写探访过程</span></p><p><mark>原来陪伴,就是给孤单的人送去的最好的礼物。</mark><span class="anno">← 豹尾:由事及理,点出陪伴的价值</span></p>', note:'把探访拆成"倾听→服务→告别"三步,细节真挚;结尾点出"陪伴"的意义,主题鲜明。'},
+      {title:'《秋天的果园》· 写景', html:'<p><mark>秋天一到,爷爷的果园就成了一幅丰收的画。</mark><span class="anno">← 凤头:总起,把果园比作"丰收的画"</span></p><p>苹果<mark>红扑扑的,像挂满了一树的小灯笼</mark>;梨子<mark>沉甸甸地压弯了枝,黄澄澄地泛着光</mark>;葡萄架下,<mark>一串串紫玛瑙似的果子,水灵灵地垂着</mark>。风一吹,<mark>满园的果香直往鼻子里钻</mark>,引得人直咽口水。<span class="anno">← 猪肚:分写三种果实的色、形、香</span></p><p><mark>这满园的甜,是爷爷一年辛劳换来的。</mark><span class="anno">← 豹尾:由景及人,点出劳动的甜</span></p>', note:'写景抓苹果、梨、葡萄三种果实,颜色形状各不同;结尾把景和"爷爷的辛劳"连起来,含情。'},
+      {title:'《一次误会》· 写事', html:'<p><mark>我一直以为,同桌小雨偷了我的橡皮。</mark><span class="anno">← 凤头:直接抛出误会,制造悬念</span></p><p>那天橡皮不见了,我<mark>一口咬定是她拿的,还赌气一整天不理她</mark>。她<mark>红着眼圈解释,我却半个字也听不进去</mark>。放学收拾书包时,那块橡皮<mark>竟从我自己的文具盒夹层里滚了出来</mark>。我的脸一下子烧了起来。<span class="anno">← 猪肚:写错怪、僵持到真相大白</span></p><p><mark>原来最伤人的,往往不是错误本身,而是不肯听人解释的固执。</mark><span class="anno">← 豹尾:自我反省,点出教训</span></p>', note:'误会类作文,要把"错怪→僵持→真相"写清;结尾反省自己,立意就有了深度。'},
+      {title:'《冬日的雪景》· 写景', html:'<p><mark>一夜北风,把整个世界裹进了银装。</mark><span class="anno">← 凤头:总起,点出大雪后的银装</span></p><p>推开门,<mark>屋顶、树梢、大地,全盖上了厚厚的白棉被</mark>。松树<mark>压着雪,枝丫弯成了一道道弓</mark>。孩子们<mark>在雪地里堆雪人、打雪仗,笑声在冷空气里格外清脆</mark>。远处的山,<mark>白得像一幅淡淡的水墨画</mark>。<span class="anno">← 猪肚:由近及远,分层写雪景</span></p><p><mark>这银白的世界,把大人小孩的心都染得洁净又欢喜。</mark><span class="anno">← 豹尾:由景及情,写心境</span></p>', note:'写雪景由近及远(屋顶→松树→孩子→远山),层次分明;结尾写"心的洁净",情景交融。'},
+      {title:'《我的奶奶》· 写人', html:'<p><mark>我的奶奶,是个闲不住的"劳模"。</mark><span class="anno">← 凤头:抓住"闲不住"的特点</span></p><p>天不亮她就<mark>起来扫院子,竹扫帚"唰唰"地响</mark>。白天,她<mark>不是在择菜,就是在纳鞋底,手一刻也停不下来</mark>。我劝她歇歇,她总说"闲着骨头疼"。有回她<mark>累得靠在椅子上打盹,手里还攥着没缝完的针线</mark>。<span class="anno">← 猪肚:用三个劳作细节写"勤劳"</span></p><p><mark>奶奶的勤劳,像院里那口老井,默默地滋养着我们一家。</mark><span class="anno">← 豹尾:比喻升华,写奶奶对家的付出</span></p>', note:'抓"闲不住"这个特点,用扫院、择菜、打盹攥针线三个细节写实;结尾比喻收束,深情。'},
+      {title:'《记一次春游》· 写活动', html:'<p><mark>盼了整整一学期,春游的日子终于到了。</mark><span class="anno">← 凤头:交代盼望已久,引出春游</span></p><p>一到目的地,同学们<mark>像出笼的小鸟,撒了欢地跑</mark>。我们<mark>在草地上放风筝,线越放越长,风筝小成了一个点</mark>。午饭时,大家<mark>把零食摊了一地,你尝我的,我尝你的,吃得满嘴都是</mark>。回程的车上,<mark>不少人靠着窗户睡着了,嘴角还挂着笑</mark>。<span class="anno">← 猪肚:按时间顺序写春游的几个片段</span></p><p><mark>一次春游,把我们班的心贴得更近了。</mark><span class="anno">← 豹尾:收束,点出集体的温暖</span></p>', note:'写活动按"到达→放风筝→野餐→返程"的时间线,详略有致;结尾点出"心贴近了",升华情谊。'},
+      {title:'《台灯》· 写物', html:'<p><mark>我的书桌上,有一盏陪了我四年的旧台灯。</mark><span class="anno">← 凤头:点出对象+"陪伴四年"的特点</span></p><p>它的<mark>灯罩早已泛黄,底座还留着我小时候贴的卡通贴纸</mark>。每晚我做作业,它就<mark>洒下一圈暖黄的光,把我的影子稳稳地贴在墙上</mark>。有回停电,我摸黑找它,<mark>它"啪"地亮起来,像一句"别怕,我在"</mark>。<span class="anno">← 猪肚:用外观和使用细节写"陪伴"</span></p><p><mark>一盏小小的台灯,照亮的何止是书本,还有我一个个用功的夜晚。</mark><span class="anno">← 豹尾:由物及情,点出台灯的意义</span></p>', note:'写物赋予情感:泛黄、贴纸写岁月,暖光、停电写陪伴;结尾由物及情,温暖收束。'},
+      {title:'《难忘的中秋》· 写事', html:'<p><mark>那年的中秋,是我过得最难忘的一次。</mark><span class="anno">← 凤头:总起，点出难忘</span></p><p>一家人搬了桌椅到院里赏月。月亮<mark>又大又圆,像一个金黄的玉盘挂在天上</mark>。奶奶<mark>切开月饼,一人分一角,甜甜的豆沙馅粘在嘴角</mark>。爷爷<mark>讲起嫦娥奔月的老故事,我们听得入了迷</mark>。忽然一片云飘过,月亮<mark>像躲进了纱帐,又羞答答地探出脸</mark>。<span class="anno">← 猪肚:按顺序写赏月的几个温馨片段</span></p><p><mark>那一晚的月，那一家人的笑，是我心里最圆满的一个夜晚。</mark><span class="anno">← 豹尾:由景及情，点出团圆之美</span></p>', note:'按"赏月→分饼→讲故事→云遮月"的顺序写，画面连贯；结尾把"月圆"与"人圆"合在一起，主题就升华了。'},
+      {title:'《校园的花坛》· 写景', html:'<p><mark>走进校门，第一眼看见的，就是那个四季不空的花坛。</mark><span class="anno">← 凤头:总起，点出"四季不空"</span></p><p>春天，<mark>迎春花率先探出金黄的小喇叭</mark>;夏天，<mark>月季开得热热闹闹，红的、粉的挤成一团</mark>;秋天，<mark>菊花不甘示弱，一丛丛地怒放</mark>;冬天，<mark>唯有那株腊梅，在寒风里悄悄吐出暗香</mark>。<span class="anno">← 猪肚:按四季写不同的花</span></p><p><mark>这小小的花坛，把四季的美都收在了校园的一角。</mark><span class="anno">← 豹尾:收束，赞花坛之美</span></p>', note:'按四季写花，一季一花，各有姿态；结尾收束，点出花坛的意义，结构工整。'},
+      {title:'《一次登山》· 写事', html:'<p><mark>国庆假期，爸爸带我去爬香山。</mark><span class="anno">← 凤头:交代事件，简洁引入</span></p><p>起初我<mark>蹦蹦跳跳，一口气冲在最前面</mark>。可爬到半山，腿就<mark>像灌了铅，每挪一步都直喘</mark>。我几次想打退堂鼓，爸爸<mark>在旁边不催不劝，只默默陪我慢慢走</mark>。终于登顶，<mark>满山的红叶像一片火海，铺到了天边</mark>，一路的累，全值了。<span class="anno">← 猪肚:写登山情绪的起伏变化</span></p><p><mark>原来最好的风景，总是留给不肯半途下山的人。</mark><span class="anno">← 豹尾:借登顶所见，悟出道理</span></p>', note:'把登山的"冲劲→乏力→坚持→登顶"写出起伏；结尾借景悟理，收束有力。'},
+      {title:'《我的同桌》· 写人', html:'<p><mark>我的同桌是个不折不扣的"小书虫"。</mark><span class="anno">← 凤头:抓住"小书虫"的特点</span></p><p>下课铃一响，别人都往外冲，他<mark>却一头扎进书里，连喊他三声都听不见</mark>。有回上厕所，他<mark>竟捧着书边走边看，差点撞上门框</mark>。他的书包里<mark>永远塞着两三本课外书，鼓鼓囊囊的</mark>。问他好在哪，他两眼放光:"里头的世界大着呢!"<span class="anno">← 猪肚:用三个细节写他的痴迷</span></p><p><mark>正是这份痴迷，让他的作文总能写出别人写不出的东西。</mark><span class="anno">← 豹尾:收束，点出读书的好处</span></p>', note:'抓"书虫"这个特点，用听不见、撞门框、鼓书包三个细节写足；结尾点出读书之益。'},
+      {title:'《清晨的菜市场》· 写景', html:'<p><mark>天刚亮，菜市场就先醒了过来。</mark><span class="anno">← 凤头:拟人开头，点出菜市场的"醒"</span></p><p>摊上的青菜<mark>还挂着水珠，绿得发亮</mark>；鱼摊里，<mark>活鱼"啪啪"地甩着尾巴，溅得人一身水</mark>；卖豆腐的大叔<mark>一声声吆喝，白气从他嘴里直冒</mark>。买菜的人<mark>你来我往，讨价还价声此起彼伏</mark>，热闹得很。<span class="anno">← 猪肚:抓几个镜头写市场的热闹</span></p><p><mark>这一方小小的菜市场，藏着一座城市最鲜活的清晨。</mark><span class="anno">← 豹尾:以小见大，收束全篇</span></p>', note:'抓青菜、鱼、豆腐、人群几个镜头写"鲜活"；结尾点出菜市场之于城市的意义，以小见大。'},
+      {title:'《一场大扫除》· 写活动', html:'<p><mark>学期末的大扫除，全班都卷起了袖子。</mark><span class="anno">← 凤头:交代事件，引出大扫除</span></p><p>同学们<mark>有的擦玻璃，有的拖地，有的踮着脚够天花板的灰</mark>。小胖<mark>提水时脚下一滑，"哗"地泼了自己一裤腿，逗得大家哈哈大笑</mark>。忙了一下午，<mark>玻璃亮得能照出人影，地板拖得能当镜子</mark>。大家累得瘫在座位上，却笑个不停。<span class="anno">← 猪肚:写分工、趣事和成果</span></p><p><mark>一间干净的教室背后，是全班拧成一股绳的默契。</mark><span class="anno">← 豹尾:收束，点出集体的默契</span></p>', note:'写活动抓分工、趣事(泼水)、成果三层；结尾点"默契"，把劳动写出了集体的味道。'},
+      {title:'《我的书包》· 写物', html:'<p><mark>我的书包，是个装满了"秘密"的百宝箱。</mark><span class="anno">← 凤头:把书包比作"百宝箱"，引人好奇</span></p><p>打开它，<mark>课本、作业本码得整整齐齐</mark>，侧袋里<mark>塞着一瓶总也喝不完的水</mark>。最底下的夹层，藏着<mark>我偷偷收集的贴纸和一支妈妈送的钢笔</mark>。它的<mark>肩带早被磨得发白，拉链也换过一回</mark>，却依旧结实地陪我上下学。<span class="anno">← 猪肚:由外到内，写书包里的物件</span></p><p><mark>这只旧书包，背着的是我一天天长大的日子。</mark><span class="anno">← 豹尾:由物及情，点出成长</span></p>', note:'写物由外到内，从整齐的书本写到藏着的小秘密；结尾由物及"成长"，情感自然。'},
+      {title:'《雨后的公园》· 写景', html:'<p><mark>一场雨过后，公园像被洗过一样清新。</mark><span class="anno">← 凤头:总起，点出雨后的"清新"</span></p><p>树叶<mark>绿得发亮，叶尖还挂着颤巍巍的水珠</mark>；小路上，<mark>积着一个个亮晶晶的小水洼，倒映着蓝天</mark>；蜗牛<mark>慢悠悠地爬过石阶，留下一道亮亮的痕</mark>；空气里，<mark>满是泥土和青草的清香</mark>。<span class="anno">← 猪肚:抓几个细节写雨后之景</span></p><p><mark>雨后的公园，把整个夏天都洗得干干净净。</mark><span class="anno">← 豹尾:一句收束，点出清新之感</span></p>', note:'抓树叶、水洼、蜗牛、空气几个细节写"清新"；结尾一句收束，景中含情，干净利落。'},
+      {title:'《一次做实验》· 写事', html:'<p><mark>科学课上，老师让我们亲手做一个"火山喷发"的小实验。</mark><span class="anno">← 凤头:交代事件，引出实验</span></p><p>我先<mark>在瓶子里倒进小苏打，又滴了几滴红墨水</mark>。同桌屏着气，把醋<mark>慢慢地往里倒</mark>。刹那间，<mark>瓶口"咕嘟咕嘟"冒出大团红色的泡沫，像岩浆一样翻涌着溢了出来</mark>!我们<mark>"哇"地叫出了声，眼睛瞪得溜圆</mark>。<span class="anno">← 猪肚:按步骤写，详写"喷发"高潮</span></p><p><mark>原来奇妙的科学，就藏在这一瓶小苏打和醋里。</mark><span class="anno">← 豹尾:由事悟理，赞科学之奇</span></p>', note:'把实验拆成"准备→倒醋→喷发"三步，详写最惊奇的喷发瞬间；结尾点出科学之趣。'},
+      {title:'《我的妹妹》· 写人', html:'<p><mark>我有一个爱哭又爱笑的妹妹，是家里的"晴雨表"。</mark><span class="anno">← 凤头:抓住"晴雨表"的特点</span></p><p>她<mark>说哭就哭，前一秒还咧着嘴，后一秒眼泪就"啪嗒"掉下来</mark>。可你只要<mark>做个鬼脸，她立刻又"扑哧"笑出了声，泪珠还挂在腮上</mark>。有回她抢我的零食，我逗她，她<mark>气得跺脚，转眼却被我的鬼脸逗得直乐</mark>。<span class="anno">← 猪肚:用哭笑转换的细节写活</span></p><p><mark>有了这个"晴雨表"，家里从来不缺笑声。</mark><span class="anno">← 豹尾:收束，点出她带来的快乐</span></p>', note:'抓"爱哭又爱笑"的反差，用哭笑瞬间的转换写活；结尾点出她给家带来的欢乐。'},
+      {title:'《家乡的小巷》· 写景', html:'<p><mark>我家住在一条窄窄的老巷子里，那是我最熟悉的地方。</mark><span class="anno">← 凤头:总起，点出小巷的"熟悉"</span></p><p>巷子<mark>两旁是斑驳的青砖墙，墙缝里钻出几丛倔强的野草</mark>。清晨，<mark>石板路被水一冲，油亮油亮的</mark>；傍晚，<mark>家家飘出饭菜香，还夹着谁家收音机咿呀的戏</mark>。放学时，我<mark>踩着自己的影子，一路数着门牌回家</mark>。<span class="anno">← 猪肚:一早一晚，写小巷的生活气</span></p><p><mark>这条不起眼的小巷，装着我全部的童年。</mark><span class="anno">← 豹尾:抒情，点出小巷承载的童年</span></p>', note:'写景抓青砖、石板、饭香、影子几个细节，一早一晚，写出生活气；结尾抒情收束。'},
+      {title:'《一次比赛失利》· 写事', html:'<p><mark>那场跳绳比赛，我输得心服口服。</mark><span class="anno">← 凤头:开门见山，点出失利</span></p><p>轮到我时，我<mark>攥着绳子，手心全是汗</mark>。刚跳到一半，脚<mark>"啪"地绊住了绳子，摔了个趔趄</mark>。台下一片惋惜声，我<mark>脸涨得通红，恨不得钻进地缝</mark>。对手却跳得又快又稳，<mark>绳子甩得"呼呼"响，像一道看不清的圈</mark>。<span class="anno">← 猪肚:写自己的窘态与对手的强</span></p><p><mark>这次失利让我明白:没有平日的苦练，赛场上就没有底气。</mark><span class="anno">← 豹尾:由败悟理，点出教训</span></p>', note:'写失利要如实写窘态(绊倒、脸红)，再写对手之强作衬；结尾反省，把失败写出了收获。'},
+      {title:'《冬天的早晨》· 写景', html:'<p><mark>冬天的早晨，总是来得又冷又晚。</mark><span class="anno">← 凤头:总起，点出冬晨"冷又晚"</span></p><p>天还<mark>灰蒙蒙的，窗玻璃上结了一层细密的冰花</mark>。院子里，<mark>水缸边上冻出了一圈薄冰</mark>。人们<mark>缩着脖子，呼出的白气一团接一团</mark>。太阳<mark>好不容易爬上墙头，却只有光，没多少暖</mark>。<span class="anno">← 猪肚:抓细节层层写"冷"</span></p><p><mark>越是这样的清晨，越显得被窝和热粥格外珍贵。</mark><span class="anno">← 豹尾:反衬收束，点出温暖之可贵</span></p>', note:'抓冰花、薄冰、白气、无暖的太阳几个细节写"冷"；结尾用被窝、热粥反衬，情味十足。'},
+      {title:'《我的哥哥》· 写人', html:'<p><mark>我的哥哥，是个说话不多、却总在关键时刻靠得住的人。</mark><span class="anno">← 凤头:抓住"沉默却可靠"的特点</span></p><p>我被高年级同学欺负，是他<mark>二话不说挡在我身前，把人劝了回去</mark>。我数学题不会，他<mark>一遍讲不懂就讲两遍，从不嫌我笨</mark>。有回我半夜发烧，是他<mark>背着我，一路小跑去了医院</mark>，自己的鞋都跑丢了。<span class="anno">← 猪肚:用三件小事写"可靠"</span></p><p><mark>哥哥的爱，从不说，却总在我最需要的时候，稳稳地接住我。</mark><span class="anno">← 豹尾:抒情收束，点出手足深情</span></p>', note:'抓"沉默却可靠"的特点，用护弟、讲题、背弟三件事写实；结尾抒情，写出手足情。'},
+      {title:'《校园的早晨》· 写景', html:'<p><mark>清晨的校园，是从一声清脆的铃声里醒来的。</mark><span class="anno">← 凤头:以铃声起笔，点出校园的"醒"</span></p><p>操场上，<mark>晨跑的同学呼哧呼哧地喘，脚步声"嗒嗒"连成一片</mark>。教室里，<mark>朗朗的读书声一浪高过一浪</mark>。花坛边，<mark>值日生弯着腰，把落叶一片片扫进簸箕</mark>。第一缕阳光，<mark>正悄悄爬上教学楼的墙</mark>。<span class="anno">← 猪肚:抓几个镜头写清晨的生机</span></p><p><mark>这生机勃勃的清晨，是校园里最动人的一幕。</mark><span class="anno">← 豹尾:收束，赞校园清晨之美</span></p>', note:'抓晨跑、读书、值日、阳光几个镜头写"生机"；结尾收束，点出清晨之美。'},
+      {title:'《一次难忘的旅行》· 写事', html:'<p><mark>暑假，我们全家去了一趟海边，那是我第一次见到大海。</mark><span class="anno">← 凤头:交代事件，点出"第一次"</span></p><p>刚下车，<mark>咸咸的海风就扑了满脸</mark>。我飞奔到沙滩，<mark>脱了鞋踩进浪里，凉丝丝的海水漫过脚踝</mark>。远处，<mark>海天连成一线，蓝得让人分不清哪是海哪是天</mark>。我<mark>捡了满满一口袋的贝壳，舍不得丢掉一个</mark>。<span class="anno">← 猪肚:按顺序写初见大海的惊喜</span></p><p><mark>大海的辽阔，让我第一次觉得，这世界原来这么大。</mark><span class="anno">← 豹尾:由景生情，写辽阔的感悟</span></p>', note:'按"下车→踩浪→远眺→拾贝"的顺序写初见大海的惊喜；结尾由景生"世界之大"的感悟。'},
+      {title:'《我家的阳台》· 写景', html:'<p><mark>我家的阳台，是一个小小的、绿意盎然的花园。</mark><span class="anno">← 凤头:总起，把阳台比作"小花园"</span></p><p>栏杆上，<mark>吊兰垂下长长的叶子，随风轻轻摇</mark>；角落里，<mark>一盆绿萝爬满了半面墙</mark>；最惹眼的是那盆月季，<mark>开起花来，一朵挨着一朵，红得像团火</mark>。清晨，<mark>阳光斜斜地照进来，给每片叶子都镶了道金边</mark>。<span class="anno">← 猪肚:分写阳台上的几种植物和光</span></p><p><mark>这方小小的阳台，是我们家一年四季不谢的春天。</mark><span class="anno">← 豹尾:一句收束，点出阳台之美</span></p>', note:'写景抓吊兰、绿萝、月季、阳光几个细节，由物到光，层次清楚；结尾一句收束，情景相融。'},
+      {title:'《一次帮忙》· 写事', html:'<p><mark>那天放学，我在楼道里遇到了搬不动东西的张奶奶。</mark><span class="anno">← 凤头:交代事件的起因</span></p><p>她<mark>拎着一大袋米，累得直喘气，一步一挪</mark>。我赶紧跑过去，<mark>接过袋子，一把扛上了肩</mark>。米袋压得我<mark>直不起腰，一层层楼爬得腿发软</mark>，可听着奶奶在后头一声声道谢，我<mark>心里比吃了蜜还甜</mark>。<span class="anno">← 猪肚:如实写搬米的"累"</span></p><p><mark>原来帮助别人，累的是身子，暖的却是自己的心。</mark><span class="anno">← 豹尾:由事悟理，点出助人之乐</span></p>', note:'把帮忙拆成"遇到→接过→搬运"三步，如实写"累"；结尾点出助人之乐，真挚不空。'},
+      {title:'《秋天的公园》· 写景', html:'<p><mark>秋天，公园换上了一身金黄的新衣。</mark><span class="anno">← 凤头:拟人开头，点出秋的"新衣"</span></p><p>银杏叶<mark>黄澄澄的，风一吹，打着旋儿飘下来，像一场金色的雨</mark>；枫叶<mark>红得像火，一团团、一簇簇</mark>；湖面上，<mark>飘着几片落叶，像小小的船</mark>。走在小路上，<mark>脚下的落叶"沙沙"响，踩上去软软的</mark>。<span class="anno">← 猪肚:抓几个镜头写秋色</span></p><p><mark>秋天的公园，把一年里最灿烂的颜色，都留在了这里。</mark><span class="anno">← 豹尾:收束，赞秋之灿烂</span></p>', note:'抓银杏、枫叶、湖面、落叶几个镜头写"金黄"；结尾收束，点出秋之灿烂，画面感强。'},
+      {title:'《我的语文老师》· 写人', html:'<p><mark>我们的语文老师，讲起课来像会"变魔术"。</mark><span class="anno">← 凤头:抓住"讲课像变魔术"的特点</span></p><p>讲到欢喜处，她<mark>手舞足蹈，声音也亮了起来</mark>；讲到悲伤处，她<mark>放低声音，眼里竟泛起了泪光</mark>。有回读一篇写母亲的文章，她<mark>读着读着哽咽了，全班都跟着红了眼眶</mark>。她总说:"作文，要写到人心里去。"<span class="anno">← 猪肚:用两个场景写她的感染力</span></p><p><mark>正是她，让我第一次爱上了文字里藏着的温度。</mark><span class="anno">← 豹尾:收束，点出她对我的影响</span></p>', note:'抓"讲课有感染力"的特点，用手舞足蹈、哽咽两个场景写活；结尾点出她对我的影响。'},
+      {title:'《雨天的窗》· 写景', html:'<p><mark>下雨天，我最爱趴在窗前，看雨在玻璃上画画。</mark><span class="anno">← 凤头:总起，点出爱看"雨画画"</span></p><p>雨点<mark>"啪嗒啪嗒"打在窗上，聚成一颗颗晶莹的水珠</mark>。水珠<mark>越聚越大，忽然"哧溜"一下，拖着长长的尾巴滑下去</mark>。窗外，<mark>树影朦朦胧胧，远处的楼都被雨雾糊成了一片</mark>。屋里，<mark>暖暖的，只有雨声"沙沙"地陪着我</mark>。<span class="anno">← 猪肚:细写雨珠与窗内外之景</span></p><p><mark>这样的雨天，最适合安安静静地，把心也洗一洗。</mark><span class="anno">← 豹尾:由景写心，点出宁静之美</span></p>', note:'抓雨点、水珠、窗外、屋内几个细节写"静谧"；结尾由景写"洗心"，含蓄有韵味。'},
+      {title:'《一次义卖活动》· 写活动', html:'<p><mark>学校组织的爱心义卖，把操场变成了热闹的集市。</mark><span class="anno">← 凤头:总起，把义卖比作"集市"</span></p><p>同学们<mark>吆喝着推销自己的旧书、玩具，比谁的嗓门大</mark>。有个摊位<mark>挂出"买一送一"的牌子，一下子围满了人</mark>。我把攒的零花钱<mark>全买了义卖品，还捐进了募捐箱</mark>。活动结束，<mark>看着满满一箱善款，大家的脸上都乐开了花</mark>。<span class="anno">← 猪肚:抓几个镜头写义卖的热闹</span></p><p><mark>原来一点点小小的爱心汇在一起，也能变成暖人的大河。</mark><span class="anno">← 豹尾:以小见大，点出爱心的力量</span></p>', note:'写活动抓吆喝、抢购、捐款、成果几个镜头，热闹有序；结尾点出爱心的意义，以小见大。'},
+      {title:'《我的文具盒》· 写物', html:'<p><mark>我的文具盒，是个"小小的军营"。</mark><span class="anno">← 凤头:把文具盒比作"军营"，引人兴趣</span></p><p>打开盖子，<mark>铅笔们像列队的士兵，整整齐齐地躺着</mark>。橡皮<mark>缺了一个角，那是上次改错字啃的</mark>。尺子上，<mark>还留着我用蓝笔画的小刻度</mark>。它<mark>陪我度过了一次次考试，盒盖上的图案都磨得快看不清了</mark>。<span class="anno">← 猪肚:分写文具，赋予情感</span></p><p><mark>这只小小的文具盒，装着我一天天用功的痕迹。</mark><span class="anno">← 豹尾:由物及情，点出用功的痕迹</span></p>', note:'写物用"军营"作比，把文具拟成士兵，生动有趣；结尾由物及"用功"，情感自然。'},
+      {title:'《清晨的海边》· 写景', html:'<p><mark>天刚蒙蒙亮，我就跑到了海边，等着看日出。</mark><span class="anno">← 凤头:交代时间地点，引出看日出</span></p><p>起初，海天<mark>还是一片灰蒙蒙</mark>。渐渐地，<mark>东边泛出一抹鱼肚白，又染上了浅浅的红</mark>。忽然，<mark>一轮红日"腾"地跃出海面，把整片海都点燃了</mark>。海浪<mark>一波波镀上了金光，"哗哗"地拍打着礁石</mark>。<span class="anno">← 猪肚:按顺序写日出的动态变化</span></p><p><mark>看着这壮丽的日出，我觉得新的一天，充满了希望。</mark><span class="anno">← 豹尾:由景生情，点出希望</span></p>', note:'按"灰蒙→泛白→跃出→镀金"的顺序写日出，层层推进；结尾由景生"希望"，昂扬有力。'},
+      {title:'《一次难忘的教训》· 写事', html:'<p><mark>那次因为贪玩没复习，我的数学考砸了。</mark><span class="anno">← 凤头:交代事件的起因</span></p><p>试卷发下来，<mark>那个刺眼的分数，像针一样扎着我的眼睛</mark>。回家的路上，<mark>我攥着卷子，脚步沉得像灌了铅</mark>。妈妈没有责骂，只<mark>轻轻说了句"下次早点准备"，反倒让我更难受</mark>。那一晚，我<mark>把错题一道道抄了下来，抄到很晚</mark>。<span class="anno">← 猪肚:写考砸后的懊悔与反省</span></p><p><mark>这次教训让我懂得:侥幸心理，是学习路上最大的绊脚石。</mark><span class="anno">← 豹尾:由事悟理，点出教训</span></p>', note:'写教训要如实写窘迫与懊悔(刺眼的分数、沉重的脚步)；结尾反省，把失败写成成长。'},
+      {title:'《校园的操场》· 写景', html:'<p><mark>我们的操场，是全校最热闹的地方。</mark><span class="anno">← 凤头:总起，点出操场的"热闹"</span></p><p>课间，<mark>同学们像撒欢的小马，在跑道上追追打打</mark>；体育课上，<mark>篮球"砰砰"地拍，足球被踢得满场飞</mark>；运动会时，<mark>加油声、哨声、脚步声，把操场变成了欢乐的海洋</mark>。傍晚，<mark>夕阳把整个操场染成了暖橙色，安静得只剩下风声</mark>。<span class="anno">← 猪肚:按不同时段写操场的动静</span></p><p><mark>这片操场，盛满了我们跑跳嬉闹的欢乐时光。</mark><span class="anno">← 豹尾:抒情，点出操场承载的快乐</span></p>', note:'写景抓课间、体育课、运动会、傍晚四个时段，一动一静；结尾抒情收束，情景交融。'},
+      {title:'《我的外公》· 写人', html:'<p><mark>我的外公，是个爱下棋的"老顽童"。</mark><span class="anno">← 凤头:抓住"老顽童"的特点</span></p><p>一摆开棋盘，他就<mark>眉头紧锁，半天不落一子</mark>。赢了棋，他<mark>笑得像个孩子，胡子都翘了起来</mark>；输了，就<mark>嚷着"再来一盘"，非扳回来不可</mark>。有回和我对弈，他<mark>故意走错一步，又装作没看见，让我赢了</mark>，末了却偷偷冲我眨眼。<span class="anno">← 猪肚:用下棋的几个细节写活</span></p><p><mark>外公的棋盘上，落着的哪是棋子，分明是他满满的疼爱。</mark><span class="anno">← 豹尾:收束，点破外公的疼爱</span></p>', note:'抓"老顽童"的特点，用凝神、赢笑、输闹、让棋几个细节写活；结尾点破那份疼爱。'},
+      {title:'《春天的雨》· 写景', html:'<p><mark>春天的雨，总是来得又轻又柔。</mark><span class="anno">← 凤头:总起，点出春雨"轻又柔"</span></p><p>它<mark>细得像牛毛，密得像绣花针，悄没声地下</mark>。落在田里，<mark>秧苗喝饱了水，绿得发亮</mark>；落在枝头，<mark>桃花含着水珠，越发娇艳</mark>；落在人脸上，<mark>凉丝丝、痒酥酥的，一点也不恼人</mark>。<span class="anno">← 猪肚:写雨落各处的不同样子</span></p><p><mark>这一场好雨，把整个春天都催得绿意盎然。</mark><span class="anno">← 豹尾:收束，点出春雨的作用</span></p>', note:'抓雨的形态和它落在田、花、脸上的样子写"柔"；结尾点出春雨催绿的作用，收束自然。'},
+      {title:'《一次班会》· 写活动', html:'<p><mark>那次以"感恩"为主题的班会，让全班都红了眼眶。</mark><span class="anno">← 凤头:总起，点出班会"让人红了眼眶"</span></p><p>主持人<mark>播放了一段父母日常的视频，教室里渐渐安静下来</mark>。轮到小丽发言，她<mark>讲着讲着就哽咽了，说不出话</mark>。老师<mark>让我们给爸妈写一句心里话，好多人写着写着落了泪</mark>。班会结束时，<mark>大家都默默地把纸条叠好，小心收进了口袋</mark>。<span class="anno">← 猪肚:按环节写班会的动人之处</span></p><p><mark>那节班会没讲什么大道理，却让"感恩"两个字，悄悄住进了我们心里。</mark><span class="anno">← 豹尾:收束，点出"感恩"入心</span></p>', note:'写班会抓视频、发言、写心里话几个环节，情绪层层递进；结尾点出主题，含蓄动人。'},
+      {title:'《我家的书房》· 写景', html:'<p><mark>我家最安静的地方，是那间不大的书房。</mark><span class="anno">← 凤头:总起，点出书房的"安静"</span></p><p>靠墙的<mark>书架从地板顶到天花板，塞得满满当当</mark>。窗边摆着一张旧书桌，<mark>桌上的台灯洒下一圈暖黄的光</mark>。午后，<mark>阳光斜照进来，尘埃在光柱里慢慢地浮</mark>。爸爸<mark>常在这儿一坐就是一下午，连翻书的声音都轻轻的</mark>。<span class="anno">← 猪肚:由物到光到人，写书房</span></p><p><mark>这方小小的书房，是我们全家心灵歇脚的港湾。</mark><span class="anno">← 豹尾:比喻升华，点出书房的意义</span></p>', note:'写景由书架到书桌到光到人，层次分明；结尾把书房写成"港湾"，情景交融，立意温暖。'},
+      {title:'《一次采摘》· 写事', html:'<p><mark>周末，我们去果园体验摘草莓。</mark><span class="anno">← 凤头:交代事件，引出采摘</span></p><p>一进大棚，<mark>红艳艳的草莓藏在绿叶下，像一颗颗躲猫猫的红宝石</mark>。我<mark>蹲下身，小心地捏住果柄，轻轻一掐，一颗就落进了篮里</mark>。摘着摘着，我<mark>忍不住偷吃一颗，酸酸甜甜的汁水一下溢满了嘴</mark>。不一会儿，<mark>篮子就装得冒了尖</mark>。<span class="anno">← 猪肚:按顺序写摘草莓的乐趣</span></p><p><mark>亲手摘下的草莓，比买来的，甜进了心里。</mark><span class="anno">← 豹尾:由事生情，点出劳动的甜</span></p>', note:'按"进棚→采摘→偷吃→满篮"的顺序写体验之乐；结尾点出亲手劳动的甜，真切有味。'},
+      {title:'《雪后的校园》· 写景', html:'<p><mark>一夜大雪，把校园变成了一个银白的童话世界。</mark><span class="anno">← 凤头:总起，把校园比作"童话世界"</span></p><p>操场上，<mark>积了厚厚的一层雪，白得晃眼</mark>；教学楼的<mark>屋檐挂着一排晶亮的冰凌</mark>；树枝上，<mark>压着蓬松的雪，轻轻一碰就簌簌地落</mark>。课间，<mark>同学们冲进雪地，堆雪人、打雪仗，笑声在冷空气里格外清脆</mark>。<span class="anno">← 猪肚:由景到人，写雪后校园</span></p><p><mark>这场雪，把整个校园都染成了我们记忆里最白净的模样。</mark><span class="anno">← 豹尾:抒情收束，留住美好</span></p>', note:'写景由操场到屋檐到树枝，再到嬉戏的人，一静一动；结尾抒情，点出这份美好。'},
+      {title:'《我的班主任》· 写人', html:'<p><mark>我们的班主任，是个"严"字当头、心却很软的人。</mark><span class="anno">← 凤头:抓住"严中有爱"的特点</span></p><p>谁上课走神，她<mark>一个眼神扫过去，那人立刻坐得笔直</mark>。可有回我生病，她<mark>放学专门跑来，把落下的功课一点点给我补上</mark>。天冷了，她总<mark>唠叨着让我们加衣服，比自家妈妈还操心</mark>。她的严，原来全是藏起来的疼。<span class="anno">← 猪肚:用严与爱的对照写人物</span></p><p><mark>正是这份"严中有爱"，让我们又敬又亲。</mark><span class="anno">← 豹尾:收束，点出又敬又亲的情感</span></p>', note:'抓"严中有爱"的反差，用严厉的眼神和补课、叮嘱的温情对照；结尾点出师生情。'},
+      {title:'《夏夜的池塘》· 写景', html:'<p><mark>夏天的夜晚，村口的池塘最是热闹。</mark><span class="anno">← 凤头:总起，点出池塘的"热闹"</span></p><p>青蛙<mark>"呱呱"地叫，一只起头，立刻引来一片应和</mark>；萤火虫<mark>提着小灯笼，在水面上一闪一闪地飞</mark>；偶尔一条鱼<mark>"啪"地跃出水面，惊起一圈圈波纹</mark>。月光<mark>洒在池面上，碎成了满塘晃动的银子</mark>。<span class="anno">← 猪肚:抓几个细节写夏夜池塘</span></p><p><mark>这样的夏夜池塘，是乡下才有的、活生生的诗。</mark><span class="anno">← 豹尾:比喻收束，点出诗意</span></p>', note:'抓蛙鸣、萤火、跃鱼、月光几个细节写"热闹又诗意"；结尾一句收束，韵味悠长。'},
+      {title:'《一次合作学习》· 写活动', html:'<p><mark>这次小组作业，让我尝到了合作的甜头。</mark><span class="anno">← 凤头:总起，点出"合作的甜头"</span></p><p>我们四个人<mark>分了工:有的查资料，有的画图，有的写稿</mark>。起初<mark>意见不合，争得面红耳赤</mark>，后来<mark>各退一步，把每个人的想法都揉了进去</mark>。汇报那天，<mark>我们的作业得了全班最高分，大家击掌欢呼</mark>。<span class="anno">← 猪肚:按分工、争执、磨合、成果写</span></p><p><mark>原来一个人走得快，一群人才走得远。</mark><span class="anno">← 豹尾:由事悟理，点出合作的力量</span></p>', note:'写活动抓分工、争执、磨合、成果几步，有起伏；结尾点出合作的意义，收束有力。'},
+      {title:'《我的钢笔》· 写物', html:'<p><mark>我的书桌上，躺着一支爸爸送我的黑色钢笔。</mark><span class="anno">← 凤头:点出对象+"爸爸送的"这一来历</span></p><p>它<mark>笔身乌亮，握在手里沉甸甸的</mark>。写起字来，<mark>笔尖在纸上"沙沙"地走，出墨又匀又顺</mark>。爸爸说，这是他上学时用过的笔，<mark>如今传给了我，笔帽上还留着他当年刻的一个小小的"进"字</mark>。<span class="anno">← 猪肚:写钢笔的外观、手感和故事</span></p><p><mark>这支钢笔写下的，不只是我的字，还有爸爸对我的期望。</mark><span class="anno">← 豹尾:由物及情，点出期望</span></p>', note:'写物由外观到手感到来历，层层深入；结尾由物及"期望"，把一支笔写出了分量。'},
+      {title:'《校园的银杏道》· 写景', html:'<p><mark>秋天一到，校园里那条银杏道，就成了最美的风景。</mark><span class="anno">← 凤头:总起，点出银杏道"最美"</span></p><p>两旁的银杏<mark>叶子黄透了，金灿灿的，连风都染成了金色</mark>。风一吹，<mark>叶子打着旋儿飘下来，铺了满地的金毯</mark>。同学们<mark>踩上去"沙沙"响，还捡起漂亮的叶子夹进书里</mark>。抬头望，<mark>阳光透过枝叶，洒下一地晃动的碎金</mark>。<span class="anno">← 猪肚:抓几个镜头写银杏之金</span></p><p><mark>这条金黄的银杏道，是校园秋天里最温柔的一笔。</mark><span class="anno">← 豹尾:一句收束，赞秋之温柔</span></p>', note:'写景抓黄叶、落叶、拾叶、光影几个镜头写"金黄"；结尾一句收束，画面唯美。'},
+      {title:'《一次家务劳动》· 写事', html:'<p><mark>妈妈出差了，家里的地板，今天归我拖。</mark><span class="anno">← 凤头:交代起因，引出家务</span></p><p>我学着妈妈的样子，<mark>把拖把在水里涮了涮，拧到半干</mark>。刚拖没几下，<mark>额头就沁出了汗，手臂也开始发酸</mark>。犄角旮旯的灰，<mark>我趴在地上，一点点擦干净</mark>。忙了大半天，<mark>看着地板亮得能照出人影，我累得直捶腰，心里却美滋滋的</mark>。<span class="anno">← 猪肚:如实写拖地的辛苦过程</span></p><p><mark>这次我才真切懂得:妈妈天天做的家务，原来这么不容易。</mark><span class="anno">← 豹尾:由事生情，点出体谅</span></p>', note:'把拖地拆成"准备→劳作→擦角→完成"，如实写"累"；结尾由己及人，懂得体谅。'},
+      {title:'《春天的校园》· 写景', html:'<p><mark>春天悄悄地来了，把校园装点得生机勃勃。</mark><span class="anno">← 凤头:总起，点出春天的"生机"</span></p><p>花坛里，<mark>迎春花开出一串串金黄的小喇叭</mark>；草坪上，<mark>嫩绿的小草从土里探出头，怯生生的</mark>；柳树<mark>抽出了新芽，长长的枝条随风轻摆</mark>；燕子<mark>在教学楼的屋檐下，忙着筑起了新巢</mark>。<span class="anno">← 猪肚:抓几个意象写春景</span></p><p><mark>整个校园，都在这个春天里，悄悄地舒展开来。</mark><span class="anno">← 豹尾:拟人收束，点出春的舒展</span></p>', note:'写景抓迎春、小草、柳树、燕子几个意象写"生机"；结尾拟人收束，情景交融。'},
+      {title:'《一次难忘的表演》· 写事', html:'<p><mark>六一儿童节，我第一次登台表演朗诵。</mark><span class="anno">← 凤头:交代事件，点出"第一次"</span></p><p>上台前，<mark>我的心"咚咚"直跳，手心全是汗</mark>。灯光一打，<mark>台下黑压压一片，脑子里刚背熟的稿子差点跑光</mark>。我<mark>深吸一口气，把目光投向远处，声音渐渐稳了下来</mark>。念到最后一句，<mark>台下响起了热烈的掌声</mark>，我悬着的心终于落了地。<span class="anno">← 猪肚:写从紧张到镇定的心路</span></p><p><mark>那次表演让我明白:只要敢迈出第一步，紧张也能变成底气。</mark><span class="anno">← 豹尾:由事悟理，点出勇气</span></p>', note:'把表演拆成"上台前→登台→镇定→成功"，写足紧张到从容的转变；结尾悟出道理。'},
+    ],
+    4:[ /* 语言 */
+      {title:'《暴雨来临》· 比喻+拟人', html:'天色<mark>一下子沉了下来,像谁打翻了墨水瓶</mark>(比喻)。狂风<mark>发了疯似的摇晃着大树</mark>(拟人),豆大的雨点<mark>噼里啪啦地砸在地上,像无数只小鼓一起敲响</mark>(拟声+比喻)。', note:'比喻负责"像什么",拟人负责"会动",两者叠加,一场暴雨就活了过来。'},
+      {title:'《紧张的考试》· 写心理+动作', html:'试卷发下来,我<mark>的心一下子提到了嗓子眼</mark>(心理)。手心<mark>沁出了汗,握笔的指头微微发抖</mark>(动作)。看到第一道题,脑子里<mark>"嗡"的一下,刚背熟的公式全跑光了</mark>(心理)。我<mark>深吸一口气,把笔尖重重按在纸上</mark>(动作),强迫自己静下来。', note:'心理写"里面",动作写"外面",一内一外交替,紧张感就立体了,不必写一个"紧张"字。'},
+      {title:'《集市的清晨》· 换掉万能词', html:'天还没大亮,集市已经<mark>热闹</mark>起来。卖菜的大婶<mark>扯着嗓子吆喝</mark>(不用"大声说"),新鲜的青菜上<mark>还挂着晶亮的露珠</mark>(不用"很新鲜"),鱼摊前的鲤鱼<mark>不停地甩尾巴,溅了买主一身水</mark>(不用"很活跃")。', note:'把"很大声、很新鲜、很活跃"这些万能词,全部换成看得见的动作和画面——这就是"精准"。'},
+      {title:'《月夜》· 比喻+拟人', html:'月亮<mark>像一只银盘,静静地挂在天上</mark>(比喻)。月光<mark>悄悄爬进窗子,给桌椅都披上了一层薄纱</mark>(拟人)。树影<mark>在墙上轻轻摇晃,像在跳一支无声的舞</mark>(比喻+拟人)。', note:'同一轮月,用比喻定形、用拟人赋情,静景一下就有了灵气。'},
+      {title:'《愤怒的父亲》· 写神态+动作', html:'爸爸<mark>脸涨得通红,鼻翼一鼓一鼓</mark>(神态)。他<mark>把报纸"啪"地拍在桌上,震得茶杯都跳了一下</mark>(动作+拟声)。<mark>两道眉毛拧成了一个疙瘩</mark>(神态),一句话也不说,屋里的气压低得吓人。', note:'不写"爸爸很生气",而写红脸、拍桌、拧眉,让读者自己"看"出愤怒——这才是高手笔法。'},
+      {title:'《清晨的树林》· 拟声+拟人', html:'天刚亮,树林就<mark>醒了</mark>(拟人)。鸟儿<mark>"叽叽喳喳"地开起了晨会</mark>(拟声+拟人),露珠<mark>顺着叶尖"啪嗒"一声跳进草丛</mark>(拟声+拟人),连风都<mark>踮着脚,轻轻地走</mark>(拟人)。', note:'拟声让树林"有了声音",拟人让万物"活了过来",一个清晨就热闹又灵动。'},
+      {title:'《期待已久的礼物》· 写心理+动作', html:'我<mark>三步并作两步冲进屋,一把抓过盒子</mark>(动作)。心里<mark>像揣了只兔子,"怦怦"直跳</mark>(心理+拟声)。手指<mark>颤巍巍地解着丝带,怎么也解不开</mark>(动作),盒盖一掀,我<mark>"哇"地叫出了声</mark>(动作)。', note:'冲、抓、解、掀,一连串动作把"急切"写足;心跳的比喻再一衬,期待感满溢。'},
+      {title:'《寒冷的冬夜》· 比喻+夸张', html:'北风<mark>像一把把小刀,直往脖子里钻</mark>(比喻)。呼出的白气<mark>刚出口就冻成了霜</mark>(夸张)。我<mark>缩着脖子,把手揣进袖筒,牙齿冷得直打架</mark>(动作+细节)。', note:'比喻写风"锋利",夸张写"极冷",再加缩脖、打架的细节,寒意就直逼读者了。'},
+      {title:'《委屈的时刻》· 写心理+神态', html:'我<mark>咬着嘴唇,拼命不让眼泪掉下来</mark>(动作+心理)。可鼻子<mark>一酸,泪珠还是"啪嗒"砸在了桌上</mark>(细节+拟声)。心里<mark>又酸又堵,像塞了一团湿棉花</mark>(心理+比喻),半天说不出一句话。', note:'咬唇、酸鼻、砸泪写"忍",湿棉花的比喻写"堵",把委屈写得让人跟着心疼。'},
+      {title:'《热闹的教室》· 拟声+比喻', html:'下课铃一响,教室<mark>像炸开的锅</mark>(比喻)。桌椅<mark>"哗啦哗啦"地响</mark>(拟声),说话声<mark>"嗡嗡"地搅成一团</mark>(拟声),几个男生<mark>像脱了缰的小马,追着跑出了门</mark>(比喻)。', note:'炸锅、脱缰的比喻写"乱",哗啦、嗡嗡的拟声写"吵",一个热闹的课间就跃然纸上。'},
+      {title:'《春风》· 拟人+比喻', html:'春风<mark>像妈妈的手,轻轻抚过我的脸</mark>(比喻)。它<mark>吹醒了沉睡的柳树,染绿了枯黄的小草</mark>(拟人),又<mark>悄悄替花骨朵解开了扣子</mark>(拟人)。', note:'把春风拟成一双温柔又勤劳的手,吹醒、染绿、解扣子,春天的生机全在这几个动词里。'},
+      {title:'《焦急的等待》· 写动作+心理', html:'我<mark>在门口来回踱步,一分钟看了三次表</mark>(动作)。心里<mark>七上八下,像十五个吊桶打水</mark>(心理+比喻)。每次听见脚步声,就<mark>猛地抬头,却又一次次失望</mark>(动作+心理)。', note:'踱步、看表、抬头的动作写"急",吊桶打水的比喻写"乱",焦虑不写自现。'},
+      {title:'《大海》· 比喻+拟人', html:'大海<mark>像一块巨大的蓝宝石,闪着碎碎的光</mark>(比喻)。海浪<mark>一个接一个地扑上来,像在跟沙滩玩闹</mark>(拟人),退回去时<mark>又恋恋不舍地卷走一把细沙</mark>(拟人)。', note:'比喻定"色",拟人赋"情",一涨一退间,大海就有了性子。'},
+      {title:'《生病的滋味》· 写细节+心理', html:'我<mark>浑身滚烫,盖三床被子还直打哆嗦</mark>(细节)。脑袋<mark>昏沉沉的,像塞满了棉花</mark>(比喻)。看着窗外别的孩子在玩,我<mark>心里空落落的,眼泪在眼眶里打转</mark>(心理)。', note:'打哆嗦、棉花脑袋写"病",空落落、泪打转写"闷",身体的难受和心里的失落一并写出。'},
+      {title:'《雨中的荷叶》· 拟人+拟声', html:'雨点<mark>"啪嗒啪嗒"地落在荷叶上</mark>(拟声),荷叶<mark>晃了晃身子,把水珠一股脑儿抖进了池塘</mark>(拟人)。一颗大水珠<mark>在叶心滚来滚去,像顽皮的孩子舍不得下来</mark>(拟人+比喻)。', note:'拟声写雨落之声,拟人写荷叶抖水、水珠贪玩,静止的荷塘一下就活泼起来。'},
+      {title:'《紧张的面试》· 写动作+心理', html:'轮到我了,我<mark>攥紧了衣角,手心全是汗</mark>(动作)。心里<mark>那面小鼓"咚咚"地擂个不停</mark>(心理+拟声)。老师一发问,我<mark>脑子"嗡"地一片空白,半天挤不出一个字</mark>(心理)。', note:'攥衣角、冒汗写外在的"紧",擂鼓、空白写内心的"慌",一内一外,紧张感翻倍。'},
+      {title:'《秋天的银杏》· 比喻+拟人', html:'银杏叶<mark>黄得像撒了一地的金子</mark>(比喻)。风一吹,它们<mark>打着旋儿飘下来,像一只只跳舞的蝴蝶</mark>(比喻)。落在地上,又<mark>悄悄给大地铺上了一层金毯</mark>(拟人)。', note:'两个比喻写"美",一处拟人写"情",满地的银杏就有了画面,也有了温度。'},
+      {title:'《激烈的球赛》· 拟声+动作', html:'篮球<mark>"砰砰"地砸在地板上</mark>(拟声)。他<mark>一个转身,晃过防守,腾空跃起</mark>(动作),球<mark>"唰"地空心入网</mark>(拟声),全场<mark>"哗"地沸腾了</mark>(拟声)。', note:'砰砰、唰、哗几个拟声词,配上转身、腾空的动作,把一次精彩进球写得又快又燃。'},
+      {title:'《孤独的黄昏》· 写细节+心理', html:'夕阳<mark>把我的影子拉得老长</mark>(细节)。街上<mark>一个人也没有,只有落叶被风卷着,"沙沙"地滚</mark>(细节+拟声)。我<mark>心里空空的,像被谁掏走了一块</mark>(心理+比喻)。', note:'长影、空街、滚叶写"冷清","被掏走一块"的比喻写"孤独",不着一"孤"字而孤意自现。'},
+      {title:'《雷阵雨》· 拟声+比喻', html:'天边<mark>"轰隆"一声,像谁在天上滚动巨石</mark>(拟声+比喻)。闪电<mark>"咔嚓"劈开夜空,像一道白色的裂缝</mark>(拟声+比喻)。雨<mark>"哗"地泼下来,天地间连成了一片水帘</mark>(拟声+比喻)。', note:'每一句都是"拟声+比喻"的组合,轰隆、咔嚓、哗把声音写足,巨石、裂缝、水帘把画面写活。'},
+      {title:'《难过的分别》· 写神态+动作', html:'她<mark>红着眼圈,嘴唇抿得紧紧的</mark>(神态)。列车快开时,她<mark>使劲挥着手,却一句话也说不出来</mark>(动作)。车开了,她<mark>还追着跑了几步,直到再也看不见</mark>(动作)。', note:'红眼、抿唇、挥手、追跑,全靠神态和动作写"不舍",比直接喊"难过"动人十倍。'},
+      {title:'《小猫喝奶》· 拟声+细节', html:'小猫<mark>"喵"地叫了一声,一头扎进了奶碗</mark>(拟声+动作)。它<mark>粉红的小舌头一卷一卷,"吧唧吧唧"地舔着</mark>(细节+拟声),白胡子上<mark>还沾着一圈奶,也顾不上擦</mark>(细节)。', note:'喵、吧唧的拟声,卷舌、沾奶的细节,把一只馋嘴的小猫写得活灵活现,惹人喜爱。'},
+      {title:'《考试后的忐忑》· 写心理+动作', html:'交完卷,我<mark>心里像揣了个不定时的炸弹</mark>(心理+比喻)。等成绩的那几天,<mark>一听到老师念名字,就吓得一激灵</mark>(心理+动作)。发卷时,我<mark>用手捂着分数,从指缝里一点点往外看</mark>(动作)。', note:'炸弹、一激灵写"忐忑",捂分数、从指缝看的动作把"怕"演得惟妙惟肖。'},
+      {title:'《瀑布》· 比喻+夸张', html:'远远望去,瀑布<mark>像一条白龙,从天而降</mark>(比喻)。水流<mark>"轰隆隆"地砸下来,震得脚底都在发麻</mark>(拟声+夸张)。溅起的水雾<mark>扑了满脸,凉丝丝的</mark>(细节)。', note:'白龙的比喻写"势",震麻脚底的夸张写"响",水雾扑脸的细节写"近",瀑布的磅礴就出来了。'},
+      {title:'《贪玩的弟弟》· 写动作+神态', html:'弟弟<mark>把玩具撒了一地,自己蹲在中间,玩得不亦乐乎</mark>(动作)。喊他吃饭,他<mark>眼睛盯着小汽车,头也不抬地"嗯"一声</mark>(动作+神态)。妈妈一沉脸,他才<mark>撅着嘴,一步三回头地挪过来</mark>(神态+动作)。', note:'撒玩具、不抬头、一步三回头,全用动作和神态写"贪玩",一个活泼的小男孩跃然纸上。'},
+      {title:'《清晨的雾》· 比喻+拟人', html:'清晨,大雾<mark>像一床厚厚的棉被,盖住了整个村庄</mark>(比喻)。它<mark>悄悄地把远山藏了起来,又轻轻裹住了每一棵树</mark>(拟人)。太阳一出来,它<mark>才恋恋不舍地散去</mark>(拟人)。', note:'棉被的比喻写"厚",藏山、裹树、恋恋不舍的拟人写"活",一场晨雾就有了性情。'},
+      {title:'《手术前的妈妈》· 写细节+心理', html:'妈妈<mark>脸色发白,手却紧紧攥着我的手,不肯松开</mark>(细节)。她<mark>努力挤出一个笑,说"别怕",声音却在抖</mark>(细节+动作)。我<mark>心里像压了块大石头,喘不过气</mark>(心理+比喻)。', note:'白脸、攥手、抖声的细节写母亲的"强撑",压石头的比喻写"我"的沉重,母女连心尽在其中。'},
+      {title:'《欢快的溪流》· 拟人+拟声', html:'小溪<mark>"叮叮咚咚"地唱着歌,一路往前跑</mark>(拟声+拟人)。遇到石头,它<mark>调皮地跳过去,溅起一串水花</mark>(拟人),绕过树根,又<mark>咯咯地笑着奔向远方</mark>(拟人)。', note:'叮咚的拟声,唱歌、跳跃、咯咯笑的拟人,把一条小溪写成了活泼的孩子,灵动可爱。'},
+      {title:'《紧张的抢答》· 写动作+心理', html:'老师话音刚落,我<mark>"唰"地举起了手,胳膊举得笔直</mark>(动作)。可被点到时,心里<mark>又"咯噔"一下,怕答错</mark>(心理)。我<mark>咽了口唾沫,把答案一字一句地说了出来</mark>(动作)。', note:'唰地举手写"急",咯噔、咽唾沫写"怕",一急一怕间,抢答时的复杂心情就活了。'},
+      {title:'《夏日的蝉》· 拟声+拟人', html:'知了<mark>"知了知了"地叫个不停,像在抱怨天太热</mark>(拟声+拟人)。太阳<mark>火辣辣地烤着大地</mark>(拟人),连树叶都<mark>耷拉着脑袋,一动也不想动</mark>(拟人)。', note:'知了的拟声配上"抱怨"的拟人,再加烤大地、耷拉脑袋的拟人,盛夏的"闷热"就写活了。'},
+      {title:'《失而复得》· 写心理+动作', html:'找到丢了三天的手表时,我<mark>一把抓起来,紧紧贴在胸口</mark>(动作)。心里<mark>那块悬了几天的石头,"咚"地落了地</mark>(心理+比喻),忍不住<mark>咧开嘴,傻笑了半天</mark>(动作+神态)。', note:'抓、贴、傻笑的动作写"喜",落地石头的比喻写"松",失而复得的欢喜写得淋漓尽致。'},
+      {title:'《清晨的公鸡》· 拟声+动作', html:'天刚泛白,大公鸡就<mark>"喔喔喔"地扯着嗓子打起了鸣</mark>(拟声+动作)。它<mark>昂着头,抖了抖脖子上油亮的羽毛</mark>(动作),又<mark>神气活现地在院子里踱起了步</mark>(动作+神态)。', note:'喔喔的拟声,昂头、抖毛、踱步的动作,把一只神气的大公鸡写得活灵活现。'},
+      {title:'《骄阳下的劳作》· 写细节+夸张', html:'太阳<mark>毒辣辣地烤着,地面热得能煎熟鸡蛋</mark>(夸张)。农民伯伯<mark>汗珠子一颗颗砸进泥土里</mark>(细节),后背的衣服<mark>湿了又干,结出一圈圈白花花的盐渍</mark>(细节)。', note:'煎鸡蛋的夸张写"热",砸汗、盐渍的细节写"苦",劳动的艰辛不写自见,格外真切。'},
+      {title:'《调皮的风》· 拟人', html:'风是个<mark>爱恶作剧的孩子</mark>(拟人)。它<mark>掀翻了老爷爷的帽子,又扯乱了小姑娘的辫子</mark>(拟人),末了还<mark>"呼"地卷起一地落叶,笑着跑远了</mark>(拟人+拟声)。', note:'把风拟成恶作剧的孩子,掀帽、扯辫、卷叶,一连串动作让无形的风"看得见"了。'},
+      {title:'《紧张的发言》· 写动作+心理', html:'站起来的一瞬,我<mark>感觉全班的目光"唰"地都聚了过来</mark>(心理)。腿<mark>有点发软,声音也不听使唤地打颤</mark>(动作)。我<mark>低头看了眼稿子,深吸一口气,才慢慢稳住了</mark>(动作)。', note:'目光聚过来写"压力",腿软、声颤写"慌",深呼吸稳住写"调整",发言的心路一步步清晰。'},
+      {title:'《雪花飘落》· 比喻+拟人', html:'雪花<mark>像一群白蝴蝶,从天上纷纷扬扬地飘下来</mark>(比喻)。它们<mark>有的落在屋顶,有的钻进衣领,还有的调皮地贴上了我的睫毛</mark>(拟人)。', note:'白蝴蝶的比喻写"美",落、钻、贴的拟人写"活",一场雪就下得又轻盈又顽皮。'},
+      {title:'《拿到成绩的喜悦》· 写动作+神态', html:'看到那个鲜红的"优",我<mark>眼睛一下子亮了,嘴角咧到了耳根</mark>(神态)。攥着卷子<mark>一路小跑回家,书包在背上一颠一颠</mark>(动作),恨不得<mark>让全世界都知道这个好消息</mark>(心理)。', note:'亮眼、咧嘴写"喜形于色",小跑、一颠一颠写"雀跃",拿到好成绩的兴奋活灵活现。'},
+      {title:'《深夜的台灯》· 拟人+细节', html:'夜深了,台灯<mark>还忠实地亮着,守着伏案的我</mark>(拟人)。它<mark>洒下一圈暖黄的光,把我的影子稳稳地贴在墙上</mark>(细节)。窗外一片漆黑,只有它<mark>陪我把最后一道题算完</mark>(拟人)。', note:'守、陪的拟人赋予台灯情感,暖光、贴影的细节渲染氛围,深夜苦读的温情就有了。'},
+      {title:'《受惊的小鹿》· 写动作+神态', html:'小鹿<mark>猛地竖起耳朵,浑身一紧</mark>(动作+神态)。它<mark>瞪大了乌黑的眼睛,四条腿绷得像上了弦</mark>(神态+比喻),稍一有风吹草动,便<mark>"嗖"地窜进了林子</mark>(拟声+动作)。', note:'竖耳、瞪眼、绷腿写"警觉","嗖"地窜逃写"敏捷",一只受惊的小鹿呼之欲出。'},
+      {title:'《闷热的午后》· 比喻+夸张', html:'空气<mark>闷得像一个大蒸笼</mark>(比喻)。知了<mark>叫得人心烦意乱</mark>(细节),连风扇吹出来的都是<mark>一阵阵热浪</mark>(夸张)。我<mark>趴在桌上,汗把作业本都洇湿了一片</mark>(细节)。', note:'大蒸笼的比喻写"闷",热浪、洇湿本子的夸张与细节写"熬",盛夏午后的难受扑面而来。'},
+      {title:'《倔强的小草》· 拟人', html:'石缝里,一棵小草<mark>倔强地钻了出来</mark>(拟人)。狂风想把它<mark>压弯腰,它却一次次挺直了身子</mark>(拟人),暴雨过后,它<mark>抖抖身上的水,又精神抖擞地立在那儿</mark>(拟人)。', note:'钻、挺、抖的拟人,把小草写成了不服输的斗士,借物喻志,精神就立住了。'},
+      {title:'《久别重逢》· 写动作+心理', html:'看见外婆的一刹那,我<mark>撒开腿就往前冲</mark>(动作),一头<mark>扎进她怀里,再也不肯松开</mark>(动作)。心里<mark>又酸又甜,像打翻了五味瓶</mark>(心理+比喻),眼泪<mark>不争气地掉了下来</mark>(细节)。', note:'冲、扎、不松手的动作写"急切",五味瓶的比喻写"百感交集",重逢的激动真挚动人。'},
+      {title:'《燃烧的晚霞》· 比喻+拟人', html:'傍晚,晚霞<mark>像一团团熊熊燃烧的火,烧红了半边天</mark>(比喻)。它<mark>把江水染成了金红,又给归巢的鸟儿镀上了金边</mark>(拟人)。云朵<mark>一会儿变成骏马,一会儿又化作绵羊</mark>(比喻)。', note:'燃烧的火写"色",染江、镀鸟的拟人写"动",变马变羊的比喻写"幻",一片晚霞美轮美奂。'},
+      {title:'《生气的妈妈》· 写神态+动作', html:'妈妈<mark>把脸一沉,眉毛拧成了川字</mark>(神态)。她<mark>叉着腰,手指点着我的作业本,一声不吭</mark>(动作),那眼神<mark>像淬了冰,看得我头都不敢抬</mark>(神态+比喻)。', note:'沉脸、拧眉、叉腰、冰眼,全靠神态动作写"怒",一句训斥都没有,却比什么都吓人。'},
+      {title:'《雨后彩虹》· 比喻+拟人', html:'雨一停,天边<mark>忽然架起一座七彩的桥</mark>(比喻)。它<mark>羞答答地从云缝里探出头,把整片天空都点亮了</mark>(拟人)。孩子们<mark>指着它又蹦又跳</mark>(动作),它却<mark>不声不响地,一点点淡了</mark>(拟人)。', note:'七彩桥的比喻写"美",探头、淡去的拟人写"活",彩虹的短暂与惊艳都被写活了。'},
+      {title:'《专注的画家》· 写神态+细节', html:'他<mark>眉头微蹙,眼睛一眨不眨地盯着画布</mark>(神态)。手中的笔<mark>时而轻扫,时而细描,连呼吸都放得很轻</mark>(动作+细节)。喊他吃饭,他<mark>"嗯"了一声,人却像没听见,笔尖没停</mark>(细节)。', note:'蹙眉、盯画、轻描写"专注",没听见喊话的细节把"入神"推到极致,一个痴迷的画家跃然纸上。'},
+      {title:'《狂风中的大树》· 拟人+比喻', html:'狂风<mark>像发了疯,拼命撕扯着大树</mark>(比喻+拟人)。大树<mark>被吹得东摇西晃,枝叶"哗哗"地惨叫</mark>(拟人+拟声),可它<mark>把根深深扎进泥土,死死撑住了身子</mark>(拟人)。', note:'撕扯的比喻写风"狂",惨叫、撑身的拟人写树"抗",一场风与树的较量惊心动魄。'},
+      {title:'《第一次上台》· 写心理+动作', html:'帷幕拉开,灯光"刷"地打在我身上,我<mark>脑子一片空白</mark>(心理)。腿<mark>不听使唤地发抖,手心全是汗</mark>(动作)。我<mark>咬了咬牙,把目光投向观众席的妈妈,心才一点点定了下来</mark>(动作+心理)。', note:'空白、发抖、冒汗写"怯",咬牙、望妈妈写"稳",第一次上台的紧张与克服写得真实动人。'},
+      {title:'《嘴馋的小狗》· 写动作+神态', html:'小狗<mark>眼巴巴地盯着我手里的肉,口水都要滴下来了</mark>(神态+细节)。它<mark>用爪子轻轻扒我的裤脚,呜呜地哼着</mark>(动作+拟声),尾巴<mark>摇得像个小拨浪鼓</mark>(动作+比喻)。', note:'盯肉、流口水、扒裤脚、摇尾巴,一连串动作神态把小狗的"馋"写得活灵活现,惹人发笑。'},
+      {title:'《静谧的雪夜》· 拟人+细节', html:'雪<mark>无声无息地下着,把整个世界都哄睡了</mark>(拟人)。路灯<mark>晕出一团朦胧的光,雪花在光里静静地舞</mark>(细节)。四周静得<mark>连雪花落地的声音都仿佛听得见</mark>(细节+夸张)。', note:'"哄睡"的拟人写"静",光里飞雪的细节写"美",听得见落雪的夸张把"静谧"推到极致。'},
+      {title:'《欢腾的教室》· 拟声+比喻', html:'听到放假的消息,教室<mark>一下子炸开了锅</mark>(比喻)。欢呼声<mark>"哗"地响成一片</mark>(拟声),有人<mark>把课本往天上一抛,像放了一群白鸽</mark>(动作+比喻),笑声<mark>差点掀翻了屋顶</mark>(夸张)。', note:'炸锅、白鸽的比喻,哗的拟声,掀屋顶的夸张,把放假瞬间的狂喜写得酣畅淋漓。'},
+      {title:'《清晨的荷塘》· 比喻+拟人', html:'清晨的荷塘,荷叶<mark>像一把把撑开的绿伞</mark>(比喻)。荷花<mark>刚睡醒,粉扑扑地舒展开花瓣</mark>(拟人),叶上的露珠<mark>滚来滚去,像一颗颗晶莹的珍珠</mark>(比喻)。', note:'绿伞、珍珠的比喻写"形",睡醒、舒展的拟人写"态",一池清晨的荷塘娇艳欲滴。'},
+      {title:'《紧张的抢险》· 写动作+细节', html:'洪水一来,战士们<mark>扛起沙袋就往堤上冲</mark>(动作)。他们<mark>肩膀被磨得通红,泥水糊满了全身</mark>(细节),却<mark>咬着牙,一趟又一趟地跑,谁也不肯歇</mark>(动作+神态)。', note:'扛、冲、跑的动作写"急",磨红肩膀、泥水糊身的细节写"拼",抢险的紧张与英勇跃然纸上。'},
+      {title:'《撒娇的妹妹》· 写动作+神态', html:'妹妹<mark>拽着妈妈的衣角,身子扭来扭去</mark>(动作)。她<mark>撅着小嘴,眼睛里蓄满了泪,一副要哭不哭的样子</mark>(神态),嘴里<mark>还奶声奶气地念叨着"我就要嘛"</mark>(细节)。', note:'拽衣角、扭身子、撅嘴、蓄泪,把妹妹撒娇的模样写得活灵活现,让人又好气又好笑。'},
+      {title:'《宁静的乡村夜》· 拟声+拟人', html:'乡村的夜,静悄悄的。<mark>只有虫儿"唧唧"地弹着琴</mark>(拟声+拟人),偶尔<mark>一两声狗吠,又很快沉回了夜里</mark>(细节)。月亮<mark>爬上树梢,把清辉悄悄洒满了小院</mark>(拟人)。', note:'虫鸣弹琴、月亮悄洒的拟人,狗吠沉回的细节,把乡村夜晚的宁静写得有声有色又静谧安详。'},
+      {title:'《怦然心动的礼物》· 写心理+动作', html:'拆开包装的一刹那,我<mark>心里"咯噔"一跳,竟是我心心念念的那本书</mark>(心理+拟声)。我<mark>捧着它,手指轻轻摩挲着封面,舍不得放下</mark>(动作+细节),嘴角<mark>不自觉地往上扬</mark>(神态)。', note:'咯噔一跳写"惊喜",捧、摩挲、扬嘴角写"珍爱",收到心仪礼物的怦然心动写得细腻真切。'},
+      {title:'《晨雾中的村庄》· 比喻+拟人', html:'清晨,村庄<mark>裹在一层薄薄的雾里,像蒙了一块轻纱</mark>(比喻)。炊烟<mark>袅袅升起,懒洋洋地往天上爬</mark>(拟人),几声鸡鸣<mark>"喔喔"地把整个村子唤醒</mark>(拟声+拟人)。', note:'轻纱的比喻写"朦胧",炊烟"懒洋洋"、鸡鸣"唤醒"的拟人写"活",一个宁静的乡村清晨跃然纸上。'},
+      {title:'《紧张的百米冲刺》· 写动作+拟声', html:'发令枪"砰"地一响(拟声),我<mark>像离弦的箭冲了出去</mark>(比喻+动作)。风<mark>在耳边"呼呼"地刮</mark>(拟声),我<mark>咬紧牙关,双腿拼命地倒</mark>(动作+神态),冲线的一刻<mark>整个人像要飞起来</mark>(夸张)。', note:'砰、呼呼的拟声配上冲、倒的动作,再加"像箭""要飞"的比喻夸张,一场百米冲刺又快又燃。'},
+      {title:'《慈祥的奶奶》· 写神态+细节', html:'奶奶<mark>眯着眼笑,满脸的皱纹都舒展开来,像一朵开透了的菊花</mark>(神态+比喻)。她<mark>用那双粗糙的手,一下一下地替我理着头发</mark>(细节),嘴里<mark>还絮絮地念叨着,声音软软的</mark>(细节)。', note:'眯眼笑、菊花的比喻写"慈祥",粗糙的手、絮絮念叨的细节写"疼爱",一位和蔼的奶奶呼之欲出。'},
+      {title:'《暴风雪之夜》· 拟人+夸张', html:'狂风<mark>"呜呜"地嚎叫,像一头发怒的野兽</mark>(拟声+比喻)。雪<mark>铺天盖地地砸下来,几步外就什么也看不见了</mark>(夸张)。窗户<mark>被吹得"咣咣"直响,仿佛下一秒就要碎掉</mark>(拟声+夸张)。', note:'呜呜、咣咣的拟声,野兽的比喻,"看不见""要碎掉"的夸张,把暴风雪的凶猛写得惊心动魄。'},
+    ],
+    5:[ /* 改前改后对照 */
+      {title:'《一次家务劳动》· 结尾升级', html:'<p><b>改前:</b><span style="color:var(--s-text-secondary)">今天我帮妈妈扫了地,妈妈夸了我,我很开心,这次劳动真有意义。</span></p><p><b>改后:</b>我把最后一堆灰尘扫进簸箕,直起腰,<mark>额头上全是汗</mark>。妈妈摸摸我的头说:"长大了。"<mark>那一声"长大了",比考了一百分还让我高兴。</mark></p>', note:'"很开心、真有意义"是喊口号;改后用一个动作(擦汗)加一句具体的话,把"有意义"变成读者能感到的画面。'},
+      {title:'《春游》· 删重复 + 加料', html:'<p><b>改前:</b><span style="color:var(--s-text-secondary)">公园里的花很多很美,五颜六色的,非常漂亮,我很喜欢,看得我很高兴。</span></p><p><b>改后:</b>公园里的花开得正盛,<mark>红的像火,粉的像霞,白的像雪</mark>,一阵风过,<mark>花瓣簌簌落下,像下了一场香香的雨</mark>。</p>', note:'改前一句里"很美/漂亮/喜欢/高兴"反复堆叠;改后删掉空词,补上比喻和动态,画面一下就出来了。'},
+      {title:'《拔河比赛》· 大声读顺句子', html:'<p><b>改前:</b><span style="color:var(--s-text-secondary)">我们班的同学们大家都一起用力地拼命地拉着那根很粗的绳子。</span></p><p><b>改后:</b>我们攥紧绳子,<mark>脚死死顶住地面,身子往后仰成一张弓</mark>,谁也不肯松手。</p>', note:'改前读起来磕磕绊绊、词语重复("大家/都/一起/拼命");大声读一遍就能发现,删繁就简后句子立刻利落。'},
+      {title:'《难忘的生日》· 开头升级', html:'<p><b>改前:</b><span style="color:var(--s-text-secondary)">今天是我的生日,我很高兴,因为可以吃蛋糕,还有很多礼物,真是开心的一天。</span></p><p><b>改后:</b>"吹蜡烛啦!"随着一声欢呼,<mark>暖黄的烛光映亮了一张张笑脸</mark>,也点亮了我十岁的生日。</p>', note:'改前平铺直叙、全是"开心高兴";改后用一句话和一个画面开头,先声夺人,让人想读下去。'},
+      {title:'《我的妈妈》· 空泛变具体', html:'<p><b>改前:</b><span style="color:var(--s-text-secondary)">我的妈妈很爱我,她对我很好,总是无微不至地照顾我,我很爱她。</span></p><p><b>改后:</b>每天清晨,妈妈总<mark>把热好的牛奶端到我手边</mark>;我睡前,她<mark>总要来掖一掖被角</mark>。她的爱,就藏在这些不起眼的小事里。</p>', note:'"很爱""很好"是空话;改后用端牛奶、掖被角两个细节,把抽象的"爱"落到了实处。'},
+      {title:'《雨》· 换掉万能词', html:'<p><b>改前:</b><span style="color:var(--s-text-secondary)">天下起了很大的雨,雨下得很大很急,地上很快就有很多水。</span></p><p><b>改后:</b>雨<mark>像瓢泼似的往下倒</mark>,豆大的雨点<mark>砸在地上,溅起一朵朵水花</mark>,不一会儿,路面上就<mark>汇成了一条条小溪</mark>。</p>', note:'一连三个"很大"太单调;改后用比喻和动态描写,把"雨大"写得看得见、听得着。'},
+      {title:'《校园的早晨》· 加感官描写', html:'<p><b>改前:</b><span style="color:var(--s-text-secondary)">早晨的校园很安静,也很美丽,同学们都在读书,很有学习的氛围。</span></p><p><b>改后:</b>清晨的校园,<mark>琅琅的读书声此起彼伏</mark>,花坛里<mark>还挂着晶亮的露珠</mark>,第一缕阳光<mark>悄悄爬上了教学楼的墙</mark>。</p>', note:'"安静""美丽"太笼统;改后调动听觉(读书声)、视觉(露珠、阳光),校园的早晨立刻有了生气。'},
+      {title:'《一件后悔的事》· 加心理描写', html:'<p><b>改前:</b><span style="color:var(--s-text-secondary)">我把同桌的文具盒弄坏了,却没有承认,后来我很后悔。</span></p><p><b>改后:</b>看着同桌红着眼圈找文具盒,<mark>我的心像被什么揪了一下</mark>,几次想开口,话却<mark>堵在喉咙里,怎么也说不出来</mark>。那一整天,我都过得很难受。</p>', note:'"很后悔"一笔带过太可惜;改后加入"揪心""话堵喉咙"的心理描写,让后悔变得真实可感。'},
+      {title:'《运动会》· 详略得当', html:'<p><b>改前:</b><span style="color:var(--s-text-secondary)">运动会上有很多项目,有跑步、跳远、跳高、拔河,大家都很努力,很精彩。</span></p><p><b>改后:</b>运动会上,最扣人心弦的是接力赛。最后一棒的小明<mark>咬紧牙关,把对手一个个甩在身后</mark>,冲线的瞬间,<mark>全班都跳起来抱作一团</mark>。</p>', note:'改前项目罗列、平均用力;改后只详写"接力赛"一个高潮,详略分明,反而更精彩。'},
+      {title:'《秋天》· 空泛变画面', html:'<p><b>改前:</b><span style="color:var(--s-text-secondary)">秋天来了,天气凉了,树叶黄了,是一个收获的季节,我很喜欢秋天。</span></p><p><b>改后:</b>秋天来了,<mark>银杏叶黄透了,风一吹,打着旋儿飘下来,铺了满地的金</mark>。果园里,<mark>苹果红着脸,梨子压弯了枝</mark>,到处都是丰收的模样。</p>', note:'改前全是概括;改后用黄叶、红苹果、弯枝几个画面,把"秋"和"收获"写得看得见。'},
+      {title:'《我的老师》· 一事写活', html:'<p><b>改前:</b><span style="color:var(--s-text-secondary)">我的老师很关心我们,对工作很负责,是一位好老师,我们都很爱她。</span></p><p><b>改后:</b>有回我发高烧请假,老师<mark>放学专程赶来,把落下的功课一点点给我补上</mark>,直到天黑才走。她的关心,我一直记在心里。</p>', note:'"关心""负责"是评价,不是描写;改后用一件补课的小事,让"好老师"立了起来。'},
+      {title:'《快乐的六一》· 开头结尾升级', html:'<p><b>改前:</b><span style="color:var(--s-text-secondary)">六一儿童节到了,我们举行了联欢会,表演了很多节目,大家都很快乐。</span></p><p><b>改后:</b>"六一快乐!"欢呼声里,联欢会拉开了帷幕。<mark>唱歌的、跳舞的、变魔术的,轮番登场,笑声差点掀翻了屋顶</mark>。这个六一,我们乐翻了天。</p>', note:'改前平淡;改后用欢呼开头、以"乐翻天"收尾,首尾呼应,快乐的气氛扑面而来。'},
+      {title:'《一次实验》· 加过程描写', html:'<p><b>改前:</b><span style="color:var(--s-text-secondary)">科学课上我们做了一个实验,很有趣,我学到了很多知识。</span></p><p><b>改后:</b>老师把小苏打和醋倒在一起,刹那间,<mark>瓶口"咕嘟咕嘟"冒出大团泡沫,像小火山喷发一样</mark>。我们<mark>"哇"地叫出了声,眼睛瞪得溜圆</mark>。</p>', note:'"很有趣"是感受,不是过程;改后把实验的关键一刻写细,趣味自然就出来了。'},
+      {title:'《冬天》· 换掉万能词', html:'<p><b>改前:</b><span style="color:var(--s-text-secondary)">冬天很冷,风很大,天气很不好,我很不喜欢冬天。</span></p><p><b>改后:</b>冬天的风<mark>像小刀子一样刮脸</mark>,呼出的白气<mark>刚出口就散成一团雾</mark>,人们<mark>都缩着脖子,把手揣进袖筒</mark>。</p>', note:'"很冷""很大"太苍白;改后用"小刀子""白气""缩脖子",把"冷"写得让读者也打起了寒战。'},
+      {title:'《难忘的一件事》· 详略得当', html:'<p><b>改前:</b><span style="color:var(--s-text-secondary)">暑假里我经历了很多事,有去游泳、去爬山、去旅游,其中最难忘的是爬山。</span></p><p><b>改后:</b>暑假里最难忘的,是那次爬香山。爬到半山我几乎放弃,<mark>是爸爸默默陪我一步步往上挪</mark>,登顶时,<mark>满山的红叶像一片火海,一路的累全值了</mark>。</p>', note:'改前罗列一堆事、冲淡了重点;改后开门见山直奔"爬山",详写坚持与登顶,主题就突出了。'},
+      {title:'《美丽的公园》· 加感官描写', html:'<p><b>改前:</b><span style="color:var(--s-text-secondary)">公园很漂亮,有花有草有湖,环境很好,我很喜欢来这里玩。</span></p><p><b>改后:</b>公园里,<mark>月季开得热热闹闹,红的粉的挤成一团</mark>;湖面上,<mark>微风一吹,漾起一圈圈波纹</mark>;空气里,<mark>满是青草和花香的清新</mark>。</p>', note:'"漂亮""环境好"太空;改后从看、闻两方面写景,公园的美就有了具体的样子。'},
+      {title:'《我的同桌》· 一事写活', html:'<p><b>改前:</b><span style="color:var(--s-text-secondary)">我的同桌乐于助人,人很好,同学们都很喜欢他。</span></p><p><b>改后:</b>有回我忘带尺子,他<mark>二话不说,把自己的折成两半,递给我一半</mark>。谁遇到难处,他总是<mark>第一个伸手</mark>。</p>', note:'"乐于助人"是标签;改后用折尺子这件小事,把"助人"写实,人物就活了。'},
+      {title:'《一场大雪》· 空泛变画面', html:'<p><b>改前:</b><span style="color:var(--s-text-secondary)">下了一场大雪,到处都是白的,很美,同学们都出来玩雪,很开心。</span></p><p><b>改后:</b>一夜大雪,<mark>屋顶、树梢、大地全盖上了厚厚的白棉被</mark>。课间,同学们<mark>冲进雪地堆雪人、打雪仗,笑声在冷空气里格外清脆</mark>。</p>', note:'"到处都白""很美"太概括;改后用"白棉被"和玩雪的场面,把雪景和欢乐都写活了。'},
+      {title:'《妈妈的爱》· 加细节', html:'<p><b>改前:</b><span style="color:var(--s-text-secondary)">妈妈很爱我,不管什么时候都关心我,我觉得妈妈的爱很伟大。</span></p><p><b>改后:</b>那晚我发高烧,迷迷糊糊中,总觉得<mark>有一只手一次次探我的额头</mark>,一睁眼,<mark>妈妈正靠在床边打盹,眼里布满了血丝</mark>。</p>', note:'"很爱""很伟大"是空喊;改后用探额头、熬红眼的细节,母爱不写自现,格外动人。'},
+      {title:'《拔草》· 换掉万能词', html:'<p><b>改前:</b><span style="color:var(--s-text-secondary)">我们在地里拔草,拔了很久,很累,但是很开心。</span></p><p><b>改后:</b>太阳火辣辣地烤着,我们<mark>弯着腰,一棵一棵地拔,不一会儿就汗流浃背</mark>。可看着<mark>地里干干净净,身后堆起一小堆杂草</mark>,心里别提多痛快了。</p>', note:'"很久""很累"太单薄;改后用烈日、弯腰、汗流的细节,把劳动的辛苦和成就感都写出来了。'},
+      {title:'《难忘的老师》· 开头升级', html:'<p><b>改前:</b><span style="color:var(--s-text-secondary)">我有一位难忘的语文老师,她教得很好,我很感激她。</span></p><p><b>改后:</b>"作文,要写到人心里去。"这是我的语文老师常挂在嘴边的一句话,也是她,让我第一次爱上了文字。</p>', note:'改前干巴巴地下结论;改后用老师的一句话开头,既点了题,又勾起了读者的好奇。'},
+      {title:'《热闹的春节》· 加感官描写', html:'<p><b>改前:</b><span style="color:var(--s-text-secondary)">春节很热闹,家家户户都很喜庆,到处都是过年的气氛,我很喜欢过春节。</span></p><p><b>改后:</b>春节一到,<mark>红灯笼、红春联把街面染得一片喜庆</mark>;鞭炮<mark>"噼里啪啦"炸响,火药味直往鼻子里钻</mark>;厨房里,<mark>饺子的香味满屋子飘</mark>。</p>', note:'"热闹""喜庆"太笼统;改后调动视觉、听觉、嗅觉,"年味"就扑面而来了。'},
+      {title:'《一次比赛》· 加心理描写', html:'<p><b>改前:</b><span style="color:var(--s-text-secondary)">那次比赛我输了,我很难过,不过我知道要继续努力。</span></p><p><b>改后:</b>当宣布对方获胜时,<mark>我的鼻子一酸,眼泪差点掉下来</mark>。可我攥紧了拳头,在心里<mark>暗暗告诉自己:这次的眼泪,要变成下次的汗水</mark>。</p>', note:'"很难过"一笔带过太可惜;改后加入酸鼻子、攥拳头的心理与动作,失利后的不甘与坚强就立了起来。'},
+      {title:'《校园的花坛》· 空泛变画面', html:'<p><b>改前:</b><span style="color:var(--s-text-secondary)">校园的花坛很美,一年四季都有花开,我很喜欢这个花坛。</span></p><p><b>改后:</b>这个花坛四季不空:春天,<mark>迎春花探出金黄的小喇叭</mark>;夏天,<mark>月季红成一片</mark>;秋天,<mark>菊花一丛丛怒放</mark>;冬天,<mark>腊梅在寒风里悄悄吐香</mark>。</p>', note:'"很美"太空;改后按四季写不同的花,一句一景,花坛的美就具体又有层次了。'},
+      {title:'《快乐的一天》· 详略得当', html:'<p><b>改前:</b><span style="color:var(--s-text-secondary)">今天我过得很快乐,上午做了作业,中午吃了饭,下午去了公园,晚上看了电视。</span></p><p><b>改后:</b>今天最快乐的,是下午在公园放风筝。<mark>风筝越飞越高,线放得几乎看不见了</mark>,我<mark>仰着头追着跑,笑声撒了一路</mark>。</p>', note:'改前记流水账、平均用力;改后只详写"放风筝"一件事,快乐才写得深、写得真。'},
+      {title:'《我的爷爷》· 一事写活', html:'<p><b>改前:</b><span style="color:var(--s-text-secondary)">我的爷爷很和蔼,对我很好,还很有耐心,我很爱我的爷爷。</span></p><p><b>改后:</b>我数学题不会,爷爷<mark>戴上老花镜,一遍讲不懂就讲两遍,从不嫌我笨</mark>,直到我点头,他才<mark>眯着眼笑了</mark>。</p>', note:'"和蔼""有耐心"是评价;改后用讲题这件小事,把爷爷的耐心和疼爱写活了。'},
+      {title:'《美丽的日落》· 加感官描写', html:'<p><b>改前:</b><span style="color:var(--s-text-secondary)">傍晚的日落很美,天边红红的,很漂亮,我看得很入迷。</span></p><p><b>改后:</b>傍晚,<mark>夕阳把半边天烧成了金红色</mark>,江水<mark>被染得波光粼粼</mark>,归巢的鸟儿<mark>掠过天空,翅膀镀上了金边</mark>。我看得,连眨眼都舍不得。</p>', note:'"很美""很漂亮"太苍白;改后用金红的天、粼粼的江、镀金的鸟,把日落的绚烂写得如在眼前。'},
+      {title:'《一次旅行》· 换掉万能词', html:'<p><b>改前:</b><span style="color:var(--s-text-secondary)">暑假我去了海边,那里很好玩,大海很大,我玩得很开心。</span></p><p><b>改后:</b>暑假我第一次见到大海。<mark>海天连成一线,蓝得分不清哪是海哪是天</mark>,我<mark>脱了鞋踩进浪里,凉丝丝的海水漫过脚踝</mark>,乐得直蹦。</p>', note:'"很好玩""很大"太单调;改后用"海天一线""踩浪"的具体描写,把初见大海的惊喜写出来了。'},
+      {title:'《感人的一幕》· 加细节', html:'<p><b>改前:</b><span style="color:var(--s-text-secondary)">雨中,妈妈来给我送伞,我很感动,觉得妈妈很爱我。</span></p><p><b>改后:</b>雨中,妈妈<mark>深一脚浅一脚地跑来,裤脚全溅湿了</mark>。她把伞<mark>大半都倾到我这边,自己半个肩膀在雨里淋着</mark>。我的心里,又暖又酸。</p>', note:'"很感动""很爱我"是空话;改后用湿裤脚、倾斜的伞、淋湿的肩膀,让母爱藏进了细节,更打动人。'},
+      {title:'《我的书包》· 空泛变画面', html:'<p><b>改前:</b><span style="color:var(--s-text-secondary)">我的书包很好用,装了很多东西,我很喜欢我的书包。</span></p><p><b>改后:</b>打开书包,<mark>课本、作业本码得整整齐齐</mark>,侧袋里<mark>塞着一瓶总也喝不完的水</mark>,最底下,还藏着<mark>我偷偷收集的贴纸</mark>。它陪我上下学,肩带都磨得发白了。</p>', note:'"很好用""很多东西"太空;改后由外到内写书包里的物件,还添了情感,书包一下就有了故事。'},
+      {title:'《拔河的胜利》· 加动作描写', html:'<p><b>改前:</b><span style="color:var(--s-text-secondary)">经过努力,我们班终于赢得了拔河比赛,大家都很高兴。</span></p><p><b>改后:</b>眼看红布条一点点被我们夺了回来,最后"唰"地过了线!全班<mark>"哇"地跳了起来,抱作一团,又蹦又叫</mark>,嗓子都喊哑了也不觉得。</p>', note:'"很高兴"太单薄;改后用跳、抱、蹦、叫的动作,把胜利的狂喜写得酣畅淋漓。'},
+      {title:'《春天来了》· 换掉万能词', html:'<p><b>改前:</b><span style="color:var(--s-text-secondary)">春天来了,天气暖和了,花开了,草绿了,很美,我很喜欢春天。</span></p><p><b>改后:</b>春天悄悄地来了。<mark>迎春花开出一串串金黄的小喇叭</mark>,<mark>嫩绿的小草从土里探出头,怯生生的</mark>,柳树也<mark>抽出了新芽,随风轻摆</mark>。</p>', note:'"花开了草绿了"太平淡;改后用小喇叭、探头的小草、抽芽的柳,把春的生机写得活灵活现。'},
+      {title:'《一次登山》· 加心理描写', html:'<p><b>改前:</b><span style="color:var(--s-text-secondary)">我们去爬山,山很高,我爬得很累,但最后还是爬上去了。</span></p><p><b>改后:</b>爬到半山,我的腿<mark>像灌了铅,几次想打退堂鼓</mark>。可一想到"都爬一半了",又<mark>咬咬牙,一步步往上挪</mark>。登顶那一刻,一路的累全飞走了。</p>', note:'"很累"一笔带过;改后加入"想放弃"又"咬牙坚持"的心理,登顶的成就感才更真实。'},
+      {title:'《我的房间》· 加感官描写', html:'<p><b>改前:</b><span style="color:var(--s-text-secondary)">我的房间很整洁,也很温馨,我很喜欢待在自己的房间里。</span></p><p><b>改后:</b>推开门,<mark>阳光正透过窗帘,在书桌上洒下一片暖黄</mark>,书架上的<mark>书码得整整齐齐</mark>,墙角的<mark>绿萝爬满了半面墙</mark>。这里,是我最爱待的地方。</p>', note:'"整洁""温馨"太笼统;改后写阳光、书架、绿萝,房间的温馨就有了具体的样子。'},
+      {title:'《一件小事》· 加细节', html:'<p><b>改前:</b><span style="color:var(--s-text-secondary)">公交车上,我给一位老奶奶让了座,她很感谢我,我心里很开心。</span></p><p><b>改后:</b>我站起来,扶着老奶奶慢慢坐下。她<mark>紧紧握着我的手,连声道谢,眼角的皱纹都笑开了</mark>。我心里,像揣了个小太阳,暖暖的。</p>', note:'"很感谢""很开心"是空话;改后用握手、道谢、笑纹的细节和"小太阳"的比喻,把那份温暖写活了。'},
+      {title:'《雨后的天空》· 空泛变画面', html:'<p><b>改前:</b><span style="color:var(--s-text-secondary)">雨停了,天空很美,还出现了彩虹,非常漂亮,我很喜欢。</span></p><p><b>改后:</b>雨一停,<mark>天边忽然架起一道七彩的桥</mark>,红橙黄绿,<mark>一层挨着一层,清清楚楚</mark>,横跨在<mark>还挂着水珠的山头上</mark>。几个孩子指着天空又蹦又跳。</p>', note:'"很美""很漂亮"太空;改后把彩虹的七色和它横跨山头的样子写细,画面美得让人挪不开眼。'},
+      {title:'《难忘的表演》· 加心理描写', html:'<p><b>改前:</b><span style="color:var(--s-text-secondary)">六一那天我上台表演,一开始很紧张,后来表演得很成功。</span></p><p><b>改后:</b>上台前,<mark>我的心"咚咚"直跳,手心全是汗</mark>。灯光一打,脑子差点空白。我<mark>深吸一口气,把目光投向远处</mark>,声音渐渐稳了,台下响起了掌声。</p>', note:'"很紧张""很成功"太笼统;改后写心跳、冒汗到镇定的心路,一次表演的起伏就有了。'},
+      {title:'《我的文具盒》· 一物写活', html:'<p><b>改前:</b><span style="color:var(--s-text-secondary)">我有一个文具盒,很漂亮,也很实用,是我学习的好帮手。</span></p><p><b>改后:</b>我的文具盒像个"小军营":<mark>铅笔们像列队的士兵,整整齐齐地躺着</mark>,橡皮<mark>缺了一个角,那是上次改错字啃的</mark>。它陪我度过了一次次考试。</p>', note:'"漂亮""实用"是评价;改后用"军营"作比、添上小细节,文具盒就有了趣味和情感。'},
+      {title:'《下雪了》· 换掉万能词', html:'<p><b>改前:</b><span style="color:var(--s-text-secondary)">外面下雪了,雪很大,很白,很好看,我很想出去玩雪。</span></p><p><b>改后:</b>外面下起了鹅毛大雪,<mark>雪花像一群白蝴蝶,纷纷扬扬地飘下来</mark>,不一会儿,<mark>屋顶和大地就白成了一片</mark>,我早已按捺不住,想冲出去打雪仗了。</p>', note:'"很大""很白"太单调;改后用"白蝴蝶"的比喻和"白成一片"的描写,雪景就美了、活了。'},
+      {title:'《感恩父母》· 加细节', html:'<p><b>改前:</b><span style="color:var(--s-text-secondary)">我的父母很辛苦,为我付出了很多,我要感恩他们。</span></p><p><b>改后:</b>深夜,我起来喝水,<mark>看见爸爸还在灯下赶工,妈妈在一旁替他缝补衣裳</mark>。那一刻我忽然懂了,我的每一天,都是他们用辛劳换来的。</p>', note:'"很辛苦""付出很多"是空喊;改后用深夜赶工、缝衣的画面,让"感恩"落到了实处。'},
+      {title:'《校园的操场》· 加感官描写', html:'<p><b>改前:</b><span style="color:var(--s-text-secondary)">我们的操场很大,也很热闹,同学们都喜欢在操场上活动。</span></p><p><b>改后:</b>课间,操场上<mark>同学们像撒欢的小马,追追打打</mark>;体育课上,<mark>篮球"砰砰"地拍,足球被踢得满场飞</mark>;傍晚,<mark>夕阳把操场染成了暖橙色</mark>。</p>', note:'"很大""很热闹"太概括;改后写不同时段的动静,操场的热闹就有了画面和声音。'},
+      {title:'《一次误会》· 加心理描写', html:'<p><b>改前:</b><span style="color:var(--s-text-secondary)">我错怪了同桌,后来知道是自己错了,我很后悔。</span></p><p><b>改后:</b>当那块橡皮<mark>从我自己的文具盒里滚出来</mark>时,<mark>我的脸一下子烧了起来</mark>。想起自己一整天的冷脸,我<mark>羞愧得恨不得钻进地缝</mark>。</p>', note:'"很后悔"太单薄;改后用"脸烧""钻地缝"的心理和细节,把误会后的羞愧写得真实可感。'},
+      {title:'《美丽的荷塘》· 空泛变画面', html:'<p><b>改前:</b><span style="color:var(--s-text-secondary)">荷塘里的荷花很美,荷叶也很绿,是夏天最美的风景,我很喜欢。</span></p><p><b>改后:</b>荷塘里,荷叶<mark>像一把把撑开的绿伞</mark>,荷花<mark>亭亭玉立,粉扑扑地舒展着花瓣</mark>,叶上的露珠<mark>滚来滚去,像一颗颗珍珠</mark>。</p>', note:'"很美""很绿"太空;改后用绿伞、珍珠的比喻,把荷塘的娇艳写得如在眼前。'},
+      {title:'《难忘的合作》· 详略得当', html:'<p><b>改前:</b><span style="color:var(--s-text-secondary)">这次小组作业,我们分工合作,每个人都做了很多,最后完成得很好。</span></p><p><b>改后:</b>这次小组作业,我们起初<mark>意见不合,争得面红耳赤</mark>,后来<mark>各退一步,把每个人的想法都揉了进去</mark>。汇报那天,得了全班最高分,大家击掌欢呼。</p>', note:'改前笼统概括;改后详写"争执—磨合—成功",合作的甜头和过程都写出来了。'},
+      {title:'《我的老家》· 加感官描写', html:'<p><b>改前:</b><span style="color:var(--s-text-secondary)">我的老家在农村,那里的环境很好,空气很清新,我很喜欢回老家。</span></p><p><b>改后:</b>老家的院子里,<mark>爬满了绿油油的丝瓜藤</mark>,晒着的被子<mark>散发出太阳晒过的暖香</mark>,墙角的鸡<mark>"咯咯"地刨着土</mark>。这里的一切,都让我格外亲切。</p>', note:'"环境好""空气清新"太笼统;改后写丝瓜藤、被子的暖香、刨土的鸡,老家的气息就出来了。'},
+      {title:'《一次考试》· 加心理描写', html:'<p><b>改前:</b><span style="color:var(--s-text-secondary)">这次考试我考得很好,拿到成绩时我非常高兴。</span></p><p><b>改后:</b>发卷时,我<mark>用手捂着分数,从指缝里一点点往外看</mark>。当看到那个鲜红的"优",<mark>我的心一下子乐开了花,嘴角咧到了耳根</mark>。</p>', note:'"非常高兴"太直白;改后用"捂分数""咧嘴"的动作神态,把拿到好成绩的欣喜演活了。'},
+      {title:'《春雨》· 换掉万能词', html:'<p><b>改前:</b><span style="color:var(--s-text-secondary)">春天下起了雨,雨很小,下了很久,对庄稼很好。</span></p><p><b>改后:</b>春雨<mark>细得像牛毛,密得像蛛网,悄没声地下</mark>。田里的秧苗<mark>喝饱了水,绿得发亮</mark>。奶奶笑着说,这真是一场贵如油的好雨。</p>', note:'"很小""很久"太平淡;改后用"牛毛""蛛网"的比喻,把春雨的细柔和珍贵都写出来了。'},
+      {title:'《温暖的一幕》· 加细节', html:'<p><b>改前:</b><span style="color:var(--s-text-secondary)">我生病了,同学们都很关心我,我心里很温暖。</span></p><p><b>改后:</b>我发烧请假,回校那天,<mark>课桌上整整齐齐地放着同学们帮我抄的笔记</mark>,同桌还<mark>塞给我一颗水果糖,说"甜甜的,病快点好"</mark>。我的心里,暖烘烘的。</p>', note:'"很关心""很温暖"是空话;改后用抄笔记、递糖的细节,把同学间的温情写得具体动人。'},
+      {title:'《美丽的秋景》· 空泛变画面', html:'<p><b>改前:</b><span style="color:var(--s-text-secondary)">秋天的公园很美,树叶都黄了,很漂亮,我很喜欢秋天的公园。</span></p><p><b>改后:</b>秋天的公园换上了金装:<mark>银杏叶打着旋儿飘下,像一场金色的雨</mark>,<mark>枫叶红得像火,一团团、一簇簇</mark>,湖面上<mark>飘着几片落叶,像小小的船</mark>。</p>', note:'"很美""很漂亮"太空;改后写银杏、枫叶、落叶几个画面,秋景的灿烂就跃然纸上。'},
+      {title:'《难忘的教训》· 加心理描写', html:'<p><b>改前:</b><span style="color:var(--s-text-secondary)">那次我没复习,考砸了,我很难过,以后一定要好好学习。</span></p><p><b>改后:</b>试卷发下来,<mark>那个刺眼的分数,像针一样扎着我的眼睛</mark>。回家的路上,<mark>我攥着卷子,脚步沉得像灌了铅</mark>。那一晚,我把错题一道道抄到很晚。</p>', note:'"很难过"太单薄;改后用"刺眼的分数""沉重的脚步"的比喻,把考砸后的懊悔写得真切。'},
+      {title:'《勤劳的奶奶》· 一事写活', html:'<p><b>改前:</b><span style="color:var(--s-text-secondary)">我的奶奶很勤劳,一天到晚都在忙,从来不闲着,我很敬佩她。</span></p><p><b>改后:</b>天不亮,奶奶就<mark>起来扫院子,竹扫帚"唰唰"地响</mark>。有回她<mark>累得靠在椅子上打盹,手里还攥着没缝完的针线</mark>。她的勤劳,我一直看在眼里。</p>', note:'"很勤劳"是标签;改后用扫院、打盹攥针线的细节,把奶奶的勤劳写活了。'},
+      {title:'《欢乐的游戏》· 加动作描写', html:'<p><b>改前:</b><span style="color:var(--s-text-secondary)">课间我们玩了老鹰捉小鸡,很好玩,大家都玩得很开心。</span></p><p><b>改后:</b>"老鹰"张牙舞爪地扑过来,"母鸡"<mark>张开双臂,左拦右挡</mark>,身后的"小鸡"们<mark>拽着衣角,尖叫着东躲西藏</mark>,操场上笑成了一团。</p>', note:'"很好玩""很开心"太空;改后用扑、拦、拽、躲的动作,把游戏的热闹和快乐写得活灵活现。'},
+      {title:'《我的家乡》· 加感官描写', html:'<p><b>改前:</b><span style="color:var(--s-text-secondary)">我的家乡很美,有山有水,是个好地方,我很爱我的家乡。</span></p><p><b>改后:</b>我的家乡,<mark>青山绿水环抱着一座小城</mark>。清晨,<mark>薄雾在山间缭绕</mark>;傍晚,<mark>炊烟袅袅升起,饭菜香飘满了整条街</mark>。这就是我魂牵梦萦的家。</p>', note:'"很美""好地方"太笼统;改后写青山、薄雾、炊烟、饭香,家乡的美就具体又有情味了。'},
+      {title:'《一次帮忙》· 加细节', html:'<p><b>改前:</b><span style="color:var(--s-text-secondary)">我帮邻居张奶奶搬了东西,她很感谢我,我心里很自豪。</span></p><p><b>改后:</b>张奶奶拎着一大袋米,<mark>累得直喘,一步一挪</mark>。我赶紧接过来扛上肩,<mark>米袋压得我直不起腰,腿都发软</mark>。可听着奶奶一声声道谢,我心里比吃了蜜还甜。</p>', note:'"很感谢""很自豪"是空话;改后用喘气、扛米、发软的细节,把助人的辛苦与快乐都写出来了。'},
+      {title:'《美丽的校园》· 空泛变画面', html:'<p><b>改前:</b><span style="color:var(--s-text-secondary)">我们的校园很美丽,有花有树有教学楼,我很喜欢我们的校园。</span></p><p><b>改后:</b>走进校门,<mark>四季不空的花坛先迎了上来</mark>,教学楼前的<mark>老梧桐撑开浓密的绿伞</mark>,操场上<mark>红色的跑道在阳光下格外鲜亮</mark>。这就是我们美丽的校园。</p>', note:'"很美丽"太空;改后写花坛、梧桐、跑道几个具体的景,校园的美就看得见了。'},
+      {title:'《难忘的生日会》· 详略得当', html:'<p><b>改前:</b><span style="color:var(--s-text-secondary)">我的生日会很热闹,来了很多同学,吃了蛋糕,做了游戏,收了礼物,很开心。</span></p><p><b>改后:</b>生日会上最难忘的,是切蛋糕许愿的一刻。<mark>烛光映亮了一张张笑脸</mark>,大家齐声唱起生日歌,我<mark>闭上眼,悄悄许下了一个心愿</mark>。</p>', note:'改前罗列一堆、平均用力;改后只详写"许愿"一个瞬间,温馨的气氛反而更浓了。'},
+      {title:'《一场球赛》· 加动作描写', html:'<p><b>改前:</b><span style="color:var(--s-text-secondary)">那场篮球赛很精彩,我们队打得很好,最后赢了,大家都很兴奋。</span></p><p><b>改后:</b>最后几秒,队长<mark>一个转身,晃过防守,腾空跃起</mark>,篮球<mark>"唰"地空心入网</mark>!哨声响起,全场<mark>"哗"地沸腾了,我们冲上去把他高高抛起</mark>。</p>', note:'"很精彩""很兴奋"太空;改后用转身、跃起、入网、抛人的动作,把绝杀的燃点写活了。'},
+      {title:'《温暖的冬天》· 换掉万能词', html:'<p><b>改前:</b><span style="color:var(--s-text-secondary)">冬天虽然很冷,但是家里很温暖,一家人在一起很幸福。</span></p><p><b>改后:</b>窗外<mark>北风"呼呼"地刮</mark>,屋里的火锅<mark>"咕嘟咕嘟"翻着红油</mark>,一家人<mark>围着热气说说笑笑</mark>,浑身暖烘烘的。这样的冬天,再冷也不怕。</p>', note:'"很冷""很温暖""很幸福"太直白;改后用北风、火锅、围坐的画面,冷与暖的对比让幸福更动人。'},
+      {title:'《我的好朋友》· 一事写活', html:'<p><b>改前:</b><span style="color:var(--s-text-secondary)">我有一个好朋友,她很善良,对我很好,我们的关系很好。</span></p><p><b>改后:</b>上次我摔破了膝盖,是她<mark>一路扶着我,慢慢挪到医务室,自己的鞋都跑掉了一只也顾不上</mark>。有这样一个朋友,连阴天都觉得是晴的。</p>', note:'"很善良""关系很好"是评价;改后用扶我就医的小事,把这份友情写得真挚感人。'},
+      {title:'《难忘的一课》· 结尾升级', html:'<p><b>改前:</b><span style="color:var(--s-text-secondary)">这节课很有意义,我学到了很多东西,我很喜欢这样的课。</span></p><p><b>改后:</b>下课铃响了,我却<mark>还盯着黑板上那句"不放弃就有希望",久久舍不得擦去</mark>。这节课教给我的,<mark>早已不只是书本上的知识</mark>。</p>', note:'"很有意义""学到很多"是空喊;改后用盯着板书、舍不得擦的细节收尾,把"意义"落到了具体的画面和感受上。'},
+    ],
+  };
+
+  var STEP_TITLE={1:'观察范例库',2:'素材运用范例库',3:'结构范例库',4:'语言范例库',5:'改前改后对照范例库'};
+
+  // ---- Web Component: <essay-card> ---------------------------------------
+  // A light-DOM custom element that renders one bank item by CLONING a parsed
+  // <template> (not re-parsing an HTML string every time) and filling only the
+  // dynamic slots. Its .data setter is idempotent, so a card already in the DOM
+  // can be re-pointed at a new item without being destroyed/recreated — this
+  // slashes layout/GC churn when flipping through batches. Light DOM (no Shadow
+  // DOM) keeps the page's existing .essay CSS fully in effect.
+  var TPL=document.getElementById('tpl-essay');
+  function EssayCard(){ return Reflect.construct(HTMLElement, [], EssayCard); }
+  EssayCard.prototype=Object.create(HTMLElement.prototype);
+  EssayCard.prototype.constructor=EssayCard;
+  EssayCard.prototype.connectedCallback=function(){
+    if(!this._built){ this.appendChild(TPL.content.cloneNode(true)); this._built=true; if(this._pending){ this._apply(this._pending); this._pending=null; } }
+  };
+  Object.defineProperty(EssayCard.prototype,'data',{ set:function(item){
+    if(!this._built){ this._pending=item; return; }
+    this._apply(item);
+  }});
+  EssayCard.prototype._apply=function(item){
+    var root=this.firstElementChild; // .essay
+    root.querySelector('.name').textContent=item.title;
+    var body=root.querySelector('.ebody');
+    // step 3 / step 5 items already ship <p> blocks; others are a bare run of text.
+    body.innerHTML=/^\s*<p/.test(item.html)? item.html : '<p>'+item.html+'</p>';
+    root.querySelector('.notetext').textContent=item.note;
+    // restart the fade/slide-in each time the card takes on new content
+    root.style.animation='none'; void root.offsetWidth; root.style.animation='';
+  };
+  try{ customElements.define('essay-card', EssayCard); }catch(e){}
+
+  function shuffle(a){ a=a.slice(); for(var i=a.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1));var t=a[i];a[i]=a[j];a[j]=t;} return a; }
+
+  var BATCH=4; // how many examples to tile per "batch" (2×2 on wide screens, 4 stacked on mobile)
+  var viewMain=document.getElementById('viewMain');
+  var viewDetail=document.getElementById('viewDetail');
+  var dTitle=document.getElementById('dTitle');
+  var dCount=document.getElementById('dCount');
+  var dList=document.getElementById('dList');
+  var curStep=null, order=[], cursor=0; // rotating queue per step
+  var renderToken=0; // cancels an in-flight async render if a newer one starts
+
+  // Render the current batch (a slice of the shuffled queue) into the grid.
+  // Cards are appended one-per-animation-frame so a batch swap never blocks the
+  // main thread; existing <essay-card>s are reused in place and only re-pointed
+  // at new data, so the DOM node count stays flat at BATCH.
+  function renderBatch(animate){
+    var total=order.length, size=Math.min(BATCH,total);
+    var items=[];
+    for(var k=0;k<size;k++){ items.push(BANK[curStep][ order[(cursor+k)%total] ]); }
+    var page=Math.floor(cursor/BATCH)%Math.max(1,Math.ceil(total/BATCH))+1;
+    var pages=Math.max(1,Math.ceil(total/BATCH));
+    var myToken=++renderToken;
+    var paint=function(){
+      dCount.textContent='第 '+page+'/'+pages+' 批 · 共 '+total+' 篇';
+      // ensure exactly `size` card elements exist (reuse > recreate)
+      var cards=dList.children;
+      while(cards.length>size){ dList.removeChild(dList.lastElementChild); }
+      var step=function(idx){
+        if(myToken!==renderToken) return;           // superseded → abort
+        if(idx>=size){ dList.classList.remove('flip'); return; }
+        var card=cards[idx];
+        if(!card){ card=document.createElement('essay-card'); dList.appendChild(card); }
+        card.data=items[idx];
+        (window.requestAnimationFrame||function(f){return setTimeout(f,16);})(function(){ step(idx+1); });
+      };
+      step(0);
+    };
+    if(animate){ dList.classList.add('flip'); setTimeout(paint,160); } else paint();
+  }
+  function openDetail(step){
+    curStep=step; order=shuffle(BANK[step].map(function(_,i){return i;})); cursor=0;
+    dTitle.textContent=STEP_TITLE[step];
+    renderBatch(false);
+    viewMain.classList.remove('active');
+    viewDetail.classList.add('active');
+    window.scrollTo(0,0);
+  }
+  function backToMain(){
+    renderToken++;                 // cancel any in-flight async render
+    viewDetail.classList.remove('active');
+    viewMain.classList.add('active');
+    curStep=null;
+    window.scrollTo(0,0);
+  }
+  // advance the queue by one batch → a genuinely new set of examples
+  function nextBatch(){
+    if(curStep==null) return;
+    cursor=(cursor+BATCH)%order.length;
+    renderBatch(true);
+    window.scrollTo(0,0);
+  }
+
+  // open from any "查看更多范例" entry in a section header
+  document.addEventListener('click',function(e){
+    var op=e.target.closest('[data-open]');
+    if(op){ openDetail(+op.getAttribute('data-open')); }
+  });
+  document.getElementById('dBack').addEventListener('click',backToMain);
+  document.getElementById('dMore').addEventListener('click',nextBatch);
+  document.addEventListener('keydown',function(e){
+    if(e.key==='Escape'&&viewDetail.classList.contains('active')) backToMain();
+  });
+})();
+</script>
+</body>
+</html>
