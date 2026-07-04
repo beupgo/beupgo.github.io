@@ -1,0 +1,599 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="theme-color" content="#4f46e5">
+<title>运算定律专题 · 拆数凑整巧算</title>
+<style>
+:root{
+  --brand-h:232; --brand-s:84%;
+  --g-font:-apple-system,BlinkMacSystemFont,"PingFang SC","Hiragino Sans GB","Microsoft YaHei",Roboto,Arial,sans-serif;
+  --g-mono:"SF Mono",ui-monospace,Menlo,Consolas,monospace;
+  --brand:hsl(var(--brand-h),var(--brand-s),56%);
+  --brand-strong:hsl(var(--brand-h),var(--brand-s),48%);
+  --brand-subtle:hsl(var(--brand-h),var(--brand-s),97%);
+  --brand-subtle-2:hsl(var(--brand-h),var(--brand-s),93%);
+  --warn:#f59e0b; --warn-bg:#fffbeb; --warn-text:#b45309;
+  --ok:#10b981; --ok-bg:#ecfdf5; --ok-text:#047857;
+  --surface:#fff; --sunken:#f9fafb;
+  --text:#111827; --text-2:#4b5563; --text-3:#9ca3af;
+  --border:#e5e7eb;
+  --shadow:0 1px 2px rgba(16,24,40,.04),0 6px 20px rgba(16,24,40,.06);
+  --r-lg:18px; --r-md:12px; --r-sm:8px; --r-full:999px;
+  --fig-a:#6366f1; --fig-b:#f59e0b; --fig-c:#10b981; --fig-d:#ec4899;
+}
+@media (prefers-color-scheme: dark){
+  :root{
+    --brand:hsl(var(--brand-h),var(--brand-s),64%);
+    --brand-strong:hsl(var(--brand-h),var(--brand-s),72%);
+    --brand-subtle:hsl(var(--brand-h),var(--brand-s),16%);
+    --brand-subtle-2:hsl(var(--brand-h),var(--brand-s),22%);
+    --warn-bg:#3a2c0a; --warn-text:#fbbf24;
+    --ok-bg:#0b2e22; --ok-text:#34d399;
+    --surface:#161b22; --sunken:#0d1117;
+    --text:#e6edf3; --text-2:#9da7b3; --text-3:#6b7684;
+    --border:#2d333b;
+    --shadow:0 1px 2px rgba(0,0,0,.3),0 6px 20px rgba(0,0,0,.35);
+    --fig-a:#818cf8; --fig-b:#fbbf24; --fig-c:#34d399; --fig-d:#f472b6;
+  }
+}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent;}
+html,body{margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{font-family:var(--g-font);background:var(--sunken);color:var(--text);-webkit-font-smoothing:antialiased;line-height:1.6;}
+.page{width:100%;max-width:760px;margin:0 auto;padding:0 clamp(16px,4vw,32px) calc(env(safe-area-inset-bottom) + 56px);}
+@media(min-width:768px){
+  .page{max-width:920px;}
+  .grid2{display:grid;grid-template-columns:1fr 1fr;gap:14px;align-items:start;}
+  .grid2>.card{margin-bottom:0;}
+}
+@media(min-width:1100px){
+  .page{max-width:1040px;}
+}
+
+/* 顶部 */
+.hero{text-align:center;padding:calc(env(safe-area-inset-top) + 34px) 8px 24px;}
+.hero .badge{display:inline-flex;align-items:center;gap:6px;padding:6px 14px;border-radius:var(--r-full);background:var(--brand-subtle);color:var(--brand-strong);font-size:13px;font-weight:600;margin-bottom:14px;}
+.hero .badge svg{width:15px;height:15px;}
+.hero h1{font-size:26px;margin:0 0 8px;font-weight:800;letter-spacing:-.02em;}
+.hero p{margin:0;color:var(--text-2);font-size:14px;}
+
+/* 章节导航 */
+.toc{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin:0 0 26px;}
+.toc a{text-decoration:none;font-size:13px;font-weight:600;color:var(--text-2);background:var(--surface);border:1px solid var(--border);border-radius:var(--r-full);padding:7px 13px;transition:.15s;}
+.toc a:active{transform:scale(.96);}
+@media(hover:hover){.toc a:hover{border-color:var(--brand);color:var(--brand-strong);}}
+
+/* 章节 */
+.sec{margin-bottom:34px;scroll-margin-top:16px;}
+.sec-head{display:flex;align-items:center;gap:10px;margin-bottom:14px;}
+.sec-head .n{flex:none;width:30px;height:30px;border-radius:var(--r-md);background:var(--brand);color:#fff;font-size:15px;font-weight:800;display:flex;align-items:center;justify-content:center;}
+.sec-head h2{margin:0;font-size:19px;font-weight:800;}
+.sec-head .sub{color:var(--text-3);font-size:12px;font-weight:600;margin-top:1px;}
+
+/* 分数(竖排:分子/分数线/分母) */
+.frac{display:inline-flex;flex-direction:column;align-items:center;justify-content:center;vertical-align:middle;line-height:1;margin:0 2px;font-weight:700;}
+.frac .fn{padding:0 4px 1px;border-bottom:1.6px solid currentColor;}
+.frac .fd{padding:1px 4px 0;}
+
+/* 公式条 */
+.formula{display:flex;align-items:center;justify-content:center;gap:6px;flex-wrap:wrap;background:var(--brand-subtle);border:1px solid var(--brand-subtle-2);border-radius:var(--r-md);padding:11px 12px;margin:10px 0;font-size:15px;font-weight:800;color:var(--brand-strong);}
+
+/* 卡片 */
+.card{background:var(--surface);border:1px solid var(--border);border-radius:var(--r-lg);padding:16px;margin-bottom:14px;box-shadow:var(--shadow);}
+.card-t{display:flex;align-items:center;gap:8px;font-size:15px;font-weight:700;margin:0 0 10px;}
+.card-t svg{width:18px;height:18px;flex:none;color:var(--brand-strong);}
+.card p{margin:0 0 8px;font-size:14px;color:var(--text-2);}
+.card p:last-child{margin-bottom:0;}
+.card b{color:var(--text);}
+.key{color:var(--brand-strong);font-weight:700;}
+
+/* 图示区 */
+.fig{background:var(--sunken);border:1px solid var(--border);border-radius:var(--r-md);padding:14px 12px;text-align:center;margin:10px 0;}
+.fig svg{max-width:100%;height:auto;display:block;margin:0 auto;}
+.fig figcaption{margin-top:8px;font-size:12px;color:var(--text-3);}
+
+/* 母题 */
+.mother{border:1.5px solid var(--brand-subtle-2);border-radius:var(--r-lg);overflow:hidden;margin:14px 0;box-shadow:var(--shadow);}
+.mother-head{display:flex;align-items:center;gap:10px;padding:12px 14px;background:var(--brand-subtle);}
+.mother-head .no{flex:none;width:30px;height:30px;border-radius:var(--r-md);background:var(--brand);color:#fff;font-size:14px;font-weight:800;display:flex;align-items:center;justify-content:center;}
+.mother-head h3{margin:0;font-size:15px;font-weight:800;color:var(--text);flex:1;}
+.mother-head .tagm{flex:none;font-size:11px;font-weight:800;color:var(--brand-strong);background:var(--surface);border:1px solid var(--brand-subtle-2);padding:3px 9px;border-radius:var(--r-full);}
+.mother-body{padding:14px;}
+.model{display:flex;gap:8px;align-items:flex-start;background:var(--brand-subtle);border-radius:var(--r-md);padding:10px 12px;margin-top:10px;font-size:13px;color:var(--text-2);}
+.model svg{width:16px;height:16px;flex:none;color:var(--brand-strong);margin-top:2px;}
+.model b{color:var(--brand-strong);}
+
+/* 例题 */
+.eg{border:1px solid var(--border);border-radius:var(--r-md);overflow:hidden;margin:12px 0;}
+.eg-q{background:var(--sunken);padding:10px 13px;font-size:14px;font-weight:600;display:flex;gap:8px;}
+.eg-q .tag{flex:none;color:var(--brand-strong);font-weight:800;}
+.eg-body{padding:12px 13px;}
+.eg-step{display:flex;gap:9px;font-size:13.5px;color:var(--text-2);margin-bottom:8px;}
+.eg-step:last-of-type{margin-bottom:0;}
+.eg-step .d{flex:none;width:19px;height:19px;border-radius:var(--r-full);background:var(--brand-subtle-2);color:var(--brand-strong);font-size:11px;font-weight:800;display:flex;align-items:center;justify-content:center;margin-top:1px;}
+.eg-ans{margin-top:10px;display:inline-flex;align-items:center;gap:6px;background:var(--ok-bg);color:var(--ok-text);font-weight:800;font-size:14px;padding:6px 12px;border-radius:var(--r-full);}
+.eg-ans svg{width:15px;height:15px;}
+
+/* 类型徽标 */
+.types{display:flex;flex-wrap:wrap;gap:8px;margin:4px 0 12px;}
+.types .t{display:inline-flex;align-items:center;gap:6px;font-size:12.5px;font-weight:700;padding:5px 11px;border-radius:var(--r-full);background:var(--brand-subtle);color:var(--brand-strong);}
+.types .t svg{width:14px;height:14px;flex:none;}
+.types .t.yes{background:var(--ok-bg);color:var(--ok-text);}
+.types .t.no{background:var(--warn-bg);color:var(--warn-text);}
+
+/* 易错 */
+.warn{background:var(--warn-bg);border:1px solid var(--warn);border-radius:var(--r-md);padding:11px 13px;margin-top:10px;}
+.warn-h{display:flex;align-items:center;gap:6px;font-size:13px;font-weight:800;color:var(--warn-text);margin-bottom:6px;}
+.warn-h svg{width:15px;height:15px;}
+.warn ul{margin:0;padding-left:18px;}
+.warn li{font-size:13px;color:var(--text-2);margin-bottom:4px;}
+.warn li:last-child{margin-bottom:0;}
+
+/* 口诀 */
+.tip{display:flex;gap:9px;background:var(--brand-subtle);border-radius:var(--r-md);padding:11px 13px;margin-top:10px;font-size:13.5px;color:var(--text-2);}
+.tip svg{width:17px;height:17px;flex:none;color:var(--brand-strong);margin-top:1px;}
+.tip b{color:var(--brand-strong);}
+
+/* 自测 折叠 */
+.quiz{background:var(--surface);border:1px solid var(--border);border-radius:var(--r-md);margin-bottom:10px;overflow:hidden;}
+.quiz>summary{list-style:none;cursor:pointer;padding:12px 14px;font-size:14px;font-weight:600;display:flex;align-items:center;gap:9px;}
+.quiz>summary::-webkit-details-marker{display:none;}
+.quiz>summary .q-n{flex:none;width:22px;height:22px;border-radius:var(--r-full);background:var(--brand-subtle-2);color:var(--brand-strong);font-size:12px;font-weight:800;display:flex;align-items:center;justify-content:center;}
+.quiz>summary .chev{margin-left:auto;color:var(--text-3);transition:.2s;}
+.quiz>summary .chev svg{width:18px;height:18px;display:block;}
+.quiz[open]>summary .chev{transform:rotate(180deg);}
+.quiz .ans-body{padding:0 14px 13px 45px;font-size:13.5px;color:var(--text-2);border-top:1px dashed var(--border);padding-top:11px;}
+.quiz .ans-body .final{color:var(--ok-text);font-weight:800;}
+.quiz .ans-body .stepline{margin:0 0 6px;}
+
+/* 解方程步骤(等号对齐) */
+.solve{background:var(--sunken);border:1px solid var(--border);border-radius:var(--r-md);padding:12px 14px;margin:10px 0;font-family:var(--g-mono);}
+.solve .row{display:flex;align-items:baseline;gap:8px;margin-bottom:6px;font-size:15px;font-weight:700;color:var(--text);}
+.solve .row:last-child{margin-bottom:0;}
+.solve .row .lhs{min-width:96px;text-align:right;}
+.solve .row .op{color:var(--text-3);}
+.solve .row .note{font-family:var(--g-font);font-size:12px;font-weight:600;color:var(--brand-strong);margin-left:auto;}
+.solve .row.res{color:var(--ok-text);}
+.solve .row.res .lhs{color:var(--ok-text);}
+
+/* 运算定律卡 */
+.law{display:flex;flex-direction:column;gap:5px;background:var(--surface);border:1px solid var(--border);border-left:3px solid var(--brand);border-radius:var(--r-md);padding:11px 13px;margin-bottom:10px;}
+.law .lname{font-size:13.5px;font-weight:800;color:var(--text);display:flex;align-items:center;gap:6px;}
+.law .lname .k{font-size:11px;font-weight:700;color:var(--brand-strong);background:var(--brand-subtle);padding:2px 7px;border-radius:var(--r-full);}
+.law .lf{font-family:var(--g-mono);font-size:14px;font-weight:700;color:var(--brand-strong);}
+
+.foot{text-align:center;color:var(--text-3);font-size:12px;padding:8px 0;}
+</style>
+</head>
+<body>
+<div class="page">
+
+  <div class="hero">
+    <span class="badge">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="2" width="16" height="20" rx="2"/><line x1="8" y1="6" x2="16" y2="6"/><line x1="8" y1="10" x2="8" y2="10"/><line x1="12" y1="10" x2="12" y2="10"/><line x1="16" y1="10" x2="16" y2="10"/><line x1="8" y1="14" x2="8" y2="14"/><line x1="12" y1="14" x2="12" y2="14"/><line x1="16" y1="14" x2="16" y2="18"/><line x1="8" y1="18" x2="12" y2="18"/></svg>
+      运算定律专题 · 人教版四年级
+    </span>
+    <h1>拆数凑整 · 巧算怎么算得快</h1>
+    <p>把数字拆一拆、凑一凑,先算出整十整百 —— 这就是简便计算的核心:让运算定律替你省力</p>
+  </div>
+
+  <nav class="toc">
+    <a href="#s1">1 五大运算定律</a>
+    <a href="#s2">2 凑整思想</a>
+    <a href="#s3">3 乘法分配律</a>
+    <a href="#s4">4 减法·除法性质</a>
+    <a href="#s5">5 巧算综合</a>
+    <a href="#s6">6 母题精讲</a>
+    <a href="#s7">7 闯关自测</a>
+  </nav>
+
+  <!-- ========== §1 ========== -->
+  <section class="sec" id="s1">
+    <div class="sec-head">
+      <div class="n">1</div>
+      <div><h2>五大运算定律</h2><div class="sub">简便计算的"工具箱"</div></div>
+    </div>
+
+    <div class="card">
+      <p>简便计算不是"背结果",而是<b>用定律把算式变个样子</b>,让它更好算。先把这 5 条工具记牢:</p>
+      <div class="law">
+        <div class="lname"><span class="k">加法</span>交换律</div>
+        <div class="lf">a + b = b + a</div>
+      </div>
+      <div class="law">
+        <div class="lname"><span class="k">加法</span>结合律</div>
+        <div class="lf">(a + b) + c = a + (b + c)</div>
+      </div>
+      <div class="law">
+        <div class="lname"><span class="k">乘法</span>交换律</div>
+        <div class="lf">a × b = b × a</div>
+      </div>
+      <div class="law">
+        <div class="lname"><span class="k">乘法</span>结合律</div>
+        <div class="lf">(a × b) × c = a × (b × c)</div>
+      </div>
+      <div class="law">
+        <div class="lname"><span class="k">乘法</span>分配律 <span style="color:var(--warn-text);font-size:11px;font-weight:800;">最常考</span></div>
+        <div class="lf">(a + b) × c = a × c + b × c</div>
+      </div>
+      <div class="tip">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18h6"/><path d="M10 22h4"/><path d="M12 2a7 7 0 0 0-4 12.7c.6.5 1 1.3 1 2.3h6c0-1 .4-1.8 1-2.3A7 7 0 0 0 12 2Z"/></svg>
+        <span><b>交换、结合</b>管的是"换位置、换括号";<b>分配律</b>管的是"括号里的每一项都要乘"—— 这是最容易出错、也最常用的一条。</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== §2 ========== -->
+  <section class="sec" id="s2">
+    <div class="sec-head">
+      <div class="n">2</div>
+      <div><h2>凑整思想</h2><div class="sub">先凑出整十、整百、整千</div></div>
+    </div>
+
+    <div class="grid2">
+      <div class="card">
+        <div class="card-t">加法凑整:找"好朋友"</div>
+        <p>看到<b>末位能凑成 0</b> 的两个数(如 88 和 12、37 和 63),先把它们加起来。</p>
+        <div class="eg">
+          <div class="eg-q"><span class="tag">例</span><span>简算 88 + 37 + 12</span></div>
+          <div class="eg-body">
+            <div class="solve">
+              <div class="row"><span class="lhs">原式</span><span class="op">=</span><span>(88 + 12) + 37</span><span class="note">交换+结合</span></div>
+              <div class="row"><span class="lhs"></span><span class="op">=</span><span>100 + 37</span></div>
+              <div class="row res"><span class="lhs"></span><span class="op">=</span><span>137</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-t">乘法凑整:25×4、125×8</div>
+        <p>记住两对"黄金搭档":<span class="key">25 × 4 = 100</span>、<span class="key">125 × 8 = 1000</span>。看到它们就先凑。</p>
+        <div class="eg">
+          <div class="eg-q"><span class="tag">例</span><span>简算 25 × 32 × 125</span></div>
+          <div class="eg-body">
+            <div class="solve">
+              <div class="row"><span class="lhs">原式</span><span class="op">=</span><span>25 × (4 × 8) × 125</span><span class="note">拆 32=4×8</span></div>
+              <div class="row"><span class="lhs"></span><span class="op">=</span><span>(25×4) × (8×125)</span></div>
+              <div class="row"><span class="lhs"></span><span class="op">=</span><span>100 × 1000</span></div>
+              <div class="row res"><span class="lhs"></span><span class="op">=</span><span>100000</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="tip">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18h6"/><path d="M10 22h4"/><path d="M12 2a7 7 0 0 0-4 12.7c.6.5 1 1.3 1 2.3h6c0-1 .4-1.8 1-2.3A7 7 0 0 0 12 2Z"/></svg>
+      <span><b>凑整口诀:</b>加法找末位凑 0 的,乘法找 25×4、125×8。凑不出来时,就<b>把一个数拆开</b>(如 32 = 4×8)。</span>
+    </div>
+  </section>
+
+  <!-- ========== §3 ========== -->
+  <section class="sec" id="s3">
+    <div class="sec-head">
+      <div class="n">3</div>
+      <div><h2>乘法分配律专练</h2><div class="sub">正着用 + 反着用</div></div>
+    </div>
+
+    <div class="card">
+      <div class="card-t">正用:接近整十整百的数,拆成"整 ± 零"</div>
+      <p>看到 99、101、102 这类数,把它拆成 <b>(100 − 1)</b> 或 <b>(100 + 2)</b>,再用分配律。</p>
+      <div class="eg">
+        <div class="eg-q"><span class="tag">例</span><span>简算 99 × 38</span></div>
+        <div class="eg-body">
+          <div class="solve">
+            <div class="row"><span class="lhs">原式</span><span class="op">=</span><span>(100 − 1) × 38</span><span class="note">拆 99</span></div>
+            <div class="row"><span class="lhs"></span><span class="op">=</span><span>100×38 − 1×38</span><span class="note">分配</span></div>
+            <div class="row"><span class="lhs"></span><span class="op">=</span><span>3800 − 38</span></div>
+            <div class="row res"><span class="lhs"></span><span class="op">=</span><span>3762</span></div>
+          </div>
+        </div>
+      </div>
+      <div class="warn">
+        <div class="warn-h">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m21.7 18-8-14a2 2 0 0 0-3.4 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.7-3Z"/><path d="M12 9v4"/><path d="M12 17h.01"/></svg>
+          最易错
+        </div>
+        <ul>
+          <li>拆开后括号里的<b>每一项都要乘</b>那个数,别漏乘:99×38 ≠ 100×38 − 1(应是 −1×38)。</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-t">逆用:提取公因数(把相同的数"拎出来")</div>
+      <p>看到两个乘法算式<b>有一个相同的因数</b>,并且用加(减)连着,就把相同的数提到括号外。</p>
+      <div class="eg">
+        <div class="eg-q"><span class="tag">例</span><span>简算 63 × 17 + 37 × 17</span></div>
+        <div class="eg-body">
+          <div class="solve">
+            <div class="row"><span class="lhs">原式</span><span class="op">=</span><span>(63 + 37) × 17</span><span class="note">提出 17</span></div>
+            <div class="row"><span class="lhs"></span><span class="op">=</span><span>100 × 17</span></div>
+            <div class="row res"><span class="lhs"></span><span class="op">=</span><span>1700</span></div>
+          </div>
+        </div>
+      </div>
+      <div class="tip">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18h6"/><path d="M10 22h4"/><path d="M12 2a7 7 0 0 0-4 12.7c.6.5 1 1.3 1 2.3h6c0-1 .4-1.8 1-2.3A7 7 0 0 0 12 2Z"/></svg>
+        <span><b>特别提醒:</b>形如 <b>a×99 + a</b> 的题,后面的 a 其实是 a×1,所以 = a×(99+1) = a×100。</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== §4 ========== -->
+  <section class="sec" id="s4">
+    <div class="sec-head">
+      <div class="n">4</div>
+      <div><h2>减法与除法的性质</h2><div class="sub">连减变加、连除变乘</div></div>
+    </div>
+
+    <div class="grid2">
+      <div class="card">
+        <div class="card-t">连减:一个数连续减 → 减去它们的和</div>
+        <div class="formula">a − b − c = a − (b + c)</div>
+        <div class="eg">
+          <div class="eg-q"><span class="tag">例</span><span>简算 528 − 53 − 47</span></div>
+          <div class="eg-body">
+            <div class="solve">
+              <div class="row"><span class="lhs">原式</span><span class="op">=</span><span>528 − (53 + 47)</span></div>
+              <div class="row"><span class="lhs"></span><span class="op">=</span><span>528 − 100</span></div>
+              <div class="row res"><span class="lhs"></span><span class="op">=</span><span>428</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-t">连除:一个数连续除 → 除以它们的积</div>
+        <div class="formula">a ÷ b ÷ c = a ÷ (b × c)</div>
+        <div class="eg">
+          <div class="eg-q"><span class="tag">例</span><span>简算 3200 ÷ 25 ÷ 4</span></div>
+          <div class="eg-body">
+            <div class="solve">
+              <div class="row"><span class="lhs">原式</span><span class="op">=</span><span>3200 ÷ (25 × 4)</span></div>
+              <div class="row"><span class="lhs"></span><span class="op">=</span><span>3200 ÷ 100</span></div>
+              <div class="row res"><span class="lhs"></span><span class="op">=</span><span>32</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="warn">
+      <div class="warn-h">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m21.7 18-8-14a2 2 0 0 0-3.4 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.7-3Z"/><path d="M12 9v4"/><path d="M12 17h.01"/></svg>
+        易错点
+      </div>
+      <ul>
+        <li>加括号后,<b>括号里符号不变</b>:a − b − c = a − (b + c),不是 a − (b − c)。</li>
+        <li>除法同理:连除变成除以"积",不是除以"商"。</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ========== §5 ========== -->
+  <section class="sec" id="s5">
+    <div class="sec-head">
+      <div class="n">5</div>
+      <div><h2>巧算综合:拆数与借数</h2><div class="sub">灵活选择方法</div></div>
+    </div>
+
+    <div class="card">
+      <div class="card-t">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v20"/><path d="M2 5h20"/><path d="M3 3v2"/><path d="M21 3v2"/><path d="m5 21 3-9 3 9"/><path d="M13 21h8"/></svg>
+        选方法三看
+      </div>
+      <div class="eg-step"><span class="d">1</span><span><b>看数字:</b>有没有 25、125?有没有接近整百的数(98、102)?</span></div>
+      <div class="eg-step"><span class="d">2</span><span><b>看结构:</b>是加减还是乘除?有没有相同的因数可以提取?</span></div>
+      <div class="eg-step"><span class="d">3</span><span><b>选定律:</b>凑整 → 交换结合;拆数 → 分配律;连减连除 → 性质。</span></div>
+    </div>
+
+    <div class="card">
+      <div class="card-t">范例:借数凑整(减法)</div>
+      <p>被减数接近整百时,可以<b>先按整百减,再把多减的补回来</b>。</p>
+      <div class="eg">
+        <div class="eg-q"><span class="tag">例</span><span>简算 357 − 98</span></div>
+        <div class="eg-body">
+          <div class="solve">
+            <div class="row"><span class="lhs">原式</span><span class="op">=</span><span>357 − 100 + 2</span><span class="note">多减了2,补回来</span></div>
+            <div class="row"><span class="lhs"></span><span class="op">=</span><span>257 + 2</span></div>
+            <div class="row res"><span class="lhs"></span><span class="op">=</span><span>259</span></div>
+          </div>
+        </div>
+      </div>
+      <div class="tip">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18h6"/><path d="M10 22h4"/><path d="M12 2a7 7 0 0 0-4 12.7c.6.5 1 1.3 1 2.3h6c0-1 .4-1.8 1-2.3A7 7 0 0 0 12 2Z"/></svg>
+        <span><b>补数口诀:</b>减 98 = 减 100 加 2;减 102 = 减 100 减 2。<b>多减要加回,少减要再减</b>。</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== §6 母题 ========== -->
+  <section class="sec" id="s6">
+    <div class="sec-head">
+      <div class="n">6</div>
+      <div><h2>母题精讲</h2><div class="sub">4 类必考模型</div></div>
+    </div>
+
+    <!-- 母题1 -->
+    <div class="mother">
+      <div class="mother-head">
+        <div class="no">母1</div>
+        <h3>拆数凑整型:125 × 88</h3>
+        <span class="tagm">拆因数</span>
+      </div>
+      <div class="mother-body">
+        <div class="solve">
+          <div class="row"><span class="lhs">125 × 88</span><span class="op">=</span><span>125 × (8 × 11)</span><span class="note">拆 88=8×11</span></div>
+          <div class="row"><span class="lhs"></span><span class="op">=</span><span>(125 × 8) × 11 = 1000 × 11</span></div>
+          <div class="row res"><span class="lhs"></span><span class="op">=</span><span>11000</span></div>
+        </div>
+        <div class="model">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/></svg>
+          <span><b>模型:</b>看到 125,就想办法凑出 8(拆成 8×几);看到 25,就凑出 4。</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 母题2 -->
+    <div class="mother">
+      <div class="mother-head">
+        <div class="no">母2</div>
+        <h3>分配律逆用型:45 × 99 + 45</h3>
+        <span class="tagm">提公因数</span>
+      </div>
+      <div class="mother-body">
+        <div class="solve">
+          <div class="row"><span class="lhs">45×99 + 45</span><span class="op">=</span><span>45×99 + 45×1</span><span class="note">45 = 45×1</span></div>
+          <div class="row"><span class="lhs"></span><span class="op">=</span><span>45 × (99 + 1) = 45 × 100</span></div>
+          <div class="row res"><span class="lhs"></span><span class="op">=</span><span>4500</span></div>
+        </div>
+        <div class="model">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/></svg>
+          <span><b>模型:</b>单独出现的数其实是"×1"。把相同因数提出来,括号里往往正好凑成整百。</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 母题3 -->
+    <div class="mother">
+      <div class="mother-head">
+        <div class="no">母3</div>
+        <h3>借数补数型:357 − 98</h3>
+        <span class="tagm">凑整补差</span>
+      </div>
+      <div class="mother-body">
+        <div class="solve">
+          <div class="row"><span class="lhs">357 − 98</span><span class="op">=</span><span>357 − 100 + 2</span><span class="note">多减2补回</span></div>
+          <div class="row res"><span class="lhs"></span><span class="op">=</span><span>259</span></div>
+        </div>
+        <div class="model">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/></svg>
+          <span><b>模型:</b>减接近整百的数 → 先按整百减,再补差。多减要加,少减要减。</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 母题4 -->
+    <div class="mother">
+      <div class="mother-head">
+        <div class="no">母4</div>
+        <h3>黄金搭档型:25 × 44</h3>
+        <span class="tagm">凑100</span>
+      </div>
+      <div class="mother-body">
+        <div class="solve">
+          <div class="row"><span class="lhs">25 × 44</span><span class="op">=</span><span>25 × (4 × 11)</span><span class="note">拆 44=4×11</span></div>
+          <div class="row"><span class="lhs"></span><span class="op">=</span><span>(25 × 4) × 11 = 100 × 11</span></div>
+          <div class="row res"><span class="lhs"></span><span class="op">=</span><span>1100</span></div>
+        </div>
+        <div class="model">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/></svg>
+          <span><b>模型:</b>25 找 4、125 找 8。把另一个数拆成"4×几"或"8×几",先凑出 100/1000。</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== §7 自测 ========== -->
+  <section class="sec" id="s7">
+    <div class="sec-head">
+      <div class="n">7</div>
+      <div><h2>闯关自测</h2><div class="sub">点开看答案 · 先算再对</div></div>
+    </div>
+
+    <details class="quiz">
+      <summary><span class="q-n">1</span><span>简算:56 + 72 + 44</span><span class="chev"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></span></summary>
+      <div class="ans-body">
+        <p class="stepline">= (56 + 44) + 72 = 100 + 72</p>
+        <p class="final">= 172</p>
+      </div>
+    </details>
+
+    <details class="quiz">
+      <summary><span class="q-n">2</span><span>简算:125 × 8 × 25 × 4</span><span class="chev"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></span></summary>
+      <div class="ans-body">
+        <p class="stepline">= (125 × 8) × (25 × 4) = 1000 × 100</p>
+        <p class="final">= 100000</p>
+      </div>
+    </details>
+
+    <details class="quiz">
+      <summary><span class="q-n">3</span><span>简算:125 × 8 (提示:先想 125×8 是多少)</span><span class="chev"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></span></summary>
+      <div class="ans-body">
+        <p class="stepline">125 × 8 是"黄金搭档",要记牢</p>
+        <p class="final">= 1000</p>
+      </div>
+    </details>
+
+    <details class="quiz">
+      <summary><span class="q-n">4</span><span>简算:78 × 101</span><span class="chev"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></span></summary>
+      <div class="ans-body">
+        <p class="stepline">= 78 × (100 + 1) = 78×100 + 78×1</p>
+        <p class="final">= 7800 + 78 = 7878</p>
+      </div>
+    </details>
+
+    <details class="quiz">
+      <summary><span class="q-n">5</span><span>简算:64 × 25</span><span class="chev"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></span></summary>
+      <div class="ans-body">
+        <p class="stepline">= (16 × 4) × 25 = 16 × (4 × 25) = 16 × 100</p>
+        <p class="final">= 1600</p>
+      </div>
+    </details>
+
+    <details class="quiz">
+      <summary><span class="q-n">6</span><span>简算:47 × 35 + 53 × 35</span><span class="chev"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></span></summary>
+      <div class="ans-body">
+        <p class="stepline">= (47 + 53) × 35 = 100 × 35 (提出公因数 35)</p>
+        <p class="final">= 3500</p>
+      </div>
+    </details>
+
+    <details class="quiz">
+      <summary><span class="q-n">7</span><span>简算:638 − 176 − 24</span><span class="chev"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></span></summary>
+      <div class="ans-body">
+        <p class="stepline">= 638 − (176 + 24) = 638 − 200 (连减变减和)</p>
+        <p class="final">= 438</p>
+      </div>
+    </details>
+
+    <details class="quiz">
+      <summary><span class="q-n">8</span><span>简算:2000 ÷ 8 ÷ 25</span><span class="chev"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></span></summary>
+      <div class="ans-body">
+        <p class="stepline">= 2000 ÷ (8 × 25) = 2000 ÷ 200 (连除变除积)</p>
+        <p class="final">= 10</p>
+      </div>
+    </details>
+  </section>
+
+  <div class="foot">运算定律专题 · 依据人教版教材整理 · 供个人学习使用</div>
+
+</div>
+
+
+<script>
+/* 锚点内部跳转:拦截 TOC 点击,手动滚动,避免在预览/代理环境里触发整页导航 */
+(function(){
+  function onTap(e){
+    var a=e.target;
+    while(a&&a.nodeName!=='A'){a=a.parentNode;}
+    if(!a)return;
+    var href=a.getAttribute('href')||'';
+    if(href.charAt(0)!=='#'||href.length<2)return;
+    var el=document.getElementById(href.slice(1));
+    if(!el)return;
+    e.preventDefault();
+    if(el.scrollIntoView){el.scrollIntoView({behavior:'smooth',block:'start'});}
+    else{window.scrollTo(0,el.offsetTop-16);}
+  }
+  var toc=document.querySelector('.toc');
+  if(toc){toc.addEventListener('click',onTap,false);}
+})();
+</script>
+</body>
+</html>

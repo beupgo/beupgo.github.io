@@ -7,6 +7,8 @@
 <!-- AUTO-TABLE-START -->
 | 页面 | 在线地址 |
 |---|---|
+| 运算定律专题 · 拆数凑整巧算 | https://beupgo.github.io/g4-math-simple-calc.html |
+| 简易方程专题 · 从天平到解方程 | https://beupgo.github.io/g5-math-equation.html |
 | 多边形面积专题 · 割补转化思想 | https://beupgo.github.io/g5-math-polygon-area.html |
 | 作文是怎么"长"出来的 · 五年级写作创作过程 | https://beupgo.github.io/grade5-chinese-essay-process.html |
 | 写作提升训练 | https://beupgo.github.io/grade5-chinese-writing.html |
@@ -31,6 +33,8 @@
 ```
 .
 ├─ index.html      # 导航首页
+├─ g4-math-simple-calc.html  # 运算定律专题 · 拆数凑整巧算
+├─ g5-math-equation.html  # 简易方程专题 · 从天平到解方程
 ├─ g5-math-polygon-area.html  # 多边形面积专题 · 割补转化思想
 ├─ grade5-chinese-essay-process.html  # 作文是怎么"长"出来的 · 五年级写作创作过程
 ├─ grade5-chinese-writing.html  # 写作提升训练
