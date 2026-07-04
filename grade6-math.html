@@ -1,0 +1,1528 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+<meta name="format-detection" content="telephone=no">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="x5-fullscreen" content="true">
+<title>北京六年级数学 · 母题学习系统</title>
+<style>
+/* ========== TIER 1 · GLOBAL TOKENS (genius-design-tokens) ========== */
+*,*::before,*::after{box-sizing:border-box;-webkit-tap-highlight-color:transparent;}
+:root{
+  --brand-h:232; --brand-s:84%;
+  --g-primary-50:hsl(var(--brand-h),var(--brand-s),97%);
+  --g-primary-100:hsl(var(--brand-h),var(--brand-s),93%);
+  --g-primary-200:hsl(var(--brand-h),var(--brand-s),86%);
+  --g-primary-500:hsl(var(--brand-h),var(--brand-s),56%);
+  --g-primary-600:hsl(var(--brand-h),var(--brand-s),48%);
+  --g-primary-700:hsl(var(--brand-h),var(--brand-s),40%);
+  --g-neutral-0:#fff; --g-neutral-50:#f9fafb; --g-neutral-100:#f3f4f6;
+  --g-neutral-200:#e5e7eb; --g-neutral-300:#d1d5db; --g-neutral-400:#9ca3af;
+  --g-neutral-500:#6b7280; --g-neutral-600:#4b5563; --g-neutral-700:#374151;
+  --g-neutral-800:#1f2937; --g-neutral-900:#111827;
+  --g-green-500:#16a34a; --g-green-100:#dcfce7; --g-green-700:#15803d;
+  --g-amber-500:#d97706; --g-amber-100:#fef3c7; --g-amber-700:#b45309;
+  --g-red-500:#dc2626; --g-red-100:#fee2e2; --g-red-700:#b91c1c;
+  --g-cyan-500:#0891b2; --g-cyan-100:#cffafe;
+  /* spacing 4px base */
+  --g-sp-1:4px;--g-sp-2:8px;--g-sp-3:12px;--g-sp-4:16px;--g-sp-5:20px;--g-sp-6:24px;--g-sp-8:32px;--g-sp-10:40px;
+  --g-r-sm:6px;--g-r-md:8px;--g-r-lg:12px;--g-r-xl:16px;--g-r-full:999px;
+  --g-font:-apple-system,BlinkMacSystemFont,"PingFang SC","Hiragino Sans GB","Microsoft YaHei",Roboto,Arial,sans-serif;
+  --g-fs-xs:12px;--g-fs-sm:13px;--g-fs-base:14px;--g-fs-md:16px;--g-fs-lg:18px;--g-fs-xl:22px;--g-fs-2xl:26px;
+  --g-fw-medium:500;--g-fw-semibold:600;--g-fw-bold:700;
+  --g-lh-base:1.6;
+  --g-dur-base:180ms; --g-ease:cubic-bezier(.4,0,.2,1);
+  /* breakpoints (container) */
+  --g-bp-md:768px;
+  /* icon tokens (genius-design-icons) */
+  --g-icon-sm:16px;--g-icon-md:20px;--g-icon-lg:24px;--g-icon-xl:32px;--g-icon-2xl:44px;
+  --g-icon-stroke:2;
+}
+/* ========== TIER 2 · SEMANTIC ========== */
+:root{
+  --s-brand:var(--g-primary-600); --s-brand-hover:var(--g-primary-700);
+  --s-brand-subtle:var(--g-primary-50); --s-brand-subtle-2:var(--g-primary-100);
+  --s-on-brand:#fff;
+  --s-bg:#f6f7f9; --s-surface:var(--g-neutral-0); --s-surface-sunken:var(--g-neutral-50);
+  --s-surface-hover:var(--g-neutral-100);
+  --s-text:var(--g-neutral-900); --s-text-secondary:var(--g-neutral-600); --s-text-muted:var(--g-neutral-400);
+  --s-border:var(--g-neutral-200); --s-border-strong:var(--g-neutral-300);
+  --s-success:var(--g-green-500);--s-success-bg:var(--g-green-100);--s-success-text:var(--g-green-700);
+  --s-warning:var(--g-amber-500);--s-warning-bg:var(--g-amber-100);--s-warning-text:var(--g-amber-700);
+  --s-danger:var(--g-red-500);--s-danger-bg:var(--g-red-100);--s-danger-text:var(--g-red-700);
+  --s-info:var(--g-cyan-500);--s-info-bg:var(--g-cyan-100);
+  --s-shadow-sm:0 1px 2px rgba(16,24,40,.06),0 1px 3px rgba(16,24,40,.10);
+  --s-shadow-md:0 4px 8px -2px rgba(16,24,40,.10),0 2px 4px -2px rgba(16,24,40,.06);
+  --s-shadow-lg:0 12px 24px -6px rgba(16,24,40,.14),0 4px 8px -4px rgba(16,24,40,.08);
+  /* icon semantic roles */
+  --s-icon-color:var(--s-text-secondary); --s-icon-brand:var(--s-brand);
+}
+[data-theme="dark"]{
+  --g-primary-50:hsl(var(--brand-h),var(--brand-s),18%);
+  --g-primary-100:hsl(var(--brand-h),var(--brand-s),22%);
+  --s-brand:var(--g-primary-500);
+  --s-bg:#0d1117;--s-surface:#161b22;--s-surface-sunken:#1c2129;--s-surface-hover:#21262d;
+  --s-text:#e6edf3;--s-text-secondary:#9da7b3;--s-text-muted:#6e7681;
+  --s-border:#2d333b;--s-border-strong:#444c56;
+  --s-brand-subtle:#1a2138;--s-brand-subtle-2:#232c4d;
+  --s-success-bg:#052e16;--s-warning-bg:#451a03;--s-danger-bg:#450a0a;--s-info-bg:#083344;
+  --s-success-text:#4ade80;--s-warning-text:#fbbf24;--s-danger-text:#f87171;
+  --s-shadow-sm:0 1px 2px rgba(0,0,0,.4);--s-shadow-md:0 4px 12px rgba(0,0,0,.5);--s-shadow-lg:0 16px 32px rgba(0,0,0,.6);
+}
+
+/* ========== BASE ========== */
+html,body{margin:0;padding:0;}
+body{
+  font-family:var(--g-font);background:var(--s-bg);color:var(--s-text);
+  font-size:var(--g-fs-base);line-height:var(--g-lh-base);
+  -webkit-text-size-adjust:100%;
+  padding-bottom:calc(64px + env(safe-area-inset-bottom));
+}
+/* ========== ICON base (.ico) ========== */
+.ico{width:var(--g-icon-md);height:var(--g-icon-md);display:inline-block;
+     vertical-align:-.15em;stroke-width:var(--g-icon-stroke);color:inherit;flex:none;}
+.ico--sm{width:var(--g-icon-sm);height:var(--g-icon-sm);}
+.ico--lg{width:var(--g-icon-lg);height:var(--g-icon-lg);}
+.ico--xl{width:var(--g-icon-xl);height:var(--g-icon-xl);}
+.ico--2xl{width:var(--g-icon-2xl);height:var(--g-icon-2xl);}
+
+/* ========== LAYOUT (genius-design-layout) — mobile-first container ========== */
+.app{max-width:var(--g-bp-md);margin:0 auto;background:var(--s-bg);min-height:100vh;position:relative;}
+.topbar{position:sticky;top:0;z-index:100;
+  background:linear-gradient(135deg,var(--g-primary-600),hsl(258,70%,55%));
+  color:#fff;padding:calc(env(safe-area-inset-top) + 16px) 16px 16px;
+  box-shadow:var(--s-shadow-md);}
+.topbar-row{display:flex;align-items:center;gap:10px;}
+.topbar h1{margin:0;font-size:var(--g-fs-lg);font-weight:var(--g-fw-bold);flex:1;}
+.topbar p{margin:4px 0 0;font-size:var(--g-fs-xs);opacity:.9;}
+.theme-btn{background:rgba(255,255,255,.18);border:0;color:#fff;width:36px;height:36px;
+  border-radius:var(--g-r-full);display:flex;align-items:center;justify-content:center;cursor:pointer;}
+.kpis{display:flex;gap:8px;margin-top:12px;}
+.kpis .k{flex:1;background:rgba(255,255,255,.15);border-radius:var(--g-r-md);padding:8px;text-align:center;}
+.kpis .k b{font-size:var(--g-fs-lg);display:block;}
+.kpis .k span{font-size:var(--g-fs-xs);opacity:.9;}
+
+.view{display:none;padding:16px;animation:fade var(--g-dur-base) var(--g-ease);}
+.view.active{display:block;}
+@keyframes fade{from{opacity:0;transform:translateY(6px);}to{opacity:1;transform:none;}}
+
+.sec-title{display:flex;align-items:center;gap:8px;font-size:var(--g-fs-md);font-weight:var(--g-fw-bold);
+  margin:20px 0 12px;color:var(--s-text);}
+.sec-title:first-child{margin-top:4px;}
+.sec-title .ico{color:var(--s-brand);}
+.hint{font-size:var(--g-fs-sm);color:var(--s-text-secondary);margin:0 0 12px;}
+
+/* card */
+.card{background:var(--s-surface);border:1px solid var(--s-border);border-radius:var(--g-r-lg);
+  padding:16px;box-shadow:var(--s-shadow-sm);margin-bottom:12px;}
+
+/* ===== 知识点视图 ===== */
+.unit-group{margin-bottom:16px;}
+.unit-badge{display:inline-flex;align-items:center;gap:6px;background:var(--s-brand);color:#fff;
+  font-size:var(--g-fs-xs);font-weight:var(--g-fw-semibold);padding:4px 12px;border-radius:var(--g-r-full);margin-bottom:10px;}
+.kp-grid{display:grid;grid-template-columns:1fr;gap:10px;}
+@media(min-width:560px){.kp-grid{grid-template-columns:1fr 1fr;}}
+.kp{display:flex;gap:12px;background:var(--s-surface);border:1px solid var(--s-border);
+  border-radius:var(--g-r-lg);padding:14px;box-shadow:var(--s-shadow-sm);transition:transform var(--g-dur-base) var(--g-ease),box-shadow var(--g-dur-base) var(--g-ease);}
+.kp:active{transform:scale(.98);}
+.kp-ic{width:40px;height:40px;flex:none;border-radius:var(--g-r-md);background:var(--s-brand-subtle);
+  color:var(--s-brand);display:flex;align-items:center;justify-content:center;}
+.kp-body h4{margin:0 0 4px;font-size:var(--g-fs-base);font-weight:var(--g-fw-semibold);}
+.kp-body p{margin:0;font-size:var(--g-fs-xs);color:var(--s-text-secondary);line-height:1.5;}
+
+/* ===== 母题视图(清爽版:留白 + 分隔线,去除多余色块) ===== */
+.mother{background:var(--s-surface);border:1px solid var(--s-border);
+  border-radius:var(--g-r-lg);padding:18px 18px 16px;box-shadow:var(--s-shadow-sm);margin-bottom:14px;}
+.mother-head{display:flex;align-items:center;gap:12px;}
+.mother-no{width:34px;height:34px;flex:none;border-radius:var(--g-r-md);
+  background:var(--s-brand-subtle);color:var(--s-brand);
+  display:flex;align-items:center;justify-content:center;}
+.mother-head h4{margin:0;font-size:var(--g-fs-md);font-weight:var(--g-fw-bold);line-height:1.3;flex:1;}
+/* 解题模型:去底色,改左细线 + 柔和标签 */
+.model-box{margin:14px 0 0;padding:0 0 0 12px;border-left:2px solid var(--s-brand-subtle-2);}
+.model-label{display:block;font-size:var(--g-fs-xs);color:var(--s-text-muted);
+  font-weight:var(--g-fw-semibold);letter-spacing:.04em;margin-bottom:3px;}
+.model-text{font-size:var(--g-fs-sm);color:var(--s-text-secondary);line-height:1.55;}
+/* 多条公式:每条独立一行,竖排更清爽 */
+.model-list{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:5px;}
+.model-list li{display:flex;align-items:baseline;gap:7px;font-size:var(--g-fs-sm);
+  color:var(--s-text-secondary);line-height:1.5;}
+.model-list li::before{content:"";flex:none;width:5px;height:5px;margin-top:6px;border-radius:var(--g-r-full);
+  background:var(--s-brand);opacity:.7;}
+.model-list .mf-name{color:var(--s-text);font-weight:var(--g-fw-medium);}
+/* 示例:用一条分隔线与上文隔开,无底色 */
+.example{margin-top:14px;padding-top:14px;border-top:1px dashed var(--s-border);
+  font-size:var(--g-fs-sm);color:var(--s-text);line-height:1.6;}
+.example-label{display:block;font-size:var(--g-fs-xs);color:var(--s-text-muted);
+  font-weight:var(--g-fw-semibold);margin-bottom:5px;}
+.example .ans-tag{display:inline-flex;align-items:center;gap:5px;color:var(--s-success);
+  font-weight:var(--g-fw-semibold);margin-top:8px;font-size:var(--g-fs-xs);}
+/* 示例解题过程(结合技巧,代入具体数字) */
+.solve-steps{list-style:none;margin:10px 0 4px;padding:12px 12px 8px;
+  background:var(--s-surface-sunken);border:1px solid var(--s-border);border-radius:var(--g-r-md);
+  counter-reset:sv;}
+.solve-steps li{position:relative;padding:3px 0 3px 24px;font-size:var(--g-fs-sm);
+  color:var(--s-text-secondary);line-height:1.55;}
+.solve-steps li::before{counter-increment:sv;content:counter(sv);position:absolute;left:0;top:4px;
+  width:16px;height:16px;border-radius:var(--g-r-full);background:var(--s-brand);color:#fff;
+  font-size:10px;font-weight:var(--g-fw-bold);display:flex;align-items:center;justify-content:center;}
+.solve-steps li b{color:var(--s-brand);}
+/* 图文并茂解题技巧 */
+.tip{margin-top:14px;padding-top:14px;border-top:1px dashed var(--s-border);}
+.tip-label{display:flex;align-items:center;gap:5px;font-size:var(--g-fs-xs);color:var(--s-warning-text);
+  font-weight:var(--g-fw-semibold);margin-bottom:10px;}
+.tip-label .ico{color:var(--s-warning);}
+.tip-fig{background:var(--s-surface-sunken);border:1px solid var(--s-border);border-radius:var(--g-r-md);
+  padding:12px;margin-bottom:10px;text-align:center;}
+.tip-fig svg{max-width:100%;height:auto;display:block;margin:0 auto;}
+/* SVG 内配色跟随主题 */
+.tip-fig .fig-line{stroke:var(--s-text-secondary);stroke-width:1.5;fill:none;}
+.tip-fig .fig-brand{stroke:var(--s-brand);stroke-width:2;fill:none;}
+.tip-fig .fig-brand-fill{fill:var(--s-brand-subtle-2);stroke:var(--s-brand);stroke-width:1.5;}
+.tip-fig .fig-warn-fill{fill:var(--s-warning-bg);stroke:var(--s-warning);stroke-width:1.5;}
+.tip-fig .fig-green-fill{fill:var(--s-success-bg);stroke:var(--s-success);stroke-width:1.5;}
+.tip-fig .fig-dash{stroke:var(--s-text-muted);stroke-width:1.2;stroke-dasharray:4 3;fill:none;}
+.tip-fig .fig-t{fill:var(--s-text);font-size:11px;font-family:var(--g-font);}
+.tip-fig .fig-t-mut{fill:var(--s-text-muted);font-size:10px;font-family:var(--g-font);}
+.tip-fig .fig-t-brand{fill:var(--s-brand);font-size:11px;font-weight:600;font-family:var(--g-font);}
+.tip-fig .fig-dot{fill:var(--s-success);}
+.tip-steps{list-style:none;margin:0;padding:0;counter-reset:step;}
+.tip-steps li{position:relative;padding:4px 0 4px 26px;font-size:var(--g-fs-sm);color:var(--s-text-secondary);line-height:1.5;}
+.tip-steps li::before{counter-increment:step;content:counter(step);position:absolute;left:0;top:4px;
+  width:18px;height:18px;border-radius:var(--g-r-full);background:var(--s-brand-subtle);color:var(--s-brand);
+  font-size:11px;font-weight:var(--g-fw-bold);display:flex;align-items:center;justify-content:center;}
+.tip-key{background:var(--s-warning-bg);color:var(--s-warning-text);border-radius:var(--g-r-sm);
+  padding:1px 6px;font-weight:var(--g-fw-semibold);font-size:var(--g-fs-xs);}
+
+/* ===== 应用/练习视图 ===== */
+.controls{background:var(--s-surface);border:1px solid var(--s-border);border-radius:var(--g-r-lg);
+  padding:14px;box-shadow:var(--s-shadow-sm);margin-bottom:14px;}
+.control-row{display:flex;gap:10px;flex-wrap:wrap;align-items:center;}
+.field{flex:1;min-width:130px;}
+.field label{display:block;font-size:var(--g-fs-xs);color:var(--s-text-secondary);margin-bottom:4px;}
+select{width:100%;padding:9px 10px;border:1px solid var(--s-border-strong);border-radius:var(--g-r-md);
+  background:var(--s-surface);color:var(--s-text);font-size:var(--g-fs-base);font-family:inherit;
+  -webkit-appearance:none;appearance:none;}
+.btn-row{display:flex;gap:8px;margin-top:12px;flex-wrap:wrap;}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:6px;padding:10px 14px;
+  border-radius:var(--g-r-md);font-size:var(--g-fs-base);font-weight:var(--g-fw-semibold);
+  border:1px solid var(--s-border-strong);background:var(--s-surface);color:var(--s-text);cursor:pointer;
+  flex:1;min-width:120px;transition:opacity var(--g-dur-base) var(--g-ease);}
+.btn:active{opacity:.85;}
+.btn.primary{background:var(--s-brand);color:#fff;border-color:var(--s-brand);}
+.btn.ghost{color:var(--s-brand);border-color:var(--s-brand);background:var(--s-surface);}
+.score{display:flex;align-items:center;justify-content:center;gap:6px;margin-top:12px;padding:10px;
+  border-radius:var(--g-r-md);background:var(--s-brand-subtle);color:var(--s-brand);font-weight:var(--g-fw-semibold);font-size:var(--g-fs-sm);}
+
+.set-title{display:flex;align-items:center;gap:8px;font-size:var(--g-fs-md);font-weight:var(--g-fw-bold);
+  margin:18px 0 10px;color:var(--s-brand);}
+.q{background:var(--s-surface);border:1px solid var(--s-border);border-radius:var(--g-r-lg);
+  padding:14px;box-shadow:var(--s-shadow-sm);margin-bottom:10px;}
+.q-head{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:8px;}
+.q-tag{display:inline-flex;align-items:center;gap:5px;background:var(--s-brand-subtle);color:var(--s-brand);
+  font-size:var(--g-fs-xs);font-weight:var(--g-fw-semibold);padding:3px 10px;border-radius:var(--g-r-full);}
+.q-no{font-size:var(--g-fs-xs);color:var(--s-text-muted);}
+.q-text{font-size:var(--g-fs-base);line-height:1.7;}
+.q-input-row{display:flex;align-items:center;gap:6px;margin-top:10px;flex-wrap:wrap;}
+.q-input-row input{width:110px;padding:8px 10px;border:1px solid var(--s-border-strong);
+  border-radius:var(--g-r-md);font-size:var(--g-fs-base);background:var(--s-surface);color:var(--s-text);}
+.q-unit{color:var(--s-text-secondary);font-size:var(--g-fs-sm);}
+.fb{display:inline-flex;align-items:center;gap:3px;font-weight:var(--g-fw-semibold);font-size:var(--g-fs-sm);}
+.fb.right{color:var(--s-success);} .fb.wrong{color:var(--s-danger);}
+.ans-line{display:none;margin-top:10px;padding:10px 12px;background:var(--s-success-bg);color:var(--s-success-text);
+  border-radius:var(--g-r-md);font-size:var(--g-fs-sm);}
+.ans-line.show{display:block;}
+
+/* ===== bottom tab bar ===== */
+.tabbar{position:fixed;bottom:0;left:50%;transform:translateX(-50%);width:100%;max-width:var(--g-bp-md);
+  display:flex;background:var(--s-surface);border-top:1px solid var(--s-border);
+  padding-bottom:env(safe-area-inset-bottom);z-index:120;box-shadow:0 -2px 12px rgba(16,24,40,.06);}
+.tab{flex:1;background:none;border:0;padding:8px 4px 10px;display:flex;flex-direction:column;
+  align-items:center;gap:3px;color:var(--s-text-muted);cursor:pointer;font-family:inherit;
+  font-size:var(--g-fs-xs);transition:color var(--g-dur-base) var(--g-ease);}
+.tab.active{color:var(--s-brand);}
+.tab.active .ico{transform:translateY(-1px);}
+.tab .ico{transition:transform var(--g-dur-base) var(--g-ease);}
+
+/* ===== 知识点详情页(全屏浮层) ===== */
+.kp:hover{box-shadow:var(--s-shadow-md);}
+.kp{cursor:pointer;}
+.kp-arrow{align-self:center;margin-left:auto;color:var(--s-text-muted);flex:none;}
+.detail{position:fixed;top:0;left:50%;transform:translateX(-50%) translateY(100%);
+  width:100%;max-width:var(--g-bp-md);height:100%;background:var(--s-bg);z-index:200;
+  overflow-y:auto;-webkit-overflow-scrolling:touch;visibility:hidden;
+  transition:transform var(--g-dur-slow) var(--g-ease),visibility var(--g-dur-slow);}
+.detail.open{transform:translateX(-50%) translateY(0);visibility:visible;}
+.detail-bar{position:sticky;top:0;z-index:10;display:flex;align-items:center;gap:10px;
+  padding:calc(env(safe-area-inset-top) + 14px) 16px 14px;
+  background:linear-gradient(135deg,var(--g-primary-600),hsl(258,70%,55%));
+  color:#fff;box-shadow:var(--s-shadow-md);}
+.detail-back{background:rgba(255,255,255,.18);border:0;color:#fff;
+  width:36px;height:36px;flex:none;padding:0;
+  border-radius:var(--g-r-full);display:flex;align-items:center;justify-content:center;cursor:pointer;
+  -webkit-tap-highlight-color:transparent;transition:background var(--g-dur-fast) var(--g-ease);}
+.detail-back:active{transform:scale(.92);background:rgba(255,255,255,.32);}
+.detail-back svg,.detail-back .ico{pointer-events:none;}
+.detail-bar h2{margin:0;font-size:var(--g-fs-md);font-weight:var(--g-fw-bold);flex:1;}
+.detail-bar .badge-book{background:rgba(255,255,255,.22);font-size:var(--g-fs-xs);padding:3px 10px;border-radius:var(--g-r-full);}
+.detail-body{padding:16px 16px calc(32px + env(safe-area-inset-bottom));}
+.d-lead{font-size:var(--g-fs-sm);color:var(--s-text-secondary);line-height:1.7;margin:0 0 16px;}
+.d-block{background:var(--s-surface);border:1px solid var(--s-border);border-radius:var(--g-r-lg);
+  padding:16px;box-shadow:var(--s-shadow-sm);margin-bottom:14px;}
+.d-block-title{display:flex;align-items:center;gap:7px;font-size:var(--g-fs-base);font-weight:var(--g-fw-bold);
+  margin:0 0 12px;color:var(--s-text);}
+.d-block-title .ico{color:var(--s-brand);}
+.d-fig{background:var(--s-surface-sunken);border:1px solid var(--s-border);border-radius:var(--g-r-md);
+  padding:16px 12px;text-align:center;margin:4px 0 12px;}
+.d-fig svg{max-width:100%;height:auto;}
+.d-fig-html{text-align:left;padding:14px;}
+/* 动画播放控制条 */
+.d-anim-wrap{position:relative;}
+.d-anim-ctrl{display:flex;justify-content:center;gap:8px;margin-top:10px;}
+.d-anim-btn{display:inline-flex;align-items:center;gap:5px;padding:5px 12px;
+  border:1px solid var(--s-border);border-radius:var(--g-r-full);background:var(--s-surface);
+  color:var(--s-text-secondary);font-size:var(--g-fs-xs);font-weight:var(--g-fw-medium);
+  cursor:pointer;-webkit-tap-highlight-color:transparent;transition:background .15s,color .15s,border-color .15s;}
+.d-anim-btn:hover,.d-anim-btn:active{background:var(--s-brand-subtle);color:var(--s-brand);border-color:var(--s-brand);}
+.d-anim-btn .ico{width:14px;height:14px;}
+/* 公式条:与动画示意分开,单独强调 */
+.d-formula{display:flex;align-items:center;justify-content:center;gap:8px;
+  margin:0 0 12px;padding:12px 14px;background:var(--s-brand-subtle);
+  border:1px solid var(--s-brand-subtle-2);border-radius:var(--g-r-md);
+  color:var(--s-brand);font-weight:var(--g-fw-bold);font-size:var(--g-fs-md);
+  letter-spacing:.3px;}
+.d-formula .ico{color:var(--s-brand);flex:none;}
+/* 行内竖式分数:分子在上、分母在下、中间横线 */
+.frac{display:inline-flex;flex-direction:column;align-items:center;vertical-align:middle;
+  line-height:1.05;margin:0 1px;}
+.frac>span{display:block;padding:0 3px;}
+.frac>.frac-n{border-bottom:1.6px solid currentColor;}
+.frac.frac-lg>span{font-size:22px;font-weight:var(--g-fw-bold);padding:0 4px;line-height:1.1;}
+/* 过程分步图:三步竖排,每步一张卡,含「变化对比」高亮 */
+.d-proc{display:flex;flex-direction:column;gap:10px;}
+.d-proc-step{display:flex;align-items:flex-start;gap:10px;padding:10px 12px;
+  background:var(--s-surface);border:1px solid var(--s-border);border-radius:var(--g-r-md);}
+.d-proc-step .d-proc-no{flex:none;width:22px;height:22px;border-radius:var(--g-r-full);
+  background:var(--s-brand);color:#fff;font-size:var(--g-fs-xs);font-weight:var(--g-fw-bold);
+  display:flex;align-items:center;justify-content:center;margin-top:2px;}
+.d-proc-body{flex:1;min-width:0;}
+.d-proc-lbl{font-size:var(--g-fs-xs);color:var(--s-text-secondary);font-weight:var(--g-fw-medium);margin-bottom:4px;}
+.d-proc-expr{display:flex;align-items:center;flex-wrap:wrap;gap:6px;font-size:20px;font-weight:var(--g-fw-bold);color:var(--s-text);}
+.d-proc-expr .op{color:var(--s-text-muted);font-size:18px;}
+/* 高亮「变」与「不变」 */
+.hl-change{color:var(--s-brand);background:var(--s-brand-subtle);border-radius:var(--g-r-sm);padding:1px 5px;}
+.hl-keep{color:var(--s-text-secondary);border:1px dashed var(--s-border);border-radius:var(--g-r-sm);padding:1px 5px;}
+/* 变化对照小标:红划掉 → 绿保留 */
+.d-proc-note{display:flex;align-items:center;flex-wrap:wrap;gap:4px 6px;margin-top:8px;font-size:var(--g-fs-xs);color:var(--s-text-secondary);}
+.d-proc-note .ico{width:14px;height:14px;flex:none;}
+.d-proc-note .was{color:var(--s-warning-text);text-decoration:line-through;}
+.d-proc-note .now{color:var(--s-success-text);font-weight:var(--g-fw-bold);}
+/* 第2步:原来→现在 对比 */
+.d-proc-cmp{display:flex;flex-direction:column;align-items:center;gap:4px;}
+.d-proc-cmp-row{display:flex;align-items:center;gap:10px;}
+.d-proc-cmp-tag{flex:none;font-size:var(--g-fs-xs);font-weight:var(--g-fw-bold);padding:2px 8px;border-radius:var(--g-r-full);}
+.d-proc-cmp-tag.was-tag{color:var(--s-text-secondary);background:var(--s-surface-sunken);}
+.d-proc-cmp-tag.now-tag{color:var(--s-success-text);background:var(--s-success-bg);}
+.d-proc-cmp-arrow .ico{width:18px;height:18px;color:var(--s-brand);}
+.d-proc-result{border-color:var(--s-success);background:var(--s-success-bg);}
+.d-proc-result .d-proc-no{background:var(--s-success);}
+/* 干净的分步演算图(纯 HTML,自动对齐) */
+.d-steps{list-style:none;margin:0;padding:0;counter-reset:ds;display:flex;flex-direction:column;gap:10px;}
+.d-steps li{position:relative;display:flex;align-items:center;gap:10px;font-size:var(--g-fs-base);color:var(--s-text);line-height:1.5;}
+.d-steps li::before{counter-increment:ds;content:counter(ds);flex:none;width:22px;height:22px;border-radius:var(--g-r-full);
+  background:var(--s-brand);color:#fff;font-size:var(--g-fs-xs);font-weight:var(--g-fw-bold);
+  display:flex;align-items:center;justify-content:center;}
+.d-steps .calc{font-family:var(--g-font-mono);}
+.d-steps b{color:var(--s-brand);}
+.d-expr{text-align:center;font-family:var(--g-font-mono);font-size:var(--g-fs-md);color:var(--s-text);
+  padding:8px 0;background:var(--s-brand-subtle);border-radius:var(--g-r-md);margin-bottom:12px;font-weight:var(--g-fw-semibold);}
+.d-caption{font-size:var(--g-fs-xs);color:var(--s-text-muted);text-align:center;margin:-6px 0 12px;}
+.d-learn{font-size:var(--g-fs-sm);color:var(--s-text);line-height:1.75;margin:0 0 12px;}
+.d-learn p{margin:0 0 8px;}
+.d-learn p:last-child{margin-bottom:0;}
+.d-learn b{color:var(--s-text);font-weight:var(--g-fw-semibold);}
+.d-learn .d-key{background:var(--s-brand-subtle);color:var(--s-brand);border-radius:var(--g-r-sm);
+  padding:1px 6px;font-weight:var(--g-fw-semibold);font-family:var(--g-font-mono);font-size:.94em;}
+/* 易错提醒:讲究层次(容器中性 → 白卡 → 警示/正确用边缘描边点缀,不铺满色块) */
+.d-warn{background:var(--s-surface-sunken);border:1px solid var(--s-border);
+  border-radius:var(--g-r-md);padding:12px 13px;}
+.d-warn-hd{display:flex;align-items:center;gap:6px;font-size:var(--g-fs-sm);font-weight:var(--g-fw-semibold);
+  color:var(--s-warning-text);margin-bottom:9px;}
+.d-warn-hd .ico{color:var(--s-warning);}
+.d-warn-list{display:flex;flex-direction:column;gap:8px;}
+.d-warn-card{background:var(--s-surface);border:1px solid var(--s-border);border-radius:var(--g-r-md);
+  overflow:hidden;box-shadow:0 1px 2px rgba(0,0,0,.04);}
+.d-wc-bad,.d-wc-good{display:flex;align-items:flex-start;gap:9px;padding:9px 12px;font-size:var(--g-fs-sm);line-height:1.55;}
+.d-wc-bad{background:var(--s-surface);color:var(--s-text);border-left:3px solid var(--s-warning);}
+.d-wc-good{background:var(--s-surface);color:var(--s-text-secondary);border-left:3px solid var(--s-success);
+  border-top:1px dashed var(--s-border);}
+.d-wc-ic{flex:none;width:17px;height:17px;border-radius:var(--g-r-full);display:flex;align-items:center;justify-content:center;margin-top:1px;}
+.d-wc-ic svg{width:10px;height:10px;color:#fff;}
+.d-wc-ic-bad{background:var(--s-warning);}
+.d-wc-ic-good{background:var(--s-success);}
+.d-wc-tx{flex:1;}
+.d-wc-bad .d-wc-tx b{color:var(--s-warning-text);}
+.d-wc-good .d-wc-tx{color:var(--s-success-text);}
+.d-wc-good .d-wc-tx b{color:var(--s-success-text);font-weight:var(--g-fw-semibold);}
+.d-key{background:var(--s-warning-bg);color:var(--s-warning-text);border-radius:var(--g-r-sm);
+  padding:1px 6px;font-weight:var(--g-fw-semibold);font-family:var(--g-font-mono);font-size:.94em;}
+.d-eg{background:var(--s-brand-subtle);border-radius:var(--g-r-md);padding:12px 14px;font-size:var(--g-fs-sm);
+  color:var(--s-text);line-height:1.7;}
+.d-eg .d-eg-label{display:inline-flex;align-items:center;gap:5px;font-weight:var(--g-fw-bold);color:var(--s-brand);margin-bottom:6px;}
+.d-eg b{color:var(--s-brand);}
+.d-eg-q{background:var(--s-surface);border:1px solid var(--s-border);border-radius:var(--g-r-md);
+  padding:9px 12px;margin:2px 0 12px;font-size:var(--g-fs-sm);color:var(--s-text);line-height:1.6;}
+.d-eg-q b{color:var(--s-text);}
+.d-eg .d-steps{margin-bottom:12px;gap:8px;}
+.d-eg .d-steps li{font-size:var(--g-fs-sm);align-items:flex-start;}
+/* 举例里的序号弱化:改为细描边小圆 + 品牌色数字,不再是重实心圆 */
+.d-eg .d-steps li::before{width:18px;height:18px;background:transparent;border:1.5px solid var(--s-brand);
+  color:var(--s-brand);font-size:11px;margin-top:1px;}
+.d-eg-ans{display:flex;align-items:center;gap:7px;background:var(--s-success-bg);border-radius:var(--g-r-md);
+  padding:9px 12px;font-size:var(--g-fs-base);color:var(--s-success-text);font-weight:var(--g-fw-bold);}
+.d-eg-ans .ico{color:var(--s-success);flex:none;}
+.d-eg-ans b{color:var(--s-success-text);}
+/* 图形动效类(尊重 reduce-motion) */
+.d-anim-dash{stroke-dasharray:5 4;animation:dashmove 1.4s linear infinite;}
+.d-anim-draw{stroke-dasharray:400;stroke-dashoffset:400;animation:draw 1.6s var(--g-ease) forwards;}
+.d-anim-slide{animation:slidex 2.2s var(--g-ease) infinite alternate;}
+.d-anim-rot{transform-box:fill-box;transform-origin:center;animation:spin 4s linear infinite;}
+.d-anim-pulse{animation:pulse 1.8s var(--g-ease) infinite;}
+.d-anim-grow{transform-box:fill-box;transform-origin:bottom;animation:grow 1.4s var(--g-ease) forwards;}
+.d-anim-fill{animation:fillw 1.8s var(--g-ease) infinite alternate;}
+.d-anim-flip{transform-box:fill-box;transform-origin:center;animation:flip180 3.2s var(--g-ease) infinite;}
+@keyframes dashmove{to{stroke-dashoffset:-18;}}
+@keyframes draw{to{stroke-dashoffset:0;}}
+@keyframes slidex{from{transform:translateX(0);}to{transform:translateX(46px);}}
+@keyframes spin{to{transform:rotate(360deg);}}
+@keyframes pulse{0%,100%{opacity:.35;}50%{opacity:1;}}
+@keyframes grow{from{transform:scaleY(0);}to{transform:scaleY(1);}}
+@keyframes fillw{from{width:30px;}to{width:120px;}}
+@keyframes flip180{0%,18%{transform:rotate(180deg) translateY(-6px);opacity:.85;}55%,100%{transform:rotate(0deg) translateY(0);opacity:1;}}
+@media(prefers-reduced-motion:reduce){
+  .d-anim-dash,.d-anim-draw,.d-anim-slide,.d-anim-rot,.d-anim-pulse,.d-anim-grow,.d-anim-fill,.d-anim-flip{animation:none;}
+  .d-anim-draw{stroke-dashoffset:0;}
+}
+
+@media print{.tabbar,.topbar .theme-btn,.controls{display:none;}body{padding:0;}.view{display:block!important;}}
+
+/* ========== 异步渲染骨架屏(Web Component 未 hydrate 前占位) ========== */
+lazy-view{display:block;}
+.skeleton{padding:4px 0;}
+.skeleton .sk-line{height:14px;border-radius:var(--g-r-sm);background:var(--s-border);
+  background:linear-gradient(90deg,var(--s-border) 25%,var(--s-brand-subtle) 37%,var(--s-border) 63%);
+  background-size:400% 100%;animation:sk-shimmer 1.4s ease infinite;margin:10px 0;}
+.skeleton .sk-card{height:76px;border-radius:var(--g-r-lg);margin:12px 0;
+  background:linear-gradient(90deg,var(--s-border) 25%,var(--s-brand-subtle) 37%,var(--s-border) 63%);
+  background-size:400% 100%;animation:sk-shimmer 1.4s ease infinite;}
+@keyframes sk-shimmer{0%{background-position:100% 0;}100%{background-position:0 0;}}
+@media(prefers-reduced-motion:reduce){.skeleton .sk-line,.skeleton .sk-card{animation:none;}}
+</style>
+</head>
+<body>
+<!-- ===== inline icon sprite (Lucide via genius-design-icons) ===== -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+<symbol id="ic-book-open" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 7v14" />
+  <path d="M3 18a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h5a4 4 0 0 1 4 4 4 4 0 0 1 4-4h5a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1h-6a3 3 0 0 0-3 3 3 3 0 0 0-3-3z" /></symbol>
+<symbol id="ic-list-checks" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 5h8" />
+  <path d="M13 12h8" />
+  <path d="M13 19h8" />
+  <path d="m3 17 2 2 4-4" />
+  <path d="m3 7 2 2 4-4" /></symbol>
+<symbol id="ic-pencil-ruler" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 7 8.7 2.7a2.41 2.41 0 0 0-3.4 0L2.7 5.3a2.41 2.41 0 0 0 0 3.4L7 13" />
+  <path d="m8 6 2-2" />
+  <path d="m18 16 2-2" />
+  <path d="m17 11 4.3 4.3c.94.94.94 2.46 0 3.4l-2.6 2.6c-.94.94-2.46.94-3.4 0L11 17" />
+  <path d="M21.174 6.812a1 1 0 0 0-3.986-3.987L3.842 16.174a2 2 0 0 0-.5.83l-1.321 4.352a.5.5 0 0 0 .623.622l4.353-1.32a2 2 0 0 0 .83-.497z" />
+  <path d="m15 5 4 4" /></symbol>
+<symbol id="ic-shapes" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8.3 10a.7.7 0 0 1-.626-1.079L11.4 3a.7.7 0 0 1 1.198-.043L16.3 8.9a.7.7 0 0 1-.572 1.1Z" />
+  <rect x="3" y="14" width="7" height="7" rx="1" />
+  <circle cx="17.5" cy="17.5" r="3.5" /></symbol>
+<symbol id="ic-divide" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="6" r="1" />
+  <line x1="5" x2="19" y1="12" y2="12" />
+  <circle cx="12" cy="18" r="1" /></symbol>
+<symbol id="ic-dice-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="18" x="3" y="3" rx="2" ry="2" />
+  <path d="M16 8h.01" />
+  <path d="M8 8h.01" />
+  <path d="M8 16h.01" />
+  <path d="M16 16h.01" />
+  <path d="M12 12h.01" /></symbol>
+<symbol id="ic-ruler" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21.3 15.3a2.4 2.4 0 0 1 0 3.4l-2.6 2.6a2.4 2.4 0 0 1-3.4 0L2.7 8.7a2.41 2.41 0 0 1 0-3.4l2.6-2.6a2.41 2.41 0 0 1 3.4 0Z" />
+  <path d="m14.5 12.5 2-2" />
+  <path d="m11.5 9.5 2-2" />
+  <path d="m8.5 6.5 2-2" />
+  <path d="m17.5 15.5 2-2" /></symbol>
+<symbol id="ic-trees" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 10v.2A3 3 0 0 1 8.9 16H5a3 3 0 0 1-1-5.8V10a3 3 0 0 1 6 0Z" />
+  <path d="M7 16v6" />
+  <path d="M13 19v3" />
+  <path d="M12 19h8.3a1 1 0 0 0 .7-1.7L18 14h.3a1 1 0 0 0 .7-1.7L16 9h.2a1 1 0 0 0 .8-1.7L13 3l-1.4 1.5" /></symbol>
+<symbol id="ic-x" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18" />
+  <path d="m6 6 12 12" /></symbol>
+<symbol id="ic-circle-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10" />
+  <path d="m9 12 2 2 4-4" /></symbol>
+<symbol id="ic-refresh-cw" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 0 1 9-9 9.75 9.75 0 0 1 6.74 2.74L21 8" />
+  <path d="M21 3v5h-5" />
+  <path d="M21 12a9 9 0 0 1-9 9 9.75 9.75 0 0 1-6.74-2.74L3 16" />
+  <path d="M8 16H3v5" /></symbol>
+<symbol id="ic-arrow-right" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14" /><path d="m12 5 7 7-7 7" /></symbol>
+<symbol id="ic-arrow-down" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14" /><path d="m19 12-7 7-7-7" /></symbol>
+<symbol id="ic-graduation-cap" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21.42 10.922a1 1 0 0 0-.019-1.838L12.83 5.18a2 2 0 0 0-1.66 0L2.6 9.08a1 1 0 0 0 0 1.832l8.57 3.908a2 2 0 0 0 1.66 0z" />
+  <path d="M22 10v6" />
+  <path d="M6 12.5V16a6 3 0 0 0 12 0v-3.5" /></symbol>
+<symbol id="ic-coins" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13.744 17.736a6 6 0 1 1-7.48-7.48" />
+  <path d="M15 6h1v4" />
+  <path d="m6.134 14.768.866-.5 2 3.464" />
+  <circle cx="16" cy="8" r="6" /></symbol>
+<symbol id="ic-box" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16Z" />
+  <path d="m3.3 7 8.7 5 8.7-5" />
+  <path d="M12 22V12" /></symbol>
+<symbol id="ic-calculator" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="16" height="20" x="4" y="2" rx="2" />
+  <line x1="8" x2="16" y1="6" y2="6" />
+  <line x1="16" x2="16" y1="14" y2="18" />
+  <path d="M16 10h.01" />
+  <path d="M12 10h.01" />
+  <path d="M8 10h.01" />
+  <path d="M12 14h.01" />
+  <path d="M8 14h.01" />
+  <path d="M12 18h.01" />
+  <path d="M8 18h.01" /></symbol>
+<symbol id="ic-percent" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" x2="5" y1="5" y2="19" />
+  <circle cx="6.5" cy="6.5" r="2.5" />
+  <circle cx="17.5" cy="17.5" r="2.5" /></symbol>
+<symbol id="ic-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5" /></symbol>
+<symbol id="ic-eye" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2.062 12.348a1 1 0 0 1 0-.696 10.75 10.75 0 0 1 19.876 0 1 1 0 0 1 0 .696 10.75 10.75 0 0 1-19.876 0" />
+  <circle cx="12" cy="12" r="3" /></symbol>
+<symbol id="ic-printer" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2" />
+  <path d="M6 9V3a1 1 0 0 1 1-1h10a1 1 0 0 1 1 1v6" />
+  <rect x="6" y="14" width="12" height="8" rx="1" /></symbol>
+<symbol id="ic-phone" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13.832 16.568a1 1 0 0 0 1.213-.303l.355-.465A2 2 0 0 1 17 15h3a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2A18 18 0 0 1 2 4a2 2 0 0 1 2-2h3a2 2 0 0 1 2 2v3a2 2 0 0 1-.8 1.6l-.468.351a1 1 0 0 0-.292 1.233 14 14 0 0 0 6.392 6.384" /></symbol>
+<symbol id="ic-sigma" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 7V5a1 1 0 0 0-1-1H6.5a.5.5 0 0 0-.4.8l4.5 6a2 2 0 0 1 0 2.4l-4.5 6a.5.5 0 0 0 .4.8H17a1 1 0 0 0 1-1v-2" /></symbol>
+<symbol id="ic-chevron-right" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6" /></symbol>
+<symbol id="ic-chevron-left" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6" /></symbol>
+<symbol id="ic-alert-triangle" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3" /><path d="M12 9v4" /><path d="M12 17h.01" /></symbol>
+<symbol id="ic-check-circle" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21.801 10A10 10 0 1 1 17 3.335" /><path d="m9 11 3 3L22 4" /></symbol>
+<symbol id="ic-sparkles" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11.017 2.814a1 1 0 0 1 1.966 0l1.051 5.558a2 2 0 0 0 1.594 1.594l5.558 1.051a1 1 0 0 1 0 1.966l-5.558 1.051a2 2 0 0 0-1.594 1.594l-1.051 5.558a1 1 0 0 1-1.966 0l-1.051-5.558a2 2 0 0 0-1.594-1.594l-5.558-1.051a1 1 0 0 1 0-1.966l5.558-1.051a2 2 0 0 0 1.594-1.594z" />
+  <path d="M20 2v4" />
+  <path d="M22 4h-4" />
+  <circle cx="4" cy="20" r="2" /></symbol>
+<symbol id="ic-target" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10" />
+  <circle cx="12" cy="12" r="6" />
+  <circle cx="12" cy="12" r="2" /></symbol>
+<symbol id="ic-layers" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12.83 2.18a2 2 0 0 0-1.66 0L2.6 6.08a1 1 0 0 0 0 1.83l8.58 3.91a2 2 0 0 0 1.66 0l8.58-3.9a1 1 0 0 0 0-1.83z" />
+  <path d="M2 12a1 1 0 0 0 .58.91l8.6 3.91a2 2 0 0 0 1.65 0l8.58-3.9A1 1 0 0 0 22 12" />
+  <path d="M2 17a1 1 0 0 0 .58.91l8.6 3.91a2 2 0 0 0 1.65 0l8.58-3.9A1 1 0 0 0 22 17" /></symbol>
+<symbol id="ic-pi" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="9" x2="9" y1="4" y2="20" />
+  <path d="M4 7c0-1.7 1.3-3 3-3h13" />
+  <path d="M18 20c-1.7 0-3-1.3-3-3V4" /></symbol>
+<symbol id="ic-shuffle" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m18 14 4 4-4 4" />
+  <path d="m18 2 4 4-4 4" />
+  <path d="M2 18h1.973a4 4 0 0 0 3.3-1.7l5.454-8.6a4 4 0 0 1 3.3-1.7H22" />
+  <path d="M2 6h1.972a4 4 0 0 1 3.6 2.2" />
+  <path d="M22 18h-6.041a4 4 0 0 1-3.3-1.8l-.359-.45" /></symbol>
+<symbol id="ic-award" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m15.477 12.89 1.515 8.526a.5.5 0 0 1-.81.47l-3.58-2.687a1 1 0 0 0-1.197 0l-3.586 2.686a.5.5 0 0 1-.81-.469l1.514-8.526" />
+  <circle cx="12" cy="8" r="6" /></symbol>
+<symbol id="ic-circle" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10" /></symbol>
+<symbol id="ic-cylinder" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="5" rx="9" ry="3" /><path d="M3 5v14a9 3 0 0 0 18 0V5" /></symbol>
+<symbol id="ic-cone" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m20.9 18.55-8-15.98a1 1 0 0 0-1.8 0l-8 15.98" /><ellipse cx="12" cy="19" rx="9" ry="3" /></symbol>
+<symbol id="ic-scale" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m16 16 3-8 3 8c-.87.65-1.92 1-3 1s-2.13-.35-3-1Z" /><path d="m2 16 3-8 3 8c-.87.65-1.92 1-3 1s-2.13-.35-3-1Z" /><path d="M7 21h10" /><path d="M12 3v18" /><path d="M3 7h2c2 0 5-1 7-2 2 1 5 2 7 2h2" /></symbol>
+<symbol id="ic-git-compare" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="18" r="3" /><circle cx="6" cy="6" r="3" /><path d="M13 6h3a2 2 0 0 1 2 2v7" /><path d="M11 18H8a2 2 0 0 1-2-2V9" /></symbol>
+<symbol id="ic-minus" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14" /></symbol>
+<symbol id="ic-pie-chart" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21.21 15.89A10 10 0 1 1 8 2.83" /><path d="M22 12A10 10 0 0 0 12 2v10z" /></symbol>
+<symbol id="ic-grid" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="18" x="3" y="3" rx="2" /><path d="M3 9h18" /><path d="M3 15h18" /><path d="M9 3v18" /><path d="M15 3v18" /></symbol>
+<symbol id="ic-triangle" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13.73 4a2 2 0 0 0-3.46 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3z" /></symbol>
+<symbol id="ic-compass" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m16.24 7.76-1.804 5.411a2 2 0 0 1-1.265 1.265L7.76 16.24l1.804-5.411a2 2 0 0 1 1.265-1.265z" /><circle cx="12" cy="12" r="10" /></symbol>
+<symbol id="ic-play" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="6 3 20 12 6 21 6 3" /></symbol>
+<symbol id="ic-pause" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="14" y="4" width="4" height="16" rx="1" /><rect x="6" y="4" width="4" height="16" rx="1" /></symbol>
+</svg>
+
+<div class="app">
+  <!-- TOP BAR -->
+  <div class="topbar">
+    <div class="topbar-row">
+      <svg class="ico ico--lg"><use href="#ic-graduation-cap"/></svg>
+      <div style="flex:1">
+        <h1>北京六年级数学 · 母题系统</h1>
+        <p>人教版上下册 · 知识点 / 母题 / 应用练习</p>
+      </div>
+      <button class="theme-btn" onclick="toggleTheme()" aria-label="切换主题">
+        <svg class="ico" id="themeIcon"><use href="#ic-sparkles"/></svg>
+      </button>
+    </div>
+    <div class="kpis">
+      <div class="k"><b>12</b><span>教学单元</span></div>
+      <div class="k"><b>8</b><span>应用母题</span></div>
+      <div class="k"><b>∞</b><span>变式练习</span></div>
+    </div>
+  </div>
+
+  <!-- ============ VIEW 1 · 知识点 ============ -->
+  <div class="view active" id="view-kp">
+    <lazy-view data-render="kp">
+      <div class="skeleton"><div class="sk-line" style="width:70%"></div><div class="sk-card"></div><div class="sk-card"></div><div class="sk-card"></div></div>
+    </lazy-view>
+    <div id="kp-content"></div>
+  </div>
+
+  <!-- ============ VIEW 2 · 母题 ============ -->
+  <div class="view" id="view-mother">
+    <div class="sec-title"><svg class="ico"><use href="#ic-target"/></svg>应用题母题(8 类高频题型)</div>
+    <p class="hint">"母题"= 一类题的通用结构 + 解题模型,换数据即可衍生无数变式。</p>
+    <lazy-view data-render="mother">
+      <div class="skeleton"><div class="sk-card"></div><div class="sk-card"></div></div>
+    </lazy-view>
+    <div id="mother-content"></div>
+  </div>
+
+  <!-- ============ VIEW 3 · 应用练习 ============ -->
+  <div class="view" id="view-quiz">
+    <div class="sec-title"><svg class="ico"><use href="#ic-pencil-ruler"/></svg>在线练习 · 一键生成多套题</div>
+    <div class="controls">
+      <div class="control-row">
+        <div class="field">
+          <label>题型</label>
+          <select id="typeSel"><option value="all">全部题型混合</option></select>
+        </div>
+        <div class="field">
+          <label>套数</label>
+          <select id="setSel">
+            <option value="1">1 套(10 题)</option>
+            <option value="3" selected>3 套(每套 10 题)</option>
+            <option value="5">5 套(每套 10 题)</option>
+          </select>
+        </div>
+      </div>
+      <div class="btn-row">
+        <button class="btn primary" onclick="genAll()"><svg class="ico ico--sm"><use href="#ic-shuffle"/></svg>生成练习</button>
+        <button class="btn ghost" onclick="checkAll()"><svg class="ico ico--sm"><use href="#ic-circle-check"/></svg>批改</button>
+      </div>
+      <div class="btn-row">
+        <button class="btn" onclick="toggleAllAns()"><svg class="ico ico--sm"><use href="#ic-eye"/></svg>答案</button>
+        <button class="btn" onclick="window.print()"><svg class="ico ico--sm"><use href="#ic-printer"/></svg>打印</button>
+      </div>
+      <div class="score" id="scoreBadge"><svg class="ico ico--sm"><use href="#ic-award"/></svg>尚未批改</div>
+    </div>
+    <div id="paper"></div>
+  </div>
+
+  <!-- BOTTOM TABS -->
+  <nav class="tabbar">
+    <button class="tab active" data-view="kp" onclick="switchView('kp')">
+      <svg class="ico"><use href="#ic-book-open"/></svg>知识点</button>
+    <button class="tab" data-view="mother" onclick="switchView('mother')">
+      <svg class="ico"><use href="#ic-target"/></svg>母题</button>
+    <button class="tab" data-view="quiz" onclick="switchView('quiz')">
+      <svg class="ico"><use href="#ic-list-checks"/></svg>应用</button>
+  </nav>
+</div>
+
+<!-- ============ 知识点详情页浮层 ============ -->
+<div class="detail" id="kp-detail" aria-hidden="true">
+  <div class="detail-bar">
+    <button class="detail-back" onclick="closeDetail()" type="button" aria-label="返回"><svg class="ico ico--sm"><use href="#ic-chevron-left"/></svg></button>
+    <h2 id="detail-title">知识点详情</h2>
+    <span class="badge-book" id="detail-book"></span>
+  </div>
+  <div class="detail-body" id="detail-body"></div>
+</div>
+
+<script>
+/* ============ 视图切换 ============ */
+function switchView(v){
+  hydrateView(v); /* 保证目标视图已渲染(若空闲预热尚未完成则同步补渲染) */
+  document.querySelectorAll('.view').forEach(x=>x.classList.remove('active'));
+  document.getElementById('view-'+v).classList.add('active');
+  document.querySelectorAll('.tab').forEach(t=>t.classList.toggle('active',t.dataset.view===v));
+  window.scrollTo(0,0);
+}
+function toggleTheme(){
+  var d=document.documentElement;
+  d.setAttribute('data-theme', d.getAttribute('data-theme')==='dark'?'':'dark');
+}
+
+/* ============ 工具函数 ============ */
+function ri(a,b){return Math.floor(Math.random()*(b-a+1))+a;}
+function pick(a){return a[ri(0,a.length-1)];}
+function gcd(a,b){return b?gcd(b,a%b):a;}
+function fracAdd(a,b,c,d){var n=a*d+c*b,m=b*d,g=gcd(n,m);return[n/g,m/g];}
+function r2(x){return Math.round(x*100)/100;}
+
+/* ============ 知识点数据 ============ */
+var KP=[
+ {book:"上册",items:[
+   {ic:"ic-percent",t:"分数乘法",d:"分数乘整数/分数、分数乘法应用题、倒数"},
+   {ic:"ic-compass",t:"位置与方向(二)",d:"用方向和距离(北偏东 30°,5 千米)确定位置"},
+   {ic:"ic-divide",t:"分数除法",d:"分数除法意义与计算、比、已知一个数的几分之几求这个数"},
+   {ic:"ic-git-compare",t:"比",d:"比的意义、比与分数除法关系、化简比、按比分配"},
+   {ic:"ic-circle",t:"圆",d:"圆的认识、周长 C=πd、面积 S=πr²、扇形"},
+   {ic:"ic-pie-chart",t:"扇形统计图",d:"用扇形表示部分占总量的百分比,读图分析"}
+ ]},
+ {book:"下册",items:[
+   {ic:"ic-minus",t:"负数",d:"正负数意义、0 的界限、在数轴上表示、比较大小"},
+   {ic:"ic-percent",t:"百分数(二)",d:"折扣、成数、税率、利率,解决实际问题"},
+   {ic:"ic-cylinder",t:"圆柱与圆锥",d:"圆柱表面积/体积、圆锥体积=⅓ 底面积×高"},
+   {ic:"ic-scale",t:"比例",d:"比例意义与性质、正反比例、比例尺、图形放大缩小"},
+   {ic:"ic-grid",t:"鸽巢问题",d:"抽屉原理、至少有一个抽屉放进 ⌈n/m⌉ 个物体"},
+   {ic:"ic-sigma",t:"数与形",d:"用图形规律发现数的规律(1+3+5+…=n²)"}
+ ]}
+];
+function renderKP(){
+ var box=document.getElementById('kp-content');var html='';
+ html+='<div class="sec-title"><svg class="ico"><use href="#ic-book-open"/></svg>六年级数学知识点(人教版·约 12 单元)</div>';
+ html+='<p class="hint">北京市小学普遍使用人教版教材,六年级分上下两册,按单元共约 12 个知识板块。</p>';
+ KP.forEach(function(g){
+   html+='<div class="unit-group"><div class="unit-badge"><svg class="ico ico--sm"><use href="#ic-layers"/></svg>'+g.book+'</div><div class="kp-grid">';
+   g.items.forEach(function(it){
+     html+='<div class="kp" onclick="openDetail(\''+it.t+'\')" role="button" tabindex="0">'+
+           '<div class="kp-ic"><svg class="ico"><use href="#'+it.ic+'"/></svg></div>'+
+           '<div class="kp-body"><h4>'+it.t+'</h4><p>'+it.d+'</p></div>'+
+           '<svg class="ico ico--sm kp-arrow"><use href="#ic-chevron-right"/></svg></div>';
+   });
+   html+='</div></div>';
+ });
+ box.innerHTML=html;
+}
+
+/* ============ 知识点详情数据(图文并茂 + 动画) ============ */
+var DETAIL={
+ "分数乘法":{book:"上册",lead:"分数乘法分两种:分数乘整数,就是几个相同分数相加;分数乘分数,分子乘分子、分母乘分母。能约分的先约分再乘,结果化成最简分数。求一个数的几分之几用乘法。",
+  blocks:[
+   {title:"分数乘分数的意义",ic:"ic-percent",
+    fig:'<svg viewBox="0 0 260 130" width="260" height="130" role="img" aria-label="分数乘分数的面积模型">'+
+      '<rect x="40" y="20" width="160" height="90" fill="none" stroke="var(--s-border)" stroke-width="1.5"/>'+
+      '<rect x="40" y="20" width="120" height="90" fill="var(--s-brand)" fill-opacity="0.14"><animate attributeName="width" values="0;120;120" keyTimes="0;0.45;1" dur="3s" repeatCount="1" fill="freeze"/></rect>'+
+      '<rect x="40" y="20" width="160" height="60" fill="var(--s-warning)" fill-opacity="0.14"><animate attributeName="height" values="0;0;60;60" keyTimes="0;0.45;0.8;1" dur="3s" repeatCount="1" fill="freeze"/></rect>'+
+      '<rect x="40" y="20" width="120" height="60" fill="var(--s-brand)" fill-opacity="0.42"><animate attributeName="opacity" values="0;0;0;1;1" keyTimes="0;0.45;0.8;0.9;1" dur="3s" repeatCount="1" fill="freeze"/></rect>'+
+      (function(){var s="";for(var i=1;i<4;i++){var x=40+i*40;s+="<line x1=\""+x+"\" y1=\"20\" x2=\""+x+"\" y2=\"110\" stroke=\"var(--s-border)\" stroke-width=\"1\"/>";}return s;})()+
+      (function(){var s="";for(var j=1;j<3;j++){var y=20+j*30;s+="<line x1=\"40\" y1=\""+y+"\" x2=\"200\" y2=\""+y+"\" stroke=\"var(--s-border)\" stroke-width=\"1\"/>";}return s;})()+
+      '<text x="102" y="15" text-anchor="middle" fill="var(--s-brand)" font-size="10">横 3/4</text>'+
+      '<text x="216" y="53" text-anchor="middle" fill="var(--s-warning-text)" font-size="10">竖 2/3</text>'+
+      '<text x="120" y="124" text-anchor="middle" fill="var(--s-text-muted)" font-size="11">3/4 × 2/3 = 重叠 6 格 / 共 12 格 = 6/12 = 1/2</text></svg>',
+    caption:"横竖各占一部分,重叠的格子就是两个分数的积",
+    learn:'分数乘分数,可以看成"求一个分数的几分之几是多少"。计算法则:<span class="d-key">分子相乘作分子,分母相乘作分母</span>。为了简便,<b>能约分的要先约分再相乘</b>,这样数字小、不易错,结果一定要化成<b>最简分数</b>。分数乘整数则是分子与整数相乘、分母不变。',
+    warn:["分子分母<b>交叉乘</b>(那是除法才转乘),乘法应分子乘分子、分母乘分母。","乘完<b>忘记约分</b>成最简分数。","分数乘整数时把<b>分母也乘</b>了整数(错误)。"]}
+  ],
+  eg:{q:"一堆煤有 <b>15</b> 吨,用去了它的 <b>2/5</b>,用去多少吨?",
+   steps:['"用去它的 2/5"就是求 15 的 2/5,用乘法:15 × 2/5',
+    '先约分:15 与 5 约,<span class="calc">15 ÷ 5 = 3</span>',
+    '再相乘:<span class="calc">3 × 2 = 6</span>'],
+   ans:"用去 6 吨"}},
+
+ "位置与方向(二)":{book:"上册",lead:"确定物体位置需要两个要素:方向和距离。方向用『北偏东(西)多少度』描述,距离说明离观测点多远。观测点不同,方向和距离的描述也会改变。",
+  blocks:[
+   {title:"方向 + 距离定位置",ic:"ic-compass",
+    fig:'<svg viewBox="0 0 260 150" width="260" height="150" role="img" aria-label="北偏东方向示意">'+
+      '<line x1="130" y1="20" x2="130" y2="130" stroke="var(--s-border)" stroke-width="1"/>'+
+      '<line x1="40" y1="80" x2="220" y2="80" stroke="var(--s-border)" stroke-width="1"/>'+
+      '<text x="130" y="15" text-anchor="middle" fill="var(--s-text-muted)" font-size="10">北</text>'+
+      '<text x="130" y="145" text-anchor="middle" fill="var(--s-text-muted)" font-size="10">南</text>'+
+      '<text x="228" y="84" fill="var(--s-text-muted)" font-size="10">东</text>'+
+      '<text x="26" y="84" fill="var(--s-text-muted)" font-size="10">西</text>'+
+      '<circle cx="130" cy="80" r="4" fill="var(--s-text-secondary)"/>'+
+      '<path class="d-anim-dash" d="M130 46 A34 34 0 0 1 147 50.6" fill="none" stroke="var(--s-warning)" stroke-width="1.5"/>'+
+      '<text x="140" y="40" fill="var(--s-warning-text)" font-size="10">30°</text>'+
+      '<line x1="130" y1="80" x2="164" y2="21" stroke="var(--s-brand)" stroke-width="2"/>'+
+      '<circle class="d-anim-pulse" cx="164" cy="21" r="6" fill="var(--s-brand)"/>'+
+      '<text x="172" y="18" fill="var(--s-brand)" font-size="11">目标</text>'+
+      '<text x="130" y="140" text-anchor="middle" fill="var(--s-text-muted)" font-size="10">北偏东 30°,距离 5 千米</text></svg>',
+    caption:"从北方向往东转 30°,再走 5 千米就到目标",
+    learn:'描述一个物体的位置,要同时说清<span class="d-key">方向</span>和<span class="d-key">距离</span>两个要素。方向一般写成"<b>北(南)偏东(西)多少度</b>",角度从正北或正南量起，偏向东或西。距离说明离观测点有多远。<b>观测点不同</b>,同一个物体的方向和距离描述也不同——位置是相对的。',
+    warn:["只说方向<b>不说距离</b>,位置无法确定。","角度的起始边搞错(应从<b>正北或正南</b>量起,不是从东西量)。","改变观测点后<b>忘了方向要反过来</b>(A 在 B 北偏东,则 B 在 A 南偏西)。"]}
+  ],
+  eg:{q:"小明家在学校<b>北偏东 40°</b>方向、距离 <b>800</b> 米处。那么学校在小明家的什么方向?",
+   steps:['两地互看,方向<b>正好相反</b>,角度不变',
+    '"北偏东 40°"的相反方向是<span class="calc">南偏西 40°</span>',
+    '距离不变,仍是 800 米'],
+   ans:"学校在小明家南偏西 40°、距离 800 米处"}},
+
+ "分数除法":{book:"上册",lead:"分数除法的核心一句话:除以一个数,等于乘这个数的倒数。把除法转成乘法后,按分数乘法计算即可。已知一个数的几分之几是多少、求这个数,用除法。",
+  blocks:[
+   {title:"除以一个数 = 乘它的倒数",ic:"ic-divide",
+    figHtml:(function(){
+        function F(n,d,cls){return '<span class="frac frac-lg'+(cls?' '+cls:'')+'"><span class="frac-n">'+n+'</span><span>'+d+'</span></span>';}
+        var s='<div class="d-proc">';
+        /* 第 1 步:原式 */
+        s+='<div class="d-proc-step"><span class="d-proc-no">1</span><div class="d-proc-body">'+
+             '<div class="d-proc-lbl">原式(一道分数除法)</div>'+
+             '<div class="d-proc-expr">'+F('3','4')+'<span class="op">÷</span>'+F('2','3')+'</div>'+
+           '</div></div>';
+        /* 第 2 步:两处变化的对比 */
+        s+='<div class="d-proc-step"><span class="d-proc-no">2</span><div class="d-proc-body">'+
+             '<div class="d-proc-lbl">只改两处:除号 + 除数(被除数不动)</div>'+
+             '<div class="d-proc-cmp">'+
+               '<div class="d-proc-cmp-row"><span class="d-proc-cmp-tag was-tag">原来</span>'+
+                 '<span class="d-proc-expr">'+F('3','4')+'<span class="op">÷</span>'+F('2','3')+'</span></div>'+
+               '<div class="d-proc-cmp-arrow"><svg class="ico"><use href="#ic-arrow-down"/></svg></div>'+
+               '<div class="d-proc-cmp-row"><span class="d-proc-cmp-tag now-tag">现在</span>'+
+                 '<span class="d-proc-expr">'+F('3','4','hl-keep')+'<span class="op hl-change">×</span>'+F('3','2','hl-change')+'</span></div>'+
+             '</div>'+
+             '<div class="d-proc-note">'+
+               '<span class="hl-keep">被除数不动</span>&nbsp;·&nbsp;'+
+               '<span>÷ 变 ×</span>&nbsp;·&nbsp;'+
+               '<span>除数分子分母上下调换</span></div>'+
+           '</div></div>';
+        /* 第 3 步:结果 */
+        s+='<div class="d-proc-step d-proc-result"><span class="d-proc-no">3</span><div class="d-proc-body">'+
+             '<div class="d-proc-lbl">变成乘法,再按分数乘法算</div>'+
+             '<div class="d-proc-expr">'+F('3','4')+'<span class="op" style="color:var(--s-success-text)">×</span>'+F('3','2','')+'</div>'+
+           '</div></div>';
+        s+='</div>';
+        return s;})(),
+    formula:'<span class="frac"><span class="frac-n">a</span><span>b</span></span> ÷ <span class="frac"><span class="frac-n">c</span><span>d</span></span> = <span class="frac"><span class="frac-n">a</span><span>b</span></span> × <span class="frac"><span class="frac-n">d</span><span>c</span></span>（除号变乘号,除数翻倒数）',
+    caption:"分三步看清:①原式 → ②除号变乘号、除数翻成倒数(被除数不动) → ③变成乘法",
+    learn:'分数除法只要记住一句口诀:<b>除以一个数,等于乘这个数的倒数</b>。做题时两步走——第一步<b>把除号“÷”改成乘号“×”</b>,第二步<b>把后面的除数(除号右边那个数)分子分母上下调换</b>,变成它的<span class="d-key">倒数</span>,前面的被除数<b>保持不动</b>。比如 3/4 ÷ 2/3,除号变乘,2/3 翻成 3/2,就得到 3/4 × 3/2,再按分数乘法算即可。倒数就是<b>把一个分数的分子和分母互换位置</b>(2/3 的倒数是 3/2,5 的倒数是 1/5)。已知一个数的几分之几是多少、要求这个数,也用除法。',
+    warn:["把<b>被除数</b>也取了倒数(只需把除数变倒数)。","0 没有倒数,<b>除数不能为 0</b>。","忘了把除号改成乘号就直接算(错误)。"]}
+  ],
+  eg:{q:"一根绳子的 <b>3/4</b> 是 <b>6</b> 米,这根绳子全长多少米?",
+   steps:['设全长 x 米,它的 3/4 是 6:<span class="calc">x × 3/4 = 6</span>',
+    '求 x 用除法:<span class="calc">x = 6 ÷ 3/4</span>',
+    '除以 3/4 = 乘 4/3:<span class="calc">6 × 4/3 = 8</span>'],
+   ans:"绳子全长 8 米"}},
+
+ "比":{book:"上册",lead:"两个数相除又叫两个数的比。比的前项除以后项得到比值,比与除法、分数密切相关。化简比得到最简整数比;按比分配是把总量按比例分成几份。",
+  blocks:[
+   {title:"比 · 除法 · 分数三者关系",ic:"ic-git-compare",
+    fig:(function(){
+        var s='<svg viewBox="0 0 300 250" width="300" height="250" role="img" aria-label="比、除法、分数是同一件事的三种写法,前项对应被除数和分子,后项对应除数和分母">';
+        /* 三列坐标:左项 / 中号 / 右项 */
+        var cL=78, cM=150, cR=222;
+        /* 顶部角色说明条 */
+        s+='<rect x="46" y="10" width="64" height="20" rx="6" fill="var(--s-brand-subtle)"/>';
+        s+='<text x="'+cL+'" y="24" text-anchor="middle" fill="var(--s-brand)" font-size="12" font-weight="700">同一个位置</text>';
+        s+='<rect x="190" y="10" width="64" height="20" rx="6" fill="var(--s-brand-subtle)"/>';
+        s+='<text x="'+cR+'" y="24" text-anchor="middle" fill="var(--s-brand)" font-size="12" font-weight="700">同一个位置</text>';
+        /* 竖向对齐引导线(淡) */
+        s+='<line x1="'+cL+'" y1="34" x2="'+cL+'" y2="196" stroke="var(--s-brand)" stroke-width="1" stroke-dasharray="3 4" opacity="0.35"/>';
+        s+='<line x1="'+cR+'" y1="34" x2="'+cR+'" y2="196" stroke="var(--s-brand)" stroke-width="1" stroke-dasharray="3 4" opacity="0.35"/>';
+        /* 三行:比 / 除法 / 分数 */
+        var rows=[
+          {y:62, tag:"比", L:"3", M:"∶", R:"4", ln:false},
+          {y:112,tag:"除法", L:"3", M:"÷", R:"4", ln:false},
+          {y:170,tag:"分数", L:"3", M:"", R:"4", ln:true}
+        ];
+        for(var i=0;i<rows.length;i++){
+            var r=rows[i];
+            /* 行标签 */
+            s+='<text x="14" y="'+(r.y+5)+'" fill="var(--s-text-secondary)" font-size="12" font-weight="700">'+r.tag+'</text>';
+            /* 左项 */
+            s+='<text x="'+cL+'" y="'+(r.ln?r.y-4:r.y+7)+'" text-anchor="middle" fill="var(--s-brand)" font-size="22" font-weight="700">'+r.L+'</text>';
+            /* 中间符号 / 分数线 */
+            if(r.ln){
+                s+='<line x1="'+(cL-16)+'" y1="'+r.y+'" x2="'+(cL+16)+'" y2="'+r.y+'" stroke="var(--s-text)" stroke-width="2.4"/>';
+                s+='<text x="'+cL+'" y="'+(r.y+20)+'" text-anchor="middle" fill="var(--s-brand)" font-size="22" font-weight="700">'+r.R+'</text>';
+            }else{
+                s+='<text x="'+cM+'" y="'+(r.y+7)+'" text-anchor="middle" fill="var(--s-text-muted)" font-size="22" font-weight="700">'+r.M+'</text>';
+                s+='<text x="'+cR+'" y="'+(r.y+7)+'" text-anchor="middle" fill="var(--s-brand)" font-size="22" font-weight="700">'+r.R+'</text>';
+            }
+        }
+        /* 底部角色注解 */
+        s+='<text x="'+cL+'" y="212" text-anchor="middle" fill="var(--s-text-secondary)" font-size="11">前项 · 被除数 · 分子</text>';
+        s+='<text x="'+cR+'" y="212" text-anchor="middle" fill="var(--s-text-secondary)" font-size="11">后项 · 除数 · 分母</text>';
+        /* 比值结论 */
+        s+='<text x="150" y="238" text-anchor="middle" fill="var(--s-text)" font-size="12">比号∶ · 除号÷ · 分数线 都表示「相除」,比值 = 3÷4 = <tspan fill="var(--s-brand)" font-weight="700">0.75</tspan></text>';
+        s+='</svg>';
+        return s;})(),
+    caption:"比、除法、分数是同一件事的三种「写法」:左边一列(前项/被除数/分子)完全对应,右边一列(后项/除数/分母)也完全对应;后项(分母)不能为 0",
+    learn:'两个数相除,又叫做这两个数的<span class="d-key">比</span>。<b>前项 ÷ 后项 = 比值</b>。比的<b>后项不能为 0</b>。根据比的基本性质,比的前项和后项<b>同乘或同除相同的数(0 除外),比值不变</b>——用它可以把比化成最简整数比。按比分配:先求总份数,再算每份,最后各占几份。',
+    warn:["把<b>比</b>和<b>比值</b>混为一谈(比是关系,比值是结果)。","化简比时只除前项或只除后项(要<b>同时除</b>以最大公因数)。","按比分配时<b>忘记先求总份数</b>就直接分。"]}
+  ],
+  eg:{q:"用 <b>140</b> 厘米的铁丝围成一个长方形,长与宽的比是 <b>4∶3</b>,长和宽各多少?",
+   steps:['长方形长+宽 = 周长的一半 = <span class="calc">140 ÷ 2 = 70</span> 厘米',
+    '总份数 = <span class="calc">4 + 3 = 7</span> 份',
+    '每份 = <span class="calc">70 ÷ 7 = 10</span> 厘米',
+    '长 = 10×4 = 40,宽 = 10×3 = 30'],
+   ans:"长 40 厘米,宽 30 厘米"}},
+
+ "圆":{book:"上册",lead:"圆是由一条曲线围成的图形,半径决定圆的大小。周长 C = πd = 2πr,面积 S = πr²。圆周率 π 是周长与直径的固定比值,约 3.14。",
+  blocks:[
+   {title:"周长:把圆『滚』成一条线",ic:"ic-circle",
+    fig:'<svg viewBox="0 0 260 128" width="260" height="128" role="img" aria-label="圆像轮子一样滚一圈展开成直线的动画">'+
+      /* 地面轨道 */
+      '<line x1="20" y1="96" x2="240" y2="96" stroke="var(--s-border)" stroke-width="1.5"/>'+
+      /* 起点竖线标记 */
+      '<line x1="34" y1="90" x2="34" y2="102" stroke="var(--s-text-secondary)" stroke-width="1.5"/>'+
+      /* 已走过的直线(周长),随时间从起点生长 */
+      '<line x1="34" y1="96" x2="34" y2="96" stroke="var(--s-brand)" stroke-width="4" stroke-linecap="round">'+
+        '<animate attributeName="x2" values="34;222;222" keyTimes="0;0.85;1" dur="3.2s" repeatCount="1" fill="freeze"/></line>'+
+      /* 终点竖线标记 */
+      '<line x1="222" y1="90" x2="222" y2="102" stroke="var(--s-text-secondary)" stroke-width="1.5">'+
+        '<animate attributeName="opacity" values="0;0;1;1" keyTimes="0;0.82;0.86;1" dur="3.2s" repeatCount="1" fill="freeze"/></line>'+
+      /* 滚动的轮子:整组一起平移,轮子随之自转 */
+      '<g>'+
+        '<animateTransform attributeName="transform" type="translate" values="0 0;188 0;188 0" keyTimes="0;0.85;1" dur="3.2s" repeatCount="1" fill="freeze" additive="sum"/>'+
+        '<circle cx="34" cy="66" r="30" fill="var(--s-brand-subtle)" stroke="var(--s-brand)" stroke-width="1.6"/>'+
+        /* 轮子内部随圆一起旋转的辐条+红点,直观看到"滚动" */
+        '<g>'+
+          '<animateTransform attributeName="transform" type="rotate" values="0 34 66;360 34 66;360 34 66" keyTimes="0;0.85;1" dur="3.2s" repeatCount="1" fill="freeze"/>'+
+          '<line x1="34" y1="66" x2="34" y2="36" stroke="var(--s-brand)" stroke-width="1.6"/>'+
+          '<circle cx="34" cy="36" r="4" fill="var(--s-warning)"/>'+
+        '</g>'+
+        '<circle cx="34" cy="66" r="2.5" fill="var(--s-brand)"/>'+
+      '</g>'+
+      '<text x="128" y="120" text-anchor="middle" fill="var(--s-text-muted)" font-size="10">滚一整圈走过的长度 = 周长 C</text></svg>',
+    formula:"C = πd = 2πr",
+    caption:"把圆当轮子滚一整圈,轮子走过的直线长度就是周长——它正好是直径的 π 倍",
+    learn:'把圆想象成一个<b>轮子</b>,在直线上滚一整圈,走过的长度就是<span class="d-key">周长 C</span>。测量发现:任何圆<b>滚一圈的长度 ÷ 直径</b>都等于同一个固定的数,这个数就是<b>圆周率 π ≈ 3.14</b>。所以周长 <span class="d-key">C = πd = 2πr</span>——已知直径用 πd,已知半径用 2πr。'}
+,
+   {title:"面积:把圆『剪拼』成长方形",ic:"ic-circle",
+    fig:'<svg viewBox="0 0 260 206" width="260" height="206" role="img" aria-label="把圆剪成小扇形再一片片交错拼成长方形的过程动画">'+
+      (function(){
+        var cx=130,cy=52,r=40,n=12,seg=360/n;
+        var bx=40,by=128,bw=160,bh=40,w=bw/n;   /* 目标长方形:上边 by,下边 by+bh */
+        var col=["var(--s-brand)","var(--s-brand-subtle-2)"];
+        var dur=6, tStart=0.14, tEnd=0.84;
+        var s="";
+        for(var i=0;i<n;i++){
+          /* 扇形以尖点为原点(0,0)绘制,弧朝各自方向;起始整体平移到圆心处 */
+          var a0=(i*seg-90)*Math.PI/180, a1=((i+1)*seg-90)*Math.PI/180;
+          var x0=(r*Math.cos(a0)).toFixed(2), y0=(r*Math.sin(a0)).toFixed(2);
+          var x1=(r*Math.cos(a1)).toFixed(2), y1=(r*Math.sin(a1)).toFixed(2);
+          var d="M0 0 L"+x0+" "+y0+" A"+r+" "+r+" 0 0 1 "+x1+" "+y1+" Z";
+          /* 目标:偶数片尖朝上(排在上,弧朝下),奇数片尖朝下(排在下,弧朝上),交错咬合 */
+          var up=(i%2===0);
+          var am=(i+0.5)*seg-90;              /* 当前弧中线方向(度) */
+          var target=up?90:-90;               /* 上排弧朝下+90,下排弧朝上-90 */
+          var rot=(target-am).toFixed(1);
+          var tx=(bx+i*w+w/2).toFixed(2);
+          var ty=(up?by:by+bh).toFixed(2);
+          var t0=(tStart+(tEnd-tStart)*(i/n)).toFixed(3);
+          var t1=(tStart+(tEnd-tStart)*((i+0.75)/n)).toFixed(3);
+          s+="<path d=\""+d+"\" fill=\""+col[i%2]+"\" fill-opacity=\"0.9\" stroke=\"var(--s-surface)\" stroke-width=\"1\">";
+          /* 先平移尖点:从圆心 -> 目标格;再绕尖点旋转到统一朝向。两个 animateTransform 依次叠加 */
+          s+="<animateTransform attributeName=\"transform\" type=\"translate\" additive=\"replace\" fill=\"freeze\" calcMode=\"spline\" keySplines=\"0 0 0 1;.4 0 .2 1;0 0 1 1\" values=\""+cx+" "+cy+";"+cx+" "+cy+";"+tx+" "+ty+";"+tx+" "+ty+"\" keyTimes=\"0;"+t0+";"+t1+";1\" dur=\""+dur+"s\" repeatCount=\"1\"/>";
+          s+="<animateTransform attributeName=\"transform\" type=\"rotate\" additive=\"sum\" fill=\"freeze\" calcMode=\"spline\" keySplines=\"0 0 0 1;.4 0 .2 1;0 0 1 1\" values=\"0;0;"+rot+";"+rot+"\" keyTimes=\"0;"+t0+";"+t1+";1\" dur=\""+dur+"s\" repeatCount=\"1\"/>";
+          s+="</path>";
+        }
+        /* 标注与公式:拼完后淡入,并定格保持 */
+        s+="<g opacity=\"0\"><animate attributeName=\"opacity\" values=\"0;0;1;1\" keyTimes=\"0;0.88;0.94;1\" dur=\""+dur+"s\" repeatCount=\"1\" fill=\"freeze\"/>";
+        s+="<line x1=\""+bx+"\" y1=\""+(by+bh+14)+"\" x2=\""+(bx+bw)+"\" y2=\""+(by+bh+14)+"\" stroke=\"var(--s-brand)\" stroke-width=\"1\"/>";
+        s+="<line x1=\""+bx+"\" y1=\""+(by+bh+11)+"\" x2=\""+bx+"\" y2=\""+(by+bh+17)+"\" stroke=\"var(--s-brand)\" stroke-width=\"1\"/>";
+        s+="<line x1=\""+(bx+bw)+"\" y1=\""+(by+bh+11)+"\" x2=\""+(bx+bw)+"\" y2=\""+(by+bh+17)+"\" stroke=\"var(--s-brand)\" stroke-width=\"1\"/>";
+        s+="<text x=\""+(bx+bw/2)+"\" y=\""+(by+bh+27)+"\" text-anchor=\"middle\" fill=\"var(--s-brand)\" font-size=\"10\">长 = 半个周长 = πr</text>";
+        s+="<line x1=\""+(bx+bw+12)+"\" y1=\""+by+"\" x2=\""+(bx+bw+12)+"\" y2=\""+(by+bh)+"\" stroke=\"var(--s-brand)\" stroke-width=\"1\"/>";
+        s+="<line x1=\""+(bx+bw+9)+"\" y1=\""+by+"\" x2=\""+(bx+bw+15)+"\" y2=\""+by+"\" stroke=\"var(--s-brand)\" stroke-width=\"1\"/>";
+        s+="<line x1=\""+(bx+bw+9)+"\" y1=\""+(by+bh)+"\" x2=\""+(bx+bw+15)+"\" y2=\""+(by+bh)+"\" stroke=\"var(--s-brand)\" stroke-width=\"1\"/>";
+        s+="<text x=\""+(bx+bw+18)+"\" y=\""+(by+bh/2+3)+"\" fill=\"var(--s-brand)\" font-size=\"10\">宽 = r</text>";
+        s+="</g>";
+        return s;})()+
+      '<text x="130" y="118" text-anchor="middle" fill="var(--s-text-muted)" font-size="10">把圆平均剪成 12 片,一片片交错拼过去</text></svg>',
+    formula:"S = 长 × 宽 = πr × r = πr²",
+    caption:"把圆平均剪成小扇形,一片片交错拼过去,越拼越像长方形:长 = πr、宽 = r",
+    learn:'圆的面积怎么算?把圆<b>平均剪成很多小扇形</b>,再把它们<b>尖朝上、尖朝下交错拼</b>起来,就接近一个<span class="d-key">长方形</span>。观察拼好的长方形:它的<b>长</b>是原来圆周的<b>一半 = πr</b>(上下各半圈弧),<b>宽</b>正好是<b>半径 r</b>。剪得越细,拼出来越像长方形。长方形面积 = 长 × 宽,所以圆面积 <span class="d-key">S = πr × r = πr²</span>。<b>一定用半径的平方</b>,不能用直径。',
+    warn:["算面积时把公式记成 πd 或 πr(应是 <b>πr²</b>)。","已知直径求面积时<b>忘了先除以 2</b>求半径。","把<b>周长</b>和<b>面积</b>的单位混用(周长用长度单位,面积用平方单位)。"]}
+  ],
+  eg:{q:"一个圆的半径是 <b>5</b> 厘米,它的周长和面积各是多少?(π 取 3.14)",
+   steps:['周长 C = 2πr = <span class="calc">2 × 3.14 × 5 = 31.4</span> 厘米',
+    '面积 S = πr² = <span class="calc">3.14 × 5² = 3.14 × 25</span>',
+    '<span class="calc">3.14 × 25 = 78.5</span> 平方厘米'],
+   ans:"周长 31.4 厘米,面积 78.5 平方厘米"}},
+
+ "扇形统计图":{book:"上册",lead:"扇形统计图用整个圆表示总数,用各个扇形的大小表示部分占总数的百分比。它最适合看『各部分占整体的比例关系』,所有扇形百分比加起来等于 100%。",
+  blocks:[
+   {title:"扇形看占比",ic:"ic-pie-chart",
+    fig:'<svg viewBox="0 0 260 140" width="260" height="140" role="img" aria-label="扇形统计图占比">'+
+      (function(){
+        var data=[{p:50,c:"var(--s-brand)",label:"A 50%"},{p:30,c:"var(--s-success)",label:"B 30%"},{p:20,c:"var(--s-warning)",label:"C 20%"}];
+        var cx=90,cy=70,r=48,a0=-90,s="";
+        for(var i=0;i<data.length;i++){
+          var a1=a0+data[i].p*3.6;
+          var x0=cx+r*Math.cos(a0*Math.PI/180),y0=cy+r*Math.sin(a0*Math.PI/180);
+          var x1=cx+r*Math.cos(a1*Math.PI/180),y1=cy+r*Math.sin(a1*Math.PI/180);
+          var big=data[i].p>50?1:0;
+          s+="<path d=\"M"+cx+" "+cy+" L"+x0.toFixed(1)+" "+y0.toFixed(1)+" A"+r+" "+r+" 0 "+big+" 1 "+x1.toFixed(1)+" "+y1.toFixed(1)+" Z\" fill=\""+data[i].c+"\" fill-opacity=\"0.75\" stroke=\"var(--s-surface)\" stroke-width=\"1.5\"/>";
+          s+="<rect x=\"180\" y=\""+(40+i*22)+"\" width=\"12\" height=\"12\" fill=\""+data[i].c+"\" fill-opacity=\"0.75\"/>";
+          s+="<text x=\"198\" y=\""+(50+i*22)+"\" fill=\"var(--s-text)\" font-size=\"11\">"+data[i].label+"</text>";
+          a0=a1;
+        }
+        return s;
+      })()+
+      '<text x="90" y="132" text-anchor="middle" fill="var(--s-text-muted)" font-size="10">整圆=总数,扇形大小=各部分占比</text></svg>',
+    caption:"三块扇形合起来正好是一个整圆(100%)",
+    learn:'扇形统计图用<b>整个圆</b>表示总数,用<b>扇形的大小</b>表示各部分数量占总数的<span class="d-key">百分比</span>。它的特点是能清楚看出<b>部分与整体、部分与部分</b>之间的比例关系。所有扇形的百分比加起来一定<span class="d-key">等于 100%</span>。要求某部分的具体数量,用 <b>总数 × 该部分百分比</b>。',
+    warn:["以为扇形统计图能看出<b>具体数量的多少</b>(它只显示占比,要配总数才能算)。","各扇形百分比加起来<b>不等于 100%</b>就是读错了。","求部分数量时<b>忘了乘总数</b>,只报百分比。"]}
+  ],
+  eg:{q:"某班 <b>40</b> 人,扇形统计图显示喜欢数学的占 <b>35%</b>,喜欢数学的有多少人?",
+   steps:['求部分数量:总数 × 百分比',
+    '列式:<span class="calc">40 × 35%</span>',
+    '<span class="calc">40 × 0.35 = 14</span>'],
+   ans:"喜欢数学的有 14 人"}},
+
+ "负数":{book:"下册",lead:"像 −3、−5.2 这样在正数前面加负号的数叫负数;0 既不是正数也不是负数,是它们的分界。负数用来表示与正数相反意义的量,如零下温度、亏损、地下楼层。",
+  blocks:[
+   {title:"数轴上的正数与负数",ic:"ic-minus",
+    fig:'<svg viewBox="0 0 260 90" width="260" height="90" role="img" aria-label="数轴上的正负数">'+
+      '<line x1="16" y1="50" x2="244" y2="50" stroke="var(--s-text-secondary)" stroke-width="1.5"/>'+
+      '<polygon points="244,50 236,46 236,54" fill="var(--s-text-secondary)"/>'+
+      (function(){var s="";for(var i=0;i<7;i++){var x=30+i*32;var n=i-3;s+="<line x1=\""+x+"\" y1=\"45\" x2=\""+x+"\" y2=\"55\" stroke=\"var(--s-text-secondary)\"/>";var col=n<0?"var(--s-warning-text)":(n>0?"var(--s-brand)":"var(--s-text)");s+="<text x=\""+x+"\" y=\"72\" text-anchor=\"middle\" fill=\""+col+"\" font-size=\"11\">"+(n>0?"+"+n:n)+"</text>";}return s;})()+
+      '<circle class="d-anim-pulse" cx="126" cy="50" r="5" fill="var(--s-text)"/>'+
+      '<text x="126" y="24" text-anchor="middle" fill="var(--s-text)" font-size="10">0 分界</text>'+
+      '<text x="60" y="40" fill="var(--s-warning-text)" font-size="10">负数</text>'+
+      '<text x="180" y="40" fill="var(--s-brand)" font-size="10">正数</text></svg>',
+    caption:"0 左边是负数,右边是正数;越往右越大",
+    learn:'为了表示<b>相反意义的量</b>(如零上/零下、收入/支出、上升/下降),引入了负数。在正数前加"−"号就是<span class="d-key">负数</span>,如 −3、−5.2;正数前可加"+"或省略。<b>0 既不是正数也不是负数</b>,是它们的分界。在数轴上,<b>从左到右数越来越大</b>,所以任何负数都<b>小于 0、小于一切正数</b>;两个负数,绝对值大的反而小(−5 < −2)。',
+    warn:["以为<b>0 是正数或负数</b>(0 是分界,两者都不是)。","比较两个负数时以为 −5 > −2(数轴上 −5 在<b>更左边,反而更小</b>)。","读写时漏掉负号,把 −3 当成 3。"]}
+  ],
+  eg:{q:"比较大小:<b>−6</b>、<b>0</b>、<b>+2</b>、<b>−1.5</b>,从小到大排列。",
+   steps:['负数都比 0 小,正数都比 0 大',
+    '两个负数比大小:绝对值大的反而小,<span class="calc">−6 < −1.5</span>',
+    '所以顺序:−6 → −1.5 → 0 → +2'],
+   ans:"−6 < −1.5 < 0 < +2"}},
+
+ "百分数(二)":{book:"下册",lead:"折扣、成数、税率、利率都是百分数在生活中的应用。几折就是百分之几十,几成就是百分之几十;税额、利息都用『本金 × 率』来算。",
+  blocks:[
+   {title:"折扣 · 成数 · 利率",ic:"ic-percent",
+    figHtml:'<div class="d-expr">八折 = 80%　三成 = 30%</div>'+
+      '<ol class="d-steps">'+
+      '<li><b>折扣</b>:几折就是<span class="calc">十分之几 = 百分之几十</span>,八折 = 80%</li>'+
+      '<li><b>成数</b>:几成就是<span class="calc">十分之几</span>,三成 = 30%</li>'+
+      '<li><b>税额</b> = 收入 × <span class="calc">税率</span></li>'+
+      '<li><b>利息</b> = 本金 × 利率 × <span class="calc">时间(年)</span></li>'+
+      '</ol>',
+    caption:"打折算现价、成数看增减、利息按年算",
+    learn:'商品<b>打几折</b>就是现价占原价的<span class="d-key">百分之几十</span>——八折即按原价的 80% 卖。农业收成"<b>几成</b>"即十分之几,三成就是 30%。缴纳<b>税额 = 应纳税收入 × 税率</b>。存款到期<b>利息 = 本金 × 利率 × 时间</b>,取回的钱是本金加利息。这些本质都是"求一个数的百分之几",用<b>乘法</b>。',
+    warn:["把“打八折”理解成<b>便宜 80%</b>(其实是按原价 80% 卖,便宜 20%)。","算利息时<b>忘记乘存期年数</b>。","把税率、利率的百分数<b>忘了化成小数</b>再乘。"]}
+  ],
+  eg:{q:"一件衣服原价 <b>200</b> 元,现在打 <b>八五折</b>出售,现价多少元?便宜了多少?",
+   steps:['八五折 = 85%,现价 = 原价 × 85%',
+    '现价:<span class="calc">200 × 85% = 200 × 0.85 = 170</span> 元',
+    '便宜:<span class="calc">200 − 170 = 30</span> 元'],
+   ans:"现价 170 元,便宜了 30 元"}},
+
+ "圆柱与圆锥":{book:"下册",lead:"圆柱有上下两个相同的圆面和一个曲面;圆锥有一个圆底面和一个曲面。圆柱体积 = 底面积 × 高,圆锥体积是等底等高圆柱的三分之一。",
+  blocks:[
+   {title:"圆锥体积 = ⅓ 圆柱",ic:"ic-cylinder",
+    fig:'<svg viewBox="0 0 260 140" width="260" height="140" role="img" aria-label="等底等高的圆柱与圆锥">'+
+      '<ellipse cx="70" cy="34" rx="34" ry="11" fill="var(--s-brand-subtle-2)" stroke="var(--s-brand)" stroke-width="1.4"/>'+
+      '<path d="M36 34 L36 106 A34 11 0 0 0 104 106 L104 34" fill="var(--s-brand-subtle)" stroke="var(--s-brand)" stroke-width="1.4"/>'+
+      '<text x="70" y="126" text-anchor="middle" fill="var(--s-text-muted)" font-size="10">圆柱 V = S底 × h</text>'+
+      '<path d="M156 34 L122 106 A34 11 0 0 0 190 106 Z" fill="var(--s-warning-bg)" stroke="var(--s-warning)" stroke-width="1.4"/>'+
+      '<ellipse cx="156" cy="106" rx="34" ry="11" fill="none" stroke="var(--s-warning)" stroke-width="1.4"/>'+
+      '<circle cx="156" cy="34" r="3" fill="var(--s-warning)"/>'+
+      '<text x="200" y="72" fill="var(--s-warning-text)" font-size="12" font-weight="700">×⅓</text>'+
+      '<text x="156" y="126" text-anchor="middle" fill="var(--s-text-muted)" font-size="10">圆锥 V = ⅓ S底 × h</text></svg>',
+    caption:"等底等高:圆锥装满 3 次正好倒满圆柱",
+    learn:'<b>圆柱</b>侧面展开是一个长方形(长 = 底面周长,宽 = 高)。圆柱<b>侧面积 = 底面周长 × 高</b>;<b>表面积 = 侧面积 + 两个底面积</b>;<b>体积 = 底面积 × 高</b>,即 <span class="d-key">V = πr²h</span>。<b>圆锥</b>体积是与它<b>等底等高</b>圆柱的<span class="d-key">三分之一</span>:<span class="d-key">V = ⅓ πr²h</span>——做实验用圆锥装水倒进圆柱,正好倒 3 次。',
+    warn:["算圆锥体积<b>忘乘 ⅓</b>(或忘除以 3)。","圆柱表面积<b>漏算一个或两个底面</b>(水桶只有 1 个底、通风管 0 个底,要看实际)。","求侧面积时用错了周长(应是<b>底面周长</b> × 高)。"]}
+  ],
+  eg:{q:"一个圆锥,底面积 <b>18</b> 平方分米,高 <b>5</b> 分米,体积是多少?",
+   steps:['圆锥体积 = ⅓ × 底面积 × 高',
+    '先算底面积 × 高:<span class="calc">18 × 5 = 90</span>',
+    '再乘 ⅓(即 ÷ 3):<span class="calc">90 ÷ 3 = 30</span>'],
+   ans:"体积 = 30 立方分米"}},
+
+ "比例":{book:"下册",lead:"表示两个比相等的式子叫比例。比例的基本性质:两个内项的积等于两个外项的积(交叉相乘相等)。成正比例:比值一定;成反比例:乘积一定。",
+  blocks:[
+   {title:"比例的基本性质",ic:"ic-scale",
+    fig:'<svg viewBox="0 0 280 300" width="280" height="300" role="img" aria-label="比例的本质是两个比的比值相等,并由此得到交叉相乘">'+
+      (function(){
+        var s="";
+        /* ============ 上半:本质 = 两个比的比值相等 ============ */
+        s+="<text x=\"140\" y=\"20\" text-anchor=\"middle\" fill=\"var(--s-text-secondary)\" font-size=\"12\" font-weight=\"700\">本质:两个比的「比值」相等</text>";
+        /* 3/4 竖式分数 */
+        var fy=52;                                   /* 分数中线 y */
+        function frac(cx,num,den,color){
+          var o="";
+          o+="<text x=\""+cx+"\" y=\""+(fy-6)+"\" text-anchor=\"middle\" fill=\""+color+"\" font-size=\"22\" font-weight=\"700\">"+num+"</text>";
+          o+="<rect x=\""+(cx-15)+"\" y=\""+(fy+2)+"\" width=\"30\" height=\"2.6\" rx=\"1.3\" fill=\""+color+"\"/>";
+          o+="<text x=\""+cx+"\" y=\""+(fy+26)+"\" text-anchor=\"middle\" fill=\""+color+"\" font-size=\"22\" font-weight=\"700\">"+den+"</text>";
+          return o;
+        }
+        s+=frac(58,"3","4","var(--s-brand)");
+        s+="<text x=\"110\" y=\""+(fy+10)+"\" text-anchor=\"middle\" fill=\"var(--s-text-muted)\" font-size=\"20\">=</text>";
+        s+=frac(160,"6","8","var(--s-success)");
+        s+="<text x=\"210\" y=\""+(fy+10)+"\" text-anchor=\"middle\" fill=\"var(--s-text-muted)\" font-size=\"20\">=</text>";
+        s+="<text x=\"250\" y=\""+(fy+10)+"\" text-anchor=\"middle\" fill=\"var(--s-text)\" font-size=\"20\" font-weight=\"700\">0.75</text>";
+        s+="<text x=\"58\" y=\""+(fy+44)+"\" text-anchor=\"middle\" fill=\"var(--s-text-muted)\" font-size=\"10\">3÷4=0.75</text>";
+        s+="<text x=\"160\" y=\""+(fy+44)+"\" text-anchor=\"middle\" fill=\"var(--s-text-muted)\" font-size=\"10\">6÷8=0.75</text>";
+        s+="<text x=\"140\" y=\"120\" text-anchor=\"middle\" fill=\"var(--s-text)\" font-size=\"11\">比值都是 0.75,所以 3∶4 和 6∶8 <tspan fill=\"var(--s-brand)\" font-weight=\"700\">是相等的比</tspan></text>";
+        /* 分隔线 */
+        s+="<line x1=\"20\" y1=\"136\" x2=\"260\" y2=\"136\" stroke=\"var(--s-border)\" stroke-width=\"1\" stroke-dasharray=\"3 3\"/>";
+        /* ============ 下半:由此得到交叉相乘 ============ */
+        s+="<text x=\"140\" y=\"156\" text-anchor=\"middle\" fill=\"var(--s-text-secondary)\" font-size=\"12\" font-weight=\"700\">写成一排,交叉相乘就相等</text>";
+        var ny=206;                                  /* 数字基线 */
+        var X=[52,108,172,228];                       /* 3,4,6,8 中心 x */
+        /* 主排:3 : 4 = 6 : 8(先画数字,连线后画,从数字边缘出发,弧线远离数字行) */
+        s+="<text x=\""+X[0]+"\" y=\""+ny+"\" text-anchor=\"middle\" fill=\"var(--s-brand)\" font-size=\"24\" font-weight=\"700\">3</text>";
+        s+="<text x=\"80\" y=\""+ny+"\" text-anchor=\"middle\" fill=\"var(--s-text-muted)\" font-size=\"18\">:</text>";
+        s+="<text x=\""+X[1]+"\" y=\""+ny+"\" text-anchor=\"middle\" fill=\"var(--s-success)\" font-size=\"24\" font-weight=\"700\">4</text>";
+        s+="<text x=\"140\" y=\""+ny+"\" text-anchor=\"middle\" fill=\"var(--s-text-muted)\" font-size=\"18\">=</text>";
+        s+="<text x=\""+X[2]+"\" y=\""+ny+"\" text-anchor=\"middle\" fill=\"var(--s-success)\" font-size=\"24\" font-weight=\"700\">6</text>";
+        s+="<text x=\"200\" y=\""+ny+"\" text-anchor=\"middle\" fill=\"var(--s-text-muted)\" font-size=\"18\">:</text>";
+        s+="<text x=\""+X[3]+"\" y=\""+ny+"\" text-anchor=\"middle\" fill=\"var(--s-brand)\" font-size=\"24\" font-weight=\"700\">8</text>";
+        /* 外项弧(蓝):3⌒8 从数字上方拱起,顶点在 y=170,远离数字与=号 */
+        s+="<path d=\"M"+X[0]+" "+(ny-16)+" C "+X[0]+" 168 "+X[3]+" 168 "+X[3]+" "+(ny-16)+"\" fill=\"none\" stroke=\"var(--s-brand)\" stroke-width=\"1.8\" stroke-linecap=\"round\"/>";
+        /* 内项弧(绿):4‿6 从数字下方兜住,谷底在 y=232 */
+        s+="<path d=\"M"+X[1]+" "+(ny+6)+" C "+X[1]+" 234 "+X[2]+" 234 "+X[2]+" "+(ny+6)+"\" fill=\"none\" stroke=\"var(--s-success)\" stroke-width=\"1.8\" stroke-linecap=\"round\"/>";
+        /* 外项/内项标注:外项贴在蓝弧顶两侧上方,内项贴在绿弧谷两侧下方,均不与数字/弧重叠 */
+        s+="<text x=\""+X[0]+"\" y=\"163\" text-anchor=\"middle\" fill=\"var(--s-brand)\" font-size=\"10\">外项</text>";
+        s+="<text x=\""+X[3]+"\" y=\"163\" text-anchor=\"middle\" fill=\"var(--s-brand)\" font-size=\"10\">外项</text>";
+        s+="<text x=\""+X[1]+"\" y=\"248\" text-anchor=\"middle\" fill=\"var(--s-success-text)\" font-size=\"10\">内项</text>";
+        s+="<text x=\""+X[2]+"\" y=\"248\" text-anchor=\"middle\" fill=\"var(--s-success-text)\" font-size=\"10\">内项</text>";
+        /* 两个乘积并排给出,单独一行,不叠在图上 */
+        s+="<text x=\"140\" y=\"270\" text-anchor=\"middle\" fill=\"var(--s-text)\" font-size=\"13\" font-weight=\"700\"><tspan fill=\"var(--s-brand)\">外项积 3×8=24</tspan>  =  <tspan fill=\"var(--s-success-text)\">内项积 4×6=24</tspan></text>";
+        s+="<text x=\"140\" y=\"288\" text-anchor=\"middle\" fill=\"var(--s-text-muted)\" font-size=\"10\">外项之积 = 内项之积,这就是比例的基本性质</text>";
+        return s;})()+
+      '</svg>',
+    formula:'<span class="frac"><span class="frac-n">3</span><span>4</span></span> = <span class="frac"><span class="frac-n">6</span><span>8</span></span> ⇒ 3 × 8 = 4 × 6（外项积 = 内项积）',
+    caption:"比例的本质是「两个比的比值相等」;比值相等 → 交叉相乘(外项积=内项积)一定相等",
+    learn:'表示<b>两个比相等</b>的式子叫<span class="d-key">比例</span>,如 3∶4 = 6∶8。<b>它的本质是什么?</b>——不是记什么口诀,而是<b>这两个比的「比值」相等</b>:3∶4 算出来是 3÷4 = 0.75,6∶8 算出来是 6÷8 = 0.75,比值一样,所以它们是相等的比,能组成比例。把比例写成一排 3∶4 = 6∶8 后,<b>两端的 3、8 叫外项,中间的 4、6 叫内项</b>。由「比值相等」可以推出一个又快又好用的性质:<span class="d-key">外项之积 = 内项之积</span>(3×8 = 4×6 = 24),这就是<b>交叉相乘</b>——判断能否组成比例、解比例时都靠它。再分清两种比例:<b>正比例</b>是两个量的<b>比值(商)一定</b>(如单价不变时,总价与数量);<b>反比例</b>是两个量的<b>乘积一定</b>(如路程不变时,速度与时间)。',
+    warn:["只会背「交叉相乘」却<b>不知道本质是比值相等</b>,遇到变式就懵。","把<b>内项</b>和<b>外项</b>认错位置(记:<b>两端外、中间内</b>)。","混淆正、反比例(比值一定是<b>正</b>,乘积一定是<b>反</b>)。"]}
+  ],
+  eg:{q:"解比例:<b>x ∶ 5 = 12 ∶ 20</b>,求 x。",
+   steps:['比例基本性质:外项积 = 内项积',
+    '外项 x 和 20,内项 5 和 12:<span class="calc">20x = 5 × 12</span>',
+    '<span class="calc">20x = 60</span>,x = <span class="calc">60 ÷ 20 = 3</span>'],
+   ans:"x = 3"}},
+
+ "鸽巢问题":{book:"下册",lead:"东西比抽屉多,再怎么摊开,总有一个抽屉会挤进 2 个以上——这就是鸽巢(抽屉)原理。下面从最简单的 4 个放 3 个,一步步看清『先平均分、再看余数』怎么算出至少数。",
+  blocks:[
+   {title:"① 最简单:4 个放进 3 个",ic:"ic-grid",
+    fig:'<svg viewBox="0 0 260 150" width="260" height="150" role="img" aria-label="4 个物体放进 3 个抽屉">'+
+      '<text x="20" y="16" fill="var(--s-text)" font-size="11">4 个物体 → 3 个抽屉</text>'+
+      (function(){var s="";for(var i=0;i<3;i++){var x=24+i*74;s+="<rect x=\""+x+"\" y=\"26\" width=\"58\" height=\"40\" rx=\"4\" fill=\"var(--s-surface)\" stroke=\"var(--s-border)\" stroke-width=\"1.5\"/>";}return s;})()+
+      '<circle cx="41" cy="46" r="8" fill="var(--s-brand)" fill-opacity="0.85"/>'+
+      '<circle cx="135" cy="46" r="8" fill="var(--s-brand)" fill-opacity="0.85"/>'+
+      '<circle cx="209" cy="46" r="8" fill="var(--s-brand)" fill-opacity="0.85"/>'+
+      '<circle class="d-anim-pulse" cx="63" cy="46" r="8" fill="var(--s-brand)" fill-opacity="0.85"/>'+
+      '<circle cx="63" cy="46" r="11" fill="none" stroke="var(--s-warning)" stroke-width="1.6" stroke-dasharray="3 2"/>'+
+      '<rect x="16" y="80" width="228" height="58" rx="6" fill="var(--s-surface-sunken)" stroke="var(--s-border)" stroke-width="1"/>'+
+      '<text x="28" y="100" fill="var(--s-text-secondary)" font-size="10">① 先平均分</text>'+
+      '<text x="120" y="100" fill="var(--s-text)" font-size="12">4 ÷ 3 = 1</text>'+
+      '<text x="185" y="100" fill="var(--s-warning-text)" font-size="12">… 余 1</text>'+
+      '<text x="28" y="124" fill="var(--s-text-secondary)" font-size="10">② 至少数</text>'+
+      '<text x="120" y="124" fill="var(--s-text)" font-size="12">商 1</text>'+
+      '<text x="152" y="124" fill="var(--s-warning-text)" font-size="12">+1</text>'+
+      '<text x="178" y="124" fill="var(--s-brand)" font-size="12" font-weight="700">= 2 个</text></svg>',
+    caption:"3 个抽屉先各放 1 个,还剩 1 个没处放,只能挤进某一屉 → 那屉变 2 个",
+    learn:'先想最简单的:<b>4 个苹果放进 3 个抽屉</b>。就算你尽量摊开、每屉先放 1 个,<b>还会多出 1 个</b>没地方放,这个多出来的只能塞进已经有苹果的某一屉——那屉就变成 <span class="d-key">2 个</span>。所以不管怎么放,<b>总有一屉至少 2 个</b>。'}
+,
+   {title:"② 数大一点:10 个放进 3 个",ic:"ic-grid",
+    fig:'<svg viewBox="0 0 260 156" width="260" height="156" role="img" aria-label="10 个物体放进 3 个抽屉">'+
+      '<text x="20" y="16" fill="var(--s-text)" font-size="11">10 个物体 → 3 个抽屉(每屉先放 3 个)</text>'+
+      (function(){var s="";for(var i=0;i<3;i++){var x=24+i*74;s+="<rect x=\""+x+"\" y=\"24\" width=\"58\" height=\"52\" rx=\"4\" fill=\"var(--s-surface)\" stroke=\"var(--s-border)\" stroke-width=\"1.5\"/>";}return s;})()+
+      (function(){var s="";for(var i=0;i<3;i++){var bx=24+i*74;for(var k=0;k<3;k++){s+="<circle cx=\""+(bx+13+k*15)+"\" cy=\"40\" r=\"6.5\" fill=\"var(--s-brand)\" fill-opacity=\"0.85\"/>";}}return s;})()+
+      '<circle class="d-anim-pulse" cx="39" cy="62" r="6.5" fill="var(--s-brand)" fill-opacity="0.85"/>'+
+      '<circle cx="39" cy="62" r="9.5" fill="none" stroke="var(--s-warning)" stroke-width="1.6" stroke-dasharray="3 2"/>'+
+      '<rect x="16" y="88" width="228" height="58" rx="6" fill="var(--s-surface-sunken)" stroke="var(--s-border)" stroke-width="1"/>'+
+      '<text x="28" y="108" fill="var(--s-text-secondary)" font-size="10">① 先平均分</text>'+
+      '<text x="116" y="108" fill="var(--s-text)" font-size="12">10 ÷ 3 = 3</text>'+
+      '<text x="188" y="108" fill="var(--s-warning-text)" font-size="12">… 余 1</text>'+
+      '<text x="28" y="132" fill="var(--s-text-secondary)" font-size="10">② 至少数</text>'+
+      '<text x="116" y="132" fill="var(--s-text)" font-size="12">商 3</text>'+
+      '<text x="150" y="132" fill="var(--s-warning-text)" font-size="12">+1</text>'+
+      '<text x="176" y="132" fill="var(--s-brand)" font-size="12" font-weight="700">= 4 个</text></svg>',
+    caption:"每屉先放 3 个用掉 9 个,剩下的 1 个再挤进一屉 → 那屉变 4 个",
+    learn:'数变大也一样:<b>10 个放进 3 个抽屉</b>。尽量平均分,每屉先放 <b>3 个</b>(用掉 9 个),还剩 <b>1 个</b>,它挤进哪屉,哪屉就变 <span class="d-key">4 个</span>。规律没变:<b>至少数 = 平均分的商 + 1</b> = 3 + 1 = 4。'}
+,
+   {title:"③ 特殊:刚好分完就不加 1",ic:"ic-grid",
+    fig:'<svg viewBox="0 0 260 156" width="260" height="156" role="img" aria-label="9 个物体正好平分进 3 个抽屉">'+
+      '<text x="20" y="16" fill="var(--s-text)" font-size="11">9 个物体 → 3 个抽屉(正好分完)</text>'+
+      (function(){var s="";for(var i=0;i<3;i++){var x=24+i*74;s+="<rect x=\""+x+"\" y=\"24\" width=\"58\" height=\"52\" rx=\"4\" fill=\"var(--s-surface)\" stroke=\"var(--s-border)\" stroke-width=\"1.5\"/>";}return s;})()+
+      (function(){var s="";for(var i=0;i<3;i++){var bx=24+i*74;for(var k=0;k<3;k++){s+="<circle cx=\""+(bx+13+k*15)+"\" cy=\"50\" r=\"6.5\" fill=\"var(--s-success)\" fill-opacity=\"0.85\"/>";}}return s;})()+
+      '<rect x="16" y="88" width="228" height="58" rx="6" fill="var(--s-surface-sunken)" stroke="var(--s-border)" stroke-width="1"/>'+
+      '<text x="28" y="108" fill="var(--s-text-secondary)" font-size="10">① 平均分</text>'+
+      '<text x="110" y="108" fill="var(--s-text)" font-size="12">9 ÷ 3 = 3</text>'+
+      '<text x="180" y="108" fill="var(--s-success-text)" font-size="12">… 余 0</text>'+
+      '<text x="28" y="132" fill="var(--s-text-secondary)" font-size="10">② 至少数</text>'+
+      '<text x="110" y="132" fill="var(--s-text)" font-size="12">余 0,不加 1</text>'+
+      '<text x="200" y="132" fill="var(--s-brand)" font-size="12" font-weight="700">= 3 个</text></svg>',
+    caption:"正好每屉 3 个、没有余数,就不用 +1,至少数 = 商 = 3",
+    learn:'如果<b>正好分完(没有余数)</b>,比如 <b>9 个放进 3 个抽屉</b>,每屉刚好 3 个、谁也不多。这时<b>不加 1</b>,至少数就等于商 <span class="d-key">3</span>。所以完整规律是:<b>余数 ≥ 1 时才 +1;余数 = 0 时不加</b>。',
+    warn:["把“至少有一个抽屉放 2 个”误当成“<b>每个</b>抽屉都放 2 个”。","有余数时<b>忘记 +1</b>(多出的那个逼某屉多 1)。","正好分完(余 0)时<b>不该再 +1</b>。","没分清谁是物体、谁是抽屉(物体多、抽屉少)。"]}
+  ],
+  eg:{q:"任意 <b>13</b> 个人中,至少有几个人是同一个月出生的?为什么?",
+   steps:['月份相当于抽屉,共 <span class="calc">12</span> 个;人相当于物体 13 个',
+    '先平均分:<span class="calc">13 ÷ 12 = 1</span> 余 <span class="calc">1</span>',
+    '至少数 = 商 + 1 = <span class="calc">1 + 1 = 2</span>'],
+   ans:"至少有 2 个人是同一个月出生的"}},
+
+ "数与形":{book:"下册",lead:"许多数的规律都能借助图形直观地发现和验证:连续奇数相加拼成正方形、连续整数相加拼成长方形、点阵排列看懂乘法……把数摆成形,规律就看得见、记得牢。这一节多举几个经典例子,帮你建立「数形结合」的思维习惯。",
+  blocks:[
+   {title:"连续奇数和 = 正方形",ic:"ic-sigma",
+    fig:'<svg viewBox="0 0 260 158" width="260" height="158" role="img" aria-label="连续奇数拼成正方形,边长等于奇数个数">'+
+      (function(){var s="",cell=22,x0=44,y0=16;var colors=["var(--s-brand)","var(--s-warning)","var(--s-success)","var(--s-brand)"];
+        for(var k=0;k<4;k++){var col=colors[k];
+          for(var j=0;j<=k;j++){s+="<rect x=\""+(x0+k*cell)+"\" y=\""+(y0+j*cell)+"\" width=\""+(cell-2)+"\" height=\""+(cell-2)+"\" fill=\""+col+"\" fill-opacity=\"0.5\" stroke=\"var(--s-surface)\"/>";}
+          for(var i=0;i<k;i++){s+="<rect x=\""+(x0+i*cell)+"\" y=\""+(y0+k*cell)+"\" width=\""+(cell-2)+"\" height=\""+(cell-2)+"\" fill=\""+col+"\" fill-opacity=\"0.5\" stroke=\"var(--s-surface)\"/>";}
+        }
+        var side=4*cell-2;
+        /* 左侧边长括号:标注边长 = 奇数个数 = 4 */
+        s+="<path d=\"M"+(x0-8)+" "+y0+" q -5 0 -5 5 L"+(x0-13)+" "+(y0+side/2-8)+" q 0 5 -5 5 q 5 0 5 5 L"+(x0-13)+" "+(y0+side-5)+" q 0 5 5 5\" fill=\"none\" stroke=\"var(--s-text-secondary)\" stroke-width=\"1.4\"/>";
+        s+="<text x=\""+(x0-20)+"\" y=\""+(y0+side/2)+"\" text-anchor=\"middle\" fill=\"var(--s-text-secondary)\" font-size=\"11\" font-weight=\"700\" transform=\"rotate(-90 "+(x0-20)+" "+(y0+side/2)+")\">边长 = 4 个</text>";
+        /* 顶部同理标注 */
+        s+="<text x=\""+(x0+side/2)+"\" y=\""+(y0-4)+"\" text-anchor=\"middle\" fill=\"var(--s-text-secondary)\" font-size=\"10\">4 个方块</text>";
+        return s;})()+
+      '<text x="150" y="34" fill="var(--s-text)" font-size="11"><tspan fill="var(--s-brand)" font-weight="700">1</tspan> 个奇数: 1 = 1²</text>'+
+      '<text x="150" y="54" fill="var(--s-text)" font-size="11"><tspan fill="var(--s-brand)" font-weight="700">2</tspan> 个奇数: 1+3 = 2²</text>'+
+      '<text x="150" y="74" fill="var(--s-text)" font-size="11"><tspan fill="var(--s-brand)" font-weight="700">3</tspan> 个奇数: 1+3+5 = 3²</text>'+
+      '<text x="150" y="94" fill="var(--s-text)" font-size="11"><tspan fill="var(--s-brand)" font-weight="700">4</tspan> 个奇数: …+7 = 4²</text>'+
+      '<text x="130" y="132" text-anchor="middle" fill="var(--s-brand)" font-size="11" font-weight="700">加了几个奇数,正方形边长就是几</text>'+
+      '<text x="130" y="150" text-anchor="middle" fill="var(--s-text-muted)" font-size="10">所以底数 n = 奇数的个数,和 = n²</text></svg>',
+    formula:'1 + 3 + 5 + … + (2n−1) = n²（n 是奇数的<b>个数</b>）',
+    caption:"关键:平方的底数 n,就是你从 1 开始一共加了几个连续奇数",
+    learn:'数与形结合能把抽象规律变得<b>看得见</b>。看图:每加一个奇数,就在正方形右边和下边补一层「┐」形小方块,正方形<b>边长加 1</b>。<b>底数 n 是怎么来的?</b>——你加了几个连续奇数,拼出的正方形<b>边长就是几</b>,而正方形的方块总数 = 边长 × 边长 = <span class="d-key">n²</span>,所以从 1 开始 n 个连续奇数的和正好等于 <b>n 的平方</b>。换句话说,<b>底数 n 数的就是奇数的「个数」</b>,不是最后那个奇数。遇到复杂规律,<b>画图或列表</b>常能一眼看清。',
+    warn:["把底数 n 当成<b>最后一个奇数</b>(其实 n 是奇数的<b>个数</b>)。","数错连续奇数的<b>个数 n</b>,导致平方算错。","把“连续奇数”当成“连续整数”(公式不同)。"]},
+   {title:"1+2+3+…+n = 两个三角拼长方形",ic:"ic-triangle",
+    fig:'<svg viewBox="0 0 260 170" width="260" height="170" role="img" aria-label="两个三角形点阵拼成长方形求连续整数和">'+
+      (function(){var s="",cell=20,x0=30,y0=20,n=4;
+        /* 上三角:蓝色,第 j 行(0..n-1)有 j+1 个 */
+        for(var j=0;j<n;j++){for(var i=0;i<=j;i++){
+          s+="<rect x=\""+(x0+i*cell)+"\" y=\""+(y0+j*cell)+"\" width=\""+(cell-3)+"\" height=\""+(cell-3)+"\" rx=\"3\" fill=\"var(--s-brand)\" fill-opacity=\"0.55\" stroke=\"var(--s-surface)\"/>";}}
+        /* 下三角(倒放,橙色)补齐成 n×(n+1) 长方形:第 j 行有 n-j 个,贴在右侧 */
+        for(var j=0;j<n;j++){for(var i=0;i<n-j;i++){
+          s+="<rect x=\""+(x0+(j+1+i)*cell)+"\" y=\""+(y0+j*cell)+"\" width=\""+(cell-3)+"\" height=\""+(cell-3)+"\" rx=\"3\" fill=\"var(--s-warning)\" fill-opacity=\"0.55\" stroke=\"var(--s-surface)\"/>";}}
+        var W=(n+1)*cell-3,H=n*cell-3;
+        /* 尺寸标注 */
+        s+="<text x=\""+(x0+W/2)+"\" y=\""+(y0-6)+"\" text-anchor=\"middle\" fill=\"var(--s-text-secondary)\" font-size=\"10\">宽 = n+1 = 5</text>";
+        s+="<text x=\""+(x0-14)+"\" y=\""+(y0+H/2)+"\" text-anchor=\"middle\" fill=\"var(--s-text-secondary)\" font-size=\"10\" transform=\"rotate(-90 "+(x0-14)+" "+(y0+H/2)+")\">高 = n = 4</text>";
+        s+="<text x=\"130\" y=\"132\" text-anchor=\"middle\" fill=\"var(--s-text)\" font-size=\"11\"><tspan fill=\"var(--s-brand)\" font-weight=\"700\">蓝三角</tspan> = 1+2+3+4,和 <tspan fill=\"var(--s-warning-text)\" font-weight=\"700\">橙三角</tspan> 一样大</text>";
+        s+="<text x=\"130\" y=\"150\" text-anchor=\"middle\" fill=\"var(--s-brand)\" font-weight=\"700\" font-size=\"11\">两个三角 = 长方形 = 4×5 = 20</text>";
+        s+="<text x=\"130\" y=\"165\" text-anchor=\"middle\" fill=\"var(--s-text-muted)\" font-size=\"10\">所以 1+2+3+4 = 20 ÷ 2 = 10</text>";
+        return s;})()+
+      '</svg>',
+    formula:'1 + 2 + 3 + … + n = <span class="frac"><span class="frac-n">n × (n+1)</span><span>2</span></span>',
+    caption:"两个一样的三角点阵拼成 n×(n+1) 的长方形,一半就是连续整数的和",
+    learn:'这是最经典的数形结合:求 <b>1+2+3+…+n</b>。把 1、2、3、4 个点摆成一个<b>阶梯三角形</b>,再拿一个<b>完全相同</b>的三角形<b>倒过来</b>拼上去,正好拼成一个 <b>n × (n+1)</b> 的长方形(图中 4×5=20)。长方形里有两个一样的三角,所以一个三角(也就是我们要的和)是长方形的<b>一半</b>:<span class="d-key">1+2+3+…+n = n×(n+1)÷2</span>。这就是「高斯求和」的图形版——用图一看就懂,不用死记公式。',
+    warn:["直接一个一个加,数大了<b>又慢又易错</b>(用公式更快)。","忘了最后<b>要除以 2</b>(长方形是两个三角)。","把宽写成 n(其实拼出的长方形宽是 <b>n+1</b>)。"]},
+   {title:"长方形点阵 = 乘法",ic:"ic-grid",
+    fig:'<svg viewBox="0 0 260 150" width="260" height="150" role="img" aria-label="点阵长方形表示乘法与交换律">'+
+      (function(){var s="",cell=22,x0=40,y0=18,r=3,c=5;
+        for(var j=0;j<r;j++){for(var i=0;i<c;i++){
+          s+="<circle cx=\""+(x0+i*cell+cell/2-1)+"\" cy=\""+(y0+j*cell+cell/2-1)+"\" r=\"6\" fill=\"var(--s-brand)\" fill-opacity=\"0.55\"/>";}}
+        var W=c*cell,H=r*cell;
+        s+="<text x=\""+(x0+W/2)+"\" y=\""+(y0-4)+"\" text-anchor=\"middle\" fill=\"var(--s-text-secondary)\" font-size=\"11\">每行 5 个</text>";
+        s+="<text x=\""+(x0-14)+"\" y=\""+(y0+H/2)+"\" text-anchor=\"middle\" fill=\"var(--s-text-secondary)\" font-size=\"11\" transform=\"rotate(-90 "+(x0-14)+" "+(y0+H/2)+")\">3 行</text>";
+        s+="<text x=\"130\" y=\""+(y0+H+22)+"\" text-anchor=\"middle\" fill=\"var(--s-text)\" font-size=\"12\">横着数: 3 行 × 5 = <tspan fill=\"var(--s-brand)\" font-weight=\"700\">15</tspan></text>";
+        s+="<text x=\"130\" y=\""+(y0+H+40)+"\" text-anchor=\"middle\" fill=\"var(--s-text)\" font-size=\"12\">竖着数: 5 列 × 3 = <tspan fill=\"var(--s-brand)\" font-weight=\"700\">15</tspan></text>";
+        return s;})()+
+      '</svg>',
+    formula:"a × b = b × a(乘法交换律)",
+    caption:"同一堆点,横着数和竖着数一样多,这就是乘法交换律",
+    learn:'一堆点排成<b>整齐的长方形</b>,就能把乘法「看见」。图中 3 行、每行 5 个:<b>横着数</b>是 3×5,<b>竖着数</b>是 5×3,是同一堆点,当然一样多——这就是<span class="d-key">乘法交换律 a×b = b×a</span>的图形解释。点阵图还能帮我们理解「几个几相加」就是乘法,以及乘法分配律(把点阵切成两块分别数)。<b>把数摆成形</b>,规律就藏不住了。',
+    warn:["以为 a×b 和 b×a 是<b>两件事</b>(其实同一堆点)。","点数摆得<b>不整齐</b>就数不清,务必对齐成长方形。"]}
+  ],
+  eg:{q:"计算 <b>1 + 3 + 5 + 7 + 9 + 11</b> 的和。(用数与形规律)",
+   steps:['这是从 1 开始的连续奇数相加',
+    '数一数共有 <span class="calc">6</span> 个奇数,即 n = 6',
+    '和 = n² = <span class="calc">6² = 36</span>'],
+   ans:"1+3+5+7+9+11 = 36"}}
+};
+
+/* ============ 详情页开关 ============ */
+/* 把一条易错项渲染成「图文并茂」的对比卡片:
+   左侧红色叉号图标 + 错误做法;若文案里含「(应… / 正确 …)」或「(错误)」等纠正线索,
+   自动拆出绿色对勾「正确做法」条,形成错/对可视对比。*/
+function warnCard(w){
+  var bad=w, good='';
+  /* 匹配末尾括号里的纠正说明,如「(应从里面量)」「(高一定要和底垂直)」,自动拆成错/对对比 */
+  var m=w.match(/^(.*?)[((]([^()()]*(?:应|正确|不能|应该|一定|要和|须|里面)[^()()]*)[))][。.\s]*$/);
+  if(m){ bad=m[1].replace(/[,,、\s]+$/,'')+'。'; good=m[2]; }
+  else{ bad=w.replace(/\s*[((]错误[))]([。.]?)\s*$/,'$1'); }
+  var s='<div class="d-warn-card">';
+  s+='<div class="d-wc-bad"><span class="d-wc-ic d-wc-ic-bad"><svg class="ico ico--sm"><use href="#ic-x"/></svg></span><span class="d-wc-tx">'+bad+'</span></div>';
+  if(good){
+    s+='<div class="d-wc-good"><span class="d-wc-ic d-wc-ic-good"><svg class="ico ico--sm"><use href="#ic-check"/></svg></span><span class="d-wc-tx">'+good+'</span></div>';
+  }
+  s+='</div>';
+  return s;
+}
+function openDetail(t){
+ var d=DETAIL[t];if(!d){return;}
+ document.getElementById('detail-title').textContent=t;
+ document.getElementById('detail-book').textContent=d.book;
+ var html='<p class="d-lead">'+d.lead+'</p>';
+ var figSeq=0;
+ d.blocks.forEach(function(b){
+   html+='<div class="d-block"><h3 class="d-block-title"><svg class="ico ico--sm"><use href="#'+b.ic+'"/></svg>'+b.title+'</h3>';
+   if(b.figHtml){html+='<div class="d-fig d-fig-html">'+b.figHtml+'</div>';}
+   else if(b.fig){
+     if(b.fig.indexOf('<animate')>-1){
+       var fid='danim'+(figSeq++);
+       html+='<div class="d-fig d-anim-wrap"><div id="'+fid+'">'+b.fig+'</div>'+
+         '<div class="d-anim-ctrl">'+
+         '<button type="button" class="d-anim-btn" data-fid="'+fid+'" onclick="animReplay(this)">'+
+           '<svg class="ico"><use href="#ic-refresh-cw"/></svg><span>重播</span></button>'+
+         '</div></div>';
+     }else{
+       html+='<div class="d-fig">'+b.fig+'</div>';
+     }
+   }
+   if(b.formula){html+='<div class="d-formula"><svg class="ico ico--sm"><use href="#ic-sigma"/></svg><span>'+b.formula+'</span></div>';}
+   if(b.caption){html+='<div class="d-caption">'+b.caption+'</div>';}
+   if(b.learn){html+='<div class="d-learn">'+b.learn+'</div>';}
+   if(b.warn){
+     html+='<div class="d-warn"><div class="d-warn-hd"><svg class="ico ico--sm"><use href="#ic-alert-triangle"/></svg>易错提醒</div><div class="d-warn-list">';
+     b.warn.forEach(function(w){html+=warnCard(w);});
+     html+='</div></div>';
+   }
+   html+='</div>';
+ });
+ if(d.eg){
+   html+='<div class="d-block"><div class="d-eg"><span class="d-eg-label"><svg class="ico ico--sm"><use href="#ic-sparkles"/></svg>举个例子</span>';
+   if(typeof d.eg==='string'){
+     html+='<br>'+d.eg;
+   }else{
+     if(d.eg.q){html+='<div class="d-eg-q">'+d.eg.q+'</div>';}
+     if(d.eg.steps){html+='<ol class="d-steps"><li>'+d.eg.steps.join('</li><li>')+'</li></ol>';}
+     if(d.eg.ans){html+='<div class="d-eg-ans"><svg class="ico ico--sm"><use href="#ic-check-circle"/></svg><span>'+d.eg.ans+'</span></div>';}
+   }
+   html+='</div></div>';
+ }
+ document.getElementById('detail-body').innerHTML=html;
+ var el=document.getElementById('kp-detail');
+ el.classList.add('open');el.setAttribute('aria-hidden','false');
+ document.body.style.overflow='hidden';
+}
+function closeDetail(){
+ var el=document.getElementById('kp-detail');
+ el.classList.remove('open');el.setAttribute('aria-hidden','true');
+ document.body.style.overflow='';
+ document.getElementById('detail-body').scrollTop=0;
+}
+function animReplay(btn){
+ var box=document.getElementById(btn.getAttribute('data-fid'));if(!box){return;}
+ var svg=box.getElementsByTagName('svg')[0];if(!svg||!svg.setCurrentTime){return;}
+ svg.setCurrentTime(0);svg.unpauseAnimations();
+}
+var MOTHERS=[
+ {key:"fracMul",name:"分数乘法(求几分之几)",ic:"ic-percent",
+  model:"求一个数的几分之几是多少,用乘法:总量 × 分数。",
+  gen:function(){var b=pick([3,4,5,6,8]),a=ri(1,b-1);var mul=pick([2,3,4,5]);var whole=b*mul;var res=whole*a/b;
+   var g=pick(["苹果","图书","水果糖","树苗"]);
+   return{q:"一堆"+g+"共 "+whole+" "+"个,用去了它的 "+a+"/"+b+",用去了多少个?",a:res,unit:"个",
+    steps:["\"用去它的 "+a+"/"+b+"\"就是求 "+whole+" 的 "+a+"/"+b+",用乘法。","列式:"+whole+" × "+a+"/"+b+"。","先约分:"+whole+" ÷ "+b+" = "+mul+"。","再乘分子:"+mul+" × "+a+" = <b>"+res+"(个)</b>。"]};}},
+ {key:"fracDiv",name:"分数除法(已知几分之几求总量)",ic:"ic-divide",
+  model:"已知一个数的几分之几是多少、求这个数,用除法:部分 ÷ 分数。",
+  gen:function(){var b=pick([3,4,5,6]),a=ri(1,b-1);var per=ri(2,8);var part=per*a;var whole=per*b;
+   return{q:"一根绳子的 "+a+"/"+b+" 是 "+part+" 米,这根绳子全长多少米?",a:whole,unit:"米",
+    steps:["设全长 x 米,它的 "+a+"/"+b+" 是 "+part+":x × "+a+"/"+b+" = "+part+"。","求 x 用除法:x = "+part+" ÷ "+a+"/"+b+"。","除以分数 = 乘倒数:"+part+" × "+b+"/"+a+"。","约分计算得 x = <b>"+whole+"(米)</b>。"]};}},
+ {key:"ratioDist",name:"按比分配",ic:"ic-git-compare",
+  model:"先求总份数,再求每份,最后按各占份数分配。",
+  gen:function(){var m=pick([2,3,4]),n=pick([1,2,3]);while(n===m)n=pick([1,2,3]);var per=ri(4,12)*5;var total=(m+n)*per;
+   var A=m*per,B=n*per;
+   return{q:"把 "+total+" 个乒乓球按 "+m+"∶"+n+" 分给两个班,两班各分多少个?",a:A,unit:"个(较多的一份)",
+    steps:["总份数 = "+m+" + "+n+" = "+(m+n)+" 份。","每份 = "+total+" ÷ "+(m+n)+" = "+per+" 个。","第一班 = "+per+" × "+m+" = <b>"+A+"</b> 个。","第二班 = "+per+" × "+n+" = "+B+" 个。"]};}},
+ {key:"circleC",name:"圆的周长",ic:"ic-circle",
+  model:"周长 C = πd = 2πr,π 取 3.14。",
+  gen:function(){var r=pick([2,3,4,5,6,8,10]);var c=r2(2*3.14*r);
+   return{q:"一个圆的半径是 "+r+" 厘米,它的周长是多少厘米?(π 取 3.14)",a:c,unit:"厘米",
+    steps:["周长公式 C = 2πr。","代入:2 × 3.14 × "+r+"。","先算 3.14 × "+r+" = "+r2(3.14*r)+"。","× 2 = <b>"+c+"(厘米)</b>。"]};}},
+ {key:"circleS",name:"圆的面积",ic:"ic-circle",
+  model:"面积 S = πr²,先平方半径再乘 π。",
+  gen:function(){var r=pick([2,3,4,5,6,10]);var s=r2(3.14*r*r);
+   return{q:"一个圆的半径是 "+r+" 厘米,它的面积是多少平方厘米?(π 取 3.14)",a:s,unit:"平方厘米",
+    steps:["面积公式 S = πr²。","先平方:"+r+"² = "+(r*r)+"。","× π:3.14 × "+(r*r)+"。","= <b>"+s+"(平方厘米)</b>。"]};}},
+ {key:"cylinderV",name:"圆柱的体积",ic:"ic-cylinder",
+  model:"圆柱体积 V = 底面积 × 高 = πr²h。",
+  gen:function(){var r=pick([2,3,4,5]),h=ri(3,12);var base=r2(3.14*r*r);var v=r2(base*h);
+   return{q:"一个圆柱底面半径 "+r+" 厘米,高 "+h+" 厘米,体积是多少立方厘米?(π 取 3.14)",a:v,unit:"立方厘米",
+    steps:["体积 = 底面积 × 高,底面积 = πr²。","底面积 = 3.14 × "+(r*r)+" = "+base+"。","× 高:"+base+" × "+h+"。","= <b>"+v+"(立方厘米)</b>。"]};}},
+ {key:"coneV",name:"圆锥的体积",ic:"ic-cone",
+  model:"圆锥体积是等底等高圆柱的三分之一:V = ⅓ × 底面积 × 高。",
+  gen:function(){var base=pick([12,18,24,30,36,45]);var h=pick([3,5,6,9]);var v=r2(base*h/3);
+   return{q:"一个圆锥的底面积是 "+base+" 平方分米,高 "+h+" 分米,体积是多少立方分米?",a:v,unit:"立方分米",
+    steps:["圆锥体积 = ⅓ × 底面积 × 高。","先算底面积 × 高:"+base+" × "+h+" = "+(base*h)+"。","再 × ⅓(即 ÷ 3):"+(base*h)+" ÷ 3。","= <b>"+v+"(立方分米)</b>。"]};}},
+ {key:"discount",name:"百分数(折扣)",ic:"ic-percent",
+  model:"打几折 = 按原价的百分之几十;现价 = 原价 × 折扣。",
+  gen:function(){var price=ri(4,20)*10;var zhe=pick([9,85,8,75,7,6]);var pct=zhe<10?zhe*10:zhe;var now=r2(price*pct/100);var save=r2(price-now);
+   var zheTxt=zhe===9?"九":(zhe===85?"八五":(zhe===8?"八":(zhe===75?"七五":(zhe===7?"七":"六"))));
+   return{q:"一件商品原价 "+price+" 元,现在打"+zheTxt+"折出售,现价多少元?",a:now,unit:"元",
+    steps:[zheTxt+"折 = "+pct+"%,现价 = 原价 × "+pct+"%。","列式:"+price+" × "+pct+"%。","化小数:"+price+" × "+r2(pct/100)+"。","现价 = <b>"+now+" 元</b>(便宜了 "+save+" 元)。"]};}}
+];
+/* ============ 图文并茂解题技巧(每类母题一图 + 分步口诀) ============ */
+var TIPS={
+ fracMul:{
+  fig:'<svg viewBox="0 0 260 100" width="260" height="100" role="img" aria-label="总量的几分之几面积模型">'+
+    '<text x="8" y="16" class="fig-t-mut">把总量平均分,取其中几份</text>'+
+    (function(){var s='';for(var i=0;i<5;i++){var cls=i<2?'fig-brand-fill':'fig-line';s+='<rect class="'+cls+'" x="'+(20+i*44)+'" y="30" width="40" height="34" rx="3"/>';}return s;})()+
+    '<text x="8" y="82" class="fig-t-brand">前 2 份是要求的部分</text>'+
+    '<text x="150" y="82" class="fig-t">总量 × 分数</text></svg>',
+  steps:['"求一个数的几分之几"就用<span class="tip-key">乘法</span>。','列式:<b>总量 × 该分数</b>。','能<span class="tip-key">先约分</span>再乘,数字小不易错。','结果化成<b>最简分数</b>或整数。']
+ },
+ fracDiv:{
+  fig:'<svg viewBox="0 0 260 96" width="260" height="96" role="img" aria-label="已知部分求整体">'+
+    '<text x="8" y="16" class="fig-t-mut">已知一段(几分之几)→ 求全长</text>'+
+    '<rect class="fig-line" x="16" y="30" width="228" height="24" rx="3"/>'+
+    '<rect class="fig-brand-fill" x="16" y="30" width="90" height="24" rx="3"/>'+
+    '<text x="40" y="47" class="fig-t-brand">已知</text>'+
+    '<text x="150" y="47" class="fig-t-mut">?(全长)</text>'+
+    '<text x="20" y="76" class="fig-t">部分 ÷ 分数 = 全部</text></svg>',
+  steps:['已知<span class="tip-key">几分之几是多少、求总量</span>,用除法。','列式:<b>部分 ÷ 对应的分数</b>。','除以分数 = <span class="tip-key">乘它的倒数</span>。','约分后计算,结果化最简。']
+ },
+ ratioDist:{
+  fig:'<svg viewBox="0 0 260 90" width="260" height="90" role="img" aria-label="按比分配份数条">'+
+    '<text x="8" y="16" class="fig-t-mut">总量按份数分配</text>'+
+    '<rect class="fig-brand-fill" x="16" y="28" width="120" height="22" rx="3"/>'+
+    '<rect class="fig-green-fill" x="140" y="28" width="80" height="22" rx="3"/>'+
+    '<text x="60" y="44" class="fig-t-brand">m 份</text>'+
+    '<text x="168" y="44" class="fig-t">n 份</text>'+
+    '<text x="16" y="72" class="fig-t">每份 = 总量 ÷(m+n)</text></svg>',
+  steps:['先求<span class="tip-key">总份数 = 各比之和</span>。','再求<b>每份 = 总量 ÷ 总份数</b>。','各部分 = <span class="tip-key">每份 × 各自份数</span>。','检验:各部分相加应等于总量。']
+ },
+ circleC:{
+  fig:'<svg viewBox="0 0 260 100" width="260" height="100" role="img" aria-label="圆周长与半径">'+
+    '<circle class="fig-brand-fill" cx="80" cy="50" r="38"/>'+
+    '<circle class="fig-brand" cx="80" cy="50" r="38" fill="none"/>'+
+    '<line class="fig-line" x1="80" y1="50" x2="118" y2="50"/>'+
+    '<circle class="fig-dot" cx="80" cy="50" r="3"/>'+
+    '<text x="88" y="46" class="fig-t-brand">r</text>'+
+    '<text x="150" y="46" class="fig-t">C = 2πr</text>'+
+    '<text x="150" y="66" class="fig-t-mut">= πd</text></svg>',
+  steps:['周长公式:<span class="tip-key">C = 2πr = πd</span>。','已知半径用 2πr,已知直径用 πd。','π 一般取 <b>3.14</b>。','单位是<b>长度单位</b>(厘米、米)。']
+ },
+ circleS:{
+  fig:'<svg viewBox="0 0 260 100" width="260" height="100" role="img" aria-label="圆面积拼成近似长方形">'+
+    '<circle class="fig-warn-fill" cx="70" cy="50" r="36"/>'+
+    '<line class="fig-line" x1="70" y1="50" x2="106" y2="50"/>'+
+    '<circle class="fig-dot" cx="70" cy="50" r="3"/>'+
+    '<text x="80" y="46" class="fig-t">r</text>'+
+    '<text x="150" y="46" class="fig-t-brand">S = πr²</text>'+
+    '<text x="150" y="66" class="fig-t-mut">先平方,再乘 π</text></svg>',
+  steps:['面积公式:<span class="tip-key">S = πr²</span>。','先算<b>半径的平方</b> r²,再乘 π。','只知直径要<b>先 ÷ 2</b>求半径。','单位是<b>平方单位</b>,别和周长混。']
+ },
+ cylinderV:{
+  fig:'<svg viewBox="0 0 260 110" width="260" height="110" role="img" aria-label="圆柱体积">'+
+    '<ellipse class="fig-brand-fill" cx="70" cy="24" rx="34" ry="10"/>'+
+    '<path class="fig-brand-fill" d="M36 24 L36 88 A34 10 0 0 0 104 88 L104 24"/>'+
+    '<line class="fig-dash" x1="112" y1="24" x2="112" y2="88"/>'+
+    '<text x="116" y="60" class="fig-t">h</text>'+
+    '<text x="150" y="50" class="fig-t-brand">V = πr²h</text>'+
+    '<text x="150" y="70" class="fig-t-mut">底面积 × 高</text></svg>',
+  steps:['圆柱体积 = <span class="tip-key">底面积 × 高</span>。','底面积 = <b>πr²</b>,先求出来。','再<b>乘高</b> h。','单位是<b>立方单位</b>(cm³、dm³)。']
+ },
+ coneV:{
+  fig:'<svg viewBox="0 0 260 110" width="260" height="110" role="img" aria-label="圆锥是等底等高圆柱的三分之一">'+
+    '<path class="fig-brand-fill" d="M40 22 L18 88 A22 8 0 0 0 62 88 Z"/>'+
+    '<ellipse class="fig-line" cx="40" cy="88" rx="22" ry="8" fill="none"/>'+
+    '<text x="82" y="60" class="fig-t-brand">× ⅓</text>'+
+    '<ellipse class="fig-warn-fill" cx="160" cy="30" rx="22" ry="7"/>'+
+    '<path class="fig-warn-fill" d="M138 30 L138 88 A22 7 0 0 0 182 88 L182 30"/>'+
+    '<text x="150" y="104" class="fig-t-mut">等底等高圆柱</text></svg>',
+  steps:['圆锥体积 = <span class="tip-key">⅓ × 底面积 × 高</span>。','先算<b>底面积 × 高</b>,再乘 ⅓。','等底等高时,是圆柱体积的 <b>1/3</b>。','千万<b>别忘乘 ⅓</b>(或除以 3)。']
+ },
+ discount:{
+  fig:'<svg viewBox="0 0 260 96" width="260" height="96" role="img" aria-label="折扣现价原价条">'+
+    '<text x="8" y="16" class="fig-t-mut">原价</text>'+
+    '<rect class="fig-line" x="16" y="24" width="228" height="20" rx="3"/>'+
+    '<text x="8" y="66" class="fig-t-mut">现价(八折)</text>'+
+    '<rect class="fig-brand-fill" x="16" y="52" width="182" height="20" rx="3"/>'+
+    '<text x="205" y="66" class="fig-t-brand">80%</text>'+
+    '<text x="16" y="90" class="fig-t">现价 = 原价 × 折扣</text></svg>',
+  steps:['几折 = <span class="tip-key">按原价的百分之几十</span>(八折=80%)。','现价 = <b>原价 × 折扣百分数</b>。','把百分数<span class="tip-key">化成小数</span>再乘。','便宜的钱 = 原价 − 现价。']
+ }
+};
+function renderMothers(){
+ var box=document.getElementById('mother-content'),sel=document.getElementById('typeSel'),html='';
+ MOTHERS.forEach(function(m,idx){
+   var s=m.gen(),tip=TIPS[m.key];
+   var tipHtml='';
+   if(tip){
+     tipHtml='<div class="tip"><div class="tip-label"><svg class="ico ico--sm"><use href="#ic-pencil-ruler"/></svg>图解 · 解题技巧</div>'+
+       '<div class="tip-fig">'+tip.fig+'</div><ul class="tip-steps"><li>'+tip.steps.join('</li><li>')+'</li></ul></div>';
+   }
+   /* 多条公式(以;分隔且不止一条)竖排成 list,否则单行文本 */
+   var mparts=m.model.replace(/。$/,'').split(/;|;/);
+   var modelInner;
+   if(mparts.length>1){
+     modelInner='<ul class="model-list"><li>'+mparts.map(function(f){
+       var kv=f.split(/=|＝/);
+       return kv.length===2?'<span class="mf-name">'+kv[0].trim()+'</span>= '+kv[1].trim():f.trim();
+     }).join('</li><li>')+'</li></ul>';
+   }else{
+     modelInner='<span class="model-text">'+m.model+'</span>';
+   }
+   html+='<div class="mother"><div class="mother-head">'+
+     '<div class="mother-no"><svg class="ico ico--sm"><use href="#'+m.ic+'"/></svg></div>'+
+     '<h4>母题 '+(idx+1)+' · '+m.name+'</h4></div>'+
+     '<div class="model-box"><span class="model-label">解题模型</span>'+modelInner+'</div>'+
+     tipHtml+
+     '<div class="example"><span class="example-label">示例</span>'+s.q+
+     (s.steps?'<ol class="solve-steps"><li>'+s.steps.join('</li><li>')+'</li></ol>':'')+
+     '<span class="ans-tag"><svg class="ico ico--sm"><use href="#ic-check"/></svg>参考答案 '+s.a+s.unit+'</span></div></div>';
+   var o=document.createElement('option');o.value=m.key;o.textContent=m.name;sel.appendChild(o);
+ });
+ box.innerHTML=html;
+}
+
+/* ============ 生成练习 ============ */
+var CURRENT=[];
+function genAll(){
+ var type=document.getElementById('typeSel').value,sets=parseInt(document.getElementById('setSel').value);
+ var paper=document.getElementById('paper');paper.innerHTML='';CURRENT=[];
+ document.getElementById('scoreBadge').innerHTML='<svg class="ico ico--sm"><use href="#ic-award"/></svg>尚未批改';
+ var idx=0,html='';
+ for(var s=1;s<=sets;s++){
+   html+='<div class="set-title"><svg class="ico"><use href="#ic-list-checks"/></svg>第 '+s+' 套练习</div>';
+   for(var i=0;i<10;i++){
+     var m=type==='all'?pick(MOTHERS):MOTHERS.find(function(x){return x.key===type;});
+     var g=m.gen();CURRENT.push({a:g.a,unit:g.unit,isFrac:!!g.isFrac});var cur=idx;
+     html+='<div class="q"><div class="q-head"><span class="q-tag"><svg class="ico ico--sm"><use href="#'+m.ic+'"/></svg>'+m.name+'</span>'+
+       '<span class="q-no">'+s+'-'+(i+1)+'</span></div>'+
+       '<div class="q-text">'+(i+1)+'. '+g.q+'</div>'+
+       '<div class="q-input-row"><input id="in_'+cur+'" placeholder="'+(g.isFrac?'如 5/6':'填数值')+'"><span class="q-unit">'+g.unit+'</span><span class="fb" id="fb_'+cur+'"></span></div>'+
+       '<div class="ans-line" id="an_'+cur+'"><svg class="ico ico--sm"><use href="#ic-circle-check"/></svg> 正确答案：<b>'+g.a+g.unit+'</b>　模型：'+m.model+'</div></div>';
+     idx++;
+   }
+ }
+ paper.innerHTML=html;window.scrollTo(0,document.querySelector('.controls').offsetHeight+80);
+}
+function checkAll(){
+ if(!CURRENT.length){alert('请先点击「生成练习」');return;}
+ var right=0;
+ CURRENT.forEach(function(c,i){
+   var raw=(document.getElementById('in_'+i).value||'').trim(),fb=document.getElementById('fb_'+i),ok=false;
+   if(raw!==''){
+     if(c.isFrac){var p=raw.split('/');if(p.length===2){var n=+p[0],m=+p[1],g=gcd(n,m);var tp=String(c.a).split('/').map(Number);
+       ok=(m!==0)&&(n/g===tp[0]&&m/g===tp[1]||n/m===tp[0]/tp[1]);}}
+     else{ok=Math.abs(parseFloat(raw)-parseFloat(c.a))<0.001;}
+   }
+   if(ok){right++;fb.className='fb right';fb.innerHTML='<svg class="ico ico--sm"><use href="#ic-check"/></svg>正确';}
+   else{fb.className='fb wrong';fb.innerHTML='<svg class="ico ico--sm"><use href="#ic-x"/></svg>待订正';}
+ });
+ document.getElementById('scoreBadge').innerHTML='<svg class="ico ico--sm"><use href="#ic-award"/></svg>得分 '+right+' / '+CURRENT.length+'　正确率 '+Math.round(right/CURRENT.length*100)+'%';
+}
+var ansShown=false;
+function toggleAllAns(){ansShown=!ansShown;document.querySelectorAll('.ans-line').forEach(function(a){a.classList.toggle('show',ansShown);});}
+
+/* ============ Web Component · 异步惰性渲染 ============ */
+/* 每个视图用 <lazy-view data-render="key"> 包裹,首屏只保留骨架屏占位,
+   真正的重内容(15 张知识卡 / 8 类母题含内联 SVG / 练习卷)在
+   requestAnimationFrame + requestIdleCallback 里分帧渲染,避免首次渲染过大阻塞主线程。*/
+var RENDERERS={
+  kp:renderKP,
+  mother:function(){renderMothers();},
+  quiz:function(){genAll();}
+};
+var idle=window.requestIdleCallback||function(cb){return setTimeout(function(){cb({timeRemaining:function(){return 12;},didTimeout:false});},1);};
+(function(){
+  function LazyView(){return Reflect.construct(HTMLElement,[],LazyView);}
+  LazyView.prototype=Object.create(HTMLElement.prototype);
+  LazyView.prototype.constructor=LazyView;
+  LazyView.prototype.hydrate=function(){
+    if(this._done)return;
+    this._done=true;
+    var key=this.getAttribute('data-render'),fn=RENDERERS[key];
+    if(fn)fn();
+    /* 骨架屏淡出移除,重内容已注入紧随其后的容器 */
+    this.parentNode&&this.parentNode.removeChild(this);
+  };
+  try{customElements.define('lazy-view',LazyView);}catch(e){}
+})();
+function hydrateView(key){
+  var lv=document.querySelector('lazy-view[data-render="'+key+'"]');
+  if(lv&&typeof lv.hydrate==='function'){lv.hydrate();}
+  else if(lv&&!lv._done){lv._done=true;(RENDERERS[key]||function(){})();lv.parentNode&&lv.parentNode.removeChild(lv);}
+}
+
+/* 首屏:先只渲染当前激活的知识点视图(下一帧,不阻塞首次绘制) */
+requestAnimationFrame(function(){
+  hydrateView('kp');
+  /* 其余视图在浏览器空闲时后台预热,不影响交互 */
+  idle(function(){hydrateView('mother');});
+  idle(function(){hydrateView('quiz');});
+});
+
+</script>
+</body>
+</html>
