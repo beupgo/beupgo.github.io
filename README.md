@@ -6,8 +6,8 @@
 
 | 年级 | 在线地址 |
 |---|---|
-| 五年级 | https://beupgo.github.io/grade5.html |
-| 六年级 | https://beupgo.github.io/grade6.html |
+| 五年级 | https://beupgo.github.io/grade5-math.html |
+| 六年级 | https://beupgo.github.io/grade6-math.html |
 | 导航首页 | https://beupgo.github.io/ |
 
 ## 功能特点
@@ -23,12 +23,12 @@
 ```
 .
 ├─ index.html      # 导航首页(五 / 六年级入口)
-├─ grade5.html     # 五年级数学(15 个单元)
-├─ grade6.html     # 六年级数学(12 个单元)
+├─ grade5-math.html # 五年级数学(15 个单元)
+├─ grade6-math.html # 六年级数学(12 个单元)
 └─ README.md
 ```
 
-> 仓库里的文件建议使用英文名 `grade5.html` / `grade6.html`。
+> 仓库里的文件建议使用英文名 `grade5-math.html` / `grade6-math.html`。
 > 中文文件名(如「五年级数学.html」)在 GitHub Pages 链接里需要 URL 编码,容易出错,不推荐直接作为线上路径。
 
 ## 内容概览
@@ -41,7 +41,7 @@
 
 ## 部署到 GitHub Pages
 
-1. 新建一个 GitHub 仓库(如 `math-notes`),把 `grade5.html`、`grade6.html`、`index.html`、`README.md` 上传到仓库根目录。
+1. 新建一个 GitHub 仓库(如 `math-notes`),把 `grade5-math.html`、`grade6-math.html`、`index.html`、`README.md` 上传到仓库根目录。
 2. 进入仓库 **Settings → Pages**。
 3. **Build and deployment → Source** 选 **Deploy from a branch**;**Branch** 选 `main`(或 `master`),目录选 `/ (root)`,点 **Save**。
 4. 等 1–2 分钟,页面顶部会出现发布地址 `https://beupgo.github.io/`,即可访问。
