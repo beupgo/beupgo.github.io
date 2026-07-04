@@ -1,0 +1,612 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="theme-color" content="#4f46e5">
+<title>简易方程专题 · 从天平到解方程</title>
+<style>
+:root{
+  --brand-h:232; --brand-s:84%;
+  --g-font:-apple-system,BlinkMacSystemFont,"PingFang SC","Hiragino Sans GB","Microsoft YaHei",Roboto,Arial,sans-serif;
+  --g-mono:"SF Mono",ui-monospace,Menlo,Consolas,monospace;
+  --brand:hsl(var(--brand-h),var(--brand-s),56%);
+  --brand-strong:hsl(var(--brand-h),var(--brand-s),48%);
+  --brand-subtle:hsl(var(--brand-h),var(--brand-s),97%);
+  --brand-subtle-2:hsl(var(--brand-h),var(--brand-s),93%);
+  --warn:#f59e0b; --warn-bg:#fffbeb; --warn-text:#b45309;
+  --ok:#10b981; --ok-bg:#ecfdf5; --ok-text:#047857;
+  --surface:#fff; --sunken:#f9fafb;
+  --text:#111827; --text-2:#4b5563; --text-3:#9ca3af;
+  --border:#e5e7eb;
+  --shadow:0 1px 2px rgba(16,24,40,.04),0 6px 20px rgba(16,24,40,.06);
+  --r-lg:18px; --r-md:12px; --r-sm:8px; --r-full:999px;
+  --fig-a:#6366f1; --fig-b:#f59e0b; --fig-c:#10b981; --fig-d:#ec4899;
+}
+@media (prefers-color-scheme: dark){
+  :root{
+    --brand:hsl(var(--brand-h),var(--brand-s),64%);
+    --brand-strong:hsl(var(--brand-h),var(--brand-s),72%);
+    --brand-subtle:hsl(var(--brand-h),var(--brand-s),16%);
+    --brand-subtle-2:hsl(var(--brand-h),var(--brand-s),22%);
+    --warn-bg:#3a2c0a; --warn-text:#fbbf24;
+    --ok-bg:#0b2e22; --ok-text:#34d399;
+    --surface:#161b22; --sunken:#0d1117;
+    --text:#e6edf3; --text-2:#9da7b3; --text-3:#6b7684;
+    --border:#2d333b;
+    --shadow:0 1px 2px rgba(0,0,0,.3),0 6px 20px rgba(0,0,0,.35);
+    --fig-a:#818cf8; --fig-b:#fbbf24; --fig-c:#34d399; --fig-d:#f472b6;
+  }
+}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent;}
+html,body{margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{font-family:var(--g-font);background:var(--sunken);color:var(--text);-webkit-font-smoothing:antialiased;line-height:1.6;}
+.page{width:100%;max-width:760px;margin:0 auto;padding:0 clamp(16px,4vw,32px) calc(env(safe-area-inset-bottom) + 56px);}
+@media(min-width:768px){
+  .page{max-width:920px;}
+  .grid2{display:grid;grid-template-columns:1fr 1fr;gap:14px;align-items:start;}
+  .grid2>.card{margin-bottom:0;}
+}
+@media(min-width:1100px){
+  .page{max-width:1040px;}
+}
+
+/* 顶部 */
+.hero{text-align:center;padding:calc(env(safe-area-inset-top) + 34px) 8px 24px;}
+.hero .badge{display:inline-flex;align-items:center;gap:6px;padding:6px 14px;border-radius:var(--r-full);background:var(--brand-subtle);color:var(--brand-strong);font-size:13px;font-weight:600;margin-bottom:14px;}
+.hero .badge svg{width:15px;height:15px;}
+.hero h1{font-size:26px;margin:0 0 8px;font-weight:800;letter-spacing:-.02em;}
+.hero p{margin:0;color:var(--text-2);font-size:14px;}
+
+/* 章节导航 */
+.toc{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin:0 0 26px;}
+.toc a{text-decoration:none;font-size:13px;font-weight:600;color:var(--text-2);background:var(--surface);border:1px solid var(--border);border-radius:var(--r-full);padding:7px 13px;transition:.15s;}
+.toc a:active{transform:scale(.96);}
+@media(hover:hover){.toc a:hover{border-color:var(--brand);color:var(--brand-strong);}}
+
+/* 章节 */
+.sec{margin-bottom:34px;scroll-margin-top:16px;}
+.sec-head{display:flex;align-items:center;gap:10px;margin-bottom:14px;}
+.sec-head .n{flex:none;width:30px;height:30px;border-radius:var(--r-md);background:var(--brand);color:#fff;font-size:15px;font-weight:800;display:flex;align-items:center;justify-content:center;}
+.sec-head h2{margin:0;font-size:19px;font-weight:800;}
+.sec-head .sub{color:var(--text-3);font-size:12px;font-weight:600;margin-top:1px;}
+
+/* 分数(竖排:分子/分数线/分母) */
+.frac{display:inline-flex;flex-direction:column;align-items:center;justify-content:center;vertical-align:middle;line-height:1;margin:0 2px;font-weight:700;}
+.frac .fn{padding:0 4px 1px;border-bottom:1.6px solid currentColor;}
+.frac .fd{padding:1px 4px 0;}
+
+/* 公式条 */
+.formula{display:flex;align-items:center;justify-content:center;gap:6px;flex-wrap:wrap;background:var(--brand-subtle);border:1px solid var(--brand-subtle-2);border-radius:var(--r-md);padding:11px 12px;margin:10px 0;font-size:15px;font-weight:800;color:var(--brand-strong);}
+
+/* 卡片 */
+.card{background:var(--surface);border:1px solid var(--border);border-radius:var(--r-lg);padding:16px;margin-bottom:14px;box-shadow:var(--shadow);}
+.card-t{display:flex;align-items:center;gap:8px;font-size:15px;font-weight:700;margin:0 0 10px;}
+.card-t svg{width:18px;height:18px;flex:none;color:var(--brand-strong);}
+.card p{margin:0 0 8px;font-size:14px;color:var(--text-2);}
+.card p:last-child{margin-bottom:0;}
+.card b{color:var(--text);}
+.key{color:var(--brand-strong);font-weight:700;}
+
+/* 图示区 */
+.fig{background:var(--sunken);border:1px solid var(--border);border-radius:var(--r-md);padding:14px 12px;text-align:center;margin:10px 0;}
+.fig svg{max-width:100%;height:auto;display:block;margin:0 auto;}
+.fig figcaption{margin-top:8px;font-size:12px;color:var(--text-3);}
+
+/* 母题 */
+.mother{border:1.5px solid var(--brand-subtle-2);border-radius:var(--r-lg);overflow:hidden;margin:14px 0;box-shadow:var(--shadow);}
+.mother-head{display:flex;align-items:center;gap:10px;padding:12px 14px;background:var(--brand-subtle);}
+.mother-head .no{flex:none;width:30px;height:30px;border-radius:var(--r-md);background:var(--brand);color:#fff;font-size:14px;font-weight:800;display:flex;align-items:center;justify-content:center;}
+.mother-head h3{margin:0;font-size:15px;font-weight:800;color:var(--text);flex:1;}
+.mother-head .tagm{flex:none;font-size:11px;font-weight:800;color:var(--brand-strong);background:var(--surface);border:1px solid var(--brand-subtle-2);padding:3px 9px;border-radius:var(--r-full);}
+.mother-body{padding:14px;}
+.model{display:flex;gap:8px;align-items:flex-start;background:var(--brand-subtle);border-radius:var(--r-md);padding:10px 12px;margin-top:10px;font-size:13px;color:var(--text-2);}
+.model svg{width:16px;height:16px;flex:none;color:var(--brand-strong);margin-top:2px;}
+.model b{color:var(--brand-strong);}
+
+/* 例题 */
+.eg{border:1px solid var(--border);border-radius:var(--r-md);overflow:hidden;margin:12px 0;}
+.eg-q{background:var(--sunken);padding:10px 13px;font-size:14px;font-weight:600;display:flex;gap:8px;}
+.eg-q .tag{flex:none;color:var(--brand-strong);font-weight:800;}
+.eg-body{padding:12px 13px;}
+.eg-step{display:flex;gap:9px;font-size:13.5px;color:var(--text-2);margin-bottom:8px;}
+.eg-step:last-of-type{margin-bottom:0;}
+.eg-step .d{flex:none;width:19px;height:19px;border-radius:var(--r-full);background:var(--brand-subtle-2);color:var(--brand-strong);font-size:11px;font-weight:800;display:flex;align-items:center;justify-content:center;margin-top:1px;}
+.eg-ans{margin-top:10px;display:inline-flex;align-items:center;gap:6px;background:var(--ok-bg);color:var(--ok-text);font-weight:800;font-size:14px;padding:6px 12px;border-radius:var(--r-full);}
+.eg-ans svg{width:15px;height:15px;}
+
+/* 类型徽标 */
+.types{display:flex;flex-wrap:wrap;gap:8px;margin:4px 0 12px;}
+.types .t{display:inline-flex;align-items:center;gap:6px;font-size:12.5px;font-weight:700;padding:5px 11px;border-radius:var(--r-full);background:var(--brand-subtle);color:var(--brand-strong);}
+.types .t svg{width:14px;height:14px;flex:none;}
+.types .t.yes{background:var(--ok-bg);color:var(--ok-text);}
+.types .t.no{background:var(--warn-bg);color:var(--warn-text);}
+
+/* 易错 */
+.warn{background:var(--warn-bg);border:1px solid var(--warn);border-radius:var(--r-md);padding:11px 13px;margin-top:10px;}
+.warn-h{display:flex;align-items:center;gap:6px;font-size:13px;font-weight:800;color:var(--warn-text);margin-bottom:6px;}
+.warn-h svg{width:15px;height:15px;}
+.warn ul{margin:0;padding-left:18px;}
+.warn li{font-size:13px;color:var(--text-2);margin-bottom:4px;}
+.warn li:last-child{margin-bottom:0;}
+
+/* 口诀 */
+.tip{display:flex;gap:9px;background:var(--brand-subtle);border-radius:var(--r-md);padding:11px 13px;margin-top:10px;font-size:13.5px;color:var(--text-2);}
+.tip svg{width:17px;height:17px;flex:none;color:var(--brand-strong);margin-top:1px;}
+.tip b{color:var(--brand-strong);}
+
+/* 自测 折叠 */
+.quiz{background:var(--surface);border:1px solid var(--border);border-radius:var(--r-md);margin-bottom:10px;overflow:hidden;}
+.quiz>summary{list-style:none;cursor:pointer;padding:12px 14px;font-size:14px;font-weight:600;display:flex;align-items:center;gap:9px;}
+.quiz>summary::-webkit-details-marker{display:none;}
+.quiz>summary .q-n{flex:none;width:22px;height:22px;border-radius:var(--r-full);background:var(--brand-subtle-2);color:var(--brand-strong);font-size:12px;font-weight:800;display:flex;align-items:center;justify-content:center;}
+.quiz>summary .chev{margin-left:auto;color:var(--text-3);transition:.2s;}
+.quiz>summary .chev svg{width:18px;height:18px;display:block;}
+.quiz[open]>summary .chev{transform:rotate(180deg);}
+.quiz .ans-body{padding:0 14px 13px 45px;font-size:13.5px;color:var(--text-2);border-top:1px dashed var(--border);padding-top:11px;}
+.quiz .ans-body .final{color:var(--ok-text);font-weight:800;}
+.quiz .ans-body .stepline{margin:0 0 6px;}
+
+/* 解方程步骤(等号对齐) */
+.solve{background:var(--sunken);border:1px solid var(--border);border-radius:var(--r-md);padding:12px 14px;margin:10px 0;font-family:var(--g-mono);}
+.solve .row{display:flex;align-items:baseline;gap:8px;margin-bottom:6px;font-size:15px;font-weight:700;color:var(--text);}
+.solve .row:last-child{margin-bottom:0;}
+.solve .row .lhs{min-width:96px;text-align:right;}
+.solve .row .op{color:var(--text-3);}
+.solve .row .note{font-family:var(--g-font);font-size:12px;font-weight:600;color:var(--brand-strong);margin-left:auto;}
+.solve .row.res{color:var(--ok-text);}
+.solve .row.res .lhs{color:var(--ok-text);}
+
+.foot{text-align:center;color:var(--text-3);font-size:12px;padding:8px 0;}
+</style>
+</head>
+<body>
+<div class="page">
+
+  <div class="hero">
+    <span class="badge">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v18"/><path d="M3 7h18"/><path d="m3 7 3 6a3 3 0 0 0 6 0"/><path d="m21 7-3 6a3 3 0 0 1-6 0"/></svg>
+      简易方程专题 · 人教版五年级
+    </span>
+    <h1>从天平到解方程</h1>
+    <p>方程就是"含有未知数的等式"—— 想象一架天平,两边一样重,同时加同时减,天平始终平衡</p>
+  </div>
+
+  <nav class="toc">
+    <a href="#s1">1 用字母表示数</a>
+    <a href="#s2">2 天平原理</a>
+    <a href="#s3">3 解简单方程</a>
+    <a href="#s4">4 解复杂方程</a>
+    <a href="#s5">5 列方程解应用题</a>
+    <a href="#s6">6 母题精讲</a>
+    <a href="#s7">7 闯关自测</a>
+  </nav>
+
+  <!-- ========== §1 ========== -->
+  <section class="sec" id="s1">
+    <div class="sec-head">
+      <div class="n">1</div>
+      <div><h2>核心:用字母表示数</h2><div class="sub">为什么要用 x</div></div>
+    </div>
+
+    <div class="card">
+      <div class="card-t">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7V4h16v3"/><path d="M9 20h6"/><path d="M12 4v16"/></svg>
+        一个字母 = 一个还不知道的数
+      </div>
+      <p>当一个数量<b>暂时不知道</b>时,我们用字母(常用 <span class="key">x</span>)来代替它。这样就能把"文字关系"写成"数学式子"。</p>
+      <p>比如"小明比小红大 3 岁":如果小红 <span class="key">x</span> 岁,那小明就是 <span class="key">x + 3</span> 岁。字母参与运算时,数字可以直接写在字母前面:<b>3 × x 写成 3x</b>,<b>x × x 写成 x²</b>。</p>
+      <div class="tip">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18h6"/><path d="M10 22h4"/><path d="M12 2a7 7 0 0 0-4 12.7c.6.5 1 1.3 1 2.3h6c0-1 .4-1.8 1-2.3A7 7 0 0 0 12 2Z"/></svg>
+        <span><b>省略乘号口诀:</b>数字在前、字母在后;数字之间的乘号<b>不能</b>省(3×5 不能写成 35)。</span>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-t">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v18"/><path d="M3 7h18"/><path d="m3 7 3 6a3 3 0 0 0 6 0"/><path d="m21 7-3 6a3 3 0 0 1-6 0"/></svg>
+        方程 = 含有未知数的等式
+      </div>
+      <p>只要式子里<b>有等号</b>、并且<b>含有未知数</b>,它就是<span class="key">方程</span>。</p>
+      <div class="types">
+        <span class="t yes"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>x + 5 = 12　是方程</span>
+        <span class="t yes"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>3x = 18　是方程</span>
+        <span class="t no"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>7 + 8 = 15　没有未知数</span>
+        <span class="t no"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>x + 5　没有等号</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== §2 ========== -->
+  <section class="sec" id="s2">
+    <div class="sec-head">
+      <div class="n">2</div>
+      <div><h2>天平原理:等式的性质</h2><div class="sub">解方程的唯一依据</div></div>
+    </div>
+
+    <div class="card">
+      <p>把等式想象成一架<b>平衡的天平</b>:等号左边 = 右边,就像天平两边一样重。只要<b>两边做同样的事</b>,天平就一直保持平衡。</p>
+      <figure class="fig">
+        <svg viewBox="0 0 300 150" width="300" height="150" role="img" aria-label="天平两边同时增减保持平衡">
+          <!-- 支架 -->
+          <line x1="150" y1="20" x2="150" y2="120" stroke="var(--text-3)" stroke-width="3"/>
+          <line x1="120" y1="120" x2="180" y2="120" stroke="var(--text-3)" stroke-width="3"/>
+          <!-- 横梁 -->
+          <line x1="55" y1="35" x2="245" y2="35" stroke="var(--brand-strong)" stroke-width="3"/>
+          <circle cx="150" cy="35" r="4" fill="var(--brand-strong)"/>
+          <!-- 左托盘 -->
+          <line x1="55" y1="35" x2="55" y2="60" stroke="var(--text-3)" stroke-width="1.5"/>
+          <path d="M30 60 h50 l-8 16 h-34 z" fill="var(--fig-a)" fill-opacity="0.18" stroke="var(--fig-a)" stroke-width="1.5"/>
+          <text x="55" y="73" text-anchor="middle" font-size="12" font-weight="700" fill="var(--fig-a)">x + 5</text>
+          <!-- 右托盘 -->
+          <line x1="245" y1="35" x2="245" y2="60" stroke="var(--text-3)" stroke-width="1.5"/>
+          <path d="M220 60 h50 l-8 16 h-34 z" fill="var(--fig-c)" fill-opacity="0.2" stroke="var(--fig-c)" stroke-width="1.5"/>
+          <text x="245" y="73" text-anchor="middle" font-size="12" font-weight="700" fill="var(--fig-c)">12</text>
+          <text x="150" y="145" text-anchor="middle" font-size="12" fill="var(--text-3)">两边同时 −5,天平仍平衡 → x = 7</text>
+        </svg>
+        <figcaption>等式两边同时加、减、乘、除同一个数(除数不为 0),等式依然成立</figcaption>
+      </figure>
+      <div class="formula">两边同时 +、−、×、÷ 同一个数 → 等式不变</div>
+      <div class="warn">
+        <div class="warn-h">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m21.7 18-8-14a2 2 0 0 0-3.4 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.7-3Z"/><path d="M12 9v4"/><path d="M12 17h.01"/></svg>
+          注意
+        </div>
+        <ul>
+          <li>两边必须做<b>完全一样</b>的运算(同加、同减、同乘、同除同一个数)。</li>
+          <li>除法时,<b>除数不能是 0</b>。</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== §3 ========== -->
+  <section class="sec" id="s3">
+    <div class="sec-head">
+      <div class="n">3</div>
+      <div><h2>解简单方程</h2><div class="sub">一步就能解出 x</div></div>
+    </div>
+
+    <div class="grid2">
+      <div class="card">
+        <div class="card-t">类型一:x ± a = b</div>
+        <p>要让 x 单独留下 → 把加(减)的数<b>反着还回去</b>。</p>
+        <div class="eg">
+          <div class="eg-q"><span class="tag">例</span><span>解方程 x + 2.4 = 8</span></div>
+          <div class="eg-body">
+            <div class="solve">
+              <div class="row"><span class="lhs">x + 2.4</span><span class="op">=</span><span>8</span></div>
+              <div class="row"><span class="lhs">x + 2.4 − 2.4</span><span class="op">=</span><span>8 − 2.4</span><span class="note">两边同时 −2.4</span></div>
+              <div class="row res"><span class="lhs">x</span><span class="op">=</span><span>5.6</span></div>
+            </div>
+            <div class="eg-ans">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
+              x = 5.6
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-t">类型二:ax = b</div>
+        <p>x 被乘了几,就把两边<b>同时除以几</b>。</p>
+        <div class="eg">
+          <div class="eg-q"><span class="tag">例</span><span>解方程 3x = 48</span></div>
+          <div class="eg-body">
+            <div class="solve">
+              <div class="row"><span class="lhs">3x</span><span class="op">=</span><span>48</span></div>
+              <div class="row"><span class="lhs">3x ÷ 3</span><span class="op">=</span><span>48 ÷ 3</span><span class="note">两边同时 ÷3</span></div>
+              <div class="row res"><span class="lhs">x</span><span class="op">=</span><span>16</span></div>
+            </div>
+            <div class="eg-ans">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
+              x = 16
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="tip">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18h6"/><path d="M10 22h4"/><path d="M12 2a7 7 0 0 0-4 12.7c.6.5 1 1.3 1 2.3h6c0-1 .4-1.8 1-2.3A7 7 0 0 0 12 2Z"/></svg>
+      <span><b>解题口诀:</b>x 被加了就减,被减了就加,被乘了就除,被除了就乘 —— <b>做相反运算,两边一起做</b>。</span>
+    </div>
+
+    <div class="warn">
+      <div class="warn-h">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m21.7 18-8-14a2 2 0 0 0-3.4 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.7-3Z"/><path d="M12 9v4"/><path d="M12 17h.01"/></svg>
+        易错点
+      </div>
+      <ul>
+        <li>解完一定要<b>写"解:"</b>开头,并把每一步的等号对齐。</li>
+        <li>结果要<b>代回原方程检验</b>:5.6 + 2.4 = 8(对)、3 × 16 = 48(对)。</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ========== §4 ========== -->
+  <section class="sec" id="s4">
+    <div class="sec-head">
+      <div class="n">4</div>
+      <div><h2>解稍复杂的方程</h2><div class="sub">两步:先合并,再倒推</div></div>
+    </div>
+
+    <div class="card">
+      <div class="card-t">类型三:ax ± b = c(先减后除)</div>
+      <p>先把方程<b>看成"一个整体 ax 加(减)一个数"</b>,先处理常数,再处理系数。</p>
+      <div class="eg">
+        <div class="eg-q"><span class="tag">例</span><span>解方程 2x + 3 = 17</span></div>
+        <div class="eg-body">
+          <div class="solve">
+            <div class="row"><span class="lhs">2x + 3</span><span class="op">=</span><span>17</span></div>
+            <div class="row"><span class="lhs">2x + 3 − 3</span><span class="op">=</span><span>17 − 3</span><span class="note">① 先 −3</span></div>
+            <div class="row"><span class="lhs">2x</span><span class="op">=</span><span>14</span></div>
+            <div class="row"><span class="lhs">2x ÷ 2</span><span class="op">=</span><span>14 ÷ 2</span><span class="note">② 再 ÷2</span></div>
+            <div class="row res"><span class="lhs">x</span><span class="op">=</span><span>7</span></div>
+          </div>
+          <div class="eg-ans">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
+            x = 7
+          </div>
+        </div>
+      </div>
+      <div class="tip">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18h6"/><path d="M10 22h4"/><path d="M12 2a7 7 0 0 0-4 12.7c.6.5 1 1.3 1 2.3h6c0-1 .4-1.8 1-2.3A7 7 0 0 0 12 2Z"/></svg>
+        <span><b>顺序口诀:</b>先加减、后乘除 —— <b>和倒过来的运算顺序一样</b>,把离 x 最远的先"剥掉"。</span>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-t">类型四:ax ± bx = c(先合并同类项)</div>
+      <p>两个都带 x 的项,可以<b>先合并</b>:几个 x 加(减)几个 x,还是几个 x。</p>
+      <div class="eg">
+        <div class="eg-q"><span class="tag">例</span><span>解方程 3x + 2x = 40</span></div>
+        <div class="eg-body">
+          <div class="solve">
+            <div class="row"><span class="lhs">3x + 2x</span><span class="op">=</span><span>40</span></div>
+            <div class="row"><span class="lhs">5x</span><span class="op">=</span><span>40</span><span class="note">① 合并:3x+2x=5x</span></div>
+            <div class="row"><span class="lhs">5x ÷ 5</span><span class="op">=</span><span>40 ÷ 5</span><span class="note">② 两边 ÷5</span></div>
+            <div class="row res"><span class="lhs">x</span><span class="op">=</span><span>8</span></div>
+          </div>
+          <div class="eg-ans">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
+            x = 8
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== §5 ========== -->
+  <section class="sec" id="s5">
+    <div class="sec-head">
+      <div class="n">5</div>
+      <div><h2>列方程解应用题</h2><div class="sub">找准等量关系是关键</div></div>
+    </div>
+
+    <div class="card">
+      <div class="card-t">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11 12 14 22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
+        列方程五步法
+      </div>
+      <div class="eg-step"><span class="d">1</span><span><b>设未知数:</b>把要求的量设为 x(通常设"一倍数"或问题里问的那个量)。</span></div>
+      <div class="eg-step"><span class="d">2</span><span><b>找等量关系:</b>读题找出"谁 = 谁",这是最关键的一步。</span></div>
+      <div class="eg-step"><span class="d">3</span><span><b>列方程:</b>按等量关系把 x 填进去。</span></div>
+      <div class="eg-step"><span class="d">4</span><span><b>解方程:</b>用天平原理一步步解。</span></div>
+      <div class="eg-step"><span class="d">5</span><span><b>检验并作答:</b>把结果代回题目,再写"答"。</span></div>
+    </div>
+
+    <div class="card">
+      <div class="card-t">范例:实物问题</div>
+      <div class="eg">
+        <div class="eg-q"><span class="tag">题</span><span>妈妈买了一些苹果,吃掉 15 个后还剩 27 个。原来有多少个?</span></div>
+        <div class="eg-body">
+          <div class="eg-step"><span class="d">1</span><span>设原来有 <b>x</b> 个苹果。</span></div>
+          <div class="eg-step"><span class="d">2</span><span>等量关系:<b>原有 − 吃掉 = 剩下</b>。</span></div>
+          <div class="eg-step"><span class="d">3</span><span>列方程:<b>x − 15 = 27</b>。</span></div>
+          <div class="solve">
+            <div class="row"><span class="lhs">x − 15</span><span class="op">=</span><span>27</span></div>
+            <div class="row"><span class="lhs">x − 15 + 15</span><span class="op">=</span><span>27 + 15</span><span class="note">两边 +15</span></div>
+            <div class="row res"><span class="lhs">x</span><span class="op">=</span><span>42</span></div>
+          </div>
+          <div class="eg-ans">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
+            答:原来有 42 个苹果
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== §6 母题 ========== -->
+  <section class="sec" id="s6">
+    <div class="sec-head">
+      <div class="n">6</div>
+      <div><h2>母题精讲</h2><div class="sub">4 类必考模型</div></div>
+    </div>
+
+    <!-- 母题1 -->
+    <div class="mother">
+      <div class="mother-head">
+        <div class="no">母1</div>
+        <h3>逆运算型:x − a = b</h3>
+        <span class="tagm">还原</span>
+      </div>
+      <div class="mother-body">
+        <div class="eg-q" style="padding-left:0;background:none;">书架原有若干本书,借走 15 本后还剩 27 本,原有几本?</div>
+        <div class="solve">
+          <div class="row"><span class="lhs">x − 15</span><span class="op">=</span><span>27</span></div>
+          <div class="row res"><span class="lhs">x</span><span class="op">=</span><span>27 + 15 = 42</span></div>
+        </div>
+        <div class="model">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v20"/><path d="m19 9-7 7-7-7"/></svg>
+          <span><b>模型:</b>"减掉后剩下"型 → 用<b>加法</b>还原。被减了就加回去。</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 母题2 -->
+    <div class="mother">
+      <div class="mother-head">
+        <div class="no">母2</div>
+        <h3>两步型:ax + b = c</h3>
+        <span class="tagm">先减后除</span>
+      </div>
+      <div class="mother-body">
+        <div class="eg-q" style="padding-left:0;background:none;">3 支相同的笔加 1 个 12 元的笔袋,共花 48 元,每支笔多少钱?</div>
+        <div class="solve">
+          <div class="row"><span class="lhs">3x + 12</span><span class="op">=</span><span>48</span></div>
+          <div class="row"><span class="lhs">3x</span><span class="op">=</span><span>48 − 12 = 36</span><span class="note">先 −12</span></div>
+          <div class="row res"><span class="lhs">x</span><span class="op">=</span><span>36 ÷ 3 = 12</span></div>
+        </div>
+        <div class="model">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v20"/><path d="m19 9-7 7-7-7"/></svg>
+          <span><b>模型:</b>"几份相同 + 固定值 = 总数" → <b>先把固定值减掉,再除以份数</b>。</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 母题3 -->
+    <div class="mother">
+      <div class="mother-head">
+        <div class="no">母3</div>
+        <h3>行程型:速度 × 时间 = 路程</h3>
+        <span class="tagm">列式求量</span>
+      </div>
+      <div class="mother-body">
+        <div class="eg-q" style="padding-left:0;background:none;">汽车每小时行 2.5 千米(×10),共行了 200 千米,用了几小时?(设 2.5x = 200)</div>
+        <div class="solve">
+          <div class="row"><span class="lhs">2.5x</span><span class="op">=</span><span>200</span></div>
+          <div class="row res"><span class="lhs">x</span><span class="op">=</span><span>200 ÷ 2.5 = 80</span></div>
+        </div>
+        <div class="model">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v20"/><path d="m19 9-7 7-7-7"/></svg>
+          <span><b>模型:</b>路程 = 速度 × 时间。已知积和一个因数,<b>用除法求另一个因数</b>。</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 母题4 -->
+    <div class="mother">
+      <div class="mother-head">
+        <div class="no">母4</div>
+        <h3>和差型:两个量的和已知</h3>
+        <span class="tagm">合并同类</span>
+      </div>
+      <div class="mother-body">
+        <div class="eg-q" style="padding-left:0;background:none;">哥哥比弟弟大 6 岁,两人年龄之和是 40 岁。弟弟几岁?</div>
+        <div class="solve">
+          <div class="row"><span class="lhs">x + (x + 6)</span><span class="op">=</span><span>40</span></div>
+          <div class="row"><span class="lhs">2x + 6</span><span class="op">=</span><span>40</span><span class="note">合并 x</span></div>
+          <div class="row"><span class="lhs">2x</span><span class="op">=</span><span>34</span><span class="note">−6</span></div>
+          <div class="row res"><span class="lhs">x</span><span class="op">=</span><span>17</span></div>
+        </div>
+        <div class="model">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v20"/><path d="m19 9-7 7-7-7"/></svg>
+          <span><b>模型:</b>设小的量为 x,大的量用 <b>x + 差</b> 表示,再<b>合并同类项</b>。弟弟 17 岁、哥哥 23 岁。</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== §7 自测 ========== -->
+  <section class="sec" id="s7">
+    <div class="sec-head">
+      <div class="n">7</div>
+      <div><h2>闯关自测</h2><div class="sub">点开看答案 · 先算再对</div></div>
+    </div>
+
+    <details class="quiz">
+      <summary><span class="q-n">1</span><span>解方程:x + 18 = 50</span><span class="chev"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></span></summary>
+      <div class="ans-body">
+        <p class="stepline">两边同时 −18:x = 50 − 18</p>
+        <p class="final">x = 32</p>
+      </div>
+    </details>
+
+    <details class="quiz">
+      <summary><span class="q-n">2</span><span>解方程:x − 7 = 25</span><span class="chev"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></span></summary>
+      <div class="ans-body">
+        <p class="stepline">两边同时 +7:x = 25 + 7</p>
+        <p class="final">x = 32</p>
+      </div>
+    </details>
+
+    <details class="quiz">
+      <summary><span class="q-n">3</span><span>解方程:6x = 90</span><span class="chev"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></span></summary>
+      <div class="ans-body">
+        <p class="stepline">两边同时 ÷6:x = 90 ÷ 6</p>
+        <p class="final">x = 15</p>
+      </div>
+    </details>
+
+    <details class="quiz">
+      <summary><span class="q-n">4</span><span>解方程:x ÷ 8 = 4</span><span class="chev"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></span></summary>
+      <div class="ans-body">
+        <p class="stepline">两边同时 ×8:x = 4 × 8</p>
+        <p class="final">x = 32</p>
+      </div>
+    </details>
+
+    <details class="quiz">
+      <summary><span class="q-n">5</span><span>解方程:2x + 5 = 29</span><span class="chev"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></span></summary>
+      <div class="ans-body">
+        <p class="stepline">① 先 −5:2x = 24　② 再 ÷2</p>
+        <p class="final">x = 12</p>
+      </div>
+    </details>
+
+    <details class="quiz">
+      <summary><span class="q-n">6</span><span>解方程:4x − 9 = 23</span><span class="chev"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></span></summary>
+      <div class="ans-body">
+        <p class="stepline">① 先 +9:4x = 32　② 再 ÷4</p>
+        <p class="final">x = 8</p>
+      </div>
+    </details>
+
+    <details class="quiz">
+      <summary><span class="q-n">7</span><span>解方程:5x + 3x = 48</span><span class="chev"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></span></summary>
+      <div class="ans-body">
+        <p class="stepline">① 合并:8x = 48　② 两边 ÷8</p>
+        <p class="final">x = 6</p>
+      </div>
+    </details>
+
+    <details class="quiz">
+      <summary><span class="q-n">8</span><span>应用题:一根绳子长 60 米,剪去同样长的 2 段后剩 10 米。每段剪去多少米?</span><span class="chev"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></span></summary>
+      <div class="ans-body">
+        <p class="stepline">设每段 x 米,等量关系:总长 − 剪去 = 剩下 → 60 − 2x = 10</p>
+        <p class="stepline">2x = 60 − 10 = 50　→　x = 25</p>
+        <p class="final">答:每段剪去 25 米</p>
+      </div>
+    </details>
+  </section>
+
+  <div class="foot">简易方程专题 · 依据人教版教材整理 · 供个人学习使用</div>
+
+</div>
+
+
+<script>
+/* 锚点内部跳转:拦截 TOC 点击,手动滚动,避免在预览/代理环境里触发整页导航 */
+(function(){
+  function onTap(e){
+    var a=e.target;
+    while(a&&a.nodeName!=='A'){a=a.parentNode;}
+    if(!a)return;
+    var href=a.getAttribute('href')||'';
+    if(href.charAt(0)!=='#'||href.length<2)return;
+    var el=document.getElementById(href.slice(1));
+    if(!el)return;
+    e.preventDefault();
+    if(el.scrollIntoView){el.scrollIntoView({behavior:'smooth',block:'start'});}
+    else{window.scrollTo(0,el.offsetTop-16);}
+  }
+  var toc=document.querySelector('.toc');
+  if(toc){toc.addEventListener('click',onTap,false);}
+})();
+</script>
+</body>
+</html>
