@@ -101,10 +101,25 @@ body{
   color:var(--text-2);font-size:12px;margin-bottom:14px;
 }
 .foot .tip svg{width:14px;height:14px;flex:none;}
+.module-view{
+  margin-top:24px;background:var(--surface);border:1px solid var(--border);
+  border-radius:var(--r-lg);box-shadow:var(--shadow);overflow:hidden;
+}
+.module-toolbar{
+  display:flex;align-items:center;gap:12px;justify-content:space-between;
+  padding:12px 16px;border-bottom:1px solid var(--border);background:var(--sunken);
+}
+.back-btn{
+  border:1px solid var(--border);background:var(--surface);color:var(--text);
+  padding:8px 12px;border-radius:10px;font-size:14px;font-weight:700;cursor:pointer;
+}
+.module-title{font-size:14px;color:var(--text-2);font-weight:600;flex:1;text-align:right;}
+.module-frame{width:100%;height:min(78vh,980px);border:0;display:block;background:#fff;}
 </style>
 </head>
 <body>
 <div class="wrap">
+  <section id="menu-view">
   <div class="hero">
     <span class="badge">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1 0-5H20"/></svg>
@@ -293,6 +308,95 @@ body{
     </div>
     <div>依据人教版(PEP)教材整理 · 供个人学习使用</div>
   </div>
+  </section>
+
+  <section id="module-view" class="module-view" hidden>
+    <div class="module-toolbar">
+      <button id="back-btn" class="back-btn" type="button">返回菜单</button>
+      <span id="module-title" class="module-title"></span>
+    </div>
+    <iframe id="module-frame" class="module-frame" title="学习模块内容"></iframe>
+  </section>
 </div>
+<script>
+(function () {
+  var menuView = document.getElementById('menu-view');
+  var moduleView = document.getElementById('module-view');
+  var backBtn = document.getElementById('back-btn');
+  var moduleTitle = document.getElementById('module-title');
+  var moduleFrame = document.getElementById('module-frame');
+  var cards = document.querySelectorAll('.cards .card[href]');
+  var moduleMap = {};
+  var currentModule = '';
+
+  function normalizeHref(href) {
+    return (href || '').replace(/^\.\//, '');
+  }
+
+  function renderModule(moduleHref, title, pushHistory) {
+    var normalized = normalizeHref(moduleHref);
+    if (!moduleMap[normalized]) return;
+    currentModule = normalized;
+    moduleTitle.textContent = title || moduleMap[normalized] || normalized;
+    moduleFrame.src = normalized;
+    menuView.hidden = true;
+    moduleView.hidden = false;
+    if (pushHistory) {
+      history.pushState({ module: normalized, title: moduleTitle.textContent }, '', '#module=' + encodeURIComponent(normalized));
+    }
+  }
+
+  function renderMenu(updateHash) {
+    currentModule = '';
+    moduleFrame.removeAttribute('src');
+    moduleTitle.textContent = '';
+    moduleView.hidden = true;
+    menuView.hidden = false;
+    if (updateHash && location.hash) {
+      history.pushState({}, '', location.pathname + location.search);
+    }
+  }
+
+  for (var i = 0; i < cards.length; i += 1) {
+    (function (card) {
+      var href = normalizeHref(card.getAttribute('href'));
+      var titleNode = card.querySelector('h2');
+      var title = titleNode ? titleNode.textContent.trim() : href;
+      moduleMap[href] = title;
+      card.addEventListener('click', function (event) {
+        event.preventDefault();
+        renderModule(href, title, true);
+      });
+    })(cards[i]);
+  }
+
+  backBtn.addEventListener('click', function () {
+    if (currentModule) {
+      history.back();
+      return;
+    }
+    renderMenu(true);
+  });
+
+  window.addEventListener('popstate', function (event) {
+    var state = event.state || {};
+    if (state.module && moduleMap[state.module]) {
+      renderModule(state.module, state.title, false);
+    } else {
+      renderMenu(false);
+    }
+  });
+
+  if (location.hash.indexOf('#module=') === 0) {
+    var initialModule = normalizeHref(decodeURIComponent(location.hash.slice(8)));
+    if (moduleMap[initialModule]) {
+      history.replaceState({ module: initialModule, title: moduleMap[initialModule] }, '', location.hash);
+      renderModule(initialModule, moduleMap[initialModule], false);
+      return;
+    }
+  }
+  history.replaceState({}, '', location.pathname + location.search + location.hash);
+})();
+</script>
 </body>
 </html>
