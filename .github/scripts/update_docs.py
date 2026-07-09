@@ -153,7 +153,8 @@ def gen_readme_table(pages: list[dict]) -> str:
     lines = ["| 页面 | 在线地址 |", "|---|---|"]
     for p in pages:
         url = f"https://beupgo.github.io/{p['file']}"
-        lines.append(f"| {p['title']} | {url} |")
+        title = p["title"].replace("|", "\\|")
+        lines.append(f"| {title} | {url} |")
     lines.append("| 导航首页 | https://beupgo.github.io/ |")
     return "\n".join(lines)
 
