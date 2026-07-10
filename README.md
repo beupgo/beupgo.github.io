@@ -10,6 +10,8 @@
 | 运算定律专题 · 拆数凑整巧算 | https://beupgo.github.io/g4-math-simple-calc.html |
 | 简易方程专题 · 从天平到解方程 | https://beupgo.github.io/g5-math-equation.html |
 | 因数与倍数专题 · 数的秘密 | https://beupgo.github.io/g5-math-factors-multiples.html |
+| 裂差 · 裂和 专项练习题 · 小学数学专题 | https://beupgo.github.io/g5-math-fraction-split-exercises.html |
+| 裂差 · 裂和 应用练习 · 小学数学专题 | https://beupgo.github.io/g5-math-fraction-split-practice.html |
 | 多边形面积专题 · 割补转化思想 | https://beupgo.github.io/g5-math-polygon-area.html |
 | 作文是怎么"长"出来的 · 五年级写作创作过程 | https://beupgo.github.io/grade5-chinese-essay-process.html |
 | 写作提升训练 | https://beupgo.github.io/grade5-chinese-writing.html |
@@ -19,8 +21,6 @@
 | 图形思想专题 · 用画图解数学题 | https://beupgo.github.io/g6-math-geometric-thinking.html |
 | 北京六年级数学 · 母题学习系统 | https://beupgo.github.io/grade6-math.html |
 | 英语冒险岛 · 3-6年级暑假 | https://beupgo.github.io/english5.html |
-| 裂差 · 裂和 应用练习 · 小学数学专题 | https://beupgo.github.io/小学数学-裂差裂和-应用练习.html |
-| 裂差 · 裂和 专项练习题 · 小学数学专题 | https://beupgo.github.io/裂差裂和专项练习题.html |
 | 导航首页 | https://beupgo.github.io/ |
 <!-- AUTO-TABLE-END -->
 
@@ -41,6 +41,8 @@
 ├─ g4-math-simple-calc.html  # 运算定律专题 · 拆数凑整巧算
 ├─ g5-math-equation.html  # 简易方程专题 · 从天平到解方程
 ├─ g5-math-factors-multiples.html  # 因数与倍数专题 · 数的秘密
+├─ g5-math-fraction-split-exercises.html  # 裂差 · 裂和 专项练习题 · 小学数学专题
+├─ g5-math-fraction-split-practice.html  # 裂差 · 裂和 应用练习 · 小学数学专题
 ├─ g5-math-polygon-area.html  # 多边形面积专题 · 割补转化思想
 ├─ grade5-chinese-essay-process.html  # 作文是怎么"长"出来的 · 五年级写作创作过程
 ├─ grade5-chinese-writing.html  # 写作提升训练
@@ -49,9 +51,7 @@
 ├─ g6-math-fractions.html  # 分数专题 · 彻底学会分数
 ├─ g6-math-geometric-thinking.html  # 图形思想专题 · 用画图解数学题
 ├─ grade6-math.html  # 北京六年级数学 · 母题学习系统
-├─ english5.html  # 英语冒险岛 · 3-6年级暑假
-├─ 小学数学-裂差裂和-应用练习.html  # 裂差 · 裂和 应用练习 · 小学数学专题
-└─ 裂差裂和专项练习题.html  # 裂差 · 裂和 专项练习题 · 小学数学专题
+└─ english5.html  # 英语冒险岛 · 3-6年级暑假
 └─ README.md
 ```
 <!-- AUTO-FILES-END -->
