@@ -11,7 +11,6 @@
 | 简易方程专题 · 从天平到解方程 | https://beupgo.github.io/g5-math-equation.html |
 | 因数与倍数专题 · 数的秘密 | https://beupgo.github.io/g5-math-factors-multiples.html |
 | 裂差 · 裂和 专项练习题 · 小学数学专题 | https://beupgo.github.io/g5-math-fraction-split-exercises.html |
-| 裂差 · 裂和 应用练习 · 小学数学专题 | https://beupgo.github.io/g5-math-fraction-split-practice.html |
 | 多边形面积专题 · 割补转化思想 | https://beupgo.github.io/g5-math-polygon-area.html |
 | 作文是怎么"长"出来的 · 五年级写作创作过程 | https://beupgo.github.io/grade5-chinese-essay-process.html |
 | 写作提升训练 | https://beupgo.github.io/grade5-chinese-writing.html |
@@ -42,7 +41,6 @@
 ├─ g5-math-equation.html  # 简易方程专题 · 从天平到解方程
 ├─ g5-math-factors-multiples.html  # 因数与倍数专题 · 数的秘密
 ├─ g5-math-fraction-split-exercises.html  # 裂差 · 裂和 专项练习题 · 小学数学专题
-├─ g5-math-fraction-split-practice.html  # 裂差 · 裂和 应用练习 · 小学数学专题
 ├─ g5-math-polygon-area.html  # 多边形面积专题 · 割补转化思想
 ├─ grade5-chinese-essay-process.html  # 作文是怎么"长"出来的 · 五年级写作创作过程
 ├─ grade5-chinese-writing.html  # 写作提升训练
