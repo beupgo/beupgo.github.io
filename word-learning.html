@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, viewport-fit=cover">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="format-detection" content="telephone=no">
+<title>小学英语单词乐园 · 时间 · 交通 · 天气</title>
+<style>
+  :root{
+    --bg:#fef9f3;
+    --card:#ffffff;
+    --ink:#2d2a4a;
+    --muted:#7b7898;
+    --line:#efe7f7;
+    --time:#7c6cff;
+    --time-soft:#efeaff;
+    --trans:#22b8a6;
+    --trans-soft:#e2f7f4;
+    --weather:#ff9a3d;
+    --weather-soft:#fff0e2;
+    --shadow:0 10px 30px rgba(90,70,160,.10);
+    --radius:20px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
+  body{
+    font-family:"PingFang SC","Microsoft YaHei","Comic Sans MS",-apple-system,system-ui,sans-serif;
+    background:
+      radial-gradient(1200px 400px at 10% -10%,#fff3e0 0%,transparent 60%),
+      radial-gradient(1000px 400px at 100% 0%,#eae6ff 0%,transparent 55%),
+      var(--bg);
+    color:var(--ink);
+    min-height:100vh;
+    padding:calc(24px + env(safe-area-inset-top)) calc(16px + env(safe-area-inset-right)) 60px calc(16px + env(safe-area-inset-left));
+    -webkit-tap-highlight-color:transparent;
+    -webkit-font-smoothing:antialiased;
+  }
+  button{-webkit-tap-highlight-color:transparent;touch-action:manipulation}
+  .wrap{max-width:1120px;margin:0 auto}
+
+  header.hero{text-align:center;padding:26px 20px 8px}
+  .hero h1{font-size:34px;letter-spacing:1px;margin-bottom:8px}
+  .hero h1 .em{color:var(--time)}
+  .hero p{color:var(--muted);font-size:15px}
+  .hero .badges{margin-top:14px;display:flex;gap:8px;justify-content:center;flex-wrap:wrap}
+  .badge{font-size:13px;padding:5px 12px;border-radius:999px;background:#fff;box-shadow:var(--shadow);color:var(--muted)}
+
+  .tabs{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin:22px 0 6px}
+  .tab{
+    cursor:pointer;border:none;font:inherit;font-weight:700;padding:14px 26px;border-radius:999px;
+    background:#fff;color:var(--muted);box-shadow:var(--shadow);transition:.2s;display:flex;align-items:center;gap:8px;font-size:16px;min-height:48px;
+  }
+  .tab .ico{font-size:20px}
+  @media(hover:hover){ .tab:hover{transform:translateY(-2px)} }
+  .tab.active[data-cat="time"]{background:var(--time);color:#fff}
+  .tab.active[data-cat="trans"]{background:var(--trans);color:#fff}
+  .tab.active[data-cat="weather"]{background:var(--weather);color:#fff}
+
+  .cat-desc{text-align:center;color:var(--muted);font-size:14px;margin:14px 0 4px;min-height:20px}
+  .count{text-align:center;color:var(--muted);font-size:13px;margin-bottom:6px}
+
+  .sub-title{
+    grid-column:1/-1;font-size:16px;font-weight:800;margin:14px 2px 2px;display:flex;align-items:center;gap:8px;
+  }
+  .sub-title span.dot{width:10px;height:10px;border-radius:50%;display:inline-block}
+  .grid[data-c="time"] .sub-title span.dot{background:var(--time)}
+  .grid[data-c="trans"] .sub-title span.dot{background:var(--trans)}
+  .grid[data-c="weather"] .sub-title span.dot{background:var(--weather)}
+
+  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:18px;margin-top:18px}
+  .card{
+    background:var(--card);border-radius:var(--radius);padding:18px 18px 16px;box-shadow:var(--shadow);
+    border:2px solid transparent;transition:.2s;position:relative;overflow:hidden;
+  }
+  .card:hover{transform:translateY(-4px)}
+  @media(hover:none){ .card:active{transform:scale(.99)} }
+  .card::before{content:"";position:absolute;left:0;top:0;width:100%;height:6px}
+  .card[data-c="time"]::before{background:var(--time)}
+  .card[data-c="trans"]::before{background:var(--trans)}
+  .card[data-c="weather"]::before{background:var(--weather)}
+
+  .card-top{display:flex;align-items:center;gap:12px;margin-bottom:6px}
+  .emoji{width:56px;height:56px;border-radius:16px;display:grid;place-items:center;font-size:30px;flex-shrink:0}
+  .card[data-c="time"] .emoji{background:var(--time-soft)}
+  .card[data-c="trans"] .emoji{background:var(--trans-soft)}
+  .card[data-c="weather"] .emoji{background:var(--weather-soft)}
+
+  .word-en{font-size:24px;font-weight:800;line-height:1.1}
+  .word-cn{font-size:14px;color:var(--muted);margin-top:2px}
+
+  .phon{display:flex;align-items:center;gap:10px;margin:10px 0 12px;flex-wrap:wrap}
+  .ipa{font-family:"Times New Roman",serif;font-size:16px;color:var(--time);background:var(--time-soft);padding:3px 10px;border-radius:8px}
+  .card[data-c="trans"] .ipa{color:var(--trans);background:var(--trans-soft)}
+  .card[data-c="weather"] .ipa{color:var(--weather);background:var(--weather-soft)}
+  .play{
+    cursor:pointer;border:none;font:inherit;font-weight:700;font-size:14px;padding:9px 18px;border-radius:999px;
+    color:#fff;display:inline-flex;align-items:center;gap:6px;transition:.15s;min-height:40px;
+  }
+  .card[data-c="time"] .play{background:var(--time)}
+  .card[data-c="trans"] .play{background:var(--trans)}
+  .card[data-c="weather"] .play{background:var(--weather)}
+  .play:active{transform:scale(.94)}
+
+  .block{border-top:1px dashed var(--line);padding-top:10px;margin-top:6px}
+  .block .lbl{font-size:12px;color:var(--muted);font-weight:700;margin-bottom:4px;display:flex;align-items:center;gap:5px}
+  .sentence{font-size:14.5px;line-height:1.5}
+  .sentence .cn{color:var(--muted);font-size:13px;display:block;margin-top:2px}
+  .scene{font-size:13px;color:var(--ink);background:#faf8ff;border-radius:10px;padding:8px 10px;line-height:1.5}
+  .mini-play{cursor:pointer;border:none;background:transparent;font-size:20px;vertical-align:middle;margin-left:4px;opacity:.75;padding:4px 6px;min-width:36px;min-height:36px}
+  @media(hover:hover){ .mini-play:hover{opacity:1} }
+
+  footer{text-align:center;color:var(--muted);font-size:13px;margin-top:40px;line-height:1.7}
+  .tip{background:#fff;border-radius:14px;padding:12px 16px;box-shadow:var(--shadow);display:inline-block;margin-top:10px;font-size:13px;color:var(--muted)}
+
+  /* iPad 横屏 / 大屏：三列，卡片更大更好点 */
+  @media(min-width:834px){
+    .wrap{max-width:1200px}
+    .grid{grid-template-columns:repeat(3,1fr);gap:20px}
+    .word-en{font-size:25px}
+    .sentence{font-size:15.5px}
+    .scene{font-size:14px}
+  }
+  /* iPad 竖屏：两列 */
+  @media(min-width:600px) and (max-width:833px){
+    .grid{grid-template-columns:repeat(2,1fr);gap:18px}
+    .word-en{font-size:24px}
+    .sentence{font-size:15px}
+  }
+  @media(max-width:599px){
+    .hero h1{font-size:26px}
+    .grid{grid-template-columns:1fr}
+    .word-en{font-size:22px}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="hero">
+    <h1>🌈 小学英语<span class="em">单词乐园</span></h1>
+    <p>时间 · 交通方式 · 天气 —— 点击喇叭听读音，跟着例句大声读！</p>
+    <div class="badges">
+      <span class="badge">🔊 真人发音</span>
+      <span class="badge">🔤 国际音标</span>
+      <span class="badge">📝 例句 + 场景</span>
+      <span class="badge">📚 90+ 个单词</span>
+    </div>
+  </header>
+
+  <nav class="tabs">
+    <button class="tab active" data-cat="time"><span class="ico">⏰</span>时间</button>
+    <button class="tab" data-cat="trans"><span class="ico">🚌</span>交通方式</button>
+    <button class="tab" data-cat="weather"><span class="ico">☀️</span>天气</button>
+  </nav>
+  <div class="cat-desc" id="catDesc"></div>
+  <div class="count" id="count"></div>
+
+  <main class="grid" id="grid" data-c="time"></main>
+
+  <footer>
+    <div class="tip">💡 学习小贴士：每天学 5-8 个单词，先听读音，再跟读例句，最后想一想什么时候会用到它～</div>
+    <p style="margin-top:16px">🌟 小学英语单词乐园 · 时间 / 交通 / 天气专题 🌟</p>
+  </footer>
+</div>
+
+<script>
+const DATA = {
+  time: {
+    desc:"⏰ 一天时段、星期、月份、季节和常用时间词，全都在这里。",
+    groups:[
+      {title:"🕐 一天的时段", words:[
+        {en:"morning", cn:"早晨；上午", ipa:"/ˈmɔːnɪŋ/", emoji:"🌅", s:"Good morning, teacher!", sc:"早上到学校向老师同学问好时说。", scn:"老师，早上好!"},
+        {en:"noon", cn:"中午；正午", ipa:"/nuːn/", emoji:"🕛", s:"We have lunch at noon.", sc:"正午12点吃午饭时用。", scn:"我们中午吃午饭。"},
+        {en:"afternoon", cn:"下午", ipa:"/ˌɑːftəˈnuːn/", emoji:"🌤️", s:"I play football in the afternoon.", sc:"放学后的下午活动时用。", scn:"我下午踢足球。"},
+        {en:"evening", cn:"傍晚；晚上", ipa:"/ˈiːvnɪŋ/", emoji:"🌆", s:"We watch TV in the evening.", sc:"太阳下山后、晚饭前后时用。", scn:"我们晚上看电视。"},
+        {en:"night", cn:"夜晚", ipa:"/naɪt/", emoji:"🌙", s:"Good night! See you tomorrow.", sc:"睡觉前和家人道晚安时说。", scn:"晚安!明天见。"},
+        {en:"midnight", cn:"午夜；半夜", ipa:"/ˈmɪdnaɪt/", emoji:"🕛", s:"I was asleep at midnight.", sc:"说深夜12点、半夜时用。", scn:"半夜时我已经睡着了。"}
+      ]},
+      {title:"📅 昨天今天明天", words:[
+        {en:"today", cn:"今天", ipa:"/təˈdeɪ/", emoji:"📅", s:"Today is Monday.", sc:"说今天是星期几时用。", scn:"今天是星期一。"},
+        {en:"tomorrow", cn:"明天", ipa:"/təˈmɒrəʊ/", emoji:"➡️", s:"See you tomorrow!", sc:"约定明天见面、告别时说。", scn:"明天见!"},
+        {en:"yesterday", cn:"昨天", ipa:"/ˈjestədeɪ/", emoji:"⬅️", s:"I read a book yesterday.", sc:"讲昨天做过的事时用。", scn:"我昨天读了一本书。"},
+        {en:"now", cn:"现在", ipa:"/naʊ/", emoji:"⏰", s:"Letʼs go now.", sc:"说“马上、立刻”做某事时用。", scn:"我们现在走吧。"},
+        {en:"then", cn:"那时；然后", ipa:"/ðen/", emoji:"⏳", s:"First wash hands, then eat.", sc:"讲做事顺序、先后时用。", scn:"先洗手，然后吃饭。"}
+      ]},
+      {title:"⏱️ 计量时间", words:[
+        {en:"second", cn:"秒", ipa:"/ˈsekənd/", emoji:"⏲️", s:"Wait a second!", sc:"请别人等一小会儿时用。", scn:"等一下!"},
+        {en:"minute", cn:"分钟", ipa:"/ˈmɪnɪt/", emoji:"⏱️", s:"Wait a minute, please.", sc:"请别人稍等一下时常说。", scn:"请等一下。"},
+        {en:"hour", cn:"小时", ipa:"/ˈaʊə/", emoji:"⏳", s:"One hour has sixty minutes.", sc:"说时间长短，如“一小时后见”。", scn:"一小时有六十分钟。"},
+        {en:"oʼclock", cn:"…点钟", ipa:"/əˈklɒk/", emoji:"🕘", s:"It is seven oʼclock.", sc:"报整点时间时用。", scn:"现在七点钟。"},
+        {en:"half", cn:"半；一半", ipa:"/hɑːf/", emoji:"🕜", s:"Itʼs half past six.", sc:"说“几点半”时用。", scn:"现在六点半。"},
+        {en:"time", cn:"时间", ipa:"/taɪm/", emoji:"🕰️", s:"What time is it?", sc:"问现在几点时用。", scn:"现在几点了?"}
+      ]},
+      {title:"🗓️ 星期", words:[
+        {en:"week", cn:"星期；周", ipa:"/wiːk/", emoji:"🗓️", s:"There are seven days in a week.", sc:"说一周有几天时用。", scn:"一周有七天。"},
+        {en:"Monday", cn:"星期一", ipa:"/ˈmʌndeɪ/", emoji:"1️⃣", s:"We go to school on Monday.", sc:"说周一要上学时用。", scn:"我们星期一去上学。"},
+        {en:"Wednesday", cn:"星期三", ipa:"/ˈwenzdeɪ/", emoji:"3️⃣", s:"I have art class on Wednesday.", sc:"说周三有什么课时用。", scn:"我星期三有美术课。"},
+        {en:"Friday", cn:"星期五", ipa:"/ˈfraɪdeɪ/", emoji:"5️⃣", s:"Friday is my favorite day.", sc:"周五快到周末时用。", scn:"星期五是我最喜欢的一天。"},
+        {en:"Saturday", cn:"星期六", ipa:"/ˈsætədeɪ/", emoji:"🎈", s:"I play on Saturday.", sc:"说周末休息玩耍时用。", scn:"我星期六玩耍。"},
+        {en:"Sunday", cn:"星期日", ipa:"/ˈsʌndeɪ/", emoji:"☀️", s:"We rest on Sunday.", sc:"说周日在家休息时用。", scn:"我们星期天休息。"}
+      ]},
+      {title:"🍂 月份与季节", words:[
+        {en:"month", cn:"月", ipa:"/mʌnθ/", emoji:"📆", s:"There are twelve months in a year.", sc:"说一年有几个月时用。", scn:"一年有十二个月。"},
+        {en:"year", cn:"年", ipa:"/jɪə/", emoji:"🎉", s:"Happy New Year!", sc:"过新年、说“今年”时用。", scn:"新年快乐!"},
+        {en:"spring", cn:"春天", ipa:"/sprɪŋ/", emoji:"🌸", s:"Flowers open in spring.", sc:"说春天开花、变暖时用。", scn:"春天花儿开放。"},
+        {en:"summer", cn:"夏天", ipa:"/ˈsʌmə/", emoji:"🏖️", s:"We swim in summer.", sc:"说夏天很热、去游泳时用。", scn:"我们夏天去游泳。"},
+        {en:"autumn", cn:"秋天", ipa:"/ˈɔːtəm/", emoji:"🍁", s:"Leaves fall in autumn.", sc:"说秋天落叶、丰收时用。", scn:"秋天树叶飘落。"},
+        {en:"winter", cn:"冬天", ipa:"/ˈwɪntə/", emoji:"⛄", s:"It snows in winter.", sc:"说冬天很冷、下雪时用。", scn:"冬天会下雪。"}
+      ]}
+    ]
+  },
+  trans: {
+    desc:"🚌 陆地、天空、水上的各种交通工具，还有出行相关的动作和地点。",
+    groups:[
+      {title:"🚗 地上跑的", words:[
+        {en:"bus", cn:"公共汽车", ipa:"/bʌs/", emoji:"🚌", s:"I go to school by bus.", sc:"每天坐公交车上学时用。", scn:"我坐公交车去上学。"},
+        {en:"car", cn:"小汽车", ipa:"/kɑː/", emoji:"🚗", s:"My father has a red car.", sc:"讲家里的车、坐车时用。", scn:"我爸爸有一辆红色的车。"},
+        {en:"taxi", cn:"出租车", ipa:"/ˈtæksi/", emoji:"🚕", s:"Letʼs take a taxi home.", sc:"打车回家、赶时间时用。", scn:"我们打车回家吧。"},
+        {en:"jeep", cn:"吉普车", ipa:"/dʒiːp/", emoji:"🚙", s:"The jeep can go up the hill.", sc:"说越野车、爬山的车时用。", scn:"吉普车能开上山。"},
+        {en:"truck", cn:"卡车", ipa:"/trʌk/", emoji:"🚚", s:"The truck carries boxes.", sc:"说运货的大卡车时用。", scn:"卡车运送箱子。"},
+        {en:"bike", cn:"自行车", ipa:"/baɪk/", emoji:"🚲", s:"I ride a bike in the park.", sc:"骑自行车玩耍时用。", scn:"我在公园里骑自行车。"},
+        {en:"motorbike", cn:"摩托车", ipa:"/ˈməʊtəbaɪk/", emoji:"🏍️", s:"He rides a motorbike to work.", sc:"说骑摩托车出行时用。", scn:"他骑摩托车去上班。"}
+      ]},
+      {title:"🚆 轨道上的", words:[
+        {en:"train", cn:"火车", ipa:"/treɪn/", emoji:"🚆", s:"We go to Beijing by train.", sc:"坐火车出远门时用。", scn:"我们坐火车去北京。"},
+        {en:"subway", cn:"地铁", ipa:"/ˈsʌbweɪ/", emoji:"🚇", s:"The subway is very fast.", sc:"在城市里坐地铁时用。", scn:"地铁非常快。"},
+        {en:"metro", cn:"地铁", ipa:"/ˈmetrəʊ/", emoji:"🚈", s:"I take the metro every day.", sc:"subway的另一种说法。", scn:"我每天坐地铁。"}
+      ]},
+      {title:"✈️ 天上飞的", words:[
+        {en:"plane", cn:"飞机", ipa:"/pleɪn/", emoji:"✈️", s:"A plane can fly in the sky.", sc:"坐飞机去很远的地方时用。", scn:"飞机能在天上飞。"},
+        {en:"airplane", cn:"飞机", ipa:"/ˈeəpleɪn/", emoji:"🛫", s:"The airplane is taking off.", sc:"plane的完整说法。", scn:"飞机正在起飞。"},
+        {en:"helicopter", cn:"直升机", ipa:"/ˈhelɪkɒptə/", emoji:"🚁", s:"A helicopter flies over the city.", sc:"说会悬停的直升机时用。", scn:"直升机飞过城市。"},
+        {en:"rocket", cn:"火箭", ipa:"/ˈrɒkɪt/", emoji:"🚀", s:"The rocket flies to space.", sc:"说火箭上太空时用。", scn:"火箭飞向太空。"}
+      ]},
+      {title:"⛵ 水上漂的", words:[
+        {en:"ship", cn:"轮船", ipa:"/ʃɪp/", emoji:"🚢", s:"The ship is on the sea.", sc:"说大船、坐船过海时用。", scn:"轮船在海上。"},
+        {en:"boat", cn:"小船", ipa:"/bəʊt/", emoji:"⛵", s:"We row a boat on the lake.", sc:"在湖上划小船玩时用。", scn:"我们在湖上划船。"}
+      ]},
+      {title:"🚶 出行动作与说法", words:[
+        {en:"walk", cn:"步行；走路", ipa:"/wɔːk/", emoji:"🚶", s:"I walk to school every day.", sc:"家近、走路上学时用。", scn:"我每天走路去上学。"},
+        {en:"run", cn:"跑", ipa:"/rʌn/", emoji:"🏃", s:"Donʼt run on the road.", sc:"提醒不要在马路上跑时用。", scn:"不要在马路上跑。"},
+        {en:"ride", cn:"骑；乘坐", ipa:"/raɪd/", emoji:"🚴", s:"I ride a bike to the park.", sc:"骑车、骑马时用ride。", scn:"我骑自行车去公园。"},
+        {en:"drive", cn:"驾驶", ipa:"/draɪv/", emoji:"🧑‍✈️", s:"My mother can drive a car.", sc:"说开车这个动作时用。", scn:"我妈妈会开车。"},
+        {en:"fly", cn:"飞", ipa:"/flaɪ/", emoji:"🕊️", s:"Birds can fly.", sc:"说鸟或飞机飞行时用。", scn:"鸟儿会飞。"},
+        {en:"by", cn:"乘坐(交通工具)", ipa:"/baɪ/", emoji:"➡️", s:"How do you go to school? By bike.", sc:"回答“怎么去”时用by。", scn:"你怎么去上学?骑自行车。"}
+      ]},
+      {title:"🚦 交通场所与设施", words:[
+        {en:"station", cn:"车站", ipa:"/ˈsteɪʃn/", emoji:"🚉", s:"Wait for the bus at the station.", sc:"在车站等车时用。", scn:"在车站等公交车。"},
+        {en:"airport", cn:"机场", ipa:"/ˈeəpɔːt/", emoji:"🛬", s:"We go to the airport by taxi.", sc:"去机场坐飞机时用。", scn:"我们打车去机场。"},
+        {en:"road", cn:"马路；道路", ipa:"/rəʊd/", emoji:"🛣️", s:"Look before you cross the road.", sc:"过马路要小心时用。", scn:"过马路前先看一看。"},
+        {en:"traffic light", cn:"红绿灯", ipa:"/ˈtræfɪk laɪt/", emoji:"🚦", s:"Stop at the red traffic light.", sc:"讲交通规则、红灯停时用。", scn:"红灯时要停下。"}
+      ]}
+    ]
+  },
+  weather: {
+    desc:"☀️ 各种天气、冷热感受、天气现象和四季气候，学会描述今天的天气。",
+    groups:[
+      {title:"🌦️ 天气怎么样", words:[
+        {en:"weather", cn:"天气", ipa:"/ˈweðə/", emoji:"🌈", s:"Howʼs the weather today?", sc:"问别人今天天气怎么样时用。", scn:"今天天气怎么样?"},
+        {en:"sunny", cn:"晴朗的", ipa:"/ˈsʌni/", emoji:"☀️", s:"It is sunny today.", sc:"天空有太阳、天气好时用。", scn:"今天是晴天。"},
+        {en:"cloudy", cn:"多云的", ipa:"/ˈklaʊdi/", emoji:"☁️", s:"The sky is cloudy.", sc:"天上有很多云时用。", scn:"天空多云。"},
+        {en:"rainy", cn:"下雨的", ipa:"/ˈreɪni/", emoji:"🌧️", s:"It is rainy, take an umbrella.", sc:"下雨天提醒带伞时用。", scn:"下雨了，带把伞吧。"},
+        {en:"snowy", cn:"下雪的", ipa:"/ˈsnəʊi/", emoji:"❄️", s:"Itʼs snowy. Letʼs make a snowman!", sc:"下雪天堆雪人时用。", scn:"下雪啦!我们堆雪人吧!"},
+        {en:"windy", cn:"有风的", ipa:"/ˈwɪndi/", emoji:"🌬️", s:"It is windy, hold your hat.", sc:"刮大风、放风筝时用。", scn:"风很大，扶好帽子。"},
+        {en:"foggy", cn:"有雾的", ipa:"/ˈfɒɡi/", emoji:"🌫️", s:"It is foggy in the morning.", sc:"早晨起雾、看不清时用。", scn:"早上有雾。"},
+        {en:"stormy", cn:"有暴风雨的", ipa:"/ˈstɔːmi/", emoji:"⛈️", s:"Stay home on a stormy day.", sc:"暴风雨天待在家里时用。", scn:"暴风雨天待在家里。"}
+      ]},
+      {title:"🌡️ 冷热感受", words:[
+        {en:"hot", cn:"炎热的", ipa:"/hɒt/", emoji:"🔥", s:"It is hot in summer.", sc:"夏天很热、想喝冷饮时用。", scn:"夏天很热。"},
+        {en:"warm", cn:"温暖的", ipa:"/wɔːm/", emoji:"🌤️", s:"Spring is warm and nice.", sc:"不冷不热、天气舒服时用。", scn:"春天温暖又美好。"},
+        {en:"cool", cn:"凉爽的", ipa:"/kuːl/", emoji:"🍂", s:"Autumn is cool.", sc:"秋天凉快、舒适时用。", scn:"秋天很凉爽。"},
+        {en:"cold", cn:"寒冷的", ipa:"/kəʊld/", emoji:"🥶", s:"It is cold, put on your coat.", sc:"冬天很冷、提醒穿外套时用。", scn:"天冷了，穿上外套。"},
+        {en:"wet", cn:"潮湿的；湿的", ipa:"/wet/", emoji:"💧", s:"The road is wet after rain.", sc:"下雨后地面湿时用。", scn:"下雨后路面是湿的。"},
+        {en:"dry", cn:"干燥的", ipa:"/draɪ/", emoji:"🏜️", s:"The weather is dry today.", sc:"天气干、不下雨时用。", scn:"今天天气很干燥。"}
+      ]},
+      {title:"🌧️ 天气现象", words:[
+        {en:"sun", cn:"太阳", ipa:"/sʌn/", emoji:"🌞", s:"The sun is bright.", sc:"说太阳、阳光时用。", scn:"太阳很明亮。"},
+        {en:"cloud", cn:"云", ipa:"/klaʊd/", emoji:"☁️", s:"There is a white cloud.", sc:"说天上的云时用。", scn:"有一朵白云。"},
+        {en:"rain", cn:"雨；下雨", ipa:"/reɪn/", emoji:"🌦️", s:"I like to play in the rain.", sc:"说“雨”本身或在雨里玩时用。", scn:"我喜欢在雨里玩。"},
+        {en:"snow", cn:"雪；下雪", ipa:"/snəʊ/", emoji:"🌨️", s:"The snow is white and soft.", sc:"说雪、玩雪时用。", scn:"雪又白又软。"},
+        {en:"wind", cn:"风", ipa:"/wɪnd/", emoji:"🍃", s:"The wind is very strong.", sc:"说“风”本身、风大时用。", scn:"风非常大。"},
+        {en:"fog", cn:"雾", ipa:"/fɒɡ/", emoji:"🌫️", s:"The fog is very thick.", sc:"说浓雾、看不清路时用。", scn:"雾很浓。"},
+        {en:"rainbow", cn:"彩虹", ipa:"/ˈreɪnbəʊ/", emoji:"🌈", s:"I can see a rainbow!", sc:"雨后看到彩虹时用。", scn:"我看到一道彩虹!"},
+        {en:"thunder", cn:"雷", ipa:"/ˈθʌndə/", emoji:"⚡", s:"I hear thunder.", sc:"打雷、听到雷声时用。", scn:"我听到打雷了。"},
+        {en:"umbrella", cn:"雨伞", ipa:"/ʌmˈbrelə/", emoji:"☂️", s:"Take your umbrella, itʼs raining.", sc:"下雨要带伞时用。", scn:"带上雨伞，下雨了。"}
+      ]},
+      {title:"🌍 温度与季节感受", words:[
+        {en:"degree", cn:"度(温度)", ipa:"/dɪˈɡriː/", emoji:"🌡️", s:"It is thirty degrees today.", sc:"说气温多少度时用。", scn:"今天有三十度。"},
+        {en:"temperature", cn:"温度；气温", ipa:"/ˈtemprətʃə/", emoji:"🌡️", s:"The temperature is high.", sc:"说气温高低时用。", scn:"气温很高。"},
+        {en:"season", cn:"季节", ipa:"/ˈsiːzn/", emoji:"🍁", s:"Which season do you like?", sc:"问喜欢哪个季节时用。", scn:"你喜欢哪个季节?"}
+      ]}
+    ]
+  }
+};
+
+let voice = null;
+function pickVoice(){
+  const vs = speechSynthesis.getVoices();
+  voice = vs.find(v=>/en-GB/i.test(v.lang)) ||
+          vs.find(v=>/en[-_]/i.test(v.lang)) ||
+          vs.find(v=>/^en/i.test(v.lang)) ||
+          vs.find(v=>/English/i.test(v.name)) || null;
+}
+if('speechSynthesis' in window){ pickVoice(); speechSynthesis.onvoiceschanged = pickVoice; }
+
+/* iOS/iPad Safari 需要在首次用户手势里“解锁”语音 */
+let speechUnlocked = false;
+function unlockSpeech(){
+  if(speechUnlocked || !('speechSynthesis' in window)) return;
+  try{
+    const u = new SpeechSynthesisUtterance('');
+    u.volume = 0;
+    speechSynthesis.speak(u);
+    speechUnlocked = true;
+  }catch(e){}
+}
+document.addEventListener('touchstart', unlockSpeech, {once:true, passive:true});
+document.addEventListener('click', unlockSpeech, {once:true});
+
+function speak(text, rate){
+  if(!('speechSynthesis' in window)){ alert('当前浏览器不支持朗读功能，请更新到较新版本的 Safari 或 Chrome。'); return; }
+  unlockSpeech();
+  speechSynthesis.cancel();               // 打断上一个，避免 iOS 卡住
+  if(!voice) pickVoice();                  // 兜底再取一次
+  const u = new SpeechSynthesisUtterance(text);
+  u.lang = (voice && voice.lang) || 'en-US';
+  u.rate = rate || .85;
+  u.pitch = 1;
+  if(voice) u.voice = voice;
+  // iOS 有时首个请求被吞，稍作延迟更稳
+  setTimeout(()=>{ try{ speechSynthesis.speak(u); }catch(e){} }, 0);
+}
+
+const grid = document.getElementById('grid');
+const catDesc = document.getElementById('catDesc');
+const countEl = document.getElementById('count');
+
+function cardHTML(cat,w){
+  return `
+    <div class="card" data-c="${cat}">
+      <div class="card-top">
+        <div class="emoji">${w.emoji}</div>
+        <div>
+          <div class="word-en">${w.en}</div>
+          <div class="word-cn">${w.cn}</div>
+        </div>
+      </div>
+      <div class="phon">
+        <span class="ipa">${w.ipa}</span>
+        <button class="play" onclick="speak('${w.en.replace(/ʼ/g,"")}',0.8)">🔊 读单词</button>
+      </div>
+      <div class="block">
+        <div class="lbl">📝 例句
+          <button class="mini-play" title="朗读例句" onclick="speak('${w.s.replace(/'/g,"").replace(/ʼ/g,"")}',0.82)">🔊</button>
+        </div>
+        <div class="sentence">${w.s}<span class="cn">${w.scn}</span></div>
+      </div>
+      <div class="block">
+        <div class="lbl">🎯 使用场景</div>
+        <div class="scene">${w.sc}</div>
+      </div>
+    </div>`;
+}
+
+function render(cat){
+  const d = DATA[cat];
+  grid.setAttribute('data-c',cat);
+  catDesc.textContent = d.desc;
+  let total = 0, html = '';
+  d.groups.forEach(g=>{
+    html += `<div class="sub-title"><span class="dot"></span>${g.title}</div>`;
+    g.words.forEach(w=>{ html += cardHTML(cat,w); total++; });
+  });
+  grid.innerHTML = html;
+  countEl.textContent = `本主题共 ${total} 个单词`;
+}
+
+document.querySelectorAll('.tab').forEach(t=>{
+  t.addEventListener('click',()=>{
+    document.querySelectorAll('.tab').forEach(x=>x.classList.remove('active'));
+    t.classList.add('active');
+    render(t.dataset.cat);
+    window.scrollTo({top:0,behavior:'smooth'});
+  });
+});
+
+render('time');
+</script>
+</body>
+</html>
