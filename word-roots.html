@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, viewport-fit=cover">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="format-detection" content="telephone=no">
+<title>小学英语词根词缀乐园 · 拆词记单词</title>
+<style>
+  :root{
+    --bg:#f4f8ff;
+    --card:#ffffff;
+    --ink:#242347;
+    --muted:#78809c;
+    --line:#e7edf9;
+    --a:#5b7cff; --a-s:#e9eeff;   /* 后缀-蓝 */
+    --b:#25b47e; --b-s:#e2f6ee;   /* 前缀-绿 */
+    --c:#ff7a59; --c-s:#ffece5;   /* 合成词-橙 */
+    --d:#a768ff; --d-s:#f2e9ff;   /* 变形-紫 */
+    --shadow:0 10px 30px rgba(70,90,160,.10);
+    --radius:20px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
+  body{
+    font-family:"PingFang SC","Microsoft YaHei","Comic Sans MS",-apple-system,system-ui,sans-serif;
+    background:
+      radial-gradient(1200px 400px at 0% -10%,#e6f0ff 0%,transparent 60%),
+      radial-gradient(1000px 400px at 100% 0%,#eafaf2 0%,transparent 55%),
+      var(--bg);
+    color:var(--ink);min-height:100vh;
+    padding:calc(24px + env(safe-area-inset-top)) calc(16px + env(safe-area-inset-right)) 60px calc(16px + env(safe-area-inset-left));
+    -webkit-tap-highlight-color:transparent;-webkit-font-smoothing:antialiased;
+  }
+  button{-webkit-tap-highlight-color:transparent;touch-action:manipulation}
+  .wrap{max-width:1120px;margin:0 auto}
+
+  header.hero{text-align:center;padding:26px 20px 8px}
+  .hero h1{font-size:33px;letter-spacing:1px;margin-bottom:8px}
+  .hero h1 .em{color:var(--a)}
+  .hero p{color:var(--muted);font-size:15px;line-height:1.6}
+  .hero .badges{margin-top:14px;display:flex;gap:8px;justify-content:center;flex-wrap:wrap}
+  .badge{font-size:13px;padding:5px 12px;border-radius:999px;background:#fff;box-shadow:var(--shadow);color:var(--muted)}
+
+  .intro{
+    background:#fff;border-radius:var(--radius);box-shadow:var(--shadow);
+    padding:18px 22px;margin:22px auto 6px;max-width:820px;font-size:14.5px;line-height:1.8;color:var(--ink);
+  }
+  .intro b{color:var(--a)}
+  .formula{
+    display:flex;align-items:center;gap:8px;flex-wrap:wrap;justify-content:center;
+    font-weight:800;font-size:16px;margin-top:8px;
+  }
+  .formula .box{padding:6px 12px;border-radius:10px;background:var(--b-s);color:var(--b)}
+  .formula .box.suf{background:var(--a-s);color:var(--a)}
+  .formula .box.res{background:var(--c-s);color:var(--c)}
+  .formula .op{color:var(--muted)}
+
+  .tabs{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin:22px 0 6px}
+  .tab{
+    cursor:pointer;border:none;font:inherit;font-weight:700;padding:14px 24px;border-radius:999px;
+    background:#fff;color:var(--muted);box-shadow:var(--shadow);transition:.2s;display:flex;align-items:center;gap:8px;font-size:15.5px;min-height:48px;
+  }
+  .tab .ico{font-size:19px}
+  @media(hover:hover){ .tab:hover{transform:translateY(-2px)} }
+  .tab.active{background:var(--a);color:#fff}
+  .cat-desc{text-align:center;color:var(--muted);font-size:14px;margin:14px 0 4px;min-height:20px}
+
+  /* 词缀大卡 */
+  .affix{
+    background:#fff;border-radius:24px;box-shadow:var(--shadow);margin-top:22px;overflow:hidden;
+    border:2px solid transparent;
+  }
+  .affix-head{
+    display:flex;align-items:center;gap:16px;padding:20px 24px;position:relative;flex-wrap:wrap;
+  }
+  .affix-head::before{content:"";position:absolute;left:0;top:0;height:100%;width:8px}
+  .affix[data-t="suf"] .affix-head::before{background:var(--a)}
+  .affix[data-t="pre"] .affix-head::before{background:var(--b)}
+  .affix-tag{
+    font-size:32px;font-weight:900;font-family:"Times New Roman",serif;padding:10px 20px;border-radius:16px;flex-shrink:0;
+  }
+  .affix[data-t="suf"] .affix-tag{background:var(--a-s);color:var(--a)}
+  .affix[data-t="pre"] .affix-tag{background:var(--b-s);color:var(--b)}
+  .affix-info{flex:1;min-width:200px}
+  .affix-info .name{font-size:18px;font-weight:800}
+  .affix-info .meaning{color:var(--muted);font-size:14px;margin-top:3px;line-height:1.6}
+  .rule{
+    display:inline-flex;align-items:center;gap:8px;background:var(--d-s);color:var(--d);
+    font-size:13px;font-weight:700;padding:6px 12px;border-radius:10px;margin-top:8px;flex-wrap:wrap;
+  }
+
+  .word-list{padding:6px 18px 20px;display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:14px}
+  .word{
+    border:1px solid var(--line);border-radius:16px;padding:14px 15px;background:#fcfdff;transition:.15s;
+  }
+  @media(hover:hover){ .word:hover{background:#fff;box-shadow:0 6px 18px rgba(70,90,160,.08);transform:translateY(-2px)} }
+  @media(hover:none){ .word:active{background:#fff} }
+  .word-top{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap}
+  .build{font-size:13px;color:var(--muted);font-weight:700;display:flex;align-items:center;gap:5px;flex-wrap:wrap}
+  .build .p{color:var(--b);background:var(--b-s);padding:1px 7px;border-radius:6px}
+  .build .r{color:var(--ink);background:#eef1f7;padding:1px 7px;border-radius:6px}
+  .build .s{color:var(--a);background:var(--a-s);padding:1px 7px;border-radius:6px}
+  .build .eq{color:var(--muted)}
+
+  .w-en{font-size:21px;font-weight:800;margin-top:8px}
+  .w-cn{font-size:13.5px;color:var(--muted);margin-top:1px}
+  .w-line{display:flex;align-items:center;gap:9px;margin-top:8px;flex-wrap:wrap}
+  .w-ipa{font-family:"Times New Roman",serif;font-size:15px;color:var(--a);background:var(--a-s);padding:2px 9px;border-radius:8px}
+  .play{
+    cursor:pointer;border:none;font:inherit;font-weight:700;font-size:14px;padding:9px 16px;border-radius:999px;
+    color:#fff;background:var(--a);display:inline-flex;align-items:center;gap:5px;transition:.15s;min-height:40px;
+  }
+  .play:active{transform:scale(.94)}
+  .w-ex{
+    font-size:13.5px;line-height:1.5;margin-top:9px;border-top:1px dashed var(--line);padding-top:9px;
+  }
+  .w-ex .cn{display:block;color:var(--muted);font-size:12.5px;margin-top:2px}
+  .mini-play{cursor:pointer;border:none;background:transparent;font-size:20px;margin-left:3px;opacity:.75;vertical-align:middle;padding:4px 6px;min-width:36px;min-height:36px}
+  @media(hover:hover){ .mini-play:hover{opacity:1} }
+
+  footer{text-align:center;color:var(--muted);font-size:13px;margin-top:40px;line-height:1.7}
+  .tip{background:#fff;border-radius:14px;padding:12px 18px;box-shadow:var(--shadow);display:inline-block;margin-top:10px;font-size:13px;color:var(--muted);max-width:760px;line-height:1.7}
+
+  /* iPad 横屏 / 大屏：一行三张单词卡 */
+  @media(min-width:834px){
+    .wrap{max-width:1200px}
+    .word-list{grid-template-columns:repeat(3,1fr)}
+    .w-en{font-size:22px}
+    .w-ex{font-size:14.5px}
+  }
+  /* iPad 竖屏：两张 */
+  @media(min-width:600px) and (max-width:833px){
+    .word-list{grid-template-columns:repeat(2,1fr)}
+  }
+  @media(max-width:599px){
+    .hero h1{font-size:25px}
+    .word-list{grid-template-columns:1fr;padding:6px 14px 18px}
+    .affix-tag{font-size:26px}
+    .affix-head{padding:16px 16px;gap:12px}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="hero">
+    <h1>🧩 小学英语<span class="em">词根词缀乐园</span></h1>
+    <p>学会拆单词、记单词！认识 <b>-ful / -less</b> 这样的后缀和 <b>un- / re-</b> 这样的前缀，<br>一个词根变出一大串新单词～</p>
+    <div class="badges">
+      <span class="badge">🧩 拆词法</span>
+      <span class="badge">🔤 国际音标</span>
+      <span class="badge">🔊 真人发音</span>
+      <span class="badge">📚 20+ 个词缀</span>
+    </div>
+  </header>
+
+  <div class="intro">
+    <b>什么是词根词缀?</b> 很多英语单词就像搭积木:一个中心词(<b>词根</b>)前面或后面加上一个小零件(<b>词缀</b>),意思就变了！记住词缀的意思,就能一次记住很多单词。
+    <div class="formula">
+      <span class="box">care 关心</span>
+      <span class="op">+</span>
+      <span class="box suf">-ful 充满</span>
+      <span class="op">=</span>
+      <span class="box res">careful 小心的</span>
+    </div>
+  </div>
+
+  <nav class="tabs" id="tabs"></nav>
+  <div class="cat-desc" id="catDesc"></div>
+
+  <main id="list"></main>
+
+  <footer>
+    <div class="tip">💡 学习方法:先看词根本身的意思 → 再记词缀的意思 → 最后把它们“加”起来猜整个词。会拆词，记单词就快多啦!</div>
+    <p style="margin-top:16px">🌟 小学英语词根词缀乐园 · 拆词记单词专题 🌟</p>
+  </footer>
+</div>
+
+<script>
+/* 每个词缀:type(pre前缀/suf后缀), tag, name, meaning, rule, words[] */
+/* word: p(前缀,可空) r(词根) s(后缀,可空) en cn ipa ex(英文例句) exc(中文) */
+const AFFIXES = {
+  "adj":{
+    label:"形容词后缀", icon:"🎨",
+    desc:"🎨 这些后缀加在名词/动词后面，就变成形容词，用来描述人或事物。",
+    items:[
+      {type:"suf",tag:"-ful",name:"-ful　充满…的、有…的",meaning:"来自 full（满的）。名词 + ful = “充满某种东西的”。",
+       rule:"名词/动词 + ful → 形容词",
+       words:[
+        {r:"care",s:"-ful",en:"careful",cn:"小心的；仔细的",ipa:"/ˈkeəfl/",ex:"Be careful on the road.",exc:"过马路要小心。"},
+        {r:"help",s:"-ful",en:"helpful",cn:"有帮助的",ipa:"/ˈhelpfl/",ex:"She is a helpful girl.",exc:"她是个乐于助人的女孩。"},
+        {r:"use",s:"-ful",en:"useful",cn:"有用的",ipa:"/ˈjuːsfl/",ex:"This book is very useful.",exc:"这本书很有用。"},
+        {r:"beauty",s:"-ful",en:"beautiful",cn:"美丽的",ipa:"/ˈbjuːtɪfl/",ex:"What a beautiful flower!",exc:"多美的一朵花啊!"},
+        {r:"wonder",s:"-ful",en:"wonderful",cn:"精彩的；极好的",ipa:"/ˈwʌndəfl/",ex:"We had a wonderful day.",exc:"我们度过了美好的一天。"},
+        {r:"colour",s:"-ful",en:"colourful",cn:"多彩的",ipa:"/ˈkʌləfl/",ex:"The rainbow is colourful.",exc:"彩虹五颜六色。"},
+        {r:"thank",s:"-ful",en:"thankful",cn:"感激的",ipa:"/ˈθæŋkfl/",ex:"I am thankful to you.",exc:"我很感激你。"},
+        {r:"play",s:"-ful",en:"playful",cn:"爱玩的；顽皮的",ipa:"/ˈpleɪfl/",ex:"The puppy is playful.",exc:"小狗很爱玩。"}
+       ]},
+      {type:"suf",tag:"-less",name:"-less　没有…的",meaning:"来自 less（更少）。名词 + less = “没有某种东西的”，和 -ful 意思相反。",
+       rule:"名词 + less → 形容词（表“没有”）",
+       words:[
+        {r:"care",s:"-less",en:"careless",cn:"粗心的",ipa:"/ˈkeələs/",ex:"Donʼt be careless in the exam.",exc:"考试时别粗心。"},
+        {r:"use",s:"-less",en:"useless",cn:"无用的",ipa:"/ˈjuːsləs/",ex:"A broken pen is useless.",exc:"坏了的笔没用了。"},
+        {r:"home",s:"-less",en:"homeless",cn:"无家可归的",ipa:"/ˈhəʊmləs/",ex:"We help homeless dogs.",exc:"我们帮助无家可归的狗。"},
+        {r:"hope",s:"-less",en:"hopeless",cn:"没希望的",ipa:"/ˈhəʊpləs/",ex:"Never feel hopeless.",exc:"永远不要觉得没希望。"}
+       ]},
+      {type:"suf",tag:"-y",name:"-y　多…的、有…的",meaning:"名词 + y = 形容词，常用来描述天气、味道、样子。",
+       rule:"名词 + y → 形容词（有时双写末字母或去 e）",
+       words:[
+        {r:"sun",s:"-ny",en:"sunny",cn:"晴朗的",ipa:"/ˈsʌni/",ex:"It is sunny today.",exc:"今天是晴天。"},
+        {r:"rain",s:"-y",en:"rainy",cn:"下雨的",ipa:"/ˈreɪni/",ex:"It is rainy outside.",exc:"外面在下雨。"},
+        {r:"cloud",s:"-y",en:"cloudy",cn:"多云的",ipa:"/ˈklaʊdi/",ex:"The sky is cloudy.",exc:"天空多云。"},
+        {r:"wind",s:"-y",en:"windy",cn:"有风的",ipa:"/ˈwɪndi/",ex:"It is windy today.",exc:"今天有风。"},
+        {r:"snow",s:"-y",en:"snowy",cn:"下雪的",ipa:"/ˈsnəʊi/",ex:"It is snowy in winter.",exc:"冬天会下雪。"},
+        {r:"health",s:"-y",en:"healthy",cn:"健康的",ipa:"/ˈhelθi/",ex:"Apples are healthy.",exc:"苹果有益健康。"},
+        {r:"luck",s:"-y",en:"lucky",cn:"幸运的",ipa:"/ˈlʌki/",ex:"You are so lucky!",exc:"你真幸运!"},
+        {r:"noise",s:"-y",en:"noisy",cn:"吵闹的",ipa:"/ˈnɔɪzi/",ex:"The class is noisy.",exc:"教室很吵。"}
+       ]},
+      {type:"suf",tag:"-able",name:"-able　可…的、能…的",meaning:"动词 + able = “可以被…的”，表示能做某事。",
+       rule:"动词 + able → 形容词",
+       words:[
+        {r:"en(joy)",s:"-able",en:"enjoyable",cn:"令人愉快的",ipa:"/ɪnˈdʒɔɪəbl/",ex:"It was an enjoyable trip.",exc:"那是一次愉快的旅行。"},
+        {r:"comfort",s:"-able",en:"comfortable",cn:"舒服的",ipa:"/ˈkʌmftəbl/",ex:"This chair is comfortable.",exc:"这把椅子很舒服。"},
+        {r:"like",s:"-able",en:"likeable",cn:"讨人喜欢的",ipa:"/ˈlaɪkəbl/",ex:"He is a likeable boy.",exc:"他是个讨人喜欢的男孩。"}
+       ]}
+    ]
+  },
+  "noun":{
+    label:"名词后缀", icon:"📦",
+    desc:"📦 这些后缀能把动词或形容词变成名词，表示动作、状态或事物。",
+    items:[
+      {type:"suf",tag:"-tion",name:"-tion / -ion　…的动作、…的事",meaning:"动词 + tion = 名词，表示一个动作或结果。",
+       rule:"动词 + (t)ion → 名词",
+       words:[
+        {r:"act",s:"-ion",en:"action",cn:"行动",ipa:"/ˈækʃn/",ex:"Actions speak louder than words.",exc:"行动胜于言语。"},
+        {r:"invent",s:"-ion",en:"invention",cn:"发明",ipa:"/ɪnˈvenʃn/",ex:"The phone is a great invention.",exc:"电话是一项伟大的发明。"},
+        {r:"educate",s:"-ion",en:"education",cn:"教育",ipa:"/ˌedʒuˈkeɪʃn/",ex:"Education is important.",exc:"教育很重要。"},
+        {r:"celebrate",s:"-ion",en:"celebration",cn:"庆祝",ipa:"/ˌselɪˈbreɪʃn/",ex:"We have a celebration.",exc:"我们举行庆祝活动。"},
+        {r:"decorate",s:"-ion",en:"decoration",cn:"装饰",ipa:"/ˌdekəˈreɪʃn/",ex:"The decorations are nice.",exc:"这些装饰很好看。"}
+       ]},
+      {type:"suf",tag:"-ness",name:"-ness　…的状态",meaning:"形容词 + ness = 名词，表示一种状态或性质。",
+       rule:"形容词 + ness → 名词",
+       words:[
+        {r:"happy(-i)",s:"-ness",en:"happiness",cn:"幸福；快乐",ipa:"/ˈhæpinəs/",ex:"Money canʼt buy happiness.",exc:"金钱买不到快乐。"},
+        {r:"ill",s:"-ness",en:"illness",cn:"疾病",ipa:"/ˈɪlnəs/",ex:"He is off school due to illness.",exc:"他因病没上学。"},
+        {r:"kind",s:"-ness",en:"kindness",cn:"善良",ipa:"/ˈkaɪndnəs/",ex:"Thank you for your kindness.",exc:"谢谢你的好意。"},
+        {r:"dark",s:"-ness",en:"darkness",cn:"黑暗",ipa:"/ˈdɑːknəs/",ex:"I am not afraid of darkness.",exc:"我不怕黑。"}
+       ]},
+      {type:"suf",tag:"-ment",name:"-ment　…的结果、…的东西",meaning:"动词 + ment = 名词，表示动作的结果或事物。",
+       rule:"动词 + ment → 名词",
+       words:[
+        {r:"move",s:"-ment",en:"movement",cn:"运动；移动",ipa:"/ˈmuːvmənt/",ex:"I like the dance movement.",exc:"我喜欢这个舞蹈动作。"},
+        {r:"excite",s:"-ment",en:"excitement",cn:"兴奋",ipa:"/ɪkˈsaɪtmənt/",ex:"The game is full of excitement.",exc:"比赛充满了兴奋。"},
+        {r:"agree",s:"-ment",en:"agreement",cn:"同意；协议",ipa:"/əˈɡriːmənt/",ex:"We reach an agreement.",exc:"我们达成了一致。"}
+       ]}
+    ]
+  },
+  "person":{
+    label:"表示人/职业", icon:"🧑",
+    desc:"🧑 这些后缀加在动词或名词后，表示“做某事的人”或从事某职业的人。",
+    items:[
+      {type:"suf",tag:"-er",name:"-er　做…的人 / 物",meaning:"动词 + er = “做这个动作的人或东西”。",
+       rule:"动词 + er → 名词（人/物）",
+       words:[
+        {r:"teach",s:"-er",en:"teacher",cn:"老师",ipa:"/ˈtiːtʃə/",ex:"My teacher is kind.",exc:"我的老师很和蔼。"},
+        {r:"work",s:"-er",en:"worker",cn:"工人",ipa:"/ˈwɜːkə/",ex:"The worker is busy.",exc:"这个工人很忙。"},
+        {r:"sing",s:"-er",en:"singer",cn:"歌手",ipa:"/ˈsɪŋə/",ex:"She is a good singer.",exc:"她是个好歌手。"},
+        {r:"play",s:"-er",en:"player",cn:"运动员；玩家",ipa:"/ˈpleɪə/",ex:"He is a football player.",exc:"他是个足球运动员。"},
+        {r:"farm",s:"-er",en:"farmer",cn:"农民",ipa:"/ˈfɑːmə/",ex:"The farmer grows rice.",exc:"农民种水稻。"},
+        {r:"drive",s:"-r",en:"driver",cn:"司机",ipa:"/ˈdraɪvə/",ex:"The bus driver is nice.",exc:"公交车司机人很好。"},
+        {r:"dance",s:"-r",en:"dancer",cn:"舞者",ipa:"/ˈdɑːnsə/",ex:"She is a dancer.",exc:"她是个舞蹈演员。"},
+        {r:"write",s:"-r",en:"writer",cn:"作家",ipa:"/ˈraɪtə/",ex:"He is a famous writer.",exc:"他是个有名的作家。"}
+       ]},
+      {type:"suf",tag:"-or",name:"-or　做…的人",meaning:"和 -er 意思一样，也表示“人”，用于一些特定的词。",
+       rule:"动词 + or → 名词（人）",
+       words:[
+        {r:"act",s:"-or",en:"actor",cn:"男演员",ipa:"/ˈæktə/",ex:"The actor is famous.",exc:"这位演员很有名。"},
+        {r:"visit",s:"-or",en:"visitor",cn:"参观者；访客",ipa:"/ˈvɪzɪtə/",ex:"We have a visitor today.",exc:"我们今天有客人。"},
+        {r:"doct",s:"-or",en:"doctor",cn:"医生",ipa:"/ˈdɒktə/",ex:"The doctor helps sick people.",exc:"医生帮助病人。"}
+       ]},
+      {type:"suf",tag:"-ist",name:"-ist　…家、专业人士",meaning:"名词 + ist = 从事某专业或艺术的人。",
+       rule:"名词 + ist → 名词（人）",
+       words:[
+        {r:"art",s:"-ist",en:"artist",cn:"艺术家",ipa:"/ˈɑːtɪst/",ex:"She is a great artist.",exc:"她是位了不起的艺术家。"},
+        {r:"piano",s:"-ist",en:"pianist",cn:"钢琴家",ipa:"/ˈpɪənɪst/",ex:"The pianist plays well.",exc:"这位钢琴家弹得很好。"},
+        {r:"science",s:"-tist",en:"scientist",cn:"科学家",ipa:"/ˈsaɪəntɪst/",ex:"He wants to be a scientist.",exc:"他想成为科学家。"}
+       ]}
+    ]
+  },
+  "verbadv":{
+    label:"副词与动词变形", icon:"🏃",
+    desc:"🏃 -ly 让形容词变副词；-ing / -ed 是动词的变化形式，也很常见。",
+    items:[
+      {type:"suf",tag:"-ly",name:"-ly　…地（副词）",meaning:"形容词 + ly = 副词，用来说明“怎样做”。",
+       rule:"形容词 + ly → 副词",
+       words:[
+        {r:"slow",s:"-ly",en:"slowly",cn:"缓慢地",ipa:"/ˈsləʊli/",ex:"He walks slowly.",exc:"他走得很慢。"},
+        {r:"quick",s:"-ly",en:"quickly",cn:"快速地",ipa:"/ˈkwɪkli/",ex:"Run quickly!",exc:"快跑!"},
+        {r:"happy(-i)",s:"-ly",en:"happily",cn:"快乐地",ipa:"/ˈhæpɪli/",ex:"They live happily.",exc:"他们快乐地生活。"},
+        {r:"loud",s:"-ly",en:"loudly",cn:"大声地",ipa:"/ˈlaʊdli/",ex:"Donʼt talk loudly.",exc:"不要大声说话。"},
+        {r:"care(-ful)",s:"-ly",en:"carefully",cn:"仔细地",ipa:"/ˈkeəfəli/",ex:"Listen carefully.",exc:"仔细听。"},
+        {r:"real",s:"-ly",en:"really",cn:"真正地；确实",ipa:"/ˈrɪəli/",ex:"I really like it.",exc:"我真的很喜欢它。"}
+       ]},
+      {type:"suf",tag:"-ing",name:"-ing　正在…（进行）",meaning:"动词 + ing 表示动作正在发生，或变成“…的事情”。",
+       rule:"动词 + ing → 进行式 / 名词",
+       words:[
+        {r:"read",s:"-ing",en:"reading",cn:"阅读",ipa:"/ˈriːdɪŋ/",ex:"I like reading.",exc:"我喜欢阅读。"},
+        {r:"swim",s:"-ming",en:"swimming",cn:"游泳",ipa:"/ˈswɪmɪŋ/",ex:"Swimming is fun.",exc:"游泳很有趣。"},
+        {r:"run",s:"-ning",en:"running",cn:"跑步",ipa:"/ˈrʌnɪŋ/",ex:"He is running fast.",exc:"他跑得很快。"},
+        {r:"shop",s:"-ping",en:"shopping",cn:"购物",ipa:"/ˈʃɒpɪŋ/",ex:"We go shopping on Sunday.",exc:"我们周日去购物。"}
+       ]},
+      {type:"suf",tag:"-ed",name:"-ed　…过（过去 / 被动）",meaning:"动词 + ed 表示动作已经发生，或变成形容词。",
+       rule:"动词 + ed → 过去式 / 形容词",
+       words:[
+        {r:"play",s:"-ed",en:"played",cn:"玩过；打过",ipa:"/pleɪd/",ex:"We played games yesterday.",exc:"我们昨天玩了游戏。"},
+        {r:"want",s:"-ed",en:"wanted",cn:"想要（过去）",ipa:"/ˈwɒntɪd/",ex:"I wanted a new bag.",exc:"我想要个新书包。"},
+        {r:"excite",s:"-d",en:"excited",cn:"感到兴奋的",ipa:"/ɪkˈsaɪtɪd/",ex:"I am excited about the trip.",exc:"我对这次旅行很兴奋。"}
+       ]}
+    ]
+  },
+  "compare":{
+    label:"比较级 & 数字", icon:"📊",
+    desc:"📊 -er / -est 用来比大小、比高矮；-th 把数字变成第几名。",
+    items:[
+      {type:"suf",tag:"-er",name:"-er　更…（比较级）",meaning:"形容词 + er = “更…”，用于两者比较。",
+       rule:"形容词 + er → 比较级（更…）",
+       words:[
+        {r:"tall",s:"-er",en:"taller",cn:"更高的",ipa:"/ˈtɔːlə/",ex:"He is taller than me.",exc:"他比我高。"},
+        {r:"big(-g)",s:"-er",en:"bigger",cn:"更大的",ipa:"/ˈbɪɡə/",ex:"An elephant is bigger.",exc:"大象更大。"},
+        {r:"fast",s:"-er",en:"faster",cn:"更快的",ipa:"/ˈfɑːstə/",ex:"A car is faster than a bike.",exc:"汽车比自行车快。"},
+        {r:"happy(-i)",s:"-er",en:"happier",cn:"更快乐的",ipa:"/ˈhæpiə/",ex:"I feel happier today.",exc:"我今天更开心了。"}
+       ]},
+      {type:"suf",tag:"-est",name:"-est　最…（最高级）",meaning:"形容词 + est = “最…”，用于三者以上比较。",
+       rule:"形容词 + est → 最高级（最…）",
+       words:[
+        {r:"tall",s:"-est",en:"tallest",cn:"最高的",ipa:"/ˈtɔːlɪst/",ex:"He is the tallest boy.",exc:"他是最高的男孩。"},
+        {r:"big(-g)",s:"-est",en:"biggest",cn:"最大的",ipa:"/ˈbɪɡɪst/",ex:"This is the biggest cake.",exc:"这是最大的蛋糕。"},
+        {r:"long",s:"-est",en:"longest",cn:"最长的",ipa:"/ˈlɒŋɡɪst/",ex:"The Nile is the longest river.",exc:"尼罗河是最长的河。"}
+       ]},
+      {type:"suf",tag:"-th",name:"-th　第…（序数词）",meaning:"数字 + th = 第几名、第几个。",
+       rule:"数字 + th → 序数词（第…）",
+       words:[
+        {r:"four",s:"-th",en:"fourth",cn:"第四",ipa:"/fɔːθ/",ex:"He came fourth in the race.",exc:"他在比赛中得了第四名。"},
+        {r:"five(-f)",s:"-th",en:"fifth",cn:"第五",ipa:"/fɪfθ/",ex:"Today is the fifth of May.",exc:"今天是5月5日。"},
+        {r:"six",s:"-th",en:"sixth",cn:"第六",ipa:"/sɪksθ/",ex:"I am in Grade Six / the sixth grade.",exc:"我上六年级。"},
+        {r:"nine",s:"-th",en:"ninth",cn:"第九",ipa:"/naɪnθ/",ex:"September is the ninth month.",exc:"九月是第九个月。"}
+       ]}
+    ]
+  },
+  "prefix":{
+    label:"前缀（加在前面）", icon:"🔁",
+    desc:"🔁 前缀加在单词前面，多数表示“不/相反”“再一次”或表示数字、位置。",
+    items:[
+      {type:"pre",tag:"un-",name:"un-　不、相反",meaning:"加在词前面，把意思变成相反的。",
+       rule:"un + 单词 → 相反意思",
+       words:[
+        {p:"un-",r:"happy",en:"unhappy",cn:"不快乐的",ipa:"/ʌnˈhæpi/",ex:"He looks unhappy.",exc:"他看起来不开心。"},
+        {p:"un-",r:"kind",en:"unkind",cn:"不友善的",ipa:"/ʌnˈkaɪnd/",ex:"Donʼt be unkind.",exc:"不要不友善。"},
+        {p:"un-",r:"lucky",en:"unlucky",cn:"不幸的",ipa:"/ʌnˈlʌki/",ex:"It was an unlucky day.",exc:"那是不走运的一天。"},
+        {p:"un-",r:"like",en:"unlike",cn:"不像；不同于",ipa:"/ʌnˈlaɪk/",ex:"Cats are unlike dogs.",exc:"猫和狗不一样。"}
+       ]},
+      {type:"pre",tag:"im- / in-",name:"im- / in-　不、无",meaning:"也表示“不”，im- 常用在 m、p 前面。",
+       rule:"im/in + 单词 → 相反意思",
+       words:[
+        {p:"im-",r:"possible",en:"impossible",cn:"不可能的",ipa:"/ɪmˈpɒsəbl/",ex:"Nothing is impossible.",exc:"没有什么是不可能的。"},
+        {p:"im-",r:"polite",en:"impolite",cn:"不礼貌的",ipa:"/ˌɪmpəˈlaɪt/",ex:"It is impolite to shout.",exc:"大喊大叫不礼貌。"},
+        {p:"in-",r:"correct",en:"incorrect",cn:"不正确的",ipa:"/ˌɪnkəˈrekt/",ex:"This answer is incorrect.",exc:"这个答案不对。"}
+       ]},
+      {type:"pre",tag:"dis-",name:"dis-　不、相反",meaning:"加在动词/形容词前，表示相反、否定。",
+       rule:"dis + 单词 → 相反意思",
+       words:[
+        {p:"dis-",r:"like",en:"dislike",cn:"不喜欢",ipa:"/dɪsˈlaɪk/",ex:"I dislike rainy days.",exc:"我不喜欢下雨天。"},
+        {p:"dis-",r:"agree",en:"disagree",cn:"不同意",ipa:"/ˌdɪsəˈɡriː/",ex:"I disagree with you.",exc:"我不同意你的看法。"},
+        {p:"dis-",r:"appear",en:"disappear",cn:"消失",ipa:"/ˌdɪsəˈpɪə/",ex:"The sun disappeared.",exc:"太阳消失了。"}
+       ]},
+      {type:"pre",tag:"re-",name:"re-　再一次、重新",meaning:"加在动词前面，表示“再做一次”。",
+       rule:"re + 动词 → 再做一次",
+       words:[
+        {p:"re-",r:"read",en:"reread",cn:"重读",ipa:"/ˌriːˈriːd/",ex:"Please reread the story.",exc:"请重读这个故事。"},
+        {p:"re-",r:"write",en:"rewrite",cn:"重写",ipa:"/ˌriːˈraɪt/",ex:"Rewrite the wrong word.",exc:"把写错的词重写一遍。"},
+        {p:"re-",r:"do",en:"redo",cn:"重做",ipa:"/ˌriːˈduː/",ex:"You can redo it.",exc:"你可以重做一遍。"}
+       ]},
+      {type:"pre",tag:"pre-",name:"pre-　在…之前",meaning:"表示“提前、之前”。",
+       rule:"pre + 词根 → 在…之前",
+       words:[
+        {p:"pre-",r:"view",en:"preview",cn:"预习；预览",ipa:"/ˈpriːvjuː/",ex:"Preview the lesson tonight.",exc:"今晚预习一下课文。"},
+        {p:"pre-",r:"school",en:"preschool",cn:"学前班",ipa:"/ˈpriːskuːl/",ex:"My sister is in preschool.",exc:"我妹妹上学前班。"}
+       ]},
+      {type:"pre",tag:"bi- / tri-",name:"bi- 两、tri- 三",meaning:"表示数字：bi = 二，tri = 三，帮你记数字类的词。",
+       rule:"bi=2, tri=3 + 词根",
+       words:[
+        {p:"bi-",r:"cycle",en:"bicycle",cn:"自行车（两个轮子）",ipa:"/ˈbaɪsɪkl/",ex:"I ride a bicycle.",exc:"我骑自行车。"},
+        {p:"tri-",r:"cycle",en:"tricycle",cn:"三轮车（三个轮子）",ipa:"/ˈtraɪsɪkl/",ex:"The baby has a tricycle.",exc:"宝宝有一辆三轮车。"},
+        {p:"tri-",r:"angle",en:"triangle",cn:"三角形（三个角）",ipa:"/ˈtraɪæŋɡl/",ex:"Draw a triangle.",exc:"画一个三角形。"}
+       ]}
+    ]
+  }
+};
+
+/* 语音 */
+let voice=null;
+function pickVoice(){const vs=speechSynthesis.getVoices();voice=vs.find(v=>/en-GB/i.test(v.lang))||vs.find(v=>/en[-_]/i.test(v.lang))||vs.find(v=>/^en/i.test(v.lang))||vs.find(v=>/English/i.test(v.name))||null;}
+if('speechSynthesis' in window){pickVoice();speechSynthesis.onvoiceschanged=pickVoice;}
+
+let speechUnlocked=false;
+function unlockSpeech(){
+  if(speechUnlocked||!('speechSynthesis'in window))return;
+  try{const u=new SpeechSynthesisUtterance('');u.volume=0;speechSynthesis.speak(u);speechUnlocked=true;}catch(e){}
+}
+document.addEventListener('touchstart',unlockSpeech,{once:true,passive:true});
+document.addEventListener('click',unlockSpeech,{once:true});
+
+function speak(t,r){
+  if(!('speechSynthesis'in window)){alert('当前浏览器不支持朗读功能，请更新到较新版本的 Safari 或 Chrome。');return;}
+  unlockSpeech();
+  speechSynthesis.cancel();
+  if(!voice)pickVoice();
+  const u=new SpeechSynthesisUtterance(t);
+  u.lang=(voice&&voice.lang)||'en-US';u.rate=r||.82;u.pitch=1;
+  if(voice)u.voice=voice;
+  setTimeout(()=>{try{speechSynthesis.speak(u);}catch(e){}},0);
+}
+
+const tabsEl=document.getElementById('tabs');
+const listEl=document.getElementById('list');
+const catDesc=document.getElementById('catDesc');
+const KEYS=Object.keys(AFFIXES);
+
+/* tabs */
+tabsEl.innerHTML=KEYS.map((k,i)=>`<button class="tab ${i===0?'active':''}" data-k="${k}"><span class="ico">${AFFIXES[k].icon}</span>${AFFIXES[k].label}</button>`).join('');
+
+function buildRow(w){
+  const parts=[];
+  if(w.p) parts.push(`<span class="p">${w.p}</span>`);
+  parts.push(`<span class="r">${w.r}</span>`);
+  if(w.s) parts.push(`<span class="s">${w.s}</span>`);
+  const build=parts.join('<span class="eq">+</span>');
+  return `
+    <div class="word">
+      <div class="build">${build}<span class="eq">=</span></div>
+      <div class="w-en">${w.en}</div>
+      <div class="w-cn">${w.cn}</div>
+      <div class="w-line">
+        <span class="w-ipa">${w.ipa}</span>
+        <button class="play" onclick="speak('${w.en}',0.78)">🔊 读单词</button>
+      </div>
+      <div class="w-ex">${w.ex}
+        <button class="mini-play" title="朗读例句" onclick="speak('${w.ex.replace(/'/g,"").replace(/ʼ/g,"")}',0.82)">🔊</button>
+        <span class="cn">${w.exc}</span>
+      </div>
+    </div>`;
+}
+
+function render(k){
+  const cat=AFFIXES[k];
+  catDesc.textContent=cat.desc;
+  listEl.innerHTML=cat.items.map(a=>`
+    <section class="affix" data-t="${a.type}">
+      <div class="affix-head">
+        <div class="affix-tag">${a.tag}</div>
+        <div class="affix-info">
+          <div class="name">${a.name}</div>
+          <div class="meaning">${a.meaning}</div>
+          <div class="rule">📐 变化规律：${a.rule}</div>
+        </div>
+      </div>
+      <div class="word-list">${a.words.map(buildRow).join('')}</div>
+    </section>
+  `).join('');
+}
+
+tabsEl.querySelectorAll('.tab').forEach(t=>{
+  t.addEventListener('click',()=>{
+    tabsEl.querySelectorAll('.tab').forEach(x=>x.classList.remove('active'));
+    t.classList.add('active');
+    render(t.dataset.k);
+    window.scrollTo({top:0,behavior:'smooth'});
+  });
+});
+
+render(KEYS[0]);
+</script>
+</body>
+</html>
