@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<title>小学英语固定搭配大全（含发音·例句）</title>
+<style>
+:root{
+  --bg:#f4f7fb; --card:#ffffff; --ink:#1f2a44; --sub:#5a6b8c;
+  --brand:#3b6cff; --brand-soft:#e8efff; --accent:#ff7a45;
+  --line:#e6ecf5; --ok:#16a34a; --shadow:0 4px 18px rgba(31,42,68,.08);
+}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{margin:0;padding:0}
+body{
+  font-family:-apple-system,"PingFang SC","Helvetica Neue",Arial,sans-serif;
+  background:var(--bg); color:var(--ink); line-height:1.5;
+  -webkit-text-size-adjust:100%;
+}
+header{
+  position:sticky; top:0; z-index:20;
+  background:linear-gradient(135deg,#3b6cff,#5b8bff);
+  color:#fff; padding:16px 18px 14px; box-shadow:0 4px 14px rgba(59,108,255,.28);
+}
+header h1{margin:0;font-size:20px;font-weight:800;letter-spacing:.3px}
+header p{margin:4px 0 0;font-size:12.5px;opacity:.92}
+.toolbar{display:flex;gap:8px;margin-top:12px;flex-wrap:wrap}
+.toolbar input{
+  flex:1 1 180px;min-width:140px;border:none;border-radius:12px;
+  padding:11px 14px;font-size:15px;outline:none;background:rgba(255,255,255,.95);color:#1f2a44;
+}
+.chip{
+  border:none;background:rgba(255,255,255,.92);color:#1f2a44;border-radius:20px;
+  padding:8px 14px;font-size:13px;font-weight:700;cursor:pointer;white-space:nowrap;
+}
+.chip.on{background:#0d1b3e;color:#fff;font-weight:800}
+.chips{display:flex;gap:8px;overflow-x:auto;padding:12px 16px 4px;scrollbar-width:none}
+.chips::-webkit-scrollbar{display:none}
+main{padding:8px 14px 60px;max-width:960px;margin:0 auto}
+.cat{margin-top:20px}
+.cat-h{
+  display:flex;align-items:center;gap:9px;font-size:17px;font-weight:900;
+  color:#0d1b3e;margin:0 4px 10px;
+}
+.cat-h .dot{width:9px;height:22px;border-radius:6px;background:var(--brand)}
+.cat-h .n{margin-left:auto;font-size:12px;font-weight:800;color:#fff;
+  background:var(--brand);padding:3px 10px;border-radius:20px}
+.grid{display:grid;grid-template-columns:1fr;gap:11px}
+@media(min-width:700px){.grid{grid-template-columns:1fr 1fr}}
+.card{
+  background:var(--card);border:1px solid var(--line);border-radius:16px;
+  padding:14px 15px;box-shadow:var(--shadow);
+}
+.top{display:flex;align-items:flex-start;gap:10px}
+.phrase{font-size:18px;font-weight:800;color:var(--ink);flex:1;line-height:1.3}
+.play{
+  flex:none;width:40px;height:40px;border-radius:50%;border:none;
+  background:var(--brand-soft);color:var(--brand);font-size:19px;cursor:pointer;
+  display:flex;align-items:center;justify-content:center;transition:transform .1s;
+}
+.play:active{transform:scale(.88);background:var(--brand);color:#fff}
+.play.speaking{background:var(--brand);color:#fff;animation:pulse .8s infinite}
+@keyframes pulse{0%,100%{transform:scale(1)}50%{transform:scale(1.1)}}
+.ipa{color:var(--accent);font-size:14px;margin:5px 0 2px;font-style:italic;font-family:"Times New Roman",serif}
+.mean{color:var(--sub);font-size:14px;font-weight:600}
+.eg{
+  margin-top:9px;padding:9px 11px;background:#f7f9fd;border-radius:11px;
+  border-left:3px solid var(--brand);
+}
+.eg .en{font-size:14px;color:var(--ink);font-weight:600}
+.eg .en .mini{
+  display:inline-flex;width:24px;height:24px;border-radius:50%;background:#fff;
+  border:1px solid var(--line);color:var(--brand);font-size:12px;align-items:center;
+  justify-content:center;vertical-align:middle;margin-left:6px;cursor:pointer;
+}
+.eg .zh{font-size:12.5px;color:var(--sub);margin-top:3px}
+.empty{text-align:center;color:var(--sub);padding:50px 0;font-size:15px}
+footer{text-align:center;color:var(--sub);font-size:12px;padding:24px 20px 40px}
+.count-bar{text-align:center;font-size:12.5px;color:var(--sub);margin:6px 0 2px}
+</style>
+</head>
+<body>
+<header>
+  <h1>🎒 小学英语固定搭配大全</h1>
+  <p>含 IPA 发音 · 例句 · 点击 🔊 即可听读（iPad Safari 免联网可用）</p>
+  <div class="toolbar">
+    <input id="q" type="text" placeholder="🔍 搜索搭配 / 中文意思，如 get up、起床…">
+  </div>
+</header>
+<div class="chips" id="chips"></div>
+<div class="count-bar" id="countBar"></div>
+<main id="app"></main>
+<footer>小学阶段（1-6 年级）常见固定搭配全覆盖 · 共 <b id="total">0</b> 条<br>点大圆圈听搭配，点例句里的小圆圈听整句</footer>
+
+<script>
+/* 数据：category -> [ {p:搭配, ipa, m:中文, en:例句英文, zh:例句中文} ] */
+const DATA = {
+"动词短语 (get/take/put)": [
+ {p:"get up",ipa:"/ɡet ʌp/",m:"起床",en:"I get up at seven o'clock.",zh:"我七点起床。"},
+ {p:"get on",ipa:"/ɡet ɒn/",m:"上车（公交/地铁）",en:"Let's get on the bus.",zh:"我们上公交车吧。"},
+ {p:"get off",ipa:"/ɡet ɒf/",m:"下车",en:"Get off at the next stop.",zh:"在下一站下车。"},
+ {p:"get to",ipa:"/ɡet tuː/",m:"到达",en:"How do you get to school?",zh:"你怎么去学校？"},
+ {p:"get ready",ipa:"/ɡet ˈredi/",m:"准备好",en:"Get ready for class.",zh:"准备上课。"},
+ {p:"take a bath",ipa:"/teɪk ə bɑːθ/",m:"洗澡",en:"I take a bath every night.",zh:"我每晚洗澡。"},
+ {p:"take a photo",ipa:"/teɪk ə ˈfəʊtəʊ/",m:"拍照",en:"Let's take a photo here.",zh:"我们在这儿拍张照吧。"},
+ {p:"take off",ipa:"/teɪk ɒf/",m:"脱下；起飞",en:"Take off your coat, please.",zh:"请脱掉外套。"},
+ {p:"take care of",ipa:"/teɪk keə(r) ɒv/",m:"照顾",en:"I take care of my little sister.",zh:"我照顾我的妹妹。"},
+ {p:"put on",ipa:"/pʊt ɒn/",m:"穿上",en:"Put on your shoes.",zh:"穿上你的鞋子。"},
+ {p:"put away",ipa:"/pʊt əˈweɪ/",m:"收起来",en:"Put away your toys.",zh:"把玩具收好。"},
+ {p:"put up",ipa:"/pʊt ʌp/",m:"举起；张贴",en:"Put up your hand to answer.",zh:"举手回答。"},
+ {p:"turn on",ipa:"/tɜːn ɒn/",m:"打开（电器）",en:"Turn on the TV, please.",zh:"请打开电视。"},
+ {p:"turn off",ipa:"/tɜːn ɒf/",m:"关掉（电器）",en:"Turn off the light.",zh:"关灯。"},
+ {p:"turn left",ipa:"/tɜːn left/",m:"向左转",en:"Turn left at the corner.",zh:"在拐角处向左转。"},
+ {p:"turn right",ipa:"/tɜːn raɪt/",m:"向右转",en:"Turn right and go straight.",zh:"向右转然后直走。"},
+],
+"日常生活 (go / have)": [
+ {p:"go to school",ipa:"/ɡəʊ tə skuːl/",m:"去上学",en:"I go to school by bike.",zh:"我骑自行车上学。"},
+ {p:"go to bed",ipa:"/ɡəʊ tə bed/",m:"上床睡觉",en:"I go to bed at nine.",zh:"我九点上床睡觉。"},
+ {p:"go home",ipa:"/ɡəʊ həʊm/",m:"回家",en:"Let's go home now.",zh:"我们现在回家吧。"},
+ {p:"go shopping",ipa:"/ɡəʊ ˈʃɒpɪŋ/",m:"去购物",en:"We go shopping on Sunday.",zh:"我们周日去购物。"},
+ {p:"go swimming",ipa:"/ɡəʊ ˈswɪmɪŋ/",m:"去游泳",en:"They go swimming in summer.",zh:"他们夏天去游泳。"},
+ {p:"go fishing",ipa:"/ɡəʊ ˈfɪʃɪŋ/",m:"去钓鱼",en:"My dad and I go fishing.",zh:"我和爸爸去钓鱼。"},
+ {p:"go out",ipa:"/ɡəʊ aʊt/",m:"外出",en:"Let's go out and play.",zh:"我们出去玩吧。"},
+ {p:"have breakfast",ipa:"/hæv ˈbrekfəst/",m:"吃早餐",en:"I have breakfast at home.",zh:"我在家吃早餐。"},
+ {p:"have lunch",ipa:"/hæv lʌntʃ/",m:"吃午餐",en:"We have lunch at school.",zh:"我们在学校吃午餐。"},
+ {p:"have dinner",ipa:"/hæv ˈdɪnə(r)/",m:"吃晚餐",en:"We have dinner at seven.",zh:"我们七点吃晚餐。"},
+ {p:"have a look",ipa:"/hæv ə lʊk/",m:"看一看",en:"Can I have a look?",zh:"我能看一看吗？"},
+ {p:"have a rest",ipa:"/hæv ə rest/",m:"休息一下",en:"Let's have a rest.",zh:"我们休息一下吧。"},
+ {p:"have a good time",ipa:"/hæv ə ɡʊd taɪm/",m:"玩得开心",en:"Have a good time at the party!",zh:"派对上玩得开心！"},
+ {p:"have a cold",ipa:"/hæv ə kəʊld/",m:"感冒",en:"I have a cold today.",zh:"我今天感冒了。"},
+ {p:"have a party",ipa:"/hæv ə ˈpɑːti/",m:"举办聚会",en:"We have a party on Friday.",zh:"我们周五有个聚会。"},
+ {p:"have a class",ipa:"/hæv ə klɑːs/",m:"上课",en:"We have a math class now.",zh:"我们现在上数学课。"},
+],
+"学习与课堂": [
+ {p:"do one's homework",ipa:"/duː wʌnz ˈhəʊmwɜːk/",m:"做作业",en:"I do my homework after dinner.",zh:"我晚饭后做作业。"},
+ {p:"read a book",ipa:"/riːd ə bʊk/",m:"读书",en:"I like to read a book.",zh:"我喜欢读书。"},
+ {p:"listen to",ipa:"/ˈlɪsn tuː/",m:"听……",en:"Listen to the teacher.",zh:"听老师讲。"},
+ {p:"look at",ipa:"/lʊk æt/",m:"看……",en:"Look at the blackboard.",zh:"看黑板。"},
+ {p:"look for",ipa:"/lʊk fɔː(r)/",m:"寻找",en:"I'm looking for my pen.",zh:"我在找我的钢笔。"},
+ {p:"write down",ipa:"/raɪt daʊn/",m:"写下",en:"Write down the new words.",zh:"把生词写下来。"},
+ {p:"think about",ipa:"/θɪŋk əˈbaʊt/",m:"思考",en:"Think about the answer.",zh:"想想答案。"},
+ {p:"talk about",ipa:"/tɔːk əˈbaʊt/",m:"谈论",en:"Let's talk about our holiday.",zh:"我们聊聊假期吧。"},
+ {p:"speak English",ipa:"/spiːk ˈɪŋɡlɪʃ/",m:"说英语",en:"Can you speak English?",zh:"你会说英语吗？"},
+ {p:"learn from",ipa:"/lɜːn frɒm/",m:"向……学习",en:"We learn from our teacher.",zh:"我们向老师学习。"},
+ {p:"be good at",ipa:"/bi ɡʊd æt/",m:"擅长",en:"She is good at drawing.",zh:"她擅长画画。"},
+ {p:"come from",ipa:"/kʌm frɒm/",m:"来自",en:"I come from China.",zh:"我来自中国。"},
+ {p:"ask a question",ipa:"/ɑːsk ə ˈkwestʃən/",m:"提问",en:"May I ask a question?",zh:"我能提个问题吗？"},
+ {p:"stand up",ipa:"/stænd ʌp/",m:"起立",en:"Stand up, please.",zh:"请起立。"},
+ {p:"sit down",ipa:"/sɪt daʊn/",m:"坐下",en:"Sit down, please.",zh:"请坐下。"},
+],
+"兴趣爱好 & 运动": [
+ {p:"play football",ipa:"/pleɪ ˈfʊtbɔːl/",m:"踢足球",en:"The boys play football.",zh:"男孩们踢足球。"},
+ {p:"play basketball",ipa:"/pleɪ ˈbɑːskɪtbɔːl/",m:"打篮球",en:"We play basketball after school.",zh:"我们放学后打篮球。"},
+ {p:"play the piano",ipa:"/pleɪ ðə piˈænəʊ/",m:"弹钢琴",en:"She can play the piano.",zh:"她会弹钢琴。"},
+ {p:"play games",ipa:"/pleɪ ɡeɪmz/",m:"玩游戏",en:"Let's play games together.",zh:"我们一起玩游戏吧。"},
+ {p:"play with",ipa:"/pleɪ wɪð/",m:"和……玩",en:"I play with my friends.",zh:"我和朋友们玩。"},
+ {p:"ride a bike",ipa:"/raɪd ə baɪk/",m:"骑自行车",en:"I can ride a bike.",zh:"我会骑自行车。"},
+ {p:"fly a kite",ipa:"/flaɪ ə kaɪt/",m:"放风筝",en:"They fly a kite in the park.",zh:"他们在公园里放风筝。"},
+ {p:"watch TV",ipa:"/wɒtʃ ˌtiːˈviː/",m:"看电视",en:"I watch TV in the evening.",zh:"我晚上看电视。"},
+ {p:"draw a picture",ipa:"/drɔː ə ˈpɪktʃə(r)/",m:"画画",en:"She likes to draw a picture.",zh:"她喜欢画画。"},
+ {p:"sing a song",ipa:"/sɪŋ ə sɒŋ/",m:"唱歌",en:"Let's sing a song.",zh:"我们唱首歌吧。"},
+ {p:"make a snowman",ipa:"/meɪk ə ˈsnəʊmæn/",m:"堆雪人",en:"We make a snowman in winter.",zh:"我们冬天堆雪人。"},
+ {p:"take a walk",ipa:"/teɪk ə wɔːk/",m:"散步",en:"We take a walk after dinner.",zh:"我们晚饭后散步。"},
+],
+"be / like / want 结构": [
+ {p:"be from",ipa:"/bi frɒm/",m:"来自",en:"I am from Beijing.",zh:"我来自北京。"},
+ {p:"be interested in",ipa:"/bi ˈɪntrəstɪd ɪn/",m:"对……感兴趣",en:"I am interested in science.",zh:"我对科学感兴趣。"},
+ {p:"be afraid of",ipa:"/bi əˈfreɪd ɒv/",m:"害怕",en:"She is afraid of dogs.",zh:"她怕狗。"},
+ {p:"be late for",ipa:"/bi leɪt fɔː(r)/",m:"……迟到",en:"Don't be late for school.",zh:"上学别迟到。"},
+ {p:"be full of",ipa:"/bi fʊl ɒv/",m:"充满",en:"The box is full of toys.",zh:"箱子里装满了玩具。"},
+ {p:"be ready for",ipa:"/bi ˈredi fɔː(r)/",m:"为……做好准备",en:"Are you ready for the trip?",zh:"你准备好去旅行了吗？"},
+ {p:"would like to",ipa:"/wʊd laɪk tuː/",m:"想要（做）",en:"I would like to go home.",zh:"我想回家。"},
+ {p:"like doing",ipa:"/laɪk ˈduːɪŋ/",m:"喜欢做",en:"I like reading books.",zh:"我喜欢读书。"},
+ {p:"want to",ipa:"/wɒnt tuː/",m:"想要",en:"I want to be a teacher.",zh:"我想当老师。"},
+ {p:"look like",ipa:"/lʊk laɪk/",m:"看起来像",en:"You look like your mother.",zh:"你长得像你妈妈。"},
+ {p:"look after",ipa:"/lʊk ˈɑːftə(r)/",m:"照顾",en:"I look after my pet.",zh:"我照顾我的宠物。"},
+],
+"介词 & 方位搭配": [
+ {p:"at home",ipa:"/æt həʊm/",m:"在家",en:"My mom is at home.",zh:"我妈妈在家。"},
+ {p:"at school",ipa:"/æt skuːl/",m:"在学校",en:"We are at school now.",zh:"我们现在在学校。"},
+ {p:"at night",ipa:"/æt naɪt/",m:"在夜里",en:"Owls sleep at night? No, in the day.",zh:"猫头鹰夜里睡觉？不，白天睡。"},
+ {p:"in the morning",ipa:"/ɪn ðə ˈmɔːnɪŋ/",m:"在早上",en:"I run in the morning.",zh:"我早上跑步。"},
+ {p:"in front of",ipa:"/ɪn frʌnt ɒv/",m:"在……前面",en:"A tree is in front of the house.",zh:"房子前面有棵树。"},
+ {p:"next to",ipa:"/nekst tuː/",m:"在……旁边",en:"The shop is next to the bank.",zh:"商店在银行旁边。"},
+ {p:"on the desk",ipa:"/ɒn ðə desk/",m:"在桌子上",en:"The book is on the desk.",zh:"书在桌子上。"},
+ {p:"under the tree",ipa:"/ˈʌndə ðə triː/",m:"在树下",en:"A cat is under the tree.",zh:"一只猫在树下。"},
+ {p:"on foot",ipa:"/ɒn fʊt/",m:"步行",en:"I go to school on foot.",zh:"我步行上学。"},
+ {p:"by bus",ipa:"/baɪ bʌs/",m:"乘公交车",en:"She goes there by bus.",zh:"她坐公交车去那儿。"},
+ {p:"a lot of",ipa:"/ə lɒt ɒv/",m:"许多",en:"There are a lot of books.",zh:"有许多书。"},
+ {p:"a piece of",ipa:"/ə piːs ɒv/",m:"一片/一张",en:"I want a piece of paper.",zh:"我要一张纸。"},
+ {p:"a glass of",ipa:"/ə ɡlɑːs ɒv/",m:"一杯（水/奶）",en:"A glass of milk, please.",zh:"请来一杯牛奶。"},
+ {p:"a cup of",ipa:"/ə kʌp ɒv/",m:"一杯（茶/咖啡）",en:"She wants a cup of tea.",zh:"她想要一杯茶。"},
+],
+"礼貌用语 & 交际": [
+ {p:"thank you",ipa:"/θæŋk juː/",m:"谢谢你",en:"Thank you very much!",zh:"非常感谢！"},
+ {p:"you're welcome",ipa:"/jɔː ˈwelkəm/",m:"不客气",en:"You're welcome.",zh:"不客气。"},
+ {p:"excuse me",ipa:"/ɪkˈskjuːz miː/",m:"打扰一下",en:"Excuse me, where is the toilet?",zh:"打扰一下，卫生间在哪儿？"},
+ {p:"good morning",ipa:"/ɡʊd ˈmɔːnɪŋ/",m:"早上好",en:"Good morning, teacher!",zh:"老师，早上好！"},
+ {p:"good night",ipa:"/ɡʊd naɪt/",m:"晚安",en:"Good night, Mom.",zh:"晚安，妈妈。"},
+ {p:"nice to meet you",ipa:"/naɪs tə miːt juː/",m:"很高兴见到你",en:"Nice to meet you!",zh:"很高兴见到你！"},
+ {p:"see you later",ipa:"/siː juː ˈleɪtə(r)/",m:"回头见",en:"See you later!",zh:"回头见！"},
+ {p:"help oneself",ipa:"/help wʌnˈself/",m:"请自便",en:"Help yourself to some cake.",zh:"请随便吃点蛋糕。"},
+ {p:"of course",ipa:"/əv kɔːs/",m:"当然",en:"Of course you can.",zh:"你当然可以。"},
+ {p:"come in",ipa:"/kʌm ɪn/",m:"进来",en:"Come in, please.",zh:"请进。"},
+],
+"连词 & 常用短语": [
+ {p:"and so on",ipa:"/ənd səʊ ɒn/",m:"等等",en:"I like apples, pears and so on.",zh:"我喜欢苹果、梨等等。"},
+ {p:"a little",ipa:"/ə ˈlɪtl/",m:"一点点",en:"I am a little tired.",zh:"我有点累。"},
+ {p:"a lot",ipa:"/ə lɒt/",m:"很多；非常",en:"Thanks a lot!",zh:"多谢！"},
+ {p:"how many",ipa:"/haʊ ˈmeni/",m:"多少（可数）",en:"How many apples are there?",zh:"有多少个苹果？"},
+ {p:"how much",ipa:"/haʊ mʌtʃ/",m:"多少（不可数/价钱）",en:"How much is it?",zh:"这个多少钱？"},
+ {p:"how old",ipa:"/haʊ əʊld/",m:"多大（年龄）",en:"How old are you?",zh:"你多大了？"},
+ {p:"what time",ipa:"/wɒt taɪm/",m:"几点",en:"What time is it?",zh:"几点了？"},
+ {p:"be going to",ipa:"/bi ˈɡəʊɪŋ tuː/",m:"打算；将要",en:"I am going to play football.",zh:"我打算去踢足球。"},
+ {p:"there is / there are",ipa:"/ðeə ɪz / ðeə ɑː/",m:"有……",en:"There is a cat on the bed.",zh:"床上有一只猫。"},
+ {p:"let's go",ipa:"/lets ɡəʊ/",m:"我们走吧",en:"Let's go to the park.",zh:"我们去公园吧。"},
+]
+};
+
+/* ---------- 渲染 ---------- */
+const app=document.getElementById('app');
+const chipsBox=document.getElementById('chips');
+const q=document.getElementById('q');
+const cats=Object.keys(DATA);
+let active="全部";
+let total=0; cats.forEach(c=>total+=DATA[c].length);
+document.getElementById('total').textContent=total;
+
+/* 分类芯片 */
+["全部",...cats].forEach(c=>{
+  const b=document.createElement('button');
+  b.className='chip'+(c==="全部"?' on':'');
+  b.textContent=c==="全部"?"全部 "+total:c;
+  b.onclick=()=>{active=c;[...chipsBox.children].forEach(x=>x.classList.remove('on'));b.classList.add('on');render();};
+  chipsBox.appendChild(b);
+});
+
+function esc(s){return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/"/g,'&quot;');}
+
+function render(){
+  const kw=q.value.trim().toLowerCase();
+  app.innerHTML='';
+  let shown=0;
+  cats.forEach(cat=>{
+    if(active!=="全部"&&active!==cat)return;
+    const items=DATA[cat].filter(it=>{
+      if(!kw)return true;
+      return (it.p+it.m+it.en+it.zh).toLowerCase().includes(kw);
+    });
+    if(!items.length)return;
+    const sec=document.createElement('section');
+    sec.className='cat';
+    sec.innerHTML=`<h3 class="cat-h"><span class="dot"></span>${cat}<span class="n">${items.length}</span></h3><div class="grid"></div>`;
+    const grid=sec.querySelector('.grid');
+    items.forEach(it=>{
+      shown++;
+      const card=document.createElement('div');
+      card.className='card';
+      card.innerHTML=`
+        <div class="top">
+          <div class="phrase">${esc(it.p)}</div>
+          <button class="play" data-say="${esc(it.p)}">🔊</button>
+        </div>
+        <div class="ipa">${esc(it.ipa)}</div>
+        <div class="mean">${esc(it.m)}</div>
+        <div class="eg">
+          <div class="en">${esc(it.en)}<span class="mini" data-say="${esc(it.en)}">🔊</span></div>
+          <div class="zh">${esc(it.zh)}</div>
+        </div>`;
+      grid.appendChild(card);
+    });
+    app.appendChild(sec);
+  });
+  document.getElementById('countBar').textContent=`共显示 ${shown} 条搭配`;
+  if(!shown)app.innerHTML='<div class="empty">😅 没找到相关搭配，换个词试试～</div>';
+}
+
+/* ---------- 发音（Web Speech API，iPad Safari 支持） ---------- */
+let curBtn=null;
+function speak(text,btn){
+  if(!('speechSynthesis'in window)){alert('当前浏览器不支持语音，请用 iPad Safari 打开');return;}
+  speechSynthesis.cancel();
+  const u=new SpeechSynthesisUtterance(text);
+  u.lang='en-US'; u.rate=0.82; u.pitch=1.05;
+  const vs=speechSynthesis.getVoices().filter(v=>v.lang.startsWith('en'));
+  if(vs.length)u.voice=vs.find(v=>/US|United States|Samantha|Karen|Daniel/i.test(v.name))||vs[0];
+  if(btn&&btn.classList.contains('play')){curBtn&&curBtn.classList.remove('speaking');curBtn=btn;btn.classList.add('speaking');}
+  u.onend=()=>{btn&&btn.classList.remove('speaking');};
+  u.onerror=()=>{btn&&btn.classList.remove('speaking');};
+  speechSynthesis.speak(u);
+}
+document.addEventListener('click',e=>{
+  const t=e.target.closest('[data-say]');
+  if(t)speak(t.getAttribute('data-say'),t);
+});
+/* 预加载语音列表 */
+if('speechSynthesis'in window){speechSynthesis.onvoiceschanged=()=>{};speechSynthesis.getVoices();}
+
+q.addEventListener('input',render);
+render();
+</script>
+</body>
+</html>
