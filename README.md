@@ -23,6 +23,8 @@
 | 英语组句魔法 · 句子小火车 \| 小学英语 | https://beupgo.github.io/English-G6-Sentence-Building.html |
 | 通分专项 · 理解通分的本质 \| 小学数学 | https://beupgo.github.io/Math-G5-Fraction-Common-Denominator.html |
 | 英语冒险岛 · 3-6年级暑假 | https://beupgo.github.io/english5.html |
+| 小学英语单词乐园 · 时间 · 交通 · 天气 | https://beupgo.github.io/word-learning.html |
+| 小学英语词根词缀乐园 · 拆词记单词 | https://beupgo.github.io/word-roots.html |
 | 导航首页 | https://beupgo.github.io/ |
 <!-- AUTO-TABLE-END -->
 
@@ -55,7 +57,9 @@
 ├─ grade6-math.html  # 北京六年级数学 · 母题学习系统
 ├─ English-G6-Sentence-Building.html  # 英语组句魔法 · 句子小火车 | 小学英语
 ├─ Math-G5-Fraction-Common-Denominator.html  # 通分专项 · 理解通分的本质 | 小学数学
-└─ english5.html  # 英语冒险岛 · 3-6年级暑假
+├─ english5.html  # 英语冒险岛 · 3-6年级暑假
+├─ word-learning.html  # 小学英语单词乐园 · 时间 · 交通 · 天气
+└─ word-roots.html  # 小学英语词根词缀乐园 · 拆词记单词
 └─ README.md
 ```
 <!-- AUTO-FILES-END -->
