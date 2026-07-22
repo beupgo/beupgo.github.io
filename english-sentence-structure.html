@@ -1263,20 +1263,6 @@ body { font-family: var(--g-font); color: var(--s-text); min-height: 100dvh; -we
 </style>
 </head>
 <body>
-<!-- AUTO-BACK-NAV-START -->
-<style id="auto-back-nav-style">
-#auto-back-nav{position:sticky;top:0;z-index:999;background:rgba(249,250,251,.9);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);border-bottom:1px solid #e5e7eb;display:flex;align-items:center;padding:0 20px;height:44px;}
-@media(prefers-color-scheme:dark){#auto-back-nav{background:rgba(13,17,23,.9);border-bottom-color:#2d333b;}}
-#auto-back-nav a{display:inline-flex;align-items:center;gap:6px;text-decoration:none;color:#4b5563;font-size:14px;font-weight:600;font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Hiragino Sans GB","Microsoft YaHei",Roboto,Arial,sans-serif;}
-@media(prefers-color-scheme:dark){#auto-back-nav a{color:#9da7b3;}}
-</style>
-<nav id="auto-back-nav">
-  <a href="index.html">
-    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5"/><path d="m12 19-7-7 7-7"/></svg>
-    暑假成长加油站
-  </a>
-</nav>
-<!-- AUTO-BACK-NAV-END -->
 <div id="boot" style="position:fixed;inset:0;display:grid;place-items:center;font:14px system-ui;color:#888;background:var(--s-bg,#f6f7f9)">正在加载…</div>
 <script>
 function boot_fail(m){var b=document.getElementById('boot');if(b)b.innerHTML='<pre style="max-width:80ch;white-space:pre-wrap;color:#c0392b;padding:24px">启动失败:\n'+m+'</pre>';}
@@ -1919,14 +1905,12 @@ let _edgeBlocked = false;              // once we know it fails, stop retrying �
 const _edgeCache = new Map();          // "rate|text" → objectURL (avoid re-synth)
 
 // speech rate: shared by Edge TTS (SSML rate %) and local TTS (utterance.rate)
-// levels — slow / normal / fast
 const RATE_LEVELS = {
   slow:   { ssml: '-35%', local: 0.65, label: '慢' },
   normal: { ssml: '-8%',  local: 0.85, label: '正常' },
   fast:   { ssml: '+15%', local: 1.05, label: '快' }
 };
 let _rate = 'normal';
-function setRate(r){ if(RATE_LEVELS[r]){ _rate = r; _edgeCache.clear(); } }  // clear cache: old audio is prev speed
 
 function _uuid(){ return 'xxxxxxxxxxxx4xxxyxxxxxxxxxxxxxxx'.replace(/[xy]/g, c => { const r = Math.random()*16|0; return (c==='x'?r:(r&0x3|0x8)).toString(16); }); }
 function _dateStr(){ return new Date().toString().replace(/GMT.*/, 'GMT+0000 (Coordinated Universal Time)'); }
@@ -1937,47 +1921,84 @@ function _ssml(text){
     + `<voice name='${EDGE_VOICE}'><prosody rate='${rate}' pitch='+0Hz'>${esc}</prosody></voice></speak>`;
 }
 
-// Synthesize via Edge WSS, resolve to an audio object URL (mp3).
-function _edgeSynth(text){
-  return new Promise((resolve, reject) => {
+// ---- persistent WebSocket (reused across requests to avoid per-call handshake latency) ----
+let _ws = null, _wsReady = null;
+const _pending = new Map();   // requestId → { chunks, resolve, reject, timer }
+
+function _connect(){
+  if (_wsReady) return _wsReady;
+  _wsReady = new Promise((resolve, reject) => {
     let ws;
-    let timer = setTimeout(() => { try{ws && ws.close();}catch(e){} reject(new Error('timeout')); }, 6000);
-    try { ws = new WebSocket(EDGE_WSS); } catch(e){ clearTimeout(timer); return reject(e); }
+    try { ws = new WebSocket(EDGE_WSS); } catch(e){ _wsReady = null; return reject(e); }
     ws.binaryType = 'arraybuffer';
-    const chunks = [];
+    const openTimer = setTimeout(() => { try{ws.close();}catch(e){} _wsReady=null; reject(new Error('open timeout')); }, 6000);
     ws.onopen = () => {
-      const reqId = _uuid();
-      // 1) config message
+      clearTimeout(openTimer);
       ws.send(
         `X-Timestamp:${_dateStr()}\r\nContent-Type:application/json; charset=utf-8\r\nPath:speech.config\r\n\r\n`
         + `{"context":{"synthesis":{"audio":{"metadataoptions":{"sentenceBoundaryEnabled":"false","wordBoundaryEnabled":"false"},"outputFormat":"audio-24khz-48kbitrate-mono-mp3"}}}}`
       );
-      // 2) SSML message
-      ws.send(
-        `X-RequestId:${reqId}\r\nContent-Type:application/ssml+xml\r\nX-Timestamp:${_dateStr()}Z\r\nPath:ssml\r\n\r\n`
-        + _ssml(text)
-      );
+      _ws = ws; resolve(ws);
     };
     ws.onmessage = (ev) => {
       if (typeof ev.data === 'string') {
-        if (ev.data.includes('Path:turn.end')) {
-          clearTimeout(timer); try{ws.close();}catch(e){}
-          if (!chunks.length) return reject(new Error('no audio'));
-          const blob = new Blob(chunks, { type: 'audio/mpeg' });
-          resolve(URL.createObjectURL(blob));
+        // header text frames carry X-RequestId; route by it
+        const m = ev.data.match(/X-RequestId:([0-9a-f]+)/i);
+        const id = m && m[1];
+        if (ev.data.includes('Path:turn.end') && id && _pending.has(id)) {
+          const st = _pending.get(id); _pending.delete(id); clearTimeout(st.timer);
+          if (!st.chunks.length) return st.reject(new Error('no audio'));
+          st.resolve(URL.createObjectURL(new Blob(st.chunks, { type: 'audio/mpeg' })));
         }
       } else {
-        // binary frame: 2-byte header length prefix, then "Path:audio\r\n\r\n" then mp3 bytes
         const buf = new Uint8Array(ev.data);
+        // audio binary frame: parse X-RequestId from its text header
         const headerLen = (buf[0] << 8) | buf[1];
+        const header = new TextDecoder().decode(buf.slice(2, 2 + headerLen));
+        const m = header.match(/X-RequestId:([0-9a-f]+)/i);
+        const id = m && m[1];
         const audio = buf.slice(2 + headerLen);
-        if (audio.length) chunks.push(audio);
+        if (id && _pending.has(id) && audio.length) _pending.get(id).chunks.push(audio);
       }
     };
-    ws.onerror = () => { clearTimeout(timer); reject(new Error('ws error')); };
-    ws.onclose = (e) => { if (!chunks.length) { clearTimeout(timer); reject(new Error('closed')); } };
+    const drop = () => { _ws = null; _wsReady = null; _pending.forEach(st => { clearTimeout(st.timer); st.reject(new Error('ws closed')); }); _pending.clear(); };
+    ws.onerror = drop; ws.onclose = drop;
   });
+  return _wsReady;
 }
+
+// Synthesize via the shared WSS connection, resolve to an audio object URL (mp3).
+function _edgeSynth(text){
+  return _connect().then(ws => new Promise((resolve, reject) => {
+    const id = _uuid().replace(/-/g,'').toUpperCase();
+    const timer = setTimeout(() => { if (_pending.has(id)) { _pending.delete(id); reject(new Error('timeout')); } }, 8000);
+    _pending.set(id, { chunks: [], resolve, reject, timer });
+    try {
+      ws.send(
+        `X-RequestId:${id}\r\nContent-Type:application/ssml+xml\r\nX-Timestamp:${_dateStr()}Z\r\nPath:ssml\r\n\r\n`
+        + _ssml(text)
+      );
+    } catch(e){ _pending.delete(id); clearTimeout(timer); reject(e); }
+  }));
+}
+
+// prewarm: synthesize all page sentences in the background so clicks are instant
+function _prewarm(sentences){
+  if (_edgeBlocked) return;
+  let i = 0;
+  const step = () => {
+    if (i >= sentences.length || _edgeBlocked) return;
+    const text = sentences[i++];
+    const key = _rate + '|' + text;
+    if (_edgeCache.has(key)) { step(); return; }
+    _edgeSynth(text).then(url => { _edgeCache.set(key, url); setTimeout(step, 60); })
+                    .catch(() => { setTimeout(step, 60); });   // keep going even if one fails
+  };
+  // small initial delay so first paint isn't blocked
+  setTimeout(step, 400);
+}
+
+function setRate(r){ if(RATE_LEVELS[r]){ _rate = r; _edgeCache.clear(); if (window.__allSentences) _prewarm(window.__allSentences); } }
 
 function speak(text, btnEl){
   if (!text) return;
@@ -2530,7 +2551,30 @@ class SentApp extends LitElement {
     return (ansIdx>=0 && q.roles) ? (q.roles[ansIdx]||'obj') : 'obj';
   }
 
-  async firstUpdated(){ await this.updateComplete; const b=document.getElementById('boot'); if(b) b.remove(); }
+  // collect every English sentence shown on the page (for TTS prewarm)
+  _collectSentences(){
+    const d = this.data; const set = new Set();
+    ['The dog bites the man.','The man bites the dog.'].forEach(s=>set.add(s));
+    d.patterns.forEach(p=>set.add(p.sentence));
+    if (d.tenses) d.tenses.rows.forEach(r=>set.add(r.sentence));
+    if (d.grow) d.grow.steps.forEach(s=>set.add(s.sentence));
+    if (d.compares) d.compares.forEach(c=>set.add(c.en));
+    if (d.agreement){ d.agreement.verbRows.forEach(r=>set.add(r.sentence)); d.agreement.beRows.forEach(r=>set.add(r.sentence)); }
+    if (d.fixit) d.fixit.forEach(f=>set.add(f.right));
+    if (d.builder) d.builder.forEach(b=>set.add(b.answer.join(' ') + '.'));
+    return [...set];
+  }
+
+  async firstUpdated(){
+    await this.updateComplete;
+    const b=document.getElementById('boot'); if(b) b.remove();
+    // background prewarm: synthesize all sentences so clicks play instantly
+    try {
+      const list = this._collectSentences();
+      window.__allSentences = list;   // used by setRate() to re-prewarm on speed change
+      if (typeof _prewarm === 'function') _prewarm(list);
+    } catch(e){}
+  }
 }
 customElements.define('sent-app', SentApp);
 
