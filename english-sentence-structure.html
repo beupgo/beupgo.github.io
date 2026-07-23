@@ -1263,20 +1263,6 @@ body { font-family: var(--g-font); color: var(--s-text); min-height: 100dvh; -we
 </style>
 </head>
 <body>
-<!-- AUTO-BACK-NAV-START -->
-<style id="auto-back-nav-style">
-#auto-back-nav{position:sticky;top:0;z-index:999;background:rgba(249,250,251,.9);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);border-bottom:1px solid #e5e7eb;display:flex;align-items:center;padding:0 20px;height:44px;}
-@media(prefers-color-scheme:dark){#auto-back-nav{background:rgba(13,17,23,.9);border-bottom-color:#2d333b;}}
-#auto-back-nav a{display:inline-flex;align-items:center;gap:6px;text-decoration:none;color:#4b5563;font-size:14px;font-weight:600;font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Hiragino Sans GB","Microsoft YaHei",Roboto,Arial,sans-serif;}
-@media(prefers-color-scheme:dark){#auto-back-nav a{color:#9da7b3;}}
-</style>
-<nav id="auto-back-nav">
-  <a href="index.html">
-    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5"/><path d="m12 19-7-7 7-7"/></svg>
-    暑假成长加油站
-  </a>
-</nav>
-<!-- AUTO-BACK-NAV-END -->
 <div id="boot" style="position:fixed;inset:0;display:grid;place-items:center;font:14px system-ui;color:#888;background:var(--s-bg,#f6f7f9)">正在加载…</div>
 <script>
 function boot_fail(m){var b=document.getElementById('boot');if(b)b.innerHTML='<pre style="max-width:80ch;white-space:pre-wrap;color:#c0392b;padding:24px">启动失败:\n'+m+'</pre>';}
@@ -1843,7 +1829,25 @@ window.SENT_DATA = {
     { wrong: "Yesterday I go to the park.", right: "Yesterday I went to the park.", why: "有 yesterday(过去),动词要用过去式 went。" },
     { wrong: "My father is a doctor tall.", right: "My father is a tall doctor.", why: "形容词 tall 要放在名词 doctor 前面,不能放后面。" },
     { wrong: "I like play games.", right: "I like playing games.", why: "like 后面接动作时,常用 -ing 形式:like playing。" },
-    { wrong: "She go home at six.", right: "She goes home at six.", why: "主语是“她”,一般现在时动词加 -s → goes。" }
+    { wrong: "She go home at six.", right: "She goes home at six.", why: "主语是“她”,一般现在时动词加 -s → goes。" },
+    { wrong: "I no like carrots.", right: "I don't like carrots.", why: "否定要用 don't + 动词原形,不能直接用 no。" },
+    { wrong: "He doesn't likes fish.", right: "He doesn't like fish.", why: "doesn't 后面动词要用原形 like,不能再加 -s。" },
+    { wrong: "We are go to school.", right: "We go to school.", why: "一般现在时不需要 be 动词,直接用动词 go。" },
+    { wrong: "This is she book.", right: "This is her book.", why: "名词前要用形容词性物主代词 her,不是主格 she。" },
+    { wrong: "I have two book.", right: "I have two books.", why: "two 是复数,名词要加 -s → books。" },
+    { wrong: "My mother cook every day.", right: "My mother cooks every day.", why: "主语是“妈妈(单数)”,动词要加 -s → cooks。" },
+    { wrong: "He are my friend.", right: "He is my friend.", why: "主语是“他(单数)”,be 动词用 is,不是 are。" },
+    { wrong: "I am like music.", right: "I like music.", why: "like 是实义动词,不需要再加 be 动词 am。" },
+    { wrong: "She can sings very well.", right: "She can sing very well.", why: "can 后面用动词原形 sing。" },
+    { wrong: "We didn't went there.", right: "We didn't go there.", why: "didn't 后面动词用原形 go,过去意义已由 didn't 表示。" },
+    { wrong: "The weather is very hot today very.", right: "The weather is very hot today.", why: "very 只用一次,放在形容词前面。" },
+    { wrong: "I will goes to Beijing.", right: "I will go to Beijing.", why: "will 后面用动词原形 go。" },
+    { wrong: "There is many students.", right: "There are many students.", why: "many students 是复数,要用 There are。" },
+    { wrong: "He run very fast yesterday.", right: "He ran very fast yesterday.", why: "有 yesterday,run 要用过去式 ran。" },
+    { wrong: "I go to home now.", right: "I go home now.", why: "home 作“回家”时前面不加 to。" },
+    { wrong: "She is more taller than me.", right: "She is taller than me.", why: "taller 已是比较级,不能再加 more。" },
+    { wrong: "Look! The baby is cry.", right: "Look! The baby is crying.", why: "Look! 表示正在进行,要用 be + 动词-ing:is crying。" },
+    { wrong: "We enjoy to play football.", right: "We enjoy playing football.", why: "enjoy 后面接动作要用 -ing 形式:enjoy playing。" }
   ],
 
   // ⑩ 造我自己的句子(情境个人化):填空模板 + 选项
@@ -1894,7 +1898,12 @@ window.IPA_DICT = {
   "happily": "/ˈhæpɪli/", "very": "/ˈveri/", "much": "/mʌtʃ/", "many": "/ˈmeni/", "two": "/tuː/", "six": "/sɪks/",
   "in": "/ɪn/", "on": "/ɒn/", "at": "/æt/", "to": "/tuː/", "by": "/baɪ/", "after": "/ˈɑːftə(r)/",
   "every": "/ˈevri/", "day": "/deɪ/", "night": "/naɪt/", "morning": "/ˈmɔːnɪŋ/",
-  "yesterday": "/ˈjestədeɪ/", "tomorrow": "/təˈmɒrəʊ/"
+  "yesterday": "/ˈjestədeɪ/", "tomorrow": "/təˈmɒrəʊ/",
+  "don't": "/dəʊnt/", "doesn't": "/ˈdʌznt/", "didn't": "/ˈdɪdnt/",
+  "carrots": "/ˈkærəts/", "fish": "/fɪʃ/", "cooks": "/kʊks/", "friend": "/frend/", "sing": "/sɪŋ/",
+  "well": "/wel/", "weather": "/ˈweðə(r)/", "hot": "/hɒt/", "today": "/təˈdeɪ/", "beijing": "/beɪˈdʒɪŋ/",
+  "ran": "/ræn/", "now": "/naʊ/", "taller": "/ˈtɔːlə(r)/", "than": "/ðæn/", "look": "/lʊk/",
+  "baby": "/ˈbeɪbi/", "crying": "/ˈkraɪɪŋ/", "enjoy": "/ɪnˈdʒɔɪ/"
 };
 
 </script>
