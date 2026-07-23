@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>英语时态学习专题</title>
+<title>英语综合练习</title>
 <style>
 /* =========================================================================
    AURORA DESIGN SYSTEM · tokens.css · v2.0
@@ -1172,123 +1172,54 @@ body { font-family: var(--g-font); color: var(--s-text); min-height: 100dvh; -we
 @media (max-width: 560px){ .similar-pair { grid-template-columns: 1fr; } }
 @media (max-width: 640px){ .brand__sub { display: none; } .hero h1 { font-size: var(--s-fs-h1); } .sec__title { font-size: var(--s-fs-h3); } }
 
-/* ---- tense-specific ---- */
-.tense-grid { display: grid; gap: var(--card-gap); grid-template-columns: repeat(auto-fit, minmax(min(100%, var(--card-min)), 1fr)); align-items: stretch; }
-.tcard { background: var(--s-surface); border: 1px solid var(--s-border); border-radius: var(--g-r-xl); padding: var(--g-sp-5); border-top: 4px solid var(--s-brand); display: flex; flex-direction: column; }
-.tcard__head { display: flex; align-items: center; gap: var(--g-sp-3); }
-.tcard__icon { width: 42px; height: 42px; flex: none; border-radius: var(--g-r-lg); display: grid; place-items: center; background: var(--s-brand-subtle); color: var(--s-brand); }
-.tcard__name { font-size: var(--s-fs-body-lg); font-weight: var(--g-fw-bold); }
-.tcard__en { font-size: var(--s-fs-caption); color: var(--s-text-muted); font-family: var(--g-font-mono); }
-.tcard__formula { font-family: var(--g-font-mono); font-size: var(--s-fs-caption); font-weight: var(--g-fw-bold); color: var(--s-brand); background: var(--s-brand-subtle); border: 1px dashed color-mix(in srgb, var(--s-brand) 30%, transparent); border-radius: var(--g-r-sm); padding: var(--g-sp-2) var(--g-sp-3); margin: var(--g-sp-3) 0; }
-.tcard__use { font-size: var(--s-fs-body); color: var(--s-text-secondary); }
-.tcard__key { margin-top: var(--g-sp-2); font-size: var(--s-fs-caption); color: var(--s-text); background: var(--s-surface-sunken); border-left: 3px solid var(--s-brand); border-radius: var(--g-r-md); padding: var(--g-sp-2) var(--g-sp-3); }
-.tcard__signals { display: flex; flex-wrap: wrap; gap: var(--g-sp-1); margin-top: var(--g-sp-3); }
-.tsig { font-size: var(--s-fs-caption); font-family: var(--g-font-mono); background: var(--s-surface-sunken); border: 1px solid var(--s-border); border-radius: var(--g-r-sm); padding: 1px var(--g-sp-2); color: var(--s-text-secondary); }
-.tcard__divider { height: 1px; background: var(--s-border); margin: var(--g-sp-4) 0; }
+/* ---- collocation intro banner ---- */
+.what-box { display: flex; align-items: flex-start; gap: var(--g-sp-3); background: var(--s-brand-subtle); border: 1px solid color-mix(in srgb, var(--s-brand) 22%, var(--s-border)); border-radius: var(--g-r-xl); padding: var(--g-sp-5); margin-bottom: var(--g-sp-2); }
+.what-box > .ico { color: var(--s-brand); flex: none; margin-top: 2px; }
+.what-box p { margin: 0; font-size: var(--s-fs-body); line-height: var(--s-lh-body); color: var(--s-text); }
+.what-box b { color: var(--s-brand); }
 
-/* compare four tenses */
-.tcompare { display: flex; flex-direction: column; gap: var(--g-sp-3); }
-.trow { display: grid; grid-template-columns: 130px 1fr; gap: var(--g-sp-4); align-items: start; background: var(--s-surface); border: 1px solid var(--s-border); border-radius: var(--g-r-lg); padding: var(--g-sp-4); }
-.trow__tense { font-weight: var(--g-fw-bold); font-size: var(--s-fs-body); color: var(--s-brand); }
-.trow__note { font-size: var(--s-fs-caption); color: var(--s-text-muted); font-family: var(--g-font-mono); margin-top: 2px; }
-.trow__sent { font-size: var(--s-fs-h3); display: flex; align-items: center; gap: var(--g-sp-2); flex-wrap: wrap; }
-.trow__zh { font-size: var(--s-fs-caption); color: var(--s-text-secondary); margin-top: 2px; }
-@media (max-width: 520px){ .trow { grid-template-columns: 1fr; gap: var(--g-sp-1); } }
+/* ---- mistakes (易错) ---- */
+.mis-list { display: grid; gap: var(--card-gap); grid-template-columns: repeat(auto-fit, minmax(min(100%, var(--card-min)), 1fr)); align-items: stretch; }
+.mis-card { background: var(--s-surface); border: 1px solid var(--s-border); border-radius: var(--g-r-xl); padding: var(--g-sp-4); }
+.mis-wrong { display: flex; align-items: center; gap: var(--g-sp-2); color: var(--g-red-700); font-size: var(--s-fs-body-lg); text-decoration: line-through; text-decoration-color: color-mix(in srgb, var(--g-red-500) 55%, transparent); }
+.mis-wrong .ico { flex: none; text-decoration: none; }
+.mis-right { display: flex; align-items: center; gap: var(--g-sp-2); margin-top: var(--g-sp-2); color: var(--g-green-700); font-size: var(--s-fs-body-lg); font-weight: var(--g-fw-medium); }
+.mis-right .ico { color: var(--g-green-500); flex: none; }
+.mis-why { margin-top: var(--g-sp-2); font-size: var(--s-fs-caption); color: var(--s-text-secondary); background: var(--s-brand-subtle); border-radius: var(--g-r-md); padding: var(--g-sp-2) var(--g-sp-3); line-height: var(--s-lh-body); }
 
-/* irregular verbs */
-.irr-grid { display: grid; gap: var(--g-sp-3); grid-template-columns: repeat(auto-fill, minmax(min(100%, 240px), 1fr)); }
-.irr-card { background: var(--s-surface); border: 1px solid var(--s-border); border-radius: var(--g-r-lg); padding: var(--g-sp-4); }
-.irr-row { display: flex; align-items: center; gap: var(--g-sp-2); }
-.irr-base { font-weight: var(--g-fw-semibold); font-size: var(--s-fs-body-lg); }
-.irr-arrow { color: var(--s-text-muted); }
-.irr-past { font-weight: var(--g-fw-bold); font-size: var(--s-fs-body-lg); color: var(--s-brand); }
-.irr-zh { font-size: var(--s-fs-caption); color: var(--s-text-secondary); }
-.irr-ipa { font-family: var(--g-font-mono); font-size: var(--s-fs-caption); color: var(--s-text-muted); margin-top: 2px; }
-.irr-speak { margin-left: auto; }
+/* collocation word highlighted bold in card head */
+.prep-card__word { letter-spacing: 0; }
 
-/* quiz tag */
-.quiz-tag { display: inline-block; font-size: var(--s-fs-caption); color: var(--s-brand); background: var(--s-brand-subtle); border-radius: var(--g-r-full); padding: 1px var(--g-sp-2); margin-bottom: var(--g-sp-3); }
-.quiz-opts--two { grid-template-columns: 1fr 1fr; max-width: 460px; }
-.quiz-opt--wide { font-family: var(--g-font); font-size: var(--s-fs-body); }
-
-/* ---- animated timeline (hero) ---- */
-.timeline { margin: var(--g-sp-6) auto 0; max-width: 640px; }
-.tl-svg { width: 100%; height: auto; }
-.tl-flow { animation: tlflow 1.4s linear infinite; }
-@keyframes tlflow { to { stroke-dashoffset: -32; } }
-.tl-marker { animation: tlmove 6s ease-in-out infinite; }
-@keyframes tlmove {
-  0%   { transform: translateX(0); }
-  30%  { transform: translateX(90px); }   /* past */
-  33%  { transform: translateX(90px); }
-  60%  { transform: translateX(260px); }  /* now */
-  63%  { transform: translateX(260px); }
-  90%  { transform: translateX(430px); }  /* future */
-  100% { transform: translateX(0); }
-}
-@media (prefers-reduced-motion: reduce){ .tl-flow, .tl-marker { animation: none; } }
-
-/* ---- combo + celebrate ---- */
+/* ---- combo (quiz) ---- */
 .quiz-status { display: inline-flex; align-items: center; gap: var(--g-sp-3); }
-.combo { color: var(--g-amber-700); font-weight: var(--g-fw-bold); animation: pop .3s var(--g-ease); }
-@keyframes pop { 0%{transform:scale(.6)} 60%{transform:scale(1.2)} 100%{transform:scale(1)} }
-.quiz-card { position: relative; overflow: hidden; }
-.confetti { position: absolute; inset: 0; pointer-events: none; z-index: 2; }
-.conf { position: absolute; top: -12px; width: 9px; height: 9px; border-radius: 2px; animation: fall 1.2s ease-in forwards; }
-.conf-0{ background: var(--s-brand); } .conf-1{ background: var(--g-amber-500); } .conf-2{ background: var(--g-green-500); }
-.conf-3{ background: var(--g-cyan-500); } .conf-4{ background: var(--g-red-500); } .conf-5{ background: var(--g-primary-400); }
-@keyframes fall { 0%{ transform: translateY(0) rotate(0); opacity: 1; } 100%{ transform: translateY(260px) rotate(360deg); opacity: 0; } }
+.combo { color: var(--g-amber-700); font-weight: var(--g-fw-bold); }
 
-/* ---- past-form classification ---- */
-.why-box { display: flex; align-items: flex-start; gap: var(--g-sp-3); background: var(--s-brand-subtle); border: 1px solid color-mix(in srgb, var(--s-brand) 22%, var(--s-border)); border-radius: var(--g-r-xl); padding: var(--g-sp-5); margin-bottom: var(--g-sp-6); }
-.why-box > .ico { color: var(--s-brand); flex: none; margin-top: 2px; }
-.why-label { display: block; font-weight: var(--g-fw-bold); color: var(--s-brand); margin-bottom: var(--g-sp-1); }
-.why-box p { margin: 0; font-size: var(--s-fs-body); line-height: var(--s-lh-body); color: var(--s-text); }
+/* 易错卡:先思考,点击揭晓 */
+.mis-think { margin-top: var(--g-sp-2); font-size: var(--s-fs-caption); color: var(--s-text-secondary); display: flex; align-items: center; gap: var(--g-sp-1); }
+.mis-think .ico { color: var(--s-brand); }
+.mis-reveal { margin-top: var(--g-sp-3); }
 
-.pf-block { margin-bottom: var(--g-sp-8); }
-.pf-block__title { font-size: var(--s-fs-h3); font-weight: var(--g-fw-bold); display: flex; align-items: center; gap: var(--g-sp-2); margin-bottom: var(--g-sp-2); }
-.pf-block__intro { color: var(--s-text-secondary); font-size: var(--s-fs-body); margin: 0 0 var(--g-sp-4); }
-.pf-badge { font-size: var(--s-fs-caption); font-weight: var(--g-fw-bold); padding: 2px var(--g-sp-3); border-radius: var(--g-r-full); }
-.pf-badge--reg { color: var(--g-green-700); background: var(--g-green-100); }
-.pf-badge--irr { color: var(--g-amber-700); background: var(--g-amber-100); }
+/* ---- topic filter ---- */
+.filter-bar { display: flex; flex-wrap: wrap; gap: var(--g-sp-2); justify-content: center; margin-bottom: var(--g-sp-6); }
+.filter-chip { appearance: none; cursor: pointer; font: inherit; font-size: var(--s-fs-body); font-weight: var(--g-fw-medium); color: var(--s-text-secondary); background: var(--s-surface); border: 1px solid var(--s-border); border-radius: var(--g-r-full); padding: var(--g-sp-2) var(--g-sp-5); min-height: 44px; display: inline-flex; align-items: center; gap: var(--g-sp-2); transition: all var(--g-dur-fast) var(--g-ease); }
+.filter-chip--on { background: var(--s-brand); color: var(--s-on-brand); border-color: transparent; box-shadow: var(--s-shadow-sm); }
+.filter-chip__count { font-size: var(--s-fs-caption); opacity: .8; }
+.topic-tag { display: inline-block; font-size: var(--s-fs-caption); font-weight: var(--g-fw-bold); padding: 1px var(--g-sp-3); border-radius: var(--g-r-full); margin-bottom: var(--g-sp-3); }
+.topic-tag--tense { color: var(--g-cyan-700); background: var(--g-cyan-100); }
+.topic-tag--prep { color: var(--g-green-700); background: var(--g-green-100); }
+.topic-tag--coll { color: var(--g-amber-700); background: var(--g-amber-100); }
 
-/* regular rules */
-.rule-grid { display: grid; gap: var(--g-sp-4); grid-template-columns: repeat(auto-fit, minmax(min(100%, var(--card-min)), 1fr)); align-items: stretch; }
-.rule-card { display: flex; gap: var(--g-sp-3); background: var(--s-surface); border: 1px solid var(--s-border); border-radius: var(--g-r-xl); padding: var(--g-sp-4); border-left: 4px solid var(--g-green-500); }
-.rule-card__no { width: 28px; height: 28px; flex: none; border-radius: var(--g-r-full); display: grid; place-items: center; background: var(--g-green-100); color: var(--g-green-700); font-weight: var(--g-fw-bold); font-size: var(--s-fs-caption); }
-.rule-card__rule { font-weight: var(--g-fw-semibold); font-size: var(--s-fs-body); }
-.rule-card__ex { display: flex; flex-wrap: wrap; gap: var(--g-sp-3); margin-top: var(--g-sp-3); }
-.rule-ex { display: inline-flex; align-items: center; gap: var(--g-sp-1); font-family: var(--g-font-mono); font-size: var(--s-fs-caption); background: var(--s-surface-sunken); border: 1px solid var(--s-border); border-radius: var(--g-r-sm); padding: 2px var(--g-sp-2); }
-.rule-ex__past { color: var(--g-green-700); }
-
-/* irregular groups */
-.irrg-list { display: flex; flex-direction: column; gap: var(--g-sp-5); }
-.irrg-card { background: var(--s-surface); border: 1px solid var(--s-border); border-radius: var(--g-r-xl); padding: var(--g-sp-5); border-left: 4px solid var(--g-amber-500); }
-.irrg-card--nochange { border-left-color: var(--g-neutral-400); }
-.irrg-head { display: flex; align-items: center; gap: var(--g-sp-3); margin-bottom: var(--g-sp-1); }
-.irrg-name { font-size: var(--s-fs-body-lg); font-weight: var(--g-fw-bold); }
-.irrg-count { font-size: var(--s-fs-caption); color: var(--s-text-secondary); background: var(--s-surface-sunken); border-radius: var(--g-r-full); padding: 1px var(--g-sp-2); }
-.irrg-note { font-size: var(--s-fs-caption); color: var(--s-text-secondary); margin-bottom: var(--g-sp-4); line-height: var(--s-lh-body); }
-.irr-card--same { border-style: dashed; }
-.irr-card--same .irr-past { color: var(--s-text-muted); }
+/* ---- collect / review book ---- */
+.quiz-toprow { display: flex; align-items: center; justify-content: space-between; gap: var(--g-sp-2); margin-bottom: var(--g-sp-2); }
+.collect { appearance: none; cursor: pointer; font: inherit; font-size: var(--s-fs-caption); font-weight: var(--g-fw-medium); color: var(--s-text-secondary); background: var(--s-surface); border: 1px solid var(--s-border); border-radius: var(--g-r-full); padding: var(--g-sp-1) var(--g-sp-3); min-height: 34px; display: inline-flex; align-items: center; gap: var(--g-sp-1); transition: all var(--g-dur-fast) var(--g-ease); }
+.collect:hover { border-color: color-mix(in srgb, var(--g-amber-500) 50%, var(--s-border)); color: var(--g-amber-700); }
+.collect--on { color: var(--g-amber-700); background: var(--g-amber-100); border-color: color-mix(in srgb, var(--g-amber-500) 40%, transparent); }
+.filter-chip--review.filter-chip--on { background: var(--g-amber-500); }
+.filter-chip--review:not(.filter-chip--on) { border-color: color-mix(in srgb, var(--g-amber-500) 35%, var(--s-border)); color: var(--g-amber-700); }
 
 </style>
 </head>
 <body>
-<!-- AUTO-BACK-NAV-START -->
-<style id="auto-back-nav-style">
-#auto-back-nav{position:sticky;top:0;z-index:999;background:rgba(249,250,251,.9);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);border-bottom:1px solid #e5e7eb;display:flex;align-items:center;padding:0 20px;height:44px;}
-@media(prefers-color-scheme:dark){#auto-back-nav{background:rgba(13,17,23,.9);border-bottom-color:#2d333b;}}
-#auto-back-nav a{display:inline-flex;align-items:center;gap:6px;text-decoration:none;color:#4b5563;font-size:14px;font-weight:600;font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Hiragino Sans GB","Microsoft YaHei",Roboto,Arial,sans-serif;}
-@media(prefers-color-scheme:dark){#auto-back-nav a{color:#9da7b3;}}
-</style>
-<nav id="auto-back-nav">
-  <a href="index.html">
-    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5"/><path d="m12 19-7-7 7-7"/></svg>
-    暑假成长加油站
-  </a>
-</nav>
-<!-- AUTO-BACK-NAV-END -->
 <div id="boot" style="position:fixed;inset:0;display:grid;place-items:center;font:14px system-ui;color:#888;background:var(--s-bg,#f6f7f9)">正在加载…</div>
 <script>
 function boot_fail(m){var b=document.getElementById('boot');if(b)b.innerHTML='<pre style="max-width:80ch;white-space:pre-wrap;color:#c0392b;padding:24px">启动失败:\n'+m+'</pre>';}
@@ -1714,262 +1645,17 @@ addEventListener('unhandledrejection',function(e){boot_fail(e.reason);});
 <symbol id="ic-infinity" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><!--lucide:infinity--><path d="M6 16c5 0 7-8 12-8a4 4 0 0 1 0 8c-5 0-7-8-12-8a4 4 0 1 0 0 8" /></symbol>
 </svg>
 
-<tense-app></tense-app>
+<mix-app></mix-app>
 <script>
-// Data for the "English Tenses" topic page (Beijing primary school).
-window.TENSE_DATA = {
-  // 四大时态
-  tenses: [
-    {
-      id: "present", name: "一般现在时", en: "Simple Present", icon: "ic-refresh", color: "brand",
-      formula: "主语 + 动词原形 / 动词+s",
-      use: "经常性、习惯性的动作,或客观事实。",
-      signals: ["every day", "usually", "often", "always", "sometimes"],
-      key: "第三人称单数(he/she/it)动词加 -s / -es。",
-      ex: [
-        { en: "I go to school every day.", zh: "我每天去上学。" },
-        { en: "She likes apples.", zh: "她喜欢苹果。" }
-      ]
-    },
-    {
-      id: "continuous", name: "现在进行时", en: "Present Continuous", icon: "ic-play", color: "cyan",
-      formula: "主语 + am/is/are + 动词-ing",
-      use: "此刻正在进行的动作。",
-      signals: ["now", "look!", "listen!", "at the moment", "these days"],
-      key: "be 动词(am/is/are)+ 动词的 -ing 形式。",
-      ex: [
-        { en: "She is playing basketball now.", zh: "她现在正在打篮球。" },
-        { en: "Look! The baby is crying.", zh: "看!宝宝在哭。" }
-      ]
-    },
-    {
-      id: "past", name: "一般过去时", en: "Simple Past", icon: "ic-history", color: "amber",
-      formula: "主语 + 动词过去式(-ed / 不规则)",
-      use: "过去发生并已结束的动作。",
-      signals: ["yesterday", "last week", "ago", "just now", "in 2020"],
-      key: "规则动词加 -ed;不规则动词要单独记(go→went)。",
-      ex: [
-        { en: "We played football yesterday.", zh: "我们昨天踢了足球。" },
-        { en: "He went to the zoo last week.", zh: "他上周去了动物园。" }
-      ]
-    },
-    {
-      id: "future", name: "一般将来时", en: "Simple Future", icon: "ic-arrow-right", color: "green",
-      formula: "主语 + will + 动词原形",
-      use: "将要发生的动作或打算。",
-      signals: ["tomorrow", "next week", "soon", "in the future", "later"],
-      key: "will + 动词原形;也可用 be going to + 动词原形。",
-      ex: [
-        { en: "I will visit my grandma tomorrow.", zh: "我明天要去看奶奶。" },
-        { en: "They are going to have a party.", zh: "他们打算办一个聚会。" }
-      ]
-    }
-  ],
-  // 同一句话看四态
-  compare: {
-    base: "play basketball",
-    subject: "She",
-    rows: [
-      { tense: "一般现在时", sentence: "She plays basketball.", zh: "她(经常)打篮球。", note: "plays 加 -s" },
-      { tense: "现在进行时", sentence: "She is playing basketball.", zh: "她正在打篮球。", note: "is playing" },
-      { tense: "一般过去时", sentence: "She played basketball.", zh: "她(过去)打了篮球。", note: "played 加 -ed" },
-      { tense: "一般将来时", sentence: "She will play basketball.", zh: "她将要打篮球。", note: "will play" }
-    ]
-  },
-  // 过去式怎么变:分类讲清楚(规则/不规则 · 变/不变 · 为什么)
-  pastForms: {
-    why: "英语动词过去式分两大类。规则动词(大多数)按固定规则加 -ed,好记;不规则动词是英语里最古老、最常用的一批词,几千年来读法保留了下来,所以不按 -ed 规则,只能单独记。越常用的词越可能不规则(如 go、eat、have)。",
-    // A. 规则动词:加 -ed(讲清 4 条规则)
-    regular: {
-      intro: "规则动词加 -ed,只有 4 条小规则,记住就能套用。",
-      rules: [
-        { rule: "一般情况:直接加 -ed", ex: [ { base: "play", past: "played" }, { base: "watch", past: "watched" }, { base: "visit", past: "visited" } ] },
-        { rule: "以 e 结尾:只加 -d", ex: [ { base: "like", past: "liked" }, { base: "live", past: "lived" }, { base: "dance", past: "danced" } ] },
-        { rule: "重读闭音节(辅+元+辅):双写末尾字母 + ed", ex: [ { base: "stop", past: "stopped" }, { base: "plan", past: "planned" } ] },
-        { rule: "辅音字母 + y 结尾:把 y 变 i + ed", ex: [ { base: "study", past: "studied" }, { base: "cry", past: "cried" } ] }
-      ]
-    },
-    // B. 不规则动词:按变化模式分组
-    irregularGroups: [
-      {
-        id: "same", name: "① 完全不变", note: "过去式和原形一模一样(拼写、读音都不变)。多是本身以 -t/-d 结尾的短词。",
-        items: [
-          { base: "put", past: "put", zh: "放", baseIpa: "/pʊt/", pastIpa: "/pʊt/" },
-          { base: "cut", past: "cut", zh: "切", baseIpa: "/kʌt/", pastIpa: "/kʌt/" },
-          { base: "let", past: "let", zh: "让", baseIpa: "/let/", pastIpa: "/let/" },
-          { base: "hurt", past: "hurt", zh: "受伤", baseIpa: "/hɜːt/", pastIpa: "/hɜːt/" }
-        ]
-      },
-      {
-        id: "readonly", name: "② 拼写不变,只变读音", note: "写法一样,但读音变了 —— 特别容易读错。",
-        items: [
-          { base: "read", past: "read", zh: "读", baseIpa: "/riːd/", pastIpa: "/red/" }
-        ]
-      },
-      {
-        id: "vowel", name: "③ 中间元音变化(A → B)", note: "换掉单词中间的元音字母/读音,这是最常见的一类。",
-        items: [
-          { base: "eat", past: "ate", zh: "吃", baseIpa: "/iːt/", pastIpa: "/eɪt/" },
-          { base: "drink", past: "drank", zh: "喝", baseIpa: "/drɪŋk/", pastIpa: "/dræŋk/" },
-          { base: "sing", past: "sang", zh: "唱", baseIpa: "/sɪŋ/", pastIpa: "/sæŋ/" },
-          { base: "swim", past: "swam", zh: "游泳", baseIpa: "/swɪm/", pastIpa: "/swæm/" },
-          { base: "run", past: "ran", zh: "跑", baseIpa: "/rʌn/", pastIpa: "/ræn/" },
-          { base: "begin", past: "began", zh: "开始", baseIpa: "/bɪˈɡɪn/", pastIpa: "/bɪˈɡæn/" },
-          { base: "give", past: "gave", zh: "给", baseIpa: "/ɡɪv/", pastIpa: "/ɡeɪv/" },
-          { base: "come", past: "came", zh: "来", baseIpa: "/kʌm/", pastIpa: "/keɪm/" },
-          { base: "become", past: "became", zh: "变成", baseIpa: "/bɪˈkʌm/", pastIpa: "/bɪˈkeɪm/" },
-          { base: "get", past: "got", zh: "得到", baseIpa: "/ɡet/", pastIpa: "/ɡɒt/" },
-          { base: "sit", past: "sat", zh: "坐", baseIpa: "/sɪt/", pastIpa: "/sæt/" },
-          { base: "win", past: "won", zh: "赢", baseIpa: "/wɪn/", pastIpa: "/wʌn/" }
-        ]
-      },
-      {
-        id: "ew-ode", name: "④ 结尾变 -ew / -ode / -ote 等", note: "以 ow/ive/ite/y 结尾的一批,过去式常变成 -ew、-ode、-ote。",
-        items: [
-          { base: "know", past: "knew", zh: "知道", baseIpa: "/nəʊ/", pastIpa: "/njuː/" },
-          { base: "grow", past: "grew", zh: "生长", baseIpa: "/ɡrəʊ/", pastIpa: "/ɡruː/" },
-          { base: "fly", past: "flew", zh: "飞", baseIpa: "/flaɪ/", pastIpa: "/fluː/" },
-          { base: "draw", past: "drew", zh: "画", baseIpa: "/drɔː/", pastIpa: "/druː/" },
-          { base: "ride", past: "rode", zh: "骑", baseIpa: "/raɪd/", pastIpa: "/rəʊd/" },
-          { base: "drive", past: "drove", zh: "驾驶", baseIpa: "/draɪv/", pastIpa: "/drəʊv/" },
-          { base: "write", past: "wrote", zh: "写", baseIpa: "/raɪt/", pastIpa: "/rəʊt/" }
-        ]
-      },
-      {
-        id: "ought", name: "⑤ 结尾变 -ought / -aught", note: "读音都读 /ɔːt/,一组一起记最省力。",
-        items: [
-          { base: "buy", past: "bought", zh: "买", baseIpa: "/baɪ/", pastIpa: "/bɔːt/" },
-          { base: "bring", past: "brought", zh: "带来", baseIpa: "/brɪŋ/", pastIpa: "/brɔːt/" },
-          { base: "think", past: "thought", zh: "想", baseIpa: "/θɪŋk/", pastIpa: "/θɔːt/" },
-          { base: "teach", past: "taught", zh: "教", baseIpa: "/tiːtʃ/", pastIpa: "/tɔːt/" },
-          { base: "catch", past: "caught", zh: "抓住", baseIpa: "/kætʃ/", pastIpa: "/kɔːt/" }
-        ]
-      },
-      {
-        id: "td", name: "⑥ 结尾变 -t / -d / -ought(缩短型)", note: "词尾变成 -t 或 -d,单词常常变短。",
-        items: [
-          { base: "say", past: "said", zh: "说", baseIpa: "/seɪ/", pastIpa: "/sed/" },
-          { base: "tell", past: "told", zh: "告诉", baseIpa: "/tel/", pastIpa: "/təʊld/" },
-          { base: "feel", past: "felt", zh: "感觉", baseIpa: "/fiːl/", pastIpa: "/felt/" },
-          { base: "keep", past: "kept", zh: "保持", baseIpa: "/kiːp/", pastIpa: "/kept/" },
-          { base: "sleep", past: "slept", zh: "睡觉", baseIpa: "/sliːp/", pastIpa: "/slept/" },
-          { base: "leave", past: "left", zh: "离开", baseIpa: "/liːv/", pastIpa: "/left/" },
-          { base: "meet", past: "met", zh: "遇见", baseIpa: "/miːt/", pastIpa: "/met/" },
-          { base: "hear", past: "heard", zh: "听见", baseIpa: "/hɪə(r)/", pastIpa: "/hɜːd/" },
-          { base: "make", past: "made", zh: "制作", baseIpa: "/meɪk/", pastIpa: "/meɪd/" },
-          { base: "have/has", past: "had", zh: "有", baseIpa: "/hæv,hæz/", pastIpa: "/hæd/" },
-          { base: "find", past: "found", zh: "找到", baseIpa: "/faɪnd/", pastIpa: "/faʊnd/" },
-          { base: "stand", past: "stood", zh: "站", baseIpa: "/stænd/", pastIpa: "/stʊd/" }
-        ]
-      },
-      {
-        id: "special", name: "⑦ 完全变样(要单独记)", note: "过去式和原形几乎看不出关系,只能死记 —— 但都是最常用的词。",
-        items: [
-          { base: "go", past: "went", zh: "去", baseIpa: "/ɡəʊ/", pastIpa: "/went/" },
-          { base: "do/does", past: "did", zh: "做", baseIpa: "/duː,dʌz/", pastIpa: "/dɪd/" },
-          { base: "see", past: "saw", zh: "看见", baseIpa: "/siː/", pastIpa: "/sɔː/" },
-          { base: "take", past: "took", zh: "拿", baseIpa: "/teɪk/", pastIpa: "/tʊk/" },
-          { base: "wear", past: "wore", zh: "穿", baseIpa: "/weə(r)/", pastIpa: "/wɔː(r)/" },
-          { base: "fall", past: "fell", zh: "落下", baseIpa: "/fɔːl/", pastIpa: "/fel/" }
-        ]
-      },
-      {
-        id: "be", name: "⑧ be 动词(最特殊)", note: "be 动词过去式分两个:单数用 was,复数/you 用 were。", 
-        items: [
-          { base: "am/is", past: "was", zh: "是(单数)", baseIpa: "/æm,ɪz/", pastIpa: "/wɒz/" },
-          { base: "are", past: "were", zh: "是(复数)", baseIpa: "/ɑː(r)/", pastIpa: "/wɜː(r)/" }
-        ]
-      }
-    ]
-  },
-  // 练习:选正确的动词形式/时态(50 题,每轮随机抽 12)
-  quiz: [
-    { sentence: "She ___ to school every day.", answer: "goes", options: ["goes","went","going"], zh: "她每天去上学。", tag: "一般现在" },
-    { sentence: "Look! The boys ___ football.", answer: "are playing", options: ["are playing","play","played"], zh: "看!男孩们正在踢足球。", tag: "现在进行" },
-    { sentence: "We ___ a film yesterday.", answer: "watched", options: ["watched","watch","will watch"], zh: "我们昨天看了电影。", tag: "一般过去" },
-    { sentence: "I ___ my homework tomorrow.", answer: "will do", options: ["will do","did","do"], zh: "我明天做作业。", tag: "一般将来" },
-    { sentence: "He ___ apples every day.", answer: "eats", options: ["eats","ate","is eating"], zh: "他每天吃苹果。", tag: "一般现在" },
-    { sentence: "They ___ to the park last Sunday.", answer: "went", options: ["went","go","will go"], zh: "他们上周日去了公园。", tag: "一般过去" },
-    { sentence: "Listen! She ___ a song.", answer: "is singing", options: ["is singing","sings","sang"], zh: "听!她正在唱歌。", tag: "现在进行" },
-    { sentence: "My father ___ TV every evening.", answer: "watches", options: ["watches","watched","is watching"], zh: "我爸爸每天晚上看电视。", tag: "一般现在" },
-    { sentence: "We ___ a party next week.", answer: "will have", options: ["will have","had","have"], zh: "我们下周要办聚会。", tag: "一般将来" },
-    { sentence: "The cat ___ under the tree now.", answer: "is sleeping", options: ["is sleeping","sleeps","slept"], zh: "猫现在正睡在树下。", tag: "现在进行" },
-    { sentence: "I ___ to Beijing last year.", answer: "flew", options: ["flew","fly","will fly"], zh: "我去年飞去了北京。", tag: "一般过去" },
-    { sentence: "She ___ her grandma tomorrow.", answer: "will visit", options: ["will visit","visited","visits"], zh: "她明天要去看奶奶。", tag: "一般将来" },
-    { sentence: "We ___ English on Mondays.", answer: "have", options: ["have","had","are having"], zh: "我们周一上英语课。", tag: "一般现在" },
-    { sentence: "He ___ his homework just now.", answer: "finished", options: ["finished","finishes","will finish"], zh: "他刚刚做完了作业。", tag: "一般过去" },
-    { sentence: "Look! It ___.", answer: "is raining", options: ["is raining","rains","rained"], zh: "看!下雨了。", tag: "现在进行" },
-    { sentence: "The sun ___ in the east.", answer: "rises", options: ["rises","rose","is rising"], zh: "太阳从东边升起。", tag: "一般现在" },
-    { sentence: "They ___ a snowman yesterday.", answer: "made", options: ["made","make","will make"], zh: "他们昨天堆了一个雪人。", tag: "一般过去" },
-    { sentence: "I ___ you next week.", answer: "will call", options: ["will call","called","call"], zh: "我下周给你打电话。", tag: "一般将来" },
-    { sentence: "She is ___ a book now.", answer: "reading", options: ["reading","reads","read"], zh: "她现在正在读书。", tag: "现在进行" },
-    { sentence: "We ___ a big fish last week.", answer: "caught", options: ["caught","catch","will catch"], zh: "我们上周抓到一条大鱼。", tag: "一般过去" },
-    { sentence: "Tom usually ___ up at seven.", answer: "gets", options: ["gets","got","is getting"], zh: "汤姆通常七点起床。", tag: "一般现在" },
-    { sentence: "Be quiet! The baby ___.", answer: "is sleeping", options: ["is sleeping","sleeps","slept"], zh: "安静!宝宝在睡觉。", tag: "现在进行" },
-    { sentence: "My mother ___ a cake yesterday.", answer: "baked", options: ["baked","bakes","will bake"], zh: "我妈妈昨天烤了一个蛋糕。", tag: "一般过去" },
-    { sentence: "It ___ hot tomorrow.", answer: "will be", options: ["will be","was","is"], zh: "明天会很热。", tag: "一般将来" },
-    { sentence: "Pandas ___ bamboo.", answer: "eat", options: ["eat","ate","are eating"], zh: "熊猫吃竹子。", tag: "一般现在" },
-    { sentence: "We ___ a movie now.", answer: "are watching", options: ["are watching","watch","watched"], zh: "我们现在正在看电影。", tag: "现在进行" },
-    { sentence: "He ___ his leg last week.", answer: "hurt", options: ["hurt","hurts","will hurt"], zh: "他上周弄伤了腿。", tag: "一般过去" },
-    { sentence: "I ___ a doctor when I grow up.", answer: "will be", options: ["will be","am","was"], zh: "我长大后要当医生。", tag: "一般将来" },
-    { sentence: "Water ___ at 100°C.", answer: "boils", options: ["boils","boiled","is boiling"], zh: "水在100度沸腾。", tag: "一般现在" },
-    { sentence: "Look at the sky! Birds ___.", answer: "are flying", options: ["are flying","fly","flew"], zh: "看天空!鸟儿在飞。", tag: "现在进行" },
-    { sentence: "She ___ her keys this morning.", answer: "lost", options: ["lost","loses","will lose"], zh: "她今早丢了钥匙。", tag: "一般过去" },
-    { sentence: "They ___ to the beach next summer.", answer: "will go", options: ["will go","went","go"], zh: "他们明年夏天要去海边。", tag: "一般将来" },
-    { sentence: "My sister ___ the piano well.", answer: "plays", options: ["plays","played","is playing"], zh: "我妹妹钢琴弹得好。", tag: "一般现在" },
-    { sentence: "Listen! Someone ___ at the door.", answer: "is knocking", options: ["is knocking","knocks","knocked"], zh: "听!有人在敲门。", tag: "现在进行" },
-    { sentence: "We ___ a great time at the zoo yesterday.", answer: "had", options: ["had","have","will have"], zh: "我们昨天在动物园玩得很开心。", tag: "一般过去" },
-    { sentence: "I think it ___ rain soon.", answer: "will", options: ["will","did","does"], zh: "我觉得快要下雨了。", tag: "一般将来" },
-    { sentence: "He ___ his teeth twice a day.", answer: "brushes", options: ["brushes","brushed","is brushing"], zh: "他一天刷两次牙。", tag: "一般现在" },
-    { sentence: "Wait! I ___ my shoes.", answer: "am putting on", options: ["am putting on","put on","will put on"], zh: "等一下!我正在穿鞋。", tag: "现在进行" },
-    { sentence: "The dinosaurs ___ long ago.", answer: "lived", options: ["lived","live","will live"], zh: "恐龙很久以前生活过。", tag: "一般过去" },
-    { sentence: "She ___ 12 years old next month.", answer: "will be", options: ["will be","is","was"], zh: "她下个月满12岁。", tag: "一般将来" },
-    { sentence: "The Earth ___ around the sun.", answer: "moves", options: ["moves","moved","is moving"], zh: "地球绕着太阳转。", tag: "一般现在" },
-    { sentence: "Shh! The teacher ___ a story.", answer: "is telling", options: ["is telling","tells","told"], zh: "嘘!老师在讲故事。", tag: "现在进行" },
-    { sentence: "We ___ our grandparents last weekend.", answer: "visited", options: ["visited","visit","will visit"], zh: "我们上周末看望了祖父母。", tag: "一般过去" },
-    { sentence: "Don't worry, I ___ help you.", answer: "will", options: ["will","did","am"], zh: "别担心,我会帮你。", tag: "一般将来" },
-    { sentence: "Cats ___ at night.", answer: "sleep", options: ["sleep","slept","are sleeping"], zh: "猫在夜里睡觉。", tag: "一般现在" },
-    { sentence: "Look! The dog ___ the ball.", answer: "is catching", options: ["is catching","catches","caught"], zh: "看!狗正在接球。", tag: "现在进行" },
-    { sentence: "He ___ a new bike on his birthday.", answer: "got", options: ["got","gets","will get"], zh: "他生日时得到了一辆新自行车。", tag: "一般过去" },
-    { sentence: "Tomorrow we ___ a school trip.", answer: "will have", options: ["will have","had","have"], zh: "明天我们要去春游。", tag: "一般将来" },
-    { sentence: "The shop ___ at nine every morning.", answer: "opens", options: ["opens","opened","is opening"], zh: "商店每天早上九点开门。", tag: "一般现在" },
-    { sentence: "Right now the students ___ a test.", answer: "are taking", options: ["are taking","take","took"], zh: "现在学生们正在考试。", tag: "现在进行" }
-  ]
+// Combined quiz data: full pools across tense / preposition / collocation.
+window.MIX_DATA = {
+  quiz: [{"sentence":"She ___ to school every day.","answer":"goes","options":["goes","went","going"],"zh":"她每天去上学。","topic":"tense"},{"sentence":"Look! The boys ___ football.","answer":"are playing","options":["are playing","play","played"],"zh":"看!男孩们正在踢足球。","topic":"tense"},{"sentence":"We ___ a film yesterday.","answer":"watched","options":["watched","watch","will watch"],"zh":"我们昨天看了电影。","topic":"tense"},{"sentence":"I ___ my homework tomorrow.","answer":"will do","options":["will do","did","do"],"zh":"我明天做作业。","topic":"tense"},{"sentence":"He ___ apples every day.","answer":"eats","options":["eats","ate","is eating"],"zh":"他每天吃苹果。","topic":"tense"},{"sentence":"They ___ to the park last Sunday.","answer":"went","options":["went","go","will go"],"zh":"他们上周日去了公园。","topic":"tense"},{"sentence":"Listen! She ___ a song.","answer":"is singing","options":["is singing","sings","sang"],"zh":"听!她正在唱歌。","topic":"tense"},{"sentence":"My father ___ TV every evening.","answer":"watches","options":["watches","watched","is watching"],"zh":"我爸爸每天晚上看电视。","topic":"tense"},{"sentence":"We ___ a party next week.","answer":"will have","options":["will have","had","have"],"zh":"我们下周要办聚会。","topic":"tense"},{"sentence":"The cat ___ under the tree now.","answer":"is sleeping","options":["is sleeping","sleeps","slept"],"zh":"猫现在正睡在树下。","topic":"tense"},{"sentence":"I ___ to Beijing last year.","answer":"flew","options":["flew","fly","will fly"],"zh":"我去年飞去了北京。","topic":"tense"},{"sentence":"She ___ her grandma tomorrow.","answer":"will visit","options":["will visit","visited","visits"],"zh":"她明天要去看奶奶。","topic":"tense"},{"sentence":"We ___ English on Mondays.","answer":"have","options":["have","had","are having"],"zh":"我们周一上英语课。","topic":"tense"},{"sentence":"He ___ his homework just now.","answer":"finished","options":["finished","finishes","will finish"],"zh":"他刚刚做完了作业。","topic":"tense"},{"sentence":"Look! It ___.","answer":"is raining","options":["is raining","rains","rained"],"zh":"看!下雨了。","topic":"tense"},{"sentence":"The sun ___ in the east.","answer":"rises","options":["rises","rose","is rising"],"zh":"太阳从东边升起。","topic":"tense"},{"sentence":"They ___ a snowman yesterday.","answer":"made","options":["made","make","will make"],"zh":"他们昨天堆了一个雪人。","topic":"tense"},{"sentence":"I ___ you next week.","answer":"will call","options":["will call","called","call"],"zh":"我下周给你打电话。","topic":"tense"},{"sentence":"She is ___ a book now.","answer":"reading","options":["reading","reads","read"],"zh":"她现在正在读书。","topic":"tense"},{"sentence":"We ___ a big fish last week.","answer":"caught","options":["caught","catch","will catch"],"zh":"我们上周抓到一条大鱼。","topic":"tense"},{"sentence":"Tom usually ___ up at seven.","answer":"gets","options":["gets","got","is getting"],"zh":"汤姆通常七点起床。","topic":"tense"},{"sentence":"Be quiet! The baby ___.","answer":"is sleeping","options":["is sleeping","sleeps","slept"],"zh":"安静!宝宝在睡觉。","topic":"tense"},{"sentence":"My mother ___ a cake yesterday.","answer":"baked","options":["baked","bakes","will bake"],"zh":"我妈妈昨天烤了一个蛋糕。","topic":"tense"},{"sentence":"It ___ hot tomorrow.","answer":"will be","options":["will be","was","is"],"zh":"明天会很热。","topic":"tense"},{"sentence":"Pandas ___ bamboo.","answer":"eat","options":["eat","ate","are eating"],"zh":"熊猫吃竹子。","topic":"tense"},{"sentence":"We ___ a movie now.","answer":"are watching","options":["are watching","watch","watched"],"zh":"我们现在正在看电影。","topic":"tense"},{"sentence":"He ___ his leg last week.","answer":"hurt","options":["hurt","hurts","will hurt"],"zh":"他上周弄伤了腿。","topic":"tense"},{"sentence":"I ___ a doctor when I grow up.","answer":"will be","options":["will be","am","was"],"zh":"我长大后要当医生。","topic":"tense"},{"sentence":"Water ___ at 100°C.","answer":"boils","options":["boils","boiled","is boiling"],"zh":"水在100度沸腾。","topic":"tense"},{"sentence":"Look at the sky! Birds ___.","answer":"are flying","options":["are flying","fly","flew"],"zh":"看天空!鸟儿在飞。","topic":"tense"},{"sentence":"She ___ her keys this morning.","answer":"lost","options":["lost","loses","will lose"],"zh":"她今早丢了钥匙。","topic":"tense"},{"sentence":"They ___ to the beach next summer.","answer":"will go","options":["will go","went","go"],"zh":"他们明年夏天要去海边。","topic":"tense"},{"sentence":"My sister ___ the piano well.","answer":"plays","options":["plays","played","is playing"],"zh":"我妹妹钢琴弹得好。","topic":"tense"},{"sentence":"Listen! Someone ___ at the door.","answer":"is knocking","options":["is knocking","knocks","knocked"],"zh":"听!有人在敲门。","topic":"tense"},{"sentence":"We ___ a great time at the zoo yesterday.","answer":"had","options":["had","have","will have"],"zh":"我们昨天在动物园玩得很开心。","topic":"tense"},{"sentence":"I think it ___ rain soon.","answer":"will","options":["will","did","does"],"zh":"我觉得快要下雨了。","topic":"tense"},{"sentence":"He ___ his teeth twice a day.","answer":"brushes","options":["brushes","brushed","is brushing"],"zh":"他一天刷两次牙。","topic":"tense"},{"sentence":"Wait! I ___ my shoes.","answer":"am putting on","options":["am putting on","put on","will put on"],"zh":"等一下!我正在穿鞋。","topic":"tense"},{"sentence":"The dinosaurs ___ long ago.","answer":"lived","options":["lived","live","will live"],"zh":"恐龙很久以前生活过。","topic":"tense"},{"sentence":"She ___ 12 years old next month.","answer":"will be","options":["will be","is","was"],"zh":"她下个月满12岁。","topic":"tense"},{"sentence":"The Earth ___ around the sun.","answer":"moves","options":["moves","moved","is moving"],"zh":"地球绕着太阳转。","topic":"tense"},{"sentence":"Shh! The teacher ___ a story.","answer":"is telling","options":["is telling","tells","told"],"zh":"嘘!老师在讲故事。","topic":"tense"},{"sentence":"We ___ our grandparents last weekend.","answer":"visited","options":["visited","visit","will visit"],"zh":"我们上周末看望了祖父母。","topic":"tense"},{"sentence":"Don't worry, I ___ help you.","answer":"will","options":["will","did","am"],"zh":"别担心,我会帮你。","topic":"tense"},{"sentence":"Cats ___ at night.","answer":"sleep","options":["sleep","slept","are sleeping"],"zh":"猫在夜里睡觉。","topic":"tense"},{"sentence":"Look! The dog ___ the ball.","answer":"is catching","options":["is catching","catches","caught"],"zh":"看!狗正在接球。","topic":"tense"},{"sentence":"He ___ a new bike on his birthday.","answer":"got","options":["got","gets","will get"],"zh":"他生日时得到了一辆新自行车。","topic":"tense"},{"sentence":"Tomorrow we ___ a school trip.","answer":"will have","options":["will have","had","have"],"zh":"明天我们要去春游。","topic":"tense"},{"sentence":"The shop ___ at nine every morning.","answer":"opens","options":["opens","opened","is opening"],"zh":"商店每天早上九点开门。","topic":"tense"},{"sentence":"Right now the students ___ a test.","answer":"are taking","options":["are taking","take","took"],"zh":"现在学生们正在考试。","topic":"tense"},{"sentence":"The cat is ___ the box.","answer":"in","options":["in","on","at"],"zh":"猫在盒子里。","topic":"prep"},{"sentence":"The book is ___ the desk.","answer":"on","options":["in","on","under"],"zh":"书在桌上。","topic":"prep"},{"sentence":"We have dinner ___ six.","answer":"at","options":["in","on","at"],"zh":"我们六点吃晚饭。","topic":"prep"},{"sentence":"My birthday is ___ May 1st.","answer":"on","options":["in","on","at"],"zh":"我的生日是五月一日。","topic":"prep"},{"sentence":"The ball is ___ the chair.","answer":"under","options":["under","over","on"],"zh":"球在椅子下面。","topic":"prep"},{"sentence":"I go to school ___ bus.","answer":"by","options":["by","with","on"],"zh":"我坐公交车上学。","topic":"prep"},{"sentence":"The dog runs ___ the room.","answer":"into","options":["into","out of","at"],"zh":"狗跑进房间。","topic":"prep"},{"sentence":"We walk ___ the road.","answer":"across","options":["across","through","along"],"zh":"我们走过马路。","topic":"prep"},{"sentence":"This gift is ___ you.","answer":"for","options":["for","about","from"],"zh":"这个礼物是给你的。","topic":"prep"},{"sentence":"We go swimming ___ summer.","answer":"in","options":["in","on","at"],"zh":"我们夏天游泳。","topic":"prep"},{"sentence":"The shop is ___ the bank and the park.","answer":"between","options":["between","next to","near"],"zh":"商店在银行和公园之间。","topic":"prep"},{"sentence":"I play ___ my friends.","answer":"with","options":["with","by","for"],"zh":"我和朋友一起玩。","topic":"prep"},{"sentence":"There is a picture ___ the wall.","answer":"on","options":["on","in","at"],"zh":"墙上有一幅画。","topic":"prep"},{"sentence":"The bird flies ___ the tree.","answer":"over","options":["over","under","in"],"zh":"鸟从树上方飞过。","topic":"prep"},{"sentence":"She is ___ the door.","answer":"at","options":["at","in","on"],"zh":"她在门口。","topic":"prep"},{"sentence":"The train goes ___ the tunnel.","answer":"through","options":["through","across","along"],"zh":"火车穿过隧道。","topic":"prep"},{"sentence":"Wash your hands ___ lunch.","answer":"before","options":["before","after","during"],"zh":"午饭前洗手。","topic":"prep"},{"sentence":"We play games ___ school.","answer":"after","options":["after","before","in"],"zh":"我们放学后玩游戏。","topic":"prep"},{"sentence":"I am ___ China.","answer":"from","options":["from","to","at"],"zh":"我来自中国。","topic":"prep"},{"sentence":"This book is ___ animals.","answer":"about","options":["about","for","with"],"zh":"这本书是关于动物的。","topic":"prep"},{"sentence":"The lamp is ___ the bed.","answer":"next to","options":["next to","between","over"],"zh":"台灯在床旁边。","topic":"prep"},{"sentence":"My home is ___ the school.","answer":"near","options":["near","in","on"],"zh":"我家在学校附近。","topic":"prep"},{"sentence":"The boy hides ___ the door.","answer":"behind","options":["behind","in front of","under"],"zh":"男孩躲在门后。","topic":"prep"},{"sentence":"A car is ___ the school.","answer":"in front of","options":["in front of","behind","between"],"zh":"一辆车在学校前面。","topic":"prep"},{"sentence":"The monkey climbs ___ the tree.","answer":"up","options":["up","down","across"],"zh":"猴子爬上树。","topic":"prep"},{"sentence":"Please sit ___.","answer":"down","options":["down","up","in"],"zh":"请坐下。","topic":"prep"},{"sentence":"The cat comes ___ the box.","answer":"out of","options":["out of","into","on"],"zh":"猫从盒子里出来。","topic":"prep"},{"sentence":"We run ___ the river.","answer":"along","options":["along","across","over"],"zh":"我们沿着河边跑。","topic":"prep"},{"sentence":"She sings ___ a bird.","answer":"like","options":["like","with","for"],"zh":"她唱歌像小鸟。","topic":"prep"},{"sentence":"We eat noodles ___ chopsticks.","answer":"with","options":["with","by","in"],"zh":"我们用筷子吃面。","topic":"prep"},{"sentence":"I get up early ___ the morning.","answer":"in","options":["in","on","at"],"zh":"我早上起得早。","topic":"prep"},{"sentence":"We have a party ___ Sunday.","answer":"on","options":["on","in","at"],"zh":"我们星期天有聚会。","topic":"prep"},{"sentence":"School starts ___ eight.","answer":"at","options":["at","in","on"],"zh":"学校八点上课。","topic":"prep"},{"sentence":"Don't talk ___ the class.","answer":"during","options":["during","before","after"],"zh":"上课期间不要说话。","topic":"prep"},{"sentence":"There is a bridge ___ the river.","answer":"over","options":["over","under","in"],"zh":"河上有一座桥。","topic":"prep"},{"sentence":"The clock is ___ the door.","answer":"above","options":["above","below","under"],"zh":"钟在门的上方。","topic":"prep"},{"sentence":"The fish are ___ the boat.","answer":"below","options":["below","above","on"],"zh":"鱼在船的下方。","topic":"prep"},{"sentence":"She stands ___ the trees.","answer":"among","options":["among","between","near"],"zh":"她站在树林之中。","topic":"prep"},{"sentence":"A dog sleeps ___ the tree.","answer":"under","options":["under","over","on"],"zh":"一只狗在树下睡觉。","topic":"prep"},{"sentence":"Put the toys ___ the box.","answer":"into","options":["into","out of","at"],"zh":"把玩具放进盒子里。","topic":"prep"},{"sentence":"He jumps ___ bed.","answer":"out of","options":["out of","into","on"],"zh":"他从床上跳下来。","topic":"prep"},{"sentence":"We walk ___ the forest.","answer":"through","options":["through","across","along"],"zh":"我们穿过森林。","topic":"prep"},{"sentence":"A boat goes ___ the river.","answer":"across","options":["across","through","up"],"zh":"一条船横渡河流。","topic":"prep"},{"sentence":"She reads ___ bed.","answer":"before","options":["before","after","during"],"zh":"她睡觉前读书。","topic":"prep"},{"sentence":"He brushes teeth ___ dinner.","answer":"after","options":["after","before","in"],"zh":"他晚饭后刷牙。","topic":"prep"},{"sentence":"I sit ___ Tom and Ann.","answer":"between","options":["between","among","near"],"zh":"我坐在汤姆和安之间。","topic":"prep"},{"sentence":"She learns English ___ reading.","answer":"by","options":["by","with","for"],"zh":"她通过阅读学英语。","topic":"prep"},{"sentence":"We rest ___ the holiday.","answer":"during","options":["during","before","on"],"zh":"假期期间我们休息。","topic":"prep"},{"sentence":"He comes ___ a small town.","answer":"from","options":["from","to","at"],"zh":"他来自一个小镇。","topic":"prep"},{"sentence":"We talk ___ the trip.","answer":"about","options":["about","for","with"],"zh":"我们谈论这次旅行。","topic":"prep"},{"sentence":"I listen ___ music every day.","answer":"to","options":["to","at","for"],"zh":"我每天听音乐。","topic":"coll"},{"sentence":"Look ___ the blackboard!","answer":"at","options":["at","to","for"],"zh":"看黑板!","topic":"coll"},{"sentence":"She is good ___ English.","answer":"at","options":["at","in","for"],"zh":"她擅长英语。","topic":"coll"},{"sentence":"I get ___ at seven every day.","answer":"up","options":["up","on","off"],"zh":"我每天七点起床。","topic":"coll"},{"sentence":"Please turn ___ the light, it's dark.","answer":"on","options":["on","off","up"],"zh":"请开灯,天黑了。","topic":"coll"},{"sentence":"Turn ___ the TV before you sleep.","answer":"off","options":["off","on","up"],"zh":"睡前关掉电视。","topic":"coll"},{"sentence":"Wait ___ me, please.","answer":"for","options":["for","at","to"],"zh":"请等等我。","topic":"coll"},{"sentence":"I come ___ China.","answer":"from","options":["from","to","at"],"zh":"我来自中国。","topic":"coll"},{"sentence":"He is interested ___ science.","answer":"in","options":["in","at","for"],"zh":"他对科学感兴趣。","topic":"coll"},{"sentence":"The cat is afraid ___ dogs.","answer":"of","options":["of","at","for"],"zh":"这只猫怕狗。","topic":"coll"},{"sentence":"The box is full ___ toys.","answer":"of","options":["of","with","in"],"zh":"盒子里装满玩具。","topic":"coll"},{"sentence":"Don't be late ___ school.","answer":"for","options":["for","to","at"],"zh":"上学别迟到。","topic":"coll"},{"sentence":"She looks ___ her little brother.","answer":"after","options":["after","at","for"],"zh":"她照顾弟弟。","topic":"coll"},{"sentence":"Put ___ your coat, it's cold.","answer":"on","options":["on","off","up"],"zh":"穿上外套,天冷。","topic":"coll"},{"sentence":"Take ___ your hat inside.","answer":"off","options":["off","on","up"],"zh":"在室内摘下帽子。","topic":"coll"},{"sentence":"Get ___ the bus quickly.","answer":"on","options":["on","off","up"],"zh":"快上公交车。","topic":"coll"},{"sentence":"Get ___ at the next stop.","answer":"off","options":["off","on","up"],"zh":"在下一站下车。","topic":"coll"},{"sentence":"I want to be a teacher when I grow ___.","answer":"up","options":["up","on","off"],"zh":"我长大想当老师。","topic":"coll"},{"sentence":"I have a lot ___ books.","answer":"of","options":["of","in","at"],"zh":"我有很多书。","topic":"coll"},{"sentence":"I go to school ___ foot.","answer":"on","options":["on","by","in"],"zh":"我走路上学。","topic":"coll"},{"sentence":"I stay ___ home on Sunday.","answer":"at","options":["at","in","to"],"zh":"我周日待在家。","topic":"coll"},{"sentence":"I read books ___ the morning.","answer":"in","options":["in","on","at"],"zh":"我早上读书。","topic":"coll"},{"sentence":"I ___ like some juice.","answer":"would","options":["would","will","am"],"zh":"我想要一些果汁。","topic":"coll"},{"sentence":"Can I have a ___ at this photo?","answer":"look","options":["look","see","watch"],"zh":"我能看看这张照片吗?","topic":"coll"},{"sentence":"Let's have a ___.","answer":"rest","options":["rest","sleep","stop"],"zh":"我们休息一下吧。","topic":"coll"},{"sentence":"___ course I can help you.","answer":"Of","options":["Of","In","At"],"zh":"我当然能帮你。","topic":"coll"},{"sentence":"I look ___ my lost pen.","answer":"for","options":["for","at","after"],"zh":"我在找丢的笔。","topic":"coll"},{"sentence":"My mom picks me ___ after school.","answer":"up","options":["up","on","off"],"zh":"妈妈放学后接我。","topic":"coll"},{"sentence":"This one is different ___ that one.","answer":"from","options":["from","with","of"],"zh":"这个和那个不同。","topic":"coll"},{"sentence":"Are you ready ___ the test?","answer":"for","options":["for","to","at"],"zh":"你准备好考试了吗?","topic":"coll"},{"sentence":"Listen ___ the teacher, please.","answer":"to","options":["to","at","for"],"zh":"请听老师说。","topic":"coll"},{"sentence":"We are good ___ swimming.","answer":"at","options":["at","in","for"],"zh":"我们擅长游泳。","topic":"coll"},{"sentence":"Please look ___ my cat this weekend.","answer":"after","options":["after","at","for"],"zh":"这周末请照顾我的猫。","topic":"coll"},{"sentence":"He is afraid ___ the dark.","answer":"of","options":["of","at","for"],"zh":"他怕黑。","topic":"coll"},{"sentence":"We wait ___ the bus at the stop.","answer":"for","options":["for","at","to"],"zh":"我们在站台等公交。","topic":"coll"},{"sentence":"Where do you come ___?","answer":"from","options":["from","at","to"],"zh":"你来自哪里?","topic":"coll"},{"sentence":"Get ___ your bike and let's go.","answer":"on","options":["on","off","up"],"zh":"骑上你的自行车,我们走。","topic":"coll"},{"sentence":"Would you ___ to come with us?","answer":"like","options":["like","want","love"],"zh":"你想和我们一起来吗?","topic":"coll"},{"sentence":"Don't be late ___ the meeting.","answer":"for","options":["for","to","at"],"zh":"开会别迟到。","topic":"coll"},{"sentence":"Thank you ___ your help.","answer":"for","options":["for","to","with"],"zh":"谢谢你的帮助。","topic":"coll"},{"sentence":"We talk ___ the trip.","answer":"about","options":["about","at","for"],"zh":"我们谈论这次旅行。","topic":"coll"},{"sentence":"Don't worry ___ the test.","answer":"about","options":["about","for","of"],"zh":"别担心考试。","topic":"coll"},{"sentence":"Milk is good ___ your body.","answer":"for","options":["for","at","to"],"zh":"牛奶对身体有益。","topic":"coll"},{"sentence":"I am proud ___ my class.","answer":"of","options":["of","for","with"],"zh":"我为我的班级自豪。","topic":"coll"},{"sentence":"The desk is made ___ wood.","answer":"of","options":["of","from","with"],"zh":"桌子是木头做的。","topic":"coll"},{"sentence":"Please sit ___.","answer":"down","options":["down","up","on"],"zh":"请坐下。","topic":"coll"},{"sentence":"Stand ___, please.","answer":"up","options":["up","down","on"],"zh":"请起立。","topic":"coll"},{"sentence":"Don't give ___, keep trying!","answer":"up","options":["up","in","off"],"zh":"别放弃,继续努力!","topic":"coll"},{"sentence":"I help my mom ___ the housework.","answer":"with","options":["with","to","for"],"zh":"我帮妈妈做家务。","topic":"coll"},{"sentence":"Please take care ___ yourself.","answer":"of","options":["of","for","with"],"zh":"照顾好你自己。","topic":"coll"},{"sentence":"I want a piece ___ bread.","answer":"of","options":["of","for","in"],"zh":"我想要一片面包。","topic":"coll"},{"sentence":"The bus is ___ time today.","answer":"on","options":["on","in","at"],"zh":"今天公交车准时。","topic":"coll"},{"sentence":"Stars shine ___ night.","answer":"at","options":["at","in","on"],"zh":"星星在夜里闪亮。","topic":"coll"},{"sentence":"I drink milk ___ day.","answer":"every","options":["every","all","on"],"zh":"我每天喝牛奶。","topic":"coll"},{"sentence":"At ___, I was afraid.","answer":"first","options":["first","last","once"],"zh":"起初我很害怕。","topic":"coll"},{"sentence":"Thank you so ___.","answer":"much","options":["much","many","more"],"zh":"非常感谢你。","topic":"coll"},{"sentence":"I agree ___ you.","answer":"with","options":["with","to","at"],"zh":"我同意你。","topic":"coll"},{"sentence":"The lamp is next ___ the bed.","answer":"to","options":["to","at","for"],"zh":"台灯在床旁边。","topic":"coll"},{"sentence":"I make friends ___ the new boy.","answer":"with","options":["with","to","for"],"zh":"我和新来的男孩交朋友。","topic":"coll"},{"sentence":"I have ___ do my homework now.","answer":"to","options":["to","for","at"],"zh":"我现在必须做作业。","topic":"coll"}]
 };
 
 </script>
 <script>
-// Word → IPA dictionary for all words used in tense example sentences.
-window.IPA_DICT = {
-  "a":"/ə/","an":"/ən/","the":"/ðə/","this":"/ðɪs/","to":"/tuː/","in":"/ɪn/","on":"/ɒn/","under":"/ˈʌndə(r)/","of":"/ɒv/",
-  "i":"/aɪ/","you":"/juː/","he":"/hiː/","she":"/ʃiː/","it":"/ɪt/","we":"/wiː/","they":"/ðeɪ/","my":"/maɪ/","her":"/hɜː(r)/","his":"/hɪz/",
-  "am":"/æm/","is":"/ɪz/","are":"/ɑː(r)/","have":"/hæv/","do":"/duː/","will":"/wɪl/","going":"/ˈɡəʊɪŋ/","go":"/ɡəʊ/","goes":"/ɡəʊz/",
-  "eats":"/iːts/","likes":"/laɪks/","play":"/pleɪ/","plays":"/pleɪz/","played":"/pleɪd/","playing":"/ˈpleɪɪŋ/",
-  "watch":"/wɒtʃ/","watches":"/ˈwɒtʃɪz/","watched":"/wɒtʃt/","visit":"/ˈvɪzɪt/","call":"/kɔːl/","finished":"/ˈfɪnɪʃt/",
-  "read":"/riːd/","reading":"/ˈriːdɪŋ/","sing":"/sɪŋ/","singing":"/ˈsɪŋɪŋ/","song":"/sɒŋ/","sleep":"/sliːp/","sleeping":"/ˈsliːpɪŋ/",
-  "cry":"/kraɪ/","crying":"/ˈkraɪɪŋ/","rain":"/reɪn/","raining":"/ˈreɪnɪŋ/","rise":"/raɪz/","rises":"/ˈraɪzɪz/",
-  "made":"/meɪd/","make":"/meɪk/","went":"/went/","flew":"/fluː/","caught":"/kɔːt/","look":"/lʊk/","listen":"/ˈlɪsn/",
-  "boys":"/bɔɪz/","baby":"/ˈbeɪbi/","cat":"/kæt/","fish":"/fɪʃ/","father":"/ˈfɑːðə(r)/","grandma":"/ˈɡrænmɑː/",
-  "apples":"/ˈæplz/","basketball":"/ˈbɑːskɪtbɔːl/","football":"/ˈfʊtbɔːl/","book":"/bʊk/","homework":"/ˈhəʊmwɜːk/",
-  "film":"/fɪlm/","party":"/ˈpɑːti/","snowman":"/ˈsnəʊmæn/","tv":"/ˌtiːˈviː/","school":"/skuːl/","park":"/pɑːk/",
-  "zoo":"/zuː/","tree":"/triː/","sun":"/sʌn/","east":"/iːst/","beijing":"/beɪˈdʒɪŋ/","english":"/ˈɪŋɡlɪʃ/",
-  "big":"/bɪɡ/","every":"/ˈevri/","day":"/deɪ/","evening":"/ˈiːvnɪŋ/","now":"/naʊ/","just":"/dʒʌst/",
-  "yesterday":"/ˈjestədeɪ/","tomorrow":"/təˈmɒrəʊ/","last":"/lɑːst/","next":"/nekst/","week":"/wiːk/",
-  "year":"/jɪə(r)/","sunday":"/ˈsʌndeɪ/","mondays":"/ˈmʌndeɪz/",
-  "tom":"/tɒm/","usually":"/ˈjuːʒuəli/","gets":"/ɡets/","up":"/ʌp/","seven":"/ˈsevn/","be":"/biː/","quiet":"/ˈkwaɪət/",
-  "mother":"/ˈmʌðə(r)/","baked":"/beɪkt/","cake":"/keɪk/","hot":"/hɒt/","pandas":"/ˈpændəz/","eat":"/iːt/","bamboo":"/ˌbæmˈbuː/",
-  "watching":"/ˈwɒtʃɪŋ/","movie":"/ˈmuːvi/","hurt":"/hɜːt/","leg":"/leɡ/","doctor":"/ˈdɒktə(r)/","when":"/wen/","grow":"/ɡrəʊ/",
-  "water":"/ˈwɔːtə(r)/","boils":"/bɔɪlz/","sky":"/skaɪ/","birds":"/bɜːdz/","flying":"/ˈflaɪɪŋ/","lost":"/lɒst/","keys":"/kiːz/",
-  "morning":"/ˈmɔːnɪŋ/","beach":"/biːtʃ/","summer":"/ˈsʌmə(r)/","sister":"/ˈsɪstə(r)/","piano":"/piˈænəʊ/","well":"/wel/",
-  "someone":"/ˈsʌmwʌn/","knocking":"/ˈnɒkɪŋ/","door":"/dɔː(r)/","had":"/hæd/","great":"/ɡreɪt/","time":"/taɪm/","think":"/θɪŋk/","soon":"/suːn/",
-  "brushes":"/ˈbrʌʃɪz/","teeth":"/tiːθ/","twice":"/twaɪs/","wait":"/weɪt/","putting":"/ˈpʊtɪŋ/","shoes":"/ʃuːz/",
-  "dinosaurs":"/ˈdaɪnəsɔːz/","lived":"/lɪvd/","long":"/lɒŋ/","ago":"/əˈɡəʊ/","years":"/jɪəz/","old":"/əʊld/","month":"/mʌnθ/",
-  "earth":"/ɜːθ/","moves":"/muːvz/","around":"/əˈraʊnd/","shh":"/ʃ/","teacher":"/ˈtiːtʃə(r)/","telling":"/ˈtelɪŋ/","story":"/ˈstɔːri/",
-  "visited":"/ˈvɪzɪtɪd/","our":"/ˈaʊə(r)/","grandparents":"/ˈɡrænpeərənts/","weekend":"/ˌwiːkˈend/","don't":"/dəʊnt/","worry":"/ˈwʌri/","help":"/help/",
-  "cats":"/kæts/","night":"/naɪt/","dog":"/dɒɡ/","catching":"/ˈkætʃɪŋ/","ball":"/bɔːl/","got":"/ɡɒt/","new":"/njuː/","bike":"/baɪk/","birthday":"/ˈbɜːθdeɪ/",
-  "trip":"/trɪp/","shop":"/ʃɒp/","opens":"/ˈəʊpənz/","nine":"/naɪn/","right":"/raɪt/","students":"/ˈstjuːdnts/","taking":"/ˈteɪkɪŋ/","test":"/test/",
-  "keys":"/kiːz/","when":"/wen/","at":"/æt/"
-};
+// Merged IPA dictionary (tense + prep + collocation).
+window.IPA_DICT = {"a":"/ə/","an":"/ən/","the":"/ðə/","this":"/ðɪs/","to":"/tuː/","in":"/ɪn/","on":"/ɒn/","under":"/ˈʌndə(r)/","of":"/ɒv/","i":"/aɪ/","you":"/juː/","he":"/hiː/","she":"/ʃiː/","it":"/ɪt/","we":"/wiː/","they":"/ðeɪ/","my":"/maɪ/","her":"/hɜː(r)/","his":"/hɪz/","am":"/æm/","is":"/ɪz/","are":"/ɑː(r)/","have":"/hæv/","do":"/duː/","will":"/wɪl/","going":"/ˈɡəʊɪŋ/","go":"/ɡəʊ/","goes":"/ɡəʊz/","eats":"/iːts/","likes":"/laɪks/","play":"/pleɪ/","plays":"/pleɪz/","played":"/pleɪd/","playing":"/ˈpleɪɪŋ/","watch":"/wɒtʃ/","watches":"/ˈwɒtʃɪz/","watched":"/wɒtʃt/","visit":"/ˈvɪzɪt/","call":"/kɔːl/","finished":"/ˈfɪnɪʃt/","read":"/riːd/","reading":"/ˈriːdɪŋ/","sing":"/sɪŋ/","singing":"/ˈsɪŋɪŋ/","song":"/sɒŋ/","sleep":"/sliːp/","sleeping":"/ˈsliːpɪŋ/","cry":"/kraɪ/","crying":"/ˈkraɪɪŋ/","rain":"/reɪn/","raining":"/ˈreɪnɪŋ/","rise":"/raɪz/","rises":"/ˈraɪzɪz/","made":"/meɪd/","make":"/meɪk/","went":"/went/","flew":"/fluː/","caught":"/kɔːt/","look":"/lʊk/","listen":"/ˈlɪsn/","boys":"/bɔɪz/","baby":"/ˈbeɪbi/","cat":"/kæt/","fish":"/fɪʃ/","father":"/ˈfɑːðə(r)/","grandma":"/ˈɡrænmɑː/","apples":"/ˈæplz/","basketball":"/ˈbɑːskɪtbɔːl/","football":"/ˈfʊtbɔːl/","book":"/bʊk/","homework":"/ˈhəʊmwɜːk/","film":"/fɪlm/","party":"/ˈpɑːti/","snowman":"/ˈsnəʊmæn/","tv":"/ˌtiːˈviː/","school":"/skuːl/","park":"/pɑːk/","zoo":"/zuː/","tree":"/triː/","sun":"/sʌn/","east":"/iːst/","beijing":"/beɪˈdʒɪŋ/","english":"/ˈɪŋɡlɪʃ/","big":"/bɪɡ/","every":"/ˈevri/","day":"/deɪ/","evening":"/ˈiːvnɪŋ/","now":"/naʊ/","just":"/dʒʌst/","yesterday":"/ˈjestədeɪ/","tomorrow":"/təˈmɒrəʊ/","last":"/lɑːst/","next":"/nekst/","week":"/wiːk/","year":"/jɪə(r)/","sunday":"/ˈsʌndeɪ/","mondays":"/ˈmʌndeɪz/","tom":"/tɒm/","usually":"/ˈjuːʒuəli/","gets":"/ɡets/","up":"/ʌp/","seven":"/ˈsevn/","be":"/biː/","quiet":"/ˈkwaɪət/","mother":"/ˈmʌðə(r)/","baked":"/beɪkt/","cake":"/keɪk/","hot":"/hɒt/","pandas":"/ˈpændəz/","eat":"/iːt/","bamboo":"/ˌbæmˈbuː/","watching":"/ˈwɒtʃɪŋ/","movie":"/ˈmuːvi/","hurt":"/hɜːt/","leg":"/leɡ/","doctor":"/ˈdɒktə(r)/","when":"/wen/","grow":"/ɡrəʊ/","water":"/ˈwɔːtə(r)/","boils":"/bɔɪlz/","sky":"/skaɪ/","birds":"/bɜːdz/","flying":"/ˈflaɪɪŋ/","lost":"/lɒst/","keys":"/kiːz/","morning":"/ˈmɔːnɪŋ/","beach":"/biːtʃ/","summer":"/ˈsʌmə(r)/","sister":"/ˈsɪstə(r)/","piano":"/piˈænəʊ/","well":"/wel/","someone":"/ˈsʌmwʌn/","knocking":"/ˈnɒkɪŋ/","door":"/dɔː(r)/","had":"/hæd/","great":"/ɡreɪt/","time":"/taɪm/","think":"/θɪŋk/","soon":"/suːn/","brushes":"/ˈbrʌʃɪz/","teeth":"/tiːθ/","twice":"/twaɪs/","wait":"/weɪt/","putting":"/ˈpʊtɪŋ/","shoes":"/ʃuːz/","dinosaurs":"/ˈdaɪnəsɔːz/","lived":"/lɪvd/","long":"/lɒŋ/","ago":"/əˈɡəʊ/","years":"/jɪəz/","old":"/əʊld/","month":"/mʌnθ/","earth":"/ɜːθ/","moves":"/muːvz/","around":"/əˈraʊnd/","shh":"/ʃ/","teacher":"/ˈtiːtʃə(r)/","telling":"/ˈtelɪŋ/","story":"/ˈstɔːri/","visited":"/ˈvɪzɪtɪd/","our":"/ˈaʊə(r)/","grandparents":"/ˈɡrænpeərənts/","weekend":"/ˌwiːkˈend/","don't":"/dəʊnt/","worry":"/ˈwʌri/","help":"/help/","cats":"/kæts/","night":"/naɪt/","dog":"/dɒɡ/","catching":"/ˈkætʃɪŋ/","ball":"/bɔːl/","got":"/ɡɒt/","new":"/njuː/","bike":"/baɪk/","birthday":"/ˈbɜːθdeɪ/","trip":"/trɪp/","shop":"/ʃɒp/","opens":"/ˈəʊpənz/","nine":"/naɪn/","right":"/raɪt/","students":"/ˈstjuːdnts/","taking":"/ˈteɪkɪŋ/","test":"/test/","at":"/æt/","there":"/ðeə(r)/","and":"/ənd/","me":"/miː/","your":"/jɔː(r)/","come":"/kʌm/","comes":"/kʌmz/","get":"/ɡet/","put":"/pʊt/","meet":"/miːt/","run":"/rʌn/","runs":"/rʌnz/","walk":"/wɔːk/","walks":"/wɔːks/","sit":"/sɪt/","sleeps":"/sliːps/","hides":"/haɪdz/","stands":"/stændz/","climbs":"/klaɪmz/","jumps":"/dʒʌmps/","flies":"/flaɪz/","reads":"/riːdz/","learns":"/lɜːnz/","sings":"/sɪŋz/","talk":"/tɔːk/","rest":"/rest/","looks":"/lʊks/","wash":"/wɒʃ/","starts":"/stɑːts/","swimming":"/ˈswɪmɪŋ/","bird":"/bɜːd/","monkey":"/ˈmʌŋki/","boy":"/bɔɪ/","friends":"/frendz/","box":"/bɒks/","books":"/bʊks/","bag":"/bæɡ/","desk":"/desk/","chair":"/tʃeə(r)/","bed":"/bed/","lamp":"/læmp/","wall":"/wɔːl/","picture":"/ˈpɪktʃə(r)/","house":"/haʊs/","garden":"/ˈɡɑːdn/","room":"/ruːm/","bank":"/bæŋk/","river":"/ˈrɪvə(r)/","bridge":"/brɪdʒ/","road":"/rəʊd/","street":"/striːt/","town":"/taʊn/","village":"/ˈvɪlɪdʒ/","forest":"/ˈfɒrɪst/","tunnel":"/ˈtʌnl/","boat":"/bəʊt/","train":"/treɪn/","bus":"/bʌs/","car":"/kɑː(r)/","home":"/həʊm/","toys":"/tɔɪz/","gift":"/ɡɪft/","hands":"/hændz/","noodles":"/ˈnuːdlz/","chopsticks":"/ˈtʃɒpstɪks/","games":"/ɡeɪmz/","animals":"/ˈænɪmlz/","fun":"/fʌn/","china":"/ˈtʃaɪnə/","ann":"/æn/","stop":"/stɒp/","front":"/frʌnt/","near":"/nɪə(r)/","behind":"/bɪˈhaɪnd/","between":"/bɪˈtwiːn/","over":"/ˈəʊvə(r)/","into":"/ˈɪntuː/","down":"/daʊn/","across":"/əˈkrɒs/","through":"/θruː/","along":"/əˈlɒŋ/","by":"/baɪ/","with":"/wɪð/","for":"/fɔː(r)/","about":"/əˈbaʊt/","from":"/frɒm/","like":"/laɪk/","out":"/aʊt/","before":"/bɪˈfɔː(r)/","after":"/ˈɑːftə(r)/","during":"/ˈdjʊərɪŋ/","monday":"/ˈmʌndeɪ/","may":"/meɪ/","1st":"/fɜːst/","dinner":"/ˈdɪnə(r)/","lunch":"/lʌntʃ/","holiday":"/ˈhɒlədeɪ/","class":"/klɑːs/","six":"/sɪks/","eight":"/eɪt/","early":"/ˈɜːli/","please":"/pliːz/","small":"/smɔːl/","clock":"/klɒk/","above":"/əˈbʌv/","table":"/ˈteɪbl/","below":"/bɪˈləʊ/","driver":"/ˈdraɪvə(r)/","sits":"/sɪts/","among":"/əˈmʌŋ/","trees":"/triːz/","that":"/ðæt/","it's":"/ɪts/","us":"/ʌs/","yours":"/jɔːz/","one":"/wʌn/","can":"/kæn/","would":"/wʊd/","need":"/niːd/","want":"/wɒnt/","let's":"/lets/","where":"/weə(r)/","looking":"/ˈlʊkɪŋ/","turn":"/tɜːn/","turns":"/tɜːnz/","puts":"/pʊts/","take":"/teɪk/","takes":"/teɪks/","pick":"/pɪk/","picks":"/pɪks/","stay":"/steɪ/","good":"/ɡʊd/","interested":"/ˈɪntrəstɪd/","afraid":"/əˈfreɪd/","full":"/fʊl/","late":"/leɪt/","different":"/ˈdɪfrənt/","ready":"/ˈredi/","little":"/ˈlɪtl/","cold":"/kəʊld/","dark":"/dɑːk/","fast":"/fɑːst/","loud":"/laʊd/","tired":"/ˈtaɪəd/","quickly":"/ˈkwɪkli/","inside":"/ˌɪnˈsaɪd/","too":"/tuː/","not":"/nɒt/","some":"/sʌm/","lot":"/lɒt/","off":"/ɒf/","course":"/kɔːs/","foot":"/fʊt/","tonight":"/təˈnaɪt/","music":"/ˈmjuːzɪk/","blackboard":"/ˈblækbɔːd/","stars":"/stɑːz/","light":"/laɪt/","lights":"/laɪts/","computer":"/kəmˈpjuːtə(r)/","radio":"/ˈreɪdiəʊ/","phone":"/fəʊn/","pen":"/pen/","toy":"/tɔɪ/","coat":"/kəʊt/","hat":"/hæt/","photo":"/ˈfəʊtəʊ/","bottle":"/ˈbɒtl/","juice":"/dʒuːs/","floor":"/flɔː(r)/","dogs":"/dɒɡz/","brother":"/ˈbrʌðə(r)/","mom":"/mɒm/","children":"/ˈtʃɪldrən/","science":"/ˈsaɪəns/","meeting":"/ˈmiːtɪŋ/","game":"/ɡeɪm/","exercise":"/ˈeksəsaɪz/","drawing":"/ˈdrɔːɪŋ/","question":"/ˈkwestʃən/","worries":"/ˈwʌriz/","laugh":"/lɑːf/","others":"/ˈʌðəz/","funny":"/ˈfʌni/","arrive":"/əˈraɪv/","arrives":"/əˈraɪvz/","hear":"/hɪə(r)/","friend":"/frend/","hope":"/həʊp/","agree":"/əˈɡriː/","agrees":"/əˈɡriːz/","milk":"/mɪlk/","body":"/ˈbɒdi/","busy":"/ˈbɪzi/","work":"/wɜːk/","angry":"/ˈæŋɡri/","them":"/ðem/","proud":"/praʊd/","son":"/sʌn/","wood":"/wʊd/","cup":"/kʌp/","glass":"/ɡlɑːs/","clean":"/kliːn/","classroom":"/ˈklɑːsruːm/","wake":"/weɪk/","stand":"/stænd/","give":"/ɡɪv/","never":"/ˈnevə(r)/","dream":"/driːm/","fruit":"/fruːt/","example":"/ɪɡˈzɑːmpl/","as":"/əz/","swim":"/swɪm/","thank":"/θæŋk/","coming":"/ˈkʌmɪŋ/","shine":"/ʃaɪn/","hiking":"/ˈhaɪkɪŋ/","drink":"/drɪŋk/","rained":"/reɪnd/","all":"/ɔːl/","left":"/left/","saw":"/sɔː/","housework":"/ˈhaʊswɜːk/","makes":"/meɪks/","easily":"/ˈiːzɪli/","care":"/keə(r)/","yourself":"/jɔːˈself/","plants":"/plɑːnts/","piece":"/piːs/","bread":"/bred/","paper":"/ˈpeɪpə(r)/","tea":"/tiː/","has":"/hæz/","first":"/fɜːst/","was":"/wɒz/","couldn't":"/ˈkʊdnt/","so":"/səʊ/","much":"/mʌtʃ/","love":"/lʌv/","keep":"/kiːp/","trying":"/ˈtraɪɪŋ/","today":"/təˈdeɪ/"};
 
 </script>
 <script type="module">
@@ -2083,7 +1769,7 @@ function _prewarm(sentences){
                     .catch(() => { setTimeout(step, 60); });   // keep going even if one fails
   };
   // small initial delay so first paint isn't blocked
-  setTimeout(step, 400);
+  setTimeout(step, 150);
 }
 
 function setRate(r){ if(RATE_LEVELS[r]){ _rate = r; _edgeCache.clear(); if (window.__allSentences) _prewarm(window.__allSentences); } }
@@ -2098,21 +1784,30 @@ function speak(text, btnEl){
   a.volume = 0.6;                 // default playback volume
   try { a.pause(); } catch(e){}
 
+  let settled = false;            // true once SOME audio has started (edge or local)
   const playUrl = (url) => {
-    a.onended = done; a.onerror = () => _localSpeak(text, btnEl);
+    if (settled) return; settled = true;
+    a.onended = done; a.onerror = () => { if(!settled) _localSpeak(text, btnEl); };
     a.src = url; const p = a.play(); if (p && p.catch) p.catch(() => _localSpeak(text, btnEl));
   };
+  const fallbackLocal = () => { if (settled) return; settled = true; _localSpeak(text, btnEl); };
 
-  if (_edgeBlocked) { _localSpeak(text, btnEl); return; }
+  if (_edgeBlocked) { fallbackLocal(); return; }
   const cacheKey = _rate + '|' + text;
   if (_edgeCache.has(cacheKey)) { playUrl(_edgeCache.get(cacheKey)); return; }
 
+  // grace timeout: if the neural audio isn't ready fast, speak locally NOW so
+  // the first click never feels frozen; the edge audio still gets cached for next time.
+  const graceTimer = setTimeout(fallbackLocal, 700);
+
   _edgeSynth(text).then(url => {
-    _edgeCache.set(cacheKey, url);
-    playUrl(url);
+    clearTimeout(graceTimer);
+    _edgeCache.set(cacheKey, url);   // always cache for instant replay
+    playUrl(url);                    // no-op if local already started (settled)
   }).catch(() => {
-    _edgeBlocked = true;      // network/proxy blocked → don't retry, use local from now
-    _localSpeak(text, btnEl);
+    clearTimeout(graceTimer);
+    _edgeBlocked = true;             // network/proxy blocked → local from now on
+    fallbackLocal();
   });
 }
 
@@ -2146,34 +1841,6 @@ function _localSpeak(text, btnEl){
 }
 const ico = (id, cls) => html`<svg class="ico ${cls || ''}" aria-hidden="true"><use href="#${id}"></use></svg>`;
 
-// ---------- Sentence colorizer (same engine as main app) ----------
-const _AUX = new Set(['am','is','are','was','were','do','does','did','can','will','would','should','must','may','have','has','had']);
-const _PREP = new Set(['in','on','at','to','with','for','of','from','before','after','behind','under','into','about','every','across']);
-const _CONJ = new Set(['and','or','but','so','when','if','because']);
-const _BE = new Set(['am','is','are','was','were']);
-const _VERBS = new Set(['eat','eats','fly','flies','like','likes','is','are','am','gives','give','make','makes','run','runs','play','plays','has','have','go','goes','sing','sings','see','sees']);
-
-function tokenizeParts(sentence){
-  const tokens = sentence.split(/(\s+)/);
-  const words = tokens.filter(t=>!/^\s+$/.test(t));
-  const clean = words.map(t=>t.toLowerCase().replace(/[.,!?;:]/g,''));
-  const roles = new Array(words.length).fill('obj');
-  let verbIdx = -1;
-  for (let i=0;i<clean.length;i++){ if(_VERBS.has(clean[i])||_BE.has(clean[i])||_AUX.has(clean[i])){verbIdx=i;break;} }
-  const firstReal = clean.findIndex(w=>w && !_CONJ.has(w));
-  if (verbIdx === -1) verbIdx = firstReal;
-  for (let i=0;i<words.length;i++){
-    const w = clean[i];
-    if (i < verbIdx){ roles[i] = _CONJ.has(w) ? 'other' : 'subj'; }
-    else if (i === verbIdx){ roles[i]='verb'; }
-    else { if((_AUX.has(w)||/ing$/.test(w)) && roles[i-1]==='verb') roles[i]='verb'; else if(_PREP.has(w)||_CONJ.has(w)) roles[i]='other'; else roles[i]=(roles[i-1]==='other')?'other':'obj'; }
-  }
-  let wi=0;
-  return tokens.map(t => /^\s+$/.test(t) ? {text:t,role:null} : {text:t,role:roles[wi++]});
-}
-function colorSentence(s){ const p=tokenizeParts(s); return html`${p.map(x=>x.role===null?html`${x.text}`:html`<span class="tk tk--${x.role}">${x.text}</span>`)}`; }
-
-
 // ---------- Sentence → IPA ----------
 function sentenceIPA(sentence){
   const dict = window.IPA_DICT || {};
@@ -2182,41 +1849,66 @@ function sentenceIPA(sentence){
   return '/' + parts.join(' ') + '/';
 }
 
-class TenseApp extends LitElement {
+const TOPIC_META = {
+  all:   { name: '全部', icon: 'ic-grid' },
+  tense: { name: '时态', icon: 'ic-clock' },
+  prep:  { name: '介词', icon: 'ic-navigation' },
+  coll:  { name: '固定搭配', icon: 'ic-link-2' },
+  review:{ name: '错题本', icon: 'ic-bookmark' }
+};
+const TOPIC_ZH = { tense: '时态', prep: '介词', coll: '固定搭配' };
+const SAVE_KEY = 'mixquiz.review.v1';
+
+class MixApp extends LitElement {
   static properties = {
-    rate: { state: true },
-    qIndex: { state: true }, qPicked: { state: true }, qAnswered: { state: true }, qScore: { state: true },
-    combo: { state: true }, celebrate: { state: true }
+    rate: { state: true }, topic: { state: true },
+    qIndex: { state: true }, qPicked: { state: true }, qAnswered: { state: true }, qScore: { state: true }, combo: { state: true }, celebrate: { state: true },
+    saved: { state: true }
   };
   createRenderRoot(){ return this; }
   constructor(){
     super();
-    this.data = window.TENSE_DATA;
+    this.data = window.MIX_DATA;
     this.rate = 'normal';
-    this.qIndex = 0; this.qPicked = -1; this.qAnswered = false; this.qScore = 0;
-    this.combo = 0; this.celebrate = false;
+    this.topic = 'all';
+    this.qIndex = 0; this.qPicked = -1; this.qAnswered = false; this.qScore = 0; this.combo = 0; this.celebrate = false;
+    this.saved = this._loadSaved();
     this._quiz = []; this._buildQuiz();
   }
+  _key(q){ return q.sentence; }
+  _loadSaved(){ try { return new Set(JSON.parse(localStorage.getItem(SAVE_KEY) || '[]')); } catch(e){ return new Set(); } }
+  _persist(){ try { localStorage.setItem(SAVE_KEY, JSON.stringify([...this.saved])); } catch(e){} }
+  isSaved(q){ return this.saved.has(this._key(q)); }
+  toggleSave(q){ const k=this._key(q); const s=new Set(this.saved); if(s.has(k)) s.delete(k); else s.add(k); this.saved=s; this._persist(); }
+  addToReview(q){ if(!this.saved.has(this._key(q))){ const s=new Set(this.saved); s.add(this._key(q)); this.saved=s; this._persist(); } }
+  _reviewPool(){ return this.data.quiz.filter(q=>this.saved.has(this._key(q))); }
   toggleTheme(){ const c=document.documentElement.getAttribute('data-theme'); document.documentElement.setAttribute('data-theme', c==='dark'?'':'dark'); this.requestUpdate(); }
   get isDark(){ return document.documentElement.getAttribute('data-theme')==='dark'; }
   changeRate(r){ setRate(r); this.rate = r; }
 
+  _pool(){
+    if (this.topic==='review') return this._reviewPool();
+    return this.topic==='all' ? this.data.quiz : this.data.quiz.filter(q=>q.topic===this.topic);
+  }
+  _count(t){
+    if (t==='review') return this.saved.size;
+    return t==='all' ? this.data.quiz.length : this.data.quiz.filter(q=>q.topic===t).length;
+  }
+  setTopic(t){ this.topic=t; this._buildQuiz(); }
   _buildQuiz(){
-    // 每轮从 50 题题库中随机抽 25 题
-    this._quiz = [...this.data.quiz].sort(()=>Math.random()-0.5).slice(0,25).map(q=>({ ...q, opts:[...q.options].sort(()=>Math.random()-0.5) }));
+    // per round: up to 25 shuffled from pool; review book shows ALL saved
+    const pool = this._pool();
+    const picked = this.topic==='review' ? [...pool].sort(()=>Math.random()-0.5) : [...pool].sort(()=>Math.random()-0.5).slice(0,25);
+    this._quiz = picked.map(q=>({ ...q, opts:[...q.options].sort(()=>Math.random()-0.5) }));
     this.qIndex=0; this.qPicked=-1; this.qAnswered=false; this.qScore=0; this.combo=0; this.celebrate=false;
   }
   pickQ(i){
     if (this.qAnswered) return;
     this.qAnswered=true; this.qPicked=i;
     const q=this._quiz[this.qIndex];
-    if (q.opts[i]===q.answer){
-      this.qScore++; this.combo++;
-      if (this.combo>=2){ this.celebrate=true; setTimeout(()=>{ this.celebrate=false; this.requestUpdate(); }, 1200); }
-    } else {
-      this.combo=0;
-    }
-    speak(q.sentence.replace('___', q.answer).replace(/\(.*?\)/g,'').trim());
+    if (q.opts[i]===q.answer){ this.qScore++; this.combo++; if(this.combo>=2){ this.celebrate=true; setTimeout(()=>{this.celebrate=false;this.requestUpdate();},1200); } }
+    else { this.combo=0; this.addToReview(q); }   // 答错自动收藏进错题本
+    speak(q.sentence.replace('___', q.answer));
   }
   nextQ(){ this.celebrate=false; if(this.qIndex<this._quiz.length-1){ this.qIndex++; this.qPicked=-1; this.qAnswered=false; } else { this.qIndex=this._quiz.length; } }
 
@@ -2226,13 +1918,9 @@ class TenseApp extends LitElement {
         ${this.renderBar()}
         <main class="wrap" style="flex:1;width:100%;">
           ${this.renderHero()}
-          ${this.renderNav()}
-          ${this.renderTenses()}
-          ${this.renderCompare()}
-          ${this.renderPastForms()}
-          ${this.renderQuiz()}
+          ${this.renderQuizSection()}
         </main>
-        <footer class="foot wrap">英语时态专题 · 靠动词变化表示“什么时候发生” · 点 ${ico('ic-volume','ico--xs')} 听发音</footer>
+        <footer class="foot wrap">英语综合练习 · 时态 + 介词 + 固定搭配 · 共 160 题 · 点 ${ico('ic-volume','ico--xs')} 听发音</footer>
       </div>`;
   }
 
@@ -2241,8 +1929,8 @@ class TenseApp extends LitElement {
       <header class="appbar">
         <div class="wrap appbar__inner">
           <div class="brand">
-            <div class="brand__mark">${ico('ic-clock','ico--md')}</div>
-            <div><div class="brand__title">时态学习营</div><div class="brand__sub">English Tenses · Beijing Primary</div></div>
+            <div class="brand__mark">${ico('ic-target','ico--md')}</div>
+            <div><div class="brand__title">英语综合练习营</div><div class="brand__sub">Tenses · Prepositions · Collocations · 160 Qs</div></div>
           </div>
           <div class="appbar__spacer"></div>
           <div class="rate-ctrl" title="调节朗读语速">
@@ -2257,220 +1945,75 @@ class TenseApp extends LitElement {
   renderHero(){
     return html`
       <section class="hero">
-        <h1>时态:动词会“变身”</h1>
-        <p>英语句子说“什么时候发生”,靠的是动词的变化。同一个动作,现在、过去、将来、正在进行,动词长得都不一样。学会四大时态,就能说清楚时间。</p>
-        ${this.renderTimeline()}
-        <div class="hero__demo">
-          play → plays → playing → played → will play
-          <button class="speak" @click=${e=>speak("play, plays, playing, played, will play",e.currentTarget)}>${ico('ic-volume','ico--sm')}</button>
-        </div>
+        <h1>综合练习:一次搞定三大专题</h1>
+        <p>这里把<b>时态</b>、<b>介词</b>、<b>固定搭配</b>的题目合到一起,共 160 道选择填空题(覆盖全部内容)。答错的会<b>自动进错题本</b>,也可以点 ${ico('ic-bookmark','ico--xs')} 手动收藏,进“错题本”专项复习。每题都能听整句发音、看整句音标。</p>
       </section>`;
   }
 
-  // animated past → now → future timeline (SVG, re-themeable)
-  renderTimeline(){
+  renderQuizSection(){
     return html`
-      <div class="timeline">
-        <svg viewBox="0 0 600 120" class="tl-svg" xmlns="http://www.w3.org/2000/svg">
-          <line x1="40" y1="70" x2="560" y2="70" stroke="var(--s-border)" stroke-width="4"/>
-          <line x1="40" y1="70" x2="560" y2="70" stroke="var(--s-brand)" stroke-width="4" stroke-dasharray="8 8" class="tl-flow"/>
-          <!-- past -->
-          <circle cx="130" cy="70" r="10" fill="var(--g-amber-500)"/>
-          <text x="130" y="42" text-anchor="middle" font-size="15" font-weight="700" fill="var(--s-text)">过去</text>
-          <text x="130" y="100" text-anchor="middle" font-size="12" fill="var(--s-text-secondary)">played</text>
-          <!-- now -->
-          <circle cx="300" cy="70" r="10" fill="var(--s-brand)"/>
-          <text x="300" y="42" text-anchor="middle" font-size="15" font-weight="700" fill="var(--s-text)">现在</text>
-          <text x="300" y="100" text-anchor="middle" font-size="12" fill="var(--s-text-secondary)">play / is playing</text>
-          <!-- future -->
-          <circle cx="470" cy="70" r="10" fill="var(--g-green-500)"/>
-          <text x="470" y="42" text-anchor="middle" font-size="15" font-weight="700" fill="var(--s-text)">将来</text>
-          <text x="470" y="100" text-anchor="middle" font-size="12" fill="var(--s-text-secondary)">will play</text>
-          <!-- moving marker -->
-          <circle cx="40" cy="70" r="7" fill="var(--s-on-brand)" stroke="var(--s-brand)" stroke-width="3" class="tl-marker"/>
-        </svg>
-      </div>`;
-  }
-
-  renderNav(){
-    return html`
-      <nav class="groupnav">
-        ${this.data.tenses.map(t => html`<a href="#t-${t.id}">${ico(t.icon,'ico--xs')} ${t.name}</a>`)}
-        <a href="#compare">${ico('ic-columns','ico--xs')} 四态对照</a>
-        <a href="#irregular">${ico('ic-list','ico--xs')} 过去式规律</a>
-        <a href="#quiz">${ico('ic-target','ico--xs')} 练习</a>
-      </nav>`;
-  }
-
-  renderTenses(){
-    return html`
-      <section class="sec">
-        <div class="sec__head">
-          <div class="sec__icon">${ico('ic-clock','ico--md')}</div>
-          <div><div class="sec__title">四大基本时态</div><div class="sec__sub">每种时态:公式 + 用法 + 信号词 + 例句(带音标发音)。</div></div>
-        </div>
-        <div class="tense-grid">
-          ${this.data.tenses.map(t => html`
-            <div class="tcard" id="t-${t.id}">
-              <div class="tcard__head">
-                <div class="tcard__icon">${ico(t.icon,'ico--md')}</div>
-                <div><div class="tcard__name">${t.name}</div><div class="tcard__en">${t.en}</div></div>
-              </div>
-              <div class="tcard__formula">${t.formula}</div>
-              <div class="tcard__use">${t.use}</div>
-              <div class="tcard__key">${ico('ic-lightbulb','ico--xs')} ${t.key}</div>
-              <div class="tcard__signals">${t.signals.map(s => html`<span class="tsig">${s}</span>`)}</div>
-              <div class="tcard__divider"></div>
-              ${t.ex.map(x => html`
-                <div class="prep-ex">
-                  <div class="prep-ex__en"><span>${colorSentence(x.en)}</span>
-                    <button class="speak speak--sm" title="朗读例句" @click=${e=>speak(x.en,e.currentTarget)}>${ico('ic-volume','ico--xs')}</button>
-                  </div>
-                  <div class="prep-ex__ipa">${ico('ic-volume','ico--xs')} ${sentenceIPA(x.en)}</div>
-                  <div class="prep-ex__zh">${x.zh}</div>
-                </div>`)}
-            </div>`)}
-        </div>
-      </section>`;
-  }
-
-  renderCompare(){
-    const c = this.data.compare;
-    return html`
-      <section class="sec" id="compare">
-        <div class="sec__head">
-          <div class="sec__icon">${ico('ic-columns','ico--md')}</div>
-          <div><div class="sec__title">同一句话,四个时态</div><div class="sec__sub">主语、宾语没变,只是动词换了形式 —— 这就是时态。</div></div>
-        </div>
-        <div class="tcompare">
-          ${c.rows.map(r => html`
-            <div class="trow">
-              <div><div class="trow__tense">${r.tense}</div><div class="trow__note">${r.note}</div></div>
-              <div>
-                <div class="trow__sent">${colorSentence(r.sentence)}
-                  <button class="speak speak--sm" style="width:32px;height:32px" @click=${e=>speak(r.sentence,e.currentTarget)}>${ico('ic-volume','ico--xs')}</button>
-                </div>
-                <div class="prep-ex__ipa">${ico('ic-volume','ico--xs')} ${sentenceIPA(r.sentence)}</div>
-                <div class="trow__zh">${r.zh}</div>
-              </div>
-            </div>`)}
-        </div>
-      </section>`;
-  }
-
-  renderPastForms(){
-    const pf = this.data.pastForms;
-    return html`
-      <section class="sec" id="irregular">
-        <div class="sec__head">
-          <div class="sec__icon">${ico('ic-list','ico--md')}</div>
-          <div><div class="sec__title">过去式怎么变(分类讲清)</div><div class="sec__sub">先分“规则/不规则、变/不变”,再分组记,不混在一起。</div></div>
-        </div>
-
-        <!-- 为什么有的变、有的不变 -->
-        <div class="why-box">
-          ${ico('ic-lightbulb','ico--sm')}
-          <div><span class="why-label">为什么有的按规则、有的不规则?</span><p>${pf.why}</p></div>
-        </div>
-
-        <!-- A. 规则动词 -->
-        <div class="pf-block">
-          <div class="pf-block__title"><span class="pf-badge pf-badge--reg">规则动词</span> 加 -ed</div>
-          <p class="pf-block__intro">${pf.regular.intro}</p>
-          <div class="rule-grid">
-            ${pf.regular.rules.map((r,i)=>html`
-              <div class="rule-card">
-                <div class="rule-card__no">${i+1}</div>
-                <div class="rule-card__body">
-                  <div class="rule-card__rule">${r.rule}</div>
-                  <div class="rule-card__ex">
-                    ${r.ex.map(e=>html`<span class="rule-ex"><b>${e.base}</b> ${ico('ic-arrow-right','ico--xs')} <b class="rule-ex__past">${e.past}</b>
-                      <button class="speak speak--sm" style="width:28px;height:28px" @click=${ev=>speak(e.base+', '+e.past,ev.currentTarget)}>${ico('ic-volume','ico--xs')}</button></span>`)}
-                  </div>
-                </div>
-              </div>`)}
-          </div>
-        </div>
-
-        <!-- B. 不规则动词:分组 -->
-        <div class="pf-block">
-          <div class="pf-block__title"><span class="pf-badge pf-badge--irr">不规则动词</span> 按变化模式分组</div>
-          <div class="irrg-list">
-            ${pf.irregularGroups.map(g=>html`
-              <div class="irrg-card ${g.id==='same'||g.id==='readonly'?'irrg-card--nochange':''}">
-                <div class="irrg-head">
-                  <span class="irrg-name">${g.name}</span>
-                  <span class="irrg-count">${g.items.length} 个</span>
-                </div>
-                <div class="irrg-note">${g.note}</div>
-                <div class="irr-grid">
-                  ${g.items.map(v=>html`
-                    <div class="irr-card ${v.base===v.past?'irr-card--same':''}">
-                      <div class="irr-row">
-                        <span class="irr-base">${v.base}</span>
-                        <span class="irr-arrow">${ico('ic-arrow-right','ico--xs')}</span>
-                        <span class="irr-past">${v.past}</span>
-                        <span class="irr-zh">${v.zh}</span>
-                        <button class="speak speak--sm irr-speak" title="朗读" @click=${e=>speak(v.base + ', ' + v.past, e.currentTarget)}>${ico('ic-volume','ico--xs')}</button>
-                      </div>
-                      <div class="irr-ipa">${v.baseIpa} → ${v.pastIpa}</div>
-                    </div>`)}
-                </div>
-              </div>`)}
-          </div>
-        </div>
-      </section>`;
-  }
-
-
-  renderQuiz(){
-    return html`
-      <section class="sec" id="quiz">
-        <div class="sec__head">
-          <div class="sec__icon">${ico('ic-target','ico--md')}</div>
-          <div><div class="sec__title">时态练习</div><div class="sec__sub">看句子和信号词,选出正确的动词形式。</div></div>
+      <section class="sec" style="border-top:none">
+        <div class="filter-bar">
+          ${Object.keys(TOPIC_META).map(t => html`
+            <button class="filter-chip ${this.topic===t?'filter-chip--on':''} ${t==='review'?'filter-chip--review':''}" @click=${()=>this.setTopic(t)}>
+              ${ico(TOPIC_META[t].icon,'ico--sm')} ${TOPIC_META[t].name}
+              <span class="filter-chip__count">${this._count(t)}</span>
+            </button>`)}
         </div>
         ${this._renderQuizBody()}
       </section>`;
   }
   _renderQuizBody(){
+    // empty review book
+    if (this.topic==='review' && this._quiz.length===0){
+      return html`
+        <div class="quiz-card quiz-done">
+          ${ico('ic-bookmark','ico--3xl')}
+          <div style="font-size:var(--s-fs-h3);font-weight:var(--g-fw-bold);margin-top:var(--g-sp-3)">错题本是空的</div>
+          <p style="color:var(--s-text-secondary)">去做题吧!答错的题会自动收进这里,你也可以点题目旁的 ${ico('ic-bookmark','ico--xs')} 手动收藏,方便集中复习。</p>
+          <button class="btn btn--primary" style="margin-top:var(--g-sp-4)" @click=${()=>this.setTopic('all')}>${ico('ic-arrow-right','ico--sm')} 去练全部题</button>
+        </div>`;
+    }
     if (this.qIndex >= this._quiz.length){
+      const total=this._quiz.length;
       return html`
         <div class="quiz-card quiz-done">
           ${ico('ic-trophy','ico--3xl')}
-          <div class="quiz-done__score">${this.qScore} / ${this._quiz.length}</div>
-          <p style="color:var(--s-text-secondary)">${this.qScore>=8?'时态掌握得很好!':this.qScore>=5?'不错,再看看信号词就更牢了!':'回到上面复习一下四大时态吧!'}</p>
+          <div class="quiz-done__score">${this.qScore} / ${total}</div>
+          <p style="color:var(--s-text-secondary)">${this.qScore>=total*0.8?'太棒了,掌握得很好!':this.qScore>=total*0.5?'不错,继续加油!':'别灰心,再练一轮就更熟了!'}</p>
           <button class="btn btn--primary" style="margin-top:var(--g-sp-4)" @click=${()=>{this._buildQuiz(); this.requestUpdate();}}>${ico('ic-refresh','ico--sm')} 再来一轮</button>
         </div>`;
     }
     const q=this._quiz[this.qIndex]; const pct=Math.round((this.qIndex/this._quiz.length)*100);
-    const full=q.sentence.replace('___', q.answer).replace(/\s*\(.*?\)\s*/g,' ').trim();
-    const parts=q.sentence.split('___');
+    const full=q.sentence.replace('___', q.answer); const parts=q.sentence.split('___');
+    const saved=this.isSaved(q);
     return html`
       <div class="quiz-card">
         ${this.celebrate ? html`<div class="confetti">${Array.from({length:12}).map((_,i)=>html`<span class="conf conf-${i%6}" style="left:${8+i*7.5}%;animation-delay:${(i%5)*0.08}s"></span>`)}</div>` : ''}
         <div class="quiz-progress">
           <span>第 ${this.qIndex+1} / ${this._quiz.length} 题</span>
-          <span class="quiz-status">
-            ${this.combo>=2 ? html`<span class="combo">🔥 连对 ${this.combo}</span>` : ''}
-            得分 ${this.qScore}
-          </span>
+          <span class="quiz-status">${this.combo>=2?html`<span class="combo">🔥 连对 ${this.combo}</span>`:''} 得分 ${this.qScore}</span>
         </div>
         <div class="quiz-bar"><div class="quiz-bar__fill" style="width:${pct}%"></div></div>
-        <div style="text-align:center"><span class="quiz-tag">${q.tag}</span></div>
+        <div class="quiz-toprow">
+          <span class="topic-tag topic-tag--${q.topic}">${TOPIC_ZH[q.topic]}</span>
+          <button class="collect ${saved?'collect--on':''}" title=${saved?'已收藏,点击取消':'收藏到错题本'} @click=${()=>this.toggleSave(q)}>
+            ${ico('ic-bookmark','ico--sm')} ${saved?'已收藏':'收藏'}
+          </button>
+        </div>
         <div class="quiz-q" style="font-size:var(--s-fs-h3)">${parts[0]}<span class="quiz-q__blank">${this.qAnswered?q.answer:'?'}</span>${parts[1]||''}
           <button class="speak" title="朗读整句" @click=${e=>speak(full,e.currentTarget)}>${ico('ic-volume','ico--sm')}</button>
         </div>
         <div class="quiz-q__zh">${q.zh}</div>
-        <div class="quiz-opts quiz-opts--two">
+        <div class="quiz-opts">
           ${q.opts.map((opt,i)=>{
             let cls=''; if(this.qAnswered){ if(opt===q.answer) cls='correct'; else if(i===this.qPicked) cls='wrong'; }
-            return html`<button class="quiz-opt quiz-opt--wide ${cls}" ?disabled=${this.qAnswered} @click=${()=>this.pickQ(i)}>${opt}</button>`;
+            return html`<button class="quiz-opt ${cls}" ?disabled=${this.qAnswered} @click=${()=>this.pickQ(i)}>${opt}</button>`;
           })}
         </div>
         ${this.qAnswered ? html`
           <div class="quiz-feedback">
-            ${q.opts[this.qPicked]===q.answer ? html`<span style="color:var(--g-green-700);font-weight:600">${ico('ic-check-circle-2','ico--sm')} 正确!</span>` : html`<span style="color:var(--g-red-700);font-weight:600">${ico('ic-x-circle','ico--sm')} 正确答案:${q.answer}</span>`}
+            ${q.opts[this.qPicked]===q.answer ? html`<span style="color:var(--g-green-700);font-weight:600">${ico('ic-check-circle-2','ico--sm')} 正确!</span>` : html`<span style="color:var(--g-red-700);font-weight:600">${ico('ic-x-circle','ico--sm')} 正确答案:${q.answer}(已加入错题本)</span>`}
             <div class="prep-ex__ipa" style="justify-content:center">${ico('ic-volume','ico--xs')} ${sentenceIPA(full)}</div>
           </div>
           <div class="quiz-next"><button class="btn btn--primary" @click=${()=>this.nextQ()}>${this.qIndex<this._quiz.length-1?'下一题':'查看结果'} ${ico('ic-arrow-right','ico--sm')}</button></div>
@@ -2478,20 +2021,21 @@ class TenseApp extends LitElement {
       </div>`;
   }
 
-  _collectSentences(){
-    const set = new Set();
-    this.data.tenses.forEach(t=>t.ex.forEach(x=>set.add(x.en)));
-    this.data.compare.rows.forEach(r=>set.add(r.sentence));
-    this.data.quiz.forEach(q=>set.add(q.sentence.replace('___', q.answer).replace(/\s*\(.*?\)\s*/g,' ').trim()));
-    return [...set];
-  }
+  _collectSentences(){ return this.data.quiz.map(q=>q.sentence.replace('___', q.answer)); }
   async firstUpdated(){
     await this.updateComplete;
     const b=document.getElementById('boot'); if(b) b.remove();
-    try { const list=this._collectSentences(); window.__allSentences=list; if(typeof _prewarm==='function') _prewarm(list); } catch(e){}
+    // pre-connect the TTS WebSocket immediately so the FIRST click skips the handshake wait
+    try { if(typeof _connect==='function') _connect().catch(()=>{}); } catch(e){}
+    // then prewarm the current round's sentences so their audio is cached
+    try {
+      const list = this._quiz.map(q=>q.sentence.replace('___', q.answer));
+      window.__allSentences = this._collectSentences();
+      if (typeof _prewarm==='function') _prewarm(list.slice(0,20));
+    } catch(e){}
   }
 }
-customElements.define('tense-app', TenseApp);
+customElements.define('mix-app', MixApp);
 
 </script>
 </body>
