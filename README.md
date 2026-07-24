@@ -23,6 +23,7 @@
 | 英语组句魔法 · 句子小火车 \| 小学英语 | https://beupgo.github.io/English-G6-Sentence-Building.html |
 | 通分专项 · 理解通分的本质 \| 小学数学 | https://beupgo.github.io/Math-G5-Fraction-Common-Denominator.html |
 | 小学英语固定搭配大全（含发音·例句） | https://beupgo.github.io/collocations.html |
+| 英语固定搭配学习专题 | https://beupgo.github.io/english-collocations.html |
 | 英语介词学习专题 | https://beupgo.github.io/english-prepositions.html |
 | 英语句子构成专题 | https://beupgo.github.io/english-sentence-structure.html |
 | 英语时态学习专题 | https://beupgo.github.io/english-tenses.html |
@@ -62,6 +63,7 @@
 ├─ English-G6-Sentence-Building.html  # 英语组句魔法 · 句子小火车 | 小学英语
 ├─ Math-G5-Fraction-Common-Denominator.html  # 通分专项 · 理解通分的本质 | 小学数学
 ├─ collocations.html  # 小学英语固定搭配大全（含发音·例句）
+├─ english-collocations.html  # 英语固定搭配学习专题
 ├─ english-prepositions.html  # 英语介词学习专题
 ├─ english-sentence-structure.html  # 英语句子构成专题
 ├─ english-tenses.html  # 英语时态学习专题
