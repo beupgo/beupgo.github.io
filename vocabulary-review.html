@@ -3,8 +3,10 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>英语固定搭配学习专题</title>
+<meta name="apple-mobile-web-app-capable" content="yes">
+<title>北京小学英语 · 单词复习营</title>
 <style>
+/* ===== tokens.css ===== */
 /* =========================================================================
    AURORA DESIGN SYSTEM · tokens.css · v2.0
    Three-tier token architecture
@@ -550,6 +552,7 @@ gc-*, gc-*::before, gc-*::after {
   * { box-shadow: none !important; text-shadow: none !important; }
 }
 
+/* ===== icons.css ===== */
 /* =========================================================================
    GENIUS DESIGN ICONS · icons.css · v1.0
    Token-driven SVG icon layer. Load AFTER genius-design-tokens' tokens.css so
@@ -760,6 +763,7 @@ gc-*, gc-*::before, gc-*::after {
   }
 }
 
+/* ===== layout-kit.css ===== */
 /* =========================================================================
    GENIUS DESIGN LAYOUT · layout-kit.css
    Token-driven layout layer. Companion to genius-design-tokens (tokens.css).
@@ -1049,257 +1053,364 @@ gc-*, gc-*::before, gc-*::after {
 }
 
 
+/* ===== app.css ===== */
 /* ============================================================
-   Prepositions — topic page (Beijing primary school)
-   References tokens only. iPad-first, C-side teaching.
+   App layer — Beijing Primary English Vocabulary Review
+   References tokens only. iPad-first, C-side learning product.
    ============================================================ */
 html, body { background: var(--s-bg); margin: 0; }
-body { font-family: var(--g-font); color: var(--s-text); min-height: 100dvh; -webkit-font-smoothing: antialiased; }
-.app { min-height: 100dvh; display: flex; flex-direction: column; }
-:root { --card-min: 340px; --card-gap: var(--g-sp-4); --c-container-max: min(94vw, 1240px); }
-.wrap { width: 100%; max-width: var(--c-container-max); margin-inline: auto; padding-inline: var(--c-container-pad, clamp(var(--g-sp-4), 4vw, var(--g-sp-8))); }
+body {
+  font-family: var(--g-font);
+  color: var(--s-text);
+  min-height: 100dvh;
+  -webkit-font-smoothing: antialiased;
+}
 
-/* header */
-.appbar { position: sticky; top: 0; z-index: var(--g-z-sticky); background: color-mix(in srgb, var(--s-bg) 82%, transparent); backdrop-filter: saturate(150%) blur(12px); border-bottom: 1px solid var(--s-border); }
-.appbar__inner { display: flex; align-items: center; gap: var(--g-sp-4); padding-block: var(--g-sp-3); }
+/* ---- App shell (single scrolling page) ---- */
+.app {
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+}
+
+.wrap {
+  width: 100%;
+  max-width: var(--c-container-max, min(92vw, 1180px));
+  margin-inline: auto;
+  padding-inline: var(--c-container-pad, clamp(var(--g-sp-4), 4vw, var(--g-sp-8)));
+}
+
+/* ---- Header ---- */
+.appbar {
+  position: sticky; top: 0; z-index: var(--g-z-sticky);
+  background: color-mix(in srgb, var(--s-bg) 82%, transparent);
+  backdrop-filter: saturate(150%) blur(12px);
+  border-bottom: 1px solid var(--s-border);
+}
+.appbar__inner {
+  display: flex; align-items: center; gap: var(--g-sp-4);
+  padding-block: var(--g-sp-3);
+}
 .brand { display: flex; align-items: center; gap: var(--g-sp-3); min-width: 0; }
-.brand__mark { width: 44px; height: 44px; border-radius: var(--g-r-lg); display: grid; place-items: center; flex: none; background: var(--s-brand); color: var(--s-on-brand); box-shadow: var(--s-shadow-sm); }
+.brand__mark {
+  width: 44px; height: 44px; border-radius: var(--g-r-lg);
+  display: grid; place-items: center; flex: none;
+  background: var(--s-brand); color: var(--s-on-brand);
+  box-shadow: var(--s-shadow-sm);
+}
+.brand__txt { display: flex; flex-direction: column; min-width: 0; }
 .brand__title { font-size: var(--s-fs-body-lg); font-weight: var(--g-fw-bold); line-height: 1.2; }
 .brand__sub { font-size: var(--s-fs-caption); color: var(--s-text-secondary); }
 .appbar__spacer { flex: 1; }
-.iconbtn { width: 42px; height: 42px; border-radius: var(--g-r-md); border: 1px solid var(--s-border); background: var(--s-surface); color: var(--s-text-secondary); display: grid; place-items: center; cursor: pointer; transition: all var(--g-dur-fast) var(--g-ease); }
+.iconbtn {
+  width: 42px; height: 42px; border-radius: var(--g-r-md);
+  border: 1px solid var(--s-border); background: var(--s-surface);
+  color: var(--s-text-secondary); display: grid; place-items: center;
+  cursor: pointer; transition: all var(--g-dur-fast) var(--g-ease);
+}
 .iconbtn:hover { background: var(--s-surface-hover); color: var(--s-text); }
-.rate-ctrl { display: flex; align-items: center; gap: var(--g-sp-2); color: var(--s-text-secondary); }
-.rate-seg { display: flex; padding: 3px; background: var(--s-surface-sunken); border: 1px solid var(--s-border); border-radius: var(--g-r-full); }
-.rate-opt { appearance: none; border: 0; background: transparent; cursor: pointer; font: inherit; font-size: var(--s-fs-caption); font-weight: var(--g-fw-medium); color: var(--s-text-secondary); padding: var(--g-sp-1) var(--g-sp-3); border-radius: var(--g-r-full); min-height: 34px; transition: all var(--g-dur-fast) var(--g-ease); }
-.rate-opt--on { background: var(--s-brand); color: var(--s-on-brand); box-shadow: var(--s-shadow-sm); }
-@media (max-width: 560px){ .rate-ctrl > .ico { display: none; } .rate-opt { padding-inline: var(--g-sp-2); } }
 
-/* hero */
-.hero { padding-block: var(--g-sp-10) var(--g-sp-6); text-align: center; }
-.hero h1 { margin: 0; font-size: var(--s-fs-display); font-weight: var(--g-fw-bold); letter-spacing: var(--g-ls-tight); }
-.hero p { margin: var(--g-sp-3) auto 0; max-width: 660px; color: var(--s-text-secondary); font-size: var(--s-fs-body-lg); line-height: var(--s-lh-body); }
-.hero__demo { margin-top: var(--g-sp-6); display: flex; justify-content: center; flex-wrap: wrap; gap: var(--g-sp-2); font-size: var(--s-fs-h3); font-weight: var(--g-fw-bold); align-items: center; }
-.hero__demo .prep-hl { color: var(--s-on-brand); background: var(--s-brand); padding: var(--g-sp-1) var(--g-sp-3); border-radius: var(--g-r-md); }
+/* ---- Tabs (top-level mode switch) ---- */
+.tabs {
+  display: flex; gap: var(--g-sp-1);
+  padding: var(--g-sp-1);
+  background: var(--s-surface-sunken);
+  border: 1px solid var(--s-border);
+  border-radius: var(--g-r-full);
+}
+.tab {
+  appearance: none; border: 0; background: transparent; cursor: pointer;
+  font: inherit; font-weight: var(--g-fw-medium); font-size: var(--s-fs-body);
+  color: var(--s-text-secondary);
+  padding: var(--g-sp-2) var(--g-sp-5); border-radius: var(--g-r-full);
+  display: inline-flex; align-items: center; gap: var(--g-sp-2);
+  transition: all var(--g-dur-fast) var(--g-ease);
+  min-height: 44px;
+}
+.tab[aria-selected="true"] {
+  background: var(--s-surface); color: var(--s-brand);
+  box-shadow: var(--s-shadow-sm);
+}
 
-/* nav chips */
-.groupnav { position: sticky; top: 68px; z-index: calc(var(--g-z-sticky) - 1); display: flex; flex-wrap: wrap; gap: var(--g-sp-2); padding-block: var(--g-sp-3); background: color-mix(in srgb, var(--s-bg) 90%, transparent); }
-.groupnav a { text-decoration: none; display: inline-flex; align-items: center; gap: var(--g-sp-1); font-size: var(--s-fs-caption); font-weight: var(--g-fw-medium); color: var(--s-text-secondary); background: var(--s-surface); border: 1px solid var(--s-border); padding: var(--g-sp-2) var(--g-sp-3); border-radius: var(--g-r-full); }
-.groupnav a:hover { color: var(--s-brand); border-color: color-mix(in srgb, var(--s-brand) 40%, var(--s-border)); }
+/* ---- Section header ---- */
+.section-head { padding-block: var(--g-sp-6) var(--g-sp-4); }
+.section-head h1 {
+  margin: 0; font-size: var(--s-fs-h1); font-weight: var(--g-fw-bold);
+  letter-spacing: var(--g-ls-tight);
+}
+.section-head p { margin: var(--g-sp-2) 0 0; color: var(--s-text-secondary); font-size: var(--s-fs-body); }
 
-/* section */
-.sec { padding-block: var(--g-sp-8); border-top: 1px solid var(--s-border); scroll-margin-top: 120px; }
-.sec__head { display: flex; align-items: center; gap: var(--g-sp-3); margin-bottom: var(--g-sp-2); }
-.sec__icon { width: 44px; height: 44px; flex: none; border-radius: var(--g-r-lg); display: grid; place-items: center; background: var(--s-brand-subtle); color: var(--s-brand); }
-.sec__title { font-size: var(--s-fs-h2); font-weight: var(--g-fw-bold); }
-.sec__sub { font-size: var(--s-fs-body); color: var(--s-text-secondary); margin-top: 2px; }
-.sec__intro { color: var(--s-text-secondary); font-size: var(--s-fs-body); margin: var(--g-sp-2) 0 var(--g-sp-5); }
+/* ---- Learned chips row ---- */
+.learned-row { display: flex; flex-wrap: wrap; gap: var(--g-sp-2); margin-top: var(--g-sp-4); }
+.chip {
+  display: inline-flex; align-items: center; gap: var(--g-sp-2);
+  padding: var(--g-sp-2) var(--g-sp-3); border-radius: var(--g-r-full);
+  background: var(--s-brand-subtle); color: var(--s-brand);
+  font-size: var(--s-fs-caption); font-weight: var(--g-fw-medium);
+  border: 1px solid color-mix(in srgb, var(--s-brand) 22%, transparent);
+}
+.chip .ico { color: var(--s-brand); }
 
-/* prep cards */
-.prep-grid { display: grid; gap: var(--card-gap); grid-template-columns: repeat(auto-fit, minmax(min(100%, var(--card-min)), 1fr)); align-items: stretch; }
-.prep-card { background: var(--s-surface); border: 1px solid var(--s-border); border-radius: var(--g-r-xl); padding: var(--g-sp-5); display: flex; flex-direction: column; box-shadow: var(--s-shadow-sm); }
-.prep-card__head { display: flex; align-items: flex-start; justify-content: space-between; gap: var(--g-sp-2); }
-.prep-card__word { font-size: var(--s-fs-h2); font-weight: var(--g-fw-bold); line-height: 1.1; letter-spacing: var(--g-ls-tight); }
-.prep-card__ipa { font-family: var(--g-font-mono); color: var(--s-text-secondary); font-size: var(--s-fs-body); margin-top: 2px; }
-.prep-card__zh { margin-top: var(--g-sp-2); font-size: var(--s-fs-body-lg); font-weight: var(--g-fw-medium); }
-.prep-card__use { margin-top: var(--g-sp-1); font-size: var(--s-fs-caption); color: var(--s-brand); background: var(--s-brand-subtle); border-radius: var(--g-r-sm); padding: 2px var(--g-sp-2); align-self: flex-start; }
-.prep-card__divider { height: 1px; background: var(--s-border); margin: var(--g-sp-4) 0; }
-.prep-ex { font-size: var(--s-fs-body); }
-.prep-ex + .prep-ex { margin-top: var(--g-sp-3); }
-.prep-ex__en { display: flex; align-items: flex-start; gap: var(--g-sp-2); color: var(--s-text); font-weight: var(--g-fw-medium); }
-.prep-ex__en > span { flex: 1; min-width: 0; }
-.prep-ex__ipa { display: flex; align-items: center; gap: var(--g-sp-1); margin-top: 2px; font-family: var(--g-font-mono); font-size: var(--s-fs-caption); color: var(--s-text-secondary); }
-.prep-ex__ipa .ico { color: var(--s-brand); opacity: .7; flex: none; }
-.prep-ex__zh { color: var(--s-text-secondary); font-size: var(--s-fs-caption); margin-top: 2px; }
+/* ---- Scene selector grid ---- */
+.scene-grid {
+  display: grid; gap: var(--g-sp-4);
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  margin-top: var(--g-sp-2);
+}
+.scene-card {
+  text-align: left; cursor: pointer; font: inherit;
+  background: var(--s-surface); border: 1px solid var(--s-border);
+  border-radius: var(--g-r-xl); padding: var(--g-sp-5);
+  display: flex; flex-direction: column; gap: var(--g-sp-3);
+  transition: transform var(--g-dur-fast) var(--g-ease), box-shadow var(--g-dur-base) var(--g-ease), border-color var(--g-dur-fast) var(--g-ease);
+}
+.scene-card:hover { transform: translateY(-3px); box-shadow: var(--s-shadow-md); border-color: color-mix(in srgb, var(--s-brand) 40%, var(--s-border)); }
+.scene-card__top { display: flex; align-items: center; gap: var(--g-sp-3); }
+.scene-card__icon {
+  width: 48px; height: 48px; border-radius: var(--g-r-lg); flex: none;
+  display: grid; place-items: center;
+  background: var(--s-surface-sunken); color: var(--s-text-secondary);
+}
+.scene-card__name { font-size: var(--s-fs-body-lg); font-weight: var(--g-fw-semibold); line-height: 1.2; }
+.scene-card__en { font-size: var(--s-fs-caption); color: var(--s-text-muted); }
+.scene-card__meta { display: flex; align-items: center; justify-content: space-between; margin-top: auto; }
+.scene-card__count { font-size: var(--s-fs-caption); color: var(--s-text-secondary); }
+.scene-card__go { display: inline-flex; align-items: center; gap: var(--g-sp-1); color: var(--s-brand); font-size: var(--s-fs-caption); font-weight: var(--g-fw-semibold); }
 
-/* speak */
-.speak { width: 40px; height: 40px; flex: none; border-radius: var(--g-r-full); cursor: pointer; border: 1px solid color-mix(in srgb, var(--s-brand) 30%, transparent); background: var(--s-brand-subtle); color: var(--s-brand); display: grid; place-items: center; transition: all var(--g-dur-fast) var(--g-ease); }
+/* ---- Word cards grid ---- */
+.toolbar {
+  display: flex; align-items: center; gap: var(--g-sp-3); flex-wrap: wrap;
+  padding-block: var(--g-sp-2) var(--g-sp-4);
+}
+.btn {
+  appearance: none; font: inherit; cursor: pointer; min-height: 44px;
+  display: inline-flex; align-items: center; gap: var(--g-sp-2);
+  padding: var(--g-sp-2) var(--g-sp-4); border-radius: var(--g-r-md);
+  border: 1px solid var(--s-border); background: var(--s-surface); color: var(--s-text);
+  font-weight: var(--g-fw-medium); transition: all var(--g-dur-fast) var(--g-ease);
+}
+.btn:hover { background: var(--s-surface-hover); }
+.btn--primary { background: var(--c-btn-primary-bg); color: var(--s-on-brand); border-color: transparent; }
+.btn--primary:hover { background: var(--c-btn-primary-bg-hover); }
+.btn--ghost { background: transparent; border-color: transparent; color: var(--s-text-secondary); }
+.btn--ghost:hover { color: var(--s-text); background: var(--s-surface-hover); }
+.toolbar__title { font-size: var(--s-fs-h3); font-weight: var(--g-fw-bold); display: flex; align-items: center; gap: var(--g-sp-3); }
+.toolbar__spacer { flex: 1; }
+
+.card-grid {
+  display: grid; gap: var(--g-sp-4);
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 320px), 1fr));
+  padding-bottom: var(--g-sp-12);
+}
+
+/* Word card — flat, everything visible at once (no flip) */
+.wcard {
+  background: var(--s-surface); border: 1px solid var(--s-border);
+  border-radius: var(--g-r-xl); padding: var(--g-sp-5);
+  display: flex; flex-direction: column; box-shadow: var(--s-shadow-sm);
+  transition: transform var(--g-dur-fast) var(--g-ease), box-shadow var(--g-dur-base) var(--g-ease);
+}
+.wcard:hover { transform: translateY(-2px); box-shadow: var(--s-shadow-md); }
+.wcard__head { display: flex; align-items: flex-start; justify-content: space-between; gap: var(--g-sp-3); }
+.wcard__title { min-width: 0; }
+.wcard__en { font-size: var(--s-fs-h2); font-weight: var(--g-fw-bold); line-height: 1.15; letter-spacing: var(--g-ls-tight); word-break: break-word; }
+.wcard__ipa { font-family: var(--g-font-mono); color: var(--s-text-secondary); font-size: var(--s-fs-body); margin-top: var(--g-sp-1); }
+.wcard__zh { margin-top: var(--g-sp-2); font-size: var(--s-fs-body-lg); color: var(--s-text); font-weight: var(--g-fw-medium); }
+.wcard__divider { height: 1px; background: var(--s-border); margin: var(--g-sp-4) 0; }
+.wcard__ex { font-size: var(--s-fs-body); line-height: var(--s-lh-body); }
+.wcard__ex-en { display: flex; align-items: flex-start; gap: var(--g-sp-2); color: var(--s-text); font-weight: var(--g-fw-medium); }
+.wcard__ex-en > span { flex: 1; min-width: 0; }
+.wcard__ex-zh { color: var(--s-text-secondary); margin-top: var(--g-sp-2); font-size: var(--s-fs-caption); }
+.speak {
+  width: 40px; height: 40px; flex: none; border-radius: var(--g-r-full); cursor: pointer;
+  border: 1px solid color-mix(in srgb, var(--s-brand) 30%, transparent);
+  background: var(--s-brand-subtle); color: var(--s-brand);
+  display: grid; place-items: center; transition: all var(--g-dur-fast) var(--g-ease);
+}
 .speak:hover { background: var(--s-brand); color: var(--s-on-brand); }
 .speak.playing { animation: pulse 1s var(--g-ease) infinite; }
 .speak--sm { width: 32px; height: 32px; }
 @keyframes pulse { 0%,100%{transform:scale(1)} 50%{transform:scale(1.12)} }
 
-/* contrast table */
-.contrast-wrap { display: grid; gap: var(--card-gap); grid-template-columns: repeat(auto-fit, minmax(min(100%, var(--card-min)), 1fr)); align-items: stretch; }
-.contrast-card { background: var(--s-surface); border: 1px solid var(--s-border); border-radius: var(--g-r-xl); padding: var(--g-sp-5); }
-.contrast-card h3 { margin: 0 0 var(--g-sp-4); font-size: var(--s-fs-h3); }
-.contrast-row { display: grid; grid-template-columns: 60px 1fr; gap: var(--g-sp-3); padding: var(--g-sp-3) 0; border-top: 1px solid var(--s-border); align-items: center; }
-.contrast-prep { font-family: var(--g-font-mono); font-weight: var(--g-fw-bold); font-size: var(--s-fs-body-lg); color: var(--s-on-brand); background: var(--s-brand); border-radius: var(--g-r-md); text-align: center; padding: var(--g-sp-1) 0; }
-.contrast-scope { font-weight: var(--g-fw-semibold); font-size: var(--s-fs-body); }
-.contrast-sample { font-family: var(--g-font-mono); font-size: var(--s-fs-caption); color: var(--s-text-secondary); margin-top: 2px; display: flex; align-items: center; gap: var(--g-sp-2); flex-wrap: wrap; }
-.contrast-zh { font-size: var(--s-fs-caption); color: var(--s-text-muted); margin-top: 2px; }
+/* ---- Sentence-part colorizing (teach English word order) ---- */
+.tk { border-radius: var(--g-r-xs); padding: 0 1px; }
+.tk--subj { color: var(--g-cyan-700); font-weight: var(--g-fw-semibold); }
+.tk--verb { color: var(--g-red-700); font-weight: var(--g-fw-bold); }
+.tk--obj  { color: var(--g-green-700); font-weight: var(--g-fw-medium); }
+.tk--other{ color: var(--s-text-muted); }
+[data-theme="dark"] .tk--subj { color: #67e8f9; }
+[data-theme="dark"] .tk--verb { color: #fca5a5; }
+[data-theme="dark"] .tk--obj  { color: #86efac; }
 
-/* quiz */
-.quiz-card { background: var(--s-surface); border: 1px solid var(--s-border); border-radius: var(--g-r-xl); padding: clamp(var(--g-sp-5), 4vw, var(--g-sp-8)); box-shadow: var(--s-shadow-sm); }
-.quiz-progress { display: flex; align-items: center; justify-content: space-between; color: var(--s-text-secondary); font-size: var(--s-fs-caption); margin-bottom: var(--g-sp-4); }
+/* legend */
+.sent-legend {
+  display: flex; flex-wrap: wrap; gap: var(--g-sp-3); align-items: center;
+  background: var(--s-surface); border: 1px solid var(--s-border);
+  border-radius: var(--g-r-lg); padding: var(--g-sp-3) var(--g-sp-4);
+  margin: var(--g-sp-2) 0 var(--g-sp-4); font-size: var(--s-fs-caption);
+}
+.sent-legend__label { color: var(--s-text-secondary); display:flex; align-items:center; gap:var(--g-sp-1); font-weight: var(--g-fw-medium); }
+.sent-legend__item { display: inline-flex; align-items: center; gap: var(--g-sp-1); }
+.sent-legend__dot { width: 10px; height: 10px; border-radius: 3px; }
+.sent-legend__dot--subj { background: var(--g-cyan-500); }
+.sent-legend__dot--verb { background: var(--g-red-500); }
+.sent-legend__dot--obj  { background: var(--g-green-500); }
+.sent-legend__dot--other{ background: var(--g-neutral-400); }
+
+/* 句子解读 (always visible) */
+.sent-explain {
+  margin-top: var(--g-sp-3);
+  background: var(--s-surface-sunken); border: 1px solid var(--s-border);
+  border-left: 3px solid var(--s-brand);
+  border-radius: var(--g-r-md); padding: var(--g-sp-3);
+}
+.sent-explain__formula {
+  font-family: var(--g-font-mono); font-size: var(--s-fs-caption);
+  font-weight: var(--g-fw-bold); color: var(--s-brand);
+  margin-bottom: var(--g-sp-2);
+}
+.sent-explain__note { margin: 0; font-size: var(--s-fs-caption); line-height: var(--s-lh-body); color: var(--s-text-secondary); }
+
+/* ---- Related / 拓展词 block ---- */
+.related-block {
+  margin-top: var(--g-sp-6); padding: var(--g-sp-5);
+  background: color-mix(in srgb, var(--s-brand-subtle) 40%, var(--s-surface));
+  border: 1px solid color-mix(in srgb, var(--s-brand) 20%, var(--s-border));
+  border-radius: var(--g-r-xl); margin-bottom: var(--g-sp-12);
+}
+.related-head { display: flex; align-items: flex-start; gap: var(--g-sp-3); margin-bottom: var(--g-sp-4); }
+.related-head > .ico { color: var(--s-brand); margin-top: 2px; }
+.related-title { font-size: var(--s-fs-body-lg); font-weight: var(--g-fw-bold); }
+.related-sub { font-size: var(--s-fs-caption); color: var(--s-text-secondary); margin-top: 2px; }
+.related-grid {
+  display: grid; gap: var(--g-sp-3);
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 320px), 1fr));
+}
+.related-card {
+  background: var(--s-surface); border: 1px solid var(--s-border);
+  border-radius: var(--g-r-lg); padding: var(--g-sp-4);
+  display: flex; flex-direction: column; gap: var(--g-sp-2);
+}
+.related-card__head { display: flex; align-items: flex-start; justify-content: space-between; gap: var(--g-sp-2); }
+.related-card__title { min-width: 0; }
+.related-card__word { font-size: var(--s-fs-body-lg); font-weight: var(--g-fw-bold); }
+.related-card__ipa { font-family: var(--g-font-mono); font-size: var(--s-fs-caption); color: var(--s-text-secondary); font-weight: var(--g-fw-regular); }
+.related-card__zh { font-size: var(--s-fs-body); color: var(--s-text); margin-top: 2px; }
+.related-card__link {
+  display: flex; align-items: center; gap: var(--g-sp-1);
+  font-size: var(--s-fs-caption); color: var(--s-brand);
+  background: var(--s-brand-subtle); padding: var(--g-sp-1) var(--g-sp-2);
+  border-radius: var(--g-r-sm); align-self: flex-start;
+}
+.related-card__ex { border-top: 1px dashed var(--s-border); padding-top: var(--g-sp-2); }
+.related-card__ex-en { display: flex; align-items: flex-start; gap: var(--g-sp-2); font-size: var(--s-fs-body); color: var(--s-text); }
+.related-card__ex-en > span { flex: 1; min-width: 0; }
+.related-card__ex-zh { font-size: var(--s-fs-caption); color: var(--s-text-secondary); margin-top: var(--g-sp-1); }
+
+/* ---- Roots review ---- */
+.root-list { display: flex; flex-direction: column; gap: var(--g-sp-5); padding-bottom: var(--g-sp-12); }
+.root-panel { background: var(--s-surface); border: 1px solid var(--s-border); border-radius: var(--g-r-xl); overflow: hidden; }
+.root-panel__head { display: flex; align-items: center; gap: var(--g-sp-3); padding: var(--g-sp-5); border-bottom: 1px solid var(--s-border); background: var(--s-surface-sunken); flex-wrap: wrap; }
+.root-badge { font-family: var(--g-font-mono); font-weight: var(--g-fw-bold); font-size: var(--s-fs-body-lg); color: var(--s-brand); background: var(--s-brand-subtle); padding: var(--g-sp-1) var(--g-sp-3); border-radius: var(--g-r-md); }
+.root-panel__note { color: var(--s-text-secondary); font-size: var(--s-fs-caption); flex: 1; min-width: 180px; }
+.root-type { font-size: var(--s-fs-caption); color: var(--s-text-secondary); background: var(--s-surface); border: 1px solid var(--s-border); padding: 2px var(--g-sp-2); border-radius: var(--g-r-full); font-weight: var(--g-fw-medium); }
+
+/* 讲透区 */
+.root-explain {
+  padding: var(--g-sp-5); display: flex; flex-direction: column; gap: var(--g-sp-4);
+  background: color-mix(in srgb, var(--s-brand-subtle) 45%, var(--s-surface));
+  border-bottom: 1px solid var(--s-border);
+}
+.explain-row { display: flex; gap: var(--g-sp-3); align-items: flex-start; }
+.explain-ic {
+  width: 34px; height: 34px; flex: none; border-radius: var(--g-r-md);
+  display: grid; place-items: center; margin-top: 2px;
+  background: var(--s-surface); color: var(--s-brand); border: 1px solid var(--s-border);
+}
+.explain-row > div { min-width: 0; }
+.explain-label {
+  display: inline-block; font-size: var(--s-fs-caption); font-weight: var(--g-fw-bold);
+  color: var(--s-brand); margin-bottom: 2px;
+}
+.explain-row p { margin: 0; font-size: var(--s-fs-body); line-height: var(--s-lh-body); color: var(--s-text); }
+.explain-row--hero p { font-size: var(--s-fs-body-lg); font-weight: var(--g-fw-medium); }
+.explain-row--pattern p {
+  font-family: var(--g-font-mono); font-size: var(--s-fs-body); color: var(--s-text-secondary);
+  background: var(--s-surface); border: 1px dashed var(--s-border);
+  padding: var(--g-sp-2) var(--g-sp-3); border-radius: var(--g-r-md);
+}
+.root-items-label {
+  padding: var(--g-sp-4) var(--g-sp-5) 0; font-size: var(--s-fs-caption);
+  font-weight: var(--g-fw-semibold); color: var(--s-text-secondary); letter-spacing: var(--g-ls-wide);
+}
+.root-tag { display:inline-flex; align-items:center; gap:var(--g-sp-1); font-size: var(--s-fs-caption); color: var(--g-green-700); background: var(--g-green-100); padding: 2px var(--g-sp-2); border-radius: var(--g-r-full); font-weight:var(--g-fw-medium); }
+.root-tag--new { color: var(--s-brand); background: var(--s-brand-subtle); }
+.root-items { display: grid; gap: var(--g-sp-3); padding: var(--g-sp-5); grid-template-columns: repeat(auto-fill, minmax(min(100%, 260px), 1fr)); }
+.root-item { border: 1px solid var(--s-border); border-radius: var(--g-r-lg); padding: var(--g-sp-4); background: var(--s-surface); }
+.root-item__top { display:flex; align-items:center; justify-content:space-between; gap:var(--g-sp-2); }
+.root-item__word { font-size: var(--s-fs-body-lg); font-weight: var(--g-fw-bold); }
+.root-item__from { font-family: var(--g-font-mono); font-size: var(--s-fs-caption); color: var(--s-brand); margin-top: 2px; }
+.root-item__ipa { font-family: var(--g-font-mono); color: var(--s-text-secondary); font-size: var(--s-fs-caption); }
+.root-item__zh { color: var(--s-text); margin-top: var(--g-sp-2); font-size: var(--s-fs-body); }
+.root-item__ex { color: var(--s-text-secondary); margin-top: var(--g-sp-1); font-size: var(--s-fs-caption); }
+
+/* ---- Quiz ---- */
+.quiz-wrap { padding-bottom: var(--g-sp-12); }
+.quiz-card { background: var(--s-surface); border: 1px solid var(--s-border); border-radius: var(--g-r-xl); padding: clamp(var(--g-sp-5), 4vw, var(--g-sp-10)); box-shadow: var(--s-shadow-sm); max-width: 640px; margin-inline: auto; }
+.quiz-progress { display:flex; align-items:center; justify-content:space-between; color: var(--s-text-secondary); font-size: var(--s-fs-caption); margin-bottom: var(--g-sp-4); }
 .quiz-bar { height: 6px; border-radius: var(--g-r-full); background: var(--s-surface-sunken); overflow: hidden; margin-bottom: var(--g-sp-6); }
 .quiz-bar__fill { height: 100%; background: var(--s-brand); transition: width var(--g-dur-slow) var(--g-ease); }
-.quiz-q { text-align: center; margin-bottom: var(--g-sp-2); font-size: var(--s-fs-h2); font-weight: var(--g-fw-bold); display: flex; align-items: center; justify-content: center; gap: var(--g-sp-2); flex-wrap: wrap; }
-.quiz-q__blank { color: var(--s-brand); border-bottom: 3px dashed var(--s-brand); min-width: 48px; display: inline-block; }
-.quiz-q__zh { text-align: center; color: var(--s-text-secondary); font-size: var(--s-fs-body); margin-bottom: var(--g-sp-6); }
-.quiz-opts { display: grid; gap: var(--g-sp-3); grid-template-columns: repeat(3, 1fr); max-width: 520px; margin-inline: auto; }
-.quiz-opt { appearance: none; font: inherit; cursor: pointer; min-height: 52px; padding: var(--g-sp-3); border-radius: var(--g-r-lg); border: 1.5px solid var(--s-border); background: var(--s-surface); color: var(--s-text); font-weight: var(--g-fw-bold); font-size: var(--s-fs-body-lg); font-family: var(--g-font-mono); transition: all var(--g-dur-fast) var(--g-ease); }
+.quiz-q { text-align:center; margin-bottom: var(--g-sp-6); }
+.quiz-q__en { font-size: var(--s-fs-display); font-weight: var(--g-fw-bold); letter-spacing: var(--g-ls-tight); }
+.quiz-q__ipa { font-family: var(--g-font-mono); color: var(--s-text-secondary); margin-top: var(--g-sp-1); }
+.quiz-opts { display: grid; gap: var(--g-sp-3); }
+.quiz-opt {
+  appearance: none; font: inherit; cursor: pointer; text-align: left; min-height: 52px;
+  padding: var(--g-sp-3) var(--g-sp-4); border-radius: var(--g-r-lg);
+  border: 1.5px solid var(--s-border); background: var(--s-surface); color: var(--s-text);
+  font-weight: var(--g-fw-medium); font-size: var(--s-fs-body-lg);
+  transition: all var(--g-dur-fast) var(--g-ease);
+  display:flex; align-items:center; justify-content:space-between; gap: var(--g-sp-2);
+}
 .quiz-opt:hover:not(:disabled) { border-color: var(--s-brand); background: var(--s-brand-subtle); }
 .quiz-opt.correct { border-color: var(--g-green-500); background: var(--g-green-100); color: var(--g-green-700); }
 .quiz-opt.wrong { border-color: var(--g-red-500); background: var(--g-red-100); color: var(--g-red-700); }
 .quiz-opt:disabled { cursor: default; }
-.quiz-feedback { text-align: center; margin-top: var(--g-sp-5); min-height: 24px; font-size: var(--s-fs-body); }
-.quiz-feedback .prep-ex__ipa { justify-content: center; }
-.quiz-next { display: flex; justify-content: center; margin-top: var(--g-sp-5); }
-.quiz-done { text-align: center; }
+.quiz-done { text-align:center; }
 .quiz-done__score { font-size: var(--s-fs-display); font-weight: var(--g-fw-bold); color: var(--s-brand); }
-.btn { appearance: none; font: inherit; cursor: pointer; min-height: 44px; display: inline-flex; align-items: center; gap: var(--g-sp-2); padding: var(--g-sp-2) var(--g-sp-5); border-radius: var(--g-r-md); border: 1px solid var(--s-border); background: var(--s-surface); color: var(--s-text); font-weight: var(--g-fw-medium); transition: all var(--g-dur-fast) var(--g-ease); }
-.btn:hover { background: var(--s-surface-hover); }
-.btn--primary { background: var(--s-brand); color: var(--s-on-brand); border-color: transparent; }
-.btn--primary:hover { background: var(--s-brand-hover); }
-@media (max-width: 480px){ .quiz-opts { grid-template-columns: 1fr; } }
 
-/* footer */
-.foot { margin-top: auto; border-top: 1px solid var(--s-border); padding-block: var(--g-sp-5); color: var(--s-text-muted); font-size: var(--s-fs-caption); text-align: center; }
+/* ---- Empty / breadcrumb ---- */
+.crumb { display:inline-flex; align-items:center; gap: var(--g-sp-1); color: var(--s-text-secondary); font-size: var(--s-fs-body); background:transparent; border:0; cursor:pointer; font:inherit; padding: var(--g-sp-2) 0; }
+.crumb:hover { color: var(--s-brand); }
 
-/* ---- similar-preposition contrast (with SVG diagrams) ---- */
-.similar-list { display: flex; flex-direction: column; gap: var(--g-sp-4); }
-.similar-card { background: var(--s-surface); border: 1px solid var(--s-border); border-radius: var(--g-r-xl); padding: var(--g-sp-5); }
-.similar-title { font-family: var(--g-font-mono); font-size: var(--s-fs-h3); font-weight: var(--g-fw-bold); text-align: center; margin-bottom: var(--g-sp-4); }
-.similar-pair { display: grid; grid-template-columns: 1fr 1fr; gap: var(--g-sp-4); }
-.similar-side { background: var(--s-surface-sunken); border: 1px solid var(--s-border); border-radius: var(--g-r-lg); padding: var(--g-sp-4); text-align: center; }
-.similar-diagram { display: grid; place-items: center; margin-bottom: var(--g-sp-2); }
-.prep-svg { width: 100%; max-width: 200px; height: auto; }
-.similar-prep { font-family: var(--g-font-mono); font-weight: var(--g-fw-bold); font-size: var(--s-fs-body-lg); color: var(--s-on-brand); background: var(--s-brand); border-radius: var(--g-r-md); padding: var(--g-sp-1) var(--g-sp-3); display: inline-block; margin-bottom: var(--g-sp-1); }
-.similar-zh { font-size: var(--s-fs-caption); color: var(--s-text-secondary); margin-bottom: var(--g-sp-3); }
-.similar-tip { margin-top: var(--g-sp-4); font-size: var(--s-fs-caption); color: var(--s-text-secondary); background: var(--s-brand-subtle); border-radius: var(--g-r-md); padding: var(--g-sp-3); line-height: var(--s-lh-body); display: flex; align-items: flex-start; gap: var(--g-sp-2); }
-.similar-tip .ico { color: var(--s-brand); flex: none; margin-top: 2px; }
-@media (max-width: 560px){ .similar-pair { grid-template-columns: 1fr; } }
-@media (max-width: 640px){ .brand__sub { display: none; } .hero h1 { font-size: var(--s-fs-h1); } .sec__title { font-size: var(--s-fs-h3); } }
+/* ---- Footer ---- */
+.foot { margin-top: auto; border-top: 1px solid var(--s-border); padding-block: var(--g-sp-5); color: var(--s-text-muted); font-size: var(--s-fs-caption); text-align:center; }
 
-/* ---- collocation intro banner ---- */
-.what-box { display: flex; align-items: flex-start; gap: var(--g-sp-3); background: var(--s-brand-subtle); border: 1px solid color-mix(in srgb, var(--s-brand) 22%, var(--s-border)); border-radius: var(--g-r-xl); padding: var(--g-sp-5); margin-bottom: var(--g-sp-2); }
-.what-box > .ico { color: var(--s-brand); flex: none; margin-top: 2px; }
-.what-box p { margin: 0; font-size: var(--s-fs-body); line-height: var(--s-lh-body); color: var(--s-text); }
-.what-box b { color: var(--s-brand); }
-
-/* ---- mistakes (易错) ---- */
-.mis-list { display: grid; gap: var(--card-gap); grid-template-columns: repeat(auto-fit, minmax(min(100%, var(--card-min)), 1fr)); align-items: stretch; }
-.mis-card { background: var(--s-surface); border: 1px solid var(--s-border); border-radius: var(--g-r-xl); padding: var(--g-sp-4); }
-.mis-wrong { display: flex; align-items: center; gap: var(--g-sp-2); color: var(--g-red-700); font-size: var(--s-fs-body-lg); text-decoration: line-through; text-decoration-color: color-mix(in srgb, var(--g-red-500) 55%, transparent); }
-.mis-wrong .ico { flex: none; text-decoration: none; }
-.mis-right { display: flex; align-items: center; gap: var(--g-sp-2); margin-top: var(--g-sp-2); color: var(--g-green-700); font-size: var(--s-fs-body-lg); font-weight: var(--g-fw-medium); }
-.mis-right .ico { color: var(--g-green-500); flex: none; }
-.mis-why { margin-top: var(--g-sp-2); font-size: var(--s-fs-caption); color: var(--s-text-secondary); background: var(--s-brand-subtle); border-radius: var(--g-r-md); padding: var(--g-sp-2) var(--g-sp-3); line-height: var(--s-lh-body); }
-
-/* collocation word highlighted bold in card head */
-.prep-card__word { letter-spacing: 0; }
-
-/* ---- combo (quiz) ---- */
-.quiz-status { display: inline-flex; align-items: center; gap: var(--g-sp-3); }
-.combo { color: var(--g-amber-700); font-weight: var(--g-fw-bold); }
-
-/* 易错卡:先思考,点击揭晓 */
-.mis-think { margin-top: var(--g-sp-2); font-size: var(--s-fs-caption); color: var(--s-text-secondary); display: flex; align-items: center; gap: var(--g-sp-1); }
-.mis-think .ico { color: var(--s-brand); }
-.mis-reveal { margin-top: var(--g-sp-3); }
-
-/* ============================================================
-   记忆助手:方法说明 · 闪卡主动回忆 · 找规律
-   ============================================================ */
-/* 方法 4 步 */
-.howto-grid { display: grid; gap: var(--card-gap); grid-template-columns: repeat(auto-fit, minmax(min(100%, 220px), 1fr)); }
-.howto-card { background: var(--s-surface); border: 1px solid var(--s-border); border-radius: var(--g-r-xl); padding: var(--g-sp-4); }
-.howto-card__ic { width: 44px; height: 44px; border-radius: var(--g-r-lg); display: grid; place-items: center; background: var(--s-brand-subtle); color: var(--s-brand); margin-bottom: var(--g-sp-3); }
-.howto-card__t { font-weight: var(--g-fw-bold); font-size: var(--s-fs-body-lg); }
-.howto-card__d { margin-top: var(--g-sp-2); font-size: var(--s-fs-caption); color: var(--s-text-secondary); line-height: var(--s-lh-body); }
-
-/* 闪卡 topbar */
-.fc-topbar { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: var(--g-sp-3); margin-bottom: var(--g-sp-4); }
-.fc-mode { display: flex; padding: 3px; background: var(--s-surface-sunken); border: 1px solid var(--s-border); border-radius: var(--g-r-full); }
-.fc-mode__opt { appearance: none; border: 0; background: transparent; cursor: pointer; font: inherit; font-size: var(--s-fs-caption); font-weight: var(--g-fw-medium); color: var(--s-text-secondary); padding: var(--g-sp-2) var(--g-sp-4); border-radius: var(--g-r-full); min-height: 38px; transition: all var(--g-dur-fast) var(--g-ease); }
-.fc-mode__opt--on { background: var(--s-brand); color: var(--s-on-brand); box-shadow: var(--s-shadow-sm); }
-.fc-mastery { display: flex; align-items: center; gap: var(--g-sp-2); font-size: var(--s-fs-caption); color: var(--s-text-secondary); }
-.fc-mastery b { color: var(--s-brand); font-size: var(--s-fs-body); }
-.fc-bar { width: 120px; height: 8px; background: var(--s-surface-sunken); border-radius: var(--g-r-full); overflow: hidden; }
-.fc-bar__fill { height: 100%; background: var(--s-brand); border-radius: var(--g-r-full); transition: width var(--g-dur-base) var(--g-ease); }
-.fc-reset { appearance: none; cursor: pointer; font: inherit; font-size: var(--s-fs-caption); color: var(--s-text-secondary); background: var(--s-surface); border: 1px solid var(--s-border); border-radius: var(--g-r-md); padding: var(--g-sp-1) var(--g-sp-2); display: inline-flex; align-items: center; gap: 2px; }
-.fc-reset:hover { background: var(--s-surface-hover); color: var(--s-text); }
-
-/* 闪卡本体 */
-.fc-wrap { max-width: 560px; margin-inline: auto; }
-.fc-count { text-align: center; font-size: var(--s-fs-caption); color: var(--s-text-muted); margin-bottom: var(--g-sp-3); }
-.fc-card { background: var(--s-surface); border: 1px solid var(--s-border); border-radius: var(--g-r-2xl); box-shadow: var(--s-shadow-md); padding: clamp(var(--g-sp-6), 5vw, var(--g-sp-10)); min-height: 260px; display: flex; align-items: center; justify-content: center; text-align: center; cursor: pointer; transition: box-shadow var(--g-dur-fast) var(--g-ease), transform var(--g-dur-fast) var(--g-ease); }
-.fc-card:hover { box-shadow: var(--s-shadow-lg); }
-.fc-card--flipped { cursor: default; border-color: color-mix(in srgb, var(--s-brand) 40%, var(--s-border)); }
-.fc-face { width: 100%; display: flex; flex-direction: column; align-items: center; gap: var(--g-sp-3); }
-.fc-face__hint { font-size: var(--s-fs-caption); color: var(--s-text-muted); letter-spacing: var(--g-ls-wide); }
-.fc-face__big { font-size: var(--s-fs-h1); font-weight: var(--g-fw-bold); line-height: 1.15; }
-.fc-face__big--en { font-family: var(--g-font); color: var(--s-brand); }
-.fc-face__mini { font-size: var(--s-fs-body); color: var(--s-text-secondary); }
-.fc-flipbtn { margin-top: var(--g-sp-3); }
-.fc-tiphint { text-align: center; margin-top: var(--g-sp-3); font-size: var(--s-fs-caption); color: var(--s-text-muted); display: flex; align-items: center; justify-content: center; gap: var(--g-sp-1); }
-.fc-tiphint .ico { color: var(--s-brand); }
-
-/* 翻面后的答案 */
-.fc-answer { display: flex; align-items: center; justify-content: center; gap: var(--g-sp-2); }
-.fc-answer__en { font-size: var(--s-fs-h1); font-weight: var(--g-fw-bold); color: var(--s-brand); }
-.fc-answer__ipa { font-family: var(--g-font-mono); color: var(--s-text-secondary); font-size: var(--s-fs-body); }
-.fc-answer__zh { font-size: var(--s-fs-h3); font-weight: var(--g-fw-medium); }
-.fc-answer__tip { font-size: var(--s-fs-caption); color: var(--s-text-secondary); background: var(--s-brand-subtle); border-radius: var(--g-r-md); padding: var(--g-sp-2) var(--g-sp-3); line-height: var(--s-lh-body); max-width: 460px; }
-.fc-answer__tip .ico { color: var(--g-amber-500); }
-.fc-answer__ex { margin-top: var(--g-sp-1); font-size: var(--s-fs-body); background: var(--s-surface-sunken); border: 1px solid var(--s-border); border-radius: var(--g-r-md); padding: var(--g-sp-3) var(--g-sp-4); }
-.fc-answer__exzh { font-size: var(--s-fs-caption); color: var(--s-text-secondary); margin-top: 2px; }
-
-/* 判定按钮 */
-.fc-judge { display: flex; gap: var(--g-sp-3); margin-top: var(--g-sp-4); justify-content: center; }
-.fc-judge__btn { appearance: none; cursor: pointer; font: inherit; font-size: var(--s-fs-body); font-weight: var(--g-fw-medium); border-radius: var(--g-r-lg); padding: var(--g-sp-3) var(--g-sp-5); min-height: 48px; display: inline-flex; align-items: center; gap: var(--g-sp-2); border: 1px solid var(--s-border); transition: all var(--g-dur-fast) var(--g-ease); }
-.fc-judge__btn--no { background: var(--s-surface); color: var(--g-amber-700); border-color: color-mix(in srgb, var(--g-amber-500) 40%, transparent); }
-.fc-judge__btn--no:hover { background: var(--g-amber-100); }
-.fc-judge__btn--yes { background: var(--g-green-500); color: #fff; border-color: transparent; }
-.fc-judge__btn--yes:hover { filter: brightness(1.05); }
-
-/* 闪卡完成 */
-.fc-done { flex-direction: column; cursor: default; }
-.fc-done .ico { color: var(--g-amber-500); }
-.fc-done__t { font-size: var(--s-fs-h2); font-weight: var(--g-fw-bold); margin-top: var(--g-sp-3); }
-.fc-done__btns { display: flex; gap: var(--g-sp-3); flex-wrap: wrap; justify-content: center; margin-top: var(--g-sp-4); }
-
-/* 找规律卡片 */
-.pat-grid { display: grid; gap: var(--card-gap); grid-template-columns: repeat(auto-fit, minmax(min(100%, var(--card-min)), 1fr)); align-items: stretch; }
-.pat-card { background: var(--s-surface); border: 1px solid var(--s-border); border-radius: var(--g-r-xl); padding: var(--g-sp-4) var(--g-sp-5); border-top: 4px solid var(--s-brand); }
-.pat-card--brand { border-top-color: var(--s-brand); }
-.pat-card--cyan  { border-top-color: var(--g-cyan-500); }
-.pat-card--green { border-top-color: var(--g-green-500); }
-.pat-card--amber { border-top-color: var(--g-amber-500); }
-.pat-card__key { font-size: var(--s-fs-h2); font-weight: var(--g-fw-bold); font-family: var(--g-font-mono); color: var(--s-brand); }
-.pat-card--cyan .pat-card__key { color: var(--g-cyan-700); }
-.pat-card--green .pat-card__key { color: var(--g-green-700); }
-.pat-card--amber .pat-card__key { color: var(--g-amber-700); }
-.pat-card__tip { margin-top: var(--g-sp-2); font-size: var(--s-fs-caption); color: var(--s-text-secondary); line-height: var(--s-lh-body); }
-.pat-card__items { margin-top: var(--g-sp-3); display: flex; flex-wrap: wrap; gap: var(--g-sp-2); }
-.pat-chip { font-size: var(--s-fs-caption); background: var(--s-surface-sunken); border: 1px solid var(--s-border); border-radius: var(--g-r-full); padding: var(--g-sp-1) var(--g-sp-3); color: var(--s-text); }
-
-@media (max-width: 560px){ .fc-mastery { width: 100%; justify-content: space-between; } .fc-bar { flex: 1; } .fc-judge__btn { flex: 1; justify-content: center; } }
+/* ---- Responsive: iPad & phone ---- */
+@media (max-width: 640px) {
+  .brand__sub { display: none; }
+  .tab span.tab__txt { display: none; }
+  .tab { padding-inline: var(--g-sp-3); }
+  .section-head h1 { font-size: var(--s-fs-h2); }
+  .quiz-q__en { font-size: var(--s-fs-h1); }
+}
+/* iPad portrait/landscape: comfortable two+ column card grids already handled by auto-fill */
 
 </style>
 </head>
 <body>
-<!-- AUTO-BACK-NAV-START -->
-<style id="auto-back-nav-style">
-#auto-back-nav{position:sticky;top:0;z-index:999;background:rgba(249,250,251,.9);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);border-bottom:1px solid #e5e7eb;display:flex;align-items:center;padding:0 20px;height:44px;}
-@media(prefers-color-scheme:dark){#auto-back-nav{background:rgba(13,17,23,.9);border-bottom-color:#2d333b;}}
-#auto-back-nav a{display:inline-flex;align-items:center;gap:6px;text-decoration:none;color:#4b5563;font-size:14px;font-weight:600;font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Hiragino Sans GB","Microsoft YaHei",Roboto,Arial,sans-serif;}
-@media(prefers-color-scheme:dark){#auto-back-nav a{color:#9da7b3;}}
-</style>
-<nav id="auto-back-nav">
-  <a href="index.html">
-    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5"/><path d="m12 19-7-7 7-7"/></svg>
-    暑假成长加油站
-  </a>
-</nav>
-<!-- AUTO-BACK-NAV-END -->
-<div id="boot" style="position:fixed;inset:0;display:grid;place-items:center;font:14px system-ui;color:#888;background:var(--s-bg,#f6f7f9)">正在加载…</div>
+<!-- boot placeholder + self-healing error handlers -->
+<div id="boot" style="position:fixed;inset:0;display:grid;place-items:center;font:14px system-ui;color:#888;background:var(--s-bg,#f6f7f9)">正在加载单词复习营…</div>
 <script>
-function boot_fail(m){var b=document.getElementById('boot');if(b)b.innerHTML='<pre style="max-width:80ch;white-space:pre-wrap;color:#c0392b;padding:24px">启动失败:\n'+m+'</pre>';}
-addEventListener('error',function(e){boot_fail(e.message||e.error);});
-addEventListener('unhandledrejection',function(e){boot_fail(e.reason);});
+  function boot_fail(msg){
+    var b=document.getElementById('boot');
+    if(b) b.innerHTML='<pre style="max-width:80ch;white-space:pre-wrap;color:#c0392b;padding:24px">启动失败:\n'+msg+'</pre>';
+  }
+  addEventListener('error', function(e){ boot_fail(e.message||e.error); });
+  addEventListener('unhandledrejection', function(e){ boot_fail(e.reason); });
 </script>
+
+<!-- icon sprite (hidden) -->
 <svg style="position:absolute;width:0;height:0;overflow:hidden" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" style="display:none" aria-hidden="true">
 <!-- ============================================================
      GENIUS DESIGN ICONS · sprite.svg · v2.0
@@ -1719,276 +1830,486 @@ addEventListener('unhandledrejection',function(e){boot_fail(e.reason);});
 <symbol id="ic-infinity" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><!--lucide:infinity--><path d="M6 16c5 0 7-8 12-8a4 4 0 0 1 0 8c-5 0-7-8-12-8a4 4 0 1 0 0 8" /></symbol>
 </svg>
 
-<coll-app></coll-app>
+
+<!-- app mount -->
+<app-root></app-root>
+
+<!-- vocabulary data -->
 <script>
-// Data for the "English Fixed Collocations" topic page (Beijing primary school).
-// Each item: en(搭配), ipa, zh(义), use(用法说明), ex[{en,zh}]
-window.COLL_DATA = {
-  groups: [
+// Vocabulary dataset for Beijing primary school English review.
+// Each word: en, ipa (IPA), zh (Chinese), example (en), exampleZh.
+window.VOCAB_DATA = {
+  scenes: [
     {
-      id: "verb-prep", name: "动词 + 介词/副词", en: "Verb + Preposition", icon: "ic-zap", color: "brand",
-      intro: "有些动词后面必须跟固定的小词(介词/副词),意思才完整。少了它就是错的,比如 listen 后面一定要跟 to。",
-      items: [
-        { en: "listen to", ipa: "/ˈlɪsn tuː/", zh: "听…", use: "listen 后面听什么,一定要加 to。", ex: [ { en: "I listen to music every day.", zh: "我每天听音乐。" }, { en: "Please listen to the teacher.", zh: "请听老师说。" } ] },
-        { en: "look at", ipa: "/lʊk æt/", zh: "看…", use: "看某个东西,用 look at。", ex: [ { en: "Look at the blackboard.", zh: "看黑板。" }, { en: "She looks at the stars.", zh: "她看着星星。" } ] },
-        { en: "get up", ipa: "/ɡet ʌp/", zh: "起床", use: "早上起床,用 get up。", ex: [ { en: "I get up at seven.", zh: "我七点起床。" }, { en: "Get up, it's late!", zh: "起床,已经晚了!" } ] },
-        { en: "turn on", ipa: "/tɜːn ɒn/", zh: "打开(电器)", use: "打开灯、电视等,用 turn on。", ex: [ { en: "Please turn on the light.", zh: "请开灯。" }, { en: "He turns on the TV.", zh: "他打开电视。" } ] },
-        { en: "turn off", ipa: "/tɜːn ɒf/", zh: "关掉(电器)", use: "关灯、关电视,用 turn off。", ex: [ { en: "Turn off the computer, please.", zh: "请关掉电脑。" }, { en: "We turn off the lights at night.", zh: "我们晚上关灯。" } ] },
-        { en: "wait for", ipa: "/weɪt fɔː(r)/", zh: "等候…", use: "等某人某物,用 wait for。", ex: [ { en: "Wait for me, please.", zh: "请等等我。" }, { en: "We wait for the bus.", zh: "我们等公交车。" } ] },
-        { en: "look for", ipa: "/lʊk fɔː(r)/", zh: "寻找…", use: "找东西的过程,用 look for。", ex: [ { en: "I look for my pen.", zh: "我在找我的钢笔。" }, { en: "She is looking for her cat.", zh: "她在找她的猫。" } ] },
-        { en: "come from", ipa: "/kʌm frɒm/", zh: "来自…", use: "说来自哪里,用 come from。", ex: [ { en: "I come from China.", zh: "我来自中国。" }, { en: "Where do you come from?", zh: "你来自哪里?" } ] },
-        { en: "talk about", ipa: "/tɔːk əˈbaʊt/", zh: "谈论…", use: "谈论某个话题,用 talk about。", ex: [ { en: "We talk about the trip.", zh: "我们谈论这次旅行。" }, { en: "They talk about animals.", zh: "他们谈论动物。" } ] },
-        { en: "think about", ipa: "/θɪŋk əˈbaʊt/", zh: "考虑…", use: "思考某事,用 think about。", ex: [ { en: "Think about the question.", zh: "想想这个问题。" }, { en: "I think about my holiday.", zh: "我想着我的假期。" } ] },
-        { en: "worry about", ipa: "/ˈwʌri əˈbaʊt/", zh: "担心…", use: "担心某事,用 worry about。", ex: [ { en: "Don't worry about the test.", zh: "别担心考试。" }, { en: "She worries about her dog.", zh: "她担心她的狗。" } ] },
-        { en: "laugh at", ipa: "/lɑːf æt/", zh: "嘲笑…", use: "嘲笑某人,用 laugh at。", ex: [ { en: "Don't laugh at others.", zh: "不要嘲笑别人。" }, { en: "They laugh at the funny cat.", zh: "他们被搞笑的猫逗笑。" } ] },
-        { en: "arrive at", ipa: "/əˈraɪv æt/", zh: "到达(小地方)", use: "到达小地点,用 arrive at。", ex: [ { en: "We arrive at school at eight.", zh: "我们八点到校。" }, { en: "He arrives at the shop.", zh: "他到了商店。" } ] },
-        { en: "hear from", ipa: "/hɪə frɒm/", zh: "收到…的消息", use: "收到某人来信,用 hear from。", ex: [ { en: "I hear from my friend.", zh: "我收到朋友的消息。" }, { en: "Hope to hear from you.", zh: "希望收到你的回信。" } ] },
-        { en: "agree with", ipa: "/əˈɡriː wɪð/", zh: "同意(某人)", use: "同意某人,用 agree with。", ex: [ { en: "I agree with you.", zh: "我同意你。" }, { en: "She agrees with the teacher.", zh: "她同意老师的看法。" } ] }
+      id: "food", name: "食物与饮料", en: "Food & Drink", icon: "ic-utensils", color: "amber",
+      words: [
+        { en: "rice", ipa: "/raɪs/", zh: "米饭", example: "I eat rice for lunch.", exampleZh: "我午饭吃米饭。" },
+        { en: "noodles", ipa: "/ˈnuːdlz/", zh: "面条", example: "These noodles are delicious.", exampleZh: "这些面条很美味。" },
+        { en: "dumpling", ipa: "/ˈdʌmplɪŋ/", zh: "饺子", example: "We make dumplings for the festival.", exampleZh: "我们过节包饺子。" },
+        { en: "bread", ipa: "/bred/", zh: "面包", example: "She likes bread and milk.", exampleZh: "她喜欢面包和牛奶。" },
+        { en: "sandwich", ipa: "/ˈsænwɪdʒ/", zh: "三明治", example: "I made a chicken sandwich.", exampleZh: "我做了一个鸡肉三明治。" },
+        { en: "egg", ipa: "/eɡ/", zh: "鸡蛋", example: "I have an egg every morning.", exampleZh: "我每天早上吃一个鸡蛋。" },
+        { en: "milk", ipa: "/mɪlk/", zh: "牛奶", example: "Drink your milk, please.", exampleZh: "请把你的牛奶喝掉。" },
+        { en: "yoghurt", ipa: "/ˈjɒɡət/", zh: "酸奶", example: "She eats yoghurt after dinner.", exampleZh: "她晚饭后吃酸奶。" },
+        { en: "apple", ipa: "/ˈæpl/", zh: "苹果", example: "An apple a day keeps you healthy.", exampleZh: "每天一个苹果让你健康。" },
+        { en: "banana", ipa: "/bəˈnɑːnə/", zh: "香蕉", example: "The monkey eats a banana.", exampleZh: "猴子在吃香蕉。" },
+        { en: "watermelon", ipa: "/ˈwɔːtəmelən/", zh: "西瓜", example: "Watermelon is sweet in summer.", exampleZh: "夏天的西瓜很甜。" },
+        { en: "strawberry", ipa: "/ˈstrɔːbəri/", zh: "草莓", example: "I love strawberry cake.", exampleZh: "我喜欢草莓蛋糕。" },
+        { en: "vegetable", ipa: "/ˈvedʒtəbl/", zh: "蔬菜", example: "Eat more vegetables, please.", exampleZh: "请多吃蔬菜。" },
+        { en: "tomato", ipa: "/təˈmɑːtəʊ/", zh: "西红柿", example: "The tomato is red and round.", exampleZh: "西红柿又红又圆。" },
+        { en: "juice", ipa: "/dʒuːs/", zh: "果汁", example: "I want some orange juice.", exampleZh: "我想要一些橙汁。" },
+        { en: "water", ipa: "/ˈwɔːtə(r)/", zh: "水", example: "Please give me a glass of water.", exampleZh: "请给我一杯水。" },
+        { en: "cake", ipa: "/keɪk/", zh: "蛋糕", example: "We eat cake on his birthday.", exampleZh: "我们在他生日时吃蛋糕。" },
+        { en: "chocolate", ipa: "/ˈtʃɒklət/", zh: "巧克力", example: "This chocolate tastes great.", exampleZh: "这块巧克力味道很棒。" },
+        { en: "breakfast", ipa: "/ˈbrekfəst/", zh: "早餐", example: "Breakfast is the most important meal.", exampleZh: "早餐是最重要的一餐。" },
+        { en: "dinner", ipa: "/ˈdɪnə(r)/", zh: "晚餐", example: "We have dinner at seven.", exampleZh: "我们七点吃晚饭。" }
+      ],
+      related: [
+        { en: "hungry", ipa: "/ˈhʌŋɡri/", zh: "饿的", link: "饿了就想吃 rice、bread", example: "I am hungry, so I eat some rice.", exampleZh: "我饿了,所以吃了一些米饭。" },
+        { en: "thirsty", ipa: "/ˈθɜːsti/", zh: "渴的", link: "渴了就想喝 water、juice", example: "When I am thirsty, I drink water or juice.", exampleZh: "我渴的时候会喝水或果汁。" },
+        { en: "delicious", ipa: "/dɪˈlɪʃəs/", zh: "美味的", link: "用来形容 cake、noodles 好吃", example: "The cake and noodles are delicious.", exampleZh: "这蛋糕和面条很美味。" },
+        { en: "taste", ipa: "/teɪst/", zh: "尝、味道", link: "尝一尝食物的味道", example: "Taste the apple juice; it is sweet.", exampleZh: "尝尝这苹果汁,很甜。" },
+        { en: "cook", ipa: "/kʊk/", zh: "烹饪", link: "做 rice、egg 等食物", example: "My mother can cook rice and eggs.", exampleZh: "我妈妈会做米饭和鸡蛋。" },
+        { en: "menu", ipa: "/ˈmenjuː/", zh: "菜单", link: "点餐时在菜单上找食物", example: "I see bread and milk on the menu.", exampleZh: "我在菜单上看到了面包和牛奶。" },
+        { en: "chopsticks", ipa: "/ˈtʃɒpstɪks/", zh: "筷子", link: "吃 noodles、dumplings 的工具", example: "We eat noodles with chopsticks.", exampleZh: "我们用筷子吃面条。" },
+        { en: "restaurant", ipa: "/ˈrestrɒnt/", zh: "餐厅", link: "去餐厅吃各种食物", example: "We eat dumplings in the restaurant.", exampleZh: "我们在餐厅吃饺子。" }
       ]
     },
     {
-      id: "be-phrase", name: "be + 介词/形容词", en: "be + ...", icon: "ic-heart", color: "cyan",
-      intro: "很多描述状态、感受的搭配以 be 动词开头,后面跟固定的形容词和介词,比如 be good at(擅长)。",
-      items: [
-        { en: "be good at", ipa: "/biː ɡʊd æt/", zh: "擅长…", use: "擅长做某事,后面跟名词或动词-ing。", ex: [ { en: "She is good at English.", zh: "她擅长英语。" }, { en: "I am good at swimming.", zh: "我擅长游泳。" } ] },
-        { en: "be interested in", ipa: "/biː ˈɪntrəstɪd ɪn/", zh: "对…感兴趣", use: "对某事感兴趣,用 in。", ex: [ { en: "He is interested in science.", zh: "他对科学感兴趣。" }, { en: "Are you interested in music?", zh: "你对音乐感兴趣吗?" } ] },
-        { en: "be afraid of", ipa: "/biː əˈfreɪd ɒv/", zh: "害怕…", use: "害怕某物,用 of。", ex: [ { en: "The cat is afraid of dogs.", zh: "这只猫怕狗。" }, { en: "Don't be afraid of the dark.", zh: "别怕黑。" } ] },
-        { en: "be full of", ipa: "/biː fʊl ɒv/", zh: "充满…", use: "装满、充满某物,用 of。", ex: [ { en: "The box is full of toys.", zh: "盒子里装满了玩具。" }, { en: "The sky is full of stars.", zh: "天空布满星星。" } ] },
-        { en: "be late for", ipa: "/biː leɪt fɔː(r)/", zh: "…迟到", use: "上学/上课迟到,用 for。", ex: [ { en: "Don't be late for school.", zh: "上学别迟到。" }, { en: "He is late for class.", zh: "他上课迟到了。" } ] },
-        { en: "be different from", ipa: "/biː ˈdɪfrənt frɒm/", zh: "与…不同", use: "和某物不同,用 from。", ex: [ { en: "My bag is different from yours.", zh: "我的包和你的不一样。" }, { en: "This one is different from that one.", zh: "这个和那个不同。" } ] },
-        { en: "be ready for", ipa: "/biː ˈredi fɔː(r)/", zh: "为…做好准备", use: "为某事做好准备,用 for。", ex: [ { en: "Are you ready for the test?", zh: "你准备好考试了吗?" }, { en: "We are ready for the trip.", zh: "我们为旅行做好了准备。" } ] },
-        { en: "be good for", ipa: "/biː ɡʊd fɔː(r)/", zh: "对…有益", use: "对健康等有好处,用 for。", ex: [ { en: "Milk is good for your body.", zh: "牛奶对身体有益。" }, { en: "Reading is good for you.", zh: "阅读对你有好处。" } ] },
-        { en: "be busy with", ipa: "/biː ˈbɪzi wɪð/", zh: "忙于…", use: "忙于某事,用 with(或 busy doing)。", ex: [ { en: "She is busy with her homework.", zh: "她忙于做作业。" }, { en: "I am busy with my work.", zh: "我忙于工作。" } ] },
-        { en: "be angry with", ipa: "/biː ˈæŋɡri wɪð/", zh: "对(某人)生气", use: "对某人生气,用 with。", ex: [ { en: "Don't be angry with me.", zh: "别对我生气。" }, { en: "The teacher is angry with them.", zh: "老师对他们生气。" } ] },
-        { en: "be proud of", ipa: "/biː praʊd ɒv/", zh: "为…自豪", use: "为某人某事自豪,用 of。", ex: [ { en: "I am proud of my class.", zh: "我为我的班级自豪。" }, { en: "She is proud of her son.", zh: "她为她的儿子自豪。" } ] },
-        { en: "be made of", ipa: "/biː meɪd ɒv/", zh: "由…制成", use: "看得出材料时,用 be made of。", ex: [ { en: "The desk is made of wood.", zh: "桌子是木头做的。" }, { en: "The cup is made of glass.", zh: "杯子是玻璃做的。" } ] }
+      id: "animals", name: "动物", en: "Animals", icon: "ic-paw", color: "green",
+      words: [
+        { en: "dog", ipa: "/dɒɡ/", zh: "狗", example: "My dog runs very fast.", exampleZh: "我的狗跑得很快。" },
+        { en: "cat", ipa: "/kæt/", zh: "猫", example: "The cat is sleeping on the bed.", exampleZh: "猫正在床上睡觉。" },
+        { en: "bird", ipa: "/bɜːd/", zh: "鸟", example: "A bird is singing in the tree.", exampleZh: "一只鸟在树上唱歌。" },
+        { en: "fish", ipa: "/fɪʃ/", zh: "鱼", example: "There are many fish in the lake.", exampleZh: "湖里有很多鱼。" },
+        { en: "rabbit", ipa: "/ˈræbɪt/", zh: "兔子", example: "The rabbit likes carrots.", exampleZh: "兔子喜欢胡萝卜。" },
+        { en: "elephant", ipa: "/ˈelɪfənt/", zh: "大象", example: "An elephant has a long nose.", exampleZh: "大象有长长的鼻子。" },
+        { en: "monkey", ipa: "/ˈmʌŋki/", zh: "猴子", example: "The monkey climbs the tree.", exampleZh: "猴子爬上了树。" },
+        { en: "tiger", ipa: "/ˈtaɪɡə(r)/", zh: "老虎", example: "The tiger is a strong animal.", exampleZh: "老虎是一种强壮的动物。" },
+        { en: "lion", ipa: "/ˈlaɪən/", zh: "狮子", example: "The lion is the king of animals.", exampleZh: "狮子是万兽之王。" },
+        { en: "panda", ipa: "/ˈpændə/", zh: "熊猫", example: "The panda eats bamboo.", exampleZh: "熊猫吃竹子。" },
+        { en: "duck", ipa: "/dʌk/", zh: "鸭子", example: "The duck swims in the water.", exampleZh: "鸭子在水里游泳。" },
+        { en: "giraffe", ipa: "/dʒəˈrɑːf/", zh: "长颈鹿", example: "The giraffe has a very long neck.", exampleZh: "长颈鹿的脖子非常长。" },
+        { en: "kangaroo", ipa: "/ˌkæŋɡəˈruː/", zh: "袋鼠", example: "A kangaroo can jump very far.", exampleZh: "袋鼠能跳得很远。" },
+        { en: "dolphin", ipa: "/ˈdɒlfɪn/", zh: "海豚", example: "Dolphins are very clever.", exampleZh: "海豚非常聪明。" },
+        { en: "penguin", ipa: "/ˈpeŋɡwɪn/", zh: "企鹅", example: "Penguins live in cold places.", exampleZh: "企鹅住在寒冷的地方。" },
+        { en: "butterfly", ipa: "/ˈbʌtəflaɪ/", zh: "蝴蝶", example: "A butterfly is on the flower.", exampleZh: "一只蝴蝶停在花上。" },
+        { en: "horse", ipa: "/hɔːs/", zh: "马", example: "The horse runs across the field.", exampleZh: "马跑过田野。" },
+        { en: "sheep", ipa: "/ʃiːp/", zh: "绵羊", example: "The sheep eat grass on the hill.", exampleZh: "绵羊在山坡上吃草。" }
+      ],
+      related: [
+        { en: "zoo", ipa: "/zuː/", zh: "动物园", link: "在动物园看 panda、tiger", example: "We see pandas and tigers at the zoo.", exampleZh: "我们在动物园看熊猫和老虎。" },
+        { en: "tail", ipa: "/teɪl/", zh: "尾巴", link: "monkey、cat 都有尾巴", example: "The monkey has a long tail.", exampleZh: "猴子有一条长长的尾巴。" },
+        { en: "wing", ipa: "/wɪŋ/", zh: "翅膀", link: "bird、butterfly 用翅膀飞", example: "A bird flies with its wings.", exampleZh: "鸟用翅膀飞翔。" },
+        { en: "feed", ipa: "/fiːd/", zh: "喂食", link: "给 rabbit、fish 喂食", example: "I feed the rabbit every morning.", exampleZh: "我每天早上喂兔子。" },
+        { en: "wild", ipa: "/waɪld/", zh: "野生的", link: "lion、elephant 是野生动物", example: "The lion is a wild animal.", exampleZh: "狮子是野生动物。" },
+        { en: "pet", ipa: "/pet/", zh: "宠物", link: "dog、cat 常做宠物", example: "My dog is my favourite pet.", exampleZh: "我的狗是我最喜欢的宠物。" },
+        { en: "cage", ipa: "/keɪdʒ/", zh: "笼子", link: "bird 关在笼子里", example: "The bird sings in the cage.", exampleZh: "小鸟在笼子里唱歌。" },
+        { en: "roar", ipa: "/rɔː(r)/", zh: "吼叫", link: "tiger、lion 会吼叫", example: "The tiger can roar very loudly.", exampleZh: "老虎能大声吼叫。" }
       ]
     },
     {
-      id: "phrasal", name: "常见短语动词", en: "Phrasal Verbs", icon: "ic-workflow", color: "green",
-      intro: "动词加一个小词组成新意思,整体一起记,比如 look after 是“照顾”,不是“向后看”。",
-      items: [
-        { en: "look after", ipa: "/lʊk ˈɑːftə(r)/", zh: "照顾", use: "照顾人或宠物,用 look after。", ex: [ { en: "She looks after her little brother.", zh: "她照顾她的弟弟。" }, { en: "Please look after my dog.", zh: "请照顾我的狗。" } ] },
-        { en: "pick up", ipa: "/pɪk ʌp/", zh: "捡起 / 接(人)", use: "捡东西,或去接某人。", ex: [ { en: "Pick up the pen on the floor.", zh: "把地上的笔捡起来。" }, { en: "My mom picks me up after school.", zh: "妈妈放学后来接我。" } ] },
-        { en: "put on", ipa: "/pʊt ɒn/", zh: "穿上", use: "穿上衣服、鞋子,用 put on。", ex: [ { en: "Put on your coat, it's cold.", zh: "穿上外套,天冷。" }, { en: "She puts on her shoes.", zh: "她穿上鞋子。" } ] },
-        { en: "take off", ipa: "/teɪk ɒf/", zh: "脱下", use: "脱衣服、鞋子,用 take off。", ex: [ { en: "Take off your hat inside.", zh: "在室内摘下帽子。" }, { en: "He takes off his shoes.", zh: "他脱下鞋子。" } ] },
-        { en: "get on", ipa: "/ɡet ɒn/", zh: "上(车)", use: "上公交、火车,用 get on。", ex: [ { en: "Get on the bus quickly.", zh: "快点上公交车。" }, { en: "We get on the train.", zh: "我们上火车。" } ] },
-        { en: "get off", ipa: "/ɡet ɒf/", zh: "下(车)", use: "下公交、火车,用 get off。", ex: [ { en: "Get off at the next stop.", zh: "在下一站下车。" }, { en: "They get off the bus.", zh: "他们下了公交车。" } ] },
-        { en: "grow up", ipa: "/ɡrəʊ ʌp/", zh: "长大", use: "人长大成人,用 grow up。", ex: [ { en: "I want to be a doctor when I grow up.", zh: "我长大想当医生。" }, { en: "Children grow up fast.", zh: "孩子长得很快。" } ] },
-        { en: "clean up", ipa: "/kliːn ʌp/", zh: "打扫干净", use: "把地方收拾干净,用 clean up。", ex: [ { en: "Clean up your room, please.", zh: "请打扫你的房间。" }, { en: "We clean up the classroom.", zh: "我们打扫教室。" } ] },
-        { en: "wake up", ipa: "/weɪk ʌp/", zh: "醒来", use: "从睡梦中醒来,用 wake up。", ex: [ { en: "I wake up at six.", zh: "我六点醒来。" }, { en: "Wake up, it's morning!", zh: "醒醒,天亮了!" } ] },
-        { en: "sit down", ipa: "/sɪt daʊn/", zh: "坐下", use: "坐下,用 sit down。", ex: [ { en: "Please sit down.", zh: "请坐下。" }, { en: "The students sit down.", zh: "学生们坐下。" } ] },
-        { en: "stand up", ipa: "/stænd ʌp/", zh: "起立", use: "站起来,用 stand up。", ex: [ { en: "Stand up, please.", zh: "请起立。" }, { en: "We stand up when the teacher comes.", zh: "老师进来时我们起立。" } ] },
-        { en: "give up", ipa: "/ɡɪv ʌp/", zh: "放弃", use: "放弃某事,用 give up。", ex: [ { en: "Don't give up!", zh: "别放弃!" }, { en: "Never give up your dream.", zh: "永远别放弃梦想。" } ] },
-        { en: "come in", ipa: "/kʌm ɪn/", zh: "进来", use: "进入房间,用 come in。", ex: [ { en: "Come in, please.", zh: "请进。" }, { en: "May I come in?", zh: "我可以进来吗?" } ] },
-        { en: "go out", ipa: "/ɡəʊ aʊt/", zh: "外出", use: "出门,用 go out。", ex: [ { en: "We go out on Sunday.", zh: "我们周日出门。" }, { en: "Let's go out and play.", zh: "我们出去玩吧。" } ] }
+      id: "colors", name: "颜色", en: "Colors", icon: "ic-palette", color: "brand",
+      words: [
+        { en: "red", ipa: "/red/", zh: "红色", example: "The apple is red.", exampleZh: "这个苹果是红色的。" },
+        { en: "blue", ipa: "/bluː/", zh: "蓝色", example: "The sky is blue today.", exampleZh: "今天天空是蓝色的。" },
+        { en: "yellow", ipa: "/ˈjeləʊ/", zh: "黄色", example: "The banana is yellow.", exampleZh: "香蕉是黄色的。" },
+        { en: "green", ipa: "/ɡriːn/", zh: "绿色", example: "The grass is green.", exampleZh: "草是绿色的。" },
+        { en: "black", ipa: "/blæk/", zh: "黑色", example: "I have a black bag.", exampleZh: "我有一个黑色的包。" },
+        { en: "white", ipa: "/waɪt/", zh: "白色", example: "The snow is white.", exampleZh: "雪是白色的。" },
+        { en: "orange", ipa: "/ˈɒrɪndʒ/", zh: "橙色", example: "Her dress is orange.", exampleZh: "她的裙子是橙色的。" },
+        { en: "pink", ipa: "/pɪŋk/", zh: "粉色", example: "She likes the pink flower.", exampleZh: "她喜欢那朵粉色的花。" },
+        { en: "purple", ipa: "/ˈpɜːpl/", zh: "紫色", example: "The grapes are purple.", exampleZh: "葡萄是紫色的。" },
+        { en: "brown", ipa: "/braʊn/", zh: "棕色", example: "The bear is brown.", exampleZh: "这只熊是棕色的。" },
+        { en: "grey", ipa: "/ɡreɪ/", zh: "灰色", example: "The sky is grey before the rain.", exampleZh: "下雨前天空是灰色的。" },
+        { en: "golden", ipa: "/ˈɡəʊldən/", zh: "金色的", example: "The leaves turn golden in autumn.", exampleZh: "秋天树叶变成金色。" },
+        { en: "silver", ipa: "/ˈsɪlvə(r)/", zh: "银色的", example: "She wears a silver ring.", exampleZh: "她戴着一枚银色的戒指。" },
+        { en: "colourful", ipa: "/ˈkʌləfl/", zh: "多彩的", example: "The garden is very colourful.", exampleZh: "这个花园五彩缤纷。" },
+        { en: "light", ipa: "/laɪt/", zh: "浅色的", example: "I like light blue better.", exampleZh: "我更喜欢浅蓝色。" },
+        { en: "dark", ipa: "/dɑːk/", zh: "深色的", example: "He is wearing a dark coat.", exampleZh: "他穿着一件深色外套。" },
+        { en: "bright", ipa: "/braɪt/", zh: "鲜艳的", example: "The bright colours make me happy.", exampleZh: "鲜艳的颜色让我开心。" }
+      ],
+      related: [
+        { en: "rainbow", ipa: "/ˈreɪnbəʊ/", zh: "彩虹", link: "彩虹有 red、blue 等颜色", example: "A rainbow has red, yellow and blue.", exampleZh: "彩虹里有红色、黄色和蓝色。" },
+        { en: "paint", ipa: "/peɪnt/", zh: "颜料、涂色", link: "用颜料画出各种颜色", example: "I paint the sky blue.", exampleZh: "我把天空涂成蓝色。" },
+        { en: "draw", ipa: "/drɔː/", zh: "画", link: "画画时用到颜色", example: "She draws a green tree.", exampleZh: "她画了一棵绿色的树。" },
+        { en: "shade", ipa: "/ʃeɪd/", zh: "色调、深浅", link: "同一颜色有深有浅", example: "I like this shade of pink.", exampleZh: "我喜欢这个色调的粉色。" },
+        { en: "mix", ipa: "/mɪks/", zh: "混合", link: "两种颜色混出新色", example: "Mix blue and yellow to make green.", exampleZh: "把蓝色和黄色混在一起变成绿色。" },
+        { en: "shine", ipa: "/ʃaɪn/", zh: "发光", link: "golden、silver 会发光", example: "The golden ring shines brightly.", exampleZh: "那枚金戒指闪闪发光。" },
+        { en: "pale", ipa: "/peɪl/", zh: "苍白的、浅的", link: "很淡的颜色叫 pale", example: "The sky is a pale blue in the morning.", exampleZh: "早晨的天空是浅蓝色。" },
+        { en: "match", ipa: "/mætʃ/", zh: "搭配", link: "颜色搭配好看", example: "The red bag matches her black dress.", exampleZh: "红色的包和她的黑裙子很搭。" }
       ]
     },
     {
-      id: "expression", name: "常用固定表达", en: "Set Expressions", icon: "ic-message-square", color: "amber",
-      intro: "还有一些整块使用的固定说法,词的搭配是约定俗成的,比如 a lot of(许多)、would like(想要)。",
-      items: [
-        { en: "a lot of", ipa: "/ə lɒt ɒv/", zh: "许多", use: "表示“很多”,后面接可数或不可数名词。", ex: [ { en: "I have a lot of books.", zh: "我有很多书。" }, { en: "There is a lot of water.", zh: "有很多水。" } ] },
-        { en: "would like", ipa: "/wʊd laɪk/", zh: "想要", use: "礼貌地表示“想要”,后接名词或 to do。", ex: [ { en: "I would like some juice.", zh: "我想要一些果汁。" }, { en: "Would you like to play?", zh: "你想玩吗?" } ] },
-        { en: "have a look", ipa: "/hæv ə lʊk/", zh: "看一看", use: "看一眼,用 have a look。", ex: [ { en: "Have a look at this photo.", zh: "看一看这张照片。" }, { en: "Can I have a look?", zh: "我能看看吗?" } ] },
-        { en: "have a rest", ipa: "/hæv ə rest/", zh: "休息一下", use: "休息一会儿,用 have a rest。", ex: [ { en: "Let's have a rest.", zh: "我们休息一下吧。" }, { en: "You need to have a rest.", zh: "你需要休息一下。" } ] },
-        { en: "of course", ipa: "/ɒv kɔːs/", zh: "当然", use: "表示“当然”,常用来回答。", ex: [ { en: "Of course I can help you.", zh: "我当然能帮你。" }, { en: "Of course not.", zh: "当然不。" } ] },
-        { en: "would like to", ipa: "/wʊd laɪk tuː/", zh: "想要做…", use: "想做某事,后接动词原形。", ex: [ { en: "I would like to go home.", zh: "我想回家。" }, { en: "She would like to sing.", zh: "她想唱歌。" } ] },
-        { en: "have to", ipa: "/hæv tuː/", zh: "不得不", use: "表示“必须、不得不”,后接动词原形。", ex: [ { en: "I have to do my homework.", zh: "我必须做作业。" }, { en: "We have to go now.", zh: "我们现在必须走了。" } ] },
-        { en: "for example", ipa: "/fɔːr ɪɡˈzɑːmpl/", zh: "例如", use: "举例时用 for example。", ex: [ { en: "I like fruit, for example, apples.", zh: "我喜欢水果,例如苹果。" }, { en: "For example, we can read.", zh: "例如,我们可以读书。" } ] },
-        { en: "as well", ipa: "/əz wel/", zh: "也", use: "表示“也”,放句尾。", ex: [ { en: "I like it as well.", zh: "我也喜欢它。" }, { en: "She can swim as well.", zh: "她也会游泳。" } ] },
-        { en: "thank you for", ipa: "/θæŋk juː fɔː(r)/", zh: "为…感谢你", use: "感谢某事,用 for + 名词/动词-ing。", ex: [ { en: "Thank you for your help.", zh: "谢谢你的帮助。" }, { en: "Thank you for coming.", zh: "谢谢你来。" } ] }
+      id: "school", name: "学校用品", en: "School Things", icon: "ic-school", color: "cyan",
+      words: [
+        { en: "pen", ipa: "/pen/", zh: "钢笔", example: "This is my new pen.", exampleZh: "这是我的新钢笔。" },
+        { en: "pencil", ipa: "/ˈpensl/", zh: "铅笔", example: "Can I use your pencil?", exampleZh: "我能用一下你的铅笔吗?" },
+        { en: "book", ipa: "/bʊk/", zh: "书", example: "I read a book every night.", exampleZh: "我每晚读一本书。" },
+        { en: "ruler", ipa: "/ˈruːlə(r)/", zh: "尺子", example: "Draw a line with a ruler.", exampleZh: "用尺子画一条线。" },
+        { en: "eraser", ipa: "/ɪˈreɪzə(r)/", zh: "橡皮", example: "I need an eraser.", exampleZh: "我需要一块橡皮。" },
+        { en: "crayon", ipa: "/ˈkreɪən/", zh: "蜡笔", example: "Colour the sun with a yellow crayon.", exampleZh: "用黄色蜡笔给太阳上色。" },
+        { en: "bag", ipa: "/bæɡ/", zh: "书包", example: "My bag is very heavy.", exampleZh: "我的书包很重。" },
+        { en: "desk", ipa: "/desk/", zh: "书桌", example: "The book is on the desk.", exampleZh: "书在书桌上。" },
+        { en: "chair", ipa: "/tʃeə(r)/", zh: "椅子", example: "Please sit on the chair.", exampleZh: "请坐在椅子上。" },
+        { en: "notebook", ipa: "/ˈnəʊtbʊk/", zh: "笔记本", example: "Write it in your notebook.", exampleZh: "把它写在你的笔记本上。" },
+        { en: "dictionary", ipa: "/ˈdɪkʃənri/", zh: "词典", example: "Look it up in the dictionary.", exampleZh: "在词典里查一查这个词。" },
+        { en: "scissors", ipa: "/ˈsɪzəz/", zh: "剪刀", example: "Be careful with the scissors.", exampleZh: "使用剪刀时要小心。" },
+        { en: "glue", ipa: "/ɡluː/", zh: "胶水", example: "Stick the paper with glue.", exampleZh: "用胶水把纸粘上。" },
+        { en: "blackboard", ipa: "/ˈblækbɔːd/", zh: "黑板", example: "The teacher writes on the blackboard.", exampleZh: "老师在黑板上写字。" },
+        { en: "schoolbag", ipa: "/ˈskuːlbæɡ/", zh: "书包", example: "Put your books in the schoolbag.", exampleZh: "把书放进书包里。" },
+        { en: "homework", ipa: "/ˈhəʊmwɜːk/", zh: "家庭作业", example: "I finish my homework after dinner.", exampleZh: "我晚饭后完成作业。" },
+        { en: "classroom", ipa: "/ˈklɑːsruːm/", zh: "教室", example: "Our classroom is clean and bright.", exampleZh: "我们的教室又干净又明亮。" },
+        { en: "playground", ipa: "/ˈpleɪɡraʊnd/", zh: "操场", example: "We play on the playground.", exampleZh: "我们在操场上玩。" }
+      ],
+      related: [
+        { en: "teacher", ipa: "/ˈtiːtʃə(r)/", zh: "老师", link: "在 classroom 里用 book 教书", example: "The teacher writes on the blackboard.", exampleZh: "老师在黑板上写字。" },
+        { en: "student", ipa: "/ˈstjuːdnt/", zh: "学生", link: "背 schoolbag、用 pencil 的人", example: "The student puts books in the schoolbag.", exampleZh: "学生把书放进书包里。" },
+        { en: "lesson", ipa: "/ˈlesn/", zh: "课", link: "上课要用 book、pen", example: "We read the book in the English lesson.", exampleZh: "我们在英语课上读这本书。" },
+        { en: "study", ipa: "/ˈstʌdi/", zh: "学习", link: "用 notebook、pen 学习", example: "I study with my notebook and pen.", exampleZh: "我用笔记本和钢笔学习。" },
+        { en: "library", ipa: "/ˈlaɪbrəri/", zh: "图书馆", link: "在图书馆借 book", example: "I borrow books from the library.", exampleZh: "我从图书馆借书。" },
+        { en: "exam", ipa: "/ɪɡˈzæm/", zh: "考试", link: "考试时用 pen、ruler", example: "Bring your pen and ruler to the exam.", exampleZh: "考试时带上你的钢笔和尺子。" },
+        { en: "uniform", ipa: "/ˈjuːnɪfɔːm/", zh: "校服", link: "去 classroom 上学穿", example: "We wear a uniform to school.", exampleZh: "我们穿校服去上学。" },
+        { en: "subject", ipa: "/ˈsʌbdʒɪkt/", zh: "科目", link: "每个科目有自己的 book", example: "English is my favourite subject.", exampleZh: "英语是我最喜欢的科目。" }
       ]
     },
     {
-      id: "time", name: "时间·频率", en: "Time & Frequency", icon: "ic-clock", color: "brand",
-      intro: "表示时间和频率的固定说法,介词和搭配都是固定的,比如 on foot(步行)、in the morning(在早上)。",
-      items: [
-        { en: "at home", ipa: "/æt həʊm/", zh: "在家", use: "表示“在家”,home 前不加 the。", ex: [ { en: "I stay at home on Sunday.", zh: "我周日待在家。" }, { en: "She is at home now.", zh: "她现在在家。" } ] },
-        { en: "on foot", ipa: "/ɒn fʊt/", zh: "步行", use: "表示“走路去”,用 on foot。", ex: [ { en: "I go to school on foot.", zh: "我走路去上学。" }, { en: "We come home on foot.", zh: "我们走路回家。" } ] },
-        { en: "in the morning", ipa: "/ɪn ðə ˈmɔːnɪŋ/", zh: "在早上", use: "表示“在上午”,用 in the morning。", ex: [ { en: "I read books in the morning.", zh: "我早上读书。" }, { en: "We do exercise in the morning.", zh: "我们早上锻炼。" } ] },
-        { en: "at night", ipa: "/æt naɪt/", zh: "在夜里", use: "表示“在夜晚”,用 at night。", ex: [ { en: "We sleep at night.", zh: "我们夜里睡觉。" }, { en: "Stars shine at night.", zh: "星星在夜里闪亮。" } ] },
-        { en: "on time", ipa: "/ɒn taɪm/", zh: "准时", use: "表示“按时、准时”,用 on time。", ex: [ { en: "Come to school on time.", zh: "按时到校。" }, { en: "The bus is on time.", zh: "公交车准时。" } ] },
-        { en: "at the weekend", ipa: "/æt ðə ˌwiːkˈend/", zh: "在周末", use: "表示“在周末”,英式用 at the weekend。", ex: [ { en: "We go hiking at the weekend.", zh: "我们周末去远足。" }, { en: "I rest at the weekend.", zh: "我周末休息。" } ] },
-        { en: "every day", ipa: "/ˈevri deɪ/", zh: "每天", use: "表示“每天”,every day 分开写。", ex: [ { en: "I drink milk every day.", zh: "我每天喝牛奶。" }, { en: "She runs every day.", zh: "她每天跑步。" } ] },
-        { en: "all day", ipa: "/ɔːl deɪ/", zh: "一整天", use: "表示“一整天”,用 all day。", ex: [ { en: "It rained all day.", zh: "下了一整天雨。" }, { en: "We played all day.", zh: "我们玩了一整天。" } ] },
-        { en: "just now", ipa: "/dʒʌst naʊ/", zh: "刚才", use: "表示“刚刚”,用 just now(常配过去时)。", ex: [ { en: "He left just now.", zh: "他刚才离开了。" }, { en: "I saw her just now.", zh: "我刚才看到她了。" } ] }
+      id: "body", name: "身体部位", en: "Body Parts", icon: "ic-user", color: "amber",
+      words: [
+        { en: "head", ipa: "/hed/", zh: "头", example: "Put your hands on your head.", exampleZh: "把手放在头上。" },
+        { en: "face", ipa: "/feɪs/", zh: "脸", example: "Wash your face in the morning.", exampleZh: "早上要洗脸。" },
+        { en: "eye", ipa: "/aɪ/", zh: "眼睛", example: "I have two eyes.", exampleZh: "我有两只眼睛。" },
+        { en: "ear", ipa: "/ɪə(r)/", zh: "耳朵", example: "The rabbit has long ears.", exampleZh: "兔子有长长的耳朵。" },
+        { en: "nose", ipa: "/nəʊz/", zh: "鼻子", example: "Touch your nose, please.", exampleZh: "请摸一摸你的鼻子。" },
+        { en: "mouth", ipa: "/maʊθ/", zh: "嘴巴", example: "Open your mouth and say ah.", exampleZh: "张开嘴说'啊'。" },
+        { en: "tooth", ipa: "/tuːθ/", zh: "牙齿", example: "Brush your teeth every day.", exampleZh: "每天刷牙。" },
+        { en: "hand", ipa: "/hænd/", zh: "手", example: "Wash your hands before lunch.", exampleZh: "午饭前洗手。" },
+        { en: "finger", ipa: "/ˈfɪŋɡə(r)/", zh: "手指", example: "I have ten fingers.", exampleZh: "我有十根手指。" },
+        { en: "foot", ipa: "/fʊt/", zh: "脚", example: "My foot hurts.", exampleZh: "我的脚疼。" },
+        { en: "arm", ipa: "/ɑːm/", zh: "手臂", example: "Raise your right arm.", exampleZh: "举起你的右臂。" },
+        { en: "leg", ipa: "/leɡ/", zh: "腿", example: "The dog has four legs.", exampleZh: "狗有四条腿。" },
+        { en: "hair", ipa: "/heə(r)/", zh: "头发", example: "She has long black hair.", exampleZh: "她有一头乌黑的长发。" },
+        { en: "shoulder", ipa: "/ˈʃəʊldə(r)/", zh: "肩膀", example: "The bag is on my shoulder.", exampleZh: "包在我的肩膀上。" },
+        { en: "knee", ipa: "/niː/", zh: "膝盖", example: "He fell and hurt his knee.", exampleZh: "他摔倒了,伤到了膝盖。" },
+        { en: "stomach", ipa: "/ˈstʌmək/", zh: "胃、肚子", example: "My stomach hurts after eating too much.", exampleZh: "吃太多后我肚子疼。" },
+        { en: "throat", ipa: "/θrəʊt/", zh: "喉咙", example: "I have a sore throat today.", exampleZh: "我今天喉咙痛。" },
+        { en: "neck", ipa: "/nek/", zh: "脖子", example: "The giraffe has a long neck.", exampleZh: "长颈鹿有长长的脖子。" }
+      ],
+      related: [
+        { en: "tall", ipa: "/tɔːl/", zh: "高的", link: "形容 leg 长、个子高", example: "He is tall and has long legs.", exampleZh: "他个子高,腿也长。" },
+        { en: "short", ipa: "/ʃɔːt/", zh: "矮的、短的", link: "形容 arm、hair 短", example: "She has short hair.", exampleZh: "她留着短发。" },
+        { en: "strong", ipa: "/strɒŋ/", zh: "强壮的", link: "arm、leg 有力气", example: "His arms are very strong.", exampleZh: "他的胳膊很有力气。" },
+        { en: "healthy", ipa: "/ˈhelθi/", zh: "健康的", link: "身体 body 健康", example: "Exercise keeps my body healthy.", exampleZh: "锻炼让我的身体健康。" },
+        { en: "hurt", ipa: "/hɜːt/", zh: "受伤、疼", link: "foot、knee 会疼", example: "My foot hurts after the game.", exampleZh: "比赛后我的脚疼。" },
+        { en: "touch", ipa: "/tʌtʃ/", zh: "触摸", link: "用 hand 去摸", example: "Touch your nose with your hand.", exampleZh: "用手摸摸你的鼻子。" },
+        { en: "smell", ipa: "/smel/", zh: "闻", link: "用 nose 闻", example: "I smell the flower with my nose.", exampleZh: "我用鼻子闻花香。" },
+        { en: "hear", ipa: "/hɪə(r)/", zh: "听见", link: "用 ear 听", example: "I hear music with my ears.", exampleZh: "我用耳朵听音乐。" }
       ]
     },
     {
-      id: "misc", name: "其它高频搭配", en: "More Collocations", icon: "ic-sparkles", color: "cyan",
-      intro: "还有一些日常特别常用的固定搭配,一起记住,说英语更自然。",
-      items: [
-        { en: "help ... with", ipa: "/help wɪð/", zh: "帮某人做…", use: "帮某人做某事,用 help sb with sth。", ex: [ { en: "I help my mom with the housework.", zh: "我帮妈妈做家务。" }, { en: "Can you help me with English?", zh: "你能帮我学英语吗?" } ] },
-        { en: "play with", ipa: "/pleɪ wɪð/", zh: "和…玩", use: "和某人/某物玩,用 play with。", ex: [ { en: "I play with my friends.", zh: "我和朋友一起玩。" }, { en: "The cat plays with a ball.", zh: "猫玩球。" } ] },
-        { en: "make friends with", ipa: "/meɪk frendz wɪð/", zh: "和…交朋友", use: "交朋友,用 make friends with。", ex: [ { en: "I make friends with the new boy.", zh: "我和新来的男孩交朋友。" }, { en: "She makes friends easily.", zh: "她很容易交到朋友。" } ] },
-        { en: "take care of", ipa: "/teɪk keə(r) ɒv/", zh: "照顾", use: "照顾人或物,和 look after 同义。", ex: [ { en: "Take care of yourself.", zh: "照顾好你自己。" }, { en: "He takes care of the plants.", zh: "他照料这些植物。" } ] },
-        { en: "a piece of", ipa: "/ə piːs ɒv/", zh: "一片/一块…", use: "不可数名词计数,用 a piece of。", ex: [ { en: "I want a piece of bread.", zh: "我想要一片面包。" }, { en: "Give me a piece of paper.", zh: "给我一张纸。" } ] },
-        { en: "a cup of", ipa: "/ə kʌp ɒv/", zh: "一杯…", use: "一杯饮料,用 a cup of。", ex: [ { en: "I drink a cup of tea.", zh: "我喝一杯茶。" }, { en: "She has a cup of water.", zh: "她有一杯水。" } ] },
-        { en: "next to", ipa: "/nekst tuː/", zh: "在…旁边", use: "紧挨着某物,用 next to。", ex: [ { en: "The lamp is next to the bed.", zh: "台灯在床旁边。" }, { en: "Sit next to me.", zh: "坐在我旁边。" } ] },
-        { en: "at first", ipa: "/æt fɜːst/", zh: "起初", use: "表示“最初、起先”,用 at first。", ex: [ { en: "At first, I was afraid.", zh: "起初我很害怕。" }, { en: "At first he couldn't swim.", zh: "起初他不会游泳。" } ] },
-        { en: "in front of", ipa: "/ɪn frʌnt ɒv/", zh: "在…前面", use: "在某物外面的前方,用 in front of。", ex: [ { en: "A car is in front of the school.", zh: "一辆车在学校前面。" }, { en: "She stands in front of me.", zh: "她站在我前面。" } ] },
-        { en: "so much", ipa: "/səʊ mʌtʃ/", zh: "非常;那么多", use: "表示“非常”,常放句尾。", ex: [ { en: "Thank you so much.", zh: "非常感谢你。" }, { en: "I love it so much.", zh: "我太喜欢它了。" } ] }
+      id: "sports", name: "运动", en: "Sports", icon: "ic-activity", color: "green",
+      words: [
+        { en: "run", ipa: "/rʌn/", zh: "跑步", example: "I run in the park every day.", exampleZh: "我每天在公园跑步。" },
+        { en: "jump", ipa: "/dʒʌmp/", zh: "跳", example: "Can you jump high?", exampleZh: "你能跳得高吗?" },
+        { en: "swim", ipa: "/swɪm/", zh: "游泳", example: "We swim in summer.", exampleZh: "我们在夏天游泳。" },
+        { en: "football", ipa: "/ˈfʊtbɔːl/", zh: "足球", example: "The boys play football after school.", exampleZh: "男孩们放学后踢足球。" },
+        { en: "basketball", ipa: "/ˈbɑːskɪtbɔːl/", zh: "篮球", example: "He is good at basketball.", exampleZh: "他擅长打篮球。" },
+        { en: "volleyball", ipa: "/ˈvɒlibɔːl/", zh: "排球", example: "The girls play volleyball on the beach.", exampleZh: "女孩们在沙滩上打排球。" },
+        { en: "badminton", ipa: "/ˈbædmɪntən/", zh: "羽毛球", example: "Let's play badminton this afternoon.", exampleZh: "今天下午我们打羽毛球吧。" },
+        { en: "ping-pong", ipa: "/ˈpɪŋ pɒŋ/", zh: "乒乓球", example: "Let's play ping-pong.", exampleZh: "我们来打乒乓球吧。" },
+        { en: "dance", ipa: "/dɑːns/", zh: "跳舞", example: "She can dance very well.", exampleZh: "她跳舞跳得很好。" },
+        { en: "skate", ipa: "/skeɪt/", zh: "滑冰", example: "We skate on the ice in winter.", exampleZh: "我们冬天在冰上滑冰。" },
+        { en: "ski", ipa: "/skiː/", zh: "滑雪", example: "They ski in the mountains.", exampleZh: "他们在山上滑雪。" },
+        { en: "climb", ipa: "/klaɪm/", zh: "攀爬", example: "They climb the mountain.", exampleZh: "他们爬山。" },
+        { en: "ride", ipa: "/raɪd/", zh: "骑", example: "I ride a bike to school.", exampleZh: "我骑自行车去上学。" },
+        { en: "exercise", ipa: "/ˈeksəsaɪz/", zh: "锻炼", example: "We should exercise every day.", exampleZh: "我们应该每天锻炼。" },
+        { en: "race", ipa: "/reɪs/", zh: "赛跑、比赛", example: "He won the running race.", exampleZh: "他赢得了赛跑比赛。" },
+        { en: "team", ipa: "/tiːm/", zh: "队伍", example: "Our team plays very well.", exampleZh: "我们队打得很好。" },
+        { en: "coach", ipa: "/kəʊtʃ/", zh: "教练", example: "The coach teaches us to swim.", exampleZh: "教练教我们游泳。" },
+        { en: "champion", ipa: "/ˈtʃæmpiən/", zh: "冠军", example: "She is the champion of our school.", exampleZh: "她是我们学校的冠军。" }
+      ],
+      related: [
+        { en: "win", ipa: "/wɪn/", zh: "赢", link: "football、race 比赛赢了", example: "Our team will win the football match.", exampleZh: "我们队会赢得这场足球比赛。" },
+        { en: "lose", ipa: "/luːz/", zh: "输", link: "比赛没赢就是输", example: "Don't be sad if you lose the race.", exampleZh: "赛跑输了也别难过。" },
+        { en: "score", ipa: "/skɔː(r)/", zh: "得分", link: "basketball 里进球得分", example: "He scores in the basketball game.", exampleZh: "他在篮球赛里得了分。" },
+        { en: "match", ipa: "/mætʃ/", zh: "比赛", link: "一场 football match", example: "We watch a football match today.", exampleZh: "我们今天看一场足球赛。" },
+        { en: "medal", ipa: "/ˈmedl/", zh: "奖牌", link: "赢了 race 拿奖牌", example: "The champion gets a gold medal.", exampleZh: "冠军获得一枚金牌。" },
+        { en: "player", ipa: "/ˈpleɪə(r)/", zh: "运动员", link: "打 basketball 的人", example: "He is a good basketball player.", exampleZh: "他是个出色的篮球运动员。" },
+        { en: "ball", ipa: "/bɔːl/", zh: "球", link: "football、basketball 都用球", example: "We play with a ball on the playground.", exampleZh: "我们在操场上玩球。" },
+        { en: "stadium", ipa: "/ˈsteɪdiəm/", zh: "体育场", link: "在体育场 run、比赛", example: "They run and race in the stadium.", exampleZh: "他们在体育场里跑步比赛。" }
+      ]
+    },
+    {
+      id: "feelings", name: "情绪与感受", en: "Feelings", icon: "ic-smile", color: "cyan",
+      words: [
+        { en: "happy", ipa: "/ˈhæpi/", zh: "开心的", example: "I am happy today.", exampleZh: "我今天很开心。" },
+        { en: "sad", ipa: "/sæd/", zh: "难过的", example: "Don't be sad.", exampleZh: "别难过。" },
+        { en: "angry", ipa: "/ˈæŋɡri/", zh: "生气的", example: "The teacher is not angry.", exampleZh: "老师没有生气。" },
+        { en: "tired", ipa: "/ˈtaɪəd/", zh: "疲惫的", example: "I feel tired after running.", exampleZh: "跑步后我感到很累。" },
+        { en: "hungry", ipa: "/ˈhʌŋɡri/", zh: "饥饿的", example: "The baby is hungry.", exampleZh: "宝宝饿了。" },
+        { en: "thirsty", ipa: "/ˈθɜːsti/", zh: "口渴的", example: "I am thirsty; I need water.", exampleZh: "我渴了,需要喝水。" },
+        { en: "afraid", ipa: "/əˈfreɪd/", zh: "害怕的", example: "Don't be afraid of the dog.", exampleZh: "别害怕这只狗。" },
+        { en: "excited", ipa: "/ɪkˈsaɪtɪd/", zh: "兴奋的", example: "We are excited about the trip.", exampleZh: "我们对这次旅行感到兴奋。" },
+        { en: "bored", ipa: "/bɔːd/", zh: "无聊的", example: "He is bored at home.", exampleZh: "他在家很无聊。" },
+        { en: "surprised", ipa: "/səˈpraɪzd/", zh: "惊讶的", example: "She was surprised by the gift.", exampleZh: "她对这份礼物感到惊讶。" },
+        { en: "proud", ipa: "/praʊd/", zh: "自豪的", example: "I am proud of my class.", exampleZh: "我为我的班级感到自豪。" },
+        { en: "nervous", ipa: "/ˈnɜːvəs/", zh: "紧张的", example: "I feel nervous before the exam.", exampleZh: "考试前我感到紧张。" },
+        { en: "worried", ipa: "/ˈwʌrid/", zh: "担心的", example: "She is worried about her dog.", exampleZh: "她担心她的狗。" },
+        { en: "lonely", ipa: "/ˈləʊnli/", zh: "孤独的", example: "He feels lonely without friends.", exampleZh: "没有朋友他感到孤独。" },
+        { en: "confident", ipa: "/ˈkɒnfɪdənt/", zh: "自信的", example: "Be confident and try again.", exampleZh: "要自信,再试一次。" },
+        { en: "curious", ipa: "/ˈkjʊəriəs/", zh: "好奇的", example: "Children are curious about the world.", exampleZh: "孩子们对世界充满好奇。" },
+        { en: "friendly", ipa: "/ˈfrendli/", zh: "友好的", example: "Our new teacher is very friendly.", exampleZh: "我们的新老师非常友好。" },
+        { en: "brave", ipa: "/breɪv/", zh: "勇敢的", example: "The brave boy helped the old man.", exampleZh: "这个勇敢的男孩帮助了老人。" }
+      ],
+      related: [
+        { en: "smile", ipa: "/smaɪl/", zh: "微笑", link: "happy 的时候会微笑", example: "She is happy and gives a big smile.", exampleZh: "她很开心,露出灿烂的微笑。" },
+        { en: "cry", ipa: "/kraɪ/", zh: "哭", link: "sad 的时候会哭", example: "The baby is sad and starts to cry.", exampleZh: "宝宝难过,开始哭了。" },
+        { en: "laugh", ipa: "/lɑːf/", zh: "大笑", link: "很 happy 时会大笑", example: "We laugh when we feel happy.", exampleZh: "我们开心时会大笑。" },
+        { en: "feel", ipa: "/fiːl/", zh: "感觉", link: "描述 happy、tired 等心情", example: "I feel excited about the trip.", exampleZh: "我对这次旅行感到兴奋。" },
+        { en: "mood", ipa: "/muːd/", zh: "心情", link: "心情有 happy、angry 之分", example: "He is in a good mood today.", exampleZh: "他今天心情很好。" },
+        { en: "calm", ipa: "/kɑːm/", zh: "平静的", link: "不 nervous 就很平静", example: "Take a deep breath and stay calm.", exampleZh: "深呼吸,保持平静。" },
+        { en: "shy", ipa: "/ʃaɪ/", zh: "害羞的", link: "见生人会害羞、nervous", example: "The shy boy is afraid to speak.", exampleZh: "那个害羞的男孩不敢说话。" },
+        { en: "kind", ipa: "/kaɪnd/", zh: "善良的", link: "friendly 的人很善良", example: "She is kind and friendly to everyone.", exampleZh: "她对每个人都善良友好。" }
+      ]
+    },
+    {
+      id: "home", name: "家与房间", en: "Home & Rooms", icon: "ic-home", color: "brand",
+      words: [
+        { en: "bedroom", ipa: "/ˈbedruːm/", zh: "卧室", example: "I sleep in my bedroom.", exampleZh: "我在卧室里睡觉。" },
+        { en: "kitchen", ipa: "/ˈkɪtʃɪn/", zh: "厨房", example: "Mom is cooking in the kitchen.", exampleZh: "妈妈在厨房做饭。" },
+        { en: "bathroom", ipa: "/ˈbɑːθruːm/", zh: "卫生间", example: "Wash your hands in the bathroom.", exampleZh: "在卫生间里洗手。" },
+        { en: "living room", ipa: "/ˈlɪvɪŋ ruːm/", zh: "客厅", example: "We watch TV in the living room.", exampleZh: "我们在客厅看电视。" },
+        { en: "door", ipa: "/dɔː(r)/", zh: "门", example: "Please close the door.", exampleZh: "请关上门。" },
+        { en: "window", ipa: "/ˈwɪndəʊ/", zh: "窗户", example: "Open the window for fresh air.", exampleZh: "打开窗户透透气。" },
+        { en: "bed", ipa: "/bed/", zh: "床", example: "The cat is on the bed.", exampleZh: "猫在床上。" },
+        { en: "table", ipa: "/ˈteɪbl/", zh: "桌子", example: "Put the plate on the table.", exampleZh: "把盘子放在桌子上。" },
+        { en: "chair", ipa: "/tʃeə(r)/", zh: "椅子", example: "Sit on the chair, please.", exampleZh: "请坐在椅子上。" },
+        { en: "sofa", ipa: "/ˈsəʊfə/", zh: "沙发", example: "Grandpa sleeps on the sofa.", exampleZh: "爷爷在沙发上睡觉。" },
+        { en: "clock", ipa: "/klɒk/", zh: "时钟", example: "The clock is on the wall.", exampleZh: "钟挂在墙上。" },
+        { en: "lamp", ipa: "/læmp/", zh: "台灯", example: "Turn on the lamp to read.", exampleZh: "开台灯看书。" },
+        { en: "key", ipa: "/kiː/", zh: "钥匙", example: "Here is the key to the door.", exampleZh: "这是开门的钥匙。" },
+        { en: "wall", ipa: "/wɔːl/", zh: "墙", example: "There is a picture on the wall.", exampleZh: "墙上有一幅画。" },
+        { en: "floor", ipa: "/flɔː(r)/", zh: "地板", example: "Don't put toys on the floor.", exampleZh: "别把玩具放在地板上。" },
+        { en: "garden", ipa: "/ˈɡɑːdn/", zh: "花园", example: "We play in the garden.", exampleZh: "我们在花园里玩。" }
+      ],
+      related: [
+        { en: "sleep", ipa: "/sliːp/", zh: "睡觉", link: "在 bedroom 里 sleep", example: "I sleep in my bedroom at night.", exampleZh: "我晚上在卧室睡觉。" },
+        { en: "cook", ipa: "/kʊk/", zh: "做饭", link: "在 kitchen 里 cook", example: "Mom likes to cook in the kitchen.", exampleZh: "妈妈喜欢在厨房做饭。" },
+        { en: "clean", ipa: "/kliːn/", zh: "打扫", link: "clean the room 打扫房间", example: "I clean my room every week.", exampleZh: "我每周打扫我的房间。" },
+        { en: "open", ipa: "/ˈəʊpən/", zh: "打开", link: "open the window/door", example: "Please open the door.", exampleZh: "请把门打开。" },
+        { en: "picture", ipa: "/ˈpɪktʃə(r)/", zh: "图画", link: "wall 上挂 picture", example: "There is a picture on the wall.", exampleZh: "墙上有一幅画。" },
+        { en: "warm", ipa: "/wɔːm/", zh: "温暖的", link: "home is warm 家里很暖", example: "My home is warm in winter.", exampleZh: "冬天我家很暖和。" }
+      ]
+    },
+    {
+      id: "clothes", name: "服装", en: "Clothes", icon: "ic-shopping-bag", color: "cyan",
+      words: [
+        { en: "shirt", ipa: "/ʃɜːt/", zh: "衬衫", example: "He wears a white shirt.", exampleZh: "他穿着白衬衫。" },
+        { en: "T-shirt", ipa: "/ˈtiː ʃɜːt/", zh: "T恤", example: "I like this blue T-shirt.", exampleZh: "我喜欢这件蓝色T恤。" },
+        { en: "coat", ipa: "/kəʊt/", zh: "外套", example: "Put on your coat, it's cold.", exampleZh: "穿上外套,天冷。" },
+        { en: "sweater", ipa: "/ˈswetə(r)/", zh: "毛衣", example: "My sweater is warm.", exampleZh: "我的毛衣很暖和。" },
+        { en: "dress", ipa: "/dres/", zh: "连衣裙", example: "She has a pretty dress.", exampleZh: "她有一条漂亮的连衣裙。" },
+        { en: "skirt", ipa: "/skɜːt/", zh: "短裙", example: "The girl wears a red skirt.", exampleZh: "女孩穿着红色短裙。" },
+        { en: "trousers", ipa: "/ˈtraʊzəz/", zh: "裤子", example: "These trousers are too long.", exampleZh: "这条裤子太长了。" },
+        { en: "shorts", ipa: "/ʃɔːts/", zh: "短裤", example: "We wear shorts in summer.", exampleZh: "我们夏天穿短裤。" },
+        { en: "shoes", ipa: "/ʃuːz/", zh: "鞋", example: "My shoes are new.", exampleZh: "我的鞋是新的。" },
+        { en: "socks", ipa: "/sɒks/", zh: "袜子", example: "Put on your socks first.", exampleZh: "先穿上袜子。" },
+        { en: "hat", ipa: "/hæt/", zh: "帽子", example: "He has a big hat.", exampleZh: "他有一顶大帽子。" },
+        { en: "cap", ipa: "/kæp/", zh: "鸭舌帽", example: "The boy wears a blue cap.", exampleZh: "男孩戴着蓝色鸭舌帽。" },
+        { en: "gloves", ipa: "/ɡlʌvz/", zh: "手套", example: "Wear gloves when it snows.", exampleZh: "下雪时戴手套。" },
+        { en: "scarf", ipa: "/skɑːf/", zh: "围巾", example: "Grandma made me a scarf.", exampleZh: "奶奶给我织了一条围巾。" },
+        { en: "jacket", ipa: "/ˈdʒækɪt/", zh: "夹克", example: "This jacket has a zipper.", exampleZh: "这件夹克有拉链。" }
+      ],
+      related: [
+        { en: "wear", ipa: "/weə(r)/", zh: "穿着", link: "wear a coat 穿外套", example: "She wears a red dress today.", exampleZh: "她今天穿着红裙子。" },
+        { en: "put on", ipa: "/pʊt ɒn/", zh: "穿上", link: "put on shoes 穿上鞋", example: "Put on your coat, it's cold.", exampleZh: "穿上外套,天冷。" },
+        { en: "take off", ipa: "/teɪk ɒf/", zh: "脱下", link: "take off the hat 脱帽", example: "Take off your shoes at home.", exampleZh: "在家里脱鞋。" },
+        { en: "new", ipa: "/njuː/", zh: "新的", link: "new shoes 新鞋", example: "I have new shoes.", exampleZh: "我有新鞋。" },
+        { en: "size", ipa: "/saɪz/", zh: "尺码", link: "the right size 合适尺码", example: "What size are your shoes?", exampleZh: "你的鞋是多大码?" },
+        { en: "warm", ipa: "/wɔːm/", zh: "暖和的", link: "a warm sweater 暖毛衣", example: "This sweater is warm.", exampleZh: "这件毛衣很暖和。" }
+      ]
+    },
+    {
+      id: "jobs", name: "职业", en: "Jobs", icon: "ic-award", color: "green",
+      words: [
+        { en: "teacher", ipa: "/ˈtiːtʃə(r)/", zh: "老师", example: "My teacher is very kind.", exampleZh: "我的老师很和蔼。" },
+        { en: "doctor", ipa: "/ˈdɒktə(r)/", zh: "医生", example: "The doctor helps sick people.", exampleZh: "医生帮助病人。" },
+        { en: "nurse", ipa: "/nɜːs/", zh: "护士", example: "The nurse works in a hospital.", exampleZh: "护士在医院工作。" },
+        { en: "farmer", ipa: "/ˈfɑːmə(r)/", zh: "农民", example: "The farmer grows rice.", exampleZh: "农民种水稻。" },
+        { en: "driver", ipa: "/ˈdraɪvə(r)/", zh: "司机", example: "The bus driver is friendly.", exampleZh: "公交司机很友好。" },
+        { en: "police officer", ipa: "/pəˈliːs ˈɒfɪsə(r)/", zh: "警察", example: "A police officer keeps us safe.", exampleZh: "警察保护我们的安全。" },
+        { en: "worker", ipa: "/ˈwɜːkə(r)/", zh: "工人", example: "The worker builds houses.", exampleZh: "工人盖房子。" },
+        { en: "cook", ipa: "/kʊk/", zh: "厨师", example: "The cook makes tasty food.", exampleZh: "厨师做好吃的食物。" },
+        { en: "singer", ipa: "/ˈsɪŋə(r)/", zh: "歌手", example: "The singer has a nice voice.", exampleZh: "歌手嗓音很好听。" },
+        { en: "artist", ipa: "/ˈɑːtɪst/", zh: "艺术家", example: "The artist draws animals.", exampleZh: "艺术家画动物。" },
+        { en: "pilot", ipa: "/ˈpaɪlət/", zh: "飞行员", example: "The pilot flies the plane.", exampleZh: "飞行员驾驶飞机。" },
+        { en: "scientist", ipa: "/ˈsaɪəntɪst/", zh: "科学家", example: "The scientist studies the stars.", exampleZh: "科学家研究星星。" },
+        { en: "writer", ipa: "/ˈraɪtə(r)/", zh: "作家", example: "The writer writes books.", exampleZh: "作家写书。" },
+        { en: "actor", ipa: "/ˈæktə(r)/", zh: "演员", example: "The actor is on TV.", exampleZh: "演员在电视上。" },
+        { en: "dentist", ipa: "/ˈdentɪst/", zh: "牙医", example: "The dentist checks my teeth.", exampleZh: "牙医检查我的牙齿。" }
+      ],
+      related: [
+        { en: "work", ipa: "/wɜːk/", zh: "工作", link: "doctor 在医院 work", example: "The doctor works in a hospital.", exampleZh: "医生在医院工作。" },
+        { en: "help", ipa: "/help/", zh: "帮助", link: "nurse help people", example: "Nurses help sick people.", exampleZh: "护士帮助病人。" },
+        { en: "teach", ipa: "/tiːtʃ/", zh: "教", link: "teacher teach 学生", example: "My teacher teaches English.", exampleZh: "我的老师教英语。" },
+        { en: "busy", ipa: "/ˈbɪzi/", zh: "忙的", link: "workers are busy", example: "The farmer is busy in autumn.", exampleZh: "农民秋天很忙。" },
+        { en: "job", ipa: "/dʒɒb/", zh: "工作/职业", link: "a good job 好职业", example: "Being a pilot is a great job.", exampleZh: "当飞行员是很棒的职业。" },
+        { en: "future", ipa: "/ˈfjuːtʃə(r)/", zh: "未来", link: "in the future 长大后当…", example: "I want to be a doctor in the future.", exampleZh: "我将来想当医生。" }
+      ]
+    },
+    {
+      id: "places", name: "城市场所", en: "Places in Town", icon: "ic-building", color: "amber",
+      words: [
+        { en: "hospital", ipa: "/ˈhɒspɪtl/", zh: "医院", example: "The hospital is near my home.", exampleZh: "医院离我家很近。" },
+        { en: "library", ipa: "/ˈlaɪbrəri/", zh: "图书馆", example: "We read books in the library.", exampleZh: "我们在图书馆看书。" },
+        { en: "park", ipa: "/pɑːk/", zh: "公园", example: "Let's play in the park.", exampleZh: "我们去公园玩吧。" },
+        { en: "supermarket", ipa: "/ˈsuːpəmɑːkɪt/", zh: "超市", example: "Mom buys food at the supermarket.", exampleZh: "妈妈在超市买食物。" },
+        { en: "restaurant", ipa: "/ˈrestrɒnt/", zh: "餐馆", example: "We eat at a restaurant on Sunday.", exampleZh: "我们周日在餐馆吃饭。" },
+        { en: "cinema", ipa: "/ˈsɪnəmə/", zh: "电影院", example: "They watch a film at the cinema.", exampleZh: "他们在电影院看电影。" },
+        { en: "zoo", ipa: "/zuː/", zh: "动物园", example: "We saw pandas at the zoo.", exampleZh: "我们在动物园看到了熊猫。" },
+        { en: "museum", ipa: "/mjuˈziːəm/", zh: "博物馆", example: "The museum is very old.", exampleZh: "这座博物馆很古老。" },
+        { en: "bank", ipa: "/bæŋk/", zh: "银行", example: "Dad works at a bank.", exampleZh: "爸爸在银行工作。" },
+        { en: "post office", ipa: "/ˈpəʊst ɒfɪs/", zh: "邮局", example: "I send a letter at the post office.", exampleZh: "我在邮局寄信。" },
+        { en: "hotel", ipa: "/həʊˈtel/", zh: "旅馆", example: "We stayed in a hotel.", exampleZh: "我们住在一家旅馆。" },
+        { en: "station", ipa: "/ˈsteɪʃn/", zh: "车站", example: "The train station is busy.", exampleZh: "火车站很繁忙。" },
+        { en: "shop", ipa: "/ʃɒp/", zh: "商店", example: "There is a toy shop here.", exampleZh: "这里有一家玩具店。" },
+        { en: "bookstore", ipa: "/ˈbʊkstɔː(r)/", zh: "书店", example: "I buy pens at the bookstore.", exampleZh: "我在书店买笔。" },
+        { en: "street", ipa: "/striːt/", zh: "街道", example: "Cars run on the street.", exampleZh: "汽车在街上行驶。" }
+      ],
+      related: [
+        { en: "visit", ipa: "/ˈvɪzɪt/", zh: "参观", link: "visit the museum 参观博物馆", example: "We visit the museum on Sunday.", exampleZh: "我们周日参观博物馆。" },
+        { en: "buy", ipa: "/baɪ/", zh: "买", link: "buy food at 超市", example: "I buy fruit at the supermarket.", exampleZh: "我在超市买水果。" },
+        { en: "borrow", ipa: "/ˈbɒrəʊ/", zh: "借", link: "borrow books at 图书馆", example: "I borrow books from the library.", exampleZh: "我从图书馆借书。" },
+        { en: "near", ipa: "/nɪə(r)/", zh: "在附近", link: "near my home 在我家附近", example: "The park is near my school.", exampleZh: "公园在我学校附近。" },
+        { en: "way", ipa: "/weɪ/", zh: "路", link: "the way to 去…的路", example: "Can you show me the way to the zoo?", exampleZh: "你能告诉我去动物园的路吗?" },
+        { en: "corner", ipa: "/ˈkɔːnə(r)/", zh: "拐角", link: "at the corner 在街角", example: "The shop is at the corner.", exampleZh: "商店在街角。" }
+      ]
+    },
+    {
+      id: "nature", name: "大自然", en: "Nature", icon: "ic-tree", color: "green",
+      words: [
+        { en: "tree", ipa: "/triː/", zh: "树", example: "A bird sits in the tree.", exampleZh: "一只鸟停在树上。" },
+        { en: "flower", ipa: "/ˈflaʊə(r)/", zh: "花", example: "The flowers are beautiful.", exampleZh: "这些花很美。" },
+        { en: "grass", ipa: "/ɡrɑːs/", zh: "草", example: "The grass is green.", exampleZh: "草是绿色的。" },
+        { en: "leaf", ipa: "/liːf/", zh: "叶子", example: "A leaf falls from the tree.", exampleZh: "一片叶子从树上落下。" },
+        { en: "mountain", ipa: "/ˈmaʊntən/", zh: "山", example: "The mountain is very high.", exampleZh: "这座山很高。" },
+        { en: "river", ipa: "/ˈrɪvə(r)/", zh: "河", example: "Fish swim in the river.", exampleZh: "鱼在河里游。" },
+        { en: "sea", ipa: "/siː/", zh: "大海", example: "We swim in the sea.", exampleZh: "我们在海里游泳。" },
+        { en: "lake", ipa: "/leɪk/", zh: "湖", example: "There are ducks on the lake.", exampleZh: "湖上有鸭子。" },
+        { en: "sky", ipa: "/skaɪ/", zh: "天空", example: "The sky is blue today.", exampleZh: "今天天空是蓝色的。" },
+        { en: "sun", ipa: "/sʌn/", zh: "太阳", example: "The sun is bright.", exampleZh: "太阳很明亮。" },
+        { en: "moon", ipa: "/muːn/", zh: "月亮", example: "The moon is round tonight.", exampleZh: "今晚月亮很圆。" },
+        { en: "star", ipa: "/stɑː(r)/", zh: "星星", example: "I can see many stars.", exampleZh: "我能看到很多星星。" },
+        { en: "cloud", ipa: "/klaʊd/", zh: "云", example: "White clouds float in the sky.", exampleZh: "白云在天空飘。" },
+        { en: "stone", ipa: "/stəʊn/", zh: "石头", example: "There is a big stone by the road.", exampleZh: "路边有一块大石头。" },
+        { en: "forest", ipa: "/ˈfɒrɪst/", zh: "森林", example: "Many animals live in the forest.", exampleZh: "许多动物住在森林里。" }
+      ],
+      related: [
+        { en: "grow", ipa: "/ɡrəʊ/", zh: "生长", link: "flowers/trees grow", example: "Flowers grow in spring.", exampleZh: "花在春天生长。" },
+        { en: "climb", ipa: "/klaɪm/", zh: "爬", link: "climb the mountain 爬山", example: "We climb the mountain together.", exampleZh: "我们一起爬山。" },
+        { en: "high", ipa: "/haɪ/", zh: "高的", link: "a high mountain 高山", example: "The mountain is very high.", exampleZh: "这座山很高。" },
+        { en: "green", ipa: "/ɡriːn/", zh: "绿色的", link: "green grass/leaf", example: "The grass is green in summer.", exampleZh: "夏天草是绿色的。" },
+        { en: "bright", ipa: "/braɪt/", zh: "明亮的", link: "the bright sun/star", example: "The sun is bright today.", exampleZh: "今天太阳很明亮。" },
+        { en: "beautiful", ipa: "/ˈbjuːtɪfl/", zh: "美丽的", link: "beautiful flowers", example: "The flowers are beautiful.", exampleZh: "这些花很美。" }
+      ]
+    },
+    {
+      id: "objects", name: "日常用品", en: "Everyday Objects", icon: "ic-box", color: "cyan",
+      words: [
+        { en: "cup", ipa: "/kʌp/", zh: "杯子", example: "I drink water from a cup.", exampleZh: "我用杯子喝水。" },
+        { en: "bowl", ipa: "/bəʊl/", zh: "碗", example: "The rice is in the bowl.", exampleZh: "米饭在碗里。" },
+        { en: "plate", ipa: "/pleɪt/", zh: "盘子", example: "Put the cake on the plate.", exampleZh: "把蛋糕放在盘子上。" },
+        { en: "spoon", ipa: "/spuːn/", zh: "勺子", example: "Eat the soup with a spoon.", exampleZh: "用勺子喝汤。" },
+        { en: "fork", ipa: "/fɔːk/", zh: "叉子", example: "Use a fork for the noodles.", exampleZh: "用叉子吃面条。" },
+        { en: "bottle", ipa: "/ˈbɒtl/", zh: "瓶子", example: "This bottle is full of water.", exampleZh: "这个瓶子装满了水。" },
+        { en: "box", ipa: "/bɒks/", zh: "盒子", example: "The toys are in the box.", exampleZh: "玩具在盒子里。" },
+        { en: "bag", ipa: "/bæɡ/", zh: "包", example: "My bag is heavy.", exampleZh: "我的包很重。" },
+        { en: "umbrella", ipa: "/ʌmˈbrelə/", zh: "雨伞", example: "Take an umbrella, it may rain.", exampleZh: "带把伞,可能会下雨。" },
+        { en: "toy", ipa: "/tɔɪ/", zh: "玩具", example: "The baby plays with a toy.", exampleZh: "宝宝在玩玩具。" },
+        { en: "ball", ipa: "/bɔːl/", zh: "球", example: "Let's play with the ball.", exampleZh: "我们来玩球吧。" },
+        { en: "phone", ipa: "/fəʊn/", zh: "电话", example: "My mother has a new phone.", exampleZh: "我妈妈有一部新手机。" },
+        { en: "camera", ipa: "/ˈkæmərə/", zh: "相机", example: "He takes photos with a camera.", exampleZh: "他用相机拍照。" },
+        { en: "watch", ipa: "/wɒtʃ/", zh: "手表", example: "My watch shows eight o'clock.", exampleZh: "我的手表显示八点。" },
+        { en: "map", ipa: "/mæp/", zh: "地图", example: "We look at the map to find the way.", exampleZh: "我们看地图找路。" }
+      ],
+      related: [
+        { en: "use", ipa: "/juːz/", zh: "使用", link: "use a spoon/fork", example: "I use a spoon to eat soup.", exampleZh: "我用勺子喝汤。" },
+        { en: "full", ipa: "/fʊl/", zh: "满的", link: "the bottle is full", example: "The cup is full of water.", exampleZh: "杯子里装满了水。" },
+        { en: "empty", ipa: "/ˈempti/", zh: "空的", link: "an empty box 空盒子", example: "The box is empty.", exampleZh: "盒子是空的。" },
+        { en: "heavy", ipa: "/ˈhevi/", zh: "重的", link: "a heavy bag 重包", example: "My bag is very heavy.", exampleZh: "我的包很重。" },
+        { en: "broken", ipa: "/ˈbrəʊkən/", zh: "坏的", link: "a broken toy 坏玩具", example: "The toy is broken.", exampleZh: "玩具坏了。" },
+        { en: "take photos", ipa: "/teɪk ˈfəʊtəʊz/", zh: "拍照", link: "camera 用来 take photos", example: "He takes photos with a camera.", exampleZh: "他用相机拍照。" }
       ]
     }
-  ],
 
-  // ============ 记忆助手数据 ============
-  // 一、按"小词"归类:把用同一个介词的搭配放一起,看出规律,一串一串记
-  patterns: [
+  ],
+  learnedScenes: [
+    { name: "交通", en: "Transport", icon: "ic-bus" },
+    { name: "时间和日期", en: "Time & Date", icon: "ic-clock" },
+    { name: "家庭关系", en: "Family", icon: "ic-users" },
+    { name: "天气", en: "Weather", icon: "ic-cloud-sun" }
+  ],
+  roots: [
     {
-      key: "of", tip: "“属于/关于/由…”的感觉,常跟 of。害怕什么、为什么自豪、由什么做成——都用 of。",
-      color: "brand",
-      items: ["be afraid of (害怕)","be proud of (自豪)","be full of (充满)","be made of (由…做成)","take care of (照顾)","a lot of (许多)","a piece of (一片)","a cup of (一杯)"]
+      id: "able", name: "-able / -ible", type: "后缀", status: "new",
+      note: "加在动词后 → 形容词",
+      meaning: "「能够被…的 / 可以…的」。它把一个动作变成一种“可以被这样对待”的性质。",
+      origin: "来自拉丁语 -abilis,本义就是“有能力的、可…的”。-able 和 -ible 意思一样,只是拼写不同:大多数词用 -able,少数老词(多来自拉丁语)用 -ible。",
+      tip: "记忆窍门:把词拆成「动词 + able」,再念成“能被(动词)的”。比如 read(读)+ able → readable「能被读的 → 易读的」;wash(洗)+ able → washable「能被洗的 → 可水洗的」。",
+      pattern: "动词/名词 + able/ible = 形容词。含义 = “可以被(那个动作)的”。",
+      items: [
+        { word: "comfortable", ipa: "/ˈkʌmftəbl/", zh: "舒适的", from: "comfort(舒适) + able", example: "This chair is very comfortable." },
+        { word: "enjoyable", ipa: "/ɪnˈdʒɔɪəbl/", zh: "令人愉快的", from: "enjoy(享受) + able", example: "We had an enjoyable trip." },
+        { word: "readable", ipa: "/ˈriːdəbl/", zh: "易读的", from: "read(读) + able → 能被读的", example: "Your handwriting is very readable." },
+        { word: "washable", ipa: "/ˈwɒʃəbl/", zh: "可水洗的", from: "wash(洗) + able → 能被洗的", example: "This jacket is washable." },
+        { word: "reusable", ipa: "/ˌriːˈjuːzəbl/", zh: "可重复使用的", from: "reuse(重复用) + able", example: "We take a reusable bag to the shop." },
+        { word: "valuable", ipa: "/ˈvæljuəbl/", zh: "宝贵的", from: "value(价值) + able → 有价值的", example: "Time is very valuable." },
+        { word: "flexible", ipa: "/ˈfleksəbl/", zh: "灵活的", from: "flex(弯曲) + ible → 能弯的", example: "Our plan is flexible." },
+        { word: "possible", ipa: "/ˈpɒsəbl/", zh: "可能的", from: "poss(能) + ible → 能发生的", example: "Anything is possible if you try." }
+      ]
     },
     {
-      key: "for", tip: "“为了/朝向一个目标”的感觉,常跟 for。等谁、找谁、为谁准备、为某事感谢——都用 for。",
-      color: "cyan",
-      items: ["wait for (等待)","look for (寻找)","be ready for (为…准备)","be late for (…迟到)","be good for (对…有益)","thank you for (为…感谢)"]
+      id: "ment", name: "-ment", type: "后缀", status: "new",
+      note: "加在动词后 → 名词",
+      meaning: "把一个「动作(动词)」变成「一件事、一种结果或状态(名词)」。",
+      origin: "来自拉丁语 -mentum,表示“做某个动作所产生的东西/结果”。",
+      tip: "记忆窍门:先想动词本义,再在后面加 -ment 变成“那件事”。比如 move(移动)+ ment → movement「移动这件事 → 动作/运动」;excite(使兴奋)+ ment → excitement「兴奋这种状态」。",
+      pattern: "动词 + ment = 名词。含义 = “(那个动词)这件事 / 的结果 / 的状态”。",
+      items: [
+        { word: "movement", ipa: "/ˈmuːvmənt/", zh: "移动、动作", from: "move(移动) + ment", example: "The dancer's movement is beautiful." },
+        { word: "agreement", ipa: "/əˈɡriːmənt/", zh: "协议、一致", from: "agree(同意) + ment → 达成一致这件事", example: "They reached an agreement." },
+        { word: "development", ipa: "/dɪˈveləpmənt/", zh: "发展", from: "develop(发展) + ment", example: "The city's development is fast." },
+        { word: "excitement", ipa: "/ɪkˈsaɪtmənt/", zh: "兴奋", from: "excite(使兴奋) + ment → 兴奋的状态", example: "The game was full of excitement." },
+        { word: "government", ipa: "/ˈɡʌvənmənt/", zh: "政府", from: "govern(治理) + ment → 治理的机构", example: "The government helps the people." },
+        { word: "punishment", ipa: "/ˈpʌnɪʃmənt/", zh: "惩罚", from: "punish(惩罚) + ment → 惩罚这件事", example: "The punishment was too heavy." },
+        { word: "argument", ipa: "/ˈɑːɡjumənt/", zh: "争论", from: "argue(争吵) + ment → 争吵这件事", example: "They had a small argument." },
+        { word: "equipment", ipa: "/ɪˈkwɪpmənt/", zh: "设备", from: "equip(配备) + ment → 配备的东西", example: "The gym has new equipment." }
+      ]
     },
     {
-      key: "at", tip: "“对准一个点”的感觉,常跟 at。看向一点、擅长一件事、嘲笑一个人、到达一个小地方——都用 at。",
-      color: "green",
-      items: ["look at (看)","be good at (擅长)","laugh at (嘲笑)","arrive at (到达)","at home (在家)","at night (在夜里)","at first (起初)"]
-    },
-    {
-      key: "with", tip: "“和…在一起/带着”的感觉,常跟 with。和谁玩、和谁交朋友、和谁生气、忙于某事——都用 with。",
-      color: "amber",
-      items: ["play with (和…玩)","make friends with (和…交朋友)","be angry with (对…生气)","be busy with (忙于)","agree with (同意)","help … with (帮…做)"]
-    },
-    {
-      key: "to", tip: "“朝一个方向去/给到”的感觉,常跟 to。听向声音、说到某处、挨着某物——都用 to。",
-      color: "brand",
-      items: ["listen to (听)","next to (在…旁边)","would like to (想做)","have to (不得不)"]
-    },
-    {
-      key: "up / down", tip: "up=向上/起来,down=向下/下来。一对反义,一起记最省力。",
-      color: "cyan",
-      items: ["get up (起床)","stand up (起立)","wake up (醒来)","pick up (捡起)","give up (放弃)","grow up (长大)","clean up (打扫)","sit down (坐下)"]
-    },
-    {
-      key: "on / off", tip: "on=开/上,off=关/下。开关电器、上下车,都是这一对反义。",
-      color: "green",
-      items: ["turn on (打开)","turn off (关掉)","put on (穿上)","take off (脱下)","get on (上车)","get off (下车)","on foot (步行)","on time (准时)"]
-    },
-    {
-      key: "about / from / in", tip: "about=关于(谈论/担心/考虑);from=来自/不同(来源);in=对…感兴趣(投入进去)。",
-      color: "amber",
-      items: ["talk about (谈论)","think about (考虑)","worry about (担心)","come from (来自)","be different from (与…不同)","hear from (收到消息)","be interested in (对…感兴趣)"]
+      id: "pre", name: "pre-", type: "前缀", status: "new",
+      note: "加在词前 → 表示“先、提前”",
+      meaning: "「在…之前 / 预先」。做某件事之前先做的动作,就用 pre-。",
+      origin: "来自拉丁语 prae-,意思就是“前面、之前”。和中文里的“预”几乎一一对应:预习、预测、预付。",
+      tip: "记忆窍门:看到 pre- 就翻译成“预/先”。pre + view(看)→ preview「先看一遍 → 预习」;pre + heat(加热)→ preheat「先加热 → 预热」;pre + pay(付)→ prepay「先付 → 预付」。",
+      pattern: "pre + 动词/名词 = “预先/事先(做那件事)”。",
+      items: [
+        { word: "preview", ipa: "/ˈpriːvjuː/", zh: "预习、预览", from: "pre(先) + view(看) → 先看", example: "Please preview the new lesson." },
+        { word: "prepare", ipa: "/prɪˈpeə(r)/", zh: "准备", from: "pre(先) + pare(备好) → 事先备好", example: "We prepare dinner together." },
+        { word: "predict", ipa: "/prɪˈdɪkt/", zh: "预测", from: "pre(先) + dict(说) → 提前说出", example: "Can you predict the weather?" },
+        { word: "preschool", ipa: "/ˈpriːskuːl/", zh: "学前的、幼儿园", from: "pre(之前) + school(学校) → 上学之前", example: "My sister goes to preschool." },
+        { word: "prepay", ipa: "/ˌpriːˈpeɪ/", zh: "预付", from: "pre(先) + pay(付) → 先付钱", example: "You can prepay for the ticket." },
+        { word: "preheat", ipa: "/ˌpriːˈhiːt/", zh: "预热", from: "pre(先) + heat(加热) → 先加热", example: "Preheat the oven before baking." },
+        { word: "pretest", ipa: "/ˈpriːtest/", zh: "预测验", from: "pre(先) + test(测验) → 提前测", example: "We took a pretest before the unit." },
+        { word: "prepaid", ipa: "/ˌpriːˈpeɪd/", zh: "已预付的", from: "pre(先) + paid(付过) → 已经先付", example: "This is a prepaid phone card." }
+      ]
     }
-  ],
-  // 二、口诀/联想:最难记的几个,配一句好玩的中文口诀
-  mnemonics: [
-    { en: "listen to", zh: "听音乐", tip: "听,要把耳朵“转到 (to)”声音那边 —— listen 永远带 to。" },
-    { en: "look at", zh: "看", tip: "看,眼睛要“对准 (at)”那个点 —— look 看什么就 at 什么。" },
-    { en: "be good at", zh: "擅长", tip: "本领练到一个“点 (at)”上就擅长 —— good at 打篮球、good at 英语。" },
-    { en: "be interested in", zh: "感兴趣", tip: "对一件事有兴趣,就一头“扎进 (in)”里面 —— interested in。" },
-    { en: "be afraid of", zh: "害怕", tip: "害怕的东西“属于 (of)”让你怕的那类 —— afraid of dogs 怕狗。" },
-    { en: "wait for", zh: "等待", tip: "等,是“为了 (for)”等到那个人 —— wait for me 等等我。" },
-    { en: "arrive at / in", zh: "到达", tip: "到小地方(车站/学校)用 arrive at;到大地方(城市/国家)用 arrive in。" },
-    { en: "be made of / from", zh: "由…制成", tip: "看得出原料(木头做的桌子)用 of;看不出原料(葡萄做的酒)用 from。" }
-  ],
-
-  // 易错提醒:中式英语常犯的搭配错误
-  mistakes: [
-    { wrong: "I listen music.", right: "I listen to music.", zh: "我听音乐。", why: "listen 后面听什么,一定要加 to。" },
-    { wrong: "Look the picture.", right: "Look at the picture.", zh: "看这幅画。", why: "看某物用 look at,不能省略 at。" },
-    { wrong: "She is good English.", right: "She is good at English.", zh: "她擅长英语。", why: "擅长某事用 be good at,不能少 at。" },
-    { wrong: "I go to home.", right: "I go home.", zh: "我回家。", why: "home 作“回家”时前面不加 to。" },
-    { wrong: "There are a lot of book.", right: "There are a lot of books.", zh: "有很多书。", why: "a lot of 后接可数名词要用复数 books。" },
-    { wrong: "Wait me.", right: "Wait for me.", zh: "等等我。", why: "等某人用 wait for,不能省略 for。" },
-    { wrong: "Thank you your help.", right: "Thank you for your help.", zh: "谢谢你的帮助。", why: "感谢某事要用 thank you for。" },
-    { wrong: "I am interested science.", right: "I am interested in science.", zh: "我对科学感兴趣。", why: "感兴趣用 be interested in,不能少 in。" }
-  ],
-  // 练习:固定搭配填空(每轮随机抽 25)
-  quiz: [
-    { sentence: "I listen ___ music every day.", answer: "to", options: ["to","at","for"], zh: "我每天听音乐。" },
-    { sentence: "Look ___ the blackboard!", answer: "at", options: ["at","to","for"], zh: "看黑板!" },
-    { sentence: "She is good ___ English.", answer: "at", options: ["at","in","for"], zh: "她擅长英语。" },
-    { sentence: "I get ___ at seven every day.", answer: "up", options: ["up","on","off"], zh: "我每天七点起床。" },
-    { sentence: "Please turn ___ the light, it's dark.", answer: "on", options: ["on","off","up"], zh: "请开灯,天黑了。" },
-    { sentence: "Turn ___ the TV before you sleep.", answer: "off", options: ["off","on","up"], zh: "睡前关掉电视。" },
-    { sentence: "Wait ___ me, please.", answer: "for", options: ["for","at","to"], zh: "请等等我。" },
-    { sentence: "I come ___ China.", answer: "from", options: ["from","to","at"], zh: "我来自中国。" },
-    { sentence: "He is interested ___ science.", answer: "in", options: ["in","at","for"], zh: "他对科学感兴趣。" },
-    { sentence: "The cat is afraid ___ dogs.", answer: "of", options: ["of","at","for"], zh: "这只猫怕狗。" },
-    { sentence: "The box is full ___ toys.", answer: "of", options: ["of","with","in"], zh: "盒子里装满玩具。" },
-    { sentence: "Don't be late ___ school.", answer: "for", options: ["for","to","at"], zh: "上学别迟到。" },
-    { sentence: "She looks ___ her little brother.", answer: "after", options: ["after","at","for"], zh: "她照顾弟弟。" },
-    { sentence: "Put ___ your coat, it's cold.", answer: "on", options: ["on","off","up"], zh: "穿上外套,天冷。" },
-    { sentence: "Take ___ your hat inside.", answer: "off", options: ["off","on","up"], zh: "在室内摘下帽子。" },
-    { sentence: "Get ___ the bus quickly.", answer: "on", options: ["on","off","up"], zh: "快上公交车。" },
-    { sentence: "Get ___ at the next stop.", answer: "off", options: ["off","on","up"], zh: "在下一站下车。" },
-    { sentence: "I want to be a teacher when I grow ___.", answer: "up", options: ["up","on","off"], zh: "我长大想当老师。" },
-    { sentence: "I have a lot ___ books.", answer: "of", options: ["of","in","at"], zh: "我有很多书。" },
-    { sentence: "I go to school ___ foot.", answer: "on", options: ["on","by","in"], zh: "我走路上学。" },
-    { sentence: "I stay ___ home on Sunday.", answer: "at", options: ["at","in","to"], zh: "我周日待在家。" },
-    { sentence: "I read books ___ the morning.", answer: "in", options: ["in","on","at"], zh: "我早上读书。" },
-    { sentence: "I ___ like some juice.", answer: "would", options: ["would","will","am"], zh: "我想要一些果汁。" },
-    { sentence: "Can I have a ___ at this photo?", answer: "look", options: ["look","see","watch"], zh: "我能看看这张照片吗?" },
-    { sentence: "Let's have a ___.", answer: "rest", options: ["rest","sleep","stop"], zh: "我们休息一下吧。" },
-    { sentence: "___ course I can help you.", answer: "Of", options: ["Of","In","At"], zh: "我当然能帮你。" },
-    { sentence: "I look ___ my lost pen.", answer: "for", options: ["for","at","after"], zh: "我在找丢的笔。" },
-    { sentence: "My mom picks me ___ after school.", answer: "up", options: ["up","on","off"], zh: "妈妈放学后接我。" },
-    { sentence: "This one is different ___ that one.", answer: "from", options: ["from","with","of"], zh: "这个和那个不同。" },
-    { sentence: "Are you ready ___ the test?", answer: "for", options: ["for","to","at"], zh: "你准备好考试了吗?" },
-    { sentence: "Listen ___ the teacher, please.", answer: "to", options: ["to","at","for"], zh: "请听老师说。" },
-    { sentence: "We are good ___ swimming.", answer: "at", options: ["at","in","for"], zh: "我们擅长游泳。" },
-    { sentence: "Please look ___ my cat this weekend.", answer: "after", options: ["after","at","for"], zh: "这周末请照顾我的猫。" },
-    { sentence: "He is afraid ___ the dark.", answer: "of", options: ["of","at","for"], zh: "他怕黑。" },
-    { sentence: "We wait ___ the bus at the stop.", answer: "for", options: ["for","at","to"], zh: "我们在站台等公交。" },
-    { sentence: "Where do you come ___?", answer: "from", options: ["from","at","to"], zh: "你来自哪里?" },
-    { sentence: "Get ___ your bike and let's go.", answer: "on", options: ["on","off","up"], zh: "骑上你的自行车,我们走。" },
-    { sentence: "Would you ___ to come with us?", answer: "like", options: ["like","want","love"], zh: "你想和我们一起来吗?" },
-    { sentence: "Don't be late ___ the meeting.", answer: "for", options: ["for","to","at"], zh: "开会别迟到。" },
-    { sentence: "Thank you ___ your help.", answer: "for", options: ["for","to","with"], zh: "谢谢你的帮助。" },
-    { sentence: "We talk ___ the trip.", answer: "about", options: ["about","at","for"], zh: "我们谈论这次旅行。" },
-    { sentence: "Don't worry ___ the test.", answer: "about", options: ["about","for","of"], zh: "别担心考试。" },
-    { sentence: "Milk is good ___ your body.", answer: "for", options: ["for","at","to"], zh: "牛奶对身体有益。" },
-    { sentence: "I am proud ___ my class.", answer: "of", options: ["of","for","with"], zh: "我为我的班级自豪。" },
-    { sentence: "The desk is made ___ wood.", answer: "of", options: ["of","from","with"], zh: "桌子是木头做的。" },
-    { sentence: "Please sit ___.", answer: "down", options: ["down","up","on"], zh: "请坐下。" },
-    { sentence: "Stand ___, please.", answer: "up", options: ["up","down","on"], zh: "请起立。" },
-    { sentence: "Don't give ___, keep trying!", answer: "up", options: ["up","in","off"], zh: "别放弃,继续努力!" },
-    { sentence: "I help my mom ___ the housework.", answer: "with", options: ["with","to","for"], zh: "我帮妈妈做家务。" },
-    { sentence: "Please take care ___ yourself.", answer: "of", options: ["of","for","with"], zh: "照顾好你自己。" },
-    { sentence: "I want a piece ___ bread.", answer: "of", options: ["of","for","in"], zh: "我想要一片面包。" },
-    { sentence: "The bus is ___ time today.", answer: "on", options: ["on","in","at"], zh: "今天公交车准时。" },
-    { sentence: "Stars shine ___ night.", answer: "at", options: ["at","in","on"], zh: "星星在夜里闪亮。" },
-    { sentence: "I drink milk ___ day.", answer: "every", options: ["every","all","on"], zh: "我每天喝牛奶。" },
-    { sentence: "At ___, I was afraid.", answer: "first", options: ["first","last","once"], zh: "起初我很害怕。" },
-    { sentence: "Thank you so ___.", answer: "much", options: ["much","many","more"], zh: "非常感谢你。" },
-    { sentence: "I agree ___ you.", answer: "with", options: ["with","to","at"], zh: "我同意你。" },
-    { sentence: "The lamp is next ___ the bed.", answer: "to", options: ["to","at","for"], zh: "台灯在床旁边。" },
-    { sentence: "I make friends ___ the new boy.", answer: "with", options: ["with","to","for"], zh: "我和新来的男孩交朋友。" },
-    { sentence: "I have ___ do my homework now.", answer: "to", options: ["to","for","at"], zh: "我现在必须做作业。" }
   ]
 };
 
 </script>
-<script>
-// Word → IPA dictionary for all words used in collocation example sentences.
-window.IPA_DICT = {
-  "a":"/ə/","an":"/ən/","the":"/ðə/","this":"/ðɪs/","that":"/ðæt/","there":"/ðeə(r)/","and":"/ənd/","of":"/ɒv/","to":"/tuː/",
-  "i":"/aɪ/","you":"/juː/","he":"/hiː/","she":"/ʃiː/","it":"/ɪt/","it's":"/ɪts/","we":"/wiː/","they":"/ðeɪ/","me":"/miː/","us":"/ʌs/",
-  "my":"/maɪ/","your":"/jɔː(r)/","her":"/hɜː(r)/","his":"/hɪz/","yours":"/jɔːz/","one":"/wʌn/",
-  "am":"/æm/","is":"/ɪz/","are":"/ɑː(r)/","be":"/biː/","do":"/duː/","can":"/kæn/","have":"/hæv/","would":"/wʊd/","need":"/niːd/","want":"/wɒnt/","don't":"/dəʊnt/","let's":"/lets/","when":"/wen/","where":"/weə(r)/",
-  "listen":"/ˈlɪsn/","look":"/lʊk/","looks":"/lʊks/","looking":"/ˈlʊkɪŋ/","get":"/ɡet/","turn":"/tɜːn/","turns":"/tɜːnz/","wait":"/weɪt/","come":"/kʌm/","go":"/ɡəʊ/",
-  "put":"/pʊt/","puts":"/pʊts/","take":"/teɪk/","takes":"/teɪks/","pick":"/pɪk/","picks":"/pɪks/","grow":"/ɡrəʊ/","stay":"/steɪ/","read":"/riːd/","play":"/pleɪ/","help":"/help/","like":"/laɪk/","rest":"/rest/","sleep":"/sliːp/","stop":"/stɒp/","come":"/kʌm/",
-  "good":"/ɡʊd/","interested":"/ˈɪntrəstɪd/","afraid":"/əˈfreɪd/","full":"/fʊl/","late":"/leɪt/","different":"/ˈdɪfrənt/","ready":"/ˈredi/","lost":"/lɒst/","new":"/njuː/","little":"/ˈlɪtl/","cold":"/kəʊld/","hot":"/hɒt/","dark":"/dɑːk/","fast":"/fɑːst/","loud":"/laʊd/","tired":"/ˈtaɪəd/","quickly":"/ˈkwɪkli/","inside":"/ˌɪnˈsaɪd/","too":"/tuː/","not":"/nɒt/","every":"/ˈevri/","some":"/sʌm/","a":"/ə/","lot":"/lɒt/",
-  "up":"/ʌp/","on":"/ɒn/","off":"/ɒf/","at":"/æt/","in":"/ɪn/","for":"/fɔː(r)/","from":"/frɒm/","after":"/ˈɑːftə(r)/","before":"/bɪˈfɔː(r)/","with":"/wɪð/","course":"/kɔːs/","home":"/həʊm/","foot":"/fʊt/","night":"/naɪt/","now":"/naʊ/","tonight":"/təˈnaɪt/","day":"/deɪ/","morning":"/ˈmɔːnɪŋ/","seven":"/ˈsevn/","next":"/nekst/","sunday":"/ˈsʌndeɪ/","weekend":"/ˌwiːkˈend/",
-  "music":"/ˈmjuːzɪk/","blackboard":"/ˈblækbɔːd/","stars":"/stɑːz/","light":"/laɪt/","lights":"/laɪts/","tv":"/ˌtiːˈviː/","computer":"/kəmˈpjuːtə(r)/","radio":"/ˈreɪdiəʊ/","bus":"/bʌs/","train":"/treɪn/","bike":"/baɪk/","phone":"/fəʊn/",
-  "pen":"/pen/","book":"/bʊk/","books":"/bʊks/","bag":"/bæɡ/","box":"/bɒks/","toy":"/tɔɪ/","toys":"/tɔɪz/","coat":"/kəʊt/","hat":"/hæt/","shoes":"/ʃuːz/","photo":"/ˈfəʊtəʊ/","picture":"/ˈpɪktʃə(r)/","bottle":"/ˈbɒtl/","water":"/ˈwɔːtə(r)/","juice":"/dʒuːs/","floor":"/flɔː(r)/",
-  "cat":"/kæt/","dog":"/dɒɡ/","dogs":"/dɒɡz/","brother":"/ˈbrʌðə(r)/","mom":"/mɒm/","teacher":"/ˈtiːtʃə(r)/","doctor":"/ˈdɒktə(r)/","children":"/ˈtʃɪldrən/","china":"/ˈtʃaɪnə/","english":"/ˈɪŋɡlɪʃ/","science":"/ˈsaɪəns/",
-  "school":"/skuːl/","class":"/klɑːs/","test":"/test/","meeting":"/ˈmiːtɪŋ/","game":"/ɡeɪm/","trip":"/trɪp/","exercise":"/ˈeksəsaɪz/","swimming":"/ˈswɪmɪŋ/","drawing":"/ˈdrɔːɪŋ/","sky":"/skaɪ/","please":"/pliːz/",
-  "talk":"/tɔːk/","about":"/əˈbaʊt/","animals":"/ˈænɪmlz/","think":"/θɪŋk/","question":"/ˈkwestʃən/","holiday":"/ˈhɒlədeɪ/","worry":"/ˈwʌri/","worries":"/ˈwʌriz/","laugh":"/lɑːf/","others":"/ˈʌðəz/","funny":"/ˈfʌni/","arrive":"/əˈraɪv/","arrives":"/əˈraɪvz/","eight":"/eɪt/","shop":"/ʃɒp/","hear":"/hɪə(r)/","friend":"/frend/","friends":"/frendz/","hope":"/həʊp/","agree":"/əˈɡriː/","agrees":"/əˈɡriːz/",
-  "milk":"/mɪlk/","body":"/ˈbɒdi/","reading":"/ˈriːdɪŋ/","busy":"/ˈbɪzi/","homework":"/ˈhəʊmwɜːk/","work":"/wɜːk/","angry":"/ˈæŋɡri/","them":"/ðem/","proud":"/praʊd/","son":"/sʌn/","desk":"/desk/","made":"/meɪd/","wood":"/wʊd/","cup":"/kʌp/","glass":"/ɡlɑːs/","clean":"/kliːn/","room":"/ruːm/","classroom":"/ˈklɑːsruːm/","wake":"/weɪk/","six":"/sɪks/",
-  "sit":"/sɪt/","down":"/daʊn/","students":"/ˈstjuːdnts/","stand":"/stænd/","comes":"/kʌmz/","give":"/ɡɪv/","never":"/ˈnevə(r)/","dream":"/driːm/","may":"/meɪ/","out":"/aʊt/","sing":"/sɪŋ/","fruit":"/fruːt/","example":"/ɪɡˈzɑːmpl/","apples":"/ˈæplz/","as":"/əz/","well":"/wel/","swim":"/swɪm/","thank":"/θæŋk/","coming":"/ˈkʌmɪŋ/","shine":"/ʃaɪn/",
-  "time":"/taɪm/","hiking":"/ˈhaɪkɪŋ/","drink":"/drɪŋk/","runs":"/rʌnz/","rained":"/reɪnd/","all":"/ɔːl/","played":"/pleɪd/","left":"/left/","just":"/dʒʌst/","saw":"/sɔː/","housework":"/ˈhaʊswɜːk/","plays":"/pleɪz/","ball":"/bɔːl/","make":"/meɪk/","boy":"/bɔɪ/","makes":"/meɪks/","easily":"/ˈiːzɪli/","care":"/keə(r)/","yourself":"/jɔːˈself/","plants":"/plɑːnts/",
-  "piece":"/piːs/","bread":"/bred/","paper":"/ˈpeɪpə(r)/","tea":"/tiː/","has":"/hæz/","lamp":"/læmp/","bed":"/bed/","first":"/fɜːst/","was":"/wɒz/","couldn't":"/ˈkʊdnt/","car":"/kɑː(r)/","front":"/frʌnt/","stands":"/stændz/","so":"/səʊ/","much":"/mʌtʃ/","love":"/lʌv/","keep":"/kiːp/","trying":"/ˈtraɪɪŋ/","today":"/təˈdeɪ/"
-};
 
-</script>
+<!-- Lit app -->
 <script type="module">
 /* --- Lit 运行时内联:Blob URL 动态 import(离线可用、命名导出规范) --- */
     const __LIT_SRC = "/* esm.sh - lit@3.2.1 */\nvar R=globalThis,T=R.ShadowRoot&&(R.ShadyCSS===void 0||R.ShadyCSS.nativeShadow)&&\"adoptedStyleSheets\"in Document.prototype&&\"replace\"in CSSStyleSheet.prototype,z=Symbol(),Q=new WeakMap,C=class{constructor(t,e,s){if(this._$cssResult$=!0,s!==z)throw Error(\"CSSResult is not constructable. Use `unsafeCSS` or `css` instead.\");this.cssText=t,this.t=e}get styleSheet(){let t=this.o,e=this.t;if(T&&t===void 0){let s=e!==void 0&&e.length===1;s&&(t=Q.get(e)),t===void 0&&((this.o=t=new CSSStyleSheet).replaceSync(this.cssText),s&&Q.set(e,t))}return t}toString(){return this.cssText}},X=o=>new C(typeof o==\"string\"?o:o+\"\",void 0,z),$t=(o,...t)=>{let e=o.length===1?o[0]:t.reduce(((s,i,r)=>s+(n=>{if(n._$cssResult$===!0)return n.cssText;if(typeof n==\"number\")return n;throw Error(\"Value passed to 'css' function must be a 'css' function result: \"+n+\". Use 'unsafeCSS' to pass non-literal values, but take care to ensure page security.\")})(i)+o[r+1]),o[0]);return new C(e,o,z)},Y=(o,t)=>{if(T)o.adoptedStyleSheets=t.map((e=>e instanceof CSSStyleSheet?e:e.styleSheet));else for(let e of t){let s=document.createElement(\"style\"),i=R.litNonce;i!==void 0&&s.setAttribute(\"nonce\",i),s.textContent=e.cssText,o.appendChild(s)}},I=T?o=>o:o=>o instanceof CSSStyleSheet?(t=>{let e=\"\";for(let s of t.cssRules)e+=s.cssText;return X(e)})(o):o;var{is:_t,defineProperty:ft,getOwnPropertyDescriptor:At,getOwnPropertyNames:mt,getOwnPropertySymbols:gt,getPrototypeOf:yt}=Object,M=globalThis,tt=M.trustedTypes,vt=tt?tt.emptyScript:\"\",St=M.reactiveElementPolyfillSupport,w=(o,t)=>o,V={toAttribute(o,t){switch(t){case Boolean:o=o?vt:null;break;case Object:case Array:o=o==null?o:JSON.stringify(o)}return o},fromAttribute(o,t){let e=o;switch(t){case Boolean:e=o!==null;break;case Number:e=o===null?null:Number(o);break;case Object:case Array:try{e=JSON.parse(o)}catch{e=null}}return e}},st=(o,t)=>!_t(o,t),et={attribute:!0,type:String,converter:V,reflect:!1,useDefault:!1,hasChanged:st};Symbol.metadata??=Symbol(\"metadata\"),M.litPropertyMetadata??=new WeakMap;var $=class extends HTMLElement{static addInitializer(t){this._$Ei(),(this.l??=[]).push(t)}static get observedAttributes(){return this.finalize(),this._$Eh&&[...this._$Eh.keys()]}static createProperty(t,e=et){if(e.state&&(e.attribute=!1),this._$Ei(),this.prototype.hasOwnProperty(t)&&((e=Object.create(e)).wrapped=!0),this.elementProperties.set(t,e),!e.noAccessor){let s=Symbol(),i=this.getPropertyDescriptor(t,s,e);i!==void 0&&ft(this.prototype,t,i)}}static getPropertyDescriptor(t,e,s){let{get:i,set:r}=At(this.prototype,t)??{get(){return this[e]},set(n){this[e]=n}};return{get:i,set(n){let l=i?.call(this);r?.call(this,n),this.requestUpdate(t,l,s)},configurable:!0,enumerable:!0}}static getPropertyOptions(t){return this.elementProperties.get(t)??et}static _$Ei(){if(this.hasOwnProperty(w(\"elementProperties\")))return;let t=yt(this);t.finalize(),t.l!==void 0&&(this.l=[...t.l]),this.elementProperties=new Map(t.elementProperties)}static finalize(){if(this.hasOwnProperty(w(\"finalized\")))return;if(this.finalized=!0,this._$Ei(),this.hasOwnProperty(w(\"properties\"))){let e=this.properties,s=[...mt(e),...gt(e)];for(let i of s)this.createProperty(i,e[i])}let t=this[Symbol.metadata];if(t!==null){let e=litPropertyMetadata.get(t);if(e!==void 0)for(let[s,i]of e)this.elementProperties.set(s,i)}this._$Eh=new Map;for(let[e,s]of this.elementProperties){let i=this._$Eu(e,s);i!==void 0&&this._$Eh.set(i,e)}this.elementStyles=this.finalizeStyles(this.styles)}static finalizeStyles(t){let e=[];if(Array.isArray(t)){let s=new Set(t.flat(1/0).reverse());for(let i of s)e.unshift(I(i))}else t!==void 0&&e.push(I(t));return e}static _$Eu(t,e){let s=e.attribute;return s===!1?void 0:typeof s==\"string\"?s:typeof t==\"string\"?t.toLowerCase():void 0}constructor(){super(),this._$Ep=void 0,this.isUpdatePending=!1,this.hasUpdated=!1,this._$Em=null,this._$Ev()}_$Ev(){this._$ES=new Promise((t=>this.enableUpdating=t)),this._$AL=new Map,this._$E_(),this.requestUpdate(),this.constructor.l?.forEach((t=>t(this)))}addController(t){(this._$EO??=new Set).add(t),this.renderRoot!==void 0&&this.isConnected&&t.hostConnected?.()}removeController(t){this._$EO?.delete(t)}_$E_(){let t=new Map,e=this.constructor.elementProperties;for(let s of e.keys())this.hasOwnProperty(s)&&(t.set(s,this[s]),delete this[s]);t.size>0&&(this._$Ep=t)}createRenderRoot(){let t=this.shadowRoot??this.attachShadow(this.constructor.shadowRootOptions);return Y(t,this.constructor.elementStyles),t}connectedCallback(){this.renderRoot??=this.createRenderRoot(),this.enableUpdating(!0),this._$EO?.forEach((t=>t.hostConnected?.()))}enableUpdating(t){}disconnectedCallback(){this._$EO?.forEach((t=>t.hostDisconnected?.()))}attributeChangedCallback(t,e,s){this._$AK(t,s)}_$ET(t,e){let s=this.constructor.elementProperties.get(t),i=this.constructor._$Eu(t,s);if(i!==void 0&&s.reflect===!0){let r=(s.converter?.toAttribute!==void 0?s.converter:V).toAttribute(e,s.type);this._$Em=t,r==null?this.removeAttribute(i):this.setAttribute(i,r),this._$Em=null}}_$AK(t,e){let s=this.constructor,i=s._$Eh.get(t);if(i!==void 0&&this._$Em!==i){let r=s.getPropertyOptions(i),n=typeof r.converter==\"function\"?{fromAttribute:r.converter}:r.converter?.fromAttribute!==void 0?r.converter:V;this._$Em=i;let l=n.fromAttribute(e,r.type);this[i]=l??this._$Ej?.get(i)??l,this._$Em=null}}requestUpdate(t,e,s){if(t!==void 0){let i=this.constructor,r=this[t];if(s??=i.getPropertyOptions(t),!((s.hasChanged??st)(r,e)||s.useDefault&&s.reflect&&r===this._$Ej?.get(t)&&!this.hasAttribute(i._$Eu(t,s))))return;this.C(t,e,s)}this.isUpdatePending===!1&&(this._$ES=this._$EP())}C(t,e,{useDefault:s,reflect:i,wrapped:r},n){s&&!(this._$Ej??=new Map).has(t)&&(this._$Ej.set(t,n??e??this[t]),r!==!0||n!==void 0)||(this._$AL.has(t)||(this.hasUpdated||s||(e=void 0),this._$AL.set(t,e)),i===!0&&this._$Em!==t&&(this._$Eq??=new Set).add(t))}async _$EP(){this.isUpdatePending=!0;try{await this._$ES}catch(e){Promise.reject(e)}let t=this.scheduleUpdate();return t!=null&&await t,!this.isUpdatePending}scheduleUpdate(){return this.performUpdate()}performUpdate(){if(!this.isUpdatePending)return;if(!this.hasUpdated){if(this.renderRoot??=this.createRenderRoot(),this._$Ep){for(let[i,r]of this._$Ep)this[i]=r;this._$Ep=void 0}let s=this.constructor.elementProperties;if(s.size>0)for(let[i,r]of s){let{wrapped:n}=r,l=this[i];n!==!0||this._$AL.has(i)||l===void 0||this.C(i,void 0,r,l)}}let t=!1,e=this._$AL;try{t=this.shouldUpdate(e),t?(this.willUpdate(e),this._$EO?.forEach((s=>s.hostUpdate?.())),this.update(e)):this._$EM()}catch(s){throw t=!1,this._$EM(),s}t&&this._$AE(e)}willUpdate(t){}_$AE(t){this._$EO?.forEach((e=>e.hostUpdated?.())),this.hasUpdated||(this.hasUpdated=!0,this.firstUpdated(t)),this.updated(t)}_$EM(){this._$AL=new Map,this.isUpdatePending=!1}get updateComplete(){return this.getUpdateComplete()}getUpdateComplete(){return this._$ES}shouldUpdate(t){return!0}update(t){this._$Eq&&=this._$Eq.forEach((e=>this._$ET(e,this[e]))),this._$EM()}updated(t){}firstUpdated(t){}};$.elementStyles=[],$.shadowRootOptions={mode:\"open\"},$[w(\"elementProperties\")]=new Map,$[w(\"finalized\")]=new Map,St?.({ReactiveElement:$}),(M.reactiveElementVersions??=[]).push(\"2.1.1\");var q=globalThis,N=q.trustedTypes,it=N?N.createPolicy(\"lit-html\",{createHTML:o=>o}):void 0,K=\"$lit$\",_=`lit$${Math.random().toFixed(9).slice(2)}$`,Z=\"?\"+_,Et=`<${Z}>`,g=document,P=()=>g.createComment(\"\"),U=o=>o===null||typeof o!=\"object\"&&typeof o!=\"function\",F=Array.isArray,lt=o=>F(o)||typeof o?.[Symbol.iterator]==\"function\",W=`[ \t\n\\f\\r]`,x=/<(?:(!--|\\/[^a-zA-Z])|(\\/?[a-zA-Z][^>\\s]*)|(\\/?$))/g,ot=/-->/g,rt=/>/g,A=RegExp(`>|${W}(?:([^\\\\s\"'>=/]+)(${W}*=${W}*(?:[^ \t\n\\f\\r\"'\\`<>=]|(\"|')|))|$)`,\"g\"),nt=/'/g,ht=/\"/g,ct=/^(?:script|style|textarea|title)$/i,J=o=>(t,...e)=>({_$litType$:o,strings:t,values:e}),Ot=J(1),Ht=J(2),Rt=J(3),y=Symbol.for(\"lit-noChange\"),p=Symbol.for(\"lit-nothing\"),at=new WeakMap,m=g.createTreeWalker(g,129);function pt(o,t){if(!F(o)||!o.hasOwnProperty(\"raw\"))throw Error(\"invalid template strings array\");return it!==void 0?it.createHTML(t):t}var dt=(o,t)=>{let e=o.length-1,s=[],i,r=t===2?\"<svg>\":t===3?\"<math>\":\"\",n=x;for(let l=0;l<e;l++){let h=o[l],c,d,a=-1,u=0;for(;u<h.length&&(n.lastIndex=u,d=n.exec(h),d!==null);)u=n.lastIndex,n===x?d[1]===\"!--\"?n=ot:d[1]!==void 0?n=rt:d[2]!==void 0?(ct.test(d[2])&&(i=RegExp(\"</\"+d[2],\"g\")),n=A):d[3]!==void 0&&(n=A):n===A?d[0]===\">\"?(n=i??x,a=-1):d[1]===void 0?a=-2:(a=n.lastIndex-d[2].length,c=d[1],n=d[3]===void 0?A:d[3]==='\"'?ht:nt):n===ht||n===nt?n=A:n===ot||n===rt?n=x:(n=A,i=void 0);let f=n===A&&o[l+1].startsWith(\"/>\")?\" \":\"\";r+=n===x?h+Et:a>=0?(s.push(c),h.slice(0,a)+K+h.slice(a)+_+f):h+_+(a===-2?l:f)}return[pt(o,r+(o[e]||\"<?>\")+(t===2?\"</svg>\":t===3?\"</math>\":\"\")),s]},O=class o{constructor({strings:t,_$litType$:e},s){let i;this.parts=[];let r=0,n=0,l=t.length-1,h=this.parts,[c,d]=dt(t,e);if(this.el=o.createElement(c,s),m.currentNode=this.el.content,e===2||e===3){let a=this.el.content.firstChild;a.replaceWith(...a.childNodes)}for(;(i=m.nextNode())!==null&&h.length<l;){if(i.nodeType===1){if(i.hasAttributes())for(let a of i.getAttributeNames())if(a.endsWith(K)){let u=d[n++],f=i.getAttribute(a).split(_),H=/([.?@])?(.*)/.exec(u);h.push({type:1,index:r,name:H[2],strings:f,ctor:H[1]===\".\"?k:H[1]===\"?\"?D:H[1]===\"@\"?j:S}),i.removeAttribute(a)}else a.startsWith(_)&&(h.push({type:6,index:r}),i.removeAttribute(a));if(ct.test(i.tagName)){let a=i.textContent.split(_),u=a.length-1;if(u>0){i.textContent=N?N.emptyScript:\"\";for(let f=0;f<u;f++)i.append(a[f],P()),m.nextNode(),h.push({type:2,index:++r});i.append(a[u],P())}}}else if(i.nodeType===8)if(i.data===Z)h.push({type:2,index:r});else{let a=-1;for(;(a=i.data.indexOf(_,a+1))!==-1;)h.push({type:7,index:r}),a+=_.length-1}r++}}static createElement(t,e){let s=g.createElement(\"template\");return s.innerHTML=t,s}};function v(o,t,e=o,s){if(t===y)return t;let i=s!==void 0?e._$Co?.[s]:e._$Cl,r=U(t)?void 0:t._$litDirective$;return i?.constructor!==r&&(i?._$AO?.(!1),r===void 0?i=void 0:(i=new r(o),i._$AT(o,e,s)),s!==void 0?(e._$Co??=[])[s]=i:e._$Cl=i),i!==void 0&&(t=v(o,i._$AS(o,t.values),i,s)),t}var L=class{constructor(t,e){this._$AV=[],this._$AN=void 0,this._$AD=t,this._$AM=e}get parentNode(){return this._$AM.parentNode}get _$AU(){return this._$AM._$AU}u(t){let{el:{content:e},parts:s}=this._$AD,i=(t?.creationScope??g).importNode(e,!0);m.currentNode=i;let r=m.nextNode(),n=0,l=0,h=s[0];for(;h!==void 0;){if(n===h.index){let c;h.type===2?c=new E(r,r.nextSibling,this,t):h.type===1?c=new h.ctor(r,h.name,h.strings,this,t):h.type===6&&(c=new B(r,this,t)),this._$AV.push(c),h=s[++l]}n!==h?.index&&(r=m.nextNode(),n++)}return m.currentNode=g,i}p(t){let e=0;for(let s of this._$AV)s!==void 0&&(s.strings!==void 0?(s._$AI(t,s,e),e+=s.strings.length-2):s._$AI(t[e])),e++}},E=class o{get _$AU(){return this._$AM?._$AU??this._$Cv}constructor(t,e,s,i){this.type=2,this._$AH=p,this._$AN=void 0,this._$AA=t,this._$AB=e,this._$AM=s,this.options=i,this._$Cv=i?.isConnected??!0}get parentNode(){let t=this._$AA.parentNode,e=this._$AM;return e!==void 0&&t?.nodeType===11&&(t=e.parentNode),t}get startNode(){return this._$AA}get endNode(){return this._$AB}_$AI(t,e=this){t=v(this,t,e),U(t)?t===p||t==null||t===\"\"?(this._$AH!==p&&this._$AR(),this._$AH=p):t!==this._$AH&&t!==y&&this._(t):t._$litType$!==void 0?this.$(t):t.nodeType!==void 0?this.T(t):lt(t)?this.k(t):this._(t)}O(t){return this._$AA.parentNode.insertBefore(t,this._$AB)}T(t){this._$AH!==t&&(this._$AR(),this._$AH=this.O(t))}_(t){this._$AH!==p&&U(this._$AH)?this._$AA.nextSibling.data=t:this.T(g.createTextNode(t)),this._$AH=t}$(t){let{values:e,_$litType$:s}=t,i=typeof s==\"number\"?this._$AC(t):(s.el===void 0&&(s.el=O.createElement(pt(s.h,s.h[0]),this.options)),s);if(this._$AH?._$AD===i)this._$AH.p(e);else{let r=new L(i,this),n=r.u(this.options);r.p(e),this.T(n),this._$AH=r}}_$AC(t){let e=at.get(t.strings);return e===void 0&&at.set(t.strings,e=new O(t)),e}k(t){F(this._$AH)||(this._$AH=[],this._$AR());let e=this._$AH,s,i=0;for(let r of t)i===e.length?e.push(s=new o(this.O(P()),this.O(P()),this,this.options)):s=e[i],s._$AI(r),i++;i<e.length&&(this._$AR(s&&s._$AB.nextSibling,i),e.length=i)}_$AR(t=this._$AA.nextSibling,e){for(this._$AP?.(!1,!0,e);t!==this._$AB;){let s=t.nextSibling;t.remove(),t=s}}setConnected(t){this._$AM===void 0&&(this._$Cv=t,this._$AP?.(t))}},S=class{get tagName(){return this.element.tagName}get _$AU(){return this._$AM._$AU}constructor(t,e,s,i,r){this.type=1,this._$AH=p,this._$AN=void 0,this.element=t,this.name=e,this._$AM=i,this.options=r,s.length>2||s[0]!==\"\"||s[1]!==\"\"?(this._$AH=Array(s.length-1).fill(new String),this.strings=s):this._$AH=p}_$AI(t,e=this,s,i){let r=this.strings,n=!1;if(r===void 0)t=v(this,t,e,0),n=!U(t)||t!==this._$AH&&t!==y,n&&(this._$AH=t);else{let l=t,h,c;for(t=r[0],h=0;h<r.length-1;h++)c=v(this,l[s+h],e,h),c===y&&(c=this._$AH[h]),n||=!U(c)||c!==this._$AH[h],c===p?t=p:t!==p&&(t+=(c??\"\")+r[h+1]),this._$AH[h]=c}n&&!i&&this.j(t)}j(t){t===p?this.element.removeAttribute(this.name):this.element.setAttribute(this.name,t??\"\")}},k=class extends S{constructor(){super(...arguments),this.type=3}j(t){this.element[this.name]=t===p?void 0:t}},D=class extends S{constructor(){super(...arguments),this.type=4}j(t){this.element.toggleAttribute(this.name,!!t&&t!==p)}},j=class extends S{constructor(t,e,s,i,r){super(t,e,s,i,r),this.type=5}_$AI(t,e=this){if((t=v(this,t,e,0)??p)===y)return;let s=this._$AH,i=t===p&&s!==p||t.capture!==s.capture||t.once!==s.once||t.passive!==s.passive,r=t!==p&&(s===p||i);i&&this.element.removeEventListener(this.name,this,s),r&&this.element.addEventListener(this.name,this,t),this._$AH=t}handleEvent(t){typeof this._$AH==\"function\"?this._$AH.call(this.options?.host??this.element,t):this._$AH.handleEvent(t)}},B=class{constructor(t,e,s){this.element=t,this.type=6,this._$AN=void 0,this._$AM=e,this.options=s}get _$AU(){return this._$AM._$AU}_$AI(t){v(this,t)}},Tt={M:K,P:_,A:Z,C:1,L:dt,R:L,D:lt,V:v,I:E,H:S,N:D,U:j,B:k,F:B},bt=q.litHtmlPolyfillSupport;bt?.(O,E),(q.litHtmlVersions??=[]).push(\"3.3.1\");var ut=(o,t,e)=>{let s=e?.renderBefore??t,i=s._$litPart$;if(i===void 0){let r=e?.renderBefore??null;s._$litPart$=i=new E(t.insertBefore(P(),r),r,void 0,e??{})}return i._$AI(o),i};var G=globalThis,b=class extends ${constructor(){super(...arguments),this.renderOptions={host:this},this._$Do=void 0}createRenderRoot(){let t=super.createRenderRoot();return this.renderOptions.renderBefore??=t.firstChild,t}update(t){let e=this.render();this.hasUpdated||(this.renderOptions.isConnected=this.isConnected),super.update(t),this._$Do=ut(e,this.renderRoot,this.renderOptions)}connectedCallback(){super.connectedCallback(),this._$Do?.setConnected(!0)}disconnectedCallback(){super.disconnectedCallback(),this._$Do?.setConnected(!1)}render(){return y}};b._$litElement$=!0,b.finalized=!0,G.litElementHydrateSupport?.({LitElement:b});var Ct=G.litElementPolyfillSupport;Ct?.({LitElement:b});var kt={_$AK:(o,t,e)=>{o._$AK(t,e)},_$AL:o=>o._$AL};(G.litElementVersions??=[]).push(\"4.2.1\");var zt=!1;export{C as CSSResult,b as LitElement,$ as ReactiveElement,kt as _$LE,Tt as _$LH,Y as adoptStyles,$t as css,V as defaultConverter,I as getCompatibleStyle,Ot as html,zt as isServer,Rt as mathml,y as noChange,st as notEqual,p as nothing,ut as render,T as supportsAdoptingStyleSheets,Ht as svg,X as unsafeCSS};\n/*! Bundled license information:\n\n@lit/reactive-element/css-tag.js:\n  (**\n   * @license\n   * Copyright 2019 Google LLC\n   * SPDX-License-Identifier: BSD-3-Clause\n   *)\n\n@lit/reactive-element/reactive-element.js:\nlit-html/lit-html.js:\nlit-element/lit-element.js:\n  (**\n   * @license\n   * Copyright 2017 Google LLC\n   * SPDX-License-Identifier: BSD-3-Clause\n   *)\n\nlit-html/is-server.js:\n  (**\n   * @license\n   * Copyright 2022 Google LLC\n   * SPDX-License-Identifier: BSD-3-Clause\n   *)\n*/\n//# sourceMappingURL=lit.bundle.mjs.map";
@@ -2075,7 +2396,7 @@ function _connect(){
 function _edgeSynth(text){
   return _connect().then(ws => new Promise((resolve, reject) => {
     const id = _uuid().replace(/-/g,'').toUpperCase();
-    const timer = setTimeout(() => { if (_pending.has(id)) { _pending.delete(id); reject(new Error('timeout')); } }, 8000);
+    const timer = setTimeout(() => { if (_pending.has(id)) { _pending.delete(id); reject(new Error('timeout')); } }, 5000);
     _pending.set(id, { chunks: [], resolve, reject, timer });
     try {
       ws.send(
@@ -2095,16 +2416,16 @@ function _prewarm(sentences){
     const text = sentences[i++];
     const key = _rate + '|' + text;
     if (_edgeCache.has(key)) { step(); return; }
-    _edgeSynth(text).then(url => { _edgeCache.set(key, url); setTimeout(step, 60); })
-                    .catch(() => { setTimeout(step, 60); });   // keep going even if one fails
+    _edgeSynth(text).then(url => { _edgeCache.set(key, url); setTimeout(step, 40); })
+                    .catch(() => { setTimeout(step, 40); });   // keep going even if one fails
   };
-  // small initial delay so first paint isn't blocked
-  setTimeout(step, 400);
+  // start almost immediately so the earliest words are ready fast
+  setTimeout(step, 120);
 }
 
 function setRate(r){ if(RATE_LEVELS[r]){ _rate = r; _edgeCache.clear(); if (window.__allSentences) _prewarm(window.__allSentences); } }
 
-function speak(text, btnEl){
+function _speakEdge(text, btnEl){
   if (!text) return;
   if (btnEl) btnEl.classList.add('playing');
   const done = () => { if (btnEl) btnEl.classList.remove('playing'); };
@@ -2121,13 +2442,27 @@ function speak(text, btnEl){
 
   if (_edgeBlocked) { _localSpeak(text, btnEl); return; }
   const cacheKey = _rate + '|' + text;
+  // 已预合成 → 立即播放,零等待
   if (_edgeCache.has(cacheKey)) { playUrl(_edgeCache.get(cacheKey)); return; }
+
+  // 未缓存:用“抢答式”策略——短时间内 Edge 没返回就先用系统语音发声,
+  // Edge 结果照常写入缓存,下次点击即为真人语音。避免第一次点击长时间空等。
+  let settled = false;
+  const grace = setTimeout(() => {
+    if (settled) return;
+    settled = true;
+    _localSpeak(text, btnEl);     // 先出声,不让用户干等
+  }, 450);
 
   _edgeSynth(text).then(url => {
     _edgeCache.set(cacheKey, url);
+    if (settled) return;          // 已经用系统语音发声了,这条只进缓存供下次用
+    settled = true; clearTimeout(grace);
     playUrl(url);
   }).catch(() => {
-    _edgeBlocked = true;      // network/proxy blocked → don't retry, use local from now
+    if (settled) { _edgeBlocked = true; return; }
+    settled = true; clearTimeout(grace);
+    _edgeBlocked = true;          // network/proxy blocked → don't retry, use local from now
     _localSpeak(text, btnEl);
   });
 }
@@ -2160,406 +2495,570 @@ function _localSpeak(text, btnEl){
     window.speechSynthesis.speak(u);
   } catch (e) { if(btnEl) btnEl.classList.remove('playing'); }
 }
+
+// 兼容旧调用签名 speak(text, lang, btnEl):忽略 lang,统一走 Edge 神经语音,失败回退系统语音
+function speak(text, a, b){ const btnEl = (b !== undefined) ? b : ((a && a.classList) ? a : undefined); return _speakEdge(text, btnEl); }
+
 const ico = (id, cls) => html`<svg class="ico ${cls || ''}" aria-hidden="true"><use href="#${id}"></use></svg>`;
 
-// ---------- Sentence → IPA ----------
-function sentenceIPA(sentence){
-  const dict = window.IPA_DICT || {};
-  const words = sentence.split(/\s+/).filter(Boolean);
-  const parts = words.map(w => { const clean=w.toLowerCase().replace(/[.,!?;:]/g,''); const ipa=dict[clean]; return ipa?ipa.replace(/^\/|\/$/g,''):clean; });
-  return '/' + parts.join(' ') + '/';
+
+// ---------- Sentence-part colorizer (teach English SVO word order) ----------
+// Roles: subj(主语) / verb(谓语动词) / obj(宾语·表语) / other(介词短语等)
+const _SUBJ_PRON = new Set(['i','you','he','she','it','we','they']);
+const _AUX = new Set(['am','is','are','was','were','do','does','did','can','will','would','should','must','may','have','has','had',"don't","doesn't","can't"]);
+const _PREP = new Set(['in','on','at','to','with','for','of','from','before','after','behind','under','into','about','every','across']);
+const _CONJ = new Set(['and','or','but','so','when','if','because']);
+const _BE = new Set(['am','is','are','was','were']);
+const _VERBS = new Set(['eat','eats','drink','drinks','make','makes','made','have','has','like','likes','read','reads','write','writes','wrote','run','runs','jump','jumps','swim','swims','play','plays','see','sees','feed','feeds','feel','feels','cook','cooks','taste','tastes','draw','draws','mix','shine','shines','match','matches','win','wins','lose','loses','score','scores','hear','hears','smell','smells','touch','touches','get','gets','go','goes','went','wear','wears','borrow','borrows','bring','brings','sing','sings','climb','climbs','ride','rides','help','helps','keep','keeps','give','gives','start','starts','put','puts','watch','watches','fly','flies','roar','roars','take','takes','preview','prepare','predict','study','studies','disagree','discover','dislike','paint','paints','use','uses','wash','washes','open','sit','stand','look','raise','brush','colour','stick','say','disappeared','hurts','hurt','fell','reached','won','build','builds','grows','grow','helped','climbed','swims','won','needs','need','want','wants','turn','turns','wear']);
+
+function tokenizeParts(sentence){
+  const tokens = sentence.split(/(\s+)/); // keep whitespace tokens
+  const words = tokens.filter(t=>!/^\s+$/.test(t));
+  const clean = words.map(t=>t.toLowerCase().replace(/[.,!?;:]/g,''));
+  const roles = new Array(words.length).fill('obj');
+  let verbIdx = -1;
+  for (let i=0;i<clean.length;i++){ if (_VERBS.has(clean[i])||_BE.has(clean[i])||_AUX.has(clean[i])) { verbIdx=i; break; } }
+  const firstReal = clean.findIndex(w=>w && !_CONJ.has(w));
+  if (verbIdx === -1) verbIdx = firstReal;
+  for (let i=0;i<words.length;i++){
+    const w = clean[i];
+    if (i < verbIdx){ roles[i] = _CONJ.has(w) ? 'other' : 'subj'; }
+    else if (i === verbIdx){ roles[i]='verb'; }
+    else {
+      if ((_AUX.has(w) || /ing$/.test(w)) && roles[i-1]==='verb') roles[i]='verb';
+      else if (_PREP.has(w) || _CONJ.has(w)) roles[i]='other';
+      else roles[i] = (roles[i-1]==='other') ? 'other' : 'obj';
+    }
+  }
+  // map back to full token stream (words + spaces), assign role per word token
+  let wi = 0;
+  return tokens.map(t => /^\s+$/.test(t) ? {text:t, role:null} : {text:t, role: roles[wi++]});
 }
 
-class CollApp extends LitElement {
+// render a colorized sentence as Lit template
+function colorSentence(sentence){
+  const parts = tokenizeParts(sentence);
+  return html`${parts.map(p => p.role===null
+    ? html`${p.text}`
+    : html`<span class="tk tk--${p.role}">${p.text}</span>`)}`;
+}
+
+// group consecutive same-role words into phrases (for structure readout)
+function _phrases(sentence){
+  const parts = tokenizeParts(sentence).filter(p=>p.role!==null);
+  const groups=[];
+  parts.forEach(p=>{
+    const clean=p.text.replace(/[.,!?;:]/g,'');
+    if(groups.length && groups[groups.length-1].role===p.role){ groups[groups.length-1].text+=' '+clean; }
+    else groups.push({role:p.role, text:clean});
+  });
+  return groups;
+}
+
+// auto-generate a kid-friendly "why is the sentence built this way" reading
+function explainSentence(sentence){
+  const g = _phrases(sentence);
+  const subj = g.find(x=>x.role==='subj');
+  const verb = g.find(x=>x.role==='verb');
+  const obj  = g.find(x=>x.role==='obj');
+  const other= g.filter(x=>x.role==='other').map(x=>x.text).join(' / ');
+  const isImperative = !subj && verb;
+  const isBe = verb && _BE.has(verb.text.toLowerCase().split(' ')[0]);
+  const roleName = (r)=>({subj:'主语',verb:'谓语',obj:(isBe?'表语':'宾语'),other:'状语'}[r]);
+  // word-mapped formula: 主语(She) → 谓语(likes) → 宾语(bread)
+  const formula = g.map(x=>`${roleName(x.role)}(${x.text})`).join('  →  ');
+  let note='';
+  if (isImperative){
+    note = `这是祈使句(让别人做某事),不用主语,直接用动词「${verb.text}」开头` + (obj?`,后面接动作的对象「${obj.text}」`:'') + '。';
+  } else if (isBe){
+    note = `用 be 动词「${verb.text}」把主语「${subj?subj.text:''}」和「${obj?obj.text:other}」连起来,意思是“……是/怎么样”。`;
+  } else {
+    note = `先说“谁”→ 主语「${subj?subj.text:'?'}」,再说“做什么”→ 动词「${verb?verb.text:'?'}」` + (obj?`,再说动作的对象 → 宾语「${obj.text}」`:'') + '。';
+  }
+  if (other) note += ` 结尾的「${other}」是状语(地点/时间等),英语习惯放句子后面,和中文语序不同。`;
+  return { formula, note };
+}
+
+// ---------- Root component (light DOM so global CSS applies) ----------
+class AppRoot extends LitElement {
   static properties = {
-    rate: { state: true },
-    qIndex: { state: true }, qPicked: { state: true }, qAnswered: { state: true }, qScore: { state: true }, combo: { state: true },
-    misReveal: { state: true },
-    fcIndex: { state: true }, fcFlipped: { state: true }, fcMode: { state: true }, fcMastered: { state: true }
+    tab: { state: true },        // 'scenes' | 'roots' | 'quiz' | 'sort'
+    activeScene: { state: true }, // scene id or null
+    // quiz state
+    qIndex: { state: true },
+    qScore: { state: true },
+    qAnswered: { state: true },
+    qPicked: { state: true },
+    qPool: { state: true },
+    // sort (归类拓展练习) state
+    sIndex: { state: true },
+    sScore: { state: true },
+    sAnswered: { state: true },
+    sPicked: { state: true },
+    sPool: { state: true },
   };
-  createRenderRoot(){ return this; }
-  constructor(){
+  createRenderRoot() { return this; } // render into light DOM
+
+  constructor() {
     super();
-    this.data = window.COLL_DATA;
-    this.rate = 'normal';
-    this.qIndex = 0; this.qPicked = -1; this.qAnswered = false; this.qScore = 0; this.combo = 0;
-    this.misReveal = {};
-    // ---- flashcard (active recall) ----
-    this.fcMode = 'zh2en';        // zh2en: 看中文回忆英文;en2zh: 看英文回忆中文
-    this.fcFlipped = false;       // 是否已翻面
-    this.fcIndex = 0;
-    this.fcMastered = this._loadMastered();   // Set of collocation "en" already learned
-    this._allCards = this._buildCards();       // 所有搭配闪卡
-    this._fcDeck = [];  this._buildDeck();
-    this._quiz = []; this._buildQuiz();
+    this.data = window.VOCAB_DATA;
+    this.tab = 'scenes';
+    this.activeScene = null;
+    this.qIndex = 0;
+    this.qScore = 0;
+    this.qAnswered = false;
+    this.qPicked = -1;
+    this.qPool = [];
+    this.sIndex = 0;
+    this.sScore = 0;
+    this.sAnswered = false;
+    this.sPicked = -1;
+    this.sPool = [];
   }
 
-  // ---------- flashcard helpers ----------
-  _buildCards(){
-    const cards=[]; const seen=new Set();
-    this.data.groups.forEach(g => g.items.forEach(it => {
-      if(seen.has(it.en)) return; seen.add(it.en);
-      const mn=(this.data.mnemonics||[]).find(m=>m.en===it.en);
-      cards.push({ en:it.en, ipa:it.ipa, zh:it.zh, use:it.use, ex:it.ex[0], tip:mn?mn.tip:'' });
-    }));
-    return cards;
+  // ----- theme -----
+  toggleTheme() {
+    const cur = document.documentElement.getAttribute('data-theme');
+    document.documentElement.setAttribute('data-theme', cur === 'dark' ? '' : 'dark');
+    this.requestUpdate();
   }
-  _loadMastered(){ try{ const r=localStorage.getItem('coll_mastered'); return new Set(r?JSON.parse(r):[]); }catch(e){ return new Set(); } }
-  _saveMastered(){ try{ localStorage.setItem('coll_mastered', JSON.stringify([...this.fcMastered])); }catch(e){} }
-  _buildDeck(){
-    // 优先复习"还没记住"的;全记住了就复习全部。每轮打乱顺序。
-    const todo=this._allCards.filter(c=>!this.fcMastered.has(c.en));
-    const src=todo.length?todo:this._allCards;
-    this._fcDeck=[...src].sort(()=>Math.random()-0.5);
-    this.fcIndex=0; this.fcFlipped=false;
-  }
-  fcSetMode(m){ this.fcMode=m; this.fcFlipped=false; this._buildDeck(); }
-  fcFlip(){ this.fcFlipped=!this.fcFlipped; const c=this._fcDeck[this.fcIndex]; if(this.fcFlipped&&c) speak(c.en); }
-  fcMark(known){
-    const c=this._fcDeck[this.fcIndex]; if(!c) return;
-    if(known) this.fcMastered=new Set([...this.fcMastered, c.en]);
-    else { const n=new Set(this.fcMastered); n.delete(c.en); this.fcMastered=n; }
-    this._saveMastered();
-    if(this.fcIndex<this._fcDeck.length-1){ this.fcIndex++; this.fcFlipped=false; }
-    else { this.fcIndex=this._fcDeck.length; }   // 本轮完成
-  }
-  fcRestart(){ this._buildDeck(); this.requestUpdate(); }
-  fcResetAll(){ this.fcMastered=new Set(); this._saveMastered(); this._buildDeck(); this.requestUpdate(); }
-  toggleMis(i){ this.misReveal = { ...this.misReveal, [i]: !this.misReveal[i] }; }
-  toggleTheme(){ const c=document.documentElement.getAttribute('data-theme'); document.documentElement.setAttribute('data-theme', c==='dark'?'':'dark'); this.requestUpdate(); }
-  get isDark(){ return document.documentElement.getAttribute('data-theme')==='dark'; }
-  changeRate(r){ setRate(r); this.rate = r; }
+  get isDark() { return document.documentElement.getAttribute('data-theme') === 'dark'; }
 
-  _buildQuiz(){
-    this._quiz = [...this.data.quiz].sort(()=>Math.random()-0.5).slice(0,25).map(q=>({ ...q, opts:[...q.options].sort(()=>Math.random()-0.5) }));
-    this.qIndex=0; this.qPicked=-1; this.qAnswered=false; this.qScore=0; this.combo=0;
+  setTab(t) {
+    this.tab = t;
+    if (t === 'quiz') this.buildQuiz();
+    if (t === 'sort') this.buildSort();
+    if (t !== 'scenes') this.activeScene = null;
   }
-  pickQ(i){
+
+  openScene(id) { this.activeScene = id; window.scrollTo({ top: 0, behavior: 'smooth' }); }
+  backToScenes() { this.activeScene = null; }
+
+  allWords() { return this.data.scenes.flatMap(s => s.words); }
+
+  // ----- quiz -----
+  buildQuiz() {
+    const words = this.allWords();
+    const shuffled = [...words].sort(() => Math.random() - 0.5).slice(0, 10);
+    this.qPool = shuffled.map(w => {
+      const distractors = words.filter(x => x.zh !== w.zh).sort(() => Math.random() - 0.5).slice(0, 3).map(x => x.zh);
+      const opts = [...distractors, w.zh].sort(() => Math.random() - 0.5);
+      return { word: w, opts, answer: w.zh };
+    });
+    this.qIndex = 0; this.qScore = 0; this.qAnswered = false; this.qPicked = -1;
+  }
+  pick(i) {
     if (this.qAnswered) return;
-    this.qAnswered=true; this.qPicked=i;
-    const q=this._quiz[this.qIndex];
-    if (q.opts[i]===q.answer){ this.qScore++; this.combo++; } else { this.combo=0; }
-    speak(q.sentence.replace('___', q.answer));
+    this.qAnswered = true; this.qPicked = i;
+    const q = this.qPool[this.qIndex];
+    if (q.opts[i] === q.answer) this.qScore++;
   }
-  nextQ(){ if(this.qIndex<this._quiz.length-1){ this.qIndex++; this.qPicked=-1; this.qAnswered=false; } else { this.qIndex=this._quiz.length; } }
+  nextQ() {
+    if (this.qIndex < this.qPool.length - 1) { this.qIndex++; this.qAnswered = false; this.qPicked = -1; }
+    else { this.qIndex = this.qPool.length; } // done marker
+  }
 
-  render(){
+  // ----- 归类拓展练习 (which scene does the word belong to) -----
+  buildSort() {
+    const scenes = this.data.scenes;
+    // pool of {word, zh, sceneId} drawn from BOTH main words and related words
+    const bank = [];
+    scenes.forEach(s => {
+      s.words.forEach(w => bank.push({ en: w.en, zh: w.zh, sceneId: s.id }));
+      (s.related || []).forEach(r => bank.push({ en: r.en, zh: r.zh, sceneId: s.id }));
+    });
+    const picked = [...bank].sort(() => Math.random() - 0.5).slice(0, 10);
+    this.sPool = picked.map(item => {
+      const wrong = scenes.filter(s => s.id !== item.sceneId).sort(() => Math.random() - 0.5).slice(0, 3);
+      const correct = scenes.find(s => s.id === item.sceneId);
+      const opts = [...wrong, correct].sort(() => Math.random() - 0.5);
+      return { item, opts, answer: item.sceneId };
+    });
+    this.sIndex = 0; this.sScore = 0; this.sAnswered = false; this.sPicked = -1;
+  }
+  pickSort(i) {
+    if (this.sAnswered) return;
+    this.sAnswered = true; this.sPicked = i;
+    const q = this.sPool[this.sIndex];
+    if (q.opts[i].id === q.answer) this.sScore++;
+  }
+  nextSort() {
+    if (this.sIndex < this.sPool.length - 1) { this.sIndex++; this.sAnswered = false; this.sPicked = -1; }
+    else { this.sIndex = this.sPool.length; }
+  }
+
+  // ================= renders =================
+  render() {
     return html`
       <div class="app">
         ${this.renderBar()}
-        <main class="wrap" style="flex:1;width:100%;">
-          ${this.renderHero()}
-          ${this.renderNav()}
-          ${this.renderHowto()}
-          ${this.renderFlash()}
-          ${this.renderPatterns()}
-          ${this.data.groups.map(g=>this.renderGroup(g))}
-          ${this.renderMistakes()}
-          ${this.renderQuiz()}
+        <main class="wrap" style="flex:1; width:100%;">
+          ${this.tab === 'scenes' ? (this.activeScene ? this.renderWordList() : this.renderScenes()) : ''}
+          ${this.tab === 'roots' ? this.renderRoots() : ''}
+          ${this.tab === 'quiz' ? this.renderQuiz() : ''}
+          ${this.tab === 'sort' ? this.renderSort() : ''}
         </main>
-        <footer class="foot wrap">北京小学英语 · 固定搭配专题 · 词与词固定“绑”在一起用 · 点 ${ico('ic-volume','ico--xs')} 听发音</footer>
+        <footer class="foot wrap">北京小学英语 · 全量单词覆盖复习 · 点击 ${ico('ic-volume','ico--xs')} 图标可听单词与例句发音</footer>
       </div>`;
   }
 
-  renderBar(){
+  renderBar() {
     return html`
       <header class="appbar">
         <div class="wrap appbar__inner">
           <div class="brand">
-            <div class="brand__mark">${ico('ic-link-2','ico--md')}</div>
-            <div><div class="brand__title">固定搭配学习营</div><div class="brand__sub">Fixed Collocations · Beijing Primary</div></div>
+            <div class="brand__mark">${ico('ic-book-open', 'ico--md')}</div>
+            <div class="brand__txt">
+              <span class="brand__title">单词复习营</span>
+              <span class="brand__sub">Beijing Primary English · Vocabulary</span>
+            </div>
           </div>
           <div class="appbar__spacer"></div>
-          <div class="rate-ctrl" title="调节朗读语速">
-            ${ico('ic-gauge','ico--sm')}
-            <div class="rate-seg">${['slow','normal','fast'].map(r => html`<button class="rate-opt ${this.rate===r?'rate-opt--on':''}" @click=${()=>this.changeRate(r)}>${RATE_LEVELS[r].label}</button>`)}</div>
-          </div>
-          <button class="iconbtn" title="切换主题" @click=${()=>this.toggleTheme()}>${ico(this.isDark?'ic-sun':'ic-moon','ico--sm')}</button>
+          <nav class="tabs" role="tablist">
+            <button class="tab" role="tab" aria-selected=${this.tab==='scenes'} @click=${()=>this.setTab('scenes')}>
+              ${ico('ic-grid','ico--sm')}<span class="tab__txt">场景单词</span>
+            </button>
+            <button class="tab" role="tab" aria-selected=${this.tab==='roots'} @click=${()=>this.setTab('roots')}>
+              ${ico('ic-git-branch','ico--sm')}<span class="tab__txt">词根词缀</span>
+            </button>
+            <button class="tab" role="tab" aria-selected=${this.tab==='quiz'} @click=${()=>this.setTab('quiz')}>
+              ${ico('ic-target','ico--sm')}<span class="tab__txt">闯关测验</span>
+            </button>
+            <button class="tab" role="tab" aria-selected=${this.tab==='sort'} @click=${()=>this.setTab('sort')}>
+              ${ico('ic-layers','ico--sm')}<span class="tab__txt">拓展练习</span>
+            </button>
+          </nav>
+          <button class="iconbtn" title="切换主题" @click=${()=>this.toggleTheme()}>
+            ${ico(this.isDark ? 'ic-sun' : 'ic-moon','ico--sm')}
+          </button>
         </div>
       </header>`;
   }
 
-  renderHero(){
+  sentExplain(sentence) {
+    const e = explainSentence(sentence);
     return html`
-      <section class="hero">
-        <h1>固定搭配:词和词“交朋友”</h1>
-        <p>有些词天生就爱在一起用,合成一个固定意思,不能拆开、也不能随便换词——这就是“固定搭配”。比如“听音乐”要说 <b>listen to</b> music,少了 to 就错了。记住整块搭配,英语才地道。</p>
-        <div class="hero__demo">
-          listen <span class="prep-hl">to</span> music
-          <button class="speak" @click=${e=>speak("listen to music",e.currentTarget)}>${ico('ic-volume','ico--sm')}</button>
-        </div>
-      </section>`;
-  }
-
-  renderNav(){
-    return html`
-      <nav class="groupnav">
-        <a href="#flash">${ico('ic-layers','ico--xs')} 闪卡记忆</a>
-        <a href="#patterns">${ico('ic-grid','ico--xs')} 找规律记</a>
-        ${this.data.groups.map(g => html`<a href="#g-${g.id}">${ico(g.icon,'ico--xs')} ${g.name}</a>`)}
-        <a href="#mistakes">${ico('ic-alert-circle','ico--xs')} 易错提醒</a>
-        <a href="#quiz">${ico('ic-target','ico--xs')} 练习</a>
-      </nav>`;
-  }
-
-  // ============ 记忆方法说明 ============
-  renderHowto(){
-    const steps=[
-      { ic:'ic-grid',  t:'① 找规律', d:'先看“找规律记”——用同一个小词(of/for/at…)的搭配一串一串记,不用一个个死背。' },
-      { ic:'ic-layers',t:'② 闪卡回忆', d:'看中文,自己在心里说出英文,再翻面对照。“想不起来”正是记住它的关键一步。' },
-      { ic:'ic-repeat',t:'③ 重复筛选', d:'记住的标“我会了”,没记住的自动留到下一轮反复练,直到全部清空。' },
-      { ic:'ic-target',t:'④ 做题巩固', d:'最后到“练习”里用一用,在句子里选对小词,真正变成自己的。' }
-    ];
-    return html`
-      <section class="sec" id="howto">
-        <div class="sec__head">
-          <div class="sec__icon">${ico('ic-brain','ico--md')}</div>
-          <div><div class="sec__title">怎么才能记得住?</div><div class="sec__sub">死记硬背记不住。按下面 4 步走,靠“规律 + 主动回忆 + 反复筛选”把搭配印进脑子里。</div></div>
-        </div>
-        <div class="howto-grid">
-          ${steps.map(s=>html`
-            <div class="howto-card">
-              <div class="howto-card__ic">${ico(s.ic,'ico--md')}</div>
-              <div class="howto-card__t">${s.t}</div>
-              <div class="howto-card__d">${s.d}</div>
-            </div>`)}
-        </div>
-      </section>`;
-  }
-
-  // ============ 闪卡:主动回忆 ============
-  renderFlash(){
-    const total=this._allCards.length, done=this.fcMastered.size, pct=Math.round(done/total*100);
-    return html`
-      <section class="sec" id="flash">
-        <div class="sec__head">
-          <div class="sec__icon">${ico('ic-layers','ico--md')}</div>
-          <div><div class="sec__title">闪卡记忆 · 主动回忆</div><div class="sec__sub">看着提示先自己“回忆”,再翻面对照。记住的标“我会了”,它就不再出现;没记住的会反复出现,直到全部记牢。</div></div>
-        </div>
-        <div class="fc-topbar">
-          <div class="fc-mode">
-            <button class="fc-mode__opt ${this.fcMode==='zh2en'?'fc-mode__opt--on':''}" @click=${()=>this.fcSetMode('zh2en')}>看中文 → 想英文</button>
-            <button class="fc-mode__opt ${this.fcMode==='en2zh'?'fc-mode__opt--on':''}" @click=${()=>this.fcSetMode('en2zh')}>看英文 → 想中文</button>
-          </div>
-          <div class="fc-mastery">
-            ${ico('ic-award','ico--sm')} 已记住 <b>${done}</b> / ${total}
-            <div class="fc-bar"><div class="fc-bar__fill" style="width:${pct}%"></div></div>
-            <button class="fc-reset" title="清空记忆进度,重新开始" @click=${()=>this.fcResetAll()}>${ico('ic-rotate-ccw','ico--xs')} 重置</button>
-          </div>
-        </div>
-        ${this._renderFcBody()}
-      </section>`;
-  }
-  _renderFcBody(){
-    if(this.fcIndex>=this._fcDeck.length){
-      const allDone=this.fcMastered.size>=this._allCards.length;
-      return html`
-        <div class="fc-card fc-done">
-          ${ico(allDone?'ic-trophy':'ic-check-circle-2','ico--3xl')}
-          <div class="fc-done__t">${allDone?'太棒了!全部搭配都记住了 🎉':'这一轮完成!'}</div>
-          <p style="color:var(--s-text-secondary);margin:var(--g-sp-2) 0">
-            ${allDone?'可以到下面的“练习”里检验一下,或点重置再全部复习一遍。':'还有没记牢的搭配,再来一轮巩固一下吧。'}
-          </p>
-          <div class="fc-done__btns">
-            ${!allDone?html`<button class="btn btn--primary" @click=${()=>this.fcRestart()}>${ico('ic-repeat','ico--sm')} 复习没记住的</button>`:''}
-            <button class="btn" @click=${()=>this.fcResetAll()}>${ico('ic-rotate-ccw','ico--sm')} 全部重来</button>
-          </div>
-        </div>`;
-    }
-    const c=this._fcDeck[this.fcIndex]; const zh2en=this.fcMode==='zh2en';
-    const front = zh2en ? html`<div class="fc-face__hint">中文提示</div><div class="fc-face__big">${c.zh}</div><div class="fc-face__mini">想一想:英文怎么说?</div>`
-                        : html`<div class="fc-face__hint">英文搭配</div><div class="fc-face__big fc-face__big--en">${c.en}</div><div class="fc-face__mini">想一想:中文是什么意思?</div>`;
-    return html`
-      <div class="fc-wrap">
-        <div class="fc-count">第 ${this.fcIndex+1} / ${this._fcDeck.length} 张 · 本轮</div>
-        <div class="fc-card ${this.fcFlipped?'fc-card--flipped':''}" @click=${()=>{ if(!this.fcFlipped) this.fcFlip(); }}>
-          ${!this.fcFlipped ? html`
-            <div class="fc-face fc-face--front">
-              ${front}
-              <button class="btn btn--primary fc-flipbtn" @click=${e=>{e.stopPropagation();this.fcFlip();}}>${ico('ic-repeat','ico--sm')} 翻面看答案</button>
-            </div>
-          ` : html`
-            <div class="fc-face fc-face--back">
-              <div class="fc-answer">
-                <span class="fc-answer__en">${c.en}</span>
-                <button class="speak speak--sm" @click=${e=>{e.stopPropagation();speak(c.en,e.currentTarget);}}>${ico('ic-volume','ico--xs')}</button>
-              </div>
-              <div class="fc-answer__ipa">${c.ipa}</div>
-              <div class="fc-answer__zh">${c.zh}</div>
-              ${c.tip?html`<div class="fc-answer__tip">${ico('ic-lightbulb','ico--xs')} ${c.tip}</div>`:''}
-              <div class="fc-answer__ex">
-                <span>${this._hl(c.ex.en, c.en)}</span>
-                <button class="speak speak--sm" @click=${e=>{e.stopPropagation();speak(c.ex.en,e.currentTarget);}}>${ico('ic-volume','ico--xs')}</button>
-                <div class="fc-answer__exzh">${c.ex.zh}</div>
-              </div>
-            </div>
-          `}
-        </div>
-        ${this.fcFlipped ? html`
-          <div class="fc-judge">
-            <button class="fc-judge__btn fc-judge__btn--no" @click=${()=>this.fcMark(false)}>${ico('ic-rotate-ccw','ico--sm')} 还没记住</button>
-            <button class="fc-judge__btn fc-judge__btn--yes" @click=${()=>this.fcMark(true)}>${ico('ic-check-circle-2','ico--sm')} 我会了</button>
-          </div>
-        ` : html`<div class="fc-tiphint">${ico('ic-info','ico--xs')} 先在心里说出答案,再翻面 —— 这样记得最牢</div>`}
+      <div class="sent-explain">
+        <div class="sent-explain__formula">${e.formula}</div>
+        <p class="sent-explain__note">${e.note}</p>
       </div>`;
   }
 
-  // ============ 找规律:按小词归类 ============
-  renderPatterns(){
+  sentLegend() {
     return html`
-      <section class="sec" id="patterns">
-        <div class="sec__head">
-          <div class="sec__icon">${ico('ic-grid','ico--md')}</div>
-          <div><div class="sec__title">找规律记 · 按“小词”归类</div><div class="sec__sub">别一个个死背!很多搭配共用同一个小词。抓住每个小词的“感觉”,一串一串地记。</div></div>
-        </div>
-        <div class="pat-grid">
-          ${this.data.patterns.map(p=>html`
-            <div class="pat-card pat-card--${p.color}">
-              <div class="pat-card__key">${p.key}</div>
-              <div class="pat-card__tip">${p.tip}</div>
-              <div class="pat-card__items">
-                ${p.items.map(it=>html`<span class="pat-chip">${it}</span>`)}
-              </div>
-            </div>`)}
-        </div>
-      </section>`;
+      <div class="sent-legend">
+        <span class="sent-legend__label">${ico('ic-palette','ico--xs')} 例句配色 · 看懂句子结构:</span>
+        <span class="sent-legend__item"><span class="sent-legend__dot sent-legend__dot--subj"></span>主语(谁)</span>
+        <span class="sent-legend__item"><span class="sent-legend__dot sent-legend__dot--verb"></span>谓语动词(做什么)</span>
+        <span class="sent-legend__item"><span class="sent-legend__dot sent-legend__dot--obj"></span>宾语/表语(什么)</span>
+        <span class="sent-legend__item"><span class="sent-legend__dot sent-legend__dot--other"></span>其他(地点/时间等)</span>
+      </div>`;
   }
 
-  renderGroup(g){
+  renderScenes() {
+    const d = this.data;
     return html`
-      <section class="sec" id="g-${g.id}">
-        <div class="sec__head">
-          <div class="sec__icon">${ico(g.icon,'ico--md')}</div>
-          <div><div class="sec__title">${g.name} <span style="color:var(--s-text-muted);font-weight:400;font-size:var(--s-fs-body)">${g.en}</span></div></div>
+      <section>
+        <div class="section-head">
+          <h1>选择一个新场景开始复习</h1>
+          <p>下面是本轮新增的 ${d.scenes.length} 个主题场景。已学过的场景已标注完成,可随时回顾。</p>
+          <div class="learned-row">
+            ${d.learnedScenes.map(s => html`
+              <span class="chip">${ico('ic-check','ico--xs')} ${s.name} <span style="opacity:.7">${s.en}</span></span>`)}
+          </div>
         </div>
-        <p class="sec__intro">${g.intro}</p>
-        <div class="prep-grid">
-          ${g.items.map(it => html`
-            <div class="prep-card">
-              <div class="prep-card__head">
+        <div class="scene-grid">
+          ${d.scenes.map(s => html`
+            <button class="scene-card" @click=${()=>this.openScene(s.id)}>
+              <div class="scene-card__top">
+                <div class="scene-card__icon">${ico(s.icon,'ico--lg')}</div>
                 <div>
-                  <div class="prep-card__word">${it.en}</div>
-                  <div class="prep-card__ipa">${it.ipa}</div>
+                  <div class="scene-card__name">${s.name}</div>
+                  <div class="scene-card__en">${s.en}</div>
                 </div>
-                <button class="speak" title="朗读搭配" @click=${e=>speak(it.en,e.currentTarget)}>${ico('ic-volume','ico--sm')}</button>
               </div>
-              <div class="prep-card__zh">${it.zh}</div>
-              <div class="prep-card__use">${it.use}</div>
-              <div class="prep-card__divider"></div>
-              ${it.ex.map(x => html`
-                <div class="prep-ex">
-                  <div class="prep-ex__en"><span>${this._hl(x.en, it.en)}</span>
-                    <button class="speak speak--sm" title="朗读例句" @click=${e=>speak(x.en,e.currentTarget)}>${ico('ic-volume','ico--xs')}</button>
+              <div class="scene-card__meta">
+                <span class="scene-card__count">${s.words.length} 个单词</span>
+                <span class="scene-card__go">开始 ${ico('ic-arrow-right','ico--xs')}</span>
+              </div>
+            </button>`)}
+        </div>
+      </section>`;
+  }
+
+  renderWordList() {
+    const s = this.data.scenes.find(x => x.id === this.activeScene);
+    if (!s) return html``;
+    return html`
+      <section>
+        <button class="crumb" @click=${()=>this.backToScenes()}>${ico('ic-chevron-left','ico--sm')} 返回场景</button>
+        <div class="toolbar">
+          <div class="toolbar__title">${ico(s.icon,'ico--md')} ${s.name} <span style="color:var(--s-text-muted);font-weight:400;font-size:var(--s-fs-body)">${s.en}</span></div>
+          <div class="toolbar__spacer"></div>
+          <button class="btn btn--ghost" @click=${()=>this.readAll(s)}>${ico('ic-volume','ico--sm')} 顺序朗读</button>
+        </div>
+        ${this.sentLegend()}
+        <div class="card-grid">
+          ${s.words.map((w, i) => this.renderWordCard(w, s.id + '-' + i))}
+        </div>
+        ${s.related && s.related.length ? html`
+          <div class="related-block">
+            <div class="related-head">
+              ${ico('ic-sparkles','ico--sm')}
+              <div>
+                <div class="related-title">关联拓展词</div>
+                <div class="related-sub">和「${s.name}」相关,顺便一起记,词汇量更大。点 ${ico('ic-volume','ico--xs')} 可发音。</div>
+              </div>
+            </div>
+            <div class="related-grid">
+              ${s.related.map(r => html`
+                <div class="related-card">
+                  <div class="related-card__head">
+                    <div class="related-card__title">
+                      <div class="related-card__word">${r.en} <span class="related-card__ipa">${r.ipa}</span></div>
+                      <div class="related-card__zh">${r.zh}</div>
+                    </div>
+                    <button class="speak speak--sm" title="朗读单词" @click=${(e)=>speak(r.en,'en-US',e.currentTarget)}>${ico('ic-volume','ico--xs')}</button>
                   </div>
-                  <div class="prep-ex__ipa">${ico('ic-volume','ico--xs')} ${sentenceIPA(x.en)}</div>
-                  <div class="prep-ex__zh">${x.zh}</div>
+                  <div class="related-card__link">${ico('ic-link-2','ico--xs')} ${r.link}</div>
+                  <div class="related-card__ex">
+                    <div class="related-card__ex-en">
+                      <span>${colorSentence(r.example)}</span>
+                      <button class="speak speak--sm" title="朗读例句" @click=${(e)=>speak(r.example,'en-US',e.currentTarget)}>${ico('ic-volume','ico--xs')}</button>
+                    </div>
+                    <div class="related-card__ex-zh">${r.exampleZh}</div>
+                    ${this.sentExplain(r.example)}
+                  </div>
                 </div>`)}
-            </div>`)}
-        </div>
+            </div>
+          </div>` : ''}
       </section>`;
   }
 
-  // highlight the collocation phrase inside an example sentence
-  _hl(sentence, phrase){
-    const words = phrase.split(/\s+/);
-    const first = words[0].replace(/[^a-z]/ig,'');
-    // match the phrase words in order, allowing inflection on first/verb by prefix
-    const re = new RegExp('\\b(' + phrase.replace(/[.*+?^${}()|[\]\\]/g,'\\$&') + ')\\b', 'i');
-    if (re.test(sentence)){
-      const parts = sentence.split(re);
-      return html`${parts.map((seg,i) => re.test(seg) && i%2===1 ? html`<span class="prep-hl" style="padding:0 4px;border-radius:4px;background:var(--s-brand);color:var(--s-on-brand)">${seg}</span>` : html`${seg}`)}`;
-    }
-    return html`${sentence}`;
+  readAll(scene) {
+    // 依次用 Edge 神经语音朗读该场景所有单词(上一条播完再播下一条)
+    const list = scene.words.map(w => w.en);
+    let i = 0;
+    const step = () => {
+      if (i >= list.length) return;
+      const text = list[i++];
+      try { if (window.__ttsAudio) { window.__ttsAudio.onended = null; } } catch(e){}
+      speak(text);
+      // 用音频结束事件驱动下一条;若无音频(本地兜底)则用估算间隔
+      const a = window.__ttsAudio;
+      if (a) { a.onended = () => setTimeout(step, 120); a.onerror = () => setTimeout(step, 700); }
+      else { setTimeout(step, 900); }
+    };
+    step();
   }
 
-  renderMistakes(){
+  renderWordCard(w, key) {
     return html`
-      <section class="sec" id="mistakes">
-        <div class="sec__head">
-          <div class="sec__icon">${ico('ic-alert-circle','ico--md')}</div>
-          <div><div class="sec__title">易错提醒 · 找出错在哪</div><div class="sec__sub">先看错句想一想:哪里漏了小词?想好再点“看正确答案”。</div></div>
-        </div>
-        <div class="mis-list">
-          ${this.data.mistakes.map((m,i) => html`
-            <div class="mis-card ${this.misReveal[i]?'mis-card--open':''}">
-              <div class="mis-wrong">${ico('ic-x-circle','ico--sm')} <span>${m.wrong}</span></div>
-              <div class="mis-think">${ico('ic-message-square','ico--xs')} 要表达:${m.zh}</div>
-              ${this.misReveal[i] ? html`
-                <div class="mis-right">${ico('ic-check-circle-2','ico--sm')} <span>${m.right}</span>
-                  <button class="speak speak--sm" style="width:32px;height:32px" @click=${e=>speak(m.right,e.currentTarget)}>${ico('ic-volume','ico--xs')}</button>
-                </div>
-                <div class="mis-why">${ico('ic-lightbulb','ico--xs')} ${m.why}</div>
-              ` : html`
-                <button class="btn mis-reveal" @click=${()=>this.toggleMis(i)}>${ico('ic-eye','ico--sm')} 看正确答案</button>
-              `}
-            </div>`)}
-        </div>
-      </section>`;
-  }
-
-  renderQuiz(){
-    return html`
-      <section class="sec" id="quiz">
-        <div class="sec__head">
-          <div class="sec__icon">${ico('ic-target','ico--md')}</div>
-          <div><div class="sec__title">固定搭配练习</div><div class="sec__sub">题库 60 题,每轮随机抽 25 题。看句子和中文,选出正确的搭配词。</div></div>
-        </div>
-        ${this._renderQuizBody()}
-      </section>`;
-  }
-  _renderQuizBody(){
-    if (this.qIndex >= this._quiz.length){
-      return html`
-        <div class="quiz-card quiz-done">
-          ${ico('ic-trophy','ico--3xl')}
-          <div class="quiz-done__score">${this.qScore} / ${this._quiz.length}</div>
-          <p style="color:var(--s-text-secondary)">${this.qScore>=20?'固定搭配掌握得很棒!':this.qScore>=13?'不错,再看看易错提醒就更牢了!':'回到上面多读几遍搭配和例句吧!'}</p>
-          <button class="btn btn--primary" style="margin-top:var(--g-sp-4)" @click=${()=>{this._buildQuiz(); this.requestUpdate();}}>${ico('ic-refresh','ico--sm')} 再来一轮</button>
-        </div>`;
-    }
-    const q=this._quiz[this.qIndex]; const pct=Math.round((this.qIndex/this._quiz.length)*100);
-    const full=q.sentence.replace('___', q.answer); const parts=q.sentence.split('___');
-    return html`
-      <div class="quiz-card">
-        <div class="quiz-progress">
-          <span>第 ${this.qIndex+1} / ${this._quiz.length} 题</span>
-          <span class="quiz-status">${this.combo>=2?html`<span class="combo">🔥 连对 ${this.combo}</span>`:''} 得分 ${this.qScore}</span>
-        </div>
-        <div class="quiz-bar"><div class="quiz-bar__fill" style="width:${pct}%"></div></div>
-        <div class="quiz-q" style="font-size:var(--s-fs-h3)">${parts[0]}<span class="quiz-q__blank">${this.qAnswered?q.answer:'?'}</span>${parts[1]||''}
-          <button class="speak" title="朗读整句" @click=${e=>speak(full,e.currentTarget)}>${ico('ic-volume','ico--sm')}</button>
-        </div>
-        <div class="quiz-q__zh">${q.zh}</div>
-        <div class="quiz-opts">
-          ${q.opts.map((opt,i)=>{
-            let cls=''; if(this.qAnswered){ if(opt===q.answer) cls='correct'; else if(i===this.qPicked) cls='wrong'; }
-            return html`<button class="quiz-opt ${cls}" ?disabled=${this.qAnswered} @click=${()=>this.pickQ(i)}>${opt}</button>`;
-          })}
-        </div>
-        ${this.qAnswered ? html`
-          <div class="quiz-feedback">
-            ${q.opts[this.qPicked]===q.answer ? html`<span style="color:var(--g-green-700);font-weight:600">${ico('ic-check-circle-2','ico--sm')} 正确!</span>` : html`<span style="color:var(--g-red-700);font-weight:600">${ico('ic-x-circle','ico--sm')} 正确答案:${q.answer}</span>`}
-            <div class="prep-ex__ipa" style="justify-content:center">${ico('ic-volume','ico--xs')} ${sentenceIPA(full)}</div>
+      <div class="wcard" data-key=${key}>
+        <div class="wcard__head">
+          <div class="wcard__title">
+            <div class="wcard__en">${w.en}</div>
+            <div class="wcard__ipa">${w.ipa}</div>
           </div>
-          <div class="quiz-next"><button class="btn btn--primary" @click=${()=>this.nextQ()}>${this.qIndex<this._quiz.length-1?'下一题':'查看结果'} ${ico('ic-arrow-right','ico--sm')}</button></div>
-        ` : ''}
+          <button class="speak" title="朗读单词" @click=${(e)=>speak(w.en,'en-US',e.currentTarget)}>
+            ${ico('ic-volume','ico--sm')}
+          </button>
+        </div>
+        <div class="wcard__zh">${w.zh}</div>
+        <div class="wcard__divider"></div>
+        <div class="wcard__ex">
+          <div class="wcard__ex-en">
+            <span>${colorSentence(w.example)}</span>
+            <button class="speak speak--sm" title="朗读例句" @click=${(e)=>speak(w.example,'en-US',e.currentTarget)}>
+              ${ico('ic-volume','ico--xs')}
+            </button>
+          </div>
+          <div class="wcard__ex-zh">${w.exampleZh}</div>
+          ${this.sentExplain(w.example)}
+        </div>
       </div>`;
   }
 
-  _collectSentences(){
-    const set = new Set();
-    this.data.groups.forEach(g => g.items.forEach(it => it.ex.forEach(x => set.add(x.en))));
-    this.data.mistakes.forEach(m => set.add(m.right));
-    this.data.quiz.forEach(q => set.add(q.sentence.replace('___', q.answer)));
-    return [...set];
+  renderRoots() {
+    return html`
+      <section class="root-list">
+        <div class="section-head">
+          <h1>词根词缀讲透</h1>
+          <p>先弄懂每个词缀“是什么意思、从哪来、怎么记”,再看例词,就不容易忘。</p>
+        </div>
+        ${this.sentLegend()}
+        ${this.data.roots.map(r => html`
+          <div class="root-panel">
+            <div class="root-panel__head">
+              <span class="root-badge">${r.name}</span>
+              <span class="root-type">${r.type}</span>
+              <span class="root-panel__note">${r.note}</span>
+              ${r.status === 'new'
+                ? html`<span class="root-tag root-tag--new">${ico('ic-sparkles','ico--xs')} 新学</span>`
+                : html`<span class="root-tag">${ico('ic-check','ico--xs')} 已学</span>`}
+            </div>
+
+            <!-- 讲透区:意思 / 来源 / 记忆窍门 / 规律 -->
+            <div class="root-explain">
+              <div class="explain-row explain-row--hero">
+                <span class="explain-ic">${ico('ic-lightbulb','ico--sm')}</span>
+                <div><span class="explain-label">意思</span><p>${r.meaning}</p></div>
+              </div>
+              <div class="explain-row">
+                <span class="explain-ic">${ico('ic-book-open','ico--sm')}</span>
+                <div><span class="explain-label">来源</span><p>${r.origin}</p></div>
+              </div>
+              <div class="explain-row">
+                <span class="explain-ic">${ico('ic-brain','ico--sm')}</span>
+                <div><span class="explain-label">记忆窍门</span><p>${r.tip}</p></div>
+              </div>
+              <div class="explain-row explain-row--pattern">
+                <span class="explain-ic">${ico('ic-git-branch','ico--sm')}</span>
+                <div><span class="explain-label">构词规律</span><p>${r.pattern}</p></div>
+              </div>
+            </div>
+
+            <div class="root-items-label">例词 · 看拆解就懂 (${r.items.length} 个)</div>
+            <div class="root-items">
+              ${r.items.map(it => html`
+                <div class="root-item">
+                  <div class="root-item__top">
+                    <div>
+                      <div class="root-item__word">${it.word}</div>
+                      <div class="root-item__ipa">${it.ipa}</div>
+                    </div>
+                    <button class="speak speak--sm" title="朗读" @click=${(e)=>speak(it.word,'en-US',e.currentTarget)}>${ico('ic-volume','ico--xs')}</button>
+                  </div>
+                  <div class="root-item__from">${it.from}</div>
+                  <div class="root-item__zh">${it.zh}</div>
+                  <div class="root-item__ex">${colorSentence(it.example)}</div>
+                  ${this.sentExplain(it.example)}
+                </div>`)}
+            </div>
+          </div>`)}
+      </section>`;
   }
-  async firstUpdated(){
+
+  renderQuiz() {
+    if (this.qPool.length === 0) return html``;
+    if (this.qIndex >= this.qPool.length) {
+      return html`
+        <section class="quiz-wrap">
+          <div class="section-head"><h1>闯关测验</h1></div>
+          <div class="quiz-card quiz-done">
+            ${ico('ic-trophy','ico--3xl')}
+            <div class="quiz-done__score">${this.qScore} / ${this.qPool.length}</div>
+            <p style="color:var(--s-text-secondary)">${this.qScore >= 8 ? '太棒了,你掌握得很好!' : this.qScore >= 5 ? '不错,再复习一下就更牢啦!' : '别灰心,多看几遍卡片再来!'}</p>
+            <button class="btn btn--primary" style="margin-top:var(--g-sp-4)" @click=${()=>this.buildQuiz()}>${ico('ic-refresh','ico--sm')} 再来一轮</button>
+          </div>
+        </section>`;
+    }
+    const q = this.qPool[this.qIndex];
+    const pct = Math.round((this.qIndex / this.qPool.length) * 100);
+    return html`
+      <section class="quiz-wrap">
+        <div class="section-head"><h1>闯关测验</h1><p>看单词,选出正确的中文意思。</p></div>
+        <div class="quiz-card">
+          <div class="quiz-progress"><span>第 ${this.qIndex + 1} / ${this.qPool.length} 题</span><span>得分 ${this.qScore}</span></div>
+          <div class="quiz-bar"><div class="quiz-bar__fill" style="width:${pct}%"></div></div>
+          <div class="quiz-q">
+            <div class="quiz-q__en">${q.word.en}
+              <button class="speak" style="vertical-align:middle" title="朗读" @click=${(e)=>speak(q.word.en,'en-US',e.currentTarget)}>${ico('ic-volume','ico--sm')}</button>
+            </div>
+            <div class="quiz-q__ipa">${q.word.ipa}</div>
+          </div>
+          <div class="quiz-opts">
+            ${q.opts.map((opt, i) => {
+              let cls = '';
+              if (this.qAnswered) {
+                if (opt === q.answer) cls = 'correct';
+                else if (i === this.qPicked) cls = 'wrong';
+              }
+              return html`
+                <button class="quiz-opt ${cls}" ?disabled=${this.qAnswered} @click=${()=>this.pick(i)}>
+                  ${opt}
+                  ${cls === 'correct' ? ico('ic-check-circle-2','ico--sm') : cls === 'wrong' ? ico('ic-x-circle','ico--sm') : ''}
+                </button>`;
+            })}
+          </div>
+          ${this.qAnswered ? html`
+            <button class="btn btn--primary" style="margin-top:var(--g-sp-6);width:100%;justify-content:center" @click=${()=>this.nextQ()}>
+              ${this.qIndex < this.qPool.length - 1 ? '下一题' : '查看结果'} ${ico('ic-arrow-right','ico--sm')}
+            </button>` : ''}
+        </div>
+      </section>`;
+  }
+
+  renderSort() {
+    if (this.sPool.length === 0) return html``;
+    if (this.sIndex >= this.sPool.length) {
+      return html`
+        <section class="quiz-wrap">
+          <div class="section-head"><h1>拓展练习 · 词群归类</h1></div>
+          <div class="quiz-card quiz-done">
+            ${ico('ic-layers','ico--3xl')}
+            <div class="quiz-done__score">${this.sScore} / ${this.sPool.length}</div>
+            <p style="color:var(--s-text-secondary)">${this.sScore >= 8 ? '词群分得很清楚,棒!' : this.sScore >= 5 ? '不错,再多看看关联拓展词吧!' : '回到场景里看看每个词属于哪一类哦!'}</p>
+            <button class="btn btn--primary" style="margin-top:var(--g-sp-4)" @click=${()=>this.buildSort()}>${ico('ic-refresh','ico--sm')} 再来一轮</button>
+          </div>
+        </section>`;
+    }
+    const q = this.sPool[this.sIndex];
+    const pct = Math.round((this.sIndex / this.sPool.length) * 100);
+    return html`
+      <section class="quiz-wrap">
+        <div class="section-head"><h1>拓展练习 · 词群归类</h1><p>看单词,判断它属于哪个场景类别 —— 巩固「关联词群」记忆。</p></div>
+        <div class="quiz-card">
+          <div class="quiz-progress"><span>第 ${this.sIndex + 1} / ${this.sPool.length} 题</span><span>得分 ${this.sScore}</span></div>
+          <div class="quiz-bar"><div class="quiz-bar__fill" style="width:${pct}%"></div></div>
+          <div class="quiz-q">
+            <div class="quiz-q__en">${q.item.en}
+              <button class="speak" style="vertical-align:middle" title="朗读" @click=${(e)=>speak(q.item.en,'en-US',e.currentTarget)}>${ico('ic-volume','ico--sm')}</button>
+            </div>
+            <div class="quiz-q__ipa">${q.item.zh}</div>
+          </div>
+          <div class="quiz-opts">
+            ${q.opts.map((opt, i) => {
+              let cls = '';
+              if (this.sAnswered) {
+                if (opt.id === q.answer) cls = 'correct';
+                else if (i === this.sPicked) cls = 'wrong';
+              }
+              return html`
+                <button class="quiz-opt ${cls}" ?disabled=${this.sAnswered} @click=${()=>this.pickSort(i)}>
+                  <span style="display:inline-flex;align-items:center;gap:var(--g-sp-2)">${ico(opt.icon,'ico--sm')} ${opt.name}</span>
+                  ${cls === 'correct' ? ico('ic-check-circle-2','ico--sm') : cls === 'wrong' ? ico('ic-x-circle','ico--sm') : ''}
+                </button>`;
+            })}
+          </div>
+          ${this.sAnswered ? html`
+            <button class="btn btn--primary" style="margin-top:var(--g-sp-6);width:100%;justify-content:center" @click=${()=>this.nextSort()}>
+              ${this.sIndex < this.sPool.length - 1 ? '下一题' : '查看结果'} ${ico('ic-arrow-right','ico--sm')}
+            </button>` : ''}
+        </div>
+      </section>`;
+  }
+
+  async firstUpdated() {
     await this.updateComplete;
-    const b=document.getElementById('boot'); if(b) b.remove();
-    try { const list=this._collectSentences(); window.__allSentences=list; if(typeof _prewarm==='function') _prewarm(list); } catch(e){}
+    const b = document.getElementById('boot');
+    if (b) b.remove();
+    // 预连接 + 预合成:让第一次点击发音就能秒响
+    try {
+      const set = new Set();
+      (this.data.scenes || []).forEach(s => {
+        (s.words || []).forEach(w => { set.add(w.en); if (w.example) set.add(w.example); });
+        (s.related || []).forEach(r => { set.add(r.en); if (r.example) set.add(r.example); });
+      });
+      const list = [...set];
+      window.__allSentences = list;
+      if (typeof _connect === 'function') _connect();      // 预热 WebSocket 连接
+      if (typeof _prewarm === 'function') _prewarm(list);   // 后台预合成
+    } catch (e) {}
   }
+
 }
-customElements.define('coll-app', CollApp);
+customElements.define('app-root', AppRoot);
 
 </script>
 </body>
