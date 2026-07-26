@@ -13,7 +13,6 @@
 | 英语时态学习专题 | https://beupgo.github.io/english-tenses.html | 2026-07-23 10:56 |
 | 英语句子构成专题 | https://beupgo.github.io/english-sentence-structure.html | 2026-07-23 06:04 |
 | 英语介词学习专题 | https://beupgo.github.io/english-prepositions.html | 2026-07-23 03:24 |
-| 小学英语固定搭配大全（含发音·例句） | https://beupgo.github.io/collocations.html | 2026-07-19 14:15 |
 | 小学英语词根词缀乐园 · 拆词记单词 | https://beupgo.github.io/word-roots.html | 2026-07-19 13:27 |
 | 小学英语单词乐园 · 时间 · 交通 · 天气 | https://beupgo.github.io/word-learning.html | 2026-07-19 13:27 |
 | 英语组句魔法 · 句子小火车 \| 小学英语 | https://beupgo.github.io/English-G6-Sentence-Building.html | 2026-07-10 14:16 |
@@ -64,7 +63,6 @@
 ├─ grade6-math.html  # 北京六年级数学 · 母题学习系统
 ├─ English-G6-Sentence-Building.html  # 英语组句魔法 · 句子小火车 | 小学英语
 ├─ Math-G5-Fraction-Common-Denominator.html  # 通分专项 · 理解通分的本质 | 小学数学
-├─ collocations.html  # 小学英语固定搭配大全（含发音·例句）
 ├─ english-collocations.html  # 英语固定搭配学习专题
 ├─ english-mixed-quiz.html  # 英语综合练习
 ├─ english-prepositions.html  # 英语介词学习专题
