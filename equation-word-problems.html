@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>英语综合练习</title>
+<title>简易方程应用题练习卷</title>
 <style>
 /* =========================================================================
    AURORA DESIGN SYSTEM · tokens.css · v2.0
@@ -1050,190 +1050,85 @@ gc-*, gc-*::before, gc-*::after {
 
 
 /* ============================================================
-   Prepositions — topic page (Beijing primary school)
-   References tokens only. iPad-first, C-side teaching.
+   简易方程应用题 · 练习卷
+   References design tokens only. 试卷版式 · 打印友好 · 离线单文件。
    ============================================================ */
 html, body { background: var(--s-bg); margin: 0; }
 body { font-family: var(--g-font); color: var(--s-text); min-height: 100dvh; -webkit-font-smoothing: antialiased; }
 .app { min-height: 100dvh; display: flex; flex-direction: column; }
-:root { --card-min: 340px; --card-gap: var(--g-sp-4); --c-container-max: min(94vw, 1240px); }
+:root { --c-container-max: min(94vw, 960px); }
 .wrap { width: 100%; max-width: var(--c-container-max); margin-inline: auto; padding-inline: var(--c-container-pad, clamp(var(--g-sp-4), 4vw, var(--g-sp-8))); }
 
-/* header */
-.appbar { position: sticky; top: 0; z-index: var(--g-z-sticky); background: color-mix(in srgb, var(--s-bg) 82%, transparent); backdrop-filter: saturate(150%) blur(12px); border-bottom: 1px solid var(--s-border); }
+/* header / toolbar */
+.appbar { position: sticky; top: 0; z-index: var(--g-z-sticky); background: color-mix(in srgb, var(--s-bg) 85%, transparent); backdrop-filter: saturate(150%) blur(12px); border-bottom: 1px solid var(--s-border); }
 .appbar__inner { display: flex; align-items: center; gap: var(--g-sp-4); padding-block: var(--g-sp-3); }
 .brand { display: flex; align-items: center; gap: var(--g-sp-3); min-width: 0; }
 .brand__mark { width: 44px; height: 44px; border-radius: var(--g-r-lg); display: grid; place-items: center; flex: none; background: var(--s-brand); color: var(--s-on-brand); box-shadow: var(--s-shadow-sm); }
 .brand__title { font-size: var(--s-fs-body-lg); font-weight: var(--g-fw-bold); line-height: 1.2; }
 .brand__sub { font-size: var(--s-fs-caption); color: var(--s-text-secondary); }
 .appbar__spacer { flex: 1; }
-.iconbtn { width: 42px; height: 42px; border-radius: var(--g-r-md); border: 1px solid var(--s-border); background: var(--s-surface); color: var(--s-text-secondary); display: grid; place-items: center; cursor: pointer; transition: all var(--g-dur-fast) var(--g-ease); }
+.tbtn { appearance: none; cursor: pointer; font: inherit; font-size: var(--s-fs-caption); font-weight: var(--g-fw-medium); color: var(--s-text-secondary); background: var(--s-surface); border: 1px solid var(--s-border); border-radius: var(--g-r-md); padding: var(--g-sp-2) var(--g-sp-3); min-height: 40px; display: inline-flex; align-items: center; gap: var(--g-sp-1); transition: all var(--g-dur-fast) var(--g-ease); }
+.tbtn:hover { background: var(--s-surface-hover); color: var(--s-text); }
+.tbtn--on { background: var(--s-brand); color: var(--s-on-brand); border-color: transparent; }
+.iconbtn { width: 40px; height: 40px; border-radius: var(--g-r-md); border: 1px solid var(--s-border); background: var(--s-surface); color: var(--s-text-secondary); display: grid; place-items: center; cursor: pointer; }
 .iconbtn:hover { background: var(--s-surface-hover); color: var(--s-text); }
-.rate-ctrl { display: flex; align-items: center; gap: var(--g-sp-2); color: var(--s-text-secondary); }
-.rate-seg { display: flex; padding: 3px; background: var(--s-surface-sunken); border: 1px solid var(--s-border); border-radius: var(--g-r-full); }
-.rate-opt { appearance: none; border: 0; background: transparent; cursor: pointer; font: inherit; font-size: var(--s-fs-caption); font-weight: var(--g-fw-medium); color: var(--s-text-secondary); padding: var(--g-sp-1) var(--g-sp-3); border-radius: var(--g-r-full); min-height: 34px; transition: all var(--g-dur-fast) var(--g-ease); }
-.rate-opt--on { background: var(--s-brand); color: var(--s-on-brand); box-shadow: var(--s-shadow-sm); }
-@media (max-width: 560px){ .rate-ctrl > .ico { display: none; } .rate-opt { padding-inline: var(--g-sp-2); } }
 
-/* hero */
-.hero { padding-block: var(--g-sp-10) var(--g-sp-6); text-align: center; }
-.hero h1 { margin: 0; font-size: var(--s-fs-display); font-weight: var(--g-fw-bold); letter-spacing: var(--g-ls-tight); }
-.hero p { margin: var(--g-sp-3) auto 0; max-width: 660px; color: var(--s-text-secondary); font-size: var(--s-fs-body-lg); line-height: var(--s-lh-body); }
-.hero__demo { margin-top: var(--g-sp-6); display: flex; justify-content: center; flex-wrap: wrap; gap: var(--g-sp-2); font-size: var(--s-fs-h3); font-weight: var(--g-fw-bold); align-items: center; }
-.hero__demo .prep-hl { color: var(--s-on-brand); background: var(--s-brand); padding: var(--g-sp-1) var(--g-sp-3); border-radius: var(--g-r-md); }
-
-/* nav chips */
-.groupnav { position: sticky; top: 68px; z-index: calc(var(--g-z-sticky) - 1); display: flex; flex-wrap: wrap; gap: var(--g-sp-2); padding-block: var(--g-sp-3); background: color-mix(in srgb, var(--s-bg) 90%, transparent); }
-.groupnav a { text-decoration: none; display: inline-flex; align-items: center; gap: var(--g-sp-1); font-size: var(--s-fs-caption); font-weight: var(--g-fw-medium); color: var(--s-text-secondary); background: var(--s-surface); border: 1px solid var(--s-border); padding: var(--g-sp-2) var(--g-sp-3); border-radius: var(--g-r-full); }
-.groupnav a:hover { color: var(--s-brand); border-color: color-mix(in srgb, var(--s-brand) 40%, var(--s-border)); }
+/* paper */
+.paper { background: var(--s-surface); border: 1px solid var(--s-border); border-radius: var(--g-r-xl); box-shadow: var(--s-shadow-sm); margin-block: var(--g-sp-6); padding: clamp(var(--g-sp-5), 4vw, var(--g-sp-10)); }
+.paper__title { text-align: center; font-size: var(--s-fs-h1); font-weight: var(--g-fw-bold); letter-spacing: var(--g-ls-tight); }
+.paper__meta { display: flex; flex-wrap: wrap; gap: var(--g-sp-5); justify-content: center; margin-top: var(--g-sp-3); color: var(--s-text-secondary); font-size: var(--s-fs-body); }
+.paper__meta span { border-bottom: 1px solid var(--s-border); padding: 0 var(--g-sp-6) 2px; }
+.paper__intro { margin-top: var(--g-sp-5); padding: var(--g-sp-4); background: var(--s-surface-sunken); border-left: 3px solid var(--s-brand); border-radius: var(--g-r-md); font-size: var(--s-fs-body); line-height: var(--s-lh-body); color: var(--s-text-secondary); }
 
 /* section */
-.sec { padding-block: var(--g-sp-8); border-top: 1px solid var(--s-border); scroll-margin-top: 120px; }
-.sec__head { display: flex; align-items: center; gap: var(--g-sp-3); margin-bottom: var(--g-sp-2); }
-.sec__icon { width: 44px; height: 44px; flex: none; border-radius: var(--g-r-lg); display: grid; place-items: center; background: var(--s-brand-subtle); color: var(--s-brand); }
-.sec__title { font-size: var(--s-fs-h2); font-weight: var(--g-fw-bold); }
-.sec__sub { font-size: var(--s-fs-body); color: var(--s-text-secondary); margin-top: 2px; }
-.sec__intro { color: var(--s-text-secondary); font-size: var(--s-fs-body); margin: var(--g-sp-2) 0 var(--g-sp-5); }
+.qsec { margin-top: var(--g-sp-8); }
+.qsec__head { display: flex; align-items: center; gap: var(--g-sp-3); padding-bottom: var(--g-sp-2); border-bottom: 2px solid var(--s-border); margin-bottom: var(--g-sp-4); }
+.qsec__name { font-size: var(--s-fs-h3); font-weight: var(--g-fw-bold); }
+.qsec__tag { font-size: var(--s-fs-caption); font-weight: var(--g-fw-bold); padding: 1px var(--g-sp-3); border-radius: var(--g-r-full); }
+.qsec__tag--基础 { color: var(--g-green-700); background: var(--g-green-100); }
+.qsec__tag--进阶 { color: var(--g-cyan-700); background: var(--g-cyan-100); }
+.qsec__tag--挑战 { color: var(--g-amber-700); background: var(--g-amber-100); }
+.qsec__desc { font-size: var(--s-fs-caption); color: var(--s-text-muted); flex: 1; min-width: 120px; }
 
-/* prep cards */
-.prep-grid { display: grid; gap: var(--card-gap); grid-template-columns: repeat(auto-fit, minmax(min(100%, var(--card-min)), 1fr)); align-items: stretch; }
-.prep-card { background: var(--s-surface); border: 1px solid var(--s-border); border-radius: var(--g-r-xl); padding: var(--g-sp-5); display: flex; flex-direction: column; box-shadow: var(--s-shadow-sm); }
-.prep-card__head { display: flex; align-items: flex-start; justify-content: space-between; gap: var(--g-sp-2); }
-.prep-card__word { font-size: var(--s-fs-h2); font-weight: var(--g-fw-bold); line-height: 1.1; letter-spacing: var(--g-ls-tight); }
-.prep-card__ipa { font-family: var(--g-font-mono); color: var(--s-text-secondary); font-size: var(--s-fs-body); margin-top: 2px; }
-.prep-card__zh { margin-top: var(--g-sp-2); font-size: var(--s-fs-body-lg); font-weight: var(--g-fw-medium); }
-.prep-card__use { margin-top: var(--g-sp-1); font-size: var(--s-fs-caption); color: var(--s-brand); background: var(--s-brand-subtle); border-radius: var(--g-r-sm); padding: 2px var(--g-sp-2); align-self: flex-start; }
-.prep-card__divider { height: 1px; background: var(--s-border); margin: var(--g-sp-4) 0; }
-.prep-ex { font-size: var(--s-fs-body); }
-.prep-ex + .prep-ex { margin-top: var(--g-sp-3); }
-.prep-ex__en { display: flex; align-items: flex-start; gap: var(--g-sp-2); color: var(--s-text); font-weight: var(--g-fw-medium); }
-.prep-ex__en > span { flex: 1; min-width: 0; }
-.prep-ex__ipa { display: flex; align-items: center; gap: var(--g-sp-1); margin-top: 2px; font-family: var(--g-font-mono); font-size: var(--s-fs-caption); color: var(--s-text-secondary); }
-.prep-ex__ipa .ico { color: var(--s-brand); opacity: .7; flex: none; }
-.prep-ex__zh { color: var(--s-text-secondary); font-size: var(--s-fs-caption); margin-top: 2px; }
+/* question */
+.q { padding: var(--g-sp-4) 0; border-bottom: 1px dashed var(--s-border); }
+.q:last-child { border-bottom: none; }
+.q__head { display: flex; align-items: baseline; gap: var(--g-sp-3); }
+.q__no { flex: none; width: 30px; height: 30px; border-radius: var(--g-r-full); background: var(--s-brand-subtle); color: var(--s-brand); font-weight: var(--g-fw-bold); font-size: var(--s-fs-caption); display: grid; place-items: center; }
+.q__type { font-size: var(--s-fs-caption); color: var(--s-text-muted); background: var(--s-surface-sunken); border: 1px solid var(--s-border); border-radius: var(--g-r-sm); padding: 1px var(--g-sp-2); }
+.q__text { flex: 1; font-size: var(--s-fs-body-lg); line-height: var(--s-lh-body); }
+.q__work { margin: var(--g-sp-3) 0 0 42px; border: 1px dashed var(--s-border); border-radius: var(--g-r-md); min-height: 64px; padding: var(--g-sp-3); color: var(--s-text-muted); font-size: var(--s-fs-caption); }
+.q__work::before { content: "解:设未知数为 x,列方程并解答……"; }
 
-/* speak */
-.speak { width: 40px; height: 40px; flex: none; border-radius: var(--g-r-full); cursor: pointer; border: 1px solid color-mix(in srgb, var(--s-brand) 30%, transparent); background: var(--s-brand-subtle); color: var(--s-brand); display: grid; place-items: center; transition: all var(--g-dur-fast) var(--g-ease); }
-.speak:hover { background: var(--s-brand); color: var(--s-on-brand); }
-.speak.playing { animation: pulse 1s var(--g-ease) infinite; }
-.speak--sm { width: 32px; height: 32px; }
-@keyframes pulse { 0%,100%{transform:scale(1)} 50%{transform:scale(1.12)} }
-
-/* contrast table */
-.contrast-wrap { display: grid; gap: var(--card-gap); grid-template-columns: repeat(auto-fit, minmax(min(100%, var(--card-min)), 1fr)); align-items: stretch; }
-.contrast-card { background: var(--s-surface); border: 1px solid var(--s-border); border-radius: var(--g-r-xl); padding: var(--g-sp-5); }
-.contrast-card h3 { margin: 0 0 var(--g-sp-4); font-size: var(--s-fs-h3); }
-.contrast-row { display: grid; grid-template-columns: 60px 1fr; gap: var(--g-sp-3); padding: var(--g-sp-3) 0; border-top: 1px solid var(--s-border); align-items: center; }
-.contrast-prep { font-family: var(--g-font-mono); font-weight: var(--g-fw-bold); font-size: var(--s-fs-body-lg); color: var(--s-on-brand); background: var(--s-brand); border-radius: var(--g-r-md); text-align: center; padding: var(--g-sp-1) 0; }
-.contrast-scope { font-weight: var(--g-fw-semibold); font-size: var(--s-fs-body); }
-.contrast-sample { font-family: var(--g-font-mono); font-size: var(--s-fs-caption); color: var(--s-text-secondary); margin-top: 2px; display: flex; align-items: center; gap: var(--g-sp-2); flex-wrap: wrap; }
-.contrast-zh { font-size: var(--s-fs-caption); color: var(--s-text-muted); margin-top: 2px; }
-
-/* quiz */
-.quiz-card { background: var(--s-surface); border: 1px solid var(--s-border); border-radius: var(--g-r-xl); padding: clamp(var(--g-sp-5), 4vw, var(--g-sp-8)); box-shadow: var(--s-shadow-sm); }
-.quiz-progress { display: flex; align-items: center; justify-content: space-between; color: var(--s-text-secondary); font-size: var(--s-fs-caption); margin-bottom: var(--g-sp-4); }
-.quiz-bar { height: 6px; border-radius: var(--g-r-full); background: var(--s-surface-sunken); overflow: hidden; margin-bottom: var(--g-sp-6); }
-.quiz-bar__fill { height: 100%; background: var(--s-brand); transition: width var(--g-dur-slow) var(--g-ease); }
-.quiz-q { text-align: center; margin-bottom: var(--g-sp-2); font-size: var(--s-fs-h2); font-weight: var(--g-fw-bold); display: flex; align-items: center; justify-content: center; gap: var(--g-sp-2); flex-wrap: wrap; }
-.quiz-q__blank { color: var(--s-brand); border-bottom: 3px dashed var(--s-brand); min-width: 48px; display: inline-block; }
-.quiz-q__zh { text-align: center; color: var(--s-text-secondary); font-size: var(--s-fs-body); margin-bottom: var(--g-sp-6); }
-.quiz-opts { display: grid; gap: var(--g-sp-3); grid-template-columns: repeat(3, 1fr); max-width: 520px; margin-inline: auto; }
-.quiz-opt { appearance: none; font: inherit; cursor: pointer; min-height: 52px; padding: var(--g-sp-3); border-radius: var(--g-r-lg); border: 1.5px solid var(--s-border); background: var(--s-surface); color: var(--s-text); font-weight: var(--g-fw-bold); font-size: var(--s-fs-body-lg); font-family: var(--g-font-mono); transition: all var(--g-dur-fast) var(--g-ease); }
-.quiz-opt:hover:not(:disabled) { border-color: var(--s-brand); background: var(--s-brand-subtle); }
-.quiz-opt.correct { border-color: var(--g-green-500); background: var(--g-green-100); color: var(--g-green-700); }
-.quiz-opt.wrong { border-color: var(--g-red-500); background: var(--g-red-100); color: var(--g-red-700); }
-.quiz-opt:disabled { cursor: default; }
-.quiz-feedback { text-align: center; margin-top: var(--g-sp-5); min-height: 24px; font-size: var(--s-fs-body); }
-.quiz-feedback .prep-ex__ipa { justify-content: center; }
-.quiz-next { display: flex; justify-content: center; margin-top: var(--g-sp-5); }
-.quiz-done { text-align: center; }
-.quiz-done__score { font-size: var(--s-fs-display); font-weight: var(--g-fw-bold); color: var(--s-brand); }
-.btn { appearance: none; font: inherit; cursor: pointer; min-height: 44px; display: inline-flex; align-items: center; gap: var(--g-sp-2); padding: var(--g-sp-2) var(--g-sp-5); border-radius: var(--g-r-md); border: 1px solid var(--s-border); background: var(--s-surface); color: var(--s-text); font-weight: var(--g-fw-medium); transition: all var(--g-dur-fast) var(--g-ease); }
-.btn:hover { background: var(--s-surface-hover); }
-.btn--primary { background: var(--s-brand); color: var(--s-on-brand); border-color: transparent; }
-.btn--primary:hover { background: var(--s-brand-hover); }
-@media (max-width: 480px){ .quiz-opts { grid-template-columns: 1fr; } }
+/* answer & explanation (collapsible, hidden by default) */
+.q__reveal { margin: var(--g-sp-3) 0 0 42px; }
+.ans-toggle { appearance: none; cursor: pointer; font: inherit; font-size: var(--s-fs-caption); font-weight: var(--g-fw-medium); color: var(--s-brand); background: var(--s-brand-subtle); border: 1px solid color-mix(in srgb, var(--s-brand) 25%, transparent); border-radius: var(--g-r-md); padding: var(--g-sp-2) var(--g-sp-3); min-height: 38px; display: inline-flex; align-items: center; gap: var(--g-sp-1); }
+.ans-toggle:hover { background: var(--s-brand-subtle-2); }
+.ans-box { margin-top: var(--g-sp-3); background: var(--s-surface-sunken); border: 1px solid var(--s-border); border-radius: var(--g-r-lg); padding: var(--g-sp-4); }
+.ans-row { display: flex; gap: var(--g-sp-2); margin-bottom: var(--g-sp-2); font-size: var(--s-fs-body); }
+.ans-row:last-child { margin-bottom: 0; }
+.ans-label { flex: none; font-weight: var(--g-fw-bold); color: var(--s-brand); min-width: 68px; }
+.ans-eq { font-family: var(--g-font-mono); background: var(--s-surface); border: 1px solid var(--s-border); border-radius: var(--g-r-sm); padding: 1px var(--g-sp-2); }
+.ans-final { font-weight: var(--g-fw-bold); color: var(--g-green-700); }
+.ans-explain { line-height: var(--s-lh-body); color: var(--s-text-secondary); }
 
 /* footer */
 .foot { margin-top: auto; border-top: 1px solid var(--s-border); padding-block: var(--g-sp-5); color: var(--s-text-muted); font-size: var(--s-fs-caption); text-align: center; }
 
-/* ---- similar-preposition contrast (with SVG diagrams) ---- */
-.similar-list { display: flex; flex-direction: column; gap: var(--g-sp-4); }
-.similar-card { background: var(--s-surface); border: 1px solid var(--s-border); border-radius: var(--g-r-xl); padding: var(--g-sp-5); }
-.similar-title { font-family: var(--g-font-mono); font-size: var(--s-fs-h3); font-weight: var(--g-fw-bold); text-align: center; margin-bottom: var(--g-sp-4); }
-.similar-pair { display: grid; grid-template-columns: 1fr 1fr; gap: var(--g-sp-4); }
-.similar-side { background: var(--s-surface-sunken); border: 1px solid var(--s-border); border-radius: var(--g-r-lg); padding: var(--g-sp-4); text-align: center; }
-.similar-diagram { display: grid; place-items: center; margin-bottom: var(--g-sp-2); }
-.prep-svg { width: 100%; max-width: 200px; height: auto; }
-.similar-prep { font-family: var(--g-font-mono); font-weight: var(--g-fw-bold); font-size: var(--s-fs-body-lg); color: var(--s-on-brand); background: var(--s-brand); border-radius: var(--g-r-md); padding: var(--g-sp-1) var(--g-sp-3); display: inline-block; margin-bottom: var(--g-sp-1); }
-.similar-zh { font-size: var(--s-fs-caption); color: var(--s-text-secondary); margin-bottom: var(--g-sp-3); }
-.similar-tip { margin-top: var(--g-sp-4); font-size: var(--s-fs-caption); color: var(--s-text-secondary); background: var(--s-brand-subtle); border-radius: var(--g-r-md); padding: var(--g-sp-3); line-height: var(--s-lh-body); display: flex; align-items: flex-start; gap: var(--g-sp-2); }
-.similar-tip .ico { color: var(--s-brand); flex: none; margin-top: 2px; }
-@media (max-width: 560px){ .similar-pair { grid-template-columns: 1fr; } }
-@media (max-width: 640px){ .brand__sub { display: none; } .hero h1 { font-size: var(--s-fs-h1); } .sec__title { font-size: var(--s-fs-h3); } }
+@media (max-width: 560px){ .brand__sub { display: none; } .paper__title { font-size: var(--s-fs-h2); } .q__work, .q__reveal { margin-left: 0; } }
 
-/* ---- collocation intro banner ---- */
-.what-box { display: flex; align-items: flex-start; gap: var(--g-sp-3); background: var(--s-brand-subtle); border: 1px solid color-mix(in srgb, var(--s-brand) 22%, var(--s-border)); border-radius: var(--g-r-xl); padding: var(--g-sp-5); margin-bottom: var(--g-sp-2); }
-.what-box > .ico { color: var(--s-brand); flex: none; margin-top: 2px; }
-.what-box p { margin: 0; font-size: var(--s-fs-body); line-height: var(--s-lh-body); color: var(--s-text); }
-.what-box b { color: var(--s-brand); }
-
-/* ---- mistakes (易错) ---- */
-.mis-list { display: grid; gap: var(--card-gap); grid-template-columns: repeat(auto-fit, minmax(min(100%, var(--card-min)), 1fr)); align-items: stretch; }
-.mis-card { background: var(--s-surface); border: 1px solid var(--s-border); border-radius: var(--g-r-xl); padding: var(--g-sp-4); }
-.mis-wrong { display: flex; align-items: center; gap: var(--g-sp-2); color: var(--g-red-700); font-size: var(--s-fs-body-lg); text-decoration: line-through; text-decoration-color: color-mix(in srgb, var(--g-red-500) 55%, transparent); }
-.mis-wrong .ico { flex: none; text-decoration: none; }
-.mis-right { display: flex; align-items: center; gap: var(--g-sp-2); margin-top: var(--g-sp-2); color: var(--g-green-700); font-size: var(--s-fs-body-lg); font-weight: var(--g-fw-medium); }
-.mis-right .ico { color: var(--g-green-500); flex: none; }
-.mis-why { margin-top: var(--g-sp-2); font-size: var(--s-fs-caption); color: var(--s-text-secondary); background: var(--s-brand-subtle); border-radius: var(--g-r-md); padding: var(--g-sp-2) var(--g-sp-3); line-height: var(--s-lh-body); }
-
-/* collocation word highlighted bold in card head */
-.prep-card__word { letter-spacing: 0; }
-
-/* ---- combo (quiz) ---- */
-.quiz-status { display: inline-flex; align-items: center; gap: var(--g-sp-3); }
-.combo { color: var(--g-amber-700); font-weight: var(--g-fw-bold); }
-
-/* 易错卡:先思考,点击揭晓 */
-.mis-think { margin-top: var(--g-sp-2); font-size: var(--s-fs-caption); color: var(--s-text-secondary); display: flex; align-items: center; gap: var(--g-sp-1); }
-.mis-think .ico { color: var(--s-brand); }
-.mis-reveal { margin-top: var(--g-sp-3); }
-
-/* ---- topic filter ---- */
-.filter-bar { display: flex; flex-wrap: wrap; gap: var(--g-sp-2); justify-content: center; margin-bottom: var(--g-sp-6); }
-.filter-chip { appearance: none; cursor: pointer; font: inherit; font-size: var(--s-fs-body); font-weight: var(--g-fw-medium); color: var(--s-text-secondary); background: var(--s-surface); border: 1px solid var(--s-border); border-radius: var(--g-r-full); padding: var(--g-sp-2) var(--g-sp-5); min-height: 44px; display: inline-flex; align-items: center; gap: var(--g-sp-2); transition: all var(--g-dur-fast) var(--g-ease); }
-.filter-chip--on { background: var(--s-brand); color: var(--s-on-brand); border-color: transparent; box-shadow: var(--s-shadow-sm); }
-.filter-chip__count { font-size: var(--s-fs-caption); opacity: .8; }
-.topic-tag { display: inline-block; font-size: var(--s-fs-caption); font-weight: var(--g-fw-bold); padding: 1px var(--g-sp-3); border-radius: var(--g-r-full); margin-bottom: var(--g-sp-3); }
-.topic-tag--tense { color: var(--g-cyan-700); background: var(--g-cyan-100); }
-.topic-tag--prep { color: var(--g-green-700); background: var(--g-green-100); }
-.topic-tag--coll { color: var(--g-amber-700); background: var(--g-amber-100); }
-
-/* ---- collect / review book ---- */
-.quiz-toprow { display: flex; align-items: center; justify-content: space-between; gap: var(--g-sp-2); margin-bottom: var(--g-sp-2); }
-.collect { appearance: none; cursor: pointer; font: inherit; font-size: var(--s-fs-caption); font-weight: var(--g-fw-medium); color: var(--s-text-secondary); background: var(--s-surface); border: 1px solid var(--s-border); border-radius: var(--g-r-full); padding: var(--g-sp-1) var(--g-sp-3); min-height: 34px; display: inline-flex; align-items: center; gap: var(--g-sp-1); transition: all var(--g-dur-fast) var(--g-ease); }
-.collect:hover { border-color: color-mix(in srgb, var(--g-amber-500) 50%, var(--s-border)); color: var(--g-amber-700); }
-.collect--on { color: var(--g-amber-700); background: var(--g-amber-100); border-color: color-mix(in srgb, var(--g-amber-500) 40%, transparent); }
-.filter-chip--review.filter-chip--on { background: var(--g-amber-500); }
-.filter-chip--review:not(.filter-chip--on) { border-color: color-mix(in srgb, var(--g-amber-500) 35%, var(--s-border)); color: var(--g-amber-700); }
+/* print: clean worksheet, hide toolbar; show all answers when printing */
+@media print {
+  .appbar, .foot, .ans-toggle { display: none !important; }
+  .paper { box-shadow: none; border: none; margin: 0; padding: 0; }
+  .ans-box { display: block !important; }
+  body { background: #fff; }
+  .q { break-inside: avoid; }
+}
 
 </style>
 </head>
 <body>
-<!-- AUTO-BACK-NAV-START -->
-<style id="auto-back-nav-style">
-#auto-back-nav{position:sticky;top:0;z-index:999;background:rgba(249,250,251,.9);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);border-bottom:1px solid #e5e7eb;display:flex;align-items:center;padding:0 20px;height:44px;}
-@media(prefers-color-scheme:dark){#auto-back-nav{background:rgba(13,17,23,.9);border-bottom-color:#2d333b;}}
-#auto-back-nav a{display:inline-flex;align-items:center;gap:6px;text-decoration:none;color:#4b5563;font-size:14px;font-weight:600;font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Hiragino Sans GB","Microsoft YaHei",Roboto,Arial,sans-serif;}
-@media(prefers-color-scheme:dark){#auto-back-nav a{color:#9da7b3;}}
-</style>
-<nav id="auto-back-nav">
-  <a href="index.html">
-    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5"/><path d="m12 19-7-7 7-7"/></svg>
-    暑假成长加油站
-  </a>
-</nav>
-<!-- AUTO-BACK-NAV-END -->
 <div id="boot" style="position:fixed;inset:0;display:grid;place-items:center;font:14px system-ui;color:#888;background:var(--s-bg,#f6f7f9)">正在加载…</div>
 <script>
 function boot_fail(m){var b=document.getElementById('boot');if(b)b.innerHTML='<pre style="max-width:80ch;white-space:pre-wrap;color:#c0392b;padding:24px">启动失败:\n'+m+'</pre>';}
@@ -1659,17 +1554,121 @@ addEventListener('unhandledrejection',function(e){boot_fail(e.reason);});
 <symbol id="ic-infinity" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><!--lucide:infinity--><path d="M6 16c5 0 7-8 12-8a4 4 0 0 1 0 8c-5 0-7-8-12-8a4 4 0 1 0 0 8" /></symbol>
 </svg>
 
-<mix-app></mix-app>
+<eq-app></eq-app>
 <script>
-// Combined quiz data: full pools across tense / preposition / collocation.
-window.MIX_DATA = {
-  quiz: [{"sentence":"She ___ to school every day.","answer":"goes","options":["goes","went","going"],"zh":"她每天去上学。","topic":"tense"},{"sentence":"Look! The boys ___ football.","answer":"are playing","options":["are playing","play","played"],"zh":"看!男孩们正在踢足球。","topic":"tense"},{"sentence":"We ___ a film yesterday.","answer":"watched","options":["watched","watch","will watch"],"zh":"我们昨天看了电影。","topic":"tense"},{"sentence":"I ___ my homework tomorrow.","answer":"will do","options":["will do","did","do"],"zh":"我明天做作业。","topic":"tense"},{"sentence":"He ___ apples every day.","answer":"eats","options":["eats","ate","is eating"],"zh":"他每天吃苹果。","topic":"tense"},{"sentence":"They ___ to the park last Sunday.","answer":"went","options":["went","go","will go"],"zh":"他们上周日去了公园。","topic":"tense"},{"sentence":"Listen! She ___ a song.","answer":"is singing","options":["is singing","sings","sang"],"zh":"听!她正在唱歌。","topic":"tense"},{"sentence":"My father ___ TV every evening.","answer":"watches","options":["watches","watched","is watching"],"zh":"我爸爸每天晚上看电视。","topic":"tense"},{"sentence":"We ___ a party next week.","answer":"will have","options":["will have","had","have"],"zh":"我们下周要办聚会。","topic":"tense"},{"sentence":"The cat ___ under the tree now.","answer":"is sleeping","options":["is sleeping","sleeps","slept"],"zh":"猫现在正睡在树下。","topic":"tense"},{"sentence":"I ___ to Beijing last year.","answer":"flew","options":["flew","fly","will fly"],"zh":"我去年飞去了北京。","topic":"tense"},{"sentence":"She ___ her grandma tomorrow.","answer":"will visit","options":["will visit","visited","visits"],"zh":"她明天要去看奶奶。","topic":"tense"},{"sentence":"We ___ English on Mondays.","answer":"have","options":["have","had","are having"],"zh":"我们周一上英语课。","topic":"tense"},{"sentence":"He ___ his homework just now.","answer":"finished","options":["finished","finishes","will finish"],"zh":"他刚刚做完了作业。","topic":"tense"},{"sentence":"Look! It ___.","answer":"is raining","options":["is raining","rains","rained"],"zh":"看!下雨了。","topic":"tense"},{"sentence":"The sun ___ in the east.","answer":"rises","options":["rises","rose","is rising"],"zh":"太阳从东边升起。","topic":"tense"},{"sentence":"They ___ a snowman yesterday.","answer":"made","options":["made","make","will make"],"zh":"他们昨天堆了一个雪人。","topic":"tense"},{"sentence":"I ___ you next week.","answer":"will call","options":["will call","called","call"],"zh":"我下周给你打电话。","topic":"tense"},{"sentence":"She is ___ a book now.","answer":"reading","options":["reading","reads","read"],"zh":"她现在正在读书。","topic":"tense"},{"sentence":"We ___ a big fish last week.","answer":"caught","options":["caught","catch","will catch"],"zh":"我们上周抓到一条大鱼。","topic":"tense"},{"sentence":"Tom usually ___ up at seven.","answer":"gets","options":["gets","got","is getting"],"zh":"汤姆通常七点起床。","topic":"tense"},{"sentence":"Be quiet! The baby ___.","answer":"is sleeping","options":["is sleeping","sleeps","slept"],"zh":"安静!宝宝在睡觉。","topic":"tense"},{"sentence":"My mother ___ a cake yesterday.","answer":"baked","options":["baked","bakes","will bake"],"zh":"我妈妈昨天烤了一个蛋糕。","topic":"tense"},{"sentence":"It ___ hot tomorrow.","answer":"will be","options":["will be","was","is"],"zh":"明天会很热。","topic":"tense"},{"sentence":"Pandas ___ bamboo.","answer":"eat","options":["eat","ate","are eating"],"zh":"熊猫吃竹子。","topic":"tense"},{"sentence":"We ___ a movie now.","answer":"are watching","options":["are watching","watch","watched"],"zh":"我们现在正在看电影。","topic":"tense"},{"sentence":"He ___ his leg last week.","answer":"hurt","options":["hurt","hurts","will hurt"],"zh":"他上周弄伤了腿。","topic":"tense"},{"sentence":"I ___ a doctor when I grow up.","answer":"will be","options":["will be","am","was"],"zh":"我长大后要当医生。","topic":"tense"},{"sentence":"Water ___ at 100°C.","answer":"boils","options":["boils","boiled","is boiling"],"zh":"水在100度沸腾。","topic":"tense"},{"sentence":"Look at the sky! Birds ___.","answer":"are flying","options":["are flying","fly","flew"],"zh":"看天空!鸟儿在飞。","topic":"tense"},{"sentence":"She ___ her keys this morning.","answer":"lost","options":["lost","loses","will lose"],"zh":"她今早丢了钥匙。","topic":"tense"},{"sentence":"They ___ to the beach next summer.","answer":"will go","options":["will go","went","go"],"zh":"他们明年夏天要去海边。","topic":"tense"},{"sentence":"My sister ___ the piano well.","answer":"plays","options":["plays","played","is playing"],"zh":"我妹妹钢琴弹得好。","topic":"tense"},{"sentence":"Listen! Someone ___ at the door.","answer":"is knocking","options":["is knocking","knocks","knocked"],"zh":"听!有人在敲门。","topic":"tense"},{"sentence":"We ___ a great time at the zoo yesterday.","answer":"had","options":["had","have","will have"],"zh":"我们昨天在动物园玩得很开心。","topic":"tense"},{"sentence":"I think it ___ rain soon.","answer":"will","options":["will","did","does"],"zh":"我觉得快要下雨了。","topic":"tense"},{"sentence":"He ___ his teeth twice a day.","answer":"brushes","options":["brushes","brushed","is brushing"],"zh":"他一天刷两次牙。","topic":"tense"},{"sentence":"Wait! I ___ my shoes.","answer":"am putting on","options":["am putting on","put on","will put on"],"zh":"等一下!我正在穿鞋。","topic":"tense"},{"sentence":"The dinosaurs ___ long ago.","answer":"lived","options":["lived","live","will live"],"zh":"恐龙很久以前生活过。","topic":"tense"},{"sentence":"She ___ 12 years old next month.","answer":"will be","options":["will be","is","was"],"zh":"她下个月满12岁。","topic":"tense"},{"sentence":"The Earth ___ around the sun.","answer":"moves","options":["moves","moved","is moving"],"zh":"地球绕着太阳转。","topic":"tense"},{"sentence":"Shh! The teacher ___ a story.","answer":"is telling","options":["is telling","tells","told"],"zh":"嘘!老师在讲故事。","topic":"tense"},{"sentence":"We ___ our grandparents last weekend.","answer":"visited","options":["visited","visit","will visit"],"zh":"我们上周末看望了祖父母。","topic":"tense"},{"sentence":"Don't worry, I ___ help you.","answer":"will","options":["will","did","am"],"zh":"别担心,我会帮你。","topic":"tense"},{"sentence":"Cats ___ at night.","answer":"sleep","options":["sleep","slept","are sleeping"],"zh":"猫在夜里睡觉。","topic":"tense"},{"sentence":"Look! The dog ___ the ball.","answer":"is catching","options":["is catching","catches","caught"],"zh":"看!狗正在接球。","topic":"tense"},{"sentence":"He ___ a new bike on his birthday.","answer":"got","options":["got","gets","will get"],"zh":"他生日时得到了一辆新自行车。","topic":"tense"},{"sentence":"Tomorrow we ___ a school trip.","answer":"will have","options":["will have","had","have"],"zh":"明天我们要去春游。","topic":"tense"},{"sentence":"The shop ___ at nine every morning.","answer":"opens","options":["opens","opened","is opening"],"zh":"商店每天早上九点开门。","topic":"tense"},{"sentence":"Right now the students ___ a test.","answer":"are taking","options":["are taking","take","took"],"zh":"现在学生们正在考试。","topic":"tense"},{"sentence":"The cat is ___ the box.","answer":"in","options":["in","on","at"],"zh":"猫在盒子里。","topic":"prep"},{"sentence":"The book is ___ the desk.","answer":"on","options":["in","on","under"],"zh":"书在桌上。","topic":"prep"},{"sentence":"We have dinner ___ six.","answer":"at","options":["in","on","at"],"zh":"我们六点吃晚饭。","topic":"prep"},{"sentence":"My birthday is ___ May 1st.","answer":"on","options":["in","on","at"],"zh":"我的生日是五月一日。","topic":"prep"},{"sentence":"The ball is ___ the chair.","answer":"under","options":["under","over","on"],"zh":"球在椅子下面。","topic":"prep"},{"sentence":"I go to school ___ bus.","answer":"by","options":["by","with","on"],"zh":"我坐公交车上学。","topic":"prep"},{"sentence":"The dog runs ___ the room.","answer":"into","options":["into","out of","at"],"zh":"狗跑进房间。","topic":"prep"},{"sentence":"We walk ___ the road.","answer":"across","options":["across","through","along"],"zh":"我们走过马路。","topic":"prep"},{"sentence":"This gift is ___ you.","answer":"for","options":["for","about","from"],"zh":"这个礼物是给你的。","topic":"prep"},{"sentence":"We go swimming ___ summer.","answer":"in","options":["in","on","at"],"zh":"我们夏天游泳。","topic":"prep"},{"sentence":"The shop is ___ the bank and the park.","answer":"between","options":["between","next to","near"],"zh":"商店在银行和公园之间。","topic":"prep"},{"sentence":"I play ___ my friends.","answer":"with","options":["with","by","for"],"zh":"我和朋友一起玩。","topic":"prep"},{"sentence":"There is a picture ___ the wall.","answer":"on","options":["on","in","at"],"zh":"墙上有一幅画。","topic":"prep"},{"sentence":"The bird flies ___ the tree.","answer":"over","options":["over","under","in"],"zh":"鸟从树上方飞过。","topic":"prep"},{"sentence":"She is ___ the door.","answer":"at","options":["at","in","on"],"zh":"她在门口。","topic":"prep"},{"sentence":"The train goes ___ the tunnel.","answer":"through","options":["through","across","along"],"zh":"火车穿过隧道。","topic":"prep"},{"sentence":"Wash your hands ___ lunch.","answer":"before","options":["before","after","during"],"zh":"午饭前洗手。","topic":"prep"},{"sentence":"We play games ___ school.","answer":"after","options":["after","before","in"],"zh":"我们放学后玩游戏。","topic":"prep"},{"sentence":"I am ___ China.","answer":"from","options":["from","to","at"],"zh":"我来自中国。","topic":"prep"},{"sentence":"This book is ___ animals.","answer":"about","options":["about","for","with"],"zh":"这本书是关于动物的。","topic":"prep"},{"sentence":"The lamp is ___ the bed.","answer":"next to","options":["next to","between","over"],"zh":"台灯在床旁边。","topic":"prep"},{"sentence":"My home is ___ the school.","answer":"near","options":["near","in","on"],"zh":"我家在学校附近。","topic":"prep"},{"sentence":"The boy hides ___ the door.","answer":"behind","options":["behind","in front of","under"],"zh":"男孩躲在门后。","topic":"prep"},{"sentence":"A car is ___ the school.","answer":"in front of","options":["in front of","behind","between"],"zh":"一辆车在学校前面。","topic":"prep"},{"sentence":"The monkey climbs ___ the tree.","answer":"up","options":["up","down","across"],"zh":"猴子爬上树。","topic":"prep"},{"sentence":"Please sit ___.","answer":"down","options":["down","up","in"],"zh":"请坐下。","topic":"prep"},{"sentence":"The cat comes ___ the box.","answer":"out of","options":["out of","into","on"],"zh":"猫从盒子里出来。","topic":"prep"},{"sentence":"We run ___ the river.","answer":"along","options":["along","across","over"],"zh":"我们沿着河边跑。","topic":"prep"},{"sentence":"She sings ___ a bird.","answer":"like","options":["like","with","for"],"zh":"她唱歌像小鸟。","topic":"prep"},{"sentence":"We eat noodles ___ chopsticks.","answer":"with","options":["with","by","in"],"zh":"我们用筷子吃面。","topic":"prep"},{"sentence":"I get up early ___ the morning.","answer":"in","options":["in","on","at"],"zh":"我早上起得早。","topic":"prep"},{"sentence":"We have a party ___ Sunday.","answer":"on","options":["on","in","at"],"zh":"我们星期天有聚会。","topic":"prep"},{"sentence":"School starts ___ eight.","answer":"at","options":["at","in","on"],"zh":"学校八点上课。","topic":"prep"},{"sentence":"Don't talk ___ the class.","answer":"during","options":["during","before","after"],"zh":"上课期间不要说话。","topic":"prep"},{"sentence":"There is a bridge ___ the river.","answer":"over","options":["over","under","in"],"zh":"河上有一座桥。","topic":"prep"},{"sentence":"The clock is ___ the door.","answer":"above","options":["above","below","under"],"zh":"钟在门的上方。","topic":"prep"},{"sentence":"The fish are ___ the boat.","answer":"below","options":["below","above","on"],"zh":"鱼在船的下方。","topic":"prep"},{"sentence":"She stands ___ the trees.","answer":"among","options":["among","between","near"],"zh":"她站在树林之中。","topic":"prep"},{"sentence":"A dog sleeps ___ the tree.","answer":"under","options":["under","over","on"],"zh":"一只狗在树下睡觉。","topic":"prep"},{"sentence":"Put the toys ___ the box.","answer":"into","options":["into","out of","at"],"zh":"把玩具放进盒子里。","topic":"prep"},{"sentence":"He jumps ___ bed.","answer":"out of","options":["out of","into","on"],"zh":"他从床上跳下来。","topic":"prep"},{"sentence":"We walk ___ the forest.","answer":"through","options":["through","across","along"],"zh":"我们穿过森林。","topic":"prep"},{"sentence":"A boat goes ___ the river.","answer":"across","options":["across","through","up"],"zh":"一条船横渡河流。","topic":"prep"},{"sentence":"She reads ___ bed.","answer":"before","options":["before","after","during"],"zh":"她睡觉前读书。","topic":"prep"},{"sentence":"He brushes teeth ___ dinner.","answer":"after","options":["after","before","in"],"zh":"他晚饭后刷牙。","topic":"prep"},{"sentence":"I sit ___ Tom and Ann.","answer":"between","options":["between","among","near"],"zh":"我坐在汤姆和安之间。","topic":"prep"},{"sentence":"She learns English ___ reading.","answer":"by","options":["by","with","for"],"zh":"她通过阅读学英语。","topic":"prep"},{"sentence":"We rest ___ the holiday.","answer":"during","options":["during","before","on"],"zh":"假期期间我们休息。","topic":"prep"},{"sentence":"He comes ___ a small town.","answer":"from","options":["from","to","at"],"zh":"他来自一个小镇。","topic":"prep"},{"sentence":"We talk ___ the trip.","answer":"about","options":["about","for","with"],"zh":"我们谈论这次旅行。","topic":"prep"},{"sentence":"I listen ___ music every day.","answer":"to","options":["to","at","for"],"zh":"我每天听音乐。","topic":"coll"},{"sentence":"Look ___ the blackboard!","answer":"at","options":["at","to","for"],"zh":"看黑板!","topic":"coll"},{"sentence":"She is good ___ English.","answer":"at","options":["at","in","for"],"zh":"她擅长英语。","topic":"coll"},{"sentence":"I get ___ at seven every day.","answer":"up","options":["up","on","off"],"zh":"我每天七点起床。","topic":"coll"},{"sentence":"Please turn ___ the light, it's dark.","answer":"on","options":["on","off","up"],"zh":"请开灯,天黑了。","topic":"coll"},{"sentence":"Turn ___ the TV before you sleep.","answer":"off","options":["off","on","up"],"zh":"睡前关掉电视。","topic":"coll"},{"sentence":"Wait ___ me, please.","answer":"for","options":["for","at","to"],"zh":"请等等我。","topic":"coll"},{"sentence":"I come ___ China.","answer":"from","options":["from","to","at"],"zh":"我来自中国。","topic":"coll"},{"sentence":"He is interested ___ science.","answer":"in","options":["in","at","for"],"zh":"他对科学感兴趣。","topic":"coll"},{"sentence":"The cat is afraid ___ dogs.","answer":"of","options":["of","at","for"],"zh":"这只猫怕狗。","topic":"coll"},{"sentence":"The box is full ___ toys.","answer":"of","options":["of","with","in"],"zh":"盒子里装满玩具。","topic":"coll"},{"sentence":"Don't be late ___ school.","answer":"for","options":["for","to","at"],"zh":"上学别迟到。","topic":"coll"},{"sentence":"She looks ___ her little brother.","answer":"after","options":["after","at","for"],"zh":"她照顾弟弟。","topic":"coll"},{"sentence":"Put ___ your coat, it's cold.","answer":"on","options":["on","off","up"],"zh":"穿上外套,天冷。","topic":"coll"},{"sentence":"Take ___ your hat inside.","answer":"off","options":["off","on","up"],"zh":"在室内摘下帽子。","topic":"coll"},{"sentence":"Get ___ the bus quickly.","answer":"on","options":["on","off","up"],"zh":"快上公交车。","topic":"coll"},{"sentence":"Get ___ at the next stop.","answer":"off","options":["off","on","up"],"zh":"在下一站下车。","topic":"coll"},{"sentence":"I want to be a teacher when I grow ___.","answer":"up","options":["up","on","off"],"zh":"我长大想当老师。","topic":"coll"},{"sentence":"I have a lot ___ books.","answer":"of","options":["of","in","at"],"zh":"我有很多书。","topic":"coll"},{"sentence":"I go to school ___ foot.","answer":"on","options":["on","by","in"],"zh":"我走路上学。","topic":"coll"},{"sentence":"I stay ___ home on Sunday.","answer":"at","options":["at","in","to"],"zh":"我周日待在家。","topic":"coll"},{"sentence":"I read books ___ the morning.","answer":"in","options":["in","on","at"],"zh":"我早上读书。","topic":"coll"},{"sentence":"I ___ like some juice.","answer":"would","options":["would","will","am"],"zh":"我想要一些果汁。","topic":"coll"},{"sentence":"Can I have a ___ at this photo?","answer":"look","options":["look","see","watch"],"zh":"我能看看这张照片吗?","topic":"coll"},{"sentence":"Let's have a ___.","answer":"rest","options":["rest","sleep","stop"],"zh":"我们休息一下吧。","topic":"coll"},{"sentence":"___ course I can help you.","answer":"Of","options":["Of","In","At"],"zh":"我当然能帮你。","topic":"coll"},{"sentence":"I look ___ my lost pen.","answer":"for","options":["for","at","after"],"zh":"我在找丢的笔。","topic":"coll"},{"sentence":"My mom picks me ___ after school.","answer":"up","options":["up","on","off"],"zh":"妈妈放学后接我。","topic":"coll"},{"sentence":"This one is different ___ that one.","answer":"from","options":["from","with","of"],"zh":"这个和那个不同。","topic":"coll"},{"sentence":"Are you ready ___ the test?","answer":"for","options":["for","to","at"],"zh":"你准备好考试了吗?","topic":"coll"},{"sentence":"Listen ___ the teacher, please.","answer":"to","options":["to","at","for"],"zh":"请听老师说。","topic":"coll"},{"sentence":"We are good ___ swimming.","answer":"at","options":["at","in","for"],"zh":"我们擅长游泳。","topic":"coll"},{"sentence":"Please look ___ my cat this weekend.","answer":"after","options":["after","at","for"],"zh":"这周末请照顾我的猫。","topic":"coll"},{"sentence":"He is afraid ___ the dark.","answer":"of","options":["of","at","for"],"zh":"他怕黑。","topic":"coll"},{"sentence":"We wait ___ the bus at the stop.","answer":"for","options":["for","at","to"],"zh":"我们在站台等公交。","topic":"coll"},{"sentence":"Where do you come ___?","answer":"from","options":["from","at","to"],"zh":"你来自哪里?","topic":"coll"},{"sentence":"Get ___ your bike and let's go.","answer":"on","options":["on","off","up"],"zh":"骑上你的自行车,我们走。","topic":"coll"},{"sentence":"Would you ___ to come with us?","answer":"like","options":["like","want","love"],"zh":"你想和我们一起来吗?","topic":"coll"},{"sentence":"Don't be late ___ the meeting.","answer":"for","options":["for","to","at"],"zh":"开会别迟到。","topic":"coll"},{"sentence":"Thank you ___ your help.","answer":"for","options":["for","to","with"],"zh":"谢谢你的帮助。","topic":"coll"},{"sentence":"We talk ___ the trip.","answer":"about","options":["about","at","for"],"zh":"我们谈论这次旅行。","topic":"coll"},{"sentence":"Don't worry ___ the test.","answer":"about","options":["about","for","of"],"zh":"别担心考试。","topic":"coll"},{"sentence":"Milk is good ___ your body.","answer":"for","options":["for","at","to"],"zh":"牛奶对身体有益。","topic":"coll"},{"sentence":"I am proud ___ my class.","answer":"of","options":["of","for","with"],"zh":"我为我的班级自豪。","topic":"coll"},{"sentence":"The desk is made ___ wood.","answer":"of","options":["of","from","with"],"zh":"桌子是木头做的。","topic":"coll"},{"sentence":"Please sit ___.","answer":"down","options":["down","up","on"],"zh":"请坐下。","topic":"coll"},{"sentence":"Stand ___, please.","answer":"up","options":["up","down","on"],"zh":"请起立。","topic":"coll"},{"sentence":"Don't give ___, keep trying!","answer":"up","options":["up","in","off"],"zh":"别放弃,继续努力!","topic":"coll"},{"sentence":"I help my mom ___ the housework.","answer":"with","options":["with","to","for"],"zh":"我帮妈妈做家务。","topic":"coll"},{"sentence":"Please take care ___ yourself.","answer":"of","options":["of","for","with"],"zh":"照顾好你自己。","topic":"coll"},{"sentence":"I want a piece ___ bread.","answer":"of","options":["of","for","in"],"zh":"我想要一片面包。","topic":"coll"},{"sentence":"The bus is ___ time today.","answer":"on","options":["on","in","at"],"zh":"今天公交车准时。","topic":"coll"},{"sentence":"Stars shine ___ night.","answer":"at","options":["at","in","on"],"zh":"星星在夜里闪亮。","topic":"coll"},{"sentence":"I drink milk ___ day.","answer":"every","options":["every","all","on"],"zh":"我每天喝牛奶。","topic":"coll"},{"sentence":"At ___, I was afraid.","answer":"first","options":["first","last","once"],"zh":"起初我很害怕。","topic":"coll"},{"sentence":"Thank you so ___.","answer":"much","options":["much","many","more"],"zh":"非常感谢你。","topic":"coll"},{"sentence":"I agree ___ you.","answer":"with","options":["with","to","at"],"zh":"我同意你。","topic":"coll"},{"sentence":"The lamp is next ___ the bed.","answer":"to","options":["to","at","for"],"zh":"台灯在床旁边。","topic":"coll"},{"sentence":"I make friends ___ the new boy.","answer":"with","options":["with","to","for"],"zh":"我和新来的男孩交朋友。","topic":"coll"},{"sentence":"I have ___ do my homework now.","answer":"to","options":["to","for","at"],"zh":"我现在必须做作业。","topic":"coll"}]
+// Data for the "Simple Equation Word Problems" worksheet (30 questions).
+// Each: level, type, q(题干), setx(设未知数), eq(方程), answer, explain(讲解)
+window.EQ_DATA = {
+  title: "简易方程应用题 · 练习卷",
+  intro: "用列方程的方法解下面的应用题。先“设未知数为 x”,再根据题意“找等量关系列方程”,然后解方程并作答。答案与讲解默认隐藏,做完后再展开对照。",
+  sections: [
+    {
+      name: "第一部分 · 基础题", tag: "基础", desc: "和差倍、简单价格与数量关系。",
+      items: [
+        { type:"和倍", q:"学校图书馆有故事书和科技书共 240 本,故事书的本数是科技书的 3 倍。故事书和科技书各有多少本?",
+          setx:"设科技书有 x 本。", eq:"x + 3x = 240", answer:"科技书 60 本,故事书 180 本。",
+          explain:"科技书 x 本,故事书是它的 3 倍即 3x 本。两种书一共 240 本,所以 x + 3x = 240,得 4x = 240,x = 60。故事书 3×60 = 180 本。" },
+        { type:"差倍", q:"果园里桃树比梨树多 60 棵,桃树的棵数是梨树的 4 倍。梨树有多少棵?",
+          setx:"设梨树有 x 棵。", eq:"4x − x = 60", answer:"梨树 20 棵(桃树 80 棵)。",
+          explain:"梨树 x 棵,桃树 4x 棵。桃树比梨树多 60 棵,即 4x − x = 60,得 3x = 60,x = 20。桃树 4×20 = 80 棵。" },
+        { type:"价格", q:"买 5 支同样的钢笔用去 40 元。每支钢笔多少元?",
+          setx:"设每支钢笔 x 元。", eq:"5x = 40", answer:"每支 8 元。",
+          explain:"每支 x 元,5 支就是 5x 元,共 40 元,所以 5x = 40,x = 8。" },
+        { type:"和差", q:"甲、乙两数的和是 86,甲数比乙数大 14。甲、乙两数各是多少?",
+          setx:"设乙数是 x。", eq:"x + (x + 14) = 86", answer:"乙 36,甲 50。",
+          explain:"乙数 x,甲数比乙数大 14 即 x+14。两数和 86,所以 x + (x+14) = 86,得 2x + 14 = 86,2x = 72,x = 36。甲 = 36+14 = 50。" },
+        { type:"数量", q:"每箱苹果装 12 个,一共装了 96 个苹果。装了多少箱?",
+          setx:"设装了 x 箱。", eq:"12x = 96", answer:"8 箱。",
+          explain:"每箱 12 个,x 箱就是 12x 个,共 96 个,所以 12x = 96,x = 8。" },
+        { type:"倍数", q:"妈妈今年 36 岁,是女儿年龄的 4 倍。女儿今年几岁?",
+          setx:"设女儿今年 x 岁。", eq:"4x = 36", answer:"女儿 9 岁。",
+          explain:"女儿 x 岁,妈妈是女儿的 4 倍即 4x 岁 = 36,x = 9。" },
+        { type:"连加", q:"三个连续的自然数的和是 72,这三个数分别是多少?",
+          setx:"设中间的数是 x。", eq:"(x − 1) + x + (x + 1) = 72", answer:"23、24、25。",
+          explain:"设中间数 x,则前一个 x−1,后一个 x+1。三数相加:(x−1)+x+(x+1) = 3x = 72,x = 24。三个数是 23、24、25。" },
+        { type:"剩余", q:"一根绳子长 50 米,用去一部分后还剩 18 米。用去了多少米?",
+          setx:"设用去 x 米。", eq:"50 − x = 18", answer:"用去 32 米。",
+          explain:"原长 50 米,用去 x 米后剩 18 米,所以 50 − x = 18,x = 50 − 18 = 32。" },
+        { type:"平均", q:"小明 4 次数学测验的平均分是 92 分,前 3 次分别是 88、95、90 分。第 4 次考了多少分?",
+          setx:"设第 4 次考 x 分。", eq:"(88 + 95 + 90 + x) ÷ 4 = 92", answer:"第 4 次 95 分。",
+          explain:"四次平均 92,总分 = 92×4 = 368。前三次共 88+95+90 = 273。第四次 x = 368 − 273 = 95。" }
+      ]
+    },
+    {
+      name: "第二部分 · 进阶题", tag: "进阶", desc: "行程、几何、盈亏、分配等两步关系。",
+      items: [
+        { type:"相遇", q:"两地相距 420 千米,甲、乙两车同时从两地相向开出,甲车每小时行 60 千米,乙车每小时行 80 千米。经过几小时两车相遇?",
+          setx:"设经过 x 小时相遇。", eq:"(60 + 80)x = 420", answer:"3 小时。",
+          explain:"相遇时两车行的路程之和等于总距离。每小时两车共行 60+80 = 140 千米,x 小时共行 140x 千米,等于 420,所以 140x = 420,x = 3。" },
+        { type:"追及", q:"哥哥和弟弟从同一地点出发,弟弟先走,速度每分钟 60 米,3 分钟后哥哥出发追,哥哥每分钟 90 米。哥哥出发几分钟后追上弟弟?",
+          setx:"设哥哥出发 x 分钟后追上。", eq:"90x = 60x + 60×3", answer:"6 分钟。",
+          explain:"弟弟先走 3 分钟,领先 60×3 = 180 米。追上时两人路程相等:哥哥走 90x,弟弟共走 60(x+3)=60x+180。列 90x = 60x + 180,得 30x = 180,x = 6。" },
+        { type:"周长", q:"一个长方形的周长是 48 厘米,长比宽多 6 厘米。这个长方形的长和宽各是多少?",
+          setx:"设宽是 x 厘米。", eq:"2 × (x + x + 6) = 48", answer:"宽 9 厘米,长 15 厘米。",
+          explain:"宽 x,长 x+6。周长 = (长+宽)×2 = (x + x+6)×2 = 48,得 (2x+6)×2 = 48,2x+6 = 24,2x = 18,x = 9。长 = 9+6 = 15。" },
+        { type:"盈亏", q:"老师给同学们分铅笔。如果每人分 4 支,就多出 8 支;如果每人分 5 支,就正好分完。有多少个同学?",
+          setx:"设有 x 个同学。", eq:"4x + 8 = 5x", answer:"8 个同学(共 40 支)。",
+          explain:"铅笔总数不变。每人 4 支多 8 支,总数 = 4x+8;每人 5 支正好,总数 = 5x。两者相等:4x+8 = 5x,x = 8。铅笔 5×8 = 40 支。" },
+        { type:"年龄", q:"今年爸爸 38 岁,儿子 10 岁。几年后爸爸的年龄是儿子的 3 倍?",
+          setx:"设 x 年后。", eq:"38 + x = 3 × (10 + x)", answer:"4 年后。",
+          explain:"x 年后爸爸 38+x 岁,儿子 10+x 岁,此时爸爸是儿子 3 倍:38+x = 3(10+x),得 38+x = 30+3x,8 = 2x,x = 4。" },
+        { type:"分配", q:"把 100 个练习本分给甲、乙两个班,甲班比乙班多分 20 个。两个班各分多少个?",
+          setx:"设乙班分 x 个。", eq:"x + (x + 20) = 100", answer:"乙 40 个,甲 60 个。",
+          explain:"乙 x 个,甲 x+20 个,共 100:x + x+20 = 100,2x = 80,x = 40。甲 = 60。" },
+        { type:"倍数差", q:"停车场里小汽车的辆数是摩托车的 5 倍,小汽车比摩托车多 48 辆。摩托车有多少辆?",
+          setx:"设摩托车 x 辆。", eq:"5x − x = 48", answer:"摩托车 12 辆(小汽车 60 辆)。",
+          explain:"摩托车 x 辆,小汽车 5x 辆,多 48 辆:5x − x = 48,4x = 48,x = 12。小汽车 60 辆。" },
+        { type:"面积", q:"一个平行四边形的面积是 84 平方厘米,底是 12 厘米。高是多少厘米?",
+          setx:"设高是 x 厘米。", eq:"12 × x = 84", answer:"高 7 厘米。",
+          explain:"平行四边形面积 = 底 × 高,即 12x = 84,x = 84÷12 = 7。" },
+        { type:"总量", q:"一堆煤,第一天用去 35 吨,第二天用去的比第一天的 2 倍少 10 吨,两天正好用完这堆煤共 95 吨。第二天用去多少吨?",
+          setx:"设第一天用 x 吨(已知 x=35),或直接验证。", eq:"35 + (2×35 − 10) = 95", answer:"第二天 60 吨。",
+          explain:"第二天 = 第一天的 2 倍少 10 = 2×35 − 10 = 60 吨。验证:35 + 60 = 95 吨,正好用完。" },
+        { type:"水位", q:"一个水池,进水管每分钟进水 8 升,出水管每分钟出水 3 升。同时打开两管,多少分钟后水池里净增 60 升水?",
+          setx:"设 x 分钟后。", eq:"(8 − 3)x = 60", answer:"12 分钟。",
+          explain:"每分钟净增 8−3 = 5 升,x 分钟净增 5x 升 = 60,x = 12。" }
+      ]
+    },
+    {
+      name: "第三部分 · 挑战题", tag: "挑战", desc: "多步关系、分数份数、稍复杂的行程与比例。",
+      items: [
+        { type:"分数", q:"一本书,小华第一天看了全书的一半还多 10 页,还剩 90 页没看。这本书一共有多少页?",
+          setx:"设全书 x 页。", eq:"x − (x ÷ 2 + 10) = 90", answer:"200 页。",
+          explain:"第一天看了 x/2 + 10 页,剩下 x − (x/2 + 10) = 90。化简:x/2 − 10 = 90,x/2 = 100,x = 200。" },
+        { type:"鸡兔同笼", q:"鸡和兔关在同一个笼子里,共有头 20 个、脚 54 只。鸡和兔各有多少只?",
+          setx:"设兔有 x 只,则鸡有 (20 − x) 只。", eq:"4x + 2 × (20 − x) = 54", answer:"兔 7 只,鸡 13 只。",
+          explain:"兔 x 只(4 脚),鸡 20−x 只(2 脚)。总脚数:4x + 2(20−x) = 54,得 4x + 40 − 2x = 54,2x = 14,x = 7。鸡 = 13。" },
+        { type:"往返", q:"小明从家到学校,去时每分钟走 60 米,原路返回时每分钟走 90 米,往返一共用了 25 分钟。家到学校有多远?",
+          setx:"设去时用 x 分钟,则返回用 (25 − x) 分钟,路程相等。", eq:"60x = 90 × (25 − x)", answer:"900 米。",
+          explain:"去和回路程相同:60x = 90(25−x),得 60x = 2250 − 90x,150x = 2250,x = 15。距离 = 60×15 = 900 米。" },
+        { type:"比例分配", q:"甲、乙两人共有邮票 120 张,甲的张数是乙的 2 倍还多 15 张。甲、乙各有多少张?",
+          setx:"设乙有 x 张。", eq:"x + (2x + 15) = 120", answer:"乙 35 张,甲 85 张。",
+          explain:"乙 x 张,甲 2x+15 张,共 120:x + 2x + 15 = 120,3x = 105,x = 35。甲 = 2×35+15 = 85。" },
+        { type:"工程", q:"一项工程,甲队单独做要 10 天完成,乙队单独做要 15 天完成。两队合作,多少天可以完成这项工程?",
+          setx:"设合作 x 天完成(把总工程看作 1)。", eq:"(1/10 + 1/15) × x = 1", answer:"6 天。",
+          explain:"甲每天做 1/10,乙每天做 1/15,合作每天做 1/10+1/15 = 3/30+2/30 = 5/30 = 1/6。做完整项即 (1/6)x = 1,x = 6。" },
+        { type:"打折", q:"一件衣服打八折(即按原价的 80%)后售价 160 元。这件衣服的原价是多少元?",
+          setx:"设原价 x 元。", eq:"80% × x = 160", answer:"原价 200 元。",
+          explain:"打八折就是按原价的 80% 卖,即 0.8x = 160,x = 160 ÷ 0.8 = 200。" },
+        { type:"多人年龄", q:"爸爸和妈妈的年龄加起来是 76 岁,爸爸比妈妈大 4 岁。爸爸和妈妈各多少岁?",
+          setx:"设妈妈 x 岁。", eq:"x + (x + 4) = 76", answer:"妈妈 36 岁,爸爸 40 岁。",
+          explain:"妈妈 x 岁,爸爸 x+4 岁,和 76:x + x+4 = 76,2x = 72,x = 36。爸爸 40 岁。" },
+        { type:"剩余分数", q:"修一条路,第一周修了全长的 1/3,第二周修了 120 米,还剩全长的一半没修。这条路全长多少米?",
+          setx:"设全长 x 米。", eq:"x/3 + 120 + x/2 = x", answer:"720 米。",
+          explain:"已修 = 1/3 x + 120,剩下 1/2 x。全部相加等于全长:x/3 + 120 + x/2 = x。移项:120 = x − x/3 − x/2 = x(1 − 1/3 − 1/2) = x(6/6 − 2/6 − 3/6) = x/6。所以 x/6 = 120,x = 720。" },
+        { type:"总价组合", q:"买 3 个面包和 2 瓶牛奶共 34 元,已知每瓶牛奶 5 元。每个面包多少元?",
+          setx:"设每个面包 x 元。", eq:"3x + 2 × 5 = 34", answer:"每个面包 8 元。",
+          explain:"3 个面包 3x 元,2 瓶牛奶 2×5 = 10 元,合计 34:3x + 10 = 34,3x = 24,x = 8。" },
+        { type:"速度差", q:"一辆客车和一辆货车从同一地点同向出发,客车每小时行 70 千米,货车每小时行 55 千米。几小时后两车相距 45 千米?",
+          setx:"设 x 小时后相距 45 千米。", eq:"(70 − 55)x = 45", answer:"3 小时。",
+          explain:"同向出发,每小时拉开 70−55 = 15 千米,x 小时拉开 15x 千米 = 45,x = 3。" },
+        { type:"盈亏(两次)", q:"同学们排队做操,如果每行站 6 人,则多出 4 人;如果每行站 8 人,则刚好少 6 人(还差 6 人才站满)。一共有多少人?(行数相同)",
+          setx:"设排了 x 行。", eq:"6x + 4 = 8x − 6", answer:"5 行,共 34 人。",
+          explain:"人数不变。每行 6 人时多 4 人:人数 = 6x + 4;每行 8 人时差 6 人:人数 = 8x − 6。两式相等:6x + 4 = 8x − 6,得 10 = 2x,x = 5。人数 = 6×5 + 4 = 34。" }
+      ]
+    }
+  ]
 };
-
-</script>
-<script>
-// Merged IPA dictionary (tense + prep + collocation).
-window.IPA_DICT = {"a":"/ə/","an":"/ən/","the":"/ðə/","this":"/ðɪs/","to":"/tuː/","in":"/ɪn/","on":"/ɒn/","under":"/ˈʌndə(r)/","of":"/ɒv/","i":"/aɪ/","you":"/juː/","he":"/hiː/","she":"/ʃiː/","it":"/ɪt/","we":"/wiː/","they":"/ðeɪ/","my":"/maɪ/","her":"/hɜː(r)/","his":"/hɪz/","am":"/æm/","is":"/ɪz/","are":"/ɑː(r)/","have":"/hæv/","do":"/duː/","will":"/wɪl/","going":"/ˈɡəʊɪŋ/","go":"/ɡəʊ/","goes":"/ɡəʊz/","eats":"/iːts/","likes":"/laɪks/","play":"/pleɪ/","plays":"/pleɪz/","played":"/pleɪd/","playing":"/ˈpleɪɪŋ/","watch":"/wɒtʃ/","watches":"/ˈwɒtʃɪz/","watched":"/wɒtʃt/","visit":"/ˈvɪzɪt/","call":"/kɔːl/","finished":"/ˈfɪnɪʃt/","read":"/riːd/","reading":"/ˈriːdɪŋ/","sing":"/sɪŋ/","singing":"/ˈsɪŋɪŋ/","song":"/sɒŋ/","sleep":"/sliːp/","sleeping":"/ˈsliːpɪŋ/","cry":"/kraɪ/","crying":"/ˈkraɪɪŋ/","rain":"/reɪn/","raining":"/ˈreɪnɪŋ/","rise":"/raɪz/","rises":"/ˈraɪzɪz/","made":"/meɪd/","make":"/meɪk/","went":"/went/","flew":"/fluː/","caught":"/kɔːt/","look":"/lʊk/","listen":"/ˈlɪsn/","boys":"/bɔɪz/","baby":"/ˈbeɪbi/","cat":"/kæt/","fish":"/fɪʃ/","father":"/ˈfɑːðə(r)/","grandma":"/ˈɡrænmɑː/","apples":"/ˈæplz/","basketball":"/ˈbɑːskɪtbɔːl/","football":"/ˈfʊtbɔːl/","book":"/bʊk/","homework":"/ˈhəʊmwɜːk/","film":"/fɪlm/","party":"/ˈpɑːti/","snowman":"/ˈsnəʊmæn/","tv":"/ˌtiːˈviː/","school":"/skuːl/","park":"/pɑːk/","zoo":"/zuː/","tree":"/triː/","sun":"/sʌn/","east":"/iːst/","beijing":"/beɪˈdʒɪŋ/","english":"/ˈɪŋɡlɪʃ/","big":"/bɪɡ/","every":"/ˈevri/","day":"/deɪ/","evening":"/ˈiːvnɪŋ/","now":"/naʊ/","just":"/dʒʌst/","yesterday":"/ˈjestədeɪ/","tomorrow":"/təˈmɒrəʊ/","last":"/lɑːst/","next":"/nekst/","week":"/wiːk/","year":"/jɪə(r)/","sunday":"/ˈsʌndeɪ/","mondays":"/ˈmʌndeɪz/","tom":"/tɒm/","usually":"/ˈjuːʒuəli/","gets":"/ɡets/","up":"/ʌp/","seven":"/ˈsevn/","be":"/biː/","quiet":"/ˈkwaɪət/","mother":"/ˈmʌðə(r)/","baked":"/beɪkt/","cake":"/keɪk/","hot":"/hɒt/","pandas":"/ˈpændəz/","eat":"/iːt/","bamboo":"/ˌbæmˈbuː/","watching":"/ˈwɒtʃɪŋ/","movie":"/ˈmuːvi/","hurt":"/hɜːt/","leg":"/leɡ/","doctor":"/ˈdɒktə(r)/","when":"/wen/","grow":"/ɡrəʊ/","water":"/ˈwɔːtə(r)/","boils":"/bɔɪlz/","sky":"/skaɪ/","birds":"/bɜːdz/","flying":"/ˈflaɪɪŋ/","lost":"/lɒst/","keys":"/kiːz/","morning":"/ˈmɔːnɪŋ/","beach":"/biːtʃ/","summer":"/ˈsʌmə(r)/","sister":"/ˈsɪstə(r)/","piano":"/piˈænəʊ/","well":"/wel/","someone":"/ˈsʌmwʌn/","knocking":"/ˈnɒkɪŋ/","door":"/dɔː(r)/","had":"/hæd/","great":"/ɡreɪt/","time":"/taɪm/","think":"/θɪŋk/","soon":"/suːn/","brushes":"/ˈbrʌʃɪz/","teeth":"/tiːθ/","twice":"/twaɪs/","wait":"/weɪt/","putting":"/ˈpʊtɪŋ/","shoes":"/ʃuːz/","dinosaurs":"/ˈdaɪnəsɔːz/","lived":"/lɪvd/","long":"/lɒŋ/","ago":"/əˈɡəʊ/","years":"/jɪəz/","old":"/əʊld/","month":"/mʌnθ/","earth":"/ɜːθ/","moves":"/muːvz/","around":"/əˈraʊnd/","shh":"/ʃ/","teacher":"/ˈtiːtʃə(r)/","telling":"/ˈtelɪŋ/","story":"/ˈstɔːri/","visited":"/ˈvɪzɪtɪd/","our":"/ˈaʊə(r)/","grandparents":"/ˈɡrænpeərənts/","weekend":"/ˌwiːkˈend/","don't":"/dəʊnt/","worry":"/ˈwʌri/","help":"/help/","cats":"/kæts/","night":"/naɪt/","dog":"/dɒɡ/","catching":"/ˈkætʃɪŋ/","ball":"/bɔːl/","got":"/ɡɒt/","new":"/njuː/","bike":"/baɪk/","birthday":"/ˈbɜːθdeɪ/","trip":"/trɪp/","shop":"/ʃɒp/","opens":"/ˈəʊpənz/","nine":"/naɪn/","right":"/raɪt/","students":"/ˈstjuːdnts/","taking":"/ˈteɪkɪŋ/","test":"/test/","at":"/æt/","there":"/ðeə(r)/","and":"/ənd/","me":"/miː/","your":"/jɔː(r)/","come":"/kʌm/","comes":"/kʌmz/","get":"/ɡet/","put":"/pʊt/","meet":"/miːt/","run":"/rʌn/","runs":"/rʌnz/","walk":"/wɔːk/","walks":"/wɔːks/","sit":"/sɪt/","sleeps":"/sliːps/","hides":"/haɪdz/","stands":"/stændz/","climbs":"/klaɪmz/","jumps":"/dʒʌmps/","flies":"/flaɪz/","reads":"/riːdz/","learns":"/lɜːnz/","sings":"/sɪŋz/","talk":"/tɔːk/","rest":"/rest/","looks":"/lʊks/","wash":"/wɒʃ/","starts":"/stɑːts/","swimming":"/ˈswɪmɪŋ/","bird":"/bɜːd/","monkey":"/ˈmʌŋki/","boy":"/bɔɪ/","friends":"/frendz/","box":"/bɒks/","books":"/bʊks/","bag":"/bæɡ/","desk":"/desk/","chair":"/tʃeə(r)/","bed":"/bed/","lamp":"/læmp/","wall":"/wɔːl/","picture":"/ˈpɪktʃə(r)/","house":"/haʊs/","garden":"/ˈɡɑːdn/","room":"/ruːm/","bank":"/bæŋk/","river":"/ˈrɪvə(r)/","bridge":"/brɪdʒ/","road":"/rəʊd/","street":"/striːt/","town":"/taʊn/","village":"/ˈvɪlɪdʒ/","forest":"/ˈfɒrɪst/","tunnel":"/ˈtʌnl/","boat":"/bəʊt/","train":"/treɪn/","bus":"/bʌs/","car":"/kɑː(r)/","home":"/həʊm/","toys":"/tɔɪz/","gift":"/ɡɪft/","hands":"/hændz/","noodles":"/ˈnuːdlz/","chopsticks":"/ˈtʃɒpstɪks/","games":"/ɡeɪmz/","animals":"/ˈænɪmlz/","fun":"/fʌn/","china":"/ˈtʃaɪnə/","ann":"/æn/","stop":"/stɒp/","front":"/frʌnt/","near":"/nɪə(r)/","behind":"/bɪˈhaɪnd/","between":"/bɪˈtwiːn/","over":"/ˈəʊvə(r)/","into":"/ˈɪntuː/","down":"/daʊn/","across":"/əˈkrɒs/","through":"/θruː/","along":"/əˈlɒŋ/","by":"/baɪ/","with":"/wɪð/","for":"/fɔː(r)/","about":"/əˈbaʊt/","from":"/frɒm/","like":"/laɪk/","out":"/aʊt/","before":"/bɪˈfɔː(r)/","after":"/ˈɑːftə(r)/","during":"/ˈdjʊərɪŋ/","monday":"/ˈmʌndeɪ/","may":"/meɪ/","1st":"/fɜːst/","dinner":"/ˈdɪnə(r)/","lunch":"/lʌntʃ/","holiday":"/ˈhɒlədeɪ/","class":"/klɑːs/","six":"/sɪks/","eight":"/eɪt/","early":"/ˈɜːli/","please":"/pliːz/","small":"/smɔːl/","clock":"/klɒk/","above":"/əˈbʌv/","table":"/ˈteɪbl/","below":"/bɪˈləʊ/","driver":"/ˈdraɪvə(r)/","sits":"/sɪts/","among":"/əˈmʌŋ/","trees":"/triːz/","that":"/ðæt/","it's":"/ɪts/","us":"/ʌs/","yours":"/jɔːz/","one":"/wʌn/","can":"/kæn/","would":"/wʊd/","need":"/niːd/","want":"/wɒnt/","let's":"/lets/","where":"/weə(r)/","looking":"/ˈlʊkɪŋ/","turn":"/tɜːn/","turns":"/tɜːnz/","puts":"/pʊts/","take":"/teɪk/","takes":"/teɪks/","pick":"/pɪk/","picks":"/pɪks/","stay":"/steɪ/","good":"/ɡʊd/","interested":"/ˈɪntrəstɪd/","afraid":"/əˈfreɪd/","full":"/fʊl/","late":"/leɪt/","different":"/ˈdɪfrənt/","ready":"/ˈredi/","little":"/ˈlɪtl/","cold":"/kəʊld/","dark":"/dɑːk/","fast":"/fɑːst/","loud":"/laʊd/","tired":"/ˈtaɪəd/","quickly":"/ˈkwɪkli/","inside":"/ˌɪnˈsaɪd/","too":"/tuː/","not":"/nɒt/","some":"/sʌm/","lot":"/lɒt/","off":"/ɒf/","course":"/kɔːs/","foot":"/fʊt/","tonight":"/təˈnaɪt/","music":"/ˈmjuːzɪk/","blackboard":"/ˈblækbɔːd/","stars":"/stɑːz/","light":"/laɪt/","lights":"/laɪts/","computer":"/kəmˈpjuːtə(r)/","radio":"/ˈreɪdiəʊ/","phone":"/fəʊn/","pen":"/pen/","toy":"/tɔɪ/","coat":"/kəʊt/","hat":"/hæt/","photo":"/ˈfəʊtəʊ/","bottle":"/ˈbɒtl/","juice":"/dʒuːs/","floor":"/flɔː(r)/","dogs":"/dɒɡz/","brother":"/ˈbrʌðə(r)/","mom":"/mɒm/","children":"/ˈtʃɪldrən/","science":"/ˈsaɪəns/","meeting":"/ˈmiːtɪŋ/","game":"/ɡeɪm/","exercise":"/ˈeksəsaɪz/","drawing":"/ˈdrɔːɪŋ/","question":"/ˈkwestʃən/","worries":"/ˈwʌriz/","laugh":"/lɑːf/","others":"/ˈʌðəz/","funny":"/ˈfʌni/","arrive":"/əˈraɪv/","arrives":"/əˈraɪvz/","hear":"/hɪə(r)/","friend":"/frend/","hope":"/həʊp/","agree":"/əˈɡriː/","agrees":"/əˈɡriːz/","milk":"/mɪlk/","body":"/ˈbɒdi/","busy":"/ˈbɪzi/","work":"/wɜːk/","angry":"/ˈæŋɡri/","them":"/ðem/","proud":"/praʊd/","son":"/sʌn/","wood":"/wʊd/","cup":"/kʌp/","glass":"/ɡlɑːs/","clean":"/kliːn/","classroom":"/ˈklɑːsruːm/","wake":"/weɪk/","stand":"/stænd/","give":"/ɡɪv/","never":"/ˈnevə(r)/","dream":"/driːm/","fruit":"/fruːt/","example":"/ɪɡˈzɑːmpl/","as":"/əz/","swim":"/swɪm/","thank":"/θæŋk/","coming":"/ˈkʌmɪŋ/","shine":"/ʃaɪn/","hiking":"/ˈhaɪkɪŋ/","drink":"/drɪŋk/","rained":"/reɪnd/","all":"/ɔːl/","left":"/left/","saw":"/sɔː/","housework":"/ˈhaʊswɜːk/","makes":"/meɪks/","easily":"/ˈiːzɪli/","care":"/keə(r)/","yourself":"/jɔːˈself/","plants":"/plɑːnts/","piece":"/piːs/","bread":"/bred/","paper":"/ˈpeɪpə(r)/","tea":"/tiː/","has":"/hæz/","first":"/fɜːst/","was":"/wɒz/","couldn't":"/ˈkʊdnt/","so":"/səʊ/","much":"/mʌtʃ/","love":"/lʌv/","keep":"/kiːp/","trying":"/ˈtraɪɪŋ/","today":"/təˈdeɪ/"};
 
 </script>
 <script type="module">
@@ -1679,377 +1678,85 @@ window.IPA_DICT = {"a":"/ə/","an":"/ən/","the":"/ðə/","this":"/ðɪs/","to":
     const { LitElement, html, css, nothing, noChange, svg, unsafeCSS } = await import(__litUrl);
     URL.revokeObjectURL(__litUrl);
 
-
-// ================= TTS: Microsoft Edge Neural TTS (browser WebSocket) =================
-// Real neural voice (en-US-AriaNeural). Runs fully in the browser via the same
-// wss endpoint Edge uses — no backend. Falls back to Web Speech TTS if the socket
-// fails (offline / blocked network). Single-file & offline-capable is preserved:
-// online → 真人级发音; offline → 系统语音兜底.
-const EDGE_VOICE = 'en-US-AriaNeural';
-const EDGE_TRUSTED_TOKEN = '6A5AA1D4EAFF4E9FB37E23D68491D6F4';
-const EDGE_WSS = 'wss://speech.platform.bing.com/consumer/speech/synthesize/readaloud/edge/v1?TrustedClientToken=' + EDGE_TRUSTED_TOKEN;
-
-let _edgeBlocked = false;              // once we know it fails, stop retrying → go local
-const _edgeCache = new Map();          // "rate|text" → objectURL (avoid re-synth)
-
-// speech rate: shared by Edge TTS (SSML rate %) and local TTS (utterance.rate)
-const RATE_LEVELS = {
-  slow:   { ssml: '-35%', local: 0.65, label: '慢' },
-  normal: { ssml: '-8%',  local: 0.85, label: '正常' },
-  fast:   { ssml: '+15%', local: 1.05, label: '快' }
-};
-let _rate = 'normal';
-
-function _uuid(){ return 'xxxxxxxxxxxx4xxxyxxxxxxxxxxxxxxx'.replace(/[xy]/g, c => { const r = Math.random()*16|0; return (c==='x'?r:(r&0x3|0x8)).toString(16); }); }
-function _dateStr(){ return new Date().toString().replace(/GMT.*/, 'GMT+0000 (Coordinated Universal Time)'); }
-function _ssml(text){
-  const esc = String(text).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
-  const rate = (RATE_LEVELS[_rate] || RATE_LEVELS.normal).ssml;
-  return `<speak version='1.0' xmlns='http://www.w3.org/2001/10/synthesis' xml:lang='en-US'>`
-    + `<voice name='${EDGE_VOICE}'><prosody rate='${rate}' pitch='+0Hz'>${esc}</prosody></voice></speak>`;
-}
-
-// ---- persistent WebSocket (reused across requests to avoid per-call handshake latency) ----
-let _ws = null, _wsReady = null;
-const _pending = new Map();   // requestId → { chunks, resolve, reject, timer }
-
-function _connect(){
-  if (_wsReady) return _wsReady;
-  _wsReady = new Promise((resolve, reject) => {
-    let ws;
-    try { ws = new WebSocket(EDGE_WSS); } catch(e){ _wsReady = null; return reject(e); }
-    ws.binaryType = 'arraybuffer';
-    const openTimer = setTimeout(() => { try{ws.close();}catch(e){} _wsReady=null; reject(new Error('open timeout')); }, 6000);
-    ws.onopen = () => {
-      clearTimeout(openTimer);
-      ws.send(
-        `X-Timestamp:${_dateStr()}\r\nContent-Type:application/json; charset=utf-8\r\nPath:speech.config\r\n\r\n`
-        + `{"context":{"synthesis":{"audio":{"metadataoptions":{"sentenceBoundaryEnabled":"false","wordBoundaryEnabled":"false"},"outputFormat":"audio-24khz-48kbitrate-mono-mp3"}}}}`
-      );
-      _ws = ws; resolve(ws);
-    };
-    ws.onmessage = (ev) => {
-      if (typeof ev.data === 'string') {
-        // header text frames carry X-RequestId; route by it
-        const m = ev.data.match(/X-RequestId:([0-9a-f]+)/i);
-        const id = m && m[1];
-        if (ev.data.includes('Path:turn.end') && id && _pending.has(id)) {
-          const st = _pending.get(id); _pending.delete(id); clearTimeout(st.timer);
-          if (!st.chunks.length) return st.reject(new Error('no audio'));
-          st.resolve(URL.createObjectURL(new Blob(st.chunks, { type: 'audio/mpeg' })));
-        }
-      } else {
-        const buf = new Uint8Array(ev.data);
-        // audio binary frame: parse X-RequestId from its text header
-        const headerLen = (buf[0] << 8) | buf[1];
-        const header = new TextDecoder().decode(buf.slice(2, 2 + headerLen));
-        const m = header.match(/X-RequestId:([0-9a-f]+)/i);
-        const id = m && m[1];
-        const audio = buf.slice(2 + headerLen);
-        if (id && _pending.has(id) && audio.length) _pending.get(id).chunks.push(audio);
-      }
-    };
-    const drop = () => { _ws = null; _wsReady = null; _pending.forEach(st => { clearTimeout(st.timer); st.reject(new Error('ws closed')); }); _pending.clear(); };
-    ws.onerror = drop; ws.onclose = drop;
-  });
-  return _wsReady;
-}
-
-// Synthesize via the shared WSS connection, resolve to an audio object URL (mp3).
-function _edgeSynth(text){
-  return _connect().then(ws => new Promise((resolve, reject) => {
-    const id = _uuid().replace(/-/g,'').toUpperCase();
-    const timer = setTimeout(() => { if (_pending.has(id)) { _pending.delete(id); reject(new Error('timeout')); } }, 8000);
-    _pending.set(id, { chunks: [], resolve, reject, timer });
-    try {
-      ws.send(
-        `X-RequestId:${id}\r\nContent-Type:application/ssml+xml\r\nX-Timestamp:${_dateStr()}Z\r\nPath:ssml\r\n\r\n`
-        + _ssml(text)
-      );
-    } catch(e){ _pending.delete(id); clearTimeout(timer); reject(e); }
-  }));
-}
-
-// prewarm: synthesize all page sentences in the background so clicks are instant
-function _prewarm(sentences){
-  if (_edgeBlocked) return;
-  let i = 0;
-  const step = () => {
-    if (i >= sentences.length || _edgeBlocked) return;
-    const text = sentences[i++];
-    const key = _rate + '|' + text;
-    if (_edgeCache.has(key)) { step(); return; }
-    _edgeSynth(text).then(url => { _edgeCache.set(key, url); setTimeout(step, 60); })
-                    .catch(() => { setTimeout(step, 60); });   // keep going even if one fails
-  };
-  // small initial delay so first paint isn't blocked
-  setTimeout(step, 150);
-}
-
-function setRate(r){ if(RATE_LEVELS[r]){ _rate = r; _edgeCache.clear(); if (window.__allSentences) _prewarm(window.__allSentences); } }
-
-function speak(text, btnEl){
-  if (!text) return;
-  if (btnEl) btnEl.classList.add('playing');
-  const done = () => { if (btnEl) btnEl.classList.remove('playing'); };
-  try { window.speechSynthesis && window.speechSynthesis.cancel(); } catch(e){}
-  if (!window.__ttsAudio) window.__ttsAudio = new Audio();
-  const a = window.__ttsAudio;
-  a.volume = 0.6;                 // default playback volume
-  try { a.pause(); } catch(e){}
-
-  let settled = false;            // true once SOME audio has started (edge or local)
-  const playUrl = (url) => {
-    if (settled) return; settled = true;
-    a.onended = done; a.onerror = () => { if(!settled) _localSpeak(text, btnEl); };
-    a.src = url; const p = a.play(); if (p && p.catch) p.catch(() => _localSpeak(text, btnEl));
-  };
-  const fallbackLocal = () => { if (settled) return; settled = true; _localSpeak(text, btnEl); };
-
-  if (_edgeBlocked) { fallbackLocal(); return; }
-  const cacheKey = _rate + '|' + text;
-  if (_edgeCache.has(cacheKey)) { playUrl(_edgeCache.get(cacheKey)); return; }
-
-  // grace timeout: if the neural audio isn't ready fast, speak locally NOW so
-  // the first click never feels frozen; the edge audio still gets cached for next time.
-  const graceTimer = setTimeout(fallbackLocal, 700);
-
-  _edgeSynth(text).then(url => {
-    clearTimeout(graceTimer);
-    _edgeCache.set(cacheKey, url);   // always cache for instant replay
-    playUrl(url);                    // no-op if local already started (settled)
-  }).catch(() => {
-    clearTimeout(graceTimer);
-    _edgeBlocked = true;             // network/proxy blocked → local from now on
-    fallbackLocal();
-  });
-}
-
-// ---------- Local fallback: best available Web Speech voice ----------
-let _voices = [], _bestVoice = null;
-function _pickVoice(){
-  try { _voices = window.speechSynthesis.getVoices() || []; } catch(e){ _voices = []; }
-  if (!_voices.length) return null;
-  const en = _voices.filter(v => /^en(-|_)/i.test(v.lang) || /english/i.test(v.name));
-  if (!en.length) { _bestVoice = _voices[0]; return _bestVoice; }
-  const score = (v) => { const n=(v.name||'').toLowerCase(); let s=0;
-    if(/natural|neural|online|wavenet|premium|enhanced/.test(n)) s+=50;
-    if(/google/.test(n)) s+=30; if(/microsoft|aria|jenny|guy|libby|sonia/.test(n)) s+=28;
-    if(/samantha|karen|daniel|serena|moira/.test(n)) s+=20;
-    if(/^en-us/i.test(v.lang)) s+=12; else if(/^en-gb/i.test(v.lang)) s+=10; else s+=4;
-    if(v.localService===false) s+=8; return s; };
-  en.sort((a,b)=>score(b)-score(a)); _bestVoice = en[0]; return _bestVoice;
-}
-if ('speechSynthesis' in window) { _pickVoice(); window.speechSynthesis.onvoiceschanged = _pickVoice; }
-function _localSpeak(text, btnEl){
-  try {
-    if (!('speechSynthesis' in window)) { if(btnEl) btnEl.classList.remove('playing'); return; }
-    window.speechSynthesis.cancel();
-    const u = new SpeechSynthesisUtterance(text);
-    const v = _bestVoice || _pickVoice();
-    if (v) { u.voice = v; u.lang = v.lang; } else { u.lang = 'en-US'; }
-    u.rate = (RATE_LEVELS[_rate] || RATE_LEVELS.normal).local; u.pitch = 1.0; u.volume = 0.6;
-    if (btnEl) { u.onend = () => btnEl.classList.remove('playing'); u.onerror = () => btnEl.classList.remove('playing'); }
-    window.speechSynthesis.speak(u);
-  } catch (e) { if(btnEl) btnEl.classList.remove('playing'); }
-}
 const ico = (id, cls) => html`<svg class="ico ${cls || ''}" aria-hidden="true"><use href="#${id}"></use></svg>`;
 
-// ---------- Sentence → IPA ----------
-function sentenceIPA(sentence){
-  const dict = window.IPA_DICT || {};
-  const words = sentence.split(/\s+/).filter(Boolean);
-  const parts = words.map(w => { const clean=w.toLowerCase().replace(/[.,!?;:]/g,''); const ipa=dict[clean]; return ipa?ipa.replace(/^\/|\/$/g,''):clean; });
-  return '/' + parts.join(' ') + '/';
-}
-
-const TOPIC_META = {
-  all:   { name: '全部', icon: 'ic-grid' },
-  tense: { name: '时态', icon: 'ic-clock' },
-  prep:  { name: '介词', icon: 'ic-navigation' },
-  coll:  { name: '固定搭配', icon: 'ic-link-2' },
-  review:{ name: '错题本', icon: 'ic-bookmark' }
-};
-const TOPIC_ZH = { tense: '时态', prep: '介词', coll: '固定搭配' };
-const SAVE_KEY = 'mixquiz.review.v1';
-
-class MixApp extends LitElement {
-  static properties = {
-    rate: { state: true }, topic: { state: true },
-    qIndex: { state: true }, qPicked: { state: true }, qAnswered: { state: true }, qScore: { state: true }, combo: { state: true }, celebrate: { state: true },
-    saved: { state: true }
-  };
+class EqApp extends LitElement {
+  static properties = { revealed: { state: true }, showAll: { state: true } };
   createRenderRoot(){ return this; }
   constructor(){
     super();
-    this.data = window.MIX_DATA;
-    this.rate = 'normal';
-    this.topic = 'all';
-    this.qIndex = 0; this.qPicked = -1; this.qAnswered = false; this.qScore = 0; this.combo = 0; this.celebrate = false;
-    this.saved = this._loadSaved();
-    this._quiz = []; this._buildQuiz();
+    this.data = window.EQ_DATA;
+    this.revealed = {};   // {key:true} per-question answer shown
+    this.showAll = false;
   }
-  _key(q){ return q.sentence; }
-  _loadSaved(){ try { return new Set(JSON.parse(localStorage.getItem(SAVE_KEY) || '[]')); } catch(e){ return new Set(); } }
-  _persist(){ try { localStorage.setItem(SAVE_KEY, JSON.stringify([...this.saved])); } catch(e){} }
-  isSaved(q){ return this.saved.has(this._key(q)); }
-  toggleSave(q){ const k=this._key(q); const s=new Set(this.saved); if(s.has(k)) s.delete(k); else s.add(k); this.saved=s; this._persist(); }
-  addToReview(q){ if(!this.saved.has(this._key(q))){ const s=new Set(this.saved); s.add(this._key(q)); this.saved=s; this._persist(); } }
-  _reviewPool(){ return this.data.quiz.filter(q=>this.saved.has(this._key(q))); }
   toggleTheme(){ const c=document.documentElement.getAttribute('data-theme'); document.documentElement.setAttribute('data-theme', c==='dark'?'':'dark'); this.requestUpdate(); }
   get isDark(){ return document.documentElement.getAttribute('data-theme')==='dark'; }
-  changeRate(r){ setRate(r); this.rate = r; }
-
-  _pool(){
-    if (this.topic==='review') return this._reviewPool();
-    return this.topic==='all' ? this.data.quiz : this.data.quiz.filter(q=>q.topic===this.topic);
-  }
-  _count(t){
-    if (t==='review') return this.saved.size;
-    return t==='all' ? this.data.quiz.length : this.data.quiz.filter(q=>q.topic===t).length;
-  }
-  setTopic(t){ this.topic=t; this._buildQuiz(); }
-  _buildQuiz(){
-    // per round: up to 25 shuffled from pool; review book shows ALL saved
-    const pool = this._pool();
-    const picked = this.topic==='review' ? [...pool].sort(()=>Math.random()-0.5) : [...pool].sort(()=>Math.random()-0.5).slice(0,25);
-    this._quiz = picked.map(q=>({ ...q, opts:[...q.options].sort(()=>Math.random()-0.5) }));
-    this.qIndex=0; this.qPicked=-1; this.qAnswered=false; this.qScore=0; this.combo=0; this.celebrate=false;
-  }
-  pickQ(i){
-    if (this.qAnswered) return;
-    this.qAnswered=true; this.qPicked=i;
-    const q=this._quiz[this.qIndex];
-    if (q.opts[i]===q.answer){ this.qScore++; this.combo++; if(this.combo>=2){ this.celebrate=true; setTimeout(()=>{this.celebrate=false;this.requestUpdate();},1200); } }
-    else { this.combo=0; this.addToReview(q); }   // 答错自动收藏进错题本
-    speak(q.sentence.replace('___', q.answer));
-  }
-  nextQ(){ this.celebrate=false; if(this.qIndex<this._quiz.length-1){ this.qIndex++; this.qPicked=-1; this.qAnswered=false; } else { this.qIndex=this._quiz.length; } }
+  toggle(k){ this.revealed = { ...this.revealed, [k]: !this.revealed[k] }; }
+  toggleAll(){ this.showAll = !this.showAll; this.revealed = {}; }
+  print(){ window.print(); }
 
   render(){
+    let no = 0;
     return html`
       <div class="app">
-        ${this.renderBar()}
+        <header class="appbar">
+          <div class="wrap appbar__inner">
+            <div class="brand">
+              <div class="brand__mark">${ico('ic-calculator','ico--md')}</div>
+              <div><div class="brand__title">简易方程应用题</div><div class="brand__sub">列方程解应用题 · 练习卷 · 30 题</div></div>
+            </div>
+            <div class="appbar__spacer"></div>
+            <button class="tbtn ${this.showAll?'tbtn--on':''}" @click=${()=>this.toggleAll()}>
+              ${ico(this.showAll?'ic-eye-off':'ic-eye','ico--sm')} ${this.showAll?'隐藏全部答案':'显示全部答案'}
+            </button>
+            <button class="tbtn" @click=${()=>this.print()}>${ico('ic-printer','ico--sm')} 打印</button>
+            <button class="iconbtn" title="切换主题" @click=${()=>this.toggleTheme()}>${ico(this.isDark?'ic-sun':'ic-moon','ico--sm')}</button>
+          </div>
+        </header>
         <main class="wrap" style="flex:1;width:100%;">
-          ${this.renderHero()}
-          ${this.renderQuizSection()}
+          <div class="paper">
+            <div class="paper__title">${this.data.title}</div>
+            <div class="paper__meta"><span>姓名:</span><span>班级:</span><span>日期:</span><span>得分:</span></div>
+            <div class="paper__intro">${ico('ic-info','ico--xs')} ${this.data.intro}</div>
+            ${this.data.sections.map(sec => html`
+              <section class="qsec">
+                <div class="qsec__head">
+                  <span class="qsec__name">${sec.name}</span>
+                  <span class="qsec__tag qsec__tag--${sec.tag}">${sec.tag}</span>
+                  <span class="qsec__desc">${sec.desc}</span>
+                </div>
+                ${sec.items.map(it => { no++; const key='q'+no; const open = this.showAll || this.revealed[key];
+                  return html`
+                  <div class="q">
+                    <div class="q__head">
+                      <span class="q__no">${no}</span>
+                      <span class="q__text">${it.q} <span class="q__type">${it.type}</span></span>
+                    </div>
+                    <div class="q__work"></div>
+                    <div class="q__reveal">
+                      ${!open ? html`
+                        <button class="ans-toggle" @click=${()=>this.toggle(key)}>${ico('ic-eye','ico--sm')} 查看答案与讲解</button>
+                      ` : html`
+                        ${!this.showAll ? html`<button class="ans-toggle" @click=${()=>this.toggle(key)}>${ico('ic-eye-off','ico--sm')} 收起</button>` : ''}
+                        <div class="ans-box">
+                          <div class="ans-row"><span class="ans-label">设未知数</span><span>${it.setx}</span></div>
+                          <div class="ans-row"><span class="ans-label">列方程</span><span class="ans-eq">${it.eq}</span></div>
+                          <div class="ans-row"><span class="ans-label">答案</span><span class="ans-final">${it.answer}</span></div>
+                          <div class="ans-row"><span class="ans-label">讲解</span><span class="ans-explain">${it.explain}</span></div>
+                        </div>
+                      `}
+                    </div>
+                  </div>`; })}
+              </section>`)}
+          </div>
         </main>
-        <footer class="foot wrap">英语综合练习 · 时态 + 介词 + 固定搭配 · 共 160 题 · 点 ${ico('ic-volume','ico--xs')} 听发音</footer>
+        <footer class="foot wrap">简易方程应用题练习卷 · 共 30 题(基础/进阶/挑战)· 答案与讲解可逐题或一键展开 · 支持打印</footer>
       </div>`;
   }
 
-  renderBar(){
-    return html`
-      <header class="appbar">
-        <div class="wrap appbar__inner">
-          <div class="brand">
-            <div class="brand__mark">${ico('ic-target','ico--md')}</div>
-            <div><div class="brand__title">英语综合练习营</div><div class="brand__sub">Tenses · Prepositions · Collocations · 160 Qs</div></div>
-          </div>
-          <div class="appbar__spacer"></div>
-          <div class="rate-ctrl" title="调节朗读语速">
-            ${ico('ic-gauge','ico--sm')}
-            <div class="rate-seg">${['slow','normal','fast'].map(r => html`<button class="rate-opt ${this.rate===r?'rate-opt--on':''}" @click=${()=>this.changeRate(r)}>${RATE_LEVELS[r].label}</button>`)}</div>
-          </div>
-          <button class="iconbtn" title="切换主题" @click=${()=>this.toggleTheme()}>${ico(this.isDark?'ic-sun':'ic-moon','ico--sm')}</button>
-        </div>
-      </header>`;
-  }
-
-  renderHero(){
-    return html`
-      <section class="hero">
-        <h1>综合练习:一次搞定三大专题</h1>
-        <p>这里把<b>时态</b>、<b>介词</b>、<b>固定搭配</b>的题目合到一起,共 160 道选择填空题(覆盖全部内容)。答错的会<b>自动进错题本</b>,也可以点 ${ico('ic-bookmark','ico--xs')} 手动收藏,进“错题本”专项复习。每题都能听整句发音、看整句音标。</p>
-      </section>`;
-  }
-
-  renderQuizSection(){
-    return html`
-      <section class="sec" style="border-top:none">
-        <div class="filter-bar">
-          ${Object.keys(TOPIC_META).map(t => html`
-            <button class="filter-chip ${this.topic===t?'filter-chip--on':''} ${t==='review'?'filter-chip--review':''}" @click=${()=>this.setTopic(t)}>
-              ${ico(TOPIC_META[t].icon,'ico--sm')} ${TOPIC_META[t].name}
-              <span class="filter-chip__count">${this._count(t)}</span>
-            </button>`)}
-        </div>
-        ${this._renderQuizBody()}
-      </section>`;
-  }
-  _renderQuizBody(){
-    // empty review book
-    if (this.topic==='review' && this._quiz.length===0){
-      return html`
-        <div class="quiz-card quiz-done">
-          ${ico('ic-bookmark','ico--3xl')}
-          <div style="font-size:var(--s-fs-h3);font-weight:var(--g-fw-bold);margin-top:var(--g-sp-3)">错题本是空的</div>
-          <p style="color:var(--s-text-secondary)">去做题吧!答错的题会自动收进这里,你也可以点题目旁的 ${ico('ic-bookmark','ico--xs')} 手动收藏,方便集中复习。</p>
-          <button class="btn btn--primary" style="margin-top:var(--g-sp-4)" @click=${()=>this.setTopic('all')}>${ico('ic-arrow-right','ico--sm')} 去练全部题</button>
-        </div>`;
-    }
-    if (this.qIndex >= this._quiz.length){
-      const total=this._quiz.length;
-      return html`
-        <div class="quiz-card quiz-done">
-          ${ico('ic-trophy','ico--3xl')}
-          <div class="quiz-done__score">${this.qScore} / ${total}</div>
-          <p style="color:var(--s-text-secondary)">${this.qScore>=total*0.8?'太棒了,掌握得很好!':this.qScore>=total*0.5?'不错,继续加油!':'别灰心,再练一轮就更熟了!'}</p>
-          <button class="btn btn--primary" style="margin-top:var(--g-sp-4)" @click=${()=>{this._buildQuiz(); this.requestUpdate();}}>${ico('ic-refresh','ico--sm')} 再来一轮</button>
-        </div>`;
-    }
-    const q=this._quiz[this.qIndex]; const pct=Math.round((this.qIndex/this._quiz.length)*100);
-    const full=q.sentence.replace('___', q.answer); const parts=q.sentence.split('___');
-    const saved=this.isSaved(q);
-    return html`
-      <div class="quiz-card">
-        ${this.celebrate ? html`<div class="confetti">${Array.from({length:12}).map((_,i)=>html`<span class="conf conf-${i%6}" style="left:${8+i*7.5}%;animation-delay:${(i%5)*0.08}s"></span>`)}</div>` : ''}
-        <div class="quiz-progress">
-          <span>第 ${this.qIndex+1} / ${this._quiz.length} 题</span>
-          <span class="quiz-status">${this.combo>=2?html`<span class="combo">🔥 连对 ${this.combo}</span>`:''} 得分 ${this.qScore}</span>
-        </div>
-        <div class="quiz-bar"><div class="quiz-bar__fill" style="width:${pct}%"></div></div>
-        <div class="quiz-toprow">
-          <span class="topic-tag topic-tag--${q.topic}">${TOPIC_ZH[q.topic]}</span>
-          <button class="collect ${saved?'collect--on':''}" title=${saved?'已收藏,点击取消':'收藏到错题本'} @click=${()=>this.toggleSave(q)}>
-            ${ico('ic-bookmark','ico--sm')} ${saved?'已收藏':'收藏'}
-          </button>
-        </div>
-        <div class="quiz-q" style="font-size:var(--s-fs-h3)">${parts[0]}<span class="quiz-q__blank">${this.qAnswered?q.answer:'?'}</span>${parts[1]||''}
-          <button class="speak" title="朗读整句" @click=${e=>speak(full,e.currentTarget)}>${ico('ic-volume','ico--sm')}</button>
-        </div>
-        <div class="quiz-q__zh">${q.zh}</div>
-        <div class="quiz-opts">
-          ${q.opts.map((opt,i)=>{
-            let cls=''; if(this.qAnswered){ if(opt===q.answer) cls='correct'; else if(i===this.qPicked) cls='wrong'; }
-            return html`<button class="quiz-opt ${cls}" ?disabled=${this.qAnswered} @click=${()=>this.pickQ(i)}>${opt}</button>`;
-          })}
-        </div>
-        ${this.qAnswered ? html`
-          <div class="quiz-feedback">
-            ${q.opts[this.qPicked]===q.answer ? html`<span style="color:var(--g-green-700);font-weight:600">${ico('ic-check-circle-2','ico--sm')} 正确!</span>` : html`<span style="color:var(--g-red-700);font-weight:600">${ico('ic-x-circle','ico--sm')} 正确答案:${q.answer}(已加入错题本)</span>`}
-            <div class="prep-ex__ipa" style="justify-content:center">${ico('ic-volume','ico--xs')} ${sentenceIPA(full)}</div>
-          </div>
-          <div class="quiz-next"><button class="btn btn--primary" @click=${()=>this.nextQ()}>${this.qIndex<this._quiz.length-1?'下一题':'查看结果'} ${ico('ic-arrow-right','ico--sm')}</button></div>
-        ` : ''}
-      </div>`;
-  }
-
-  _collectSentences(){ return this.data.quiz.map(q=>q.sentence.replace('___', q.answer)); }
-  async firstUpdated(){
-    await this.updateComplete;
-    const b=document.getElementById('boot'); if(b) b.remove();
-    // pre-connect the TTS WebSocket immediately so the FIRST click skips the handshake wait
-    try { if(typeof _connect==='function') _connect().catch(()=>{}); } catch(e){}
-    // then prewarm the current round's sentences so their audio is cached
-    try {
-      const list = this._quiz.map(q=>q.sentence.replace('___', q.answer));
-      window.__allSentences = this._collectSentences();
-      if (typeof _prewarm==='function') _prewarm(list.slice(0,20));
-    } catch(e){}
-  }
+  async firstUpdated(){ await this.updateComplete; const b=document.getElementById('boot'); if(b) b.remove(); }
 }
-customElements.define('mix-app', MixApp);
+customElements.define('eq-app', EqApp);
 
 </script>
 </body>
