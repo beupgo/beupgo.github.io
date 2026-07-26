@@ -29,6 +29,7 @@
 | 英语句子构成专题 | https://beupgo.github.io/english-sentence-structure.html |
 | 英语时态学习专题 | https://beupgo.github.io/english-tenses.html |
 | 英语冒险岛 · 3-6年级暑假 | https://beupgo.github.io/english5.html |
+| 简易方程应用题练习卷 | https://beupgo.github.io/equation-word-problems.html |
 | 小学英语单词乐园 · 时间 · 交通 · 天气 | https://beupgo.github.io/word-learning.html |
 | 小学英语词根词缀乐园 · 拆词记单词 | https://beupgo.github.io/word-roots.html |
 | 导航首页 | https://beupgo.github.io/ |
@@ -70,6 +71,7 @@
 ├─ english-sentence-structure.html  # 英语句子构成专题
 ├─ english-tenses.html  # 英语时态学习专题
 ├─ english5.html  # 英语冒险岛 · 3-6年级暑假
+├─ equation-word-problems.html  # 简易方程应用题练习卷
 ├─ word-learning.html  # 小学英语单词乐园 · 时间 · 交通 · 天气
 └─ word-roots.html  # 小学英语词根词缀乐园 · 拆词记单词
 └─ README.md
