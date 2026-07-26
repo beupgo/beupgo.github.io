@@ -14,6 +14,7 @@ Sentinel markers used:
 """
 
 import re
+import subprocess
 import sys
 from pathlib import Path
 
@@ -117,6 +118,7 @@ def collect_pages() -> list[dict]:
         grade_num, subject_slug, extra = parse_filename(f.name)
         title = extract_title(f)
         description = extract_meta_description(f)
+        updated_ts, updated_at = get_git_last_updated(f.name)
         pages.append(
             dict(
                 file=f.name,
@@ -125,11 +127,32 @@ def collect_pages() -> list[dict]:
                 extra=extra,
                 title=title,
                 description=description,
+                updated_ts=updated_ts,
+                updated_at=updated_at,
             )
         )
     # Graded pages first (sorted by grade then filename), ungrouped pages last
     pages.sort(key=lambda p: (0 if p["grade_num"] else 1, p["grade_num"] or 0, p["file"]))
     return pages
+
+
+def get_git_last_updated(filename: str) -> tuple[int, str]:
+    try:
+        ts = subprocess.run(
+            ["git", "-C", str(ROOT), "log", "-1", "--format=%ct", "--", filename],
+            check=True,
+            capture_output=True,
+            text=True,
+        ).stdout.strip()
+        at = subprocess.run(
+            ["git", "-C", str(ROOT), "log", "-1", "--date=format:%Y-%m-%d %H:%M", "--format=%cd", "--", filename],
+            check=True,
+            capture_output=True,
+            text=True,
+        ).stdout.strip()
+        return (int(ts), at) if ts and at else (0, "")
+    except Exception:
+        return 0, ""
 
 
 # ---------------------------------------------------------------------------
@@ -150,12 +173,14 @@ def replace_between(text: str, start: str, end: str, new_content: str) -> str:
 # ---------------------------------------------------------------------------
 
 def gen_readme_table(pages: list[dict]) -> str:
-    lines = ["| 页面 | 在线地址 |", "|---|---|"]
-    for p in pages:
+    sorted_pages = sorted(pages, key=lambda p: (p["updated_ts"], p["file"]), reverse=True)
+    lines = ["| 页面 | 在线地址 | 更新时间 |", "|---|---|---|"]
+    for p in sorted_pages:
         url = f"https://beupgo.github.io/{p['file']}"
         title = p["title"].replace("|", "\\|")
-        lines.append(f"| {title} | {url} |")
-    lines.append("| 导航首页 | https://beupgo.github.io/ |")
+        updated_at = p["updated_at"] or "-"
+        lines.append(f"| {title} | {url} | {updated_at} |")
+    lines.append("| 导航首页 | https://beupgo.github.io/ | - |")
     return "\n".join(lines)
 
 
