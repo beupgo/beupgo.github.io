@@ -172,15 +172,58 @@ def replace_between(text: str, start: str, end: str, new_content: str) -> str:
 # README.md generators
 # ---------------------------------------------------------------------------
 
+def _page_category(p: dict) -> str:
+    """Return a Chinese subject category label for a page."""
+    slug = (p["subject_slug"] or "").lower()
+    name = p["file"].lower()
+    if slug == "chinese" or "chinese" in name:
+        return "语文"
+    if (
+        slug == "math"
+        or "math" in name
+        or "equation" in name
+        or "circle" in name
+        or "fraction" in name
+    ):
+        return "数学"
+    if (
+        slug == "english"
+        or "english" in name
+        or "vocabulary" in name
+        or name.startswith("word")
+    ):
+        return "英语"
+    return "其他"
+
+
 def gen_readme_table(pages: list[dict]) -> str:
     sorted_pages = sorted(pages, key=lambda p: (p["updated_ts"], p["file"]), reverse=True)
-    lines = ["| 页面 | 在线地址 | 更新时间 |", "|---|---|---|"]
+
+    # Group pages into ordered categories
+    category_order = ["数学", "英语", "语文", "其他"]
+    groups: dict[str, list] = {c: [] for c in category_order}
     for p in sorted_pages:
-        url = f"https://beupgo.github.io/{p['file']}"
-        title = p["title"].replace("|", "\\|")
-        updated_at = p["updated_at"] or "-"
-        lines.append(f"| {title} | {url} | {updated_at} |")
-    lines.append("| 导航首页 | https://beupgo.github.io/ | - |")
+        groups[_page_category(p)].append(p)
+
+    lines: list[str] = []
+    for cat in category_order:
+        cat_pages = groups[cat]
+        if not cat_pages:
+            continue
+        lines.append(f"**{cat}**\n")
+        lines.append("| 页面 | 在线地址 | 更新时间 |")
+        lines.append("|---|---|---|")
+        for p in cat_pages:
+            url = f"https://beupgo.github.io/{p['file']}"
+            title = p["title"].replace("|", "\\|")
+            updated_at = p["updated_at"] or "-"
+            lines.append(f"| {title} | [访问]({url}) | {updated_at} |")
+        lines.append("")
+
+    lines.append("**导航**\n")
+    lines.append("| 页面 | 在线地址 | 更新时间 |")
+    lines.append("|---|---|---|")
+    lines.append("| 导航首页 | [访问](https://beupgo.github.io/) | - |")
     return "\n".join(lines)
 
 
