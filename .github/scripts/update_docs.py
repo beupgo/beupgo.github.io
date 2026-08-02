@@ -249,15 +249,34 @@ def replace_between(text: str, start: str, end: str, new_content: str) -> str:
 # ---------------------------------------------------------------------------
 
 def gen_readme_table(pages: list[dict]) -> str:
-    sorted_pages = sorted(pages, key=lambda p: (p["updated_ts"], p["file"]), reverse=True)
-    lines = ["| 页面 | 学科分类 | 在线地址 | 更新时间 |", "|---|---|---|---|"]
+    sorted_pages = sorted(pages, key=lambda p: (p["subject_slug"] or "", p["updated_ts"], p["file"]), reverse=True)
+    grouped: dict[str, list[dict]] = {}
     for p in sorted_pages:
-        url = f"https://beupgo.github.io/{p['file']}"
-        title = p["title"].replace("|", "\\|")
-        subject = SUBJECT_NAMES_ZH.get(p["subject_slug"] or "", "未分类")
-        updated_at = p["updated_at"] or "-"
-        lines.append(f"| {title} | {subject} | {url} | {updated_at} |")
-    lines.append("| 导航首页 | - | https://beupgo.github.io/ | - |")
+        key = p["subject_slug"] or "uncategorized"
+        grouped.setdefault(key, []).append(p)
+
+    ordered_subjects = [s for s in SUBJECT_NAMES_ZH.keys() if s in grouped]
+    ordered_subjects += sorted(s for s in grouped.keys() if s not in SUBJECT_NAMES_ZH)
+
+    lines = []
+    for subject_slug in ordered_subjects:
+        subject_name = SUBJECT_NAMES_ZH.get(subject_slug, "未分类")
+        lines.append(f"### {subject_name}")
+        lines.append("")
+        lines.append("| 页面 | 在线访问 | 更新时间 |")
+        lines.append("|---|---|---|")
+        for p in grouped[subject_slug]:
+            url = f"https://beupgo.github.io/{p['file']}"
+            title = p["title"].replace("|", "\\|")
+            updated_at = p["updated_at"] or "-"
+            lines.append(f"| {title} | [开始学习]({url}) | {updated_at} |")
+        lines.append("")
+
+    lines.append("### 导航")
+    lines.append("")
+    lines.append("| 页面 | 在线访问 | 更新时间 |")
+    lines.append("|---|---|---|")
+    lines.append("| 导航首页 | [进入首页](https://beupgo.github.io/) | - |")
     return "\n".join(lines)
 
 
