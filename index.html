@@ -16,6 +16,8 @@
   --text-2:#4b5563;
   --text-3:#9ca3af;
   --border:#e5e7eb;
+  --content-max:1120px;
+  --content-pad:clamp(16px,3vw,28px);
   /* subject accents */
   --math:#4f46e5; --math-light:#eef2ff; --math-mid:#c7d2fe;
   --zh:#ea580c;   --zh-light:#fff7ed;   --zh-mid:#fed7aa;
@@ -31,6 +33,14 @@
     --en-light:#022c22;   --en-mid:#064e3b;
     --other-light:#1e1030;--other-mid:#3b0764;
   }
+  .tab-wrap{background:rgba(15,17,23,.88);}
+  .panel-meta{background:rgba(28,32,48,.82);}
+  .crd-head{border-bottom-color:rgba(148,163,184,.08);}
+  .crd-icon{
+    background:rgba(15,23,42,.22);
+    border-color:rgba(148,163,184,.12);
+    box-shadow:inset 0 1px 0 rgba(255,255,255,.03),0 10px 22px rgba(2,6,23,.22);
+  }
 }
 *{box-sizing:border-box;-webkit-tap-highlight-color:transparent;margin:0;padding:0;}
 html{height:100%;}
@@ -44,11 +54,16 @@ body{
 
 /* ── Top bar ──────────────────────────────────────────── */
 .topbar{
-  display:flex;align-items:center;justify-content:space-between;
-  padding:calc(env(safe-area-inset-top,0px) + 14px) 20px 14px;
   background:linear-gradient(135deg,#4338ca 0%,#6366f1 60%,#8b5cf6 100%);
   color:#fff;
   position:sticky;top:0;z-index:300;
+  box-shadow:0 10px 28px rgba(67,56,202,.18);
+}
+.topbar-inner{
+  max-width:calc(var(--content-max) + var(--content-pad) * 2);
+  margin:0 auto;
+  padding:calc(env(safe-area-inset-top,0px) + 16px) var(--content-pad) 18px;
+  display:flex;align-items:flex-start;justify-content:space-between;gap:16px;
 }
 .topbar-title{
   display:flex;flex-direction:column;
@@ -59,7 +74,7 @@ body{
   line-height:1.2;
 }
 .topbar-title p{
-  font-size:12px;opacity:.8;margin-top:2px;
+  font-size:13px;opacity:.86;margin-top:4px;
 }
 .topbar-actions{display:flex;gap:8px;align-items:center;}
 .btn-icon{
@@ -80,17 +95,25 @@ body{
 .tab-wrap{
   position:sticky;top:calc(env(safe-area-inset-top,0px) + 68px);
   z-index:200;
-  background:var(--card);
+  background:rgba(255,255,255,.92);
+  backdrop-filter:blur(16px);
+  -webkit-backdrop-filter:blur(16px);
   border-bottom:1px solid var(--border);
+}
+.tab-shell{
+  max-width:calc(var(--content-max) + var(--content-pad) * 2);
+  margin:0 auto;
+  padding:0 var(--content-pad);
 }
 .tab-bar{
   display:flex;gap:0;
   overflow-x:auto;scrollbar-width:none;
-  padding:0 16px;
+  padding:0;
 }
 .tab-bar::-webkit-scrollbar{display:none;}
 .tab-btn{
   flex:none;
+  display:inline-flex;align-items:center;gap:8px;
   padding:14px 18px;
   border:none;background:none;
   font-family:var(--font);font-size:14px;font-weight:700;
@@ -107,6 +130,7 @@ body{
   transition:left .2s,right .2s;
 }
 .tab-btn:active{opacity:.7;}
+.tab-btn svg{width:16px;height:16px;display:block;stroke:currentColor;}
 /* active indicator colors per subject */
 .tab-btn[data-subj="数学"].active{color:var(--math);}
 .tab-btn[data-subj="数学"].active::after{left:12px;right:12px;}
@@ -118,60 +142,101 @@ body{
 .tab-btn[data-subj="other"].active::after{left:12px;right:12px;background:var(--other);}
 
 /* ── Tab panels ───────────────────────────────────────── */
-.tab-panel{display:none;padding:16px 14px calc(env(safe-area-inset-bottom,16px) + 60px);}
+.tab-panel{display:none;padding:22px 0 calc(env(safe-area-inset-bottom,16px) + 60px);}
 .tab-panel.active{display:block;}
+.panel-inner{
+  max-width:calc(var(--content-max) + var(--content-pad) * 2);
+  margin:0 auto;
+  padding:0 var(--content-pad);
+}
+.panel-head{
+  display:flex;align-items:flex-end;justify-content:space-between;
+  gap:14px;flex-wrap:wrap;
+  margin:0 0 18px;
+}
+.panel-copy{min-width:0;}
+.panel-kicker{
+  font-size:11px;font-weight:800;letter-spacing:.12em;
+  color:var(--text-3);text-transform:uppercase;
+}
+.panel-title{
+  font-size:26px;font-weight:900;line-height:1.15;
+  letter-spacing:-.03em;margin-top:4px;
+}
+.panel-desc{
+  font-size:13px;line-height:1.6;color:var(--text-2);margin-top:6px;
+}
+.panel-meta{
+  font-size:12px;font-weight:700;color:var(--text-3);
+  padding:7px 12px;border:1px solid var(--border);border-radius:999px;
+  background:rgba(255,255,255,.7);
+}
 
 /* ── Card grid ────────────────────────────────────────── */
 .card-list{
   display:grid;
   grid-template-columns:repeat(2,1fr);
-  gap:12px;
-  max-width:920px;margin:0 auto;
+  gap:14px;
 }
 @media(min-width:540px){.card-list{grid-template-columns:repeat(3,1fr);}}
-@media(min-width:800px){.card-list{grid-template-columns:repeat(4,1fr);gap:14px;}}
+@media(min-width:860px){.card-list{grid-template-columns:repeat(4,1fr);gap:16px;}}
 
 .crd{
   display:flex;flex-direction:column;
-  border-radius:18px;
+  border-radius:20px;
   background:var(--card);
   border:1px solid var(--border);
   text-decoration:none;color:var(--text);
   overflow:hidden;
-  box-shadow:0 1px 4px rgba(0,0,0,.06);
+  box-shadow:0 8px 24px rgba(15,23,42,.06),0 2px 8px rgba(15,23,42,.04);
   transition:transform .12s,box-shadow .12s;
 }
 .crd:active{transform:scale(.95);}
 @media(hover:hover){
-  .crd:hover{transform:translateY(-4px);box-shadow:0 10px 28px rgba(0,0,0,.13);}
+  .crd:hover{transform:translateY(-4px);box-shadow:0 18px 34px rgba(15,23,42,.12),0 8px 16px rgba(15,23,42,.08);}
 }
 
 /* card header – large coloured icon zone */
 .crd-head{
   display:flex;align-items:center;justify-content:center;
-  padding:24px 12px 20px;
+  min-height:104px;
+  padding:20px 18px 16px;
+  border-bottom:1px solid rgba(255,255,255,.5);
 }
-[data-subj="数学"] .crd-head{background:var(--math-light);}
-[data-subj="语文"] .crd-head{background:var(--zh-light);}
-[data-subj="英语"] .crd-head{background:var(--en-light);}
-[data-subj="other"] .crd-head{background:var(--other-light);}
+[data-subj="数学"] .crd-head{background:linear-gradient(180deg,#f4f7ff 0%,var(--math-light) 100%);}
+[data-subj="语文"] .crd-head{background:linear-gradient(180deg,#fffaf4 0%,var(--zh-light) 100%);}
+[data-subj="英语"] .crd-head{background:linear-gradient(180deg,#f4fffa 0%,var(--en-light) 100%);}
+[data-subj="other"] .crd-head{background:linear-gradient(180deg,#fcf8ff 0%,var(--other-light) 100%);}
 
 .crd-icon{
-  font-size:38px;line-height:1;
+  width:58px;height:58px;
   display:flex;align-items:center;justify-content:center;
+  border-radius:18px;
+  background:rgba(255,255,255,.72);
+  border:1px solid rgba(255,255,255,.78);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.85),0 6px 16px rgba(79,70,229,.08);
 }
+.crd-icon svg{
+  width:28px;height:28px;display:block;
+  fill:none;stroke:currentColor;stroke-width:1.9;
+  stroke-linecap:round;stroke-linejoin:round;
+}
+[data-subj="数学"] .crd-icon{color:var(--math);}
+[data-subj="语文"] .crd-icon{color:var(--zh);}
+[data-subj="英语"] .crd-icon{color:var(--en);}
+[data-subj="other"] .crd-icon{color:var(--other);}
 
 /* card body */
 .crd-body{
   flex:1;display:flex;flex-direction:column;
-  padding:12px 13px 13px;
+  padding:16px 16px 15px;
 }
 .crd-title{
-  font-size:13px;font-weight:800;line-height:1.4;
+  font-size:16px;font-weight:850;line-height:1.42;
   display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;
 }
 .crd-desc{
-  font-size:11px;color:var(--text-2);margin-top:4px;line-height:1.5;
+  font-size:13px;color:var(--text-2);margin-top:6px;line-height:1.6;
   display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;
 }
 .crd-foot{
@@ -180,7 +245,7 @@ body{
   gap:4px;
 }
 .crd-chip{
-  font-size:10px;font-weight:800;
+  font-size:11px;font-weight:800;
   padding:2px 8px;border-radius:99px;
   letter-spacing:.03em;flex:none;
 }
@@ -192,10 +257,10 @@ body{
 /* ── Time badge ───────────────────────────────────────── */
 .crd-time{
   display:flex;align-items:center;gap:3px;
-  font-size:10px;font-weight:600;color:var(--text-3);
+  font-size:11px;font-weight:700;color:var(--text-3);
   white-space:nowrap;
 }
-.crd-time svg{width:10px;height:10px;flex:none;}
+.crd-time svg{width:11px;height:11px;flex:none;}
 
 /* ── Footer ───────────────────────────────────────────── */
 .foot{
@@ -211,25 +276,29 @@ body{
 
 <!-- Top bar -->
 <div class="topbar">
-  <div class="topbar-title">
-    <h1>暑假成长加油站 🌟</h1>
-    <p>语文 · 数学 · 英语 — 点击卡片开始学习</p>
-  </div>
-  <div class="topbar-actions">
-    <button class="btn-icon" id="btn-refresh" title="刷新页面" aria-label="刷新页面">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-        <path d="M3 12a9 9 0 0 1 15-6.7L21 8"/>
-        <path d="M21 3v5h-5"/>
-        <path d="M21 12a9 9 0 0 1-15 6.7L3 16"/>
-        <path d="M3 21v-5h5"/>
-      </svg>
-    </button>
+  <div class="topbar-inner">
+    <div class="topbar-title">
+      <h1>暑假成长加油站 🌟</h1>
+      <p>语文 · 数学 · 英语 — 点击卡片开始学习</p>
+    </div>
+    <div class="topbar-actions">
+      <button class="btn-icon" id="btn-refresh" title="刷新页面" aria-label="刷新页面">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M3 12a9 9 0 0 1 15-6.7L21 8"/>
+          <path d="M21 3v5h-5"/>
+          <path d="M21 12a9 9 0 0 1-15 6.7L3 16"/>
+          <path d="M3 21v-5h5"/>
+        </svg>
+      </button>
+    </div>
   </div>
 </div>
 
 <!-- Subject tabs -->
 <div class="tab-wrap">
-  <div class="tab-bar" id="tab-bar" role="tablist"></div>
+  <div class="tab-shell">
+    <div class="tab-bar" id="tab-bar" role="tablist"></div>
+  </div>
 </div>
 
 <!-- Card panels (populated by JS) -->
@@ -472,38 +541,87 @@ body{
     window.location.reload();
   });
 
-  /* ── emoji lookup ──────────────────────────────────── */
-  var EMOJI = [
-    [/运算|定律/,        '➕'],
-    [/方程/,             '⚖️'],
-    [/因数|倍数/,        '🔢'],
-    [/裂差|裂和/,        '✂️'],
-    [/多边形|面积/,      '📐'],
-    [/分数|通分/,        '🍕'],
-    [/圆/,               '⭕'],
-    [/图形|几何/,        '🔷'],
-    [/作文/,             '✏️'],
-    [/写作/,             '📝'],
-    [/组句|火车/,        '🚂'],
-    [/搭配/,             '🔗'],
-    [/综合/,             '🎯'],
-    [/介词/,             '📍'],
-    [/时态/,             '⏰'],
-    [/冒险岛/,           '🏝️'],
-    [/单词|词汇|乐园/,   '📚'],
-    [/词根|词缀/,        '🌱'],
-    [/奥数/,             '🏆'],
-    [/母题/,             '🗂️'],
-    [/练习卷|练习题/,    '📋'],
-  ];
-  var SUBJ_EMOJI = { '数学': '🔢', '语文': '📖', '英语': '🗣️' };
+  /* ── icon system ───────────────────────────────────── */
+  var ICONS = {
+    spark: '<svg viewBox="0 0 24 24"><path d="M12 3v4"/><path d="M12 17v4"/><path d="M4.9 4.9l2.8 2.8"/><path d="M16.3 16.3l2.8 2.8"/><path d="M3 12h4"/><path d="M17 12h4"/><path d="M4.9 19.1l2.8-2.8"/><path d="M16.3 7.7l2.8-2.8"/></svg>',
+    calculator: '<svg viewBox="0 0 24 24"><rect x="5" y="3.5" width="14" height="17" rx="2.5"/><path d="M8 7.5h8"/><path d="M8 11.5h2"/><path d="M12 11.5h2"/><path d="M16 11.5h0"/><path d="M8 15.5h2"/><path d="M12 15.5h2"/><path d="M16 15.5h0"/></svg>',
+    scale: '<svg viewBox="0 0 24 24"><path d="M12 4v14"/><path d="M8 7h8"/><path d="M5 20h14"/><path d="M8 7 5 12h6Z"/><path d="M16 7 13 12h6Z"/></svg>',
+    hash: '<svg viewBox="0 0 24 24"><path d="M9 4 7 20"/><path d="M17 4 15 20"/><path d="M4 9h16"/><path d="M3 15h16"/></svg>',
+    scissors: '<svg viewBox="0 0 24 24"><circle cx="6.5" cy="7.5" r="2.5"/><circle cx="6.5" cy="16.5" r="2.5"/><path d="M9 9 20 4"/><path d="M9 15 20 20"/></svg>',
+    checklist: '<svg viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16" rx="2.5"/><path d="m8 9 1.8 1.8L13 7.8"/><path d="M8 15h8"/></svg>',
+    ruler: '<svg viewBox="0 0 24 24"><path d="M4 19 19 4"/><path d="M6.5 16.5 8 18"/><path d="M10 13 12 15"/><path d="M13.5 9.5 15 11"/><path d="M17 6l1.5 1.5"/><rect x="4" y="4" width="16" height="16" rx="2.5" transform="rotate(45 12 12)"/></svg>',
+    grid: '<svg viewBox="0 0 24 24"><rect x="4" y="4" width="7" height="7" rx="1.5"/><rect x="13" y="4" width="7" height="7" rx="1.5"/><rect x="4" y="13" width="7" height="7" rx="1.5"/><rect x="13" y="13" width="7" height="7" rx="1.5"/></svg>',
+    pie: '<svg viewBox="0 0 24 24"><path d="M12 3v9l7.2 4.2"/><path d="M20.3 13A8.3 8.3 0 1 1 11 3.1"/></svg>',
+    filemath: '<svg viewBox="0 0 24 24"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8Z"/><path d="M14 3v5h5"/><path d="M8 13h8"/><path d="M10 11v4"/></svg>',
+    divide: '<svg viewBox="0 0 24 24"><circle cx="12" cy="6.5" r="1.5"/><circle cx="12" cy="17.5" r="1.5"/><path d="M6 12h12"/><circle cx="12" cy="12" r="8.5"/></svg>',
+    layers: '<svg viewBox="0 0 24 24"><path d="m12 4 8 4-8 4-8-4Z"/><path d="m4 12 8 4 8-4"/><path d="m4 16 8 4 8-4"/></svg>',
+    compass: '<svg viewBox="0 0 24 24"><path d="m10 14 4-4"/><path d="m14 10 4-4"/><path d="m10 14-4 4"/><path d="m14 10 2 8-8-2Z"/><circle cx="12" cy="12" r="8.5"/></svg>',
+    medal: '<svg viewBox="0 0 24 24"><path d="m8 3 4 6 4-6"/><circle cx="12" cy="15" r="5"/><path d="m10.5 15 1 1 2-2"/></svg>',
+    pen: '<svg viewBox="0 0 24 24"><path d="m4 20 4.5-1 9.3-9.3a1.8 1.8 0 0 0 0-2.5l-1-1a1.8 1.8 0 0 0-2.5 0L5 15.5Z"/><path d="m13.5 6.5 4 4"/></svg>',
+    notebook: '<svg viewBox="0 0 24 24"><rect x="6" y="4" width="12" height="16" rx="2"/><path d="M9 4v16"/><path d="M12 8h3"/><path d="M12 12h3"/><path d="M12 16h3"/></svg>',
+    island: '<svg viewBox="0 0 24 24"><path d="M3 19h18"/><path d="M7 19c1.2-3 3.6-4.5 7-4.5 2.4 0 4.5.7 6 2"/><path d="M10 14V6"/><path d="M10 7c2 0 3.4.8 4.5 2.4"/><path d="M10 10c-2 0-3.4.8-4.5 2.4"/></svg>',
+    clock: '<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"/><path d="M12 7v5l3 2"/></svg>',
+    brackets: '<svg viewBox="0 0 24 24"><path d="M8 5H6v14h2"/><path d="M16 5h2v14h-2"/><path d="M10 9h4"/><path d="M10 15h4"/><path d="M12 9v6"/></svg>',
+    pin: '<svg viewBox="0 0 24 24"><path d="M12 20s-5-4.7-5-9a5 5 0 1 1 10 0c0 4.3-5 9-5 9Z"/><circle cx="12" cy="11" r="1.8"/></svg>',
+    link: '<svg viewBox="0 0 24 24"><path d="M9.5 14.5 14.5 9.5"/><path d="M7.8 16.2a3.5 3.5 0 0 1 0-5l2-2a3.5 3.5 0 0 1 5 5l-.8.8"/><path d="M16.2 7.8a3.5 3.5 0 0 1 0 5l-2 2a3.5 3.5 0 0 1-5-5l.8-.8"/></svg>',
+    train: '<svg viewBox="0 0 24 24"><rect x="6" y="4" width="12" height="11" rx="2"/><path d="M9 8h2"/><path d="M13 8h2"/><path d="M8 19l2-3"/><path d="M16 19l-2-3"/><path d="M6 15h12"/></svg>',
+    target: '<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"/><circle cx="12" cy="12" r="4.5"/><circle cx="12" cy="12" r="1.5"/></svg>',
+    books: '<svg viewBox="0 0 24 24"><path d="M5 6.5A2.5 2.5 0 0 1 7.5 4H19v13H7.5A2.5 2.5 0 0 0 5 19.5Z"/><path d="M5 6.5V19.5"/><path d="M9 8h6"/><path d="M9 12h6"/></svg>',
+    volume: '<svg viewBox="0 0 24 24"><path d="M5 14h3l4 3V7L8 10H5Z"/><path d="M16 9.5a4.5 4.5 0 0 1 0 5"/><path d="M18.5 7a8 8 0 0 1 0 10"/></svg>',
+    sprout: '<svg viewBox="0 0 24 24"><path d="M12 20v-6"/><path d="M12 14c0-3 2.5-5.5 5.5-5.5 0 3-2.5 5.5-5.5 5.5Z"/><path d="M12 12c0-2.8-2.2-5-5-5 0 2.8 2.2 5 5 5Z"/></svg>',
+    bookopen: '<svg viewBox="0 0 24 24"><path d="M4 6.5A2.5 2.5 0 0 1 6.5 4H11v15H6.5A2.5 2.5 0 0 0 4 21.5Z"/><path d="M20 6.5A2.5 2.5 0 0 0 17.5 4H13v15h4.5A2.5 2.5 0 0 1 20 21.5Z"/></svg>',
+    message: '<svg viewBox="0 0 24 24"><path d="M7 17.5 4 20V6.5A2.5 2.5 0 0 1 6.5 4h11A2.5 2.5 0 0 1 20 6.5v8A2.5 2.5 0 0 1 17.5 17H7Z"/><path d="M8 9h8"/><path d="M8 12h5"/></svg>'
+  };
+  var CARD_ICON_BY_FILE = {
+    'g4-math-simple-calc.html': 'calculator',
+    'g5-math-equation.html': 'scale',
+    'g5-math-factors-multiples.html': 'hash',
+    'g5-math-fraction-split-exercises.html': 'scissors',
+    'g5-math-fraction-split-practice.html': 'checklist',
+    'g5-math-polygon-area.html': 'ruler',
+    'grade5-math.html': 'grid',
+    'Math-G5-Fraction-Common-Denominator.html': 'pie',
+    'equation-word-problems.html': 'filemath',
+    'g6-math-fraction-division.html': 'divide',
+    'g6-math-fractions.html': 'layers',
+    'g6-math-geometric-thinking.html': 'compass',
+    'grade6-math.html': 'bookopen',
+    'primary-circle-lessons-problems.html': 'medal',
+    'grade5-chinese-essay-process.html': 'pen',
+    'grade5-chinese-writing.html': 'notebook',
+    'english5.html': 'island',
+    'english-tenses.html': 'clock',
+    'english-sentence-structure.html': 'brackets',
+    'english-prepositions.html': 'pin',
+    'english-collocations.html': 'link',
+    'English-G6-Sentence-Building.html': 'train',
+    'english-mixed-quiz.html': 'target',
+    'new-vocabulary-5-scenes.html': 'books',
+    'vocabulary-review.html': 'bookopen',
+    'word-learning.html': 'volume',
+    'word-roots.html': 'sprout'
+  };
+  var TAB_ICONS = { '数学': 'calculator', '语文': 'pen', '英语': 'message' };
+  var PANEL_META = {
+    '数学': '方法专题、题型训练与母题系统',
+    '语文': '聚焦写作表达、结构组织与素材运用',
+    '英语': '覆盖词汇、句型、语法与综合练习'
+  };
   var SUBJ_SLUG  = { '数学': '数学', '语文': '语文', '英语': '英语' };
 
-  function pickEmoji(text) {
-    for (var i = 0; i < EMOJI.length; i++) {
-      if (EMOJI[i][0].test(text)) return EMOJI[i][1];
-    }
-    return '⭐';
+  function iconSvg(name) {
+    return ICONS[name] || ICONS.spark;
+  }
+
+  function pickCardIcon(item) {
+    if (CARD_ICON_BY_FILE[item.href]) return iconSvg(CARD_ICON_BY_FILE[item.href]);
+    var combined = item.title + ' ' + item.desc;
+    if (/作文|写作/.test(combined)) return iconSvg('pen');
+    if (/英语|单词|词汇/.test(combined)) return iconSvg('books');
+    if (/方程/.test(combined)) return iconSvg('scale');
+    if (/分数|通分/.test(combined)) return iconSvg('pie');
+    if (/面积|图形|几何/.test(combined)) return iconSvg('ruler');
+    return iconSvg('spark');
   }
 
   /* ── parse hidden card data ────────────────────────── */
@@ -546,7 +664,7 @@ body{
     btn.className = 'tab-btn';
     btn.setAttribute('role', 'tab');
     btn.dataset.subj = slug;
-    btn.textContent  = (SUBJ_EMOJI[subj] || '📄') + '\u2009' + subj;
+    btn.innerHTML = iconSvg(TAB_ICONS[subj]) + '<span>' + subj + '</span>';
     btns.push(btn);
     tabBar.appendChild(btn);
 
@@ -556,12 +674,23 @@ body{
     panel.dataset.subj = slug;
     panels.push(panel);
 
+    var inner = document.createElement('div');
+    inner.className = 'panel-inner';
+
+    var head = document.createElement('div');
+    head.className = 'panel-head';
+    head.innerHTML =
+      '<div class="panel-copy">' +
+        '<div class="panel-kicker">学习分组</div>' +
+        '<div class="panel-title">' + subj + '</div>' +
+        '<div class="panel-desc">' + (PANEL_META[subj] || '精选内容导航') + '</div>' +
+      '</div>' +
+      '<div class="panel-meta">' + sections[subj].length + ' 个内容</div>';
+
     var list = document.createElement('div');
     list.className = 'card-list';
 
     sections[subj].forEach(function (item) {
-      var combined = item.title + ' ' + item.desc;
-      var emoji    = pickEmoji(combined);
       var gradeNum = (item.gradeLabel.match(/GRADE\s*(\d+)/i) || [])[1];
       var chipText = gradeNum ? 'G' + gradeNum : '';
 
@@ -574,7 +703,7 @@ body{
       headDiv.className = 'crd-head';
       var iconDiv = document.createElement('div');
       iconDiv.className   = 'crd-icon';
-      iconDiv.textContent = emoji;
+      iconDiv.innerHTML = pickCardIcon(item);
       headDiv.appendChild(iconDiv);
 
       /* card body */
@@ -619,7 +748,9 @@ body{
       list.appendChild(a);
     });
 
-    panel.appendChild(list);
+    inner.appendChild(head);
+    inner.appendChild(list);
+    panel.appendChild(inner);
     tabPanels.appendChild(panel);
   });
 
