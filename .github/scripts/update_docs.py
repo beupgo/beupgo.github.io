@@ -136,6 +136,20 @@ def collect_pages() -> list[dict]:
     return pages
 
 
+def classify_subject(p: dict) -> str:
+    slug = (p.get("subject_slug") or "").lower()
+    file_name = (p.get("file") or "").lower()
+    text = f"{p.get('title', '')} {p.get('description', '')}".lower()
+
+    if slug == "math" or "math" in file_name or any(k in text for k in ["数学", "奥数", "方程", "分数", "通分", "裂差", "几何", "图形"]):
+        return "数学"
+    if slug == "english" or "english" in file_name or any(k in text for k in ["英语", "单词", "词根", "词缀", "时态", "介词", "句子", "组句"]):
+        return "英语"
+    if slug == "chinese" or "chinese" in file_name or any(k in text for k in ["语文", "作文", "写作"]):
+        return "语文"
+    return "其他"
+
+
 def get_git_last_updated(filename: str) -> tuple[int, str]:
     try:
         ts = subprocess.run(
@@ -173,14 +187,23 @@ def replace_between(text: str, start: str, end: str, new_content: str) -> str:
 # ---------------------------------------------------------------------------
 
 def gen_readme_table(pages: list[dict]) -> str:
-    sorted_pages = sorted(pages, key=lambda p: (p["updated_ts"], p["file"]), reverse=True)
-    lines = ["| 页面 | 在线地址 | 更新时间 |", "|---|---|---|"]
+    category_order = {"数学": 0, "英语": 1, "语文": 2, "其他": 3}
+    sorted_pages = sorted(
+        pages,
+        key=lambda p: (
+            category_order.get(classify_subject(p), 99),
+            -p["updated_ts"],
+            p["file"],
+        ),
+    )
+    lines = ["| 分类 | 页面 | 在线地址 | 更新时间 |", "|---|---|---|---|"]
     for p in sorted_pages:
         url = f"https://beupgo.github.io/{p['file']}"
         title = p["title"].replace("|", "\\|")
         updated_at = p["updated_at"] or "-"
-        lines.append(f"| {title} | {url} | {updated_at} |")
-    lines.append("| 导航首页 | https://beupgo.github.io/ | - |")
+        category = classify_subject(p)
+        lines.append(f"| {category} | {title} | {url} | {updated_at} |")
+    lines.append("| 导航 | 导航首页 | https://beupgo.github.io/ | - |")
     return "\n".join(lines)
 
 
