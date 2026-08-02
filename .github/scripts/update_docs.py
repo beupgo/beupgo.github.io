@@ -221,6 +221,7 @@ def collect_pages() -> list[dict]:
         title = extract_title(text, f.stem)
         description = extract_meta_description(text)
         subject_slug = normalize_subject_slug(filename_subject_slug or "") or extract_subject_slug(text, title)
+        uploaded_ts, uploaded_at = get_git_uploaded_at(f.name)
         updated_ts, updated_at = get_git_last_updated(f.name)
         pages.append(
             dict(
@@ -234,6 +235,8 @@ def collect_pages() -> list[dict]:
                 card_description=(existing_cards.get(f.name) or {}).get("card_description", ""),
                 hidden=is_hidden_page(text),
                 time=(existing_cards.get(f.name) or {}).get("time", ""),
+                uploaded_ts=uploaded_ts,
+                uploaded_at=uploaded_at,
                 updated_ts=updated_ts,
                 updated_at=updated_at,
             )
@@ -258,6 +261,28 @@ def get_git_last_updated(filename: str) -> tuple[int, str]:
             text=True,
         ).stdout.strip()
         return (int(ts), at) if ts and at else (0, "")
+    except Exception:
+        return 0, ""
+
+
+def get_git_uploaded_at(filename: str) -> tuple[int, str]:
+    try:
+        ts = subprocess.run(
+            ["git", "-C", str(ROOT), "log", "--diff-filter=A", "--follow", "--format=%ct", "--", filename],
+            check=True,
+            capture_output=True,
+            text=True,
+        ).stdout.strip().splitlines()
+        at = subprocess.run(
+            [
+                "git", "-C", str(ROOT), "log", "--diff-filter=A", "--follow",
+                "--date=format:%Y-%m-%d %H:%M", "--format=%cd", "--", filename,
+            ],
+            check=True,
+            capture_output=True,
+            text=True,
+        ).stdout.strip().splitlines()
+        return (int(ts[-1]), at[-1]) if ts and at else (0, "")
     except Exception:
         return 0, ""
 
@@ -333,8 +358,8 @@ def gen_card(p: dict) -> str:
     attrs = []
     if p["time"]:
         attrs.append(f'data-time="{p["time"]}"')
-    if p["updated_at"]:
-        attrs.append(f'data-date="{p["updated_at"]}"')
+    if p["uploaded_at"] or p["updated_at"]:
+        attrs.append(f'data-date="{p["uploaded_at"] or p["updated_at"]}"')
     attr_text = (" " + " ".join(attrs)) if attrs else ""
 
     if grade_num:
@@ -363,14 +388,14 @@ def gen_card(p: dict) -> str:
 
 
 def gen_cards(pages: list[dict]) -> str:
-    # Group by subject; within each group sort by updated_ts descending
+    # Group by subject; within each group sort by uploaded_ts descending
     grouped: dict[str, list[dict]] = {}
     for p in pages:
         key = p["subject_slug"] or "uncategorized"
         grouped.setdefault(key, []).append(p)
 
     for key in grouped:
-        grouped[key].sort(key=lambda p: p["updated_ts"], reverse=True)
+        grouped[key].sort(key=lambda p: (p["uploaded_ts"], p["updated_ts"]), reverse=True)
 
     ordered_subjects = [s for s in SUBJECT_NAMES_ZH.keys() if s in grouped]
     ordered_subjects += sorted(s for s in grouped.keys() if s not in SUBJECT_NAMES_ZH)
