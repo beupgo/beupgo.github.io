@@ -7,7 +7,8 @@
 <!-- AUTO-TABLE-START -->
 | 页面 | 在线地址 | 更新时间 |
 |---|---|---|
-| 小学奥数 · 圆专题练习卷 | https://beupgo.github.io/primary-circle-lessons-problems.html | 2026-07-31 17:28 |
+| 新增单词专项 · 5 大场景 | https://beupgo.github.io/new-vocabulary-5-scenes.html | 2026-08-02 14:29 |
+| 小学奥数 · 圆专题练习卷 | https://beupgo.github.io/primary-circle-lessons-problems.html | 2026-07-31 09:29 |
 | 北京小学英语 · 单词复习营 | https://beupgo.github.io/vocabulary-review.html | 2026-07-26 14:29 |
 | 英语固定搭配学习专题 | https://beupgo.github.io/english-collocations.html | 2026-07-26 05:13 |
 | 简易方程应用题练习卷 | https://beupgo.github.io/equation-word-problems.html | 2026-07-26 03:41 |
@@ -72,6 +73,7 @@
 ├─ english-tenses.html  # 英语时态学习专题
 ├─ english5.html  # 英语冒险岛 · 3-6年级暑假
 ├─ equation-word-problems.html  # 简易方程应用题练习卷
+├─ new-vocabulary-5-scenes.html  # 新增单词专项 · 5 大场景
 ├─ primary-circle-lessons-problems.html  # 小学奥数 · 圆专题练习卷
 ├─ vocabulary-review.html  # 北京小学英语 · 单词复习营
 ├─ word-learning.html  # 小学英语单词乐园 · 时间 · 交通 · 天气
