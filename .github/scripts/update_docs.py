@@ -168,22 +168,31 @@ def is_hidden_page(text: str) -> bool:
     return value in TRUE_VALUES
 
 
-def extract_existing_card_times() -> dict[str, str]:
+def extract_existing_cards() -> dict[str, dict[str, str]]:
     path = ROOT / "index.html"
     if not path.exists():
         return {}
     text = path.read_text(encoding="utf-8", errors="ignore")
-    times: dict[str, str] = {}
+    cards: dict[str, dict[str, str]] = {}
     for match in re.finditer(
-        r'<a\s+class="card"\s+href="([^"]+)"(?:\s+data-time="([^"]*)")?[^>]*>',
+        r'<a\s+class="card"\s+href="([^"]+)"([^>]*)>(.*?)</a>',
         text,
-        re.IGNORECASE,
+        re.IGNORECASE | re.DOTALL,
     ):
         href = match.group(1).strip()
-        time = (match.group(2) or "").strip()
-        if href and time:
-            times[href] = time
-    return times
+        attrs = match.group(2) or ""
+        inner = match.group(3) or ""
+        if not href:
+            continue
+        time_match = re.search(r'data-time="([^"]*)"', attrs, re.IGNORECASE)
+        title_match = re.search(r"<h2>(.*?)</h2>", inner, re.IGNORECASE | re.DOTALL)
+        desc_match = re.search(r'<p\s+class="desc">(.*?)</p>', inner, re.IGNORECASE | re.DOTALL)
+        cards[href] = {
+            "time": (time_match.group(1) if time_match else "").strip(),
+            "card_title": (title_match.group(1) if title_match else "").strip(),
+            "card_description": (desc_match.group(1) if desc_match else "").strip(),
+        }
+    return cards
 
 
 def parse_filename(name: str):
@@ -203,7 +212,7 @@ def parse_filename(name: str):
 
 def collect_pages() -> list[dict]:
     pages = []
-    existing_card_times = extract_existing_card_times()
+    existing_cards = extract_existing_cards()
     for f in sorted(ROOT.glob("*.html")):
         if f.name == "index.html":
             continue
@@ -220,9 +229,11 @@ def collect_pages() -> list[dict]:
                 subject_slug=subject_slug,
                 extra=extra,
                 title=title,
+                card_title=(existing_cards.get(f.name) or {}).get("card_title", ""),
                 description=description,
+                card_description=(existing_cards.get(f.name) or {}).get("card_description", ""),
                 hidden=is_hidden_page(text),
-                time=existing_card_times.get(f.name, ""),
+                time=(existing_cards.get(f.name) or {}).get("time", ""),
                 updated_ts=updated_ts,
                 updated_at=updated_at,
             )
@@ -317,9 +328,8 @@ def gen_readme_files(pages: list[dict]) -> str:
 
 def gen_card(p: dict) -> str:
     grade_num = p["grade_num"]
-    title = p["title"]
-    description = p["description"] or title
-    short_title = title.split("·")[0].strip() if "·" in title else title
+    title = p["card_title"] or p["title"]
+    description = p["card_description"] or p["description"] or title
     attrs = []
     if p["time"]:
         attrs.append(f'data-time="{p["time"]}"')
@@ -328,24 +338,19 @@ def gen_card(p: dict) -> str:
     attr_text = (" " + " ".join(attrs)) if attrs else ""
 
     if grade_num:
-        grade_zh = GRADE_NAMES_ZH.get(grade_num, f"{grade_num}年级")
-        subject_zh = SUBJECT_NAMES_ZH.get(p["subject_slug"] or "", "")
         grade_en = f"GRADE {grade_num}"
         if p["subject_slug"]:
             grade_en += f" · {p['subject_slug'].upper()}"
-        icon = str(grade_num)
-        h2 = short_title if p["extra"] else (grade_zh + subject_zh if subject_zh else grade_zh)
     else:
         grade_en = p["file"].replace(".html", "").upper()
-        icon = short_title[0] if short_title else "?"
-        h2 = short_title
+    icon = str(grade_num) if grade_num else (title[0] if title else "?")
 
     return (
         f'    <a class="card" href="{p["file"]}"{attr_text}>\n'
         f'      <div class="top">\n'
         f'        <div class="icon">{icon}</div>\n'
         f'        <div>\n'
-        f'          <h2>{h2}</h2>\n'
+        f'          <h2>{title}</h2>\n'
         f'          <div class="grade-en">{grade_en}</div>\n'
         f'        </div>\n'
         f'      </div>\n'
