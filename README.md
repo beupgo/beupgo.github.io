@@ -35,6 +35,7 @@
 
 | 页面 | 在线访问 | 更新时间 |
 |---|---|---|
+| 小学英语常用句式大全 | [开始学习](https://beupgo.github.io/primary-sentence-patterns.html) | 2026-08-02 20:55 |
 | 新增单词专项 · 5 大场景 | [开始学习](https://beupgo.github.io/new-vocabulary-5-scenes.html) | 2026-08-02 06:29 |
 | 北京小学英语 · 单词复习营 | [开始学习](https://beupgo.github.io/vocabulary-review.html) | 2026-07-26 14:29 |
 | 英语固定搭配学习专题 | [开始学习](https://beupgo.github.io/english-collocations.html) | 2026-07-26 05:13 |
@@ -92,6 +93,7 @@
 ├─ equation-word-problems.html  # 简易方程应用题练习卷
 ├─ new-vocabulary-5-scenes.html  # 新增单词专项 · 5 大场景
 ├─ primary-circle-lessons-problems.html  # 小学奥数 · 圆专题练习卷
+├─ primary-sentence-patterns.html  # 小学英语常用句式大全
 ├─ vocabulary-review.html  # 北京小学英语 · 单词复习营
 ├─ word-learning.html  # 小学英语单词乐园 · 时间 · 交通 · 天气
 └─ word-roots.html  # 小学英语词根词缀乐园 · 拆词记单词
