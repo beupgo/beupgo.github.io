@@ -358,8 +358,8 @@ def gen_card(p: dict) -> str:
     attrs = []
     if p["time"]:
         attrs.append(f'data-time="{p["time"]}"')
-    if p["uploaded_at"] or p["updated_at"]:
-        attrs.append(f'data-date="{p["uploaded_at"] or p["updated_at"]}"')
+    if p["updated_at"] or p["uploaded_at"]:
+        attrs.append(f'data-date="{p["updated_at"] or p["uploaded_at"]}"')
     attr_text = (" " + " ".join(attrs)) if attrs else ""
 
     if grade_num:
