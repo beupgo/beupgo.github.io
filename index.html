@@ -4,178 +4,194 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-status-bar-style" content="default">
-<meta name="theme-color" content="#4f46e5">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="theme-color" content="#4338ca">
 <title>暑假成长加油站 · 小学语数英复习导航</title>
 <style>
 :root{
-  --g-font:-apple-system,BlinkMacSystemFont,"PingFang SC","Hiragino Sans GB","Microsoft YaHei",Roboto,Arial,sans-serif;
-  --surface:#fff;
-  --sunken:#f3f4f8;
+  --font:-apple-system,BlinkMacSystemFont,"PingFang SC","Hiragino Sans GB","Microsoft YaHei",Roboto,Arial,sans-serif;
+  --bg:#f0f2f8;
+  --card:#fff;
   --text:#111827;
   --text-2:#4b5563;
   --text-3:#9ca3af;
   --border:#e5e7eb;
-  --r-full:999px;
-  /* subject palette */
-  --math-bg:#eef2ff; --math-border:#c7d2fe; --math-chip:#4f46e5; --math-chip-txt:#fff;
-  --math-tile-from:#6366f1; --math-tile-to:#4338ca;
-  --zh-bg:#fff7ed;   --zh-border:#fed7aa;   --zh-chip:#ea580c;  --zh-chip-txt:#fff;
-  --zh-tile-from:#f97316; --zh-tile-to:#c2410c;
-  --en-bg:#ecfdf5;   --en-border:#6ee7b7;   --en-chip:#059669;  --en-chip-txt:#fff;
-  --en-tile-from:#10b981; --en-tile-to:#047857;
-  --other-bg:#faf5ff; --other-border:#ddd6fe; --other-chip:#7c3aed; --other-chip-txt:#fff;
-  --other-tile-from:#8b5cf6; --other-tile-to:#6d28d9;
+  /* subject accents */
+  --math:#4f46e5; --math-light:#eef2ff; --math-mid:#c7d2fe;
+  --zh:#ea580c;   --zh-light:#fff7ed;   --zh-mid:#fed7aa;
+  --en:#059669;   --en-light:#ecfdf5;   --en-mid:#6ee7b7;
+  --other:#7c3aed;--other-light:#faf5ff;--other-mid:#ddd6fe;
 }
-@media (prefers-color-scheme:dark){
+@media(prefers-color-scheme:dark){
   :root{
-    --surface:#1e2330; --sunken:#141820; --text:#e6edf3; --text-2:#9da7b3; --text-3:#6b7684;
-    --border:#2d333b;
-    --math-bg:#1e2044; --math-border:#3730a3;
-    --zh-bg:#2a1a0a;  --zh-border:#9a3412;
-    --en-bg:#062a1a;  --en-border:#065f46;
-    --other-bg:#1f1230; --other-border:#4c1d95;
+    --bg:#0f1117; --card:#1c2030; --text:#e2e8f0; --text-2:#94a3b8;
+    --text-3:#475569; --border:#2d3748;
+    --math-light:#1e1b4b; --math-mid:#312e81;
+    --zh-light:#1c0a00;   --zh-mid:#7c2d12;
+    --en-light:#022c22;   --en-mid:#064e3b;
+    --other-light:#1e1030;--other-mid:#3b0764;
   }
 }
-*{box-sizing:border-box;-webkit-tap-highlight-color:transparent;}
-html,body{margin:0;padding:0;}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent;margin:0;padding:0;}
+html{height:100%;}
 body{
-  font-family:var(--g-font);
-  background:var(--sunken);
+  font-family:var(--font);
+  background:var(--bg);
   color:var(--text);
-  min-height:100vh;
+  min-height:100%;
   -webkit-font-smoothing:antialiased;
 }
 
-/* ── Hero ─────────────────────────────────────────────── */
-.hero{
-  text-align:center;
-  padding:calc(env(safe-area-inset-top) + 18px) 20px 0;
+/* ── Top bar ──────────────────────────────────────────── */
+.topbar{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:calc(env(safe-area-inset-top,0px) + 14px) 20px 14px;
+  background:linear-gradient(135deg,#4338ca 0%,#6366f1 60%,#8b5cf6 100%);
+  color:#fff;
+  position:sticky;top:0;z-index:300;
 }
-.hero h1{
-  font-size:clamp(20px,3vw,28px);
+.topbar-title{
+  display:flex;flex-direction:column;
+}
+.topbar-title h1{
+  font-size:clamp(17px,2.4vw,22px);
   font-weight:900;letter-spacing:-.02em;
-  margin:0 0 4px;
-  background:linear-gradient(135deg,#6366f1,#f97316,#10b981);
-  -webkit-background-clip:text;-webkit-text-fill-color:transparent;
-  background-clip:text;
+  line-height:1.2;
 }
-.hero p{
-  margin:0;color:var(--text-2);font-size:13px;line-height:1.5;
+.topbar-title p{
+  font-size:12px;opacity:.8;margin-top:2px;
 }
+.topbar-actions{display:flex;gap:8px;align-items:center;}
+.btn-icon{
+  width:38px;height:38px;
+  display:flex;align-items:center;justify-content:center;
+  border:none;cursor:pointer;
+  background:rgba(255,255,255,.15);
+  border-radius:50%;
+  color:#fff;
+  transition:background .15s,transform .1s;
+  flex-shrink:0;
+}
+.btn-icon:active{transform:scale(.88);background:rgba(255,255,255,.28);}
+@media(hover:hover){.btn-icon:hover{background:rgba(255,255,255,.25);}}
+.btn-icon svg{width:20px;height:20px;display:block;}
 
-/* ── Tab bar ──────────────────────────────────────────── */
-.tab-bar{
-  display:flex;gap:8px;
-  padding:12px 16px;
-  position:sticky;top:0;z-index:200;
-  background:var(--sunken);
+/* ── Subject tabs ─────────────────────────────────────── */
+.tab-wrap{
+  position:sticky;top:calc(env(safe-area-inset-top,0px) + 68px);
+  z-index:200;
+  background:var(--card);
   border-bottom:1px solid var(--border);
-  -webkit-backdrop-filter:blur(12px);
-  backdrop-filter:blur(12px);
-  overflow-x:auto;
-  scrollbar-width:none;
+}
+.tab-bar{
+  display:flex;gap:0;
+  overflow-x:auto;scrollbar-width:none;
+  padding:0 16px;
 }
 .tab-bar::-webkit-scrollbar{display:none;}
 .tab-btn{
-  flex:1;min-width:80px;
-  padding:10px 8px;
-  border:2px solid transparent;
-  border-radius:14px;
-  font-family:var(--g-font);
-  font-size:15px;font-weight:800;
-  cursor:pointer;
-  background:var(--surface);
+  flex:none;
+  padding:14px 18px;
+  border:none;background:none;
+  font-family:var(--font);font-size:14px;font-weight:700;
   color:var(--text-2);
-  transition:all .2s ease;
-  white-space:nowrap;
-  display:flex;align-items:center;justify-content:center;gap:6px;
+  cursor:pointer;white-space:nowrap;
+  position:relative;
+  transition:color .15s;
 }
-.tab-btn:active{transform:scale(.95);}
-.tab-btn[data-subj="数学"].active{background:var(--math-bg);border-color:var(--math-border);color:var(--math-chip);}
-.tab-btn[data-subj="语文"].active{background:var(--zh-bg);border-color:var(--zh-border);color:var(--zh-chip);}
-.tab-btn[data-subj="英语"].active{background:var(--en-bg);border-color:var(--en-border);color:var(--en-chip);}
-.tab-btn.active-other{background:var(--other-bg);border-color:var(--other-border);color:var(--other-chip);}
+.tab-btn::after{
+  content:'';
+  position:absolute;bottom:0;left:50%;right:50%;
+  height:3px;border-radius:3px 3px 0 0;
+  background:var(--math);
+  transition:left .2s,right .2s;
+}
+.tab-btn:active{opacity:.7;}
+/* active indicator colors per subject */
+.tab-btn[data-subj="数学"].active{color:var(--math);}
+.tab-btn[data-subj="数学"].active::after{left:12px;right:12px;}
+.tab-btn[data-subj="语文"].active{color:var(--zh);}
+.tab-btn[data-subj="语文"].active::after{left:12px;right:12px;background:var(--zh);}
+.tab-btn[data-subj="英语"].active{color:var(--en);}
+.tab-btn[data-subj="英语"].active::after{left:12px;right:12px;background:var(--en);}
+.tab-btn[data-subj="other"].active{color:var(--other);}
+.tab-btn[data-subj="other"].active::after{left:12px;right:12px;background:var(--other);}
 
 /* ── Tab panels ───────────────────────────────────────── */
-.tab-panel{display:none;padding:16px 16px calc(env(safe-area-inset-bottom) + 20px);}
+.tab-panel{display:none;padding:16px 16px calc(env(safe-area-inset-bottom,16px) + 60px);}
 .tab-panel.active{display:block;}
 
-/* ── Tile grid ────────────────────────────────────────── */
-.tile-grid{
-  display:grid;
-  grid-template-columns:repeat(auto-fill,minmax(128px,1fr));
-  gap:10px;
-}
-@media (max-width:400px){.tile-grid{grid-template-columns:repeat(2,1fr);}}
+/* ── Card list ────────────────────────────────────────── */
+.card-list{display:flex;flex-direction:column;gap:10px;max-width:720px;margin:0 auto;}
 
-/* ── Tile ─────────────────────────────────────────────── */
-.tile{
-  display:flex;flex-direction:column;align-items:center;justify-content:flex-start;
-  text-align:center;
-  padding:16px 10px 14px;
-  border-radius:18px;
-  text-decoration:none;
-  color:var(--text);
-  background:var(--surface);
-  border:1.5px solid var(--border);
-  gap:7px;
-  transition:transform .15s ease, box-shadow .15s ease;
-  min-height:112px;
-  position:relative;
-  overflow:hidden;
+.crd{
+  display:flex;align-items:center;gap:14px;
+  padding:14px 16px;
+  border-radius:16px;
+  background:var(--card);
+  border:1px solid var(--border);
+  text-decoration:none;color:var(--text);
+  transition:transform .12s,box-shadow .12s;
+  position:relative;overflow:hidden;
 }
-.tile::before{
+/* coloured left accent stripe */
+.crd::before{
   content:'';
-  position:absolute;inset:0;
-  opacity:0;
-  transition:opacity .15s ease;
-  border-radius:inherit;
+  position:absolute;left:0;top:0;bottom:0;width:4px;
+  border-radius:16px 0 0 16px;
 }
-.tile:active{transform:scale(.93);}
-@media (hover:hover){
-  .tile:hover{transform:translateY(-3px);box-shadow:0 6px 22px rgba(0,0,0,.13);}
-  .tile:hover::before{opacity:.07;}
+[data-subj="数学"] .crd::before{background:var(--math);}
+[data-subj="语文"] .crd::before{background:var(--zh);}
+[data-subj="英语"] .crd::before{background:var(--en);}
+[data-subj="other"] .crd::before{background:var(--other);}
+
+.crd:active{transform:scale(.97);}
+@media(hover:hover){
+  .crd:hover{transform:translateY(-2px);box-shadow:0 6px 20px rgba(0,0,0,.1);}
 }
 
-/* subject-colored tiles */
-[data-subj="数学"] .tile{background:var(--math-bg);border-color:var(--math-border);}
-[data-subj="数学"] .tile::before{background:linear-gradient(135deg,var(--math-tile-from),var(--math-tile-to));}
-[data-subj="语文"] .tile{background:var(--zh-bg);border-color:var(--zh-border);}
-[data-subj="语文"] .tile::before{background:linear-gradient(135deg,var(--zh-tile-from),var(--zh-tile-to));}
-[data-subj="英语"] .tile{background:var(--en-bg);border-color:var(--en-border);}
-[data-subj="英语"] .tile::before{background:linear-gradient(135deg,var(--en-tile-from),var(--en-tile-to));}
-[data-subj="other"] .tile{background:var(--other-bg);border-color:var(--other-border);}
-[data-subj="other"] .tile::before{background:linear-gradient(135deg,var(--other-tile-from),var(--other-tile-to));}
+.crd-icon{
+  width:52px;height:52px;flex:none;
+  border-radius:14px;
+  display:flex;align-items:center;justify-content:center;
+  font-size:26px;line-height:1;
+}
+[data-subj="数学"] .crd-icon{background:var(--math-light);}
+[data-subj="语文"] .crd-icon{background:var(--zh-light);}
+[data-subj="英语"] .crd-icon{background:var(--en-light);}
+[data-subj="other"] .crd-icon{background:var(--other-light);}
 
-.tile-emoji{font-size:34px;line-height:1;display:block;}
-.tile-title{
-  font-size:13px;font-weight:700;line-height:1.3;
-  display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;
-  word-break:keep-all;
+.crd-body{flex:1;min-width:0;}
+.crd-title{
+  font-size:15px;font-weight:800;line-height:1.3;
+  display:-webkit-box;-webkit-line-clamp:1;-webkit-box-orient:vertical;overflow:hidden;
 }
-.tile-grade{
-  font-size:10px;font-weight:700;
-  padding:2px 8px;border-radius:var(--r-full);
-  margin-top:auto;
+.crd-desc{
+  font-size:12px;color:var(--text-2);margin-top:3px;
+  display:-webkit-box;-webkit-line-clamp:1;-webkit-box-orient:vertical;overflow:hidden;
 }
-[data-subj="数学"] .tile-grade{background:var(--math-chip);color:var(--math-chip-txt);}
-[data-subj="语文"] .tile-grade{background:var(--zh-chip);color:var(--zh-chip-txt);}
-[data-subj="英语"] .tile-grade{background:var(--en-chip);color:var(--en-chip-txt);}
-[data-subj="other"] .tile-grade{background:var(--other-chip);color:var(--other-chip-txt);}
+.crd-chip{
+  flex:none;
+  font-size:10px;font-weight:800;
+  padding:3px 9px;border-radius:99px;
+  letter-spacing:.03em;
+}
+[data-subj="数学"] .crd-chip{background:var(--math-light);color:var(--math);border:1px solid var(--math-mid);}
+[data-subj="语文"] .crd-chip{background:var(--zh-light);color:var(--zh);border:1px solid var(--zh-mid);}
+[data-subj="英语"] .crd-chip{background:var(--en-light);color:var(--en);border:1px solid var(--en-mid);}
+[data-subj="other"] .crd-chip{background:var(--other-light);color:var(--other);border:1px solid var(--other-mid);}
+
+.crd-arrow{
+  flex:none;color:var(--text-3);
+  display:flex;align-items:center;
+}
+.crd-arrow svg{width:16px;height:16px;}
 
 /* ── Footer ───────────────────────────────────────────── */
 .foot{
-  text-align:center;color:var(--text-3);font-size:12px;line-height:1.7;
-  padding:8px 20px 24px;
+  text-align:center;color:var(--text-3);font-size:12px;line-height:1.8;
+  padding:4px 20px 12px;max-width:720px;margin:0 auto;
 }
-.foot .tip{
-  display:inline-flex;align-items:center;gap:6px;
-  padding:7px 14px;border-radius:var(--r-full);
-  background:var(--surface);border:1px solid var(--border);
-  color:var(--text-2);font-size:12px;margin-bottom:10px;
-}
-.foot .tip svg{width:13px;height:13px;flex:none;}
 
 /* ── Hidden data source ───────────────────────────────── */
 #card-data{display:none;}
@@ -183,24 +199,34 @@ body{
 </head>
 <body>
 
-<!-- Hero -->
-<div class="hero">
-  <h1>暑假成长加油站 🌟</h1>
-  <p>选个科目，点击卡片开始学习 👇</p>
+<!-- Top bar -->
+<div class="topbar">
+  <div class="topbar-title">
+    <h1>暑假成长加油站 🌟</h1>
+    <p>语文 · 数学 · 英语 — 点击卡片开始学习</p>
+  </div>
+  <div class="topbar-actions">
+    <button class="btn-icon" id="btn-refresh" title="刷新页面" aria-label="刷新页面">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M3 12a9 9 0 0 1 15-6.7L21 8"/>
+        <path d="M21 3v5h-5"/>
+        <path d="M21 12a9 9 0 0 1-15 6.7L3 16"/>
+        <path d="M3 21v-5h5"/>
+      </svg>
+    </button>
+  </div>
 </div>
 
-<!-- Tab bar + tile panels (populated by JS) -->
-<div class="tab-bar" id="tab-bar" role="tablist"></div>
+<!-- Subject tabs -->
+<div class="tab-wrap">
+  <div class="tab-bar" id="tab-bar" role="tablist"></div>
+</div>
+
+<!-- Card panels (populated by JS) -->
 <div id="tab-panels"></div>
 
 <!-- Footer -->
-<div class="foot">
-  <div class="tip">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="2"/><path d="M12 18h.01"/></svg>
-    iPad / iPhone：Safari 打开后「添加到主屏幕」即可全屏使用
-  </div>
-  <div>依据人教版(PEP)教材整理 · 供个人学习使用</div>
-</div>
+<div class="foot">依据人教版(PEP)教材整理 · 供个人学习使用</div>
 
 <!-- Auto-generated card data (hidden, used as data source by JS) -->
 <div id="card-data">
@@ -593,6 +619,11 @@ body{
 
 <script>
 (function () {
+  /* ── refresh button ────────────────────────────────── */
+  document.getElementById('btn-refresh').addEventListener('click', function () {
+    window.location.reload();
+  });
+
   /* ── emoji lookup ──────────────────────────────────── */
   var EMOJI = [
     [/运算|定律/,        '➕'],
@@ -628,9 +659,9 @@ body{
   }
 
   /* ── parse hidden card data ────────────────────────── */
-  var dataDiv = document.getElementById('card-data');
-  var sections = {};   /* subject -> [{href, title, gradeLabel, desc}] */
-  var order    = [];   /* insertion order of subjects */
+  var dataDiv  = document.getElementById('card-data');
+  var sections = {};
+  var order    = [];
   var curSubj  = null;
 
   var nodes = dataDiv.children;
@@ -645,9 +676,9 @@ body{
       var descEl = el.querySelector('.desc');
       sections[curSubj].push({
         href:       el.getAttribute('href') || '#',
-        title:      h2el   ? h2el.textContent.trim()   : '',
-        gradeLabel: genEl  ? genEl.textContent.trim()  : '',
-        desc:       descEl ? descEl.textContent.trim()  : '',
+        title:      h2el   ? h2el.textContent.trim()  : '',
+        gradeLabel: genEl  ? genEl.textContent.trim() : '',
+        desc:       descEl ? descEl.textContent.trim(): '',
       });
     }
   }
@@ -663,7 +694,7 @@ body{
 
     /* tab button */
     var btn = document.createElement('button');
-    btn.className  = 'tab-btn';
+    btn.className = 'tab-btn';
     btn.setAttribute('role', 'tab');
     btn.dataset.subj = slug;
     btn.textContent  = (SUBJ_EMOJI[subj] || '📄') + '\u2009' + subj;
@@ -672,47 +703,66 @@ body{
 
     /* panel */
     var panel = document.createElement('div');
-    panel.className = 'tab-panel';
+    panel.className    = 'tab-panel';
     panel.dataset.subj = slug;
     panels.push(panel);
 
-    var grid = document.createElement('div');
-    grid.className = 'tile-grid';
+    var list = document.createElement('div');
+    list.className = 'card-list';
 
     sections[subj].forEach(function (item) {
       var combined = item.title + ' ' + item.desc;
-      var emoji     = pickEmoji(combined);
-
-      /* grade chip label */
+      var emoji    = pickEmoji(combined);
       var gradeNum = (item.gradeLabel.match(/GRADE\s*(\d+)/i) || [])[1];
-      var chipText  = gradeNum ? 'G' + gradeNum : '';
+      var chipText = gradeNum ? 'G' + gradeNum : '';
 
       var a = document.createElement('a');
-      a.className = 'tile';
+      a.className = 'crd';
       a.href      = item.href;
 
-      var eSpan = document.createElement('span');
-      eSpan.className   = 'tile-emoji';
-      eSpan.textContent = emoji;
+      /* icon */
+      var iconDiv = document.createElement('div');
+      iconDiv.className   = 'crd-icon';
+      iconDiv.textContent = emoji;
 
-      var tSpan = document.createElement('span');
-      tSpan.className   = 'tile-title';
-      tSpan.textContent = item.title;
+      /* body */
+      var bodyDiv = document.createElement('div');
+      bodyDiv.className = 'crd-body';
 
-      a.appendChild(eSpan);
-      a.appendChild(tSpan);
+      var titleSpan = document.createElement('div');
+      titleSpan.className   = 'crd-title';
+      titleSpan.textContent = item.title;
 
-      if (chipText) {
-        var g = document.createElement('span');
-        g.className   = 'tile-grade';
-        g.textContent = chipText;
-        a.appendChild(g);
+      bodyDiv.appendChild(titleSpan);
+
+      if (item.desc && item.desc !== item.title) {
+        var descSpan = document.createElement('div');
+        descSpan.className   = 'crd-desc';
+        descSpan.textContent = item.desc;
+        bodyDiv.appendChild(descSpan);
       }
 
-      grid.appendChild(a);
+      a.appendChild(iconDiv);
+      a.appendChild(bodyDiv);
+
+      /* grade chip */
+      if (chipText) {
+        var chip = document.createElement('span');
+        chip.className   = 'crd-chip';
+        chip.textContent = chipText;
+        a.appendChild(chip);
+      }
+
+      /* arrow */
+      var arrow = document.createElement('span');
+      arrow.className = 'crd-arrow';
+      arrow.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>';
+      a.appendChild(arrow);
+
+      list.appendChild(a);
     });
 
-    panel.appendChild(grid);
+    panel.appendChild(list);
     tabPanels.appendChild(panel);
   });
 
