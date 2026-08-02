@@ -202,8 +202,8 @@ def gen_readme_table(pages: list[dict]) -> str:
         title = p["title"].replace("|", "\\|")
         updated_at = p["updated_at"] or "-"
         category = classify_subject(p)
-        lines.append(f"| {category} | {title} | {url} | {updated_at} |")
-    lines.append("| 导航 | 导航首页 | https://beupgo.github.io/ | - |")
+        lines.append(f"| {category} | {title} | [打开]({url}) | {updated_at} |")
+    lines.append("| 导航 | 导航首页 | [打开](https://beupgo.github.io/) | - |")
     return "\n".join(lines)
 
 
