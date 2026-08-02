@@ -41,6 +41,29 @@ SUBJECT_NAMES_ZH = {
     "pe":        "体育",
 }
 
+SUBJECT_ALIASES = {
+    "math": "math", "数学": "math",
+    "chinese": "chinese", "语文": "chinese",
+    "english": "english", "英语": "english",
+    "science": "science", "科学": "science",
+    "physics": "physics", "物理": "physics",
+    "chemistry": "chemistry", "化学": "chemistry",
+    "biology": "biology", "生物": "biology",
+    "history": "history", "历史": "history",
+    "geography": "geography", "地理": "geography",
+    "art": "art", "美术": "art",
+    "music": "music", "音乐": "music",
+    "pe": "pe", "体育": "pe",
+}
+
+SUBJECT_KEYWORDS = [
+    ("english", re.compile(r"英语|单词|词根|词缀|组句|句子")),
+    ("chinese", re.compile(r"语文|作文|写作")),
+    ("math", re.compile(r"数学|奥数|方程|分数|几何|多边形|通分|运算|因数|倍数|圆|面积")),
+]
+
+TRUE_VALUES = {"1", "true", "yes", "y", "on"}
+
 ARROW_SVG = (
     '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor"'
     ' stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">'
@@ -80,19 +103,96 @@ BACK_NAV_HTML = (
 # Helpers
 # ---------------------------------------------------------------------------
 
-def extract_title(html_path: Path) -> str:
-    text = html_path.read_text(encoding="utf-8", errors="ignore")
+def extract_title(text: str, fallback: str) -> str:
     m = re.search(r"<title[^>]*>(.*?)</title>", text, re.IGNORECASE | re.DOTALL)
-    return m.group(1).strip() if m else html_path.stem
+    return m.group(1).strip() if m else fallback
 
 
-def extract_meta_description(html_path: Path) -> str:
-    text = html_path.read_text(encoding="utf-8", errors="ignore")
-    m = re.search(
-        r'<meta\s+name=["\']description["\']\s+content=["\'](.*?)["\']',
-        text, re.IGNORECASE,
-    )
+def extract_meta_content(text: str, names: set[str]) -> str:
+    for meta in re.finditer(r"<meta\b[^>]*>", text, re.IGNORECASE):
+        tag = meta.group(0)
+        name_m = re.search(r'\bname\s*=\s*["\']([^"\']+)["\']', tag, re.IGNORECASE)
+        if not name_m:
+            continue
+        if name_m.group(1).strip().lower() not in names:
+            continue
+        content_m = re.search(r'\bcontent\s*=\s*["\']([^"\']*)["\']', tag, re.IGNORECASE)
+        if content_m:
+            return content_m.group(1).strip()
+    return ""
+
+
+def extract_comment_value(text: str, key: str) -> str:
+    m = re.search(rf"<!--\s*{re.escape(key)}\s*:\s*(.*?)\s*-->", text, re.IGNORECASE)
     return m.group(1).strip() if m else ""
+
+
+def normalize_subject_slug(value: str) -> str | None:
+    if not value:
+        return None
+    v = value.strip().lower()
+    return SUBJECT_ALIASES.get(v)
+
+
+def infer_subject_slug(title: str) -> str | None:
+    for slug, pattern in SUBJECT_KEYWORDS:
+        if pattern.search(title):
+            return slug
+    return None
+
+
+def extract_meta_description(text: str) -> str:
+    return extract_meta_content(text, {"description"})
+
+
+def extract_subject_slug(text: str, title: str) -> str | None:
+    meta_subject = extract_meta_content(
+        text,
+        {"subject", "auto-subject", "beupgo-subject", "page-subject"},
+    )
+    comment_subject = extract_comment_value(text, "AUTO-SUBJECT")
+    return (
+        normalize_subject_slug(meta_subject)
+        or normalize_subject_slug(comment_subject)
+        or infer_subject_slug(title)
+    )
+
+
+def is_hidden_page(text: str) -> bool:
+    meta_hidden = extract_meta_content(
+        text,
+        {"hidden", "auto-hidden", "beupgo-hidden", "page-hidden"},
+    )
+    comment_hidden = extract_comment_value(text, "AUTO-HIDE")
+    value = (meta_hidden or comment_hidden).strip().lower()
+    return value in TRUE_VALUES
+
+
+def extract_existing_cards() -> dict[str, dict[str, str]]:
+    path = ROOT / "index.html"
+    if not path.exists():
+        return {}
+    text = path.read_text(encoding="utf-8", errors="ignore")
+    cards: dict[str, dict[str, str]] = {}
+    for match in re.finditer(
+        r'<a\s+class="card"\s+href="([^"]+)"([^>]*)>(.*?)</a>',
+        text,
+        re.IGNORECASE | re.DOTALL,
+    ):
+        href = match.group(1).strip()
+        attrs = match.group(2) or ""
+        inner = match.group(3) or ""
+        if not href:
+            continue
+        time_match = re.search(r'data-time="([^"]*)"', attrs, re.IGNORECASE)
+        title_match = re.search(r"<h2>(.*?)</h2>", inner, re.IGNORECASE | re.DOTALL)
+        desc_match = re.search(r'<p\s+class="desc">(.*?)</p>', inner, re.IGNORECASE | re.DOTALL)
+        cards[href] = {
+            "time": (time_match.group(1) if time_match else "").strip(),
+            "card_title": (title_match.group(1) if title_match else "").strip(),
+            "card_description": (desc_match.group(1) if desc_match else "").strip(),
+        }
+    return cards
 
 
 def parse_filename(name: str):
@@ -112,12 +212,16 @@ def parse_filename(name: str):
 
 def collect_pages() -> list[dict]:
     pages = []
+    existing_cards = extract_existing_cards()
     for f in sorted(ROOT.glob("*.html")):
         if f.name == "index.html":
             continue
-        grade_num, subject_slug, extra = parse_filename(f.name)
-        title = extract_title(f)
-        description = extract_meta_description(f)
+        text = f.read_text(encoding="utf-8", errors="ignore")
+        grade_num, filename_subject_slug, extra = parse_filename(f.name)
+        title = extract_title(text, f.stem)
+        description = extract_meta_description(text)
+        subject_slug = normalize_subject_slug(filename_subject_slug or "") or extract_subject_slug(text, title)
+        uploaded_ts, uploaded_at = get_git_uploaded_at(f.name)
         updated_ts, updated_at = get_git_last_updated(f.name)
         pages.append(
             dict(
@@ -126,7 +230,13 @@ def collect_pages() -> list[dict]:
                 subject_slug=subject_slug,
                 extra=extra,
                 title=title,
+                card_title=(existing_cards.get(f.name) or {}).get("card_title", ""),
                 description=description,
+                card_description=(existing_cards.get(f.name) or {}).get("card_description", ""),
+                hidden=is_hidden_page(text),
+                time=(existing_cards.get(f.name) or {}).get("time", ""),
+                uploaded_ts=uploaded_ts,
+                uploaded_at=uploaded_at,
                 updated_ts=updated_ts,
                 updated_at=updated_at,
             )
@@ -155,6 +265,28 @@ def get_git_last_updated(filename: str) -> tuple[int, str]:
         return 0, ""
 
 
+def get_git_uploaded_at(filename: str) -> tuple[int, str]:
+    try:
+        ts = subprocess.run(
+            ["git", "-C", str(ROOT), "log", "--diff-filter=A", "--follow", "--format=%ct", "--", filename],
+            check=True,
+            capture_output=True,
+            text=True,
+        ).stdout.strip().splitlines()
+        at = subprocess.run(
+            [
+                "git", "-C", str(ROOT), "log", "--diff-filter=A", "--follow",
+                "--date=format:%Y-%m-%d %H:%M", "--format=%cd", "--", filename,
+            ],
+            check=True,
+            capture_output=True,
+            text=True,
+        ).stdout.strip().splitlines()
+        return (int(ts[-1]), at[-1]) if ts and at else (0, "")
+    except Exception:
+        return 0, ""
+
+
 # ---------------------------------------------------------------------------
 # Sentinel-based replace
 # ---------------------------------------------------------------------------
@@ -173,14 +305,34 @@ def replace_between(text: str, start: str, end: str, new_content: str) -> str:
 # ---------------------------------------------------------------------------
 
 def gen_readme_table(pages: list[dict]) -> str:
-    sorted_pages = sorted(pages, key=lambda p: (p["updated_ts"], p["file"]), reverse=True)
-    lines = ["| 页面 | 在线地址 | 更新时间 |", "|---|---|---|"]
+    sorted_pages = sorted(pages, key=lambda p: (p["subject_slug"] or "", p["updated_ts"], p["file"]), reverse=True)
+    grouped: dict[str, list[dict]] = {}
     for p in sorted_pages:
-        url = f"https://beupgo.github.io/{p['file']}"
-        title = p["title"].replace("|", "\\|")
-        updated_at = p["updated_at"] or "-"
-        lines.append(f"| {title} | {url} | {updated_at} |")
-    lines.append("| 导航首页 | https://beupgo.github.io/ | - |")
+        key = p["subject_slug"] or "uncategorized"
+        grouped.setdefault(key, []).append(p)
+
+    ordered_subjects = [s for s in SUBJECT_NAMES_ZH.keys() if s in grouped]
+    ordered_subjects += sorted(s for s in grouped.keys() if s not in SUBJECT_NAMES_ZH)
+
+    lines = []
+    for subject_slug in ordered_subjects:
+        subject_name = SUBJECT_NAMES_ZH.get(subject_slug, "未分类")
+        lines.append(f"### {subject_name}")
+        lines.append("")
+        lines.append("| 页面 | 在线访问 | 更新时间 |")
+        lines.append("|---|---|---|")
+        for p in grouped[subject_slug]:
+            url = f"https://beupgo.github.io/{p['file']}"
+            title = p["title"].replace("|", "\\|")
+            updated_at = p["updated_at"] or "-"
+            lines.append(f"| {title} | [开始学习]({url}) | {updated_at} |")
+        lines.append("")
+
+    lines.append("### 导航")
+    lines.append("")
+    lines.append("| 页面 | 在线访问 | 更新时间 |")
+    lines.append("|---|---|---|")
+    lines.append("| 导航首页 | [进入首页](https://beupgo.github.io/) | - |")
     return "\n".join(lines)
 
 
@@ -201,29 +353,29 @@ def gen_readme_files(pages: list[dict]) -> str:
 
 def gen_card(p: dict) -> str:
     grade_num = p["grade_num"]
-    title = p["title"]
-    description = p["description"] or title
-    short_title = title.split("·")[0].strip() if "·" in title else title
+    title = p["card_title"] or p["title"]
+    description = p["card_description"] or p["description"] or title
+    attrs = []
+    if p["time"]:
+        attrs.append(f'data-time="{p["time"]}"')
+    if p["updated_at"] or p["uploaded_at"]:
+        attrs.append(f'data-date="{p["updated_at"] or p["uploaded_at"]}"')
+    attr_text = (" " + " ".join(attrs)) if attrs else ""
 
     if grade_num:
-        grade_zh = GRADE_NAMES_ZH.get(grade_num, f"{grade_num}年级")
-        subject_zh = SUBJECT_NAMES_ZH.get(p["subject_slug"] or "", "")
         grade_en = f"GRADE {grade_num}"
         if p["subject_slug"]:
             grade_en += f" · {p['subject_slug'].upper()}"
-        icon = str(grade_num)
-        h2 = short_title if p["extra"] else (grade_zh + subject_zh if subject_zh else grade_zh)
     else:
         grade_en = p["file"].replace(".html", "").upper()
-        icon = short_title[0] if short_title else "?"
-        h2 = short_title
+    icon = str(grade_num) if grade_num else (title[0] if title else "?")
 
     return (
-        f'    <a class="card" href="{p["file"]}">\n'
+        f'    <a class="card" href="{p["file"]}"{attr_text}>\n'
         f'      <div class="top">\n'
         f'        <div class="icon">{icon}</div>\n'
         f'        <div>\n'
-        f'          <h2>{h2}</h2>\n'
+        f'          <h2>{title}</h2>\n'
         f'          <div class="grade-en">{grade_en}</div>\n'
         f'        </div>\n'
         f'      </div>\n'
@@ -236,7 +388,27 @@ def gen_card(p: dict) -> str:
 
 
 def gen_cards(pages: list[dict]) -> str:
-    return "\n\n".join(gen_card(p) for p in pages)
+    # Group by subject; within each group sort by updated_ts descending
+    grouped: dict[str, list[dict]] = {}
+    for p in pages:
+        key = p["subject_slug"] or "uncategorized"
+        grouped.setdefault(key, []).append(p)
+
+    for key in grouped:
+        grouped[key].sort(key=lambda p: p["updated_ts"], reverse=True)
+
+    ordered_subjects = [s for s in SUBJECT_NAMES_ZH.keys() if s in grouped]
+    ordered_subjects += sorted(s for s in grouped.keys() if s not in SUBJECT_NAMES_ZH)
+
+    sections = []
+    for subject_slug in ordered_subjects:
+        subject_name = SUBJECT_NAMES_ZH.get(subject_slug, "其他")
+        cards_html = "\n\n".join(gen_card(p) for p in grouped[subject_slug])
+        sections.append(
+            f'    <h2 class="subject-heading">{subject_name}</h2>\n\n{cards_html}'
+        )
+
+    return "\n\n".join(sections)
 
 
 # ---------------------------------------------------------------------------
@@ -302,9 +474,10 @@ def update_subpages(pages: list[dict]) -> bool:
 
 def main() -> int:
     pages = collect_pages()
-    print(f"Found {len(pages)} page(s): {[p['file'] for p in pages]}")
-    changed_readme = update_readme(pages)
-    changed_index = update_index(pages)
+    visible_pages = [p for p in pages if not p["hidden"]]
+    print(f"Found {len(pages)} page(s), visible {len(visible_pages)} page(s).")
+    changed_readme = update_readme(visible_pages)
+    changed_index = update_index(visible_pages)
     changed_subpages = update_subpages(pages)
     return 0 if (changed_readme or changed_index or changed_subpages) else 1
 
