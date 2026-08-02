@@ -281,7 +281,7 @@ body{
       <p>语文 · 数学 · 英语 — 点击卡片开始学习</p>
     </div>
     <div class="topbar-actions">
-      <button class="btn-icon" id="btn-refresh" title="刷新页面" aria-label="刷新页面">
+      <button class="btn-icon" id="btn-refresh" type="button" title="刷新页面" aria-label="刷新页面">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
           <path d="M3 12a9 9 0 0 1 15-6.7L21 8"/>
           <path d="M21 3v5h-5"/>
@@ -698,11 +698,33 @@ body{
 <script>
 (function () {
   /* ── refresh button ────────────────────────────────── */
-  document.getElementById('btn-refresh').addEventListener('click', function () {
-    var url = new URL(window.location.href);
-    url.searchParams.set('_refresh', String(Date.now()));
-    window.location.replace(url.toString());
-  });
+  var refreshBtn = document.getElementById('btn-refresh');
+  var isRefreshing = false;
+  function refreshPage(e) {
+    if (e && e.preventDefault) e.preventDefault();
+    if (isRefreshing) return;
+    isRefreshing = true;
+
+    var href = window.location.href;
+    var hashIndex = href.indexOf('#');
+    var hash = hashIndex >= 0 ? href.slice(hashIndex) : '';
+    var withoutHash = hashIndex >= 0 ? href.slice(0, hashIndex) : href;
+    var queryIndex = withoutHash.indexOf('?');
+    var base = queryIndex >= 0 ? withoutHash.slice(0, queryIndex) : withoutHash;
+    var query = queryIndex >= 0 ? withoutHash.slice(queryIndex + 1) : '';
+    var params = query ? query.split('&') : [];
+    var kept = [];
+    for (var i = 0; i < params.length; i++) {
+      if (params[i] && params[i].indexOf('_refresh=') !== 0) kept.push(params[i]);
+    }
+    kept.push('_refresh=' + Date.now());
+    window.location.href = base + '?' + kept.join('&') + hash;
+  }
+
+  if (refreshBtn) {
+    refreshBtn.addEventListener('click', refreshPage, false);
+    refreshBtn.addEventListener('touchend', refreshPage, false);
+  }
 
   /* ── icon system ───────────────────────────────────── */
   var ICONS = {
