@@ -62,8 +62,22 @@ body{
 .hero .badge svg{width:15px;height:15px;}
 .hero h1{font-size:clamp(28px,4vw,42px);line-height:1.22;margin:0 0 10px;font-weight:800;letter-spacing:-.02em;}
 .hero p{margin:0 auto;color:var(--text-2);font-size:clamp(15px,1.7vw,18px);line-height:1.65;max-width:42em;}
-.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:18px;}
-@media (max-width:520px){.cards{grid-template-columns:1fr;}}
+.cards{display:flex;flex-direction:column;gap:24px;}
+.subject-section{display:flex;flex-direction:column;gap:14px;}
+.subject-head{
+  display:flex;align-items:flex-end;justify-content:space-between;gap:14px;
+  padding:0 4px;flex-wrap:wrap;
+}
+.subject-head h2{margin:0;font-size:clamp(22px,2.4vw,28px);line-height:1.25;letter-spacing:-.02em;}
+.subject-head p{margin:6px 0 0;color:var(--text-2);font-size:14px;line-height:1.6;}
+.subject-count{
+  display:inline-flex;align-items:center;justify-content:center;
+  min-height:32px;padding:0 12px;border-radius:var(--r-full);
+  background:var(--surface);border:1px solid var(--border);
+  color:var(--text-2);font-size:12px;font-weight:700;white-space:nowrap;
+}
+.subject-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:18px;}
+@media (max-width:520px){.subject-grid{grid-template-columns:1fr;}}
 .card{
   display:flex;flex-direction:column;
   background:var(--surface);
@@ -84,12 +98,12 @@ body{
   background:var(--brand-subtle);color:var(--brand-strong);
   display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:800;
 }
-.card h2{margin:0;font-size:clamp(15px,1.2vw,20px);font-weight:800;line-height:1.25;letter-spacing:-.02em;word-break:keep-all;}
+.card h3{margin:0;font-size:clamp(15px,1.2vw,20px);font-weight:800;line-height:1.25;letter-spacing:-.02em;word-break:keep-all;}
 .card .grade-en{font-size:12px;color:var(--text-3);font-weight:600;letter-spacing:.04em;margin-top:2px;}
 .card .desc{color:var(--text-2);font-size:13px;line-height:1.6;margin:0 0 16px;flex:1;}
 .card .go{
   display:inline-flex;align-items:center;gap:6px;
-  color:var(--brand-strong);font-size:14px;font-weight:700;margin-top:auto;
+  color:var(--brand-strong);font-size:14px;font-weight:700;margin-top:auto;white-space:nowrap;
 }
 .card .go svg{width:16px;height:16px;transition:transform .18s ease;}
 @media (hover:hover){.card:hover .go svg{transform:translateX(3px);}}
@@ -116,12 +130,18 @@ body{
 
   <div class="cards">
     <!-- AUTO-CARDS-START -->
+    <section class="subject-section">
+      <div class="subject-head">
+        <div><h2>数学</h2><p>分数、方程、几何、奥数等数学页面集中查看。</p></div>
+        <span class="subject-count">共 14 个页面</span>
+      </div>
+      <div class="subject-grid">
     <a class="card" href="g4-math-simple-calc.html">
       <div class="top">
         <div class="icon">4</div>
         <div>
-          <h2>运算定律专题</h2>
-          <div class="grade-en">GRADE 4 · MATH</div>
+          <h3>运算定律专题 · 拆数凑整巧算</h3>
+          <div class="grade-en">四年级 · 数学</div>
         </div>
       </div>
       <p class="desc">运算定律专题 · 拆数凑整巧算</p>
@@ -130,15 +150,15 @@ body{
       </span>
     </a>
 
-    <a class="card" href="g5-math-equation.html">
+    <a class="card" href="grade5-math.html">
       <div class="top">
         <div class="icon">5</div>
         <div>
-          <h2>简易方程专题</h2>
-          <div class="grade-en">GRADE 5 · MATH</div>
+          <h3>北京五年级数学 · 母题学习系统</h3>
+          <div class="grade-en">五年级 · 数学</div>
         </div>
       </div>
-      <p class="desc">简易方程专题 · 从天平到解方程</p>
+      <p class="desc">北京五年级数学 · 母题学习系统</p>
       <span class="go">开始学习
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
       </span>
@@ -148,11 +168,39 @@ body{
       <div class="top">
         <div class="icon">5</div>
         <div>
-          <h2>因数与倍数专题</h2>
-          <div class="grade-en">GRADE 5 · MATH</div>
+          <h3>因数与倍数专题 · 数的秘密</h3>
+          <div class="grade-en">五年级 · 数学</div>
         </div>
       </div>
       <p class="desc">因数与倍数专题 · 数的秘密</p>
+      <span class="go">开始学习
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+      </span>
+    </a>
+
+    <a class="card" href="g5-math-polygon-area.html">
+      <div class="top">
+        <div class="icon">5</div>
+        <div>
+          <h3>多边形面积专题 · 割补转化思想</h3>
+          <div class="grade-en">五年级 · 数学</div>
+        </div>
+      </div>
+      <p class="desc">多边形面积专题 · 割补转化思想</p>
+      <span class="go">开始学习
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+      </span>
+    </a>
+
+    <a class="card" href="g5-math-equation.html">
+      <div class="top">
+        <div class="icon">5</div>
+        <div>
+          <h3>简易方程专题 · 从天平到解方程</h3>
+          <div class="grade-en">五年级 · 数学</div>
+        </div>
+      </div>
+      <p class="desc">简易方程专题 · 从天平到解方程</p>
       <span class="go">开始学习
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
       </span>
@@ -162,8 +210,8 @@ body{
       <div class="top">
         <div class="icon">5</div>
         <div>
-          <h2>裂差</h2>
-          <div class="grade-en">GRADE 5 · MATH</div>
+          <h3>裂差 · 裂和 专项练习题 · 小学数学专题</h3>
+          <div class="grade-en">五年级 · 数学</div>
         </div>
       </div>
       <p class="desc">裂差 · 裂和 专项练习题 · 小学数学专题</p>
@@ -176,8 +224,8 @@ body{
       <div class="top">
         <div class="icon">5</div>
         <div>
-          <h2>裂差</h2>
-          <div class="grade-en">GRADE 5 · MATH</div>
+          <h3>裂差 · 裂和 应用练习 · 小学数学专题</h3>
+          <div class="grade-en">五年级 · 数学</div>
         </div>
       </div>
       <p class="desc">裂差 · 裂和 应用练习 · 小学数学专题</p>
@@ -186,26 +234,266 @@ body{
       </span>
     </a>
 
-    <a class="card" href="g5-math-polygon-area.html">
+    <a class="card" href="g6-math-fractions.html">
       <div class="top">
-        <div class="icon">5</div>
+        <div class="icon">6</div>
         <div>
-          <h2>多边形面积专题</h2>
-          <div class="grade-en">GRADE 5 · MATH</div>
+          <h3>分数专题 · 彻底学会分数</h3>
+          <div class="grade-en">六年级 · 数学</div>
         </div>
       </div>
-      <p class="desc">多边形面积专题 · 割补转化思想</p>
+      <p class="desc">分数专题 · 彻底学会分数</p>
       <span class="go">开始学习
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
       </span>
     </a>
 
+    <a class="card" href="g6-math-fraction-division.html">
+      <div class="top">
+        <div class="icon">6</div>
+        <div>
+          <h3>分数除法应用题专题 · 找准单位1</h3>
+          <div class="grade-en">六年级 · 数学</div>
+        </div>
+      </div>
+      <p class="desc">分数除法应用题专题 · 找准单位1</p>
+      <span class="go">开始学习
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+      </span>
+    </a>
+
+    <a class="card" href="grade6-math.html">
+      <div class="top">
+        <div class="icon">6</div>
+        <div>
+          <h3>北京六年级数学 · 母题学习系统</h3>
+          <div class="grade-en">六年级 · 数学</div>
+        </div>
+      </div>
+      <p class="desc">北京六年级数学 · 母题学习系统</p>
+      <span class="go">开始学习
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+      </span>
+    </a>
+
+    <a class="card" href="g6-math-geometric-thinking.html">
+      <div class="top">
+        <div class="icon">6</div>
+        <div>
+          <h3>图形思想专题 · 用画图解数学题</h3>
+          <div class="grade-en">六年级 · 数学</div>
+        </div>
+      </div>
+      <p class="desc">图形思想专题 · 用画图解数学题</p>
+      <span class="go">开始学习
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+      </span>
+    </a>
+
+    <a class="card" href="primary-circle-lessons-problems.html">
+      <div class="top">
+        <div class="icon">数</div>
+        <div>
+          <h3>小学奥数 · 圆专题练习卷</h3>
+          <div class="grade-en">数学专题</div>
+        </div>
+      </div>
+      <p class="desc">小学奥数 · 圆专题练习卷</p>
+      <span class="go">开始学习
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+      </span>
+    </a>
+
+    <a class="card" href="equation-word-problems.html">
+      <div class="top">
+        <div class="icon">数</div>
+        <div>
+          <h3>简易方程应用题练习卷</h3>
+          <div class="grade-en">数学专题</div>
+        </div>
+      </div>
+      <p class="desc">简易方程应用题练习卷</p>
+      <span class="go">开始学习
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+      </span>
+    </a>
+
+    <a class="card" href="Math-G5-Fraction-Common-Denominator.html">
+      <div class="top">
+        <div class="icon">数</div>
+        <div>
+          <h3>通分专项 · 理解通分的本质</h3>
+          <div class="grade-en">数学专题</div>
+        </div>
+      </div>
+      <p class="desc">通分专项 · 理解通分的本质</p>
+      <span class="go">开始学习
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+      </span>
+    </a>
+      </div>
+    </section>
+
+    <section class="subject-section">
+      <div class="subject-head">
+        <div><h2>英语</h2><p>单词、句型、时态、介词与综合练习统一整理。</p></div>
+        <span class="subject-count">共 10 个页面</span>
+      </div>
+      <div class="subject-grid">
+    <a class="card" href="vocabulary-review.html">
+      <div class="top">
+        <div class="icon">英</div>
+        <div>
+          <h3>北京小学英语 · 单词复习营</h3>
+          <div class="grade-en">英语专题</div>
+        </div>
+      </div>
+      <p class="desc">北京小学英语 · 单词复习营</p>
+      <span class="go">开始学习
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+      </span>
+    </a>
+
+    <a class="card" href="word-learning.html">
+      <div class="top">
+        <div class="icon">英</div>
+        <div>
+          <h3>小学英语单词乐园 · 时间 · 交通 · 天气</h3>
+          <div class="grade-en">英语专题</div>
+        </div>
+      </div>
+      <p class="desc">小学英语单词乐园 · 时间 · 交通 · 天气</p>
+      <span class="go">开始学习
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+      </span>
+    </a>
+
+    <a class="card" href="word-roots.html">
+      <div class="top">
+        <div class="icon">英</div>
+        <div>
+          <h3>小学英语词根词缀乐园 · 拆词记单词</h3>
+          <div class="grade-en">英语专题</div>
+        </div>
+      </div>
+      <p class="desc">小学英语词根词缀乐园 · 拆词记单词</p>
+      <span class="go">开始学习
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+      </span>
+    </a>
+
+    <a class="card" href="english-prepositions.html">
+      <div class="top">
+        <div class="icon">英</div>
+        <div>
+          <h3>英语介词学习专题</h3>
+          <div class="grade-en">英语专题</div>
+        </div>
+      </div>
+      <p class="desc">英语介词学习专题</p>
+      <span class="go">开始学习
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+      </span>
+    </a>
+
+    <a class="card" href="english5.html">
+      <div class="top">
+        <div class="icon">英</div>
+        <div>
+          <h3>英语冒险岛 · 3-6年级暑假</h3>
+          <div class="grade-en">英语专题</div>
+        </div>
+      </div>
+      <p class="desc">英语冒险岛 · 3-6年级暑假</p>
+      <span class="go">开始学习
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+      </span>
+    </a>
+
+    <a class="card" href="english-sentence-structure.html">
+      <div class="top">
+        <div class="icon">英</div>
+        <div>
+          <h3>英语句子构成专题</h3>
+          <div class="grade-en">英语专题</div>
+        </div>
+      </div>
+      <p class="desc">英语句子构成专题</p>
+      <span class="go">开始学习
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+      </span>
+    </a>
+
+    <a class="card" href="english-collocations.html">
+      <div class="top">
+        <div class="icon">英</div>
+        <div>
+          <h3>英语固定搭配学习专题</h3>
+          <div class="grade-en">英语专题</div>
+        </div>
+      </div>
+      <p class="desc">英语固定搭配学习专题</p>
+      <span class="go">开始学习
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+      </span>
+    </a>
+
+    <a class="card" href="english-tenses.html">
+      <div class="top">
+        <div class="icon">英</div>
+        <div>
+          <h3>英语时态学习专题</h3>
+          <div class="grade-en">英语专题</div>
+        </div>
+      </div>
+      <p class="desc">英语时态学习专题</p>
+      <span class="go">开始学习
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+      </span>
+    </a>
+
+    <a class="card" href="English-G6-Sentence-Building.html">
+      <div class="top">
+        <div class="icon">英</div>
+        <div>
+          <h3>英语组句魔法 · 句子小火车</h3>
+          <div class="grade-en">英语专题</div>
+        </div>
+      </div>
+      <p class="desc">英语组句魔法 · 句子小火车</p>
+      <span class="go">开始学习
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+      </span>
+    </a>
+
+    <a class="card" href="english-mixed-quiz.html">
+      <div class="top">
+        <div class="icon">英</div>
+        <div>
+          <h3>英语综合练习</h3>
+          <div class="grade-en">英语专题</div>
+        </div>
+      </div>
+      <p class="desc">英语综合练习</p>
+      <span class="go">开始学习
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+      </span>
+    </a>
+      </div>
+    </section>
+
+    <section class="subject-section">
+      <div class="subject-head">
+        <div><h2>语文</h2><p>聚合当前语文写作与作文相关页面。</p></div>
+        <span class="subject-count">共 2 个页面</span>
+      </div>
+      <div class="subject-grid">
     <a class="card" href="grade5-chinese-essay-process.html">
       <div class="top">
         <div class="icon">5</div>
         <div>
-          <h2>作文是怎么"长"出来的</h2>
-          <div class="grade-en">GRADE 5 · CHINESE</div>
+          <h3>作文是怎么"长"出来的 · 五年级写作创作过程</h3>
+          <div class="grade-en">五年级 · 语文</div>
         </div>
       </div>
       <p class="desc">作文是怎么"长"出来的 · 五年级写作创作过程</p>
@@ -218,8 +506,8 @@ body{
       <div class="top">
         <div class="icon">5</div>
         <div>
-          <h2>写作提升训练</h2>
-          <div class="grade-en">GRADE 5 · CHINESE</div>
+          <h3>写作提升训练</h3>
+          <div class="grade-en">五年级 · 语文</div>
         </div>
       </div>
       <p class="desc">写作提升训练</p>
@@ -227,258 +515,8 @@ body{
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
       </span>
     </a>
-
-    <a class="card" href="grade5-math.html">
-      <div class="top">
-        <div class="icon">5</div>
-        <div>
-          <h2>五年级数学</h2>
-          <div class="grade-en">GRADE 5 · MATH</div>
-        </div>
       </div>
-      <p class="desc">北京五年级数学 · 母题学习系统</p>
-      <span class="go">开始学习
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
-      </span>
-    </a>
-
-    <a class="card" href="g6-math-fraction-division.html">
-      <div class="top">
-        <div class="icon">6</div>
-        <div>
-          <h2>分数除法应用题专题</h2>
-          <div class="grade-en">GRADE 6 · MATH</div>
-        </div>
-      </div>
-      <p class="desc">分数除法应用题专题 · 找准单位1</p>
-      <span class="go">开始学习
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
-      </span>
-    </a>
-
-    <a class="card" href="g6-math-fractions.html">
-      <div class="top">
-        <div class="icon">6</div>
-        <div>
-          <h2>分数专题</h2>
-          <div class="grade-en">GRADE 6 · MATH</div>
-        </div>
-      </div>
-      <p class="desc">分数专题 · 彻底学会分数</p>
-      <span class="go">开始学习
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
-      </span>
-    </a>
-
-    <a class="card" href="g6-math-geometric-thinking.html">
-      <div class="top">
-        <div class="icon">6</div>
-        <div>
-          <h2>图形思想专题</h2>
-          <div class="grade-en">GRADE 6 · MATH</div>
-        </div>
-      </div>
-      <p class="desc">图形思想专题 · 用画图解数学题</p>
-      <span class="go">开始学习
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
-      </span>
-    </a>
-
-    <a class="card" href="grade6-math.html">
-      <div class="top">
-        <div class="icon">6</div>
-        <div>
-          <h2>六年级数学</h2>
-          <div class="grade-en">GRADE 6 · MATH</div>
-        </div>
-      </div>
-      <p class="desc">北京六年级数学 · 母题学习系统</p>
-      <span class="go">开始学习
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
-      </span>
-    </a>
-
-    <a class="card" href="English-G6-Sentence-Building.html">
-      <div class="top">
-        <div class="icon">英</div>
-        <div>
-          <h2>英语组句魔法</h2>
-          <div class="grade-en">ENGLISH-G6-SENTENCE-BUILDING</div>
-        </div>
-      </div>
-      <p class="desc">英语组句魔法 · 句子小火车 | 小学英语</p>
-      <span class="go">开始学习
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
-      </span>
-    </a>
-
-    <a class="card" href="Math-G5-Fraction-Common-Denominator.html">
-      <div class="top">
-        <div class="icon">通</div>
-        <div>
-          <h2>通分专项</h2>
-          <div class="grade-en">MATH-G5-FRACTION-COMMON-DENOMINATOR</div>
-        </div>
-      </div>
-      <p class="desc">通分专项 · 理解通分的本质 | 小学数学</p>
-      <span class="go">开始学习
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
-      </span>
-    </a>
-
-    <a class="card" href="english-collocations.html">
-      <div class="top">
-        <div class="icon">英</div>
-        <div>
-          <h2>英语固定搭配学习专题</h2>
-          <div class="grade-en">ENGLISH-COLLOCATIONS</div>
-        </div>
-      </div>
-      <p class="desc">英语固定搭配学习专题</p>
-      <span class="go">开始学习
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
-      </span>
-    </a>
-
-    <a class="card" href="english-mixed-quiz.html">
-      <div class="top">
-        <div class="icon">英</div>
-        <div>
-          <h2>英语综合练习</h2>
-          <div class="grade-en">ENGLISH-MIXED-QUIZ</div>
-        </div>
-      </div>
-      <p class="desc">英语综合练习</p>
-      <span class="go">开始学习
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
-      </span>
-    </a>
-
-    <a class="card" href="english-prepositions.html">
-      <div class="top">
-        <div class="icon">英</div>
-        <div>
-          <h2>英语介词学习专题</h2>
-          <div class="grade-en">ENGLISH-PREPOSITIONS</div>
-        </div>
-      </div>
-      <p class="desc">英语介词学习专题</p>
-      <span class="go">开始学习
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
-      </span>
-    </a>
-
-    <a class="card" href="english-sentence-structure.html">
-      <div class="top">
-        <div class="icon">英</div>
-        <div>
-          <h2>英语句子构成专题</h2>
-          <div class="grade-en">ENGLISH-SENTENCE-STRUCTURE</div>
-        </div>
-      </div>
-      <p class="desc">英语句子构成专题</p>
-      <span class="go">开始学习
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
-      </span>
-    </a>
-
-    <a class="card" href="english-tenses.html">
-      <div class="top">
-        <div class="icon">英</div>
-        <div>
-          <h2>英语时态学习专题</h2>
-          <div class="grade-en">ENGLISH-TENSES</div>
-        </div>
-      </div>
-      <p class="desc">英语时态学习专题</p>
-      <span class="go">开始学习
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
-      </span>
-    </a>
-
-    <a class="card" href="english5.html">
-      <div class="top">
-        <div class="icon">英</div>
-        <div>
-          <h2>英语冒险岛</h2>
-          <div class="grade-en">ENGLISH5</div>
-        </div>
-      </div>
-      <p class="desc">英语冒险岛 · 3-6年级暑假</p>
-      <span class="go">开始学习
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
-      </span>
-    </a>
-
-    <a class="card" href="equation-word-problems.html">
-      <div class="top">
-        <div class="icon">简</div>
-        <div>
-          <h2>简易方程应用题练习卷</h2>
-          <div class="grade-en">EQUATION-WORD-PROBLEMS</div>
-        </div>
-      </div>
-      <p class="desc">简易方程应用题练习卷</p>
-      <span class="go">开始学习
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
-      </span>
-    </a>
-
-    <a class="card" href="primary-circle-lessons-problems.html">
-      <div class="top">
-        <div class="icon">小</div>
-        <div>
-          <h2>小学奥数</h2>
-          <div class="grade-en">PRIMARY-CIRCLE-LESSONS-PROBLEMS</div>
-        </div>
-      </div>
-      <p class="desc">小学奥数 · 圆专题练习卷</p>
-      <span class="go">开始学习
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
-      </span>
-    </a>
-
-    <a class="card" href="vocabulary-review.html">
-      <div class="top">
-        <div class="icon">北</div>
-        <div>
-          <h2>北京小学英语</h2>
-          <div class="grade-en">VOCABULARY-REVIEW</div>
-        </div>
-      </div>
-      <p class="desc">北京小学英语 · 单词复习营</p>
-      <span class="go">开始学习
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
-      </span>
-    </a>
-
-    <a class="card" href="word-learning.html">
-      <div class="top">
-        <div class="icon">小</div>
-        <div>
-          <h2>小学英语单词乐园</h2>
-          <div class="grade-en">WORD-LEARNING</div>
-        </div>
-      </div>
-      <p class="desc">小学英语单词乐园 · 时间 · 交通 · 天气</p>
-      <span class="go">开始学习
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
-      </span>
-    </a>
-
-    <a class="card" href="word-roots.html">
-      <div class="top">
-        <div class="icon">小</div>
-        <div>
-          <h2>小学英语词根词缀乐园</h2>
-          <div class="grade-en">WORD-ROOTS</div>
-        </div>
-      </div>
-      <p class="desc">小学英语词根词缀乐园 · 拆词记单词</p>
-      <span class="go">开始学习
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
-      </span>
-    </a>
+    </section>
 <!-- AUTO-CARDS-END -->
   </div>
 

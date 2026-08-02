@@ -41,6 +41,27 @@ SUBJECT_NAMES_ZH = {
     "pe":        "体育",
 }
 
+SUBJECT_ORDER = ["math", "english", "chinese", "other"]
+
+SUBJECT_SECTION_META = {
+    "math": {
+        "title": "数学",
+        "description": "分数、方程、几何、奥数等数学页面集中查看。",
+    },
+    "english": {
+        "title": "英语",
+        "description": "单词、句型、时态、介词与综合练习统一整理。",
+    },
+    "chinese": {
+        "title": "语文",
+        "description": "聚合当前语文写作与作文相关页面。",
+    },
+    "other": {
+        "title": "其他",
+        "description": "暂未识别学科的页面。",
+    },
+}
+
 ARROW_SVG = (
     '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor"'
     ' stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">'
@@ -95,6 +116,12 @@ def extract_meta_description(html_path: Path) -> str:
     return m.group(1).strip() if m else ""
 
 
+def normalize_display_title(title: str) -> str:
+    title = re.sub(r"\s+", " ", title).strip()
+    title = re.sub(r"\s*\|\s*小学(?:数学|英语|语文)\s*$", "", title)
+    return title.strip()
+
+
 def parse_filename(name: str):
     """
     Return (grade_num, subject_slug, extra) for known patterns, else (None, None, None).
@@ -110,6 +137,44 @@ def parse_filename(name: str):
     return None, None, None
 
 
+def infer_subject(file_name: str, title: str, description: str, subject_slug: str | None) -> str:
+    if subject_slug in SUBJECT_NAMES_ZH:
+        return subject_slug
+
+    haystack = " ".join(filter(None, [file_name, title, description, subject_slug])).lower()
+
+    keyword_groups = [
+        ("english", [
+            "english", "vocabulary", "collocation", "sentence", "tense", "preposition",
+            "英语", "单词", "词汇", "词根", "词缀", "句型", "句子", "时态", "介词", "搭配",
+        ]),
+        ("chinese", [
+            "chinese", "语文", "作文", "写作", "习作", "阅读",
+        ]),
+        ("math", [
+            "math", "数学", "奥数", "方程", "分数", "通分", "因数", "倍数", "运算", "面积",
+            "圆", "图形", "几何", "计算", "应用题",
+        ]),
+    ]
+    for subject, keywords in keyword_groups:
+        if any(keyword in haystack for keyword in keywords):
+            return subject
+    return "other"
+
+
+def sort_key_within_subject(page: dict):
+    return (0 if page["grade_num"] else 1, page["grade_num"] or 99, page["display_title"], page["file"])
+
+
+def group_pages_by_subject(pages: list[dict]) -> dict[str, list[dict]]:
+    grouped = {subject: [] for subject in SUBJECT_ORDER}
+    for page in pages:
+        grouped.setdefault(page["inferred_subject"], []).append(page)
+    for subject, items in grouped.items():
+        grouped[subject] = sorted(items, key=sort_key_within_subject)
+    return grouped
+
+
 def collect_pages() -> list[dict]:
     pages = []
     for f in sorted(ROOT.glob("*.html")):
@@ -118,6 +183,8 @@ def collect_pages() -> list[dict]:
         grade_num, subject_slug, extra = parse_filename(f.name)
         title = extract_title(f)
         description = extract_meta_description(f)
+        display_title = normalize_display_title(title) or f.stem
+        inferred_subject = infer_subject(f.name, title, description, subject_slug)
         updated_ts, updated_at = get_git_last_updated(f.name)
         pages.append(
             dict(
@@ -126,7 +193,9 @@ def collect_pages() -> list[dict]:
                 subject_slug=subject_slug,
                 extra=extra,
                 title=title,
+                display_title=display_title,
                 description=description,
+                inferred_subject=inferred_subject,
                 updated_ts=updated_ts,
                 updated_at=updated_at,
             )
@@ -173,14 +242,24 @@ def replace_between(text: str, start: str, end: str, new_content: str) -> str:
 # ---------------------------------------------------------------------------
 
 def gen_readme_table(pages: list[dict]) -> str:
-    sorted_pages = sorted(pages, key=lambda p: (p["updated_ts"], p["file"]), reverse=True)
-    lines = ["| 页面 | 在线地址 | 更新时间 |", "|---|---|---|"]
-    for p in sorted_pages:
-        url = f"https://beupgo.github.io/{p['file']}"
-        title = p["title"].replace("|", "\\|")
-        updated_at = p["updated_at"] or "-"
-        lines.append(f"| {title} | {url} | {updated_at} |")
-    lines.append("| 导航首页 | https://beupgo.github.io/ | - |")
+    grouped = group_pages_by_subject(pages)
+    lines = []
+    for subject in SUBJECT_ORDER:
+        items = grouped.get(subject, [])
+        if not items or subject == "other":
+            continue
+        lines.append(f"### {SUBJECT_NAMES_ZH[subject]}")
+        for p in items:
+            url = f"https://beupgo.github.io/{p['file']}"
+            lines.append(f"- [{p['display_title']}]({url})")
+        lines.append("")
+    if grouped.get("other"):
+        lines.append("### 其他")
+        for p in grouped["other"]:
+            url = f"https://beupgo.github.io/{p['file']}"
+            lines.append(f"- [{p['display_title']}]({url})")
+        lines.append("")
+    lines.append("- [导航首页](https://beupgo.github.io/)")
     return "\n".join(lines)
 
 
@@ -201,29 +280,24 @@ def gen_readme_files(pages: list[dict]) -> str:
 
 def gen_card(p: dict) -> str:
     grade_num = p["grade_num"]
-    title = p["title"]
+    title = p["display_title"]
     description = p["description"] or title
-    short_title = title.split("·")[0].strip() if "·" in title else title
+    subject_zh = SUBJECT_NAMES_ZH.get(p["inferred_subject"], "")
 
     if grade_num:
         grade_zh = GRADE_NAMES_ZH.get(grade_num, f"{grade_num}年级")
-        subject_zh = SUBJECT_NAMES_ZH.get(p["subject_slug"] or "", "")
-        grade_en = f"GRADE {grade_num}"
-        if p["subject_slug"]:
-            grade_en += f" · {p['subject_slug'].upper()}"
+        grade_en = f"{grade_zh} · {subject_zh}" if subject_zh else grade_zh
         icon = str(grade_num)
-        h2 = short_title if p["extra"] else (grade_zh + subject_zh if subject_zh else grade_zh)
     else:
-        grade_en = p["file"].replace(".html", "").upper()
-        icon = short_title[0] if short_title else "?"
-        h2 = short_title
+        grade_en = f"{subject_zh}专题" if subject_zh else "专题页"
+        icon = subject_zh[:1] if subject_zh else (title[0] if title else "?")
 
     return (
         f'    <a class="card" href="{p["file"]}">\n'
         f'      <div class="top">\n'
         f'        <div class="icon">{icon}</div>\n'
         f'        <div>\n'
-        f'          <h2>{h2}</h2>\n'
+        f'          <h3>{title}</h3>\n'
         f'          <div class="grade-en">{grade_en}</div>\n'
         f'        </div>\n'
         f'      </div>\n'
@@ -236,7 +310,40 @@ def gen_card(p: dict) -> str:
 
 
 def gen_cards(pages: list[dict]) -> str:
-    return "\n\n".join(gen_card(p) for p in pages)
+    grouped = group_pages_by_subject(pages)
+    sections = []
+    for subject in SUBJECT_ORDER:
+        items = grouped.get(subject, [])
+        if not items or subject == "other":
+            continue
+        meta = SUBJECT_SECTION_META[subject]
+        cards = "\n\n".join(gen_card(p) for p in items)
+        sections.append(
+            "    <section class=\"subject-section\">\n"
+            "      <div class=\"subject-head\">\n"
+            f"        <div><h2>{meta['title']}</h2><p>{meta['description']}</p></div>\n"
+            f"        <span class=\"subject-count\">共 {len(items)} 个页面</span>\n"
+            "      </div>\n"
+            "      <div class=\"subject-grid\">\n"
+            f"{cards}\n"
+            "      </div>\n"
+            "    </section>"
+        )
+    if grouped.get("other"):
+        meta = SUBJECT_SECTION_META["other"]
+        cards = "\n\n".join(gen_card(p) for p in grouped["other"])
+        sections.append(
+            "    <section class=\"subject-section\">\n"
+            "      <div class=\"subject-head\">\n"
+            f"        <div><h2>{meta['title']}</h2><p>{meta['description']}</p></div>\n"
+            f"        <span class=\"subject-count\">共 {len(grouped['other'])} 个页面</span>\n"
+            "      </div>\n"
+            "      <div class=\"subject-grid\">\n"
+            f"{cards}\n"
+            "      </div>\n"
+            "    </section>"
+        )
+    return "\n\n".join(sections)
 
 
 # ---------------------------------------------------------------------------

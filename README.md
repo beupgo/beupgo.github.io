@@ -1,39 +1,43 @@
-# 人教版小学数学 · 五 / 六年级知识点学习页
+# 人教版小学语数英 · 学习页面导航
 
-> 面向小学高年级的**人教版(PEP)数学**知识点学习页面:图形化讲解、母题精讲、生活应用三大板块,单文件、纯离线、手机 / 平板 / 电脑均可直接打开。
+> 面向小学阶段的**语文 / 数学 / 英语**学习页面导航:按学科整理入口,单文件、纯离线,手机 / 平板 / 电脑均可直接打开。
 
 ## 在线访问
 
 <!-- AUTO-TABLE-START -->
-| 页面 | 在线地址 | 更新时间 |
-|---|---|---|
-| 小学奥数 · 圆专题练习卷 | https://beupgo.github.io/primary-circle-lessons-problems.html | 2026-07-31 17:28 |
-| 北京小学英语 · 单词复习营 | https://beupgo.github.io/vocabulary-review.html | 2026-07-26 14:29 |
-| 英语固定搭配学习专题 | https://beupgo.github.io/english-collocations.html | 2026-07-26 05:13 |
-| 简易方程应用题练习卷 | https://beupgo.github.io/equation-word-problems.html | 2026-07-26 03:41 |
-| 英语综合练习 | https://beupgo.github.io/english-mixed-quiz.html | 2026-07-26 03:13 |
-| 英语时态学习专题 | https://beupgo.github.io/english-tenses.html | 2026-07-23 10:56 |
-| 英语句子构成专题 | https://beupgo.github.io/english-sentence-structure.html | 2026-07-23 06:04 |
-| 英语介词学习专题 | https://beupgo.github.io/english-prepositions.html | 2026-07-23 03:24 |
-| 小学英语词根词缀乐园 · 拆词记单词 | https://beupgo.github.io/word-roots.html | 2026-07-19 13:27 |
-| 小学英语单词乐园 · 时间 · 交通 · 天气 | https://beupgo.github.io/word-learning.html | 2026-07-19 13:27 |
-| 英语组句魔法 · 句子小火车 \| 小学英语 | https://beupgo.github.io/English-G6-Sentence-Building.html | 2026-07-10 14:16 |
-| 通分专项 · 理解通分的本质 \| 小学数学 | https://beupgo.github.io/Math-G5-Fraction-Common-Denominator.html | 2026-07-10 13:37 |
-| 裂差 · 裂和 应用练习 · 小学数学专题 | https://beupgo.github.io/g5-math-fraction-split-practice.html | 2026-07-10 18:57 |
-| 裂差 · 裂和 专项练习题 · 小学数学专题 | https://beupgo.github.io/g5-math-fraction-split-exercises.html | 2026-07-10 18:57 |
-| 北京六年级数学 · 母题学习系统 | https://beupgo.github.io/grade6-math.html | 2026-07-04 21:41 |
-| 北京五年级数学 · 母题学习系统 | https://beupgo.github.io/grade5-math.html | 2026-07-04 21:41 |
-| 写作提升训练 | https://beupgo.github.io/grade5-chinese-writing.html | 2026-07-04 21:41 |
-| 作文是怎么"长"出来的 · 五年级写作创作过程 | https://beupgo.github.io/grade5-chinese-essay-process.html | 2026-07-04 21:41 |
-| 图形思想专题 · 用画图解数学题 | https://beupgo.github.io/g6-math-geometric-thinking.html | 2026-07-04 21:41 |
-| 分数专题 · 彻底学会分数 | https://beupgo.github.io/g6-math-fractions.html | 2026-07-04 21:41 |
-| 分数除法应用题专题 · 找准单位1 | https://beupgo.github.io/g6-math-fraction-division.html | 2026-07-04 21:41 |
-| 多边形面积专题 · 割补转化思想 | https://beupgo.github.io/g5-math-polygon-area.html | 2026-07-04 21:41 |
-| 因数与倍数专题 · 数的秘密 | https://beupgo.github.io/g5-math-factors-multiples.html | 2026-07-04 21:41 |
-| 简易方程专题 · 从天平到解方程 | https://beupgo.github.io/g5-math-equation.html | 2026-07-04 21:41 |
-| 运算定律专题 · 拆数凑整巧算 | https://beupgo.github.io/g4-math-simple-calc.html | 2026-07-04 21:41 |
-| 英语冒险岛 · 3-6年级暑假 | https://beupgo.github.io/english5.html | 2026-07-04 21:41 |
-| 导航首页 | https://beupgo.github.io/ | - |
+### 数学
+- [运算定律专题 · 拆数凑整巧算](https://beupgo.github.io/g4-math-simple-calc.html)
+- [北京五年级数学 · 母题学习系统](https://beupgo.github.io/grade5-math.html)
+- [因数与倍数专题 · 数的秘密](https://beupgo.github.io/g5-math-factors-multiples.html)
+- [多边形面积专题 · 割补转化思想](https://beupgo.github.io/g5-math-polygon-area.html)
+- [简易方程专题 · 从天平到解方程](https://beupgo.github.io/g5-math-equation.html)
+- [裂差 · 裂和 专项练习题 · 小学数学专题](https://beupgo.github.io/g5-math-fraction-split-exercises.html)
+- [裂差 · 裂和 应用练习 · 小学数学专题](https://beupgo.github.io/g5-math-fraction-split-practice.html)
+- [分数专题 · 彻底学会分数](https://beupgo.github.io/g6-math-fractions.html)
+- [分数除法应用题专题 · 找准单位1](https://beupgo.github.io/g6-math-fraction-division.html)
+- [北京六年级数学 · 母题学习系统](https://beupgo.github.io/grade6-math.html)
+- [图形思想专题 · 用画图解数学题](https://beupgo.github.io/g6-math-geometric-thinking.html)
+- [小学奥数 · 圆专题练习卷](https://beupgo.github.io/primary-circle-lessons-problems.html)
+- [简易方程应用题练习卷](https://beupgo.github.io/equation-word-problems.html)
+- [通分专项 · 理解通分的本质](https://beupgo.github.io/Math-G5-Fraction-Common-Denominator.html)
+
+### 英语
+- [北京小学英语 · 单词复习营](https://beupgo.github.io/vocabulary-review.html)
+- [小学英语单词乐园 · 时间 · 交通 · 天气](https://beupgo.github.io/word-learning.html)
+- [小学英语词根词缀乐园 · 拆词记单词](https://beupgo.github.io/word-roots.html)
+- [英语介词学习专题](https://beupgo.github.io/english-prepositions.html)
+- [英语冒险岛 · 3-6年级暑假](https://beupgo.github.io/english5.html)
+- [英语句子构成专题](https://beupgo.github.io/english-sentence-structure.html)
+- [英语固定搭配学习专题](https://beupgo.github.io/english-collocations.html)
+- [英语时态学习专题](https://beupgo.github.io/english-tenses.html)
+- [英语组句魔法 · 句子小火车](https://beupgo.github.io/English-G6-Sentence-Building.html)
+- [英语综合练习](https://beupgo.github.io/english-mixed-quiz.html)
+
+### 语文
+- [作文是怎么"长"出来的 · 五年级写作创作过程](https://beupgo.github.io/grade5-chinese-essay-process.html)
+- [写作提升训练](https://beupgo.github.io/grade5-chinese-writing.html)
+
+- [导航首页](https://beupgo.github.io/)
 <!-- AUTO-TABLE-END -->
 
 ## 功能特点
@@ -80,20 +84,23 @@
 ```
 <!-- AUTO-FILES-END -->
 
-> 仓库里的文件建议使用英文名 `grade5-math.html` / `grade6-math.html`。
+> 仓库里的文件建议使用英文名,如 `grade5-math.html` / `english-tenses.html` / `grade5-chinese-writing.html`。
 > 中文文件名(如「五年级数学.html」)在 GitHub Pages 链接里需要 URL 编码,容易出错,不推荐直接作为线上路径。
 
 ## 内容概览
 
-**五年级(共 15 个单元)**
-小数乘法 · 位置 · 小数除法 · 可能性 · 简易方程 · 多边形的面积 · 植树问题 · 观察物体(三) · 因数与倍数 · 长方体和正方体 · 分数的意义和性质 · 分数的加法和减法 · 图形的运动(三) · 折线统计图 · 打电话
+**数学**
+五 / 六年级系统学习页,外加运算定律、简易方程、因数与倍数、分数、通分、图形思想、圆与多边形面积等专题。
 
-**六年级(共 12 个单元)**
-分数乘法 · 位置与方向(二) · 分数除法 · 比 · 圆 · 百分数 · 扇形统计图 · 数学广角(数与形) · 比例 · 圆柱与圆锥 · 百分数(二) · 统计与概率(整理复习)
+**英语**
+覆盖单词复习、词根词缀、组句、句子构成、介词、时态、固定搭配和综合练习等页面。
+
+**语文**
+当前收录作文创作过程与写作提升训练两类页面。
 
 ## 部署到 GitHub Pages
 
-1. 新建一个 GitHub 仓库(如 `math-notes`),把 `grade5-math.html`、`grade6-math.html`、`index.html`、`README.md` 上传到仓库根目录。
+1. 新建一个 GitHub 仓库(如 `study-pages`),把需要发布的 html 页面、`index.html`、`README.md` 上传到仓库根目录。
 2. 进入仓库 **Settings → Pages**。
 3. **Build and deployment → Source** 选 **Deploy from a branch**;**Branch** 选 `main`(或 `master`),目录选 `/ (root)`,点 **Save**。
 4. 等 1–2 分钟,页面顶部会出现发布地址 `https://beupgo.github.io/`,即可访问。
