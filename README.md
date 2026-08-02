@@ -35,7 +35,7 @@
 
 | 页面 | 在线访问 | 更新时间 |
 |---|---|---|
-| 小学英语常用句式大全 | [开始学习](https://beupgo.github.io/primary-sentence-patterns.html) | 2026-08-02 20:55 |
+| 小学英语常用句式大全 | [开始学习](https://beupgo.github.io/primary-sentence-patterns.html) | 2026-08-02 21:23 |
 | 新增单词专项 · 5 大场景 | [开始学习](https://beupgo.github.io/new-vocabulary-5-scenes.html) | 2026-08-02 06:29 |
 | 北京小学英语 · 单词复习营 | [开始学习](https://beupgo.github.io/vocabulary-review.html) | 2026-07-26 14:29 |
 | 英语固定搭配学习专题 | [开始学习](https://beupgo.github.io/english-collocations.html) | 2026-07-26 05:13 |
