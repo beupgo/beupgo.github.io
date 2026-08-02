@@ -118,82 +118,84 @@ body{
 .tab-btn[data-subj="other"].active::after{left:12px;right:12px;background:var(--other);}
 
 /* ── Tab panels ───────────────────────────────────────── */
-.tab-panel{display:none;padding:16px 16px calc(env(safe-area-inset-bottom,16px) + 60px);}
+.tab-panel{display:none;padding:16px 14px calc(env(safe-area-inset-bottom,16px) + 60px);}
 .tab-panel.active{display:block;}
 
-/* ── Card list ────────────────────────────────────────── */
-.card-list{display:flex;flex-direction:column;gap:10px;max-width:720px;margin:0 auto;}
+/* ── Card grid ────────────────────────────────────────── */
+.card-list{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:12px;
+  max-width:920px;margin:0 auto;
+}
+@media(min-width:540px){.card-list{grid-template-columns:repeat(3,1fr);}}
+@media(min-width:800px){.card-list{grid-template-columns:repeat(4,1fr);gap:14px;}}
 
 .crd{
-  display:flex;align-items:center;gap:14px;
-  padding:14px 16px;
-  border-radius:16px;
+  display:flex;flex-direction:column;
+  border-radius:18px;
   background:var(--card);
   border:1px solid var(--border);
   text-decoration:none;color:var(--text);
+  overflow:hidden;
+  box-shadow:0 1px 4px rgba(0,0,0,.06);
   transition:transform .12s,box-shadow .12s;
-  position:relative;overflow:hidden;
 }
-/* coloured left accent stripe */
-.crd::before{
-  content:'';
-  position:absolute;left:0;top:0;bottom:0;width:4px;
-  border-radius:16px 0 0 16px;
-}
-[data-subj="数学"] .crd::before{background:var(--math);}
-[data-subj="语文"] .crd::before{background:var(--zh);}
-[data-subj="英语"] .crd::before{background:var(--en);}
-[data-subj="other"] .crd::before{background:var(--other);}
-
-.crd:active{transform:scale(.97);}
+.crd:active{transform:scale(.95);}
 @media(hover:hover){
-  .crd:hover{transform:translateY(-2px);box-shadow:0 6px 20px rgba(0,0,0,.1);}
+  .crd:hover{transform:translateY(-4px);box-shadow:0 10px 28px rgba(0,0,0,.13);}
 }
+
+/* card header – large coloured icon zone */
+.crd-head{
+  display:flex;align-items:center;justify-content:center;
+  padding:24px 12px 20px;
+}
+[data-subj="数学"] .crd-head{background:var(--math-light);}
+[data-subj="语文"] .crd-head{background:var(--zh-light);}
+[data-subj="英语"] .crd-head{background:var(--en-light);}
+[data-subj="other"] .crd-head{background:var(--other-light);}
 
 .crd-icon{
-  width:52px;height:52px;flex:none;
-  border-radius:14px;
+  font-size:38px;line-height:1;
   display:flex;align-items:center;justify-content:center;
-  font-size:26px;line-height:1;
 }
-[data-subj="数学"] .crd-icon{background:var(--math-light);}
-[data-subj="语文"] .crd-icon{background:var(--zh-light);}
-[data-subj="英语"] .crd-icon{background:var(--en-light);}
-[data-subj="other"] .crd-icon{background:var(--other-light);}
 
-.crd-body{flex:1;min-width:0;}
+/* card body */
+.crd-body{
+  flex:1;display:flex;flex-direction:column;
+  padding:12px 13px 13px;
+}
 .crd-title{
-  font-size:15px;font-weight:800;line-height:1.3;
-  display:-webkit-box;-webkit-line-clamp:1;-webkit-box-orient:vertical;overflow:hidden;
+  font-size:13px;font-weight:800;line-height:1.4;
+  display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;
 }
 .crd-desc{
-  font-size:12px;color:var(--text-2);margin-top:3px;
-  display:-webkit-box;-webkit-line-clamp:1;-webkit-box-orient:vertical;overflow:hidden;
+  font-size:11px;color:var(--text-2);margin-top:4px;line-height:1.5;
+  display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;
+}
+.crd-foot{
+  display:flex;align-items:center;justify-content:space-between;
+  margin-top:auto;padding-top:10px;
+  gap:4px;
 }
 .crd-chip{
-  flex:none;
   font-size:10px;font-weight:800;
-  padding:3px 9px;border-radius:99px;
-  letter-spacing:.03em;
+  padding:2px 8px;border-radius:99px;
+  letter-spacing:.03em;flex:none;
 }
 [data-subj="数学"] .crd-chip{background:var(--math-light);color:var(--math);border:1px solid var(--math-mid);}
 [data-subj="语文"] .crd-chip{background:var(--zh-light);color:var(--zh);border:1px solid var(--zh-mid);}
 [data-subj="英语"] .crd-chip{background:var(--en-light);color:var(--en);border:1px solid var(--en-mid);}
 [data-subj="other"] .crd-chip{background:var(--other-light);color:var(--other);border:1px solid var(--other-mid);}
 
-.crd-arrow{
-  flex:none;color:var(--text-3);
-  display:flex;align-items:center;
-}
-.crd-arrow svg{width:16px;height:16px;}
-
 /* ── Time badge ───────────────────────────────────────── */
 .crd-time{
   display:flex;align-items:center;gap:3px;
-  font-size:11px;font-weight:600;color:var(--text-3);
-  margin-top:4px;white-space:nowrap;
+  font-size:10px;font-weight:600;color:var(--text-3);
+  white-space:nowrap;
 }
-.crd-time svg{width:11px;height:11px;flex:none;}
+.crd-time svg{width:10px;height:10px;flex:none;}
 
 /* ── Footer ───────────────────────────────────────────── */
 .foot{
@@ -567,19 +569,21 @@ body{
       a.className = 'crd';
       a.href      = item.href;
 
-      /* icon */
+      /* card header – icon in coloured zone */
+      var headDiv = document.createElement('div');
+      headDiv.className = 'crd-head';
       var iconDiv = document.createElement('div');
       iconDiv.className   = 'crd-icon';
       iconDiv.textContent = emoji;
+      headDiv.appendChild(iconDiv);
 
-      /* body */
+      /* card body */
       var bodyDiv = document.createElement('div');
       bodyDiv.className = 'crd-body';
 
       var titleSpan = document.createElement('div');
       titleSpan.className   = 'crd-title';
       titleSpan.textContent = item.title;
-
       bodyDiv.appendChild(titleSpan);
 
       if (item.desc && item.desc !== item.title) {
@@ -589,29 +593,28 @@ body{
         bodyDiv.appendChild(descSpan);
       }
 
+      /* footer row: time + grade chip */
+      var footDiv = document.createElement('div');
+      footDiv.className = 'crd-foot';
+
       if (item.time) {
         var timeSpan = document.createElement('div');
         timeSpan.className = 'crd-time';
         timeSpan.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>' + item.time;
-        bodyDiv.appendChild(timeSpan);
+        footDiv.appendChild(timeSpan);
       }
 
-      a.appendChild(iconDiv);
-      a.appendChild(bodyDiv);
-
-      /* grade chip */
       if (chipText) {
         var chip = document.createElement('span');
         chip.className   = 'crd-chip';
         chip.textContent = chipText;
-        a.appendChild(chip);
+        footDiv.appendChild(chip);
       }
 
-      /* arrow */
-      var arrow = document.createElement('span');
-      arrow.className = 'crd-arrow';
-      arrow.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>';
-      a.appendChild(arrow);
+      bodyDiv.appendChild(footDiv);
+
+      a.appendChild(headDiv);
+      a.appendChild(bodyDiv);
 
       list.appendChild(a);
     });
