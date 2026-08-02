@@ -168,6 +168,24 @@ def is_hidden_page(text: str) -> bool:
     return value in TRUE_VALUES
 
 
+def extract_existing_card_times() -> dict[str, str]:
+    path = ROOT / "index.html"
+    if not path.exists():
+        return {}
+    text = path.read_text(encoding="utf-8", errors="ignore")
+    times: dict[str, str] = {}
+    for match in re.finditer(
+        r'<a\s+class="card"\s+href="([^"]+)"(?:\s+data-time="([^"]*)")?[^>]*>',
+        text,
+        re.IGNORECASE,
+    ):
+        href = match.group(1).strip()
+        time = (match.group(2) or "").strip()
+        if href and time:
+            times[href] = time
+    return times
+
+
 def parse_filename(name: str):
     """
     Return (grade_num, subject_slug, extra) for known patterns, else (None, None, None).
@@ -185,6 +203,7 @@ def parse_filename(name: str):
 
 def collect_pages() -> list[dict]:
     pages = []
+    existing_card_times = extract_existing_card_times()
     for f in sorted(ROOT.glob("*.html")):
         if f.name == "index.html":
             continue
@@ -203,6 +222,7 @@ def collect_pages() -> list[dict]:
                 title=title,
                 description=description,
                 hidden=is_hidden_page(text),
+                time=existing_card_times.get(f.name, ""),
                 updated_ts=updated_ts,
                 updated_at=updated_at,
             )
@@ -300,6 +320,12 @@ def gen_card(p: dict) -> str:
     title = p["title"]
     description = p["description"] or title
     short_title = title.split("·")[0].strip() if "·" in title else title
+    attrs = []
+    if p["time"]:
+        attrs.append(f'data-time="{p["time"]}"')
+    if p["updated_at"]:
+        attrs.append(f'data-date="{p["updated_at"]}"')
+    attr_text = (" " + " ".join(attrs)) if attrs else ""
 
     if grade_num:
         grade_zh = GRADE_NAMES_ZH.get(grade_num, f"{grade_num}年级")
@@ -315,7 +341,7 @@ def gen_card(p: dict) -> str:
         h2 = short_title
 
     return (
-        f'    <a class="card" href="{p["file"]}">\n'
+        f'    <a class="card" href="{p["file"]}"{attr_text}>\n'
         f'      <div class="top">\n'
         f'        <div class="icon">{icon}</div>\n'
         f'        <div>\n'
