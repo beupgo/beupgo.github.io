@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>小学英语常用句式大全</title>
+<title>英语学习摸底测试卷</title>
 <style>
 /* =========================================================================
    AURORA DESIGN SYSTEM · tokens.css · v2.0
@@ -1050,12 +1050,12 @@ gc-*, gc-*::before, gc-*::after {
 
 
 /* ============================================================
-   小学英语常用句式大全 · 单文件离线
+   英语摸底测试 · 单文件离线
    ============================================================ */
 html, body { background: var(--s-bg); margin: 0; }
 body { font-family: var(--g-font); color: var(--s-text); min-height: 100dvh; -webkit-font-smoothing: antialiased; }
 .app { min-height: 100dvh; display: flex; flex-direction: column; }
-:root { --c-container-max: min(94vw, 1080px); }
+:root { --c-container-max: min(94vw, 820px); }
 .wrap { width: 100%; max-width: var(--c-container-max); margin-inline: auto; padding-inline: var(--c-container-pad, clamp(var(--g-sp-4), 4vw, var(--g-sp-8))); }
 
 /* appbar */
@@ -1069,156 +1069,114 @@ body { font-family: var(--g-font); color: var(--s-text); min-height: 100dvh; -we
 .appbar__spacer { flex: 1; }
 .iconbtn { width: 40px; height: 40px; border-radius: var(--g-r-md); border: 1px solid var(--s-border); background: var(--s-surface); color: var(--s-text-secondary); display: grid; place-items: center; cursor: pointer; }
 .iconbtn:hover { background: var(--s-surface-hover); color: var(--s-text); }
+.rate-ctrl { display: flex; align-items: center; gap: var(--g-sp-2); color: var(--s-text-secondary); }
+.rate-seg { display: flex; padding: 3px; background: var(--s-surface-sunken); border: 1px solid var(--s-border); border-radius: var(--g-r-full); }
+.rate-opt { appearance: none; border: 0; background: transparent; cursor: pointer; font: inherit; font-size: var(--s-fs-caption); font-weight: var(--g-fw-medium); color: var(--s-text-secondary); padding: var(--g-sp-1) var(--g-sp-3); border-radius: var(--g-r-full); min-height: 34px; }
+.rate-opt--on { background: var(--s-brand); color: var(--s-on-brand); box-shadow: var(--s-shadow-sm); }
+@media (max-width: 560px){ .rate-ctrl > .ico { display: none; } .brand__sub { display: none; } }
 
-/* hero */
-.hero { padding-block: var(--g-sp-8) var(--g-sp-4); }
-.hero h1 { margin: 0; font-size: var(--s-fs-display); font-weight: var(--g-fw-bold); letter-spacing: var(--g-ls-tight); text-align: center; }
-.hero p { margin: var(--g-sp-3) auto 0; max-width: 780px; color: var(--s-text-secondary); font-size: var(--s-fs-body); line-height: var(--s-lh-body); text-align: center; }
-.legend { margin: var(--g-sp-5) auto 0; display: flex; flex-wrap: wrap; gap: var(--g-sp-3) var(--g-sp-5); justify-content: center; font-size: var(--s-fs-caption); color: var(--s-text-secondary); background: var(--s-surface); border: 1px solid var(--s-border); border-radius: var(--g-r-lg); padding: var(--g-sp-3) var(--g-sp-4); max-width: 780px; }
-.legend__item { display: inline-flex; align-items: center; gap: var(--g-sp-1); }
-
-/* group nav */
-.gnav { display: flex; flex-wrap: wrap; gap: var(--g-sp-2); padding-block: var(--g-sp-4); position: sticky; top: 68px; z-index: 5; background: color-mix(in srgb, var(--s-bg) 90%, transparent); }
-.gnav__btn { appearance: none; cursor: pointer; font: inherit; font-size: var(--s-fs-caption); font-weight: var(--g-fw-medium); color: var(--s-text-secondary); background: var(--s-surface); border: 1px solid var(--s-border); border-radius: var(--g-r-full); padding: var(--g-sp-2) var(--g-sp-3); min-height: 40px; display: inline-flex; align-items: center; gap: var(--g-sp-1); }
-.gnav__btn--on { background: var(--s-brand); color: var(--s-on-brand); border-color: transparent; }
-.gnav__n { font-size: 11px; background: color-mix(in srgb, currentColor 18%, transparent); border-radius: var(--g-r-full); padding: 0 6px; }
-
-/* group */
-.grp { padding-bottom: var(--g-sp-8); }
-.grp__head { display: flex; align-items: flex-start; gap: var(--g-sp-3); padding: var(--g-sp-4) 0; }
-.grp__ic { width: 46px; height: 46px; flex: none; border-radius: var(--g-r-lg); display: grid; place-items: center; background: var(--s-brand-subtle); color: var(--s-brand); }
-.grp--cyan .grp__ic { background: var(--g-cyan-100); color: var(--g-cyan-700); }
-.grp--green .grp__ic { background: var(--g-green-100); color: var(--g-green-700); }
-.grp--amber .grp__ic { background: var(--g-amber-100); color: var(--g-amber-700); }
-.grp__name { font-size: var(--s-fs-h2); font-weight: var(--g-fw-bold); }
-.grp__en { font-size: var(--s-fs-body); color: var(--s-text-muted); font-weight: 400; }
-.grp__intro { margin-top: 2px; font-size: var(--s-fs-caption); color: var(--s-text-secondary); }
-
-/* pattern (母题) card */
-.pat { background: var(--s-surface); border: 1px solid var(--s-border); border-radius: var(--g-r-xl); padding: var(--g-sp-5); margin-bottom: var(--g-sp-4); border-left: 4px solid var(--s-brand); }
-.pat--cyan { border-left-color: var(--g-cyan-500); }
-.pat--green { border-left-color: var(--g-green-500); }
-.pat--amber { border-left-color: var(--g-amber-500); }
-.pat__head { display: flex; align-items: center; gap: var(--g-sp-2); flex-wrap: wrap; }
-.pat__no { font-size: var(--s-fs-caption); font-weight: var(--g-fw-bold); color: var(--s-brand); background: var(--s-brand-subtle); border-radius: var(--g-r-full); padding: 2px var(--g-sp-3); }
-.pat--cyan .pat__no { color: var(--g-cyan-700); background: var(--g-cyan-100); }
-.pat--green .pat__no { color: var(--g-green-700); background: var(--g-green-100); }
-.pat--amber .pat__no { color: var(--g-amber-700); background: var(--g-amber-100); }
-.pat__name { font-size: var(--s-fs-h3); font-weight: var(--g-fw-bold); }
-.pat__formula { margin-top: var(--g-sp-3); font-size: var(--s-fs-body); font-family: var(--g-font-mono); background: var(--s-surface-sunken); border-radius: var(--g-r-md); padding: var(--g-sp-2) var(--g-sp-3); display: flex; align-items: center; gap: var(--g-sp-2); }
-.pat__formula .ico { color: var(--s-brand); }
-.pat__use { margin-top: var(--g-sp-2); font-size: var(--s-fs-caption); color: var(--s-text-secondary); display: flex; align-items: center; gap: var(--g-sp-1); }
-.pat__use .ico { color: var(--s-brand); }
-.pat__examples { margin-top: var(--g-sp-4); display: grid; gap: var(--g-sp-3); }
-
-/* example */
-.ex { border: 1px solid var(--s-border); border-radius: var(--g-r-lg); padding: var(--g-sp-3) var(--g-sp-4); background: var(--s-surface-sunken); }
-.ex__sent { font-size: var(--s-fs-body-lg); display: flex; align-items: center; gap: var(--g-sp-2); flex-wrap: wrap; }
-.ex__ipa { margin-top: var(--g-sp-1); font-family: var(--g-font-mono); font-size: var(--s-fs-caption); color: var(--s-text-secondary); display: flex; align-items: center; gap: 4px; }
-.ex__ipa .ico { color: var(--s-brand); flex: none; }
-.ex__zh { margin-top: 2px; font-size: var(--s-fs-caption); color: var(--s-text-secondary); }
-
-.speak { appearance: none; cursor: pointer; border: 1px solid var(--s-border); background: var(--s-surface); color: var(--s-brand); border-radius: var(--g-r-md); width: 38px; height: 38px; display: inline-grid; place-items: center; flex: none; }
-.speak--sm { width: 32px; height: 32px; }
+/* buttons */
+.btn { appearance: none; cursor: pointer; font: inherit; font-size: var(--s-fs-body); font-weight: var(--g-fw-medium); border: 1px solid var(--s-border); background: var(--s-surface); color: var(--s-text); border-radius: var(--g-r-lg); padding: var(--g-sp-3) var(--g-sp-5); min-height: 46px; display: inline-flex; align-items: center; gap: var(--g-sp-2); }
+.btn:hover:not(:disabled){ background: var(--s-surface-hover); }
+.btn:disabled { opacity: .45; cursor: default; }
+.btn--primary { background: var(--s-brand); color: var(--s-on-brand); border-color: transparent; }
+.btn--primary:hover:not(:disabled){ background: var(--s-brand); color: var(--s-on-brand); filter: brightness(1.06); }
+.btn--lg { font-size: var(--s-fs-body-lg); padding: var(--g-sp-4) var(--g-sp-8); min-height: 54px; }
+.speak { appearance: none; cursor: pointer; border: 1px solid var(--s-border); background: var(--s-surface); color: var(--s-brand); border-radius: var(--g-r-md); width: 34px; height: 34px; display: inline-grid; place-items: center; flex: none; }
 .speak:hover { background: var(--s-brand-subtle); }
 .speak.playing { background: var(--s-brand); color: var(--s-on-brand); }
 
-/* 句子成分:关键词 + 彩色下划线 */
-.sent-underline { line-height: 2.6; }
-.tk-u { position: relative; display: inline-flex; flex-direction: column; align-items: center; vertical-align: bottom; }
-.tk-u__word { border-bottom: 2.5px solid currentColor; padding: 0 1px 1px; line-height: 1.3; color: var(--s-text); }
-.tk-u__tag { font-size: 10px; line-height: 1.2; font-weight: var(--g-fw-bold); margin-top: 1px; }
-.tk-u--subj { color: var(--g-cyan-700); }
-.tk-u--verb { color: var(--g-red-700); }
-.tk-u--obj  { color: var(--g-green-700); }
-.tk-u--other{ color: var(--g-amber-700); }
-.tk-u--conj { color: var(--s-brand); }
+/* intro */
+.intro { padding-block: var(--g-sp-8); }
+.intro__card { background: var(--s-surface); border: 1px solid var(--s-border); border-radius: var(--g-r-2xl); box-shadow: var(--s-shadow-sm); padding: clamp(var(--g-sp-6), 5vw, var(--g-sp-10)); text-align: center; }
+.intro__ic { width: 64px; height: 64px; margin: 0 auto var(--g-sp-4); border-radius: var(--g-r-xl); display: grid; place-items: center; background: var(--s-brand); color: var(--s-on-brand); }
+.intro__card h1 { margin: 0; font-size: var(--s-fs-h1); font-weight: var(--g-fw-bold); }
+.intro__desc { margin: var(--g-sp-4) auto; max-width: 640px; color: var(--s-text-secondary); font-size: var(--s-fs-body); line-height: var(--s-lh-body); text-align: left; }
+.intro__secs { display: flex; flex-wrap: wrap; gap: var(--g-sp-3); justify-content: center; margin-bottom: var(--g-sp-6); }
+.intro__sec { display: inline-flex; align-items: center; gap: var(--g-sp-1); font-size: var(--s-fs-caption); background: var(--s-surface-sunken); border: 1px solid var(--s-border); border-radius: var(--g-r-full); padding: var(--g-sp-2) var(--g-sp-4); }
+.intro__sec b { color: var(--s-brand); }
+.intro__sec--brand .ico{color:var(--s-brand)} .intro__sec--cyan .ico{color:var(--g-cyan-700)} .intro__sec--green .ico{color:var(--g-green-700)} .intro__sec--amber .ico{color:var(--g-amber-700)}
+
+/* test */
+.test { padding-block: var(--g-sp-6) var(--g-sp-8); }
+.test__top { margin-bottom: var(--g-sp-4); }
+.test__meta { display: flex; align-items: center; justify-content: space-between; font-size: var(--s-fs-caption); }
+.test__sec { font-weight: var(--g-fw-bold); padding: 2px var(--g-sp-3); border-radius: var(--g-r-full); }
+.test__sec--brand{color:var(--s-brand);background:var(--s-brand-subtle)} .test__sec--cyan{color:var(--g-cyan-700);background:var(--g-cyan-100)} .test__sec--green{color:var(--g-green-700);background:var(--g-green-100)} .test__sec--amber{color:var(--g-amber-700);background:var(--g-amber-100)}
+.test__count { color: var(--s-text-secondary); }
+.test__progress { height: 8px; background: var(--s-surface-sunken); border-radius: var(--g-r-full); overflow: hidden; margin: var(--g-sp-2) 0; }
+.test__progress-fill { height: 100%; background: var(--s-brand); border-radius: var(--g-r-full); transition: width var(--g-dur-base) var(--g-ease); }
+.test__answered { font-size: var(--s-fs-caption); color: var(--s-text-muted); text-align: right; }
+.qcard { background: var(--s-surface); border: 1px solid var(--s-border); border-radius: var(--g-r-xl); box-shadow: var(--s-shadow-sm); padding: clamp(var(--g-sp-5), 4vw, var(--g-sp-8)); }
+.qcard__stem { font-size: var(--s-fs-h3); font-weight: var(--g-fw-medium); line-height: 1.7; }
+.qcard__blank { display: inline-block; min-width: 64px; text-align: center; color: var(--s-brand); font-weight: var(--g-fw-bold); border-bottom: 2px solid var(--s-brand); padding: 0 var(--g-sp-2); vertical-align: bottom; }
+.qcard__blank:empty::before { content: ""; }
+.qcard__zh { margin-top: var(--g-sp-2); color: var(--s-text-secondary); font-size: var(--s-fs-body); }
+.qcard__opts { margin-top: var(--g-sp-5); display: grid; gap: var(--g-sp-3); }
+.opt { appearance: none; cursor: pointer; font: inherit; text-align: left; display: flex; align-items: center; gap: var(--g-sp-3); background: var(--s-surface); border: 1.5px solid var(--s-border); border-radius: var(--g-r-lg); padding: var(--g-sp-3) var(--g-sp-4); min-height: 52px; transition: all var(--g-dur-fast) var(--g-ease); }
+.opt:hover { border-color: var(--s-brand); background: var(--s-brand-subtle); color: var(--s-text); }
+.opt--on { border-color: var(--s-brand); background: var(--s-brand-subtle); box-shadow: var(--s-shadow-sm); }
+.opt__letter { flex: none; width: 28px; height: 28px; border-radius: var(--g-r-full); display: grid; place-items: center; font-weight: var(--g-fw-bold); font-size: var(--s-fs-caption); background: var(--s-surface-sunken); color: var(--s-text-secondary); }
+.opt--on .opt__letter { background: var(--s-brand); color: var(--s-on-brand); }
+.opt__text { font-size: var(--s-fs-body-lg); }
+.test__nav { display: flex; justify-content: space-between; margin-top: var(--g-sp-5); }
+
+/* answer sheet */
+.sheet { margin-top: var(--g-sp-6); background: var(--s-surface); border: 1px solid var(--s-border); border-radius: var(--g-r-xl); padding: var(--g-sp-4); }
+.sheet__title { font-size: var(--s-fs-caption); font-weight: var(--g-fw-bold); color: var(--s-text-secondary); display: flex; align-items: center; gap: var(--g-sp-1); margin-bottom: var(--g-sp-3); }
+.sheet__grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(38px, 1fr)); gap: var(--g-sp-2); }
+.sheet__cell { appearance: none; cursor: pointer; font: inherit; font-size: var(--s-fs-caption); border: 1px solid var(--s-border); background: var(--s-surface); color: var(--s-text-secondary); border-radius: var(--g-r-md); min-height: 38px; }
+.sheet__cell--done { background: var(--s-brand-subtle); color: var(--s-brand); border-color: color-mix(in srgb, var(--s-brand) 30%, transparent); font-weight: var(--g-fw-bold); }
+.sheet__cell--cur { outline: 2px solid var(--s-brand); outline-offset: 1px; }
+.sheet__hint { margin-top: var(--g-sp-3); font-size: var(--s-fs-caption); color: var(--g-amber-700); display: flex; align-items: center; gap: var(--g-sp-1); }
+
+/* result */
+.result { padding-block: var(--g-sp-8); }
+.result__hero { text-align: center; }
+.result__hero .ico { color: var(--g-amber-500); }
+.result__score { font-size: 64px; font-weight: var(--g-fw-bold); color: var(--s-brand); line-height: 1.1; margin-top: var(--g-sp-2); }
+.result__max { font-size: var(--s-fs-h2); color: var(--s-text-muted); }
+.result__level { font-size: var(--s-fs-h3); font-weight: var(--g-fw-bold); }
+.result__sub { color: var(--s-text-secondary); margin-top: 2px; }
+.result__secs { margin: var(--g-sp-6) 0; display: grid; gap: var(--g-sp-3); }
+.rsec { background: var(--s-surface); border: 1px solid var(--s-border); border-radius: var(--g-r-lg); padding: var(--g-sp-3) var(--g-sp-4); }
+.rsec__head { display: flex; align-items: center; gap: var(--g-sp-2); font-weight: var(--g-fw-medium); }
+.rsec__head b { margin-left: auto; }
+.rsec__head .ico{color:var(--s-brand)} .rsec--cyan .ico{color:var(--g-cyan-700)} .rsec--green .ico{color:var(--g-green-700)} .rsec--amber .ico{color:var(--g-amber-700)}
+.rsec__bar { height: 8px; background: var(--s-surface-sunken); border-radius: var(--g-r-full); overflow: hidden; margin-top: var(--g-sp-2); }
+.rsec__fill { height: 100%; background: var(--s-brand); border-radius: var(--g-r-full); }
+.rsec--cyan .rsec__fill{background:var(--g-cyan-500)} .rsec--green .rsec__fill{background:var(--g-green-500)} .rsec--amber .rsec__fill{background:var(--g-amber-500)}
+.result__btns { display: flex; gap: var(--g-sp-3); flex-wrap: wrap; justify-content: center; }
+.result__perfect { color: var(--g-green-700); font-weight: var(--g-fw-bold); display: inline-flex; align-items: center; gap: var(--g-sp-1); }
+
+/* review */
+.review { padding-block: var(--g-sp-6) var(--g-sp-8); }
+.review__head { display: flex; align-items: center; gap: var(--g-sp-4); margin-bottom: var(--g-sp-5); flex-wrap: wrap; }
+.review__title { font-size: var(--s-fs-h2); font-weight: var(--g-fw-bold); display: inline-flex; align-items: center; gap: var(--g-sp-2); }
+.wq { background: var(--s-surface); border: 1px solid var(--s-border); border-radius: var(--g-r-xl); padding: var(--g-sp-4); margin-bottom: var(--g-sp-4); }
+.wq__sec { display: inline-block; font-size: var(--s-fs-caption); font-weight: var(--g-fw-bold); padding: 1px var(--g-sp-3); border-radius: var(--g-r-full); margin-bottom: var(--g-sp-2); }
+.wq__sec--brand{color:var(--s-brand);background:var(--s-brand-subtle)} .wq__sec--cyan{color:var(--g-cyan-700);background:var(--g-cyan-100)} .wq__sec--green{color:var(--g-green-700);background:var(--g-green-100)} .wq__sec--amber{color:var(--g-amber-700);background:var(--g-amber-100)}
+.wq__stem { font-size: var(--s-fs-body-lg); font-weight: var(--g-fw-medium); }
+.wq__zh { color: var(--s-text-secondary); font-size: var(--s-fs-caption); margin-top: 2px; }
+.wq__rows { margin-top: var(--g-sp-3); display: grid; gap: var(--g-sp-1); }
+.wq__row { font-size: var(--s-fs-body); display: flex; align-items: center; gap: var(--g-sp-2); }
+.wq__row--wrong { color: var(--g-red-700); } .wq__row--wrong .ico { color: var(--g-red-500); }
+.wq__row--right { color: var(--g-green-700); font-weight: var(--g-fw-bold); } .wq__row--right .ico { color: var(--g-green-500); }
+.wq__full { margin-top: var(--g-sp-3); font-size: var(--s-fs-body); background: var(--s-surface-sunken); border-radius: var(--g-r-md); padding: var(--g-sp-2) var(--g-sp-3); }
+.wq__ipa { font-family: var(--g-font-mono); color: var(--s-text-secondary); font-size: var(--s-fs-caption); }
+.wq__explain { margin-top: var(--g-sp-2); font-size: var(--s-fs-caption); color: var(--s-text-secondary); background: var(--s-brand-subtle); border-radius: var(--g-r-md); padding: var(--g-sp-2) var(--g-sp-3); display: flex; align-items: flex-start; gap: var(--g-sp-1); line-height: var(--s-lh-body); }
+.wq__explain .ico { color: var(--g-amber-500); flex: none; margin-top: 2px; }
 
 /* footer */
 .foot { margin-top: auto; border-top: 1px solid var(--s-border); padding-block: var(--g-sp-5); color: var(--s-text-muted); font-size: var(--s-fs-caption); text-align: center; }
 
-@media (max-width: 560px){ .brand__sub { display: none; } .gnav { top: 60px; } }
-
-/* 语速调节 */
-.rate-ctrl { display: flex; align-items: center; gap: var(--g-sp-2); color: var(--s-text-secondary); }
-.rate-ctrl > .ico { flex: none; }
-.rate-seg { display: flex; padding: 3px; background: var(--s-surface-sunken); border: 1px solid var(--s-border); border-radius: var(--g-r-full); }
-.rate-opt { appearance: none; border: 0; background: transparent; cursor: pointer; font: inherit; font-size: var(--s-fs-caption); font-weight: var(--g-fw-medium); color: var(--s-text-secondary); padding: var(--g-sp-1) var(--g-sp-3); border-radius: var(--g-r-full); min-height: 34px; transition: all var(--g-dur-fast) var(--g-ease); }
-.rate-opt--on { background: var(--s-brand); color: var(--s-on-brand); box-shadow: var(--s-shadow-sm); }
-@media (max-width: 560px){ .rate-ctrl > .ico { display: none; } .rate-opt { padding-inline: var(--g-sp-2); } }
-
-/* 顶部主 tab(讲解/闯关/错题本) */
-.tabs { display: flex; gap: var(--g-sp-2); padding-block: var(--g-sp-4) var(--g-sp-2); flex-wrap: wrap; }
-.tab { appearance: none; cursor: pointer; font: inherit; font-size: var(--s-fs-body); font-weight: var(--g-fw-medium); color: var(--s-text-secondary); background: var(--s-surface); border: 1px solid var(--s-border); border-radius: var(--g-r-full); padding: var(--g-sp-2) var(--g-sp-4); min-height: 42px; display: inline-flex; align-items: center; gap: var(--g-sp-1); }
-.tab--on { background: var(--s-brand); color: var(--s-on-brand); border-color: transparent; box-shadow: var(--s-shadow-sm); }
-.tab__badge { display: inline-grid; place-items: center; min-width: 18px; height: 18px; padding: 0 5px; border-radius: var(--g-r-full); background: var(--g-red-500); color: #fff; font-size: 11px; font-weight: var(--g-fw-bold); }
-.tab--on .tab__badge { background: var(--s-on-brand); color: var(--s-brand); }
-
-/* quiz */
-.quiz-sec { padding-block: var(--g-sp-5) var(--g-sp-8); max-width: 680px; margin-inline: auto; }
-.quiz-sechead { text-align: center; margin-bottom: var(--g-sp-5); }
-.quiz-sechead__t { font-size: var(--s-fs-h2); font-weight: var(--g-fw-bold); display: inline-flex; align-items: center; gap: var(--g-sp-2); }
-.quiz-sechead__s { margin-top: var(--g-sp-2); color: var(--s-text-secondary); font-size: var(--s-fs-caption); line-height: var(--s-lh-body); }
-.quiz-card { background: var(--s-surface); border: 1px solid var(--s-border); border-radius: var(--g-r-2xl); box-shadow: var(--s-shadow-sm); padding: clamp(var(--g-sp-5), 4vw, var(--g-sp-8)); }
-.quiz-progress { display: flex; justify-content: space-between; font-size: var(--s-fs-caption); color: var(--s-text-secondary); }
-.quiz-status { display: inline-flex; align-items: center; gap: var(--g-sp-3); }
-.combo { color: var(--g-amber-700); font-weight: var(--g-fw-bold); }
-.quiz-bar { height: 8px; background: var(--s-surface-sunken); border-radius: var(--g-r-full); overflow: hidden; margin: var(--g-sp-2) 0 var(--g-sp-5); }
-.quiz-bar__fill { height: 100%; background: var(--s-brand); border-radius: var(--g-r-full); transition: width var(--g-dur-base) var(--g-ease); }
-.quiz-ask { text-align: center; margin-bottom: var(--g-sp-5); }
-.quiz-ask__mode { font-size: var(--s-fs-caption); color: var(--s-text-muted); }
-.quiz-ask__prompt { font-size: var(--s-fs-h2); font-weight: var(--g-fw-bold); margin-top: var(--g-sp-2); display: inline-flex; align-items: center; gap: var(--g-sp-2); flex-wrap: wrap; justify-content: center; }
-.quiz-ask__prompt--zh { font-size: var(--s-fs-h3); }
-.quiz-ask__sub { font-size: var(--s-fs-caption); color: var(--s-text-secondary); margin-top: var(--g-sp-1); }
-.quiz-opts { display: grid; gap: var(--g-sp-3); grid-template-columns: 1fr 1fr; }
-.quiz-opts--1col { grid-template-columns: 1fr; }
-.quiz-opt { appearance: none; cursor: pointer; font: inherit; font-size: var(--s-fs-body); background: var(--s-surface); border: 1.5px solid var(--s-border); border-radius: var(--g-r-lg); padding: var(--g-sp-3) var(--g-sp-4); min-height: 50px; transition: all var(--g-dur-fast) var(--g-ease); text-align: left; }
-.quiz-opt:hover:not(:disabled) { border-color: var(--s-brand); background: var(--s-brand-subtle); }
-.quiz-opt.correct { background: var(--g-green-100); border-color: var(--g-green-500); color: var(--g-green-700); font-weight: var(--g-fw-bold); }
-.quiz-opt.wrong { background: var(--g-red-100); border-color: var(--g-red-500); color: var(--g-red-700); }
-.quiz-feedback { text-align: center; margin-top: var(--g-sp-4); }
-.fb-tag { display: inline-flex; align-items: center; font-size: var(--s-fs-caption); font-weight: var(--g-fw-medium); padding: 1px var(--g-sp-2); border-radius: var(--g-r-full); margin-left: var(--g-sp-1); }
-.fb-tag--in { color: var(--g-amber-700); background: var(--g-amber-100); }
-.fb-tag--out { color: var(--g-green-700); background: var(--g-green-100); }
-.quiz-next { text-align: center; margin-top: var(--g-sp-4); }
-.btn { appearance: none; cursor: pointer; font: inherit; font-size: var(--s-fs-body); font-weight: var(--g-fw-medium); border: 1px solid var(--s-border); background: var(--s-surface); color: var(--s-text); border-radius: var(--g-r-lg); padding: var(--g-sp-3) var(--g-sp-5); min-height: 46px; display: inline-flex; align-items: center; gap: var(--g-sp-2); }
-.btn--primary { background: var(--s-brand); color: var(--s-on-brand); border-color: transparent; }
-.quiz-done { text-align: center; }
-.quiz-done .ico { color: var(--g-amber-500); }
-.quiz-done__score { font-size: var(--s-fs-display); font-weight: var(--g-fw-bold); color: var(--s-brand); margin-top: var(--g-sp-2); }
-.quiz-done__t { font-size: var(--s-fs-h2); font-weight: var(--g-fw-bold); margin-top: var(--g-sp-3); }
-.quiz-done__btns { display: flex; gap: var(--g-sp-3); flex-wrap: wrap; justify-content: center; margin-top: var(--g-sp-4); }
-.review-bar { display: flex; align-items: center; justify-content: space-between; gap: var(--g-sp-3); margin-bottom: var(--g-sp-4); font-size: var(--s-fs-body); color: var(--s-text-secondary); }
-.review-bar b { color: var(--g-red-700); font-size: var(--s-fs-body-lg); }
-.linkbtn { appearance: none; cursor: pointer; font: inherit; font-size: var(--s-fs-caption); color: var(--s-text-secondary); background: transparent; border: 1px solid var(--s-border); border-radius: var(--g-r-md); padding: var(--g-sp-1) var(--g-sp-3); display: inline-flex; align-items: center; gap: 2px; }
-.linkbtn:hover { color: var(--g-red-700); border-color: var(--g-red-500); }
-@media (max-width: 480px){ .quiz-opts { grid-template-columns: 1fr; } }
-
-/* quiz 题干(句式题) */
-.quiz-ask__sent { font-size: var(--s-fs-h3); display: inline-flex; align-items: center; gap: var(--g-sp-2); flex-wrap: wrap; justify-content: center; line-height: 2.6; }
-.quiz-ask__cloze { font-size: var(--s-fs-h2); font-weight: var(--g-fw-bold); margin-top: var(--g-sp-2); letter-spacing: 1px; }
-.quiz-ask__zh { font-size: var(--s-fs-caption); color: var(--s-text-secondary); margin-top: var(--g-sp-1); }
-.quiz-feedback__sent { margin-top: var(--g-sp-2); display: flex; align-items: center; gap: var(--g-sp-2); justify-content: center; flex-wrap: wrap; line-height: 2.4; }
-.quiz-feedback__ipa { display: block; font-family: var(--g-font-mono); color: var(--s-text-secondary); font-size: var(--s-fs-caption); margin-top: 2px; }
-.quiz-feedback__pat { display: inline-block; margin-top: var(--g-sp-2); font-size: var(--s-fs-caption); color: var(--s-brand); background: var(--s-brand-subtle); border-radius: var(--g-r-full); padding: 2px var(--g-sp-3); }
+/* 测试中不提示考点:用中性标签替代板块名 */
+.test__label { font-weight: var(--g-fw-bold); color: var(--s-brand); background: var(--s-brand-subtle); padding: 2px var(--g-sp-3); border-radius: var(--g-r-full); font-size: var(--s-fs-caption); }
+.intro__sec { color: var(--s-text-secondary); }
 
 </style>
 </head>
 <body>
-<!-- AUTO-BACK-NAV-START -->
-<style id="auto-back-nav-style">
-#auto-back-nav{position:sticky;top:0;z-index:999;background:rgba(249,250,251,.9);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);border-bottom:1px solid #e5e7eb;display:flex;align-items:center;padding:0 20px;height:44px;}
-@media(prefers-color-scheme:dark){#auto-back-nav{background:rgba(13,17,23,.9);border-bottom-color:#2d333b;}}
-#auto-back-nav a{display:inline-flex;align-items:center;gap:6px;text-decoration:none;color:#4b5563;font-size:14px;font-weight:600;font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Hiragino Sans GB","Microsoft YaHei",Roboto,Arial,sans-serif;}
-@media(prefers-color-scheme:dark){#auto-back-nav a{color:#9da7b3;}}
-</style>
-<nav id="auto-back-nav">
-  <a href="index.html">
-    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5"/><path d="m12 19-7-7 7-7"/></svg>
-    暑假成长加油站
-  </a>
-</nav>
-<!-- AUTO-BACK-NAV-END -->
 <div id="boot" style="position:fixed;inset:0;display:grid;place-items:center;font:14px system-ui;color:#888;background:var(--s-bg,#f6f7f9)">正在加载…</div>
 <script>
 function boot_fail(m){var b=document.getElementById('boot');if(b)b.innerHTML='<pre style="max-width:80ch;white-space:pre-wrap;color:#c0392b;padding:24px">启动失败:\n'+m+'</pre>';}
@@ -1644,4700 +1602,92 @@ addEventListener('unhandledrejection',function(e){boot_fail(e.reason);});
 <symbol id="ic-infinity" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><!--lucide:infinity--><path d="M6 16c5 0 7-8 12-8a4 4 0 0 1 0 8c-5 0-7-8-12-8a4 4 0 1 0 0 8" /></symbol>
 </svg>
 
-<pattern-app></pattern-app>
+<test-app></test-app>
 <script>
-window.PATTERN_DATA = {
- "title": "小学英语常用句式大全",
- "intro": "小学阶段常用的英语句式,可以归成 5 大类、24 个「母题」(基本句型模板)。每个母题给出公式和多个例子;每个例子都有音标、真人发音,并用「关键词 + 彩色下划线」标出句子成分,帮你看懂句子是怎么搭起来的。π…(此处统一:发音用微软神经语音,首次加载已做预连接与预合成优化)。",
- "legend": [
-  {
-   "role": "s",
-   "name": "主语",
-   "desc": "谁 / 什么"
-  },
-  {
-   "role": "v",
-   "name": "谓语",
-   "desc": "做什么 / 是"
-  },
-  {
-   "role": "o",
-   "name": "宾语·表语",
-   "desc": "动作对象 / 描述"
-  },
-  {
-   "role": "a",
-   "name": "状语",
-   "desc": "时间·地点·方式"
-  },
-  {
-   "role": "c",
-   "name": "引导词",
-   "desc": "疑问词 / 连词等"
-  }
- ],
- "groups": [
-  {
-   "id": "statement",
-   "name": "一、陈述句",
-   "en": "Statements",
-   "icon": "ic-message-square",
-   "color": "brand",
-   "intro": "陈述一件事实或情况,句末用句号。是最基础的句子。",
-   "patterns": [
-    {
-     "id": "svo-simple",
-     "name": "主语 + 谓语(+ 宾语)",
-     "formula": "主语 + 动词 (+ 宾语)",
-     "use": "说“谁做什么”。",
-     "examples": [
-      {
-       "en": "I like apples.",
-       "zh": "我喜欢苹果。",
-       "ann": [
-        [
-         "s",
-         "I"
-        ],
-        [
-         "v",
-         "like"
-        ],
-        [
-         "o",
-         "apples"
-        ]
-       ]
-      },
-      {
-       "en": "She reads a book.",
-       "zh": "她读一本书。",
-       "ann": [
-        [
-         "s",
-         "She"
-        ],
-        [
-         "v",
-         "reads"
-        ],
-        [
-         "o",
-         "a book"
-        ]
-       ]
-      },
-      {
-       "en": "We play football every day.",
-       "zh": "我们每天踢足球。",
-       "ann": [
-        [
-         "s",
-         "We"
-        ],
-        [
-         "v",
-         "play"
-        ],
-        [
-         "o",
-         "football"
-        ],
-        [
-         "a",
-         "every day"
-        ]
-       ]
-      },
-      {
-       "en": "Birds fly.",
-       "zh": "鸟儿飞。",
-       "ann": [
-        [
-         "s",
-         "Birds"
-        ],
-        [
-         "v",
-         "fly"
-        ]
-       ]
-      }
-     ]
-    },
-    {
-     "id": "svc-be",
-     "name": "主语 + be + 表语",
-     "formula": "主语 + am/is/are + 形容词/名词",
-     "use": "说“谁是……/怎么样”。",
-     "examples": [
-      {
-       "en": "I am a student.",
-       "zh": "我是一名学生。",
-       "ann": [
-        [
-         "s",
-         "I"
-        ],
-        [
-         "v",
-         "am"
-        ],
-        [
-         "o",
-         "a student"
-        ]
-       ]
-      },
-      {
-       "en": "She is happy.",
-       "zh": "她很高兴。",
-       "ann": [
-        [
-         "s",
-         "She"
-        ],
-        [
-         "v",
-         "is"
-        ],
-        [
-         "o",
-         "happy"
-        ]
-       ]
-      },
-      {
-       "en": "The flowers are beautiful.",
-       "zh": "这些花很美。",
-       "ann": [
-        [
-         "s",
-         "The flowers"
-        ],
-        [
-         "v",
-         "are"
-        ],
-        [
-         "o",
-         "beautiful"
-        ]
-       ]
-      },
-      {
-       "en": "My father is a doctor.",
-       "zh": "我爸爸是医生。",
-       "ann": [
-        [
-         "s",
-         "My father"
-        ],
-        [
-         "v",
-         "is"
-        ],
-        [
-         "o",
-         "a doctor"
-        ]
-       ]
-      }
-     ]
-    },
-    {
-     "id": "there-be",
-     "name": "There be 句型(有)",
-     "formula": "There is / are + 名词 + 地点",
-     "use": "表示某地“有”某物。",
-     "examples": [
-      {
-       "en": "There is a cat on the bed.",
-       "zh": "床上有一只猫。",
-       "ann": [
-        [
-         "a",
-         "There"
-        ],
-        [
-         "v",
-         "is"
-        ],
-        [
-         "s",
-         "a cat"
-        ],
-        [
-         "a",
-         "on the bed"
-        ]
-       ]
-      },
-      {
-       "en": "There are many books in the bag.",
-       "zh": "包里有很多书。",
-       "ann": [
-        [
-         "a",
-         "There"
-        ],
-        [
-         "v",
-         "are"
-        ],
-        [
-         "s",
-         "many books"
-        ],
-        [
-         "a",
-         "in the bag"
-        ]
-       ]
-      },
-      {
-       "en": "There is some water in the cup.",
-       "zh": "杯子里有一些水。",
-       "ann": [
-        [
-         "a",
-         "There"
-        ],
-        [
-         "v",
-         "is"
-        ],
-        [
-         "s",
-         "some water"
-        ],
-        [
-         "a",
-         "in the cup"
-        ]
-       ]
-      }
-     ]
-    },
-    {
-     "id": "have",
-     "name": "主语 + have/has(拥有)",
-     "formula": "主语 + have / has + 宾语",
-     "use": "表示“某人有某物”。",
-     "examples": [
-      {
-       "en": "I have a new bike.",
-       "zh": "我有一辆新自行车。",
-       "ann": [
-        [
-         "s",
-         "I"
-        ],
-        [
-         "v",
-         "have"
-        ],
-        [
-         "o",
-         "a new bike"
-        ]
-       ]
-      },
-      {
-       "en": "He has two sisters.",
-       "zh": "他有两个姐妹。",
-       "ann": [
-        [
-         "s",
-         "He"
-        ],
-        [
-         "v",
-         "has"
-        ],
-        [
-         "o",
-         "two sisters"
-        ]
-       ]
-      },
-      {
-       "en": "We have a big garden.",
-       "zh": "我们有一个大花园。",
-       "ann": [
-        [
-         "s",
-         "We"
-        ],
-        [
-         "v",
-         "have"
-        ],
-        [
-         "o",
-         "a big garden"
-        ]
-       ]
-      }
-     ]
-    }
-   ]
-  },
-  {
-   "id": "yesno",
-   "name": "二、一般疑问句",
-   "en": "Yes/No Questions",
-   "icon": "ic-help",
-   "color": "cyan",
-   "intro": "用 Yes / No 回答的问句。把 be 动词、助动词或情态动词提到句首。",
-   "patterns": [
-    {
-     "id": "be-q",
-     "name": "Be 动词提问",
-     "formula": "Am/Is/Are + 主语 + …?",
-     "use": "问“是不是/在不在”。",
-     "examples": [
-      {
-       "en": "Are you a teacher?",
-       "zh": "你是老师吗?",
-       "ann": [
-        [
-         "v",
-         "Are"
-        ],
-        [
-         "s",
-         "you"
-        ],
-        [
-         "o",
-         "a teacher?"
-        ]
-       ]
-      },
-      {
-       "en": "Is she your sister?",
-       "zh": "她是你姐姐吗?",
-       "ann": [
-        [
-         "v",
-         "Is"
-        ],
-        [
-         "s",
-         "she"
-        ],
-        [
-         "o",
-         "your sister?"
-        ]
-       ]
-      },
-      {
-       "en": "Is it cold today?",
-       "zh": "今天冷吗?",
-       "ann": [
-        [
-         "v",
-         "Is"
-        ],
-        [
-         "s",
-         "it"
-        ],
-        [
-         "o",
-         "cold"
-        ],
-        [
-         "a",
-         "today?"
-        ]
-       ]
-      }
-     ]
-    },
-    {
-     "id": "do-q",
-     "name": "Do/Does 提问",
-     "formula": "Do/Does + 主语 + 动词原形…?",
-     "use": "问一般动作“做不做”。",
-     "examples": [
-      {
-       "en": "Do you like milk?",
-       "zh": "你喜欢牛奶吗?",
-       "ann": [
-        [
-         "v",
-         "Do"
-        ],
-        [
-         "s",
-         "you"
-        ],
-        [
-         "v",
-         "like"
-        ],
-        [
-         "o",
-         "milk?"
-        ]
-       ]
-      },
-      {
-       "en": "Does he play basketball?",
-       "zh": "他打篮球吗?",
-       "ann": [
-        [
-         "v",
-         "Does"
-        ],
-        [
-         "s",
-         "he"
-        ],
-        [
-         "v",
-         "play"
-        ],
-        [
-         "o",
-         "basketball?"
-        ]
-       ]
-      },
-      {
-       "en": "Do they go to school by bus?",
-       "zh": "他们坐公交上学吗?",
-       "ann": [
-        [
-         "v",
-         "Do"
-        ],
-        [
-         "s",
-         "they"
-        ],
-        [
-         "v",
-         "go"
-        ],
-        [
-         "a",
-         "to school by bus?"
-        ]
-       ]
-      }
-     ]
-    },
-    {
-     "id": "can-q",
-     "name": "Can 情态提问",
-     "formula": "Can + 主语 + 动词原形…?",
-     "use": "问“能不能/会不会”。",
-     "examples": [
-      {
-       "en": "Can you swim?",
-       "zh": "你会游泳吗?",
-       "ann": [
-        [
-         "v",
-         "Can"
-        ],
-        [
-         "s",
-         "you"
-        ],
-        [
-         "v",
-         "swim?"
-        ]
-       ]
-      },
-      {
-       "en": "Can I have some water?",
-       "zh": "我能要点水吗?",
-       "ann": [
-        [
-         "v",
-         "Can"
-        ],
-        [
-         "s",
-         "I"
-        ],
-        [
-         "v",
-         "have"
-        ],
-        [
-         "o",
-         "some water?"
-        ]
-       ]
-      },
-      {
-       "en": "Can she sing the song?",
-       "zh": "她会唱这首歌吗?",
-       "ann": [
-        [
-         "v",
-         "Can"
-        ],
-        [
-         "s",
-         "she"
-        ],
-        [
-         "v",
-         "sing"
-        ],
-        [
-         "o",
-         "the song?"
-        ]
-       ]
-      }
-     ]
-    }
-   ]
-  },
-  {
-   "id": "wh",
-   "name": "三、特殊疑问句",
-   "en": "Wh- Questions",
-   "icon": "ic-quote",
-   "color": "green",
-   "intro": "用疑问词(What/Where/When…)开头,问具体信息,不能只用 Yes/No 回答。",
-   "patterns": [
-    {
-     "id": "what",
-     "name": "What(什么)",
-     "formula": "What + 一般疑问句…?",
-     "use": "问“是什么/做什么”。",
-     "examples": [
-      {
-       "en": "What is this?",
-       "zh": "这是什么?",
-       "ann": [
-        [
-         "c",
-         "What"
-        ],
-        [
-         "v",
-         "is"
-        ],
-        [
-         "s",
-         "this?"
-        ]
-       ]
-      },
-      {
-       "en": "What do you like?",
-       "zh": "你喜欢什么?",
-       "ann": [
-        [
-         "c",
-         "What"
-        ],
-        [
-         "v",
-         "do"
-        ],
-        [
-         "s",
-         "you"
-        ],
-        [
-         "v",
-         "like?"
-        ]
-       ]
-      },
-      {
-       "en": "What are you doing?",
-       "zh": "你在做什么?",
-       "ann": [
-        [
-         "c",
-         "What"
-        ],
-        [
-         "v",
-         "are"
-        ],
-        [
-         "s",
-         "you"
-        ],
-        [
-         "v",
-         "doing?"
-        ]
-       ]
-      }
-     ]
-    },
-    {
-     "id": "where",
-     "name": "Where(哪里)",
-     "formula": "Where + 一般疑问句…?",
-     "use": "问地点。",
-     "examples": [
-      {
-       "en": "Where is my pen?",
-       "zh": "我的钢笔在哪里?",
-       "ann": [
-        [
-         "c",
-         "Where"
-        ],
-        [
-         "v",
-         "is"
-        ],
-        [
-         "s",
-         "my pen?"
-        ]
-       ]
-      },
-      {
-       "en": "Where do you live?",
-       "zh": "你住在哪里?",
-       "ann": [
-        [
-         "c",
-         "Where"
-        ],
-        [
-         "v",
-         "do"
-        ],
-        [
-         "s",
-         "you"
-        ],
-        [
-         "v",
-         "live?"
-        ]
-       ]
-      },
-      {
-       "en": "Where are the children?",
-       "zh": "孩子们在哪里?",
-       "ann": [
-        [
-         "c",
-         "Where"
-        ],
-        [
-         "v",
-         "are"
-        ],
-        [
-         "s",
-         "the children?"
-        ]
-       ]
-      }
-     ]
-    },
-    {
-     "id": "when",
-     "name": "When(什么时候)",
-     "formula": "When + 一般疑问句…?",
-     "use": "问时间。",
-     "examples": [
-      {
-       "en": "When is your birthday?",
-       "zh": "你的生日是什么时候?",
-       "ann": [
-        [
-         "c",
-         "When"
-        ],
-        [
-         "v",
-         "is"
-        ],
-        [
-         "s",
-         "your birthday?"
-        ]
-       ]
-      },
-      {
-       "en": "When do you get up?",
-       "zh": "你什么时候起床?",
-       "ann": [
-        [
-         "c",
-         "When"
-        ],
-        [
-         "v",
-         "do"
-        ],
-        [
-         "s",
-         "you"
-        ],
-        [
-         "v",
-         "get up?"
-        ]
-       ]
-      }
-     ]
-    },
-    {
-     "id": "who",
-     "name": "Who(谁)",
-     "formula": "Who + 谓语…?",
-     "use": "问人。",
-     "examples": [
-      {
-       "en": "Who is that boy?",
-       "zh": "那个男孩是谁?",
-       "ann": [
-        [
-         "c",
-         "Who"
-        ],
-        [
-         "v",
-         "is"
-        ],
-        [
-         "s",
-         "that boy?"
-        ]
-       ]
-      },
-      {
-       "en": "Who can help me?",
-       "zh": "谁能帮我?",
-       "ann": [
-        [
-         "s",
-         "Who"
-        ],
-        [
-         "v",
-         "can help"
-        ],
-        [
-         "o",
-         "me?"
-        ]
-       ]
-      }
-     ]
-    },
-    {
-     "id": "how",
-     "name": "How(怎么样)",
-     "formula": "How + 一般疑问句…?",
-     "use": "问方式、状态。",
-     "examples": [
-      {
-       "en": "How are you?",
-       "zh": "你好吗?",
-       "ann": [
-        [
-         "c",
-         "How"
-        ],
-        [
-         "v",
-         "are"
-        ],
-        [
-         "s",
-         "you?"
-        ]
-       ]
-      },
-      {
-       "en": "How do you go to school?",
-       "zh": "你怎么去上学?",
-       "ann": [
-        [
-         "c",
-         "How"
-        ],
-        [
-         "v",
-         "do"
-        ],
-        [
-         "s",
-         "you"
-        ],
-        [
-         "v",
-         "go"
-        ],
-        [
-         "a",
-         "to school?"
-        ]
-       ]
-      }
-     ]
-    },
-    {
-     "id": "howmany",
-     "name": "How many / much(多少)",
-     "formula": "How many/much + 名词 + …?",
-     "use": "问数量。many 接可数,much 接不可数。",
-     "examples": [
-      {
-       "en": "How many books do you have?",
-       "zh": "你有多少本书?",
-       "ann": [
-        [
-         "c",
-         "How many books"
-        ],
-        [
-         "v",
-         "do"
-        ],
-        [
-         "s",
-         "you"
-        ],
-        [
-         "v",
-         "have?"
-        ]
-       ]
-      },
-      {
-       "en": "How much is it?",
-       "zh": "它多少钱?",
-       "ann": [
-        [
-         "c",
-         "How much"
-        ],
-        [
-         "v",
-         "is"
-        ],
-        [
-         "s",
-         "it?"
-        ]
-       ]
-      },
-      {
-       "en": "How old are you?",
-       "zh": "你几岁了?",
-       "ann": [
-        [
-         "c",
-         "How old"
-        ],
-        [
-         "v",
-         "are"
-        ],
-        [
-         "s",
-         "you?"
-        ]
-       ]
-      }
-     ]
-    }
-   ]
-  },
-  {
-   "id": "imperative",
-   "name": "四、祈使句",
-   "en": "Imperatives",
-   "icon": "ic-megaphone",
-   "color": "amber",
-   "intro": "表示命令、请求、建议。通常不用主语,直接用动词原形开头。",
-   "patterns": [
-    {
-     "id": "imp-pos",
-     "name": "肯定祈使句",
-     "formula": "动词原形 + …",
-     "use": "让别人做某事。",
-     "examples": [
-      {
-       "en": "Open the door, please.",
-       "zh": "请开门。",
-       "ann": [
-        [
-         "v",
-         "Open"
-        ],
-        [
-         "o",
-         "the door, please"
-        ]
-       ]
-      },
-      {
-       "en": "Stand up.",
-       "zh": "起立。",
-       "ann": [
-        [
-         "v",
-         "Stand up"
-        ]
-       ]
-      },
-      {
-       "en": "Look at the blackboard.",
-       "zh": "看黑板。",
-       "ann": [
-        [
-         "v",
-         "Look"
-        ],
-        [
-         "a",
-         "at the blackboard"
-        ]
-       ]
-      }
-     ]
-    },
-    {
-     "id": "imp-neg",
-     "name": "否定祈使句",
-     "formula": "Don't + 动词原形 + …",
-     "use": "让别人别做某事。",
-     "examples": [
-      {
-       "en": "Don't run in the classroom.",
-       "zh": "不要在教室里跑。",
-       "ann": [
-        [
-         "v",
-         "Don't run"
-        ],
-        [
-         "a",
-         "in the classroom"
-        ]
-       ]
-      },
-      {
-       "en": "Don't be late.",
-       "zh": "不要迟到。",
-       "ann": [
-        [
-         "v",
-         "Don't be"
-        ],
-        [
-         "o",
-         "late"
-        ]
-       ]
-      },
-      {
-       "en": "Don't worry.",
-       "zh": "别担心。",
-       "ann": [
-        [
-         "v",
-         "Don't worry"
-        ]
-       ]
-      }
-     ]
-    },
-    {
-     "id": "lets",
-     "name": "Let's 建议句",
-     "formula": "Let's + 动词原形 + …",
-     "use": "提议“我们一起做……”。",
-     "examples": [
-      {
-       "en": "Let's go home.",
-       "zh": "我们回家吧。",
-       "ann": [
-        [
-         "s",
-         "Let's"
-        ],
-        [
-         "v",
-         "go"
-        ],
-        [
-         "a",
-         "home"
-        ]
-       ]
-      },
-      {
-       "en": "Let's play games.",
-       "zh": "我们玩游戏吧。",
-       "ann": [
-        [
-         "s",
-         "Let's"
-        ],
-        [
-         "v",
-         "play"
-        ],
-        [
-         "o",
-         "games"
-        ]
-       ]
-      },
-      {
-       "en": "Let's have a rest.",
-       "zh": "我们休息一下吧。",
-       "ann": [
-        [
-         "s",
-         "Let's"
-        ],
-        [
-         "v",
-         "have"
-        ],
-        [
-         "o",
-         "a rest"
-        ]
-       ]
-      }
-     ]
-    }
-   ]
-  },
-  {
-   "id": "tense-exc",
-   "name": "五、时态与感叹句",
-   "en": "Tenses & Exclamations",
-   "icon": "ic-trending-up",
-   "color": "cyan",
-   "intro": "常用的进行时、将来时,以及表达强烈感情的感叹句。",
-   "patterns": [
-    {
-     "id": "present-cont",
-     "name": "现在进行时",
-     "formula": "主语 + am/is/are + 动词-ing",
-     "use": "表示此刻正在做的动作。",
-     "examples": [
-      {
-       "en": "I am reading a book.",
-       "zh": "我正在读一本书。",
-       "ann": [
-        [
-         "s",
-         "I"
-        ],
-        [
-         "v",
-         "am reading"
-        ],
-        [
-         "o",
-         "a book"
-        ]
-       ]
-      },
-      {
-       "en": "She is singing.",
-       "zh": "她正在唱歌。",
-       "ann": [
-        [
-         "s",
-         "She"
-        ],
-        [
-         "v",
-         "is singing"
-        ]
-       ]
-      },
-      {
-       "en": "They are playing in the park.",
-       "zh": "他们正在公园里玩。",
-       "ann": [
-        [
-         "s",
-         "They"
-        ],
-        [
-         "v",
-         "are playing"
-        ],
-        [
-         "a",
-         "in the park"
-        ]
-       ]
-      }
-     ]
-    },
-    {
-     "id": "be-going-to",
-     "name": "一般将来时(be going to)",
-     "formula": "主语 + be going to + 动词原形",
-     "use": "表示打算、将要做的事。",
-     "examples": [
-      {
-       "en": "I am going to visit my grandma.",
-       "zh": "我打算去看奶奶。",
-       "ann": [
-        [
-         "s",
-         "I"
-        ],
-        [
-         "v",
-         "am going to visit"
-        ],
-        [
-         "o",
-         "my grandma"
-        ]
-       ]
-      },
-      {
-       "en": "We are going to have a party.",
-       "zh": "我们要办一个聚会。",
-       "ann": [
-        [
-         "s",
-         "We"
-        ],
-        [
-         "v",
-         "are going to have"
-        ],
-        [
-         "o",
-         "a party"
-        ]
-       ]
-      }
-     ]
-    },
-    {
-     "id": "will",
-     "name": "一般将来时(will)",
-     "formula": "主语 + will + 动词原形",
-     "use": "表示将来会发生的事。",
-     "examples": [
-      {
-       "en": "I will help you.",
-       "zh": "我会帮你。",
-       "ann": [
-        [
-         "s",
-         "I"
-        ],
-        [
-         "v",
-         "will help"
-        ],
-        [
-         "o",
-         "you"
-        ]
-       ]
-      },
-      {
-       "en": "It will rain tomorrow.",
-       "zh": "明天会下雨。",
-       "ann": [
-        [
-         "s",
-         "It"
-        ],
-        [
-         "v",
-         "will rain"
-        ],
-        [
-         "a",
-         "tomorrow"
-        ]
-       ]
-      }
-     ]
-    },
-    {
-     "id": "exclaim",
-     "name": "感叹句(What/How)",
-     "formula": "What (a) + 名词! / How + 形容词!",
-     "use": "表达惊讶、赞叹等强烈感情。",
-     "examples": [
-      {
-       "en": "What a nice day!",
-       "zh": "多好的一天啊!",
-       "ann": [
-        [
-         "c",
-         "What"
-        ],
-        [
-         "o",
-         "a nice day!"
-        ]
-       ]
-      },
-      {
-       "en": "How beautiful!",
-       "zh": "多美啊!",
-       "ann": [
-        [
-         "c",
-         "How"
-        ],
-        [
-         "o",
-         "beautiful!"
-        ]
-       ]
-      },
-      {
-       "en": "What a big fish!",
-       "zh": "多大的一条鱼啊!",
-       "ann": [
-        [
-         "c",
-         "What"
-        ],
-        [
-         "o",
-         "a big fish!"
-        ]
-       ]
-      }
-     ]
-    }
-   ]
-  }
- ],
- "quiz": [
-  {
-   "type": "identify",
-   "pattern": "svo-simple",
-   "patName": "主语 + 谓语(+ 宾语)",
-   "prompt": "I like apples.",
-   "promptZh": "我喜欢苹果。",
-   "answer": "主语 + 谓语(+ 宾语)",
-   "options": [
-    "主语 + 谓语(+ 宾语)",
-    "主语 + be + 表语",
-    "When(什么时候)",
-    "Do/Does 提问"
-   ],
-   "say": "I like apples.",
-   "ann": [
-    [
-     "s",
-     "I"
-    ],
-    [
-     "v",
-     "like"
-    ],
-    [
-     "o",
-     "apples"
-    ]
-   ]
-  },
-  {
-   "type": "cloze",
-   "pattern": "svo-simple",
-   "patName": "主语 + 谓语(+ 宾语)",
-   "prompt": "I _____ apples",
-   "promptZh": "我喜欢苹果。",
-   "answer": "like",
-   "options": [
-    "like",
-    "How",
-    "Are",
-    "Who"
-   ],
-   "say": "I like apples.",
-   "full": "I like apples",
-   "ann": [
-    [
-     "s",
-     "I"
-    ],
-    [
-     "v",
-     "like"
-    ],
-    [
-     "o",
-     "apples"
-    ]
-   ]
-  },
-  {
-   "type": "identify",
-   "pattern": "svo-simple",
-   "patName": "主语 + 谓语(+ 宾语)",
-   "prompt": "She reads a book.",
-   "promptZh": "她读一本书。",
-   "answer": "主语 + 谓语(+ 宾语)",
-   "options": [
-    "主语 + 谓语(+ 宾语)",
-    "Let's 建议句",
-    "Do/Does 提问",
-    "一般将来时(will)"
-   ],
-   "say": "She reads a book.",
-   "ann": [
-    [
-     "s",
-     "She"
-    ],
-    [
-     "v",
-     "reads"
-    ],
-    [
-     "o",
-     "a book"
-    ]
-   ]
-  },
-  {
-   "type": "cloze",
-   "pattern": "svo-simple",
-   "patName": "主语 + 谓语(+ 宾语)",
-   "prompt": "She _____ a book",
-   "promptZh": "她读一本书。",
-   "answer": "reads",
-   "options": [
-    "reads",
-    "When",
-    "Don't",
-    "There"
-   ],
-   "say": "She reads a book.",
-   "full": "She reads a book",
-   "ann": [
-    [
-     "s",
-     "She"
-    ],
-    [
-     "v",
-     "reads"
-    ],
-    [
-     "o",
-     "a book"
-    ]
-   ]
-  },
-  {
-   "type": "identify",
-   "pattern": "svo-simple",
-   "patName": "主语 + 谓语(+ 宾语)",
-   "prompt": "We play football every day.",
-   "promptZh": "我们每天踢足球。",
-   "answer": "主语 + 谓语(+ 宾语)",
-   "options": [
-    "主语 + 谓语(+ 宾语)",
-    "When(什么时候)",
-    "Where(哪里)",
-    "How many / much(多少)"
-   ],
-   "say": "We play football every day.",
-   "ann": [
-    [
-     "s",
-     "We"
-    ],
-    [
-     "v",
-     "play"
-    ],
-    [
-     "o",
-     "football"
-    ],
-    [
-     "a",
-     "every day"
-    ]
-   ]
-  },
-  {
-   "type": "cloze",
-   "pattern": "svo-simple",
-   "patName": "主语 + 谓语(+ 宾语)",
-   "prompt": "We _____ football every day",
-   "promptZh": "我们每天踢足球。",
-   "answer": "play",
-   "options": [
-    "play",
-    "Let's",
-    "Does",
-    "When"
-   ],
-   "say": "We play football every day.",
-   "full": "We play football every day",
-   "ann": [
-    [
-     "s",
-     "We"
-    ],
-    [
-     "v",
-     "play"
-    ],
-    [
-     "o",
-     "football"
-    ],
-    [
-     "a",
-     "every day"
-    ]
-   ]
-  },
-  {
-   "type": "identify",
-   "pattern": "svo-simple",
-   "patName": "主语 + 谓语(+ 宾语)",
-   "prompt": "Birds fly.",
-   "promptZh": "鸟儿飞。",
-   "answer": "主语 + 谓语(+ 宾语)",
-   "options": [
-    "主语 + 谓语(+ 宾语)",
-    "How many / much(多少)",
-    "否定祈使句",
-    "Who(谁)"
-   ],
-   "say": "Birds fly.",
-   "ann": [
-    [
-     "s",
-     "Birds"
-    ],
-    [
-     "v",
-     "fly"
-    ]
-   ]
-  },
-  {
-   "type": "cloze",
-   "pattern": "svo-simple",
-   "patName": "主语 + 谓语(+ 宾语)",
-   "prompt": "Birds _____",
-   "promptZh": "鸟儿飞。",
-   "answer": "fly",
-   "options": [
-    "fly",
-    "Don't",
-    "Will",
-    "Does"
-   ],
-   "say": "Birds fly.",
-   "full": "Birds fly",
-   "ann": [
-    [
-     "s",
-     "Birds"
-    ],
-    [
-     "v",
-     "fly"
-    ]
-   ]
-  },
-  {
-   "type": "identify",
-   "pattern": "svc-be",
-   "patName": "主语 + be + 表语",
-   "prompt": "I am a student.",
-   "promptZh": "我是一名学生。",
-   "answer": "主语 + be + 表语",
-   "options": [
-    "主语 + be + 表语",
-    "感叹句(What/How)",
-    "一般将来时(will)",
-    "肯定祈使句"
-   ],
-   "say": "I am a student.",
-   "ann": [
-    [
-     "s",
-     "I"
-    ],
-    [
-     "v",
-     "am"
-    ],
-    [
-     "o",
-     "a student"
-    ]
-   ]
-  },
-  {
-   "type": "cloze",
-   "pattern": "svc-be",
-   "patName": "主语 + be + 表语",
-   "prompt": "I _____ a student",
-   "promptZh": "我是一名学生。",
-   "answer": "am",
-   "options": [
-    "am",
-    "There",
-    "Can",
-    "How"
-   ],
-   "say": "I am a student.",
-   "full": "I am a student",
-   "ann": [
-    [
-     "s",
-     "I"
-    ],
-    [
-     "v",
-     "am"
-    ],
-    [
-     "o",
-     "a student"
-    ]
-   ]
-  },
-  {
-   "type": "identify",
-   "pattern": "svc-be",
-   "patName": "主语 + be + 表语",
-   "prompt": "She is happy.",
-   "promptZh": "她很高兴。",
-   "answer": "主语 + be + 表语",
-   "options": [
-    "主语 + be + 表语",
-    "一般将来时(be going to)",
-    "Do/Does 提问",
-    "When(什么时候)"
-   ],
-   "say": "She is happy.",
-   "ann": [
-    [
-     "s",
-     "She"
-    ],
-    [
-     "v",
-     "is"
-    ],
-    [
-     "o",
-     "happy"
-    ]
-   ]
-  },
-  {
-   "type": "cloze",
-   "pattern": "svc-be",
-   "patName": "主语 + be + 表语",
-   "prompt": "She _____ happy",
-   "promptZh": "她很高兴。",
-   "answer": "is",
-   "options": [
-    "is",
-    "Don't",
-    "Let's",
-    "Who"
-   ],
-   "say": "She is happy.",
-   "full": "She is happy",
-   "ann": [
-    [
-     "s",
-     "She"
-    ],
-    [
-     "v",
-     "is"
-    ],
-    [
-     "o",
-     "happy"
-    ]
-   ]
-  },
-  {
-   "type": "identify",
-   "pattern": "svc-be",
-   "patName": "主语 + be + 表语",
-   "prompt": "The flowers are beautiful.",
-   "promptZh": "这些花很美。",
-   "answer": "主语 + be + 表语",
-   "options": [
-    "主语 + be + 表语",
-    "主语 + 谓语(+ 宾语)",
-    "Be 动词提问",
-    "Can 情态提问"
-   ],
-   "say": "The flowers are beautiful.",
-   "ann": [
-    [
-     "s",
-     "The flowers"
-    ],
-    [
-     "v",
-     "are"
-    ],
-    [
-     "o",
-     "beautiful"
-    ]
-   ]
-  },
-  {
-   "type": "cloze",
-   "pattern": "svc-be",
-   "patName": "主语 + be + 表语",
-   "prompt": "The flowers _____ beautiful",
-   "promptZh": "这些花很美。",
-   "answer": "are",
-   "options": [
-    "are",
-    "Don't",
-    "There",
-    "Am"
-   ],
-   "say": "The flowers are beautiful.",
-   "full": "The flowers are beautiful",
-   "ann": [
-    [
-     "s",
-     "The flowers"
-    ],
-    [
-     "v",
-     "are"
-    ],
-    [
-     "o",
-     "beautiful"
-    ]
-   ]
-  },
-  {
-   "type": "identify",
-   "pattern": "svc-be",
-   "patName": "主语 + be + 表语",
-   "prompt": "My father is a doctor.",
-   "promptZh": "我爸爸是医生。",
-   "answer": "主语 + be + 表语",
-   "options": [
-    "主语 + be + 表语",
-    "主语 + have/has(拥有)",
-    "感叹句(What/How)",
-    "Where(哪里)"
-   ],
-   "say": "My father is a doctor.",
-   "ann": [
-    [
-     "s",
-     "My father"
-    ],
-    [
-     "v",
-     "is"
-    ],
-    [
-     "o",
-     "a doctor"
-    ]
-   ]
-  },
-  {
-   "type": "cloze",
-   "pattern": "svc-be",
-   "patName": "主语 + be + 表语",
-   "prompt": "My father _____ a doctor",
-   "promptZh": "我爸爸是医生。",
-   "answer": "is",
-   "options": [
-    "is",
-    "What",
-    "Where",
-    "Let's"
-   ],
-   "say": "My father is a doctor.",
-   "full": "My father is a doctor",
-   "ann": [
-    [
-     "s",
-     "My father"
-    ],
-    [
-     "v",
-     "is"
-    ],
-    [
-     "o",
-     "a doctor"
-    ]
-   ]
-  },
-  {
-   "type": "identify",
-   "pattern": "there-be",
-   "patName": "There be 句型(有)",
-   "prompt": "There is a cat on the bed.",
-   "promptZh": "床上有一只猫。",
-   "answer": "There be 句型(有)",
-   "options": [
-    "There be 句型(有)",
-    "Can 情态提问",
-    "How(怎么样)",
-    "一般将来时(be going to)"
-   ],
-   "say": "There is a cat on the bed.",
-   "ann": [
-    [
-     "a",
-     "There"
-    ],
-    [
-     "v",
-     "is"
-    ],
-    [
-     "s",
-     "a cat"
-    ],
-    [
-     "a",
-     "on the bed"
-    ]
-   ]
-  },
-  {
-   "type": "cloze",
-   "pattern": "there-be",
-   "patName": "There be 句型(有)",
-   "prompt": "There _____ a cat on the bed",
-   "promptZh": "床上有一只猫。",
-   "answer": "is",
-   "options": [
-    "is",
-    "Where",
-    "Will",
-    "Am"
-   ],
-   "say": "There is a cat on the bed.",
-   "full": "There is a cat on the bed",
-   "ann": [
-    [
-     "a",
-     "There"
-    ],
-    [
-     "v",
-     "is"
-    ],
-    [
-     "s",
-     "a cat"
-    ],
-    [
-     "a",
-     "on the bed"
-    ]
-   ]
-  },
-  {
-   "type": "identify",
-   "pattern": "there-be",
-   "patName": "There be 句型(有)",
-   "prompt": "There are many books in the bag.",
-   "promptZh": "包里有很多书。",
-   "answer": "There be 句型(有)",
-   "options": [
-    "There be 句型(有)",
-    "Where(哪里)",
-    "一般将来时(be going to)",
-    "主语 + have/has(拥有)"
-   ],
-   "say": "There are many books in the bag.",
-   "ann": [
-    [
-     "a",
-     "There"
-    ],
-    [
-     "v",
-     "are"
-    ],
-    [
-     "s",
-     "many books"
-    ],
-    [
-     "a",
-     "in the bag"
-    ]
-   ]
-  },
-  {
-   "type": "cloze",
-   "pattern": "there-be",
-   "patName": "There be 句型(有)",
-   "prompt": "There _____ many books in the bag",
-   "promptZh": "包里有很多书。",
-   "answer": "are",
-   "options": [
-    "are",
-    "What",
-    "Will",
-    "Who"
-   ],
-   "say": "There are many books in the bag.",
-   "full": "There are many books in the bag",
-   "ann": [
-    [
-     "a",
-     "There"
-    ],
-    [
-     "v",
-     "are"
-    ],
-    [
-     "s",
-     "many books"
-    ],
-    [
-     "a",
-     "in the bag"
-    ]
-   ]
-  },
-  {
-   "type": "identify",
-   "pattern": "there-be",
-   "patName": "There be 句型(有)",
-   "prompt": "There is some water in the cup.",
-   "promptZh": "杯子里有一些水。",
-   "answer": "There be 句型(有)",
-   "options": [
-    "There be 句型(有)",
-    "现在进行时",
-    "Be 动词提问",
-    "感叹句(What/How)"
-   ],
-   "say": "There is some water in the cup.",
-   "ann": [
-    [
-     "a",
-     "There"
-    ],
-    [
-     "v",
-     "is"
-    ],
-    [
-     "s",
-     "some water"
-    ],
-    [
-     "a",
-     "in the cup"
-    ]
-   ]
-  },
-  {
-   "type": "cloze",
-   "pattern": "there-be",
-   "patName": "There be 句型(有)",
-   "prompt": "There _____ some water in the cup",
-   "promptZh": "杯子里有一些水。",
-   "answer": "is",
-   "options": [
-    "is",
-    "How",
-    "When",
-    "Can"
-   ],
-   "say": "There is some water in the cup.",
-   "full": "There is some water in the cup",
-   "ann": [
-    [
-     "a",
-     "There"
-    ],
-    [
-     "v",
-     "is"
-    ],
-    [
-     "s",
-     "some water"
-    ],
-    [
-     "a",
-     "in the cup"
-    ]
-   ]
-  },
-  {
-   "type": "identify",
-   "pattern": "have",
-   "patName": "主语 + have/has(拥有)",
-   "prompt": "I have a new bike.",
-   "promptZh": "我有一辆新自行车。",
-   "answer": "主语 + have/has(拥有)",
-   "options": [
-    "主语 + have/has(拥有)",
-    "肯定祈使句",
-    "主语 + be + 表语",
-    "There be 句型(有)"
-   ],
-   "say": "I have a new bike.",
-   "ann": [
-    [
-     "s",
-     "I"
-    ],
-    [
-     "v",
-     "have"
-    ],
-    [
-     "o",
-     "a new bike"
-    ]
-   ]
-  },
-  {
-   "type": "cloze",
-   "pattern": "have",
-   "patName": "主语 + have/has(拥有)",
-   "prompt": "I _____ a new bike",
-   "promptZh": "我有一辆新自行车。",
-   "answer": "have",
-   "options": [
-    "have",
-    "Does",
-    "Let's",
-    "Who"
-   ],
-   "say": "I have a new bike.",
-   "full": "I have a new bike",
-   "ann": [
-    [
-     "s",
-     "I"
-    ],
-    [
-     "v",
-     "have"
-    ],
-    [
-     "o",
-     "a new bike"
-    ]
-   ]
-  },
-  {
-   "type": "identify",
-   "pattern": "have",
-   "patName": "主语 + have/has(拥有)",
-   "prompt": "He has two sisters.",
-   "promptZh": "他有两个姐妹。",
-   "answer": "主语 + have/has(拥有)",
-   "options": [
-    "主语 + have/has(拥有)",
-    "There be 句型(有)",
-    "Where(哪里)",
-    "Let's 建议句"
-   ],
-   "say": "He has two sisters.",
-   "ann": [
-    [
-     "s",
-     "He"
-    ],
-    [
-     "v",
-     "has"
-    ],
-    [
-     "o",
-     "two sisters"
-    ]
-   ]
-  },
-  {
-   "type": "cloze",
-   "pattern": "have",
-   "patName": "主语 + have/has(拥有)",
-   "prompt": "He _____ two sisters",
-   "promptZh": "他有两个姐妹。",
-   "answer": "has",
-   "options": [
-    "has",
-    "When",
-    "There",
-    "Is"
-   ],
-   "say": "He has two sisters.",
-   "full": "He has two sisters",
-   "ann": [
-    [
-     "s",
-     "He"
-    ],
-    [
-     "v",
-     "has"
-    ],
-    [
-     "o",
-     "two sisters"
-    ]
-   ]
-  },
-  {
-   "type": "identify",
-   "pattern": "have",
-   "patName": "主语 + have/has(拥有)",
-   "prompt": "We have a big garden.",
-   "promptZh": "我们有一个大花园。",
-   "answer": "主语 + have/has(拥有)",
-   "options": [
-    "主语 + have/has(拥有)",
-    "How(怎么样)",
-    "一般将来时(be going to)",
-    "Do/Does 提问"
-   ],
-   "say": "We have a big garden.",
-   "ann": [
-    [
-     "s",
-     "We"
-    ],
-    [
-     "v",
-     "have"
-    ],
-    [
-     "o",
-     "a big garden"
-    ]
-   ]
-  },
-  {
-   "type": "cloze",
-   "pattern": "have",
-   "patName": "主语 + have/has(拥有)",
-   "prompt": "We _____ a big garden",
-   "promptZh": "我们有一个大花园。",
-   "answer": "have",
-   "options": [
-    "have",
-    "Let's",
-    "There",
-    "Will"
-   ],
-   "say": "We have a big garden.",
-   "full": "We have a big garden",
-   "ann": [
-    [
-     "s",
-     "We"
-    ],
-    [
-     "v",
-     "have"
-    ],
-    [
-     "o",
-     "a big garden"
-    ]
-   ]
-  },
-  {
-   "type": "identify",
-   "pattern": "be-q",
-   "patName": "Be 动词提问",
-   "prompt": "Are you a teacher?",
-   "promptZh": "你是老师吗?",
-   "answer": "Be 动词提问",
-   "options": [
-    "Be 动词提问",
-    "There be 句型(有)",
-    "一般将来时(be going to)",
-    "感叹句(What/How)"
-   ],
-   "say": "Are you a teacher?",
-   "ann": [
-    [
-     "v",
-     "Are"
-    ],
-    [
-     "s",
-     "you"
-    ],
-    [
-     "o",
-     "a teacher?"
-    ]
-   ]
-  },
-  {
-   "type": "cloze",
-   "pattern": "be-q",
-   "patName": "Be 动词提问",
-   "prompt": "_____ you a teacher?",
-   "promptZh": "你是老师吗?",
-   "answer": "Are",
-   "options": [
-    "Are",
-    "Will",
-    "Can",
-    "How"
-   ],
-   "say": "Are you a teacher?",
-   "full": "Are you a teacher?",
-   "ann": [
-    [
-     "v",
-     "Are"
-    ],
-    [
-     "s",
-     "you"
-    ],
-    [
-     "o",
-     "a teacher?"
-    ]
-   ]
-  },
-  {
-   "type": "identify",
-   "pattern": "be-q",
-   "patName": "Be 动词提问",
-   "prompt": "Is she your sister?",
-   "promptZh": "她是你姐姐吗?",
-   "answer": "Be 动词提问",
-   "options": [
-    "Be 动词提问",
-    "There be 句型(有)",
-    "否定祈使句",
-    "Who(谁)"
-   ],
-   "say": "Is she your sister?",
-   "ann": [
-    [
-     "v",
-     "Is"
-    ],
-    [
-     "s",
-     "she"
-    ],
-    [
-     "o",
-     "your sister?"
-    ]
-   ]
-  },
-  {
-   "type": "cloze",
-   "pattern": "be-q",
-   "patName": "Be 动词提问",
-   "prompt": "_____ she your sister?",
-   "promptZh": "她是你姐姐吗?",
-   "answer": "Is",
-   "options": [
-    "Is",
-    "Don't",
-    "Where",
-    "Am"
-   ],
-   "say": "Is she your sister?",
-   "full": "Is she your sister?",
-   "ann": [
-    [
-     "v",
-     "Is"
-    ],
-    [
-     "s",
-     "she"
-    ],
-    [
-     "o",
-     "your sister?"
-    ]
-   ]
-  },
-  {
-   "type": "identify",
-   "pattern": "be-q",
-   "patName": "Be 动词提问",
-   "prompt": "Is it cold today?",
-   "promptZh": "今天冷吗?",
-   "answer": "Be 动词提问",
-   "options": [
-    "Be 动词提问",
-    "主语 + be + 表语",
-    "How many / much(多少)",
-    "一般将来时(be going to)"
-   ],
-   "say": "Is it cold today?",
-   "ann": [
-    [
-     "v",
-     "Is"
-    ],
-    [
-     "s",
-     "it"
-    ],
-    [
-     "o",
-     "cold"
-    ],
-    [
-     "a",
-     "today?"
-    ]
-   ]
-  },
-  {
-   "type": "cloze",
-   "pattern": "be-q",
-   "patName": "Be 动词提问",
-   "prompt": "_____ it cold today?",
-   "promptZh": "今天冷吗?",
-   "answer": "Is",
-   "options": [
-    "Is",
-    "Can",
-    "Am",
-    "Don't"
-   ],
-   "say": "Is it cold today?",
-   "full": "Is it cold today?",
-   "ann": [
-    [
-     "v",
-     "Is"
-    ],
-    [
-     "s",
-     "it"
-    ],
-    [
-     "o",
-     "cold"
-    ],
-    [
-     "a",
-     "today?"
-    ]
-   ]
-  },
-  {
-   "type": "identify",
-   "pattern": "do-q",
-   "patName": "Do/Does 提问",
-   "prompt": "Do you like milk?",
-   "promptZh": "你喜欢牛奶吗?",
-   "answer": "Do/Does 提问",
-   "options": [
-    "Do/Does 提问",
-    "How(怎么样)",
-    "否定祈使句",
-    "When(什么时候)"
-   ],
-   "say": "Do you like milk?",
-   "ann": [
-    [
-     "v",
-     "Do"
-    ],
-    [
-     "s",
-     "you"
-    ],
-    [
-     "v",
-     "like"
-    ],
-    [
-     "o",
-     "milk?"
-    ]
-   ]
-  },
-  {
-   "type": "cloze",
-   "pattern": "do-q",
-   "patName": "Do/Does 提问",
-   "prompt": "_____ you like milk?",
-   "promptZh": "你喜欢牛奶吗?",
-   "answer": "Do",
-   "options": [
-    "Do",
-    "Let's",
-    "Is",
-    "Don't"
-   ],
-   "say": "Do you like milk?",
-   "full": "Do you like milk?",
-   "ann": [
-    [
-     "v",
-     "Do"
-    ],
-    [
-     "s",
-     "you"
-    ],
-    [
-     "v",
-     "like"
-    ],
-    [
-     "o",
-     "milk?"
-    ]
-   ]
-  },
-  {
-   "type": "identify",
-   "pattern": "do-q",
-   "patName": "Do/Does 提问",
-   "prompt": "Does he play basketball?",
-   "promptZh": "他打篮球吗?",
-   "answer": "Do/Does 提问",
-   "options": [
-    "Do/Does 提问",
-    "What(什么)",
-    "主语 + be + 表语",
-    "主语 + have/has(拥有)"
-   ],
-   "say": "Does he play basketball?",
-   "ann": [
-    [
-     "v",
-     "Does"
-    ],
-    [
-     "s",
-     "he"
-    ],
-    [
-     "v",
-     "play"
-    ],
-    [
-     "o",
-     "basketball?"
-    ]
-   ]
-  },
-  {
-   "type": "cloze",
-   "pattern": "do-q",
-   "patName": "Do/Does 提问",
-   "prompt": "_____ he play basketball?",
-   "promptZh": "他打篮球吗?",
-   "answer": "Does",
-   "options": [
-    "Does",
-    "Don't",
-    "Will",
-    "Do"
-   ],
-   "say": "Does he play basketball?",
-   "full": "Does he play basketball?",
-   "ann": [
-    [
-     "v",
-     "Does"
-    ],
-    [
-     "s",
-     "he"
-    ],
-    [
-     "v",
-     "play"
-    ],
-    [
-     "o",
-     "basketball?"
-    ]
-   ]
-  },
-  {
-   "type": "identify",
-   "pattern": "do-q",
-   "patName": "Do/Does 提问",
-   "prompt": "Do they go to school by bus?",
-   "promptZh": "他们坐公交上学吗?",
-   "answer": "Do/Does 提问",
-   "options": [
-    "Do/Does 提问",
-    "感叹句(What/How)",
-    "Be 动词提问",
-    "一般将来时(be going to)"
-   ],
-   "say": "Do they go to school by bus?",
-   "ann": [
-    [
-     "v",
-     "Do"
-    ],
-    [
-     "s",
-     "they"
-    ],
-    [
-     "v",
-     "go"
-    ],
-    [
-     "a",
-     "to school by bus?"
-    ]
-   ]
-  },
-  {
-   "type": "cloze",
-   "pattern": "do-q",
-   "patName": "Do/Does 提问",
-   "prompt": "_____ they go to school by bus?",
-   "promptZh": "他们坐公交上学吗?",
-   "answer": "Do",
-   "options": [
-    "Do",
-    "How",
-    "Can",
-    "Does"
-   ],
-   "say": "Do they go to school by bus?",
-   "full": "Do they go to school by bus?",
-   "ann": [
-    [
-     "v",
-     "Do"
-    ],
-    [
-     "s",
-     "they"
-    ],
-    [
-     "v",
-     "go"
-    ],
-    [
-     "a",
-     "to school by bus?"
-    ]
-   ]
-  },
-  {
-   "type": "identify",
-   "pattern": "can-q",
-   "patName": "Can 情态提问",
-   "prompt": "Can you swim?",
-   "promptZh": "你会游泳吗?",
-   "answer": "Can 情态提问",
-   "options": [
-    "Can 情态提问",
-    "一般将来时(be going to)",
-    "Let's 建议句",
-    "一般将来时(will)"
-   ],
-   "say": "Can you swim?",
-   "ann": [
-    [
-     "v",
-     "Can"
-    ],
-    [
-     "s",
-     "you"
-    ],
-    [
-     "v",
-     "swim?"
-    ]
-   ]
-  },
-  {
-   "type": "cloze",
-   "pattern": "can-q",
-   "patName": "Can 情态提问",
-   "prompt": "_____ you swim?",
-   "promptZh": "你会游泳吗?",
-   "answer": "Can",
-   "options": [
-    "Can",
-    "Where",
-    "Will",
-    "Don't"
-   ],
-   "say": "Can you swim?",
-   "full": "Can you swim?",
-   "ann": [
-    [
-     "v",
-     "Can"
-    ],
-    [
-     "s",
-     "you"
-    ],
-    [
-     "v",
-     "swim?"
-    ]
-   ]
-  },
-  {
-   "type": "identify",
-   "pattern": "can-q",
-   "patName": "Can 情态提问",
-   "prompt": "Can I have some water?",
-   "promptZh": "我能要点水吗?",
-   "answer": "Can 情态提问",
-   "options": [
-    "Can 情态提问",
-    "Who(谁)",
-    "主语 + be + 表语",
-    "一般将来时(will)"
-   ],
-   "say": "Can I have some water?",
-   "ann": [
-    [
-     "v",
-     "Can"
-    ],
-    [
-     "s",
-     "I"
-    ],
-    [
-     "v",
-     "have"
-    ],
-    [
-     "o",
-     "some water?"
-    ]
-   ]
-  },
-  {
-   "type": "cloze",
-   "pattern": "can-q",
-   "patName": "Can 情态提问",
-   "prompt": "_____ I have some water?",
-   "promptZh": "我能要点水吗?",
-   "answer": "Can",
-   "options": [
-    "Can",
-    "Do",
-    "When",
-    "What"
-   ],
-   "say": "Can I have some water?",
-   "full": "Can I have some water?",
-   "ann": [
-    [
-     "v",
-     "Can"
-    ],
-    [
-     "s",
-     "I"
-    ],
-    [
-     "v",
-     "have"
-    ],
-    [
-     "o",
-     "some water?"
-    ]
-   ]
-  },
-  {
-   "type": "identify",
-   "pattern": "can-q",
-   "patName": "Can 情态提问",
-   "prompt": "Can she sing the song?",
-   "promptZh": "她会唱这首歌吗?",
-   "answer": "Can 情态提问",
-   "options": [
-    "Can 情态提问",
-    "When(什么时候)",
-    "否定祈使句",
-    "What(什么)"
-   ],
-   "say": "Can she sing the song?",
-   "ann": [
-    [
-     "v",
-     "Can"
-    ],
-    [
-     "s",
-     "she"
-    ],
-    [
-     "v",
-     "sing"
-    ],
-    [
-     "o",
-     "the song?"
-    ]
-   ]
-  },
-  {
-   "type": "cloze",
-   "pattern": "can-q",
-   "patName": "Can 情态提问",
-   "prompt": "_____ she sing the song?",
-   "promptZh": "她会唱这首歌吗?",
-   "answer": "Can",
-   "options": [
-    "Can",
-    "Am",
-    "Who",
-    "Is"
-   ],
-   "say": "Can she sing the song?",
-   "full": "Can she sing the song?",
-   "ann": [
-    [
-     "v",
-     "Can"
-    ],
-    [
-     "s",
-     "she"
-    ],
-    [
-     "v",
-     "sing"
-    ],
-    [
-     "o",
-     "the song?"
-    ]
-   ]
-  },
-  {
-   "type": "identify",
-   "pattern": "what",
-   "patName": "What(什么)",
-   "prompt": "What is this?",
-   "promptZh": "这是什么?",
-   "answer": "What(什么)",
-   "options": [
-    "What(什么)",
-    "现在进行时",
-    "一般将来时(will)",
-    "Where(哪里)"
-   ],
-   "say": "What is this?",
-   "ann": [
-    [
-     "c",
-     "What"
-    ],
-    [
-     "v",
-     "is"
-    ],
-    [
-     "s",
-     "this?"
-    ]
-   ]
-  },
-  {
-   "type": "cloze",
-   "pattern": "what",
-   "patName": "What(什么)",
-   "prompt": "_____ is this?",
-   "promptZh": "这是什么?",
-   "answer": "What",
-   "options": [
-    "What",
-    "Does",
-    "How",
-    "Do"
-   ],
-   "say": "What is this?",
-   "full": "What is this?",
-   "ann": [
-    [
-     "c",
-     "What"
-    ],
-    [
-     "v",
-     "is"
-    ],
-    [
-     "s",
-     "this?"
-    ]
-   ]
-  },
-  {
-   "type": "identify",
-   "pattern": "what",
-   "patName": "What(什么)",
-   "prompt": "What do you like?",
-   "promptZh": "你喜欢什么?",
-   "answer": "What(什么)",
-   "options": [
-    "What(什么)",
-    "否定祈使句",
-    "现在进行时",
-    "How many / much(多少)"
-   ],
-   "say": "What do you like?",
-   "ann": [
-    [
-     "c",
-     "What"
-    ],
-    [
-     "v",
-     "do"
-    ],
-    [
-     "s",
-     "you"
-    ],
-    [
-     "v",
-     "like?"
-    ]
-   ]
-  },
-  {
-   "type": "cloze",
-   "pattern": "what",
-   "patName": "What(什么)",
-   "prompt": "_____ do you like?",
-   "promptZh": "你喜欢什么?",
-   "answer": "What",
-   "options": [
-    "What",
-    "Does",
-    "Am",
-    "Do"
-   ],
-   "say": "What do you like?",
-   "full": "What do you like?",
-   "ann": [
-    [
-     "c",
-     "What"
-    ],
-    [
-     "v",
-     "do"
-    ],
-    [
-     "s",
-     "you"
-    ],
-    [
-     "v",
-     "like?"
-    ]
-   ]
-  },
-  {
-   "type": "identify",
-   "pattern": "what",
-   "patName": "What(什么)",
-   "prompt": "What are you doing?",
-   "promptZh": "你在做什么?",
-   "answer": "What(什么)",
-   "options": [
-    "What(什么)",
-    "How many / much(多少)",
-    "主语 + have/has(拥有)",
-    "肯定祈使句"
-   ],
-   "say": "What are you doing?",
-   "ann": [
-    [
-     "c",
-     "What"
-    ],
-    [
-     "v",
-     "are"
-    ],
-    [
-     "s",
-     "you"
-    ],
-    [
-     "v",
-     "doing?"
-    ]
-   ]
-  },
-  {
-   "type": "cloze",
-   "pattern": "what",
-   "patName": "What(什么)",
-   "prompt": "_____ are you doing?",
-   "promptZh": "你在做什么?",
-   "answer": "What",
-   "options": [
-    "What",
-    "Who",
-    "Does",
-    "Don't"
-   ],
-   "say": "What are you doing?",
-   "full": "What are you doing?",
-   "ann": [
-    [
-     "c",
-     "What"
-    ],
-    [
-     "v",
-     "are"
-    ],
-    [
-     "s",
-     "you"
-    ],
-    [
-     "v",
-     "doing?"
-    ]
-   ]
-  },
-  {
-   "type": "identify",
-   "pattern": "where",
-   "patName": "Where(哪里)",
-   "prompt": "Where is my pen?",
-   "promptZh": "我的钢笔在哪里?",
-   "answer": "Where(哪里)",
-   "options": [
-    "Where(哪里)",
-    "一般将来时(be going to)",
-    "How(怎么样)",
-    "主语 + 谓语(+ 宾语)"
-   ],
-   "say": "Where is my pen?",
-   "ann": [
-    [
-     "c",
-     "Where"
-    ],
-    [
-     "v",
-     "is"
-    ],
-    [
-     "s",
-     "my pen?"
-    ]
-   ]
-  },
-  {
-   "type": "cloze",
-   "pattern": "where",
-   "patName": "Where(哪里)",
-   "prompt": "_____ is my pen?",
-   "promptZh": "我的钢笔在哪里?",
-   "answer": "Where",
-   "options": [
-    "Where",
-    "Does",
-    "Am",
-    "There"
-   ],
-   "say": "Where is my pen?",
-   "full": "Where is my pen?",
-   "ann": [
-    [
-     "c",
-     "Where"
-    ],
-    [
-     "v",
-     "is"
-    ],
-    [
-     "s",
-     "my pen?"
-    ]
-   ]
-  },
-  {
-   "type": "identify",
-   "pattern": "where",
-   "patName": "Where(哪里)",
-   "prompt": "Where do you live?",
-   "promptZh": "你住在哪里?",
-   "answer": "Where(哪里)",
-   "options": [
-    "Where(哪里)",
-    "主语 + 谓语(+ 宾语)",
-    "Who(谁)",
-    "How many / much(多少)"
-   ],
-   "say": "Where do you live?",
-   "ann": [
-    [
-     "c",
-     "Where"
-    ],
-    [
-     "v",
-     "do"
-    ],
-    [
-     "s",
-     "you"
-    ],
-    [
-     "v",
-     "live?"
-    ]
-   ]
-  },
-  {
-   "type": "cloze",
-   "pattern": "where",
-   "patName": "Where(哪里)",
-   "prompt": "_____ do you live?",
-   "promptZh": "你住在哪里?",
-   "answer": "Where",
-   "options": [
-    "Where",
-    "Let's",
-    "When",
-    "There"
-   ],
-   "say": "Where do you live?",
-   "full": "Where do you live?",
-   "ann": [
-    [
-     "c",
-     "Where"
-    ],
-    [
-     "v",
-     "do"
-    ],
-    [
-     "s",
-     "you"
-    ],
-    [
-     "v",
-     "live?"
-    ]
-   ]
-  },
-  {
-   "type": "identify",
-   "pattern": "where",
-   "patName": "Where(哪里)",
-   "prompt": "Where are the children?",
-   "promptZh": "孩子们在哪里?",
-   "answer": "Where(哪里)",
-   "options": [
-    "Where(哪里)",
-    "When(什么时候)",
-    "主语 + be + 表语",
-    "Who(谁)"
-   ],
-   "say": "Where are the children?",
-   "ann": [
-    [
-     "c",
-     "Where"
-    ],
-    [
-     "v",
-     "are"
-    ],
-    [
-     "s",
-     "the children?"
-    ]
-   ]
-  },
-  {
-   "type": "cloze",
-   "pattern": "where",
-   "patName": "Where(哪里)",
-   "prompt": "_____ are the children?",
-   "promptZh": "孩子们在哪里?",
-   "answer": "Where",
-   "options": [
-    "Where",
-    "How",
-    "Are",
-    "Will"
-   ],
-   "say": "Where are the children?",
-   "full": "Where are the children?",
-   "ann": [
-    [
-     "c",
-     "Where"
-    ],
-    [
-     "v",
-     "are"
-    ],
-    [
-     "s",
-     "the children?"
-    ]
-   ]
-  },
-  {
-   "type": "identify",
-   "pattern": "when",
-   "patName": "When(什么时候)",
-   "prompt": "When is your birthday?",
-   "promptZh": "你的生日是什么时候?",
-   "answer": "When(什么时候)",
-   "options": [
-    "When(什么时候)",
-    "Where(哪里)",
-    "Let's 建议句",
-    "感叹句(What/How)"
-   ],
-   "say": "When is your birthday?",
-   "ann": [
-    [
-     "c",
-     "When"
-    ],
-    [
-     "v",
-     "is"
-    ],
-    [
-     "s",
-     "your birthday?"
-    ]
-   ]
-  },
-  {
-   "type": "cloze",
-   "pattern": "when",
-   "patName": "When(什么时候)",
-   "prompt": "_____ is your birthday?",
-   "promptZh": "你的生日是什么时候?",
-   "answer": "When",
-   "options": [
-    "When",
-    "What",
-    "Where",
-    "Am"
-   ],
-   "say": "When is your birthday?",
-   "full": "When is your birthday?",
-   "ann": [
-    [
-     "c",
-     "When"
-    ],
-    [
-     "v",
-     "is"
-    ],
-    [
-     "s",
-     "your birthday?"
-    ]
-   ]
-  },
-  {
-   "type": "identify",
-   "pattern": "when",
-   "patName": "When(什么时候)",
-   "prompt": "When do you get up?",
-   "promptZh": "你什么时候起床?",
-   "answer": "When(什么时候)",
-   "options": [
-    "When(什么时候)",
-    "肯定祈使句",
-    "一般将来时(will)",
-    "Do/Does 提问"
-   ],
-   "say": "When do you get up?",
-   "ann": [
-    [
-     "c",
-     "When"
-    ],
-    [
-     "v",
-     "do"
-    ],
-    [
-     "s",
-     "you"
-    ],
-    [
-     "v",
-     "get up?"
-    ]
-   ]
-  },
-  {
-   "type": "cloze",
-   "pattern": "when",
-   "patName": "When(什么时候)",
-   "prompt": "_____ do you get up?",
-   "promptZh": "你什么时候起床?",
-   "answer": "When",
-   "options": [
-    "When",
-    "Am",
-    "Is",
-    "There"
-   ],
-   "say": "When do you get up?",
-   "full": "When do you get up?",
-   "ann": [
-    [
-     "c",
-     "When"
-    ],
-    [
-     "v",
-     "do"
-    ],
-    [
-     "s",
-     "you"
-    ],
-    [
-     "v",
-     "get up?"
-    ]
-   ]
-  },
-  {
-   "type": "identify",
-   "pattern": "who",
-   "patName": "Who(谁)",
-   "prompt": "Who is that boy?",
-   "promptZh": "那个男孩是谁?",
-   "answer": "Who(谁)",
-   "options": [
-    "Who(谁)",
-    "肯定祈使句",
-    "How(怎么样)",
-    "What(什么)"
-   ],
-   "say": "Who is that boy?",
-   "ann": [
-    [
-     "c",
-     "Who"
-    ],
-    [
-     "v",
-     "is"
-    ],
-    [
-     "s",
-     "that boy?"
-    ]
-   ]
-  },
-  {
-   "type": "cloze",
-   "pattern": "who",
-   "patName": "Who(谁)",
-   "prompt": "_____ is that boy?",
-   "promptZh": "那个男孩是谁?",
-   "answer": "Who",
-   "options": [
-    "Who",
-    "How",
-    "Will",
-    "Don't"
-   ],
-   "say": "Who is that boy?",
-   "full": "Who is that boy?",
-   "ann": [
-    [
-     "c",
-     "Who"
-    ],
-    [
-     "v",
-     "is"
-    ],
-    [
-     "s",
-     "that boy?"
-    ]
-   ]
-  },
-  {
-   "type": "identify",
-   "pattern": "who",
-   "patName": "Who(谁)",
-   "prompt": "Who can help me?",
-   "promptZh": "谁能帮我?",
-   "answer": "Who(谁)",
-   "options": [
-    "Who(谁)",
-    "感叹句(What/How)",
-    "Can 情态提问",
-    "否定祈使句"
-   ],
-   "say": "Who can help me?",
-   "ann": [
-    [
-     "s",
-     "Who"
-    ],
-    [
-     "v",
-     "can help"
-    ],
-    [
-     "o",
-     "me?"
-    ]
-   ]
-  },
-  {
-   "type": "cloze",
-   "pattern": "who",
-   "patName": "Who(谁)",
-   "prompt": "Who _____ help me?",
-   "promptZh": "谁能帮我?",
-   "answer": "can",
-   "options": [
-    "can",
-    "Am",
-    "Will",
-    "Who"
-   ],
-   "say": "Who can help me?",
-   "full": "Who can help me?",
-   "ann": [
-    [
-     "s",
-     "Who"
-    ],
-    [
-     "v",
-     "can help"
-    ],
-    [
-     "o",
-     "me?"
-    ]
-   ]
-  },
-  {
-   "type": "identify",
-   "pattern": "how",
-   "patName": "How(怎么样)",
-   "prompt": "How are you?",
-   "promptZh": "你好吗?",
-   "answer": "How(怎么样)",
-   "options": [
-    "How(怎么样)",
-    "Be 动词提问",
-    "When(什么时候)",
-    "感叹句(What/How)"
-   ],
-   "say": "How are you?",
-   "ann": [
-    [
-     "c",
-     "How"
-    ],
-    [
-     "v",
-     "are"
-    ],
-    [
-     "s",
-     "you?"
-    ]
-   ]
-  },
-  {
-   "type": "cloze",
-   "pattern": "how",
-   "patName": "How(怎么样)",
-   "prompt": "_____ are you?",
-   "promptZh": "你好吗?",
-   "answer": "How",
-   "options": [
-    "How",
-    "Where",
-    "Are",
-    "There"
-   ],
-   "say": "How are you?",
-   "full": "How are you?",
-   "ann": [
-    [
-     "c",
-     "How"
-    ],
-    [
-     "v",
-     "are"
-    ],
-    [
-     "s",
-     "you?"
-    ]
-   ]
-  },
-  {
-   "type": "identify",
-   "pattern": "how",
-   "patName": "How(怎么样)",
-   "prompt": "How do you go to school?",
-   "promptZh": "你怎么去上学?",
-   "answer": "How(怎么样)",
-   "options": [
-    "How(怎么样)",
-    "一般将来时(be going to)",
-    "Be 动词提问",
-    "What(什么)"
-   ],
-   "say": "How do you go to school?",
-   "ann": [
-    [
-     "c",
-     "How"
-    ],
-    [
-     "v",
-     "do"
-    ],
-    [
-     "s",
-     "you"
-    ],
-    [
-     "v",
-     "go"
-    ],
-    [
-     "a",
-     "to school?"
-    ]
-   ]
-  },
-  {
-   "type": "cloze",
-   "pattern": "how",
-   "patName": "How(怎么样)",
-   "prompt": "_____ do you go to school?",
-   "promptZh": "你怎么去上学?",
-   "answer": "How",
-   "options": [
-    "How",
-    "Don't",
-    "There",
-    "Where"
-   ],
-   "say": "How do you go to school?",
-   "full": "How do you go to school?",
-   "ann": [
-    [
-     "c",
-     "How"
-    ],
-    [
-     "v",
-     "do"
-    ],
-    [
-     "s",
-     "you"
-    ],
-    [
-     "v",
-     "go"
-    ],
-    [
-     "a",
-     "to school?"
-    ]
-   ]
-  },
-  {
-   "type": "identify",
-   "pattern": "howmany",
-   "patName": "How many / much(多少)",
-   "prompt": "How many books do you have?",
-   "promptZh": "你有多少本书?",
-   "answer": "How many / much(多少)",
-   "options": [
-    "How many / much(多少)",
-    "主语 + have/has(拥有)",
-    "Be 动词提问",
-    "否定祈使句"
-   ],
-   "say": "How many books do you have?",
-   "ann": [
-    [
-     "c",
-     "How many books"
-    ],
-    [
-     "v",
-     "do"
-    ],
-    [
-     "s",
-     "you"
-    ],
-    [
-     "v",
-     "have?"
-    ]
-   ]
-  },
-  {
-   "type": "cloze",
-   "pattern": "howmany",
-   "patName": "How many / much(多少)",
-   "prompt": "_____ many books do you have?",
-   "promptZh": "你有多少本书?",
-   "answer": "How",
-   "options": [
-    "How",
-    "Does",
-    "Where",
-    "Are"
-   ],
-   "say": "How many books do you have?",
-   "full": "How many books do you have?",
-   "ann": [
-    [
-     "c",
-     "How many books"
-    ],
-    [
-     "v",
-     "do"
-    ],
-    [
-     "s",
-     "you"
-    ],
-    [
-     "v",
-     "have?"
-    ]
-   ]
-  },
-  {
-   "type": "identify",
-   "pattern": "howmany",
-   "patName": "How many / much(多少)",
-   "prompt": "How much is it?",
-   "promptZh": "它多少钱?",
-   "answer": "How many / much(多少)",
-   "options": [
-    "How many / much(多少)",
-    "主语 + be + 表语",
-    "一般将来时(will)",
-    "感叹句(What/How)"
-   ],
-   "say": "How much is it?",
-   "ann": [
-    [
-     "c",
-     "How much"
-    ],
-    [
-     "v",
-     "is"
-    ],
-    [
-     "s",
-     "it?"
-    ]
-   ]
-  },
-  {
-   "type": "cloze",
-   "pattern": "howmany",
-   "patName": "How many / much(多少)",
-   "prompt": "_____ much is it?",
-   "promptZh": "它多少钱?",
-   "answer": "How",
-   "options": [
-    "How",
-    "Don't",
-    "Are",
-    "There"
-   ],
-   "say": "How much is it?",
-   "full": "How much is it?",
-   "ann": [
-    [
-     "c",
-     "How much"
-    ],
-    [
-     "v",
-     "is"
-    ],
-    [
-     "s",
-     "it?"
-    ]
-   ]
-  },
-  {
-   "type": "identify",
-   "pattern": "howmany",
-   "patName": "How many / much(多少)",
-   "prompt": "How old are you?",
-   "promptZh": "你几岁了?",
-   "answer": "How many / much(多少)",
-   "options": [
-    "How many / much(多少)",
-    "Who(谁)",
-    "How(怎么样)",
-    "When(什么时候)"
-   ],
-   "say": "How old are you?",
-   "ann": [
-    [
-     "c",
-     "How old"
-    ],
-    [
-     "v",
-     "are"
-    ],
-    [
-     "s",
-     "you?"
-    ]
-   ]
-  },
-  {
-   "type": "cloze",
-   "pattern": "howmany",
-   "patName": "How many / much(多少)",
-   "prompt": "_____ old are you?",
-   "promptZh": "你几岁了?",
-   "answer": "How",
-   "options": [
-    "How",
-    "Am",
-    "Can",
-    "Does"
-   ],
-   "say": "How old are you?",
-   "full": "How old are you?",
-   "ann": [
-    [
-     "c",
-     "How old"
-    ],
-    [
-     "v",
-     "are"
-    ],
-    [
-     "s",
-     "you?"
-    ]
-   ]
-  },
-  {
-   "type": "identify",
-   "pattern": "imp-pos",
-   "patName": "肯定祈使句",
-   "prompt": "Open the door, please.",
-   "promptZh": "请开门。",
-   "answer": "肯定祈使句",
-   "options": [
-    "肯定祈使句",
-    "Do/Does 提问",
-    "主语 + be + 表语",
-    "How many / much(多少)"
-   ],
-   "say": "Open the door, please.",
-   "ann": [
-    [
-     "v",
-     "Open"
-    ],
-    [
-     "o",
-     "the door, please"
-    ]
-   ]
-  },
-  {
-   "type": "cloze",
-   "pattern": "imp-pos",
-   "patName": "肯定祈使句",
-   "prompt": "_____ the door, please",
-   "promptZh": "请开门。",
-   "answer": "Open",
-   "options": [
-    "Open",
-    "Don't",
-    "Is",
-    "Am"
-   ],
-   "say": "Open the door, please.",
-   "full": "Open the door, please",
-   "ann": [
-    [
-     "v",
-     "Open"
-    ],
-    [
-     "o",
-     "the door, please"
-    ]
-   ]
-  },
-  {
-   "type": "identify",
-   "pattern": "imp-pos",
-   "patName": "肯定祈使句",
-   "prompt": "Stand up.",
-   "promptZh": "起立。",
-   "answer": "肯定祈使句",
-   "options": [
-    "肯定祈使句",
-    "Be 动词提问",
-    "一般将来时(be going to)",
-    "When(什么时候)"
-   ],
-   "say": "Stand up.",
-   "ann": [
-    [
-     "v",
-     "Stand up"
-    ]
-   ]
-  },
-  {
-   "type": "cloze",
-   "pattern": "imp-pos",
-   "patName": "肯定祈使句",
-   "prompt": "_____ up",
-   "promptZh": "起立。",
-   "answer": "Stand",
-   "options": [
-    "Stand",
-    "Don't",
-    "Do",
-    "Is"
-   ],
-   "say": "Stand up.",
-   "full": "Stand up",
-   "ann": [
-    [
-     "v",
-     "Stand up"
-    ]
-   ]
-  },
-  {
-   "type": "identify",
-   "pattern": "imp-pos",
-   "patName": "肯定祈使句",
-   "prompt": "Look at the blackboard.",
-   "promptZh": "看黑板。",
-   "answer": "肯定祈使句",
-   "options": [
-    "肯定祈使句",
-    "Do/Does 提问",
-    "Can 情态提问",
-    "一般将来时(will)"
-   ],
-   "say": "Look at the blackboard.",
-   "ann": [
-    [
-     "v",
-     "Look"
-    ],
-    [
-     "a",
-     "at the blackboard"
-    ]
-   ]
-  },
-  {
-   "type": "cloze",
-   "pattern": "imp-pos",
-   "patName": "肯定祈使句",
-   "prompt": "_____ at the blackboard",
-   "promptZh": "看黑板。",
-   "answer": "Look",
-   "options": [
-    "Look",
-    "Is",
-    "Am",
-    "Does"
-   ],
-   "say": "Look at the blackboard.",
-   "full": "Look at the blackboard",
-   "ann": [
-    [
-     "v",
-     "Look"
-    ],
-    [
-     "a",
-     "at the blackboard"
-    ]
-   ]
-  },
-  {
-   "type": "identify",
-   "pattern": "imp-neg",
-   "patName": "否定祈使句",
-   "prompt": "Don't run in the classroom.",
-   "promptZh": "不要在教室里跑。",
-   "answer": "否定祈使句",
-   "options": [
-    "否定祈使句",
-    "How(怎么样)",
-    "How many / much(多少)",
-    "主语 + 谓语(+ 宾语)"
-   ],
-   "say": "Don't run in the classroom.",
-   "ann": [
-    [
-     "v",
-     "Don't run"
-    ],
-    [
-     "a",
-     "in the classroom"
-    ]
-   ]
-  },
-  {
-   "type": "cloze",
-   "pattern": "imp-neg",
-   "patName": "否定祈使句",
-   "prompt": "_____ run in the classroom",
-   "promptZh": "不要在教室里跑。",
-   "answer": "Don't",
-   "options": [
-    "Don't",
-    "Am",
-    "How",
-    "Can"
-   ],
-   "say": "Don't run in the classroom.",
-   "full": "Don't run in the classroom",
-   "ann": [
-    [
-     "v",
-     "Don't run"
-    ],
-    [
-     "a",
-     "in the classroom"
-    ]
-   ]
-  },
-  {
-   "type": "identify",
-   "pattern": "imp-neg",
-   "patName": "否定祈使句",
-   "prompt": "Don't be late.",
-   "promptZh": "不要迟到。",
-   "answer": "否定祈使句",
-   "options": [
-    "否定祈使句",
-    "主语 + be + 表语",
-    "When(什么时候)",
-    "Who(谁)"
-   ],
-   "say": "Don't be late.",
-   "ann": [
-    [
-     "v",
-     "Don't be"
-    ],
-    [
-     "o",
-     "late"
-    ]
-   ]
-  },
-  {
-   "type": "cloze",
-   "pattern": "imp-neg",
-   "patName": "否定祈使句",
-   "prompt": "_____ be late",
-   "promptZh": "不要迟到。",
-   "answer": "Don't",
-   "options": [
-    "Don't",
-    "Can",
-    "What",
-    "When"
-   ],
-   "say": "Don't be late.",
-   "full": "Don't be late",
-   "ann": [
-    [
-     "v",
-     "Don't be"
-    ],
-    [
-     "o",
-     "late"
-    ]
-   ]
-  },
-  {
-   "type": "identify",
-   "pattern": "imp-neg",
-   "patName": "否定祈使句",
-   "prompt": "Don't worry.",
-   "promptZh": "别担心。",
-   "answer": "否定祈使句",
-   "options": [
-    "否定祈使句",
-    "When(什么时候)",
-    "主语 + be + 表语",
-    "主语 + 谓语(+ 宾语)"
-   ],
-   "say": "Don't worry.",
-   "ann": [
-    [
-     "v",
-     "Don't worry"
-    ]
-   ]
-  },
-  {
-   "type": "cloze",
-   "pattern": "imp-neg",
-   "patName": "否定祈使句",
-   "prompt": "_____ worry",
-   "promptZh": "别担心。",
-   "answer": "Don't",
-   "options": [
-    "Don't",
-    "Where",
-    "When",
-    "There"
-   ],
-   "say": "Don't worry.",
-   "full": "Don't worry",
-   "ann": [
-    [
-     "v",
-     "Don't worry"
-    ]
-   ]
-  },
-  {
-   "type": "identify",
-   "pattern": "lets",
-   "patName": "Let's 建议句",
-   "prompt": "Let's go home.",
-   "promptZh": "我们回家吧。",
-   "answer": "Let's 建议句",
-   "options": [
-    "Let's 建议句",
-    "Be 动词提问",
-    "How many / much(多少)",
-    "主语 + 谓语(+ 宾语)"
-   ],
-   "say": "Let's go home.",
-   "ann": [
-    [
-     "s",
-     "Let's"
-    ],
-    [
-     "v",
-     "go"
-    ],
-    [
-     "a",
-     "home"
-    ]
-   ]
-  },
-  {
-   "type": "cloze",
-   "pattern": "lets",
-   "patName": "Let's 建议句",
-   "prompt": "Let's _____ home",
-   "promptZh": "我们回家吧。",
-   "answer": "go",
-   "options": [
-    "go",
-    "Am",
-    "Who",
-    "There"
-   ],
-   "say": "Let's go home.",
-   "full": "Let's go home",
-   "ann": [
-    [
-     "s",
-     "Let's"
-    ],
-    [
-     "v",
-     "go"
-    ],
-    [
-     "a",
-     "home"
-    ]
-   ]
-  },
-  {
-   "type": "identify",
-   "pattern": "lets",
-   "patName": "Let's 建议句",
-   "prompt": "Let's play games.",
-   "promptZh": "我们玩游戏吧。",
-   "answer": "Let's 建议句",
-   "options": [
-    "Let's 建议句",
-    "How many / much(多少)",
-    "主语 + have/has(拥有)",
-    "Where(哪里)"
-   ],
-   "say": "Let's play games.",
-   "ann": [
-    [
-     "s",
-     "Let's"
-    ],
-    [
-     "v",
-     "play"
-    ],
-    [
-     "o",
-     "games"
-    ]
-   ]
-  },
-  {
-   "type": "cloze",
-   "pattern": "lets",
-   "patName": "Let's 建议句",
-   "prompt": "Let's _____ games",
-   "promptZh": "我们玩游戏吧。",
-   "answer": "play",
-   "options": [
-    "play",
-    "Is",
-    "Let's",
-    "When"
-   ],
-   "say": "Let's play games.",
-   "full": "Let's play games",
-   "ann": [
-    [
-     "s",
-     "Let's"
-    ],
-    [
-     "v",
-     "play"
-    ],
-    [
-     "o",
-     "games"
-    ]
-   ]
-  },
-  {
-   "type": "identify",
-   "pattern": "lets",
-   "patName": "Let's 建议句",
-   "prompt": "Let's have a rest.",
-   "promptZh": "我们休息一下吧。",
-   "answer": "Let's 建议句",
-   "options": [
-    "Let's 建议句",
-    "感叹句(What/How)",
-    "There be 句型(有)",
-    "主语 + be + 表语"
-   ],
-   "say": "Let's have a rest.",
-   "ann": [
-    [
-     "s",
-     "Let's"
-    ],
-    [
-     "v",
-     "have"
-    ],
-    [
-     "o",
-     "a rest"
-    ]
-   ]
-  },
-  {
-   "type": "cloze",
-   "pattern": "lets",
-   "patName": "Let's 建议句",
-   "prompt": "Let's _____ a rest",
-   "promptZh": "我们休息一下吧。",
-   "answer": "have",
-   "options": [
-    "have",
-    "Will",
-    "There",
-    "Is"
-   ],
-   "say": "Let's have a rest.",
-   "full": "Let's have a rest",
-   "ann": [
-    [
-     "s",
-     "Let's"
-    ],
-    [
-     "v",
-     "have"
-    ],
-    [
-     "o",
-     "a rest"
-    ]
-   ]
-  },
-  {
-   "type": "identify",
-   "pattern": "present-cont",
-   "patName": "现在进行时",
-   "prompt": "I am reading a book.",
-   "promptZh": "我正在读一本书。",
-   "answer": "现在进行时",
-   "options": [
-    "现在进行时",
-    "否定祈使句",
-    "What(什么)",
-    "主语 + be + 表语"
-   ],
-   "say": "I am reading a book.",
-   "ann": [
-    [
-     "s",
-     "I"
-    ],
-    [
-     "v",
-     "am reading"
-    ],
-    [
-     "o",
-     "a book"
-    ]
-   ]
-  },
-  {
-   "type": "cloze",
-   "pattern": "present-cont",
-   "patName": "现在进行时",
-   "prompt": "I _____ reading a book",
-   "promptZh": "我正在读一本书。",
-   "answer": "am",
-   "options": [
-    "am",
-    "Is",
-    "When",
-    "How"
-   ],
-   "say": "I am reading a book.",
-   "full": "I am reading a book",
-   "ann": [
-    [
-     "s",
-     "I"
-    ],
-    [
-     "v",
-     "am reading"
-    ],
-    [
-     "o",
-     "a book"
-    ]
-   ]
-  },
-  {
-   "type": "identify",
-   "pattern": "present-cont",
-   "patName": "现在进行时",
-   "prompt": "She is singing.",
-   "promptZh": "她正在唱歌。",
-   "answer": "现在进行时",
-   "options": [
-    "现在进行时",
-    "主语 + 谓语(+ 宾语)",
-    "主语 + be + 表语",
-    "感叹句(What/How)"
-   ],
-   "say": "She is singing.",
-   "ann": [
-    [
-     "s",
-     "She"
-    ],
-    [
-     "v",
-     "is singing"
-    ]
-   ]
-  },
-  {
-   "type": "cloze",
-   "pattern": "present-cont",
-   "patName": "现在进行时",
-   "prompt": "She _____ singing",
-   "promptZh": "她正在唱歌。",
-   "answer": "is",
-   "options": [
-    "is",
-    "Don't",
-    "Will",
-    "Let's"
-   ],
-   "say": "She is singing.",
-   "full": "She is singing",
-   "ann": [
-    [
-     "s",
-     "She"
-    ],
-    [
-     "v",
-     "is singing"
-    ]
-   ]
-  },
-  {
-   "type": "identify",
-   "pattern": "present-cont",
-   "patName": "现在进行时",
-   "prompt": "They are playing in the park.",
-   "promptZh": "他们正在公园里玩。",
-   "answer": "现在进行时",
-   "options": [
-    "现在进行时",
-    "主语 + be + 表语",
-    "Can 情态提问",
-    "There be 句型(有)"
-   ],
-   "say": "They are playing in the park.",
-   "ann": [
-    [
-     "s",
-     "They"
-    ],
-    [
-     "v",
-     "are playing"
-    ],
-    [
-     "a",
-     "in the park"
-    ]
-   ]
-  },
-  {
-   "type": "cloze",
-   "pattern": "present-cont",
-   "patName": "现在进行时",
-   "prompt": "They _____ playing in the park",
-   "promptZh": "他们正在公园里玩。",
-   "answer": "are",
-   "options": [
-    "are",
-    "Where",
-    "What",
-    "Let's"
-   ],
-   "say": "They are playing in the park.",
-   "full": "They are playing in the park",
-   "ann": [
-    [
-     "s",
-     "They"
-    ],
-    [
-     "v",
-     "are playing"
-    ],
-    [
-     "a",
-     "in the park"
-    ]
-   ]
-  },
-  {
-   "type": "identify",
-   "pattern": "be-going-to",
-   "patName": "一般将来时(be going to)",
-   "prompt": "I am going to visit my grandma.",
-   "promptZh": "我打算去看奶奶。",
-   "answer": "一般将来时(be going to)",
-   "options": [
-    "一般将来时(be going to)",
-    "What(什么)",
-    "感叹句(What/How)",
-    "主语 + have/has(拥有)"
-   ],
-   "say": "I am going to visit my grandma.",
-   "ann": [
-    [
-     "s",
-     "I"
-    ],
-    [
-     "v",
-     "am going to visit"
-    ],
-    [
-     "o",
-     "my grandma"
-    ]
-   ]
-  },
-  {
-   "type": "cloze",
-   "pattern": "be-going-to",
-   "patName": "一般将来时(be going to)",
-   "prompt": "I _____ going to visit my grandma",
-   "promptZh": "我打算去看奶奶。",
-   "answer": "am",
-   "options": [
-    "am",
-    "There",
-    "Who",
-    "Don't"
-   ],
-   "say": "I am going to visit my grandma.",
-   "full": "I am going to visit my grandma",
-   "ann": [
-    [
-     "s",
-     "I"
-    ],
-    [
-     "v",
-     "am going to visit"
-    ],
-    [
-     "o",
-     "my grandma"
-    ]
-   ]
-  },
-  {
-   "type": "identify",
-   "pattern": "be-going-to",
-   "patName": "一般将来时(be going to)",
-   "prompt": "We are going to have a party.",
-   "promptZh": "我们要办一个聚会。",
-   "answer": "一般将来时(be going to)",
-   "options": [
-    "一般将来时(be going to)",
-    "Where(哪里)",
-    "一般将来时(will)",
-    "否定祈使句"
-   ],
-   "say": "We are going to have a party.",
-   "ann": [
-    [
-     "s",
-     "We"
-    ],
-    [
-     "v",
-     "are going to have"
-    ],
-    [
-     "o",
-     "a party"
-    ]
-   ]
-  },
-  {
-   "type": "cloze",
-   "pattern": "be-going-to",
-   "patName": "一般将来时(be going to)",
-   "prompt": "We _____ going to have a party",
-   "promptZh": "我们要办一个聚会。",
-   "answer": "are",
-   "options": [
-    "are",
-    "Is",
-    "Does",
-    "Will"
-   ],
-   "say": "We are going to have a party.",
-   "full": "We are going to have a party",
-   "ann": [
-    [
-     "s",
-     "We"
-    ],
-    [
-     "v",
-     "are going to have"
-    ],
-    [
-     "o",
-     "a party"
-    ]
-   ]
-  },
-  {
-   "type": "identify",
-   "pattern": "will",
-   "patName": "一般将来时(will)",
-   "prompt": "I will help you.",
-   "promptZh": "我会帮你。",
-   "answer": "一般将来时(will)",
-   "options": [
-    "一般将来时(will)",
-    "否定祈使句",
-    "How(怎么样)",
-    "When(什么时候)"
-   ],
-   "say": "I will help you.",
-   "ann": [
-    [
-     "s",
-     "I"
-    ],
-    [
-     "v",
-     "will help"
-    ],
-    [
-     "o",
-     "you"
-    ]
-   ]
-  },
-  {
-   "type": "cloze",
-   "pattern": "will",
-   "patName": "一般将来时(will)",
-   "prompt": "I _____ help you",
-   "promptZh": "我会帮你。",
-   "answer": "will",
-   "options": [
-    "will",
-    "How",
-    "Is",
-    "Where"
-   ],
-   "say": "I will help you.",
-   "full": "I will help you",
-   "ann": [
-    [
-     "s",
-     "I"
-    ],
-    [
-     "v",
-     "will help"
-    ],
-    [
-     "o",
-     "you"
-    ]
-   ]
-  },
-  {
-   "type": "identify",
-   "pattern": "will",
-   "patName": "一般将来时(will)",
-   "prompt": "It will rain tomorrow.",
-   "promptZh": "明天会下雨。",
-   "answer": "一般将来时(will)",
-   "options": [
-    "一般将来时(will)",
-    "Where(哪里)",
-    "主语 + be + 表语",
-    "Do/Does 提问"
-   ],
-   "say": "It will rain tomorrow.",
-   "ann": [
-    [
-     "s",
-     "It"
-    ],
-    [
-     "v",
-     "will rain"
-    ],
-    [
-     "a",
-     "tomorrow"
-    ]
-   ]
-  },
-  {
-   "type": "cloze",
-   "pattern": "will",
-   "patName": "一般将来时(will)",
-   "prompt": "It _____ rain tomorrow",
-   "promptZh": "明天会下雨。",
-   "answer": "will",
-   "options": [
-    "will",
-    "How",
-    "Can",
-    "Who"
-   ],
-   "say": "It will rain tomorrow.",
-   "full": "It will rain tomorrow",
-   "ann": [
-    [
-     "s",
-     "It"
-    ],
-    [
-     "v",
-     "will rain"
-    ],
-    [
-     "a",
-     "tomorrow"
-    ]
-   ]
-  },
-  {
-   "type": "identify",
-   "pattern": "exclaim",
-   "patName": "感叹句(What/How)",
-   "prompt": "What a nice day!",
-   "promptZh": "多好的一天啊!",
-   "answer": "感叹句(What/How)",
-   "options": [
-    "感叹句(What/How)",
-    "Can 情态提问",
-    "一般将来时(will)",
-    "Who(谁)"
-   ],
-   "say": "What a nice day!",
-   "ann": [
-    [
-     "c",
-     "What"
-    ],
-    [
-     "o",
-     "a nice day!"
-    ]
-   ]
-  },
-  {
-   "type": "cloze",
-   "pattern": "exclaim",
-   "patName": "感叹句(What/How)",
-   "prompt": "_____ a nice day!",
-   "promptZh": "多好的一天啊!",
-   "answer": "What",
-   "options": [
-    "What",
-    "How",
-    "Is",
-    "When"
-   ],
-   "say": "What a nice day!",
-   "full": "What a nice day!",
-   "ann": [
-    [
-     "c",
-     "What"
-    ],
-    [
-     "o",
-     "a nice day!"
-    ]
-   ]
-  },
-  {
-   "type": "identify",
-   "pattern": "exclaim",
-   "patName": "感叹句(What/How)",
-   "prompt": "How beautiful!",
-   "promptZh": "多美啊!",
-   "answer": "感叹句(What/How)",
-   "options": [
-    "感叹句(What/How)",
-    "There be 句型(有)",
-    "肯定祈使句",
-    "一般将来时(be going to)"
-   ],
-   "say": "How beautiful!",
-   "ann": [
-    [
-     "c",
-     "How"
-    ],
-    [
-     "o",
-     "beautiful!"
-    ]
-   ]
-  },
-  {
-   "type": "cloze",
-   "pattern": "exclaim",
-   "patName": "感叹句(What/How)",
-   "prompt": "_____ beautiful!",
-   "promptZh": "多美啊!",
-   "answer": "How",
-   "options": [
-    "How",
-    "What",
-    "Am",
-    "Are"
-   ],
-   "say": "How beautiful!",
-   "full": "How beautiful!",
-   "ann": [
-    [
-     "c",
-     "How"
-    ],
-    [
-     "o",
-     "beautiful!"
-    ]
-   ]
-  },
-  {
-   "type": "identify",
-   "pattern": "exclaim",
-   "patName": "感叹句(What/How)",
-   "prompt": "What a big fish!",
-   "promptZh": "多大的一条鱼啊!",
-   "answer": "感叹句(What/How)",
-   "options": [
-    "感叹句(What/How)",
-    "Do/Does 提问",
-    "There be 句型(有)",
-    "Be 动词提问"
-   ],
-   "say": "What a big fish!",
-   "ann": [
-    [
-     "c",
-     "What"
-    ],
-    [
-     "o",
-     "a big fish!"
-    ]
-   ]
-  },
-  {
-   "type": "cloze",
-   "pattern": "exclaim",
-   "patName": "感叹句(What/How)",
-   "prompt": "_____ a big fish!",
-   "promptZh": "多大的一条鱼啊!",
-   "answer": "What",
-   "options": [
-    "What",
-    "Let's",
-    "When",
-    "Will"
-   ],
-   "say": "What a big fish!",
-   "full": "What a big fish!",
-   "ann": [
-    [
-     "c",
-     "What"
-    ],
-    [
-     "o",
-     "a big fish!"
-    ]
-   ]
-  }
- ]
+// 英语学习摸底测试 · 50 题(介词 / 固定搭配 / 句型 / 时态)
+// 每题: q(题干,含 ___), zh(中文), options[4], answer(正确选项文本), explain(讲解), say(完整句朗读)
+window.TEST_DATA = {
+  title: "英语学习摸底测试卷",
+  intro: "本卷共 50 道单项选择,题目已随机打乱、不提示考点,用来真实摸清目前的掌握情况。每题从 A/B/C/D 中选出最恰当的一项。交卷后自动评分,并按知识板块给出得分分布,再逐题回看错题讲解。满分 100 分(每题 2 分)。",
+  sections: [
+    { id:"prep", name:"第一部分 · 介词", en:"Prepositions", icon:"ic-map", color:"brand", desc:"选出正确的介词。",
+      items:[
+        { q:"I get up ___ seven every morning.", zh:"我每天早上七点起床。", options:["at","in","on","for"], answer:"at", explain:"具体钟点用 at,如 at seven、at 6 o'clock。" },
+        { q:"We go to school ___ Monday.", zh:"我们星期一去上学。", options:["on","in","at","to"], answer:"on", explain:"具体某一天/星期用 on,如 on Monday、on May 1st。" },
+        { q:"It is cold ___ winter.", zh:"冬天很冷。", options:["in","on","at","by"], answer:"in", explain:"季节、月份、年份用 in,如 in winter、in 2024。" },
+        { q:"The cat is ___ the box.", zh:"猫在盒子里。", options:["in","on","under","of"], answer:"in", explain:"在某物内部用 in。" },
+        { q:"There is a picture ___ the wall.", zh:"墙上有一幅画。", options:["on","in","at","to"], answer:"on", explain:"接触表面用 on,墙上、桌上都用 on。" },
+        { q:"The ball is ___ the chair.", zh:"球在椅子下面。", options:["under","on","in","over"], answer:"under", explain:"在某物正下方用 under。" },
+        { q:"I go home ___ bus.", zh:"我坐公交车回家。", options:["by","on","in","with"], answer:"by", explain:"交通方式用 by,如 by bus、by bike。" },
+        { q:"She is good ___ English.", zh:"她擅长英语。", options:["at","in","on","for"], answer:"at", explain:"be good at 擅长(固定搭配,at 后接名词或动名词)。" },
+        { q:"Thank you ___ your help.", zh:"谢谢你的帮助。", options:["for","to","of","with"], answer:"for", explain:"thank you for + 名词/动名词,表示为某事感谢。" },
+        { q:"The shop is ___ the bank and the park.", zh:"商店在银行和公园之间。", options:["between","among","in","under"], answer:"between", explain:"在两者之间用 between…and…。" },
+        { q:"A bird is flying ___ the house.", zh:"一只鸟从房子上方飞过。", options:["over","on","in","under"], answer:"over", explain:"在上方(不接触)/越过用 over。" },
+        { q:"We have a rest ___ noon.", zh:"我们中午休息。", options:["at","in","on","to"], answer:"at", explain:"at noon / at night 用 at(固定说法)。" }
+      ] },
+    { id:"coll", name:"第二部分 · 固定搭配", en:"Collocations", icon:"ic-link-2", color:"cyan", desc:"选出正确的搭配词。",
+      items:[
+        { q:"Please listen ___ the teacher.", zh:"请听老师说。", options:["to","at","for","of"], answer:"to", explain:"listen to 听,不能省略 to。" },
+        { q:"Look ___ the blackboard, please.", zh:"请看黑板。", options:["at","to","for","on"], answer:"at", explain:"look at 看某物。" },
+        { q:"I am looking ___ my lost pen.", zh:"我在找我丢的笔。", options:["for","at","after","to"], answer:"for", explain:"look for 寻找(找的过程);look after 是照顾。" },
+        { q:"She looks ___ her little brother after school.", zh:"她放学后照顾弟弟。", options:["after","for","at","up"], answer:"after", explain:"look after 照顾。" },
+        { q:"Please turn ___ the light, it's dark.", zh:"请开灯,天黑了。", options:["on","off","up","down"], answer:"on", explain:"turn on 打开(电器);turn off 关掉。" },
+        { q:"Wait ___ me, please.", zh:"请等等我。", options:["for","at","to","on"], answer:"for", explain:"wait for 等候某人/某物。" },
+        { q:"He is interested ___ science.", zh:"他对科学感兴趣。", options:["in","at","on","for"], answer:"in", explain:"be interested in 对…感兴趣。" },
+        { q:"Don't be afraid ___ the dog.", zh:"别怕这只狗。", options:["of","for","at","to"], answer:"of", explain:"be afraid of 害怕。" },
+        { q:"Please take ___ your hat inside.", zh:"在室内请摘下帽子。", options:["off","on","up","in"], answer:"off", explain:"take off 脱下/摘下;put on 穿上。" },
+        { q:"I want to be a doctor when I grow ___.", zh:"我长大想当医生。", options:["up","on","off","in"], answer:"up", explain:"grow up 长大。" },
+        { q:"I help my mother ___ the housework.", zh:"我帮妈妈做家务。", options:["with","to","for","on"], answer:"with", explain:"help sb with sth 帮某人做某事。" },
+        { q:"There are ___ books on the desk.", zh:"桌上有很多书。", options:["a lot of","a piece of","a cup of","a kind"], answer:"a lot of", explain:"a lot of + 名词表示“许多”,后接可数或不可数名词。" }
+      ] },
+    { id:"pattern", name:"第三部分 · 常用句型", en:"Sentence Patterns", icon:"ic-message-square", color:"green", desc:"选出正确的词,使句子成立。",
+      items:[
+        { q:"___ is a cat on the bed.", zh:"床上有一只猫。", options:["There","It","This","That"], answer:"There", explain:"There be 句型:There is/are + 名词 + 地点。" },
+        { q:"There ___ many books in the bag.", zh:"包里有很多书。", options:["are","is","have","has"], answer:"are", explain:"There be 就近一致,后接复数 books 用 are。" },
+        { q:"___ you a teacher?", zh:"你是老师吗?", options:["Are","Is","Do","Does"], answer:"Are", explain:"be 动词一般疑问句,主语 you 用 Are 提到句首。" },
+        { q:"___ he like milk?", zh:"他喜欢牛奶吗?", options:["Does","Do","Is","Are"], answer:"Does", explain:"实义动词一般疑问句,第三人称单数用 Does。" },
+        { q:"___ is your pen? — It's on the desk.", zh:"你的钢笔在哪里?——在桌上。", options:["Where","What","When","Who"], answer:"Where", explain:"问地点用 Where。" },
+        { q:"___ do you get up? — At six.", zh:"你什么时候起床?——六点。", options:["When","Where","What","How"], answer:"When", explain:"问时间用 When。" },
+        { q:"___ many books do you have?", zh:"你有多少本书?", options:["How","What","Where","Who"], answer:"How", explain:"问数量用 How many + 可数名词复数。" },
+        { q:"___ your books, please.", zh:"请打开你们的书。", options:["Open","Opens","Opening","To open"], answer:"Open", explain:"祈使句用动词原形开头。" },
+        { q:"___ run in the classroom.", zh:"不要在教室里跑。", options:["Don't","Not","No","Doesn't"], answer:"Don't", explain:"否定祈使句用 Don't + 动词原形。" },
+        { q:"___ go home now.", zh:"我们现在回家吧。", options:["Let's","Let","We","Us"], answer:"Let's", explain:"Let's + 动词原形,表示“我们一起做…”。" },
+        { q:"What ___ nice day!", zh:"多好的一天啊!", options:["a","an","the","/"], answer:"a", explain:"What (a) + 名词短语构成感叹句,day 前用 a。" },
+        { q:"My father ___ a doctor.", zh:"我爸爸是医生。", options:["is","are","am","be"], answer:"is", explain:"主系表句型,第三人称单数用 is。" },
+        { q:"Who ___ help me?", zh:"谁能帮我?", options:["can","are","do","is"], answer:"can", explain:"Who 作主语,后接情态动词 can + 动词原形。" }
+      ] },
+    { id:"tense", name:"第四部分 · 时态", en:"Tenses", icon:"ic-trending-up", color:"amber", desc:"根据时间标志选出正确的动词形式。",
+      items:[
+        { q:"I ___ to school every day.", zh:"我每天去上学。", options:["go","goes","went","going"], answer:"go", explain:"every day 一般现在时,主语 I 用动词原形 go。" },
+        { q:"She ___ apples very much.", zh:"她非常喜欢苹果。", options:["likes","like","liked","liking"], answer:"likes", explain:"一般现在时,第三人称单数动词加 -s。" },
+        { q:"Look! The baby ___ now.", zh:"看!宝宝正在哭。", options:["is crying","cries","cried","cry"], answer:"is crying", explain:"Look!/now 表示现在进行时,be + 动词-ing。" },
+        { q:"They ___ football at the moment.", zh:"他们此刻正在踢足球。", options:["are playing","play","played","plays"], answer:"are playing", explain:"at the moment 现在进行时,主语 they 用 are + playing。" },
+        { q:"We ___ a film yesterday.", zh:"我们昨天看了一场电影。", options:["watched","watch","watches","will watch"], answer:"watched", explain:"yesterday 一般过去时,规则动词加 -ed。" },
+        { q:"He ___ to the zoo last Sunday.", zh:"他上周日去了动物园。", options:["went","goes","go","will go"], answer:"went", explain:"last Sunday 一般过去时,go 的过去式是 went(不规则)。" },
+        { q:"I ___ my grandma tomorrow.", zh:"我明天要去看奶奶。", options:["will visit","visit","visited","visiting"], answer:"will visit", explain:"tomorrow 一般将来时,will + 动词原形。" },
+        { q:"It ___ rain next week.", zh:"下周会下雨。", options:["will","is","was","does"], answer:"will", explain:"next week 一般将来时,will + 动词原形 rain。" },
+        { q:"She ___ her homework now.", zh:"她现在正在做作业。", options:["is doing","does","did","do"], answer:"is doing", explain:"now 现在进行时,be + 动词-ing。" },
+        { q:"We ___ football last weekend.", zh:"我们上周末踢了足球。", options:["played","play","plays","will play"], answer:"played", explain:"last weekend 一般过去时,play 加 -ed。" },
+        { q:"There ___ a party tomorrow.", zh:"明天有一个聚会。", options:["will be","is","was","are"], answer:"will be", explain:"tomorrow 将来时,There be 的将来式是 There will be。" },
+        { q:"My mother ___ dinner every evening.", zh:"我妈妈每天晚上做晚饭。", options:["cooks","cook","cooked","is cooking"], answer:"cooks", explain:"every evening 一般现在时,第三人称单数加 -s。" },
+        { q:"What ___ you doing now?", zh:"你现在在做什么?", options:["are","do","did","will"], answer:"are", explain:"现在进行时特殊疑问句:What are you doing?" }
+      ] }
+  ]
 };
 
 </script>
 <script>
-// Word → IPA (BrE) for per-sentence phonetics.
+// Word -> IPA (BrE) for test-sentence phonetics.
 window.IPA_DICT = {
-  "dont": "/dəʊnt/",
+  "it's": "/ɪts/",
+  "looking": "/ˈlʊkɪŋ/",
+  "off": "/ɒf/",
+  "want": "/wɒnt/",
   "1st": "/fɜːst/",
   "a": "/ə/",
   "a little": "/ə ˈlɪtl/",
   "add": "/æd/",
+  "afraid": "/əˈfreɪd/",
   "after": "/ˈɑːftə(r)/",
   "again": "/əˈɡen/",
   "am": "/æm/",
@@ -6347,17 +1697,21 @@ window.IPA_DICT = {
   "apples": "/ˈæplz/",
   "are": "/ɑː(r)/",
   "at": "/æt/",
+  "baby": "/ˈbeɪbi/",
   "bag": "/bæɡ/",
   "ball": "/bɔːl/",
+  "bank": "/bæŋk/",
   "basketball": "/ˈbɑːskɪtbɔːl/",
   "be": "/biː/",
   "beautiful": "/ˈbjuːtɪfl/",
   "bed": "/bed/",
   "begins": "/bɪˈɡɪnz/",
+  "between": "/bɪˈtwiːn/",
   "big": "/bɪɡ/",
   "bigger": "/ˈbɪɡə(r)/",
   "biggest": "/ˈbɪɡɪst/",
   "bike": "/baɪk/",
+  "bird": "/bɜːd/",
   "birds": "/bɜːdz/",
   "birthday": "/ˈbɜːθdeɪ/",
   "blackboard": "/ˈblækbɔːd/",
@@ -6371,6 +1725,7 @@ window.IPA_DICT = {
   "can": "/kæn/",
   "cat": "/kæt/",
   "celebrate": "/ˈselɪbreɪt/",
+  "chair": "/tʃeə(r)/",
   "chess": "/tʃes/",
   "children": "/ˈtʃɪldrən/",
   "childrens": "/ˈtʃɪldrənz/",
@@ -6384,14 +1739,20 @@ window.IPA_DICT = {
   "club": "/klʌb/",
   "cold": "/kəʊld/",
   "collecting": "/kəˈlektɪŋ/",
+  "cook": "/kʊk/",
   "cooking": "/ˈkʊkɪŋ/",
+  "cooks": "/kʊks/",
   "count": "/kaʊnt/",
+  "cries": "/kraɪz/",
+  "crying": "/ˈkraɪɪŋ/",
   "cup": "/kʌp/",
   "dance": "/dɑːns/",
   "dancing": "/ˈdɑːnsɪŋ/",
+  "dark": "/dɑːk/",
   "date": "/deɪt/",
   "day": "/deɪ/",
   "december": "/dɪˈsembə(r)/",
+  "desk": "/desk/",
   "difficult": "/ˈdɪfɪkəlt/",
   "dinner": "/ˈdɪnə(r)/",
   "dirty": "/ˈdɜːti/",
@@ -6401,6 +1762,7 @@ window.IPA_DICT = {
   "dog": "/dɒɡ/",
   "doing": "/ˈduːɪŋ/",
   "don't": "/dəʊnt/",
+  "dont": "/dəʊnt/",
   "door": "/dɔː(r)/",
   "draw": "/drɔː/",
   "drawing": "/ˈdrɔːɪŋ/",
@@ -6413,11 +1775,13 @@ window.IPA_DICT = {
   "ends": "/endz/",
   "english": "/ˈɪŋɡlɪʃ/",
   "enjoy": "/ɪnˈdʒɔɪ/",
+  "evening": "/ˈiːvnɪŋ/",
   "every": "/ˈevri/",
   "fast": "/fɑːst/",
   "father": "/ˈfɑːðə(r)/",
   "favourite": "/ˈfeɪvərɪt/",
   "festival": "/ˈfestɪvl/",
+  "film": "/fɪlm/",
   "first": "/fɜːst/",
   "fish": "/fɪʃ/",
   "fishing": "/ˈfɪʃɪŋ/",
@@ -6425,6 +1789,7 @@ window.IPA_DICT = {
   "flower": "/ˈflaʊə(r)/",
   "flowers": "/ˈflaʊəz/",
   "fly": "/flaɪ/",
+  "flying": "/ˈflaɪɪŋ/",
   "football": "/ˈfʊtbɔːl/",
   "for": "/fɔː(r)/",
   "free": "/friː/",
@@ -6440,28 +1805,36 @@ window.IPA_DICT = {
   "good": "/ɡʊd/",
   "got": "/ɡɒt/",
   "grandma": "/ˈɡrænmɑː/",
+  "grow": "/ɡrəʊ/",
   "half": "/hɑːf/",
   "hands": "/hændz/",
   "happy": "/ˈhæpi/",
   "has": "/hæz/",
+  "hat": "/hæt/",
   "have": "/hæv/",
   "he": "/hiː/",
   "heart": "/hɑːt/",
   "heavy": "/ˈhevi/",
   "help": "/help/",
+  "her": "/hɜː(r)/",
   "here": "/hɪə(r)/",
   "high": "/haɪ/",
   "hiking": "/ˈhaɪkɪŋ/",
+  "his": "/hɪz/",
   "hobby": "/ˈhɒbi/",
   "holiday": "/ˈhɒlədeɪ/",
   "home": "/həʊm/",
+  "homework": "/ˈhəʊmwɜːk/",
   "hot": "/hɒt/",
   "house": "/haʊs/",
+  "housework": "/ˈhaʊswɜːk/",
   "how": "/haʊ/",
   "hundred": "/ˈhʌndrəd/",
   "i": "/aɪ/",
   "ice": "/aɪs/",
   "in": "/ɪn/",
+  "inside": "/ɪnˈsaɪd/",
+  "interested": "/ˈɪntrəstɪd/",
   "interesting": "/ˈɪntrəstɪŋ/",
   "is": "/ɪz/",
   "it": "/ɪt/",
@@ -6472,9 +1845,11 @@ window.IPA_DICT = {
   "jump rope": "/dʒʌmp rəʊp/",
   "june": "/dʒuːn/",
   "lake": "/leɪk/",
+  "last": "/lɑːst/",
   "late": "/leɪt/",
   "let's": "/lets/",
   "lets": "/lets/",
+  "light": "/laɪt/",
   "like": "/laɪk/",
   "likes": "/laɪks/",
   "line": "/laɪn/",
@@ -6485,6 +1860,8 @@ window.IPA_DICT = {
   "long": "/lɒŋ/",
   "look": "/lʊk/",
   "looks": "/lʊks/",
+  "lost": "/lɒst/",
+  "lot": "/lɒt/",
   "loves": "/lʌvz/",
   "makes": "/meɪks/",
   "many": "/ˈmeni/",
@@ -6495,6 +1872,8 @@ window.IPA_DICT = {
   "mid-autumn festival": "/mɪd ˈɔːtəm ˈfestɪvl/",
   "milk": "/mɪlk/",
   "minus": "/ˈmaɪnəs/",
+  "moment": "/ˈməʊmənt/",
+  "monday": "/ˈmʌndeɪ/",
   "month": "/mʌnθ/",
   "months": "/mʌnθs/",
   "moon": "/muːn/",
@@ -6513,12 +1892,15 @@ window.IPA_DICT = {
   "next": "/nekst/",
   "nice": "/naɪs/",
   "night": "/naɪt/",
+  "noon": "/nuːn/",
+  "now": "/naʊ/",
   "number": "/ˈnʌmbə(r)/",
   "october": "/ɒkˈtəʊbə(r)/",
   "of": "/əv/",
   "old": "/əʊld/",
   "on": "/ɒn/",
   "open": "/ˈəʊpən/",
+  "over": "/ˈəʊvə(r)/",
   "painting": "/ˈpeɪntɪŋ/",
   "paper": "/ˈpeɪpə(r)/",
   "park": "/pɑːk/",
@@ -6526,13 +1908,16 @@ window.IPA_DICT = {
   "pen": "/pen/",
   "photography": "/fəˈtɒɡrəfi/",
   "piano": "/piˈænəʊ/",
+  "picture": "/ˈpɪktʃə(r)/",
   "place": "/pleɪs/",
   "play": "/pleɪ/",
+  "played": "/pleɪd/",
   "players": "/ˈpleɪəz/",
   "playing": "/ˈpleɪɪŋ/",
   "please": "/pliːz/",
   "practise": "/ˈpræktɪs/",
   "present": "/ˈpreznt/",
+  "put": "/pʊt/",
   "question": "/ˈkwestʃən/",
   "quietly": "/ˈkwaɪətli/",
   "rabbit": "/ˈræbɪt/",
@@ -6553,17 +1938,21 @@ window.IPA_DICT = {
   "same": "/seɪm/",
   "say": "/seɪ/",
   "school": "/skuːl/",
+  "science": "/ˈsaɪəns/",
   "second": "/ˈsekənd/",
   "september": "/sepˈtembə(r)/",
+  "seven": "/ˈsevn/",
   "shape": "/ʃeɪp/",
   "she": "/ʃiː/",
   "shoes": "/ʃuːz/",
+  "shop": "/ʃɒp/",
   "short": "/ʃɔːt/",
   "sing": "/sɪŋ/",
   "singing": "/ˈsɪŋɪŋ/",
   "sings": "/sɪŋz/",
   "sister": "/ˈsɪstə(r)/",
   "sisters": "/ˈsɪstəz/",
+  "six": "/sɪks/",
   "slow": "/sləʊ/",
   "small": "/smɔːl/",
   "snake": "/sneɪk/",
@@ -6586,6 +1975,7 @@ window.IPA_DICT = {
   "sweet": "/swiːt/",
   "swim": "/swɪm/",
   "swimming": "/ˈswɪmɪŋ/",
+  "take": "/teɪk/",
   "tall": "/tɔːl/",
   "taller": "/ˈtɔːlə(r)/",
   "teacher": "/ˈtiːtʃə(r)/",
@@ -6611,17 +2001,25 @@ window.IPA_DICT = {
   "tomorrow": "/təˈmɒrəʊ/",
   "too": "/tuː/",
   "triangle": "/ˈtraɪæŋɡl/",
+  "turn": "/tɜːn/",
   "turtle": "/ˈtɜːtl/",
   "twelve": "/twelv/",
   "twenty": "/ˈtwenti/",
   "two": "/tuː/",
+  "under": "/ˈʌndə(r)/",
   "up": "/ʌp/",
   "very": "/ˈveri/",
   "visit": "/ˈvɪzɪt/",
+  "wait": "/weɪt/",
   "walk": "/wɔːk/",
+  "wall": "/wɔːl/",
+  "watched": "/wɒtʃt/",
   "water": "/ˈwɔːtə(r)/",
   "we": "/wiː/",
+  "week": "/wiːk/",
+  "weekend": "/ˌwiːkˈend/",
   "well": "/wel/",
+  "went": "/went/",
   "what": "/wɒt/",
   "whats": "/wɒts/",
   "when": "/wen/",
@@ -6629,13 +2027,17 @@ window.IPA_DICT = {
   "who": "/huː/",
   "will": "/wɪl/",
   "window": "/ˈwɪndəʊ/",
+  "winter": "/ˈwɪntə(r)/",
+  "with": "/wɪð/",
   "won": "/wʌn/",
   "worry": "/ˈwʌri/",
   "write": "/raɪt/",
   "year": "/jɪə(r)/",
+  "yesterday": "/ˈjestədeɪ/",
   "you": "/juː/",
   "your": "/jɔː(r)/",
   "zero": "/ˈzɪərəʊ/",
+  "zoo": "/zuː/",
 };
 
 </script>
@@ -6815,250 +2217,199 @@ function _localSpeak(text, btnEl){
   } catch (e) { if(btnEl) btnEl.classList.remove('playing'); }
 }
 
+
 const ico = (id, cls) => html`<svg class="ico ${cls || ''}" aria-hidden="true"><use href="#${id}"></use></svg>`;
 
-// ---------- 句子成分:关键词 + 彩色下划线(直接用数据自带的 ann) ----------
-const _RMAP = { s:'subj', v:'verb', o:'obj', a:'other', c:'conj' };
-const _RNAME = { s:'主语', v:'谓语', o:'宾语', a:'状语', c:'引导词' };
-function annUnderline(ann){
-  return html`<span class="sent-underline">${ann.map((p,i)=>{
-    const role=_RMAP[p[0]]||'obj'; const isLast=i===ann.length-1;
-    return html`<span class="tk-u tk-u--${role}"><span class="tk-u__word">${p[1]}</span><span class="tk-u__tag">${_RNAME[p[0]]||''}</span></span>${isLast?'':' '}`;
-  })}</span>`;
-}
-function annIPA(ann){
+function sentenceIPA(sentence){
   const dict=window.IPA_DICT||{};
-  const words=ann.map(p=>p[1]).join(' ').split(/\s+/).filter(Boolean);
-  const parts=words.map(w=>{const c=w.toLowerCase().replace(/[.,!?;:"']/g,'');const ipa=dict[c];return ipa?ipa.replace(/^\/|\/$/g,''):c;});
-  return '/'+parts.join(' ')+'/';
+  return '/'+sentence.split(/\s+/).filter(Boolean).map(w=>{
+    const c=w.toLowerCase().replace(/[.,!?;:"—]/g,'').replace(/[?!.]$/,'');
+    const ipa=dict[c]; return ipa?ipa.replace(/^\/|\/$/g,''):c;
+  }).join(' ')+'/';
 }
-function annText(ann){ return ann.map(p=>p[1]).join(' '); }
+const LETTERS=['A','B','C','D'];
 
-class PatternApp extends LitElement {
-  static properties = { active:{state:true}, rate:{state:true}, tab:{state:true},
-    qIndex:{state:true}, qPicked:{state:true}, qAnswered:{state:true}, qScore:{state:true}, combo:{state:true},
-    wrong:{state:true}, quizMode:{state:true} };
+class TestApp extends LitElement {
+  static properties = {
+    stage:{state:true},        // 'intro' | 'test' | 'result' | 'review'
+    idx:{state:true},          // current question index (flat 0..49)
+    answers:{state:true},      // {globalIndex: chosenText}
+    rate:{state:true}
+  };
   createRenderRoot(){ return this; }
   constructor(){
-    super(); this.data=window.PATTERN_DATA; this.active=this.data.groups[0].id; this.rate='normal';
-    this.tab='learn';
-    this.qIndex=0; this.qPicked=-1; this.qAnswered=false; this.qScore=0; this.combo=0;
-    this.quizMode='all'; this.wrong=this._loadWrong();
-    this._quiz=[]; this._buildQuiz();
+    super();
+    this.data = window.TEST_DATA;
+    this.rate = 'normal';
+    this.stage = 'intro';
+    this.idx = 0;
+    this.answers = {};
+    // flatten questions with section metadata (kept only for scoring, NOT shown during the test)
+    this.flat = [];
+    this.data.sections.forEach(s=>s.items.forEach(it=>this.flat.push({...it, secId:s.id, secName:s.name, secColor:s.color})));
+    // shuffle so the four boards are interleaved — a real 摸底 must not hint the 考点 by grouping
+    for(let i=this.flat.length-1;i>0;i--){ const j=Math.floor(Math.random()*(i+1)); [this.flat[i],this.flat[j]]=[this.flat[j],this.flat[i]]; }
+    this.total = this.flat.length;
   }
   toggleTheme(){ const c=document.documentElement.getAttribute('data-theme'); document.documentElement.setAttribute('data-theme', c==='dark'?'':'dark'); this.requestUpdate(); }
   get isDark(){ return document.documentElement.getAttribute('data-theme')==='dark'; }
-  setActive(id){ this.active=id; window.scrollTo&&window.scrollTo(0,0); }
   changeRate(r){ setRate(r); this.rate=r; }
-  setTab(t){ this.tab=t; window.scrollTo&&window.scrollTo(0,0); if(t==='quiz'){this.quizMode='all';this._buildQuiz();} if(t==='review'){this.quizMode='review';this._buildQuiz();} }
-
-  // ---- 闯关 + 错题本(循环记忆)----
-  _loadWrong(){ try{ const r=localStorage.getItem('pat_wrong'); return new Set(r?JSON.parse(r):[]); }catch(e){ return new Set(); } }
-  _saveWrong(){ try{ localStorage.setItem('pat_wrong', JSON.stringify([...this.wrong])); }catch(e){} }
-  _qKey(q){ return q.type+'|'+q.pattern+'|'+q.prompt; }
-  _wrongQuestions(){ return this.data.quiz.filter(q=>this.wrong.has(this._qKey(q))); }
-  _buildQuiz(){
-    const pool = this.quizMode==='review' ? this._wrongQuestions() : this.data.quiz;
-    const n = this.quizMode==='review' ? 9999 : 20;
-    this._quiz = [...pool].sort(()=>Math.random()-0.5).slice(0,n).map(q=>({ ...q, opts:[...q.options].sort(()=>Math.random()-0.5) }));
-    this.qIndex=0; this.qPicked=-1; this.qAnswered=false; this.qScore=0; this.combo=0;
-  }
-  pickQ(i){
-    if(this.qAnswered) return; this.qAnswered=true; this.qPicked=i;
-    const q=this._quiz[this.qIndex]; const key=this._qKey(q);
-    if(q.opts[i]===q.answer){ this.qScore++; this.combo++;
-      if(this.quizMode==='review' && this.wrong.has(key)){ const nw=new Set(this.wrong); nw.delete(key); this.wrong=nw; this._saveWrong(); }
-    } else { this.combo=0; if(!this.wrong.has(key)){ this.wrong=new Set([...this.wrong,key]); this._saveWrong(); } }
-    speak(q.say);
-  }
-  nextQ(){ if(this.qIndex<this._quiz.length-1){ this.qIndex++; this.qPicked=-1; this.qAnswered=false; } else { this.qIndex=this._quiz.length; } }
-  clearWrong(){ this.wrong=new Set(); this._saveWrong(); this._buildQuiz(); this.requestUpdate(); }
+  full(q){ return q.q.replace('___', q.answer); }
+  choose(g, opt){ this.answers = { ...this.answers, [g]: opt }; }
+  goPrev(){ if(this.idx>0) this.idx--; }
+  goNext(){ if(this.idx<this.total-1) this.idx++; }
+  jump(g){ this.idx=g; this.stage='test'; window.scrollTo&&window.scrollTo(0,0); }
+  get answeredCount(){ return Object.keys(this.answers).length; }
+  submit(){ this.stage='result'; window.scrollTo&&window.scrollTo(0,0); }
+  restart(){ this.answers={}; this.idx=0; this.stage='intro'; }
+  // scoring
+  score(){ let ok=0; this.flat.forEach((q,g)=>{ if(this.answers[g]===q.answer) ok++; }); return ok; }
+  sectionScore(secId){ let ok=0,tot=0; this.flat.forEach((q,g)=>{ if(q.secId===secId){ tot++; if(this.answers[g]===q.answer) ok++; } }); return {ok,tot}; }
+  wrongList(){ const w=[]; this.flat.forEach((q,g)=>{ if(this.answers[g]!==q.answer) w.push({...q,g}); }); return w; }
 
   render(){
-    const nPat=this.data.groups.reduce((s,g)=>s+g.patterns.length,0);
-    const g=this.data.groups.find(x=>x.id===this.active);
     return html`
       <div class="app">
         <header class="appbar">
           <div class="wrap appbar__inner">
             <div class="brand">
-              <div class="brand__mark">${ico('ic-message-square','ico--md')}</div>
-              <div class="brand__txt"><span class="brand__title">小学英语句式大全</span><span class="brand__sub">${nPat} 个母题 · 母题+多例子</span></div>
+              <div class="brand__mark">${ico('ic-edit','ico--md')}</div>
+              <div class="brand__txt"><span class="brand__title">英语摸底测试</span><span class="brand__sub">50 题 · 介词/搭配/句型/时态</span></div>
             </div>
             <div class="appbar__spacer"></div>
-            <div class="rate-ctrl" title="调节朗读语速">
-              ${ico('ic-volume','ico--sm')}
+            <div class="rate-ctrl" title="调节朗读语速">${ico('ic-volume','ico--sm')}
               <div class="rate-seg">${['slow','normal','fast'].map(r=>html`<button class="rate-opt ${this.rate===r?'rate-opt--on':''}" @click=${()=>this.changeRate(r)}>${RATE_LEVELS[r].label}</button>`)}</div>
             </div>
             <button class="iconbtn" title="切换主题" @click=${()=>this.toggleTheme()}>${ico(this.isDark?'ic-sun':'ic-moon','ico--sm')}</button>
           </div>
         </header>
         <main class="wrap" style="flex:1;width:100%;">
-          <nav class="tabs" role="tablist">
-            <button class="tab ${this.tab==='learn'?'tab--on':''}" @click=${()=>this.setTab('learn')}>${ico('ic-book-open','ico--sm')} 句式讲解</button>
-            <button class="tab ${this.tab==='quiz'?'tab--on':''}" @click=${()=>this.setTab('quiz')}>${ico('ic-target','ico--sm')} 闯关练习</button>
-            <button class="tab ${this.tab==='review'?'tab--on':''}" @click=${()=>this.setTab('review')}>${ico('ic-repeat','ico--sm')} 错题本${this.wrong.size?html` <span class="tab__badge">${this.wrong.size}</span>`:''}</button>
-          </nav>
-          ${this.tab==='learn' ? html`${this.renderHero()}${this.renderNav()}${this.renderGroup(g)}` : ''}
-          ${this.tab==='quiz' ? this.renderQuiz() : ''}
-          ${this.tab==='review' ? this.renderReview() : ''}
+          ${this.stage==='intro'?this.renderIntro():''}
+          ${this.stage==='test'?this.renderTest():''}
+          ${this.stage==='result'?this.renderResult():''}
+          ${this.stage==='review'?this.renderReview():''}
         </main>
-        <footer class="foot wrap">小学英语常用句式 · ${nPat} 个母题 · 点 ${ico('ic-volume','ico--xs')} 听发音 · 微软神经语音</footer>
+        <footer class="foot wrap">英语学习摸底测试 · 共 ${this.total} 题 · 满分 100 分 · 微软神经语音朗读</footer>
       </div>`;
   }
 
-  renderHero(){
+  renderIntro(){
     return html`
-      <section class="hero">
-        <h1>小学英语常用句式大全</h1>
-        <p>${this.data.intro}</p>
-        <div class="legend">
-          ${this.data.legend.map(l=>html`<span class="legend__item"><span class="tk-u tk-u--${_RMAP[l.role]}"><span class="tk-u__word">${l.name}</span></span> ${l.desc}</span>`)}
+      <section class="intro">
+        <div class="intro__card">
+          <div class="intro__ic">${ico('ic-edit','ico--lg')}</div>
+          <h1>英语学习摸底测试卷</h1>
+          <p class="intro__desc">${this.data.intro}</p>
+          <div class="intro__secs">
+            <div class="intro__sec"><b>${this.total}</b> 道单项选择</div>
+            <div class="intro__sec">满分 <b>100</b> 分</div>
+            <div class="intro__sec">题目<b>随机打乱</b>·不提示考点</div>
+          </div>
+          <button class="btn btn--primary btn--lg" @click=${()=>{this.stage='test';this.idx=0;}}>${ico('ic-arrow-right','ico--sm')} 开始测试</button>
         </div>
       </section>`;
   }
 
-  renderNav(){
+  renderTest(){
+    const g=this.idx; const q=this.flat[g]; const chosen=this.answers[g];
+    const parts=q.q.split('___');
+    const pct=Math.round((this.answeredCount/this.total)*100);
     return html`
-      <nav class="gnav">
-        ${this.data.groups.map(g=>html`
-          <button class="gnav__btn ${this.active===g.id?'gnav__btn--on':''}" @click=${()=>this.setActive(g.id)}>
-            ${ico(g.icon,'ico--sm')} <span>${g.name}</span> <span class="gnav__n">${g.patterns.length}</span>
-          </button>`)}
-      </nav>`;
-  }
-
-  renderGroup(g){
-    return html`
-      <section class="grp grp--${g.color}">
-        <div class="grp__head"><div class="grp__ic">${ico(g.icon,'ico--md')}</div>
-          <div><div class="grp__name">${g.name} <span class="grp__en">${g.en}</span></div><div class="grp__intro">${g.intro}</div></div>
+      <section class="test">
+        <div class="test__top">
+          <div class="test__meta"><span class="test__label">摸底测试 · 单项选择</span>
+            <span class="test__count">第 ${g+1} / ${this.total} 题</span></div>
+          <div class="test__progress"><div class="test__progress-fill" style="width:${pct}%"></div></div>
+          <div class="test__answered">已答 ${this.answeredCount} / ${this.total}</div>
         </div>
-        ${g.patterns.map((p,i)=>this.renderPattern(p,i,g.color))}
+        <div class="qcard">
+          <div class="qcard__stem">${parts[0]}<span class="qcard__blank ${chosen?'qcard__blank--filled':''}">${chosen||''}</span>${parts[1]||''}</div>
+          <div class="qcard__zh">${q.zh}</div>
+          <div class="qcard__opts">
+            ${q.options.map((opt,i)=>html`
+              <button class="opt ${chosen===opt?'opt--on':''}" @click=${()=>this.choose(g,opt)}>
+                <span class="opt__letter">${LETTERS[i]}</span><span class="opt__text">${opt}</span>
+              </button>`)}
+          </div>
+        </div>
+        <div class="test__nav">
+          <button class="btn" ?disabled=${g===0} @click=${()=>this.goPrev()}>${ico('ic-arrow-left','ico--sm')} 上一题</button>
+          <button class="btn" @click=${()=>{this.stage='sheet';this.requestUpdate();}} style="display:none"></button>
+          ${g<this.total-1
+            ? html`<button class="btn btn--primary" @click=${()=>this.goNext()}>下一题 ${ico('ic-arrow-right','ico--sm')}</button>`
+            : html`<button class="btn btn--primary" @click=${()=>this.submit()}>${ico('ic-check-circle-2','ico--sm')} 交卷</button>`}
+        </div>
+        <div class="sheet">
+          <div class="sheet__title">${ico('ic-grid','ico--xs')} 答题卡(点击跳转)</div>
+          <div class="sheet__grid">
+            ${this.flat.map((_,gi)=>html`<button class="sheet__cell ${this.answers[gi]?'sheet__cell--done':''} ${gi===g?'sheet__cell--cur':''}" @click=${()=>this.jump(gi)}>${gi+1}</button>`)}
+          </div>
+          ${this.answeredCount<this.total?html`<div class="sheet__hint">${ico('ic-info','ico--xs')} 还有 ${this.total-this.answeredCount} 题未作答</div>`:''}
+          <button class="btn btn--primary" style="margin-top:var(--g-sp-3)" @click=${()=>this.submit()}>${ico('ic-check-circle-2','ico--sm')} 交卷评分</button>
+        </div>
       </section>`;
   }
 
-  renderPattern(p,i,color){
+  renderResult(){
+    const sc=this.score(); const points=sc*2;
+    const level = points>=90?'优秀 · 掌握扎实':points>=75?'良好 · 稍加巩固':points>=60?'及格 · 需要加强':'待提升 · 建议系统复习';
     return html`
-      <div class="pat pat--${color}">
-        <div class="pat__head">
-          <span class="pat__no">母题 ${i+1}</span>
-          <span class="pat__name">${p.name}</span>
+      <section class="result">
+        <div class="result__hero">
+          ${ico(points>=75?'ic-award':'ic-target','ico--3xl')}
+          <div class="result__score">${points}<span class="result__max">/100</span></div>
+          <div class="result__level">${level}</div>
+          <div class="result__sub">答对 ${sc} / ${this.total} 题</div>
         </div>
-        <div class="pat__formula">${ico('ic-hash','ico--xs')} <b>公式:</b>${p.formula}</div>
-        <div class="pat__use">${ico('ic-info','ico--xs')} ${p.use}</div>
-        <div class="pat__examples">
-          ${p.examples.map(e=>this.renderExample(e))}
+        <div class="result__secs">
+          ${this.data.sections.map(s=>{ const r=this.sectionScore(s.id); const p=Math.round(r.ok/r.tot*100);
+            return html`<div class="rsec rsec--${s.color}">
+              <div class="rsec__head">${ico(s.icon,'ico--sm')} <span>${s.name.replace(/第.部分 · /,'')}</span><b>${r.ok}/${r.tot}</b></div>
+              <div class="rsec__bar"><div class="rsec__fill" style="width:${p}%"></div></div>
+            </div>`; })}
         </div>
-      </div>`;
-  }
-
-  renderExample(e){
-    return html`
-      <div class="ex">
-        <div class="ex__sent">${annUnderline(e.ann)}
-          <button class="speak speak--sm" title="朗读整句" @click=${(ev)=>speak(e.en,ev.currentTarget)}>${ico('ic-volume','ico--sm')}</button>
+        <div class="result__btns">
+          ${this.wrongList().length?html`<button class="btn btn--primary" @click=${()=>{this.stage='review';window.scrollTo&&window.scrollTo(0,0);}}>${ico('ic-book-open','ico--sm')} 查看错题讲解(${this.wrongList().length})</button>`:html`<div class="result__perfect">${ico('ic-check-circle-2','ico--sm')} 全部答对,太棒了!</div>`}
+          <button class="btn" @click=${()=>this.restart()}>${ico('ic-refresh','ico--sm')} 重新测试</button>
         </div>
-        <div class="ex__ipa">${ico('ic-volume','ico--xs')} ${annIPA(e.ann)}</div>
-        <div class="ex__zh">${e.zh}</div>
-      </div>`;
-  }
-
-  renderQuiz(){
-    return html`
-      <section class="quiz-sec">
-        <div class="quiz-sechead">
-          <div class="quiz-sechead__t">${ico('ic-target','ico--md')} 闯关练习</div>
-          <div class="quiz-sechead__s">题库共 ${this.data.quiz.length} 题,<b>覆盖全部 20 个母题</b>:识别句型 + 选出正确的句子。每轮随机抽 20 题,<b>答错自动进「错题本」</b>循环复习。</div>
-        </div>
-        ${this._renderQuizBody()}
       </section>`;
   }
+
   renderReview(){
-    const n=this.wrong.size;
+    const wrong=this.wrongList();
     return html`
-      <section class="quiz-sec">
-        <div class="quiz-sechead">
-          <div class="quiz-sechead__t">${ico('ic-repeat','ico--md')} 错题本 · 循环记忆</div>
-          <div class="quiz-sechead__s">只练答错过的题。答对一次自动移出;没掌握的一直留着,直到全部清空。</div>
+      <section class="review">
+        <div class="review__head">
+          <button class="btn" @click=${()=>{this.stage='result';}}>${ico('ic-arrow-left','ico--sm')} 返回成绩</button>
+          <div class="review__title">${ico('ic-book-open','ico--md')} 错题讲解 · ${wrong.length} 题</div>
         </div>
-        ${n===0 ? html`
-          <div class="quiz-card quiz-done">
-            ${ico('ic-check-circle-2','ico--3xl')}
-            <div class="quiz-done__t">错题本是空的 🎉</div>
-            <p style="color:var(--s-text-secondary)">去「闯关练习」做几题,答错的会自动收藏到这里。</p>
-            <button class="btn btn--primary" @click=${()=>this.setTab('quiz')}>${ico('ic-target','ico--sm')} 去闯关</button>
-          </div>` : html`
-          <div class="review-bar"><span>${ico('ic-repeat','ico--sm')} 待复习:<b>${n}</b> 题</span>
-            <button class="linkbtn" @click=${()=>this.clearWrong()}>${ico('ic-x-circle','ico--xs')} 清空错题本</button></div>
-          ${this._renderQuizBody()}`}
+        ${wrong.map(q=>{ const your=this.answers[q.g]; const full=this.full(q);
+          return html`
+          <div class="wq">
+            <div class="wq__sec wq__sec--${q.secColor}">${q.secName.replace(/第.部分 · /,'')}</div>
+            <div class="wq__stem">${q.q.replace('___','______')}</div>
+            <div class="wq__zh">${q.zh}</div>
+            <div class="wq__rows">
+              <div class="wq__row wq__row--wrong">${ico('ic-x-circle','ico--sm')} 你的答案:${your||'(未作答)'}</div>
+              <div class="wq__row wq__row--right">${ico('ic-check-circle-2','ico--sm')} 正确答案:${q.answer}
+                <button class="speak speak--sm" @click=${(e)=>speak(full,e.currentTarget)}>${ico('ic-volume','ico--xs')}</button>
+              </div>
+            </div>
+            <div class="wq__full">${full} <span class="wq__ipa">${sentenceIPA(full)}</span></div>
+            <div class="wq__explain">${ico('ic-lightbulb','ico--xs')} ${q.explain}</div>
+          </div>`; })}
+        <button class="btn" @click=${()=>{this.stage='result';}} style="margin-top:var(--g-sp-4)">${ico('ic-arrow-left','ico--sm')} 返回成绩</button>
       </section>`;
   }
-  _renderQuizBody(){
-    const rev=this.quizMode==='review';
-    if(this.qIndex>=this._quiz.length){
-      const done=rev && this.wrong.size===0;
-      return html`
-        <div class="quiz-card quiz-done">
-          ${ico(done?'ic-award':'ic-check-circle-2','ico--3xl')}
-          <div class="quiz-done__score">${this.qScore} / ${this._quiz.length}</div>
-          <p style="color:var(--s-text-secondary)">${rev?(done?'错题全部攻克啦!':'这一轮完成,还有没掌握的,再练一轮。'):(this.qScore>=17?'太棒了,句型掌握得很牢!':this.qScore>=11?'不错,再刷一轮更熟!':'答错的已进错题本,去重点复习!')}</p>
-          <div class="quiz-done__btns">
-            ${(!rev||this.wrong.size>0)?html`<button class="btn btn--primary" @click=${()=>{this._buildQuiz();this.requestUpdate();}}>${ico('ic-refresh','ico--sm')} ${rev?'再练错题':'再来一轮'}</button>`:''}
-            ${!rev&&this.wrong.size>0?html`<button class="btn" @click=${()=>this.setTab('review')}>${ico('ic-repeat','ico--sm')} 去错题本(${this.wrong.size})</button>`:''}
-          </div>
-        </div>`;
-    }
-    const q=this._quiz[this.qIndex]; const pct=Math.round(this.qIndex/this._quiz.length*100);
-    const isId=q.type==='identify';
-    return html`
-      <div class="quiz-card">
-        <div class="quiz-progress"><span>第 ${this.qIndex+1} / ${this._quiz.length} 题</span>
-          <span class="quiz-status">${this.combo>=2?html`<span class="combo">🔥 连对 ${this.combo}</span>`:''} 得分 ${this.qScore}</span></div>
-        <div class="quiz-bar"><div class="quiz-bar__fill" style="width:${pct}%"></div></div>
-        <div class="quiz-ask">
-          <div class="quiz-ask__mode">${isId?'读句子,判断它是哪个句式(母题)':'读句子,选出填空的「句式标志词」'}</div>
-          ${isId?html`
-            <div class="quiz-ask__sent">${annUnderline(q.ann)}
-              <button class="speak speak--sm" title="朗读" @click=${(e)=>speak(q.say,e.currentTarget)}>${ico('ic-volume','ico--sm')}</button>
-            </div>
-            <div class="quiz-ask__zh">${q.promptZh}</div>
-          `:html`
-            <div class="quiz-ask__cloze">${q.prompt}</div>
-            <div class="quiz-ask__zh">${q.promptZh}</div>
-          `}
-        </div>
-        <div class="quiz-opts ${isId?'quiz-opts--1col':''}">
-          ${q.opts.map((opt,i)=>{ let cls=''; if(this.qAnswered){ if(opt===q.answer)cls='correct'; else if(i===this.qPicked)cls='wrong'; }
-            return html`<button class="quiz-opt ${cls}" ?disabled=${this.qAnswered} @click=${()=>this.pickQ(i)}>${opt}</button>`; })}
-        </div>
-        ${this.qAnswered?html`
-          <div class="quiz-feedback">
-            ${q.opts[this.qPicked]===q.answer?html`<span style="color:var(--g-green-700);font-weight:600">${ico('ic-check-circle-2','ico--sm')} 正确!${rev?html` <span class="fb-tag fb-tag--out">已移出错题本</span>`:''}</span>`:html`<span style="color:var(--g-red-700);font-weight:600">${ico('ic-x-circle','ico--sm')} 正确答案:${q.answer} <span class="fb-tag fb-tag--in">已自动收藏</span></span>`}
-            <div class="quiz-feedback__sent">${annUnderline(q.ann)}
-              <button class="speak speak--sm" @click=${(e)=>speak(q.say,e.currentTarget)}>${ico('ic-volume','ico--xs')}</button>
-            </div>
-            <span class="quiz-feedback__ipa">${annIPA(q.ann)}</span>
-            <span class="quiz-feedback__pat">句式:${q.patName}</span>
-          </div>
-          <div class="quiz-next"><button class="btn btn--primary" @click=${()=>this.nextQ()}>${this.qIndex<this._quiz.length-1?'下一题':'查看结果'} ${ico('ic-arrow-right','ico--sm')}</button></div>
-        `:''}
-      </div>`;
-  }
 
-  _allSentences(){
-    const set=new Set();
-    this.data.groups.forEach(g=>g.patterns.forEach(p=>p.examples.forEach(e=>set.add(e.en))));
-    return [...set];
-  }
+  _allSentences(){ const set=new Set(); this.flat.forEach(q=>set.add(this.full(q))); return [...set]; }
   async firstUpdated(){
     await this.updateComplete;
     const b=document.getElementById('boot'); if(b) b.remove();
-    // 首次加载性能:预连接 WebSocket + 后台预合成所有例句
     try{ const list=this._allSentences(); window.__allSentences=list; if(typeof _connect==='function')_connect(); if(typeof _prewarm==='function')_prewarm(list); }catch(e){}
   }
 }
-customElements.define('pattern-app', PatternApp);
+customElements.define('test-app', TestApp);
 
 </script>
 </body>
