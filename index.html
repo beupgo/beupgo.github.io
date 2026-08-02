@@ -187,7 +187,6 @@ body{
   background:var(--card);
   border:1px solid var(--border);
   text-decoration:none;color:var(--text);
-  overflow:hidden;
   box-shadow:0 8px 24px rgba(15,23,42,.06),0 2px 8px rgba(15,23,42,.04);
   transition:transform .12s,box-shadow .12s;
 }
@@ -196,28 +195,17 @@ body{
   .crd:hover{transform:translateY(-4px);box-shadow:0 18px 34px rgba(15,23,42,.12),0 8px 16px rgba(15,23,42,.08);}
 }
 
-/* card header – large coloured icon zone */
-.crd-head{
-  display:flex;align-items:center;justify-content:center;
-  min-height:104px;
-  padding:20px 18px 16px;
-  border-bottom:1px solid rgba(255,255,255,.5);
-}
-[data-subj="数学"] .crd-head{background:linear-gradient(180deg,#f4f7ff 0%,var(--math-light) 100%);}
-[data-subj="语文"] .crd-head{background:linear-gradient(180deg,#fffaf4 0%,var(--zh-light) 100%);}
-[data-subj="英语"] .crd-head{background:linear-gradient(180deg,#f4fffa 0%,var(--en-light) 100%);}
-[data-subj="other"] .crd-head{background:linear-gradient(180deg,#fcf8ff 0%,var(--other-light) 100%);}
-
 .crd-icon{
-  width:58px;height:58px;
+  width:42px;height:42px;
   display:flex;align-items:center;justify-content:center;
-  border-radius:18px;
+  border-radius:14px;
   background:rgba(255,255,255,.72);
   border:1px solid rgba(255,255,255,.78);
   box-shadow:inset 0 1px 0 rgba(255,255,255,.85),0 6px 16px rgba(79,70,229,.08);
+  flex:none;
 }
 .crd-icon svg{
-  width:28px;height:28px;display:block;
+  width:22px;height:22px;display:block;
   fill:none;stroke:currentColor;stroke-width:1.9;
   stroke-linecap:round;stroke-linejoin:round;
 }
@@ -229,7 +217,13 @@ body{
 /* card body */
 .crd-body{
   flex:1;display:flex;flex-direction:column;
-  padding:16px 16px 15px;
+  padding:16px;
+}
+.crd-title-row{
+  display:flex;align-items:flex-start;gap:12px;
+}
+.crd-copy{
+  flex:1;min-width:0;
 }
 .crd-title{
   font-size:16px;font-weight:850;line-height:1.42;
@@ -241,26 +235,31 @@ body{
 }
 .crd-foot{
   display:flex;align-items:center;justify-content:space-between;
-  margin-top:auto;padding-top:10px;
-  gap:4px;
+  margin-top:auto;padding-top:12px;
+  gap:10px;
+}
+.crd-meta{
+  display:flex;flex-wrap:wrap;gap:8px 12px;
+  min-width:0;
 }
 .crd-chip{
   font-size:11px;font-weight:800;
   padding:2px 8px;border-radius:99px;
   letter-spacing:.03em;flex:none;
+  margin-left:auto;
 }
 [data-subj="数学"] .crd-chip{background:var(--math-light);color:var(--math);border:1px solid var(--math-mid);}
 [data-subj="语文"] .crd-chip{background:var(--zh-light);color:var(--zh);border:1px solid var(--zh-mid);}
 [data-subj="英语"] .crd-chip{background:var(--en-light);color:var(--en);border:1px solid var(--en-mid);}
 [data-subj="other"] .crd-chip{background:var(--other-light);color:var(--other);border:1px solid var(--other-mid);}
 
-/* ── Time badge ───────────────────────────────────────── */
-.crd-time{
+/* ── Card metadata ─────────────────────────────────────── */
+.crd-time,.crd-date{
   display:flex;align-items:center;gap:3px;
   font-size:11px;font-weight:700;color:var(--text-3);
   white-space:nowrap;
 }
-.crd-time svg{width:11px;height:11px;flex:none;}
+.crd-time svg,.crd-date svg{width:11px;height:11px;flex:none;}
 
 /* ── Footer ───────────────────────────────────────────── */
 .foot{
@@ -312,7 +311,7 @@ body{
   <!-- AUTO-CARDS-START -->
     <h2 class="subject-heading">数学</h2>
 
-    <a class="card" href="g4-math-simple-calc.html" data-time="约 30 分钟">
+    <a class="card" href="g4-math-simple-calc.html" data-time="约 30 分钟" data-date="2026-08-02 16:46">
       <div class="top"><div class="icon">4</div><div>
         <h2>运算定律：拆数凑整巧算</h2>
         <div class="grade-en">GRADE 4 · MATH</div>
@@ -320,7 +319,7 @@ body{
       <p class="desc">加法交换律、结合律，乘法分配律 — 用拆数凑整把计算变简单</p>
     </a>
 
-    <a class="card" href="g5-math-equation.html" data-time="约 30 分钟">
+    <a class="card" href="g5-math-equation.html" data-time="约 30 分钟" data-date="2026-08-02 16:46">
       <div class="top"><div class="icon">5</div><div>
         <h2>简易方程：从天平到解方程</h2>
         <div class="grade-en">GRADE 5 · MATH</div>
@@ -328,7 +327,7 @@ body{
       <p class="desc">用天平模型理解等式，掌握解方程三步骤，含和差倍题型练习</p>
     </a>
 
-    <a class="card" href="g5-math-factors-multiples.html" data-time="约 25 分钟">
+    <a class="card" href="g5-math-factors-multiples.html" data-time="约 25 分钟" data-date="2026-08-02 16:46">
       <div class="top"><div class="icon">5</div><div>
         <h2>因数与倍数：质数合数 · 公因数公倍数</h2>
         <div class="grade-en">GRADE 5 · MATH</div>
@@ -336,7 +335,7 @@ body{
       <p class="desc">理解质数、合数、奇偶数，求最大公因数与最小公倍数</p>
     </a>
 
-    <a class="card" href="g5-math-fraction-split-exercises.html" data-time="约 20 分钟">
+    <a class="card" href="g5-math-fraction-split-exercises.html" data-time="约 20 分钟" data-date="2026-08-02 16:46">
       <div class="top"><div class="icon">5</div><div>
         <h2>裂差 · 裂和专项练习</h2>
         <div class="grade-en">GRADE 5 · MATH</div>
@@ -344,7 +343,7 @@ body{
       <p class="desc">把分数拆成两个分数之差或之和，专项练习题强化裂项技巧</p>
     </a>
 
-    <a class="card" href="g5-math-fraction-split-practice.html" data-time="约 20 分钟">
+    <a class="card" href="g5-math-fraction-split-practice.html" data-time="约 20 分钟" data-date="2026-08-02 16:46">
       <div class="top"><div class="icon">5</div><div>
         <h2>裂差 · 裂和应用练习</h2>
         <div class="grade-en">GRADE 5 · MATH</div>
@@ -352,7 +351,7 @@ body{
       <p class="desc">裂差裂和方法在实际应用题中的综合运用练习</p>
     </a>
 
-    <a class="card" href="g5-math-polygon-area.html" data-time="约 30 分钟">
+    <a class="card" href="g5-math-polygon-area.html" data-time="约 30 分钟" data-date="2026-08-02 16:46">
       <div class="top"><div class="icon">5</div><div>
         <h2>多边形面积：割补转化思想</h2>
         <div class="grade-en">GRADE 5 · MATH</div>
@@ -360,7 +359,7 @@ body{
       <p class="desc">平行四边形、三角形、梯形面积，用割补法解组合图形面积难题</p>
     </a>
 
-    <a class="card" href="grade5-math.html" data-time="约 45 分钟">
+    <a class="card" href="grade5-math.html" data-time="约 45 分钟" data-date="2026-08-02 16:46">
       <div class="top"><div class="icon">5</div><div>
         <h2>五年级数学母题系统</h2>
         <div class="grade-en">GRADE 5 · MATH</div>
@@ -368,7 +367,7 @@ body{
       <p class="desc">覆盖小数乘除法、方程、多边形面积、长方体、分数、植树问题共 8 大模块</p>
     </a>
 
-    <a class="card" href="Math-G5-Fraction-Common-Denominator.html" data-time="约 20 分钟">
+    <a class="card" href="Math-G5-Fraction-Common-Denominator.html" data-time="约 20 分钟" data-date="2026-08-02 16:46">
       <div class="top"><div class="icon">5</div><div>
         <h2>通分：理解通分的本质</h2>
         <div class="grade-en">GRADE 5 · MATH</div>
@@ -376,7 +375,7 @@ body{
       <p class="desc">从"为什么要通分"出发，理解公分母的意义，掌握通分步骤</p>
     </a>
 
-    <a class="card" href="equation-word-problems.html" data-time="约 25 分钟">
+    <a class="card" href="equation-word-problems.html" data-time="约 25 分钟" data-date="2026-08-02 16:46">
       <div class="top"><div class="icon">5</div><div>
         <h2>简易方程应用题练习卷</h2>
         <div class="grade-en">GRADE 5 · MATH</div>
@@ -384,7 +383,7 @@ body{
       <p class="desc">用方程解决行程、购物、工程等应用题，含基础与进阶两级</p>
     </a>
 
-    <a class="card" href="g6-math-fraction-division.html" data-time="约 25 分钟">
+    <a class="card" href="g6-math-fraction-division.html" data-time="约 25 分钟" data-date="2026-08-02 16:46">
       <div class="top"><div class="icon">6</div><div>
         <h2>分数除法应用题：找准单位 1</h2>
         <div class="grade-en">GRADE 6 · MATH</div>
@@ -392,7 +391,7 @@ body{
       <p class="desc">识别"单位 1"是关键，含已知部分量求总量、分率与数量转化等题型</p>
     </a>
 
-    <a class="card" href="g6-math-fractions.html" data-time="约 50 分钟">
+    <a class="card" href="g6-math-fractions.html" data-time="约 50 分钟" data-date="2026-08-02 16:46">
       <div class="top"><div class="icon">6</div><div>
         <h2>分数：从概念到四则运算全覆盖</h2>
         <div class="grade-en">GRADE 6 · MATH</div>
@@ -400,7 +399,7 @@ body{
       <p class="desc">分数的意义、约分通分、加减乘除运算，覆盖真假分数等变种题型</p>
     </a>
 
-    <a class="card" href="g6-math-geometric-thinking.html" data-time="约 30 分钟">
+    <a class="card" href="g6-math-geometric-thinking.html" data-time="约 30 分钟" data-date="2026-08-02 16:46">
       <div class="top"><div class="icon">6</div><div>
         <h2>图形思想：画图法解数学题</h2>
         <div class="grade-en">GRADE 6 · MATH</div>
@@ -408,7 +407,7 @@ body{
       <p class="desc">用线段图、示意图把文字题变成直观图形，快速找到解题思路</p>
     </a>
 
-    <a class="card" href="grade6-math.html" data-time="约 45 分钟">
+    <a class="card" href="grade6-math.html" data-time="约 45 分钟" data-date="2026-08-02 16:46">
       <div class="top"><div class="icon">6</div><div>
         <h2>六年级数学母题系统</h2>
         <div class="grade-en">GRADE 6 · MATH</div>
@@ -416,7 +415,7 @@ body{
       <p class="desc">覆盖分数乘除法、按比分配、圆的周长/面积、圆柱圆锥体积、百分数共 8 模块</p>
     </a>
 
-    <a class="card" href="primary-circle-lessons-problems.html" data-time="约 35 分钟">
+    <a class="card" href="primary-circle-lessons-problems.html" data-time="约 35 分钟" data-date="2026-08-02 16:46">
       <div class="top"><div class="icon">奥</div><div>
         <h2>奥数·圆的面积进阶应用题</h2>
         <div class="grade-en">OLYMPIAD · CIRCLE AREA</div>
@@ -426,7 +425,7 @@ body{
 
     <h2 class="subject-heading">语文</h2>
 
-    <a class="card" href="grade5-chinese-essay-process.html" data-time="约 25 分钟">
+    <a class="card" href="grade5-chinese-essay-process.html" data-time="约 25 分钟" data-date="2026-08-02 16:46">
       <div class="top"><div class="icon">5</div><div>
         <h2>作文是怎么"长"出来的</h2>
         <div class="grade-en">GRADE 5 · CHINESE</div>
@@ -434,7 +433,7 @@ body{
       <p class="desc">拆解一篇优秀作文的诞生过程：选材→构思→开头→结尾，附示范全文</p>
     </a>
 
-    <a class="card" href="grade5-chinese-writing.html" data-time="约 30 分钟">
+    <a class="card" href="grade5-chinese-writing.html" data-time="约 30 分钟" data-date="2026-08-02 16:46">
       <div class="top"><div class="icon">5</div><div>
         <h2>写作提升训练手册</h2>
         <div class="grade-en">GRADE 5 · CHINESE</div>
@@ -444,7 +443,7 @@ body{
 
     <h2 class="subject-heading">英语</h2>
 
-    <a class="card" href="english5.html" data-time="约 45 分钟">
+    <a class="card" href="english5.html" data-time="约 45 分钟" data-date="2026-08-02 16:46">
       <div class="top"><div class="icon">英</div><div>
         <h2>英语冒险岛：闯关式暑假单词营</h2>
         <div class="grade-en">GRADE 3-6 · ENGLISH</div>
@@ -452,7 +451,7 @@ body{
       <p class="desc">3-6 年级核心单词按日分关，听音·跟读·拼写·对话，闯关日历打卡</p>
     </a>
 
-    <a class="card" href="english-tenses.html" data-time="约 20 分钟">
+    <a class="card" href="english-tenses.html" data-time="约 20 分钟" data-date="2026-08-02 16:46">
       <div class="top"><div class="icon">英</div><div>
         <h2>英语时态：动词如何"变身"</h2>
         <div class="grade-en">ENGLISH · TENSES</div>
@@ -460,7 +459,7 @@ body{
       <p class="desc">一般现在时、过去时、现在进行时的构成规则与变形练习，含 13 组题</p>
     </a>
 
-    <a class="card" href="english-sentence-structure.html" data-time="约 25 分钟">
+    <a class="card" href="english-sentence-structure.html" data-time="约 25 分钟" data-date="2026-08-02 16:46">
       <div class="top"><div class="icon">英</div><div>
         <h2>英语句子构成：五大句子成分</h2>
         <div class="grade-en">ENGLISH · SENTENCE STRUCTURE</div>
@@ -468,7 +467,7 @@ body{
       <p class="desc">主语、谓语、宾语、定语、状语的作用与位置，词块拖拽组句练习</p>
     </a>
 
-    <a class="card" href="english-prepositions.html" data-time="约 20 分钟">
+    <a class="card" href="english-prepositions.html" data-time="约 20 分钟" data-date="2026-08-02 16:46">
       <div class="top"><div class="icon">英</div><div>
         <h2>英语介词：in / on / at 等高频用法</h2>
         <div class="grade-en">ENGLISH · PREPOSITIONS</div>
@@ -476,7 +475,7 @@ body{
       <p class="desc">时间、地点、方向介词的区别与搭配，含 11 组选择填空练习</p>
     </a>
 
-    <a class="card" href="english-collocations.html" data-time="约 20 分钟">
+    <a class="card" href="english-collocations.html" data-time="约 20 分钟" data-date="2026-08-02 16:46">
       <div class="top"><div class="icon">英</div><div>
         <h2>英语固定搭配：词和词"交朋友"</h2>
         <div class="grade-en">ENGLISH · COLLOCATIONS</div>
@@ -484,7 +483,7 @@ body{
       <p class="desc">动词+名词、形容词+名词高频固定搭配记忆与练习，含 12 组题</p>
     </a>
 
-    <a class="card" href="English-G6-Sentence-Building.html" data-time="约 15 分钟">
+    <a class="card" href="English-G6-Sentence-Building.html" data-time="约 15 分钟" data-date="2026-08-02 16:46">
       <div class="top"><div class="icon">英</div><div>
         <h2>英语组句：把词语挂成句子小火车</h2>
         <div class="grade-en">GRADE 6 · ENGLISH</div>
@@ -492,7 +491,7 @@ body{
       <p class="desc">按语法顺序将词块拼成正确句子，趣味小火车动画即时反馈</p>
     </a>
 
-    <a class="card" href="english-mixed-quiz.html" data-time="约 20 分钟">
+    <a class="card" href="english-mixed-quiz.html" data-time="约 20 分钟" data-date="2026-08-02 16:46">
       <div class="top"><div class="icon">英</div><div>
         <h2>英语综合练习：时态·介词·搭配三合一</h2>
         <div class="grade-en">ENGLISH · MIXED QUIZ</div>
@@ -500,7 +499,7 @@ body{
       <p class="desc">一次搞定三大专题，随机出题，含即时解析与错题标注</p>
     </a>
 
-    <a class="card" href="new-vocabulary-5-scenes.html" data-time="约 25 分钟">
+    <a class="card" href="new-vocabulary-5-scenes.html" data-time="约 25 分钟" data-date="2026-08-02 16:46">
       <div class="top"><div class="icon">英</div><div>
         <h2>新增单词：5 大生活场景</h2>
         <div class="grade-en">ENGLISH · NEW VOCABULARY</div>
@@ -508,7 +507,7 @@ body{
       <p class="desc">按学校、家庭、购物、运动、自然 5 大场景分组的新单词闪卡学习</p>
     </a>
 
-    <a class="card" href="vocabulary-review.html" data-time="约 35 分钟">
+    <a class="card" href="vocabulary-review.html" data-time="约 35 分钟" data-date="2026-08-02 16:46">
       <div class="top"><div class="icon">英</div><div>
         <h2>北京小学英语单词复习营</h2>
         <div class="grade-en">ENGLISH · VOCABULARY REVIEW</div>
@@ -516,7 +515,7 @@ body{
       <p class="desc">按 16 个主题场景复习北京小学英语全册单词，含拼写与配图记忆</p>
     </a>
 
-    <a class="card" href="word-learning.html" data-time="约 15 分钟">
+    <a class="card" href="word-learning.html" data-time="约 15 分钟" data-date="2026-08-02 16:46">
       <div class="top"><div class="icon">英</div><div>
         <h2>单词乐园：时间 · 交通 · 天气</h2>
         <div class="grade-en">ENGLISH · WORD LEARNING</div>
@@ -524,7 +523,7 @@ body{
       <p class="desc">真人发音 + 国际音标 + 情境例句，听读跟读三主题单词</p>
     </a>
 
-    <a class="card" href="word-roots.html" data-time="约 20 分钟">
+    <a class="card" href="word-roots.html" data-time="约 20 分钟" data-date="2026-08-02 16:46">
       <div class="top"><div class="icon">英</div><div>
         <h2>词根词缀：拆词记单词</h2>
         <div class="grade-en">ENGLISH · WORD ROOTS</div>
@@ -570,7 +569,8 @@ body{
     volume: '<svg viewBox="0 0 24 24"><path d="M5 14h3l4 3V7L8 10H5Z"/><path d="M16 9.5a4.5 4.5 0 0 1 0 5"/><path d="M18.5 7a8 8 0 0 1 0 10"/></svg>',
     sprout: '<svg viewBox="0 0 24 24"><path d="M12 20v-6"/><path d="M12 14c0-3 2.5-5.5 5.5-5.5 0 3-2.5 5.5-5.5 5.5Z"/><path d="M12 12c0-2.8-2.2-5-5-5 0 2.8 2.2 5 5 5Z"/></svg>',
     bookopen: '<svg viewBox="0 0 24 24"><path d="M4 6.5A2.5 2.5 0 0 1 6.5 4H11v15H6.5A2.5 2.5 0 0 0 4 21.5Z"/><path d="M20 6.5A2.5 2.5 0 0 0 17.5 4H13v15h4.5A2.5 2.5 0 0 1 20 21.5Z"/></svg>',
-    message: '<svg viewBox="0 0 24 24"><path d="M7 17.5 4 20V6.5A2.5 2.5 0 0 1 6.5 4h11A2.5 2.5 0 0 1 20 6.5v8A2.5 2.5 0 0 1 17.5 17H7Z"/><path d="M8 9h8"/><path d="M8 12h5"/></svg>'
+    message: '<svg viewBox="0 0 24 24"><path d="M7 17.5 4 20V6.5A2.5 2.5 0 0 1 6.5 4h11A2.5 2.5 0 0 1 20 6.5v8A2.5 2.5 0 0 1 17.5 17H7Z"/><path d="M8 9h8"/><path d="M8 12h5"/></svg>',
+    calendar: '<svg viewBox="0 0 24 24"><path d="M7 3v3"/><path d="M17 3v3"/><rect x="4" y="5" width="16" height="15" rx="2"/><path d="M4 10h16"/></svg>'
   };
   var CARD_ICON_BY_FILE = {
     'g4-math-simple-calc.html': 'calculator',
@@ -640,12 +640,13 @@ body{
       var h2el   = el.querySelector('h2');
       var genEl  = el.querySelector('.grade-en');
       var descEl = el.querySelector('.desc');
-    sections[curSubj].push({
+      sections[curSubj].push({
         href:       el.getAttribute('href') || '#',
         title:      h2el   ? h2el.textContent.trim()  : '',
         gradeLabel: genEl  ? genEl.textContent.trim() : '',
         desc:       descEl ? descEl.textContent.trim(): '',
         time:       el.dataset.time || '',
+        date:       el.dataset.date || '',
       });
     }
   }
@@ -698,22 +699,25 @@ body{
       a.className = 'crd';
       a.href      = item.href;
 
-      /* card header – icon in coloured zone */
-      var headDiv = document.createElement('div');
-      headDiv.className = 'crd-head';
+      var titleRow = document.createElement('div');
+      titleRow.className = 'crd-title-row';
       var iconDiv = document.createElement('div');
       iconDiv.className   = 'crd-icon';
       iconDiv.innerHTML = pickCardIcon(item);
-      headDiv.appendChild(iconDiv);
+      titleRow.appendChild(iconDiv);
 
-      /* card body */
       var bodyDiv = document.createElement('div');
       bodyDiv.className = 'crd-body';
+      bodyDiv.appendChild(titleRow);
+
+      var copyDiv = document.createElement('div');
+      copyDiv.className = 'crd-copy';
+      titleRow.appendChild(copyDiv);
 
       var titleSpan = document.createElement('div');
       titleSpan.className   = 'crd-title';
       titleSpan.textContent = item.title;
-      bodyDiv.appendChild(titleSpan);
+      copyDiv.appendChild(titleSpan);
 
       if (item.desc && item.desc !== item.title) {
         var descSpan = document.createElement('div');
@@ -722,15 +726,26 @@ body{
         bodyDiv.appendChild(descSpan);
       }
 
-      /* footer row: time + grade chip */
       var footDiv = document.createElement('div');
       footDiv.className = 'crd-foot';
+      var metaDiv = document.createElement('div');
+      metaDiv.className = 'crd-meta';
 
+      if (item.date) {
+        var dateSpan = document.createElement('div');
+        dateSpan.className = 'crd-date';
+        dateSpan.innerHTML = iconSvg('calendar') + '发布 ' + item.date.split(' ')[0];
+        metaDiv.appendChild(dateSpan);
+      }
       if (item.time) {
         var timeSpan = document.createElement('div');
         timeSpan.className = 'crd-time';
         timeSpan.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>' + item.time;
-        footDiv.appendChild(timeSpan);
+        metaDiv.appendChild(timeSpan);
+      }
+
+      if (metaDiv.children.length) {
+        footDiv.appendChild(metaDiv);
       }
 
       if (chipText) {
@@ -739,10 +754,9 @@ body{
         chip.textContent = chipText;
         footDiv.appendChild(chip);
       }
-
+      bodyDiv.appendChild(footDiv);
       bodyDiv.appendChild(footDiv);
 
-      a.appendChild(headDiv);
       a.appendChild(bodyDiv);
 
       list.appendChild(a);
