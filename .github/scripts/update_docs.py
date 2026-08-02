@@ -388,14 +388,14 @@ def gen_card(p: dict) -> str:
 
 
 def gen_cards(pages: list[dict]) -> str:
-    # Group by subject; within each group sort by uploaded_ts descending
+    # Group by subject; within each group sort by updated_ts descending
     grouped: dict[str, list[dict]] = {}
     for p in pages:
         key = p["subject_slug"] or "uncategorized"
         grouped.setdefault(key, []).append(p)
 
     for key in grouped:
-        grouped[key].sort(key=lambda p: (p["uploaded_ts"], p["updated_ts"]), reverse=True)
+        grouped[key].sort(key=lambda p: p["updated_ts"], reverse=True)
 
     ordered_subjects = [s for s in SUBJECT_NAMES_ZH.keys() if s in grouped]
     ordered_subjects += sorted(s for s in grouped.keys() if s not in SUBJECT_NAMES_ZH)
