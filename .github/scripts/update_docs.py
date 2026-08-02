@@ -332,7 +332,27 @@ def gen_card(p: dict) -> str:
 
 
 def gen_cards(pages: list[dict]) -> str:
-    return "\n\n".join(gen_card(p) for p in pages)
+    # Group by subject; within each group sort by updated_ts descending
+    grouped: dict[str, list[dict]] = {}
+    for p in pages:
+        key = p["subject_slug"] or "uncategorized"
+        grouped.setdefault(key, []).append(p)
+
+    for key in grouped:
+        grouped[key].sort(key=lambda p: p["updated_ts"], reverse=True)
+
+    ordered_subjects = [s for s in SUBJECT_NAMES_ZH.keys() if s in grouped]
+    ordered_subjects += sorted(s for s in grouped.keys() if s not in SUBJECT_NAMES_ZH)
+
+    sections = []
+    for subject_slug in ordered_subjects:
+        subject_name = SUBJECT_NAMES_ZH.get(subject_slug, "其他")
+        cards_html = "\n\n".join(gen_card(p) for p in grouped[subject_slug])
+        sections.append(
+            f'    <h2 class="subject-heading">{subject_name}</h2>\n\n{cards_html}'
+        )
+
+    return "\n\n".join(sections)
 
 
 # ---------------------------------------------------------------------------
