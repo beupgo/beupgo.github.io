@@ -41,6 +41,29 @@ SUBJECT_NAMES_ZH = {
     "pe":        "体育",
 }
 
+SUBJECT_ALIASES = {
+    "math": "math", "数学": "math",
+    "chinese": "chinese", "语文": "chinese",
+    "english": "english", "英语": "english",
+    "science": "science", "科学": "science",
+    "physics": "physics", "物理": "physics",
+    "chemistry": "chemistry", "化学": "chemistry",
+    "biology": "biology", "生物": "biology",
+    "history": "history", "历史": "history",
+    "geography": "geography", "地理": "geography",
+    "art": "art", "美术": "art",
+    "music": "music", "音乐": "music",
+    "pe": "pe", "体育": "pe",
+}
+
+SUBJECT_KEYWORDS = [
+    ("english", re.compile(r"英语|单词|词根|词缀|组句|句子")),
+    ("chinese", re.compile(r"语文|作文|写作")),
+    ("math", re.compile(r"数学|奥数|方程|分数|几何|多边形|通分|运算|因数|倍数|圆|面积")),
+]
+
+TRUE_VALUES = {"1", "true", "yes", "y", "on"}
+
 ARROW_SVG = (
     '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor"'
     ' stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">'
@@ -80,19 +103,69 @@ BACK_NAV_HTML = (
 # Helpers
 # ---------------------------------------------------------------------------
 
-def extract_title(html_path: Path) -> str:
-    text = html_path.read_text(encoding="utf-8", errors="ignore")
+def extract_title(text: str, fallback: str) -> str:
     m = re.search(r"<title[^>]*>(.*?)</title>", text, re.IGNORECASE | re.DOTALL)
-    return m.group(1).strip() if m else html_path.stem
+    return m.group(1).strip() if m else fallback
 
 
-def extract_meta_description(html_path: Path) -> str:
-    text = html_path.read_text(encoding="utf-8", errors="ignore")
-    m = re.search(
-        r'<meta\s+name=["\']description["\']\s+content=["\'](.*?)["\']',
-        text, re.IGNORECASE,
-    )
+def extract_meta_content(text: str, names: set[str]) -> str:
+    for meta in re.finditer(r"<meta\b[^>]*>", text, re.IGNORECASE):
+        tag = meta.group(0)
+        name_m = re.search(r'\bname\s*=\s*["\']([^"\']+)["\']', tag, re.IGNORECASE)
+        if not name_m:
+            continue
+        if name_m.group(1).strip().lower() not in names:
+            continue
+        content_m = re.search(r'\bcontent\s*=\s*["\']([^"\']*)["\']', tag, re.IGNORECASE)
+        if content_m:
+            return content_m.group(1).strip()
+    return ""
+
+
+def extract_comment_value(text: str, key: str) -> str:
+    m = re.search(rf"<!--\s*{re.escape(key)}\s*:\s*(.*?)\s*-->", text, re.IGNORECASE)
     return m.group(1).strip() if m else ""
+
+
+def normalize_subject_slug(value: str) -> str | None:
+    if not value:
+        return None
+    v = value.strip().lower()
+    return SUBJECT_ALIASES.get(v)
+
+
+def infer_subject_slug(title: str) -> str | None:
+    for slug, pattern in SUBJECT_KEYWORDS:
+        if pattern.search(title):
+            return slug
+    return None
+
+
+def extract_meta_description(text: str) -> str:
+    return extract_meta_content(text, {"description"})
+
+
+def extract_subject_slug(text: str, title: str) -> str | None:
+    meta_subject = extract_meta_content(
+        text,
+        {"subject", "auto-subject", "beupgo-subject", "page-subject"},
+    )
+    comment_subject = extract_comment_value(text, "AUTO-SUBJECT")
+    return (
+        normalize_subject_slug(meta_subject)
+        or normalize_subject_slug(comment_subject)
+        or infer_subject_slug(title)
+    )
+
+
+def is_hidden_page(text: str) -> bool:
+    meta_hidden = extract_meta_content(
+        text,
+        {"hidden", "auto-hidden", "beupgo-hidden", "page-hidden"},
+    )
+    comment_hidden = extract_comment_value(text, "AUTO-HIDE")
+    value = (meta_hidden or comment_hidden).strip().lower()
+    return value in TRUE_VALUES
 
 
 def parse_filename(name: str):
@@ -115,9 +188,11 @@ def collect_pages() -> list[dict]:
     for f in sorted(ROOT.glob("*.html")):
         if f.name == "index.html":
             continue
-        grade_num, subject_slug, extra = parse_filename(f.name)
-        title = extract_title(f)
-        description = extract_meta_description(f)
+        text = f.read_text(encoding="utf-8", errors="ignore")
+        grade_num, filename_subject_slug, extra = parse_filename(f.name)
+        title = extract_title(text, f.stem)
+        description = extract_meta_description(text)
+        subject_slug = normalize_subject_slug(filename_subject_slug or "") or extract_subject_slug(text, title)
         updated_ts, updated_at = get_git_last_updated(f.name)
         pages.append(
             dict(
@@ -127,6 +202,7 @@ def collect_pages() -> list[dict]:
                 extra=extra,
                 title=title,
                 description=description,
+                hidden=is_hidden_page(text),
                 updated_ts=updated_ts,
                 updated_at=updated_at,
             )
@@ -174,13 +250,14 @@ def replace_between(text: str, start: str, end: str, new_content: str) -> str:
 
 def gen_readme_table(pages: list[dict]) -> str:
     sorted_pages = sorted(pages, key=lambda p: (p["updated_ts"], p["file"]), reverse=True)
-    lines = ["| 页面 | 在线地址 | 更新时间 |", "|---|---|---|"]
+    lines = ["| 页面 | 学科分类 | 在线地址 | 更新时间 |", "|---|---|---|---|"]
     for p in sorted_pages:
         url = f"https://beupgo.github.io/{p['file']}"
         title = p["title"].replace("|", "\\|")
+        subject = SUBJECT_NAMES_ZH.get(p["subject_slug"] or "", "未分类")
         updated_at = p["updated_at"] or "-"
-        lines.append(f"| {title} | {url} | {updated_at} |")
-    lines.append("| 导航首页 | https://beupgo.github.io/ | - |")
+        lines.append(f"| {title} | {subject} | {url} | {updated_at} |")
+    lines.append("| 导航首页 | - | https://beupgo.github.io/ | - |")
     return "\n".join(lines)
 
 
@@ -302,9 +379,10 @@ def update_subpages(pages: list[dict]) -> bool:
 
 def main() -> int:
     pages = collect_pages()
-    print(f"Found {len(pages)} page(s): {[p['file'] for p in pages]}")
-    changed_readme = update_readme(pages)
-    changed_index = update_index(pages)
+    visible_pages = [p for p in pages if not p["hidden"]]
+    print(f"Found {len(pages)} page(s), visible {len(visible_pages)} page(s).")
+    changed_readme = update_readme(visible_pages)
+    changed_index = update_index(visible_pages)
     changed_subpages = update_subpages(pages)
     return 0 if (changed_readme or changed_index or changed_subpages) else 1
 
