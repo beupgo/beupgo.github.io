@@ -35,7 +35,8 @@
 
 | 页面 | 在线访问 | 更新时间 |
 |---|---|---|
-| 小学英语常用句式大全 | [开始学习](https://beupgo.github.io/primary-sentence-patterns.html) | 2026-08-02 21:23 |
+| 英语学习摸底测试卷 | [开始学习](https://beupgo.github.io/english-placement-test-50.html) | 2026-08-03 17:44 |
+| 小学英语常用句式大全 | [开始学习](https://beupgo.github.io/primary-sentence-patterns.html) | 2026-08-02 13:23 |
 | 新增单词专项 · 5 大场景 | [开始学习](https://beupgo.github.io/new-vocabulary-5-scenes.html) | 2026-08-02 06:29 |
 | 北京小学英语 · 单词复习营 | [开始学习](https://beupgo.github.io/vocabulary-review.html) | 2026-07-26 14:29 |
 | 英语固定搭配学习专题 | [开始学习](https://beupgo.github.io/english-collocations.html) | 2026-07-26 05:13 |
@@ -86,6 +87,7 @@
 ├─ Math-G5-Fraction-Common-Denominator.html  # 通分专项 · 理解通分的本质 | 小学数学
 ├─ english-collocations.html  # 英语固定搭配学习专题
 ├─ english-mixed-quiz.html  # 英语综合练习
+├─ english-placement-test-50.html  # 英语学习摸底测试卷
 ├─ english-prepositions.html  # 英语介词学习专题
 ├─ english-sentence-structure.html  # 英语句子构成专题
 ├─ english-tenses.html  # 英语时态学习专题
