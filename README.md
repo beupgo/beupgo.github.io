@@ -35,7 +35,8 @@
 
 | 页面 | 在线访问 | 更新时间 |
 |---|---|---|
-| 英语学习摸底测试卷 | [开始学习](https://beupgo.github.io/english-placement-test-100.html) | 2026-08-03 22:01 |
+| 英语学习摸底测试卷 | [开始学习](https://beupgo.github.io/english-advanced-test-150.html) | 2026-08-04 22:29 |
+| 英语学习摸底测试卷 | [开始学习](https://beupgo.github.io/english-placement-test-100.html) | 2026-08-03 14:01 |
 | 英语学习摸底测试卷 | [开始学习](https://beupgo.github.io/english-placement-test-50.html) | 2026-08-03 09:44 |
 | 小学英语常用句式大全 | [开始学习](https://beupgo.github.io/primary-sentence-patterns.html) | 2026-08-02 13:23 |
 | 新增单词专项 · 5 大场景 | [开始学习](https://beupgo.github.io/new-vocabulary-5-scenes.html) | 2026-08-02 06:29 |
@@ -86,6 +87,7 @@
 ├─ grade6-math.html  # 北京六年级数学 · 母题学习系统
 ├─ English-G6-Sentence-Building.html  # 英语组句魔法 · 句子小火车 | 小学英语
 ├─ Math-G5-Fraction-Common-Denominator.html  # 通分专项 · 理解通分的本质 | 小学数学
+├─ english-advanced-test-150.html  # 英语学习摸底测试卷
 ├─ english-collocations.html  # 英语固定搭配学习专题
 ├─ english-mixed-quiz.html  # 英语综合练习
 ├─ english-placement-test-100.html  # 英语学习摸底测试卷
