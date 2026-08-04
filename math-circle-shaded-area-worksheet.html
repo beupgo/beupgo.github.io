@@ -1,11 +1,10 @@
-<!DOCTYPE html>
-<html lang="zh-CN" data-theme="">
+<!doctype html>
+<html lang="zh-CN" data-theme="light">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>英语学习摸底测试卷</title>
-<style>
-/* =========================================================================
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>圆与阴影面积测试卷 · 北京小学</title>
+<style>/* =========================================================================
    AURORA DESIGN SYSTEM · tokens.css · v2.0
    Three-tier token architecture
      TIER 1  GLOBAL / PRIMITIVE  --g-*   raw values, theme-agnostic
@@ -45,8 +44,8 @@ gc-*, gc-*::before, gc-*::after {
 /* ===================== TIER 1 · GLOBAL / PRIMITIVE ===================== */
 :root {
   /* --- Brand hue (configurable at runtime) --- */
-  --brand-h: 232;
-  --brand-s: 84%;
+  --brand-h: 174;
+  --brand-s: 62%;
 
   /* --- Primary tonal scale --- */
   --g-primary-50:  hsl(var(--brand-h), var(--brand-s), 97%);
@@ -549,8 +548,8 @@ gc-*, gc-*::before, gc-*::after {
   /* Neutralize screen elevation — shadows don't print */
   * { box-shadow: none !important; text-shadow: none !important; }
 }
-
-/* =========================================================================
+</style>
+<style>/* =========================================================================
    GENIUS DESIGN ICONS · icons.css · v1.0
    Token-driven SVG icon layer. Load AFTER genius-design-tokens' tokens.css so
    the semantic icon roles can reference --s-* and the spacing scale.
@@ -759,8 +758,8 @@ gc-*, gc-*::before, gc-*::after {
     stroke-dashoffset: 0 !important;
   }
 }
-
-/* =========================================================================
+</style>
+<style>/* =========================================================================
    GENIUS DESIGN LAYOUT · layout-kit.css
    Token-driven layout layer. Companion to genius-design-tokens (tokens.css).
    Consumes --g-sp-* (8pt spacing), --g-bp-* (breakpoints), semantic/component
@@ -1048,195 +1047,211 @@ gc-*, gc-*::before, gc-*::after {
   }
 }
 
-
-/* ============================================================
-   英语摸底测试 · 单文件离线
+</style>
+<style>/* ============================================================
+   MATH WORKSHEET · page styles
+   Content page built on the three-tier tokens (+ print layer).
+   References ONLY --s-* / --c-* and structural --g-* primitives,
+   so the print scenario (grayscale ink, @page, pagination) works
+   automatically with zero worksheet-specific print CSS.
    ============================================================ */
-html, body { background: var(--s-bg); margin: 0; }
-body { font-family: var(--g-font); color: var(--s-text); min-height: 100dvh; -webkit-font-smoothing: antialiased; }
-.app { min-height: 100dvh; display: flex; flex-direction: column; }
-:root { --c-container-max: min(94vw, 820px); }
-.wrap { width: 100%; max-width: var(--c-container-max); margin-inline: auto; padding-inline: var(--c-container-pad, clamp(var(--g-sp-4), 4vw, var(--g-sp-8))); }
 
-/* appbar */
-.appbar { position: sticky; top: 0; z-index: var(--g-z-sticky); background: color-mix(in srgb, var(--s-bg) 85%, transparent); backdrop-filter: saturate(150%) blur(12px); border-bottom: 1px solid var(--s-border); }
-.appbar__inner { display: flex; align-items: center; gap: var(--g-sp-3); padding-block: var(--g-sp-3); }
-.brand { display: flex; align-items: center; gap: var(--g-sp-3); min-width: 0; }
-.brand__mark { width: 44px; height: 44px; border-radius: var(--g-r-lg); display: grid; place-items: center; flex: none; background: var(--s-brand); color: var(--s-on-brand); box-shadow: var(--s-shadow-sm); }
-.brand__txt { display: flex; flex-direction: column; }
-.brand__title { font-size: var(--s-fs-body-lg); font-weight: var(--g-fw-bold); line-height: 1.2; }
-.brand__sub { font-size: var(--s-fs-caption); color: var(--s-text-secondary); }
-.appbar__spacer { flex: 1; }
-.iconbtn { width: 40px; height: 40px; border-radius: var(--g-r-md); border: 1px solid var(--s-border); background: var(--s-surface); color: var(--s-text-secondary); display: grid; place-items: center; cursor: pointer; }
-.iconbtn:hover { background: var(--s-surface-hover); color: var(--s-text); }
-.rate-ctrl { display: flex; align-items: center; gap: var(--g-sp-2); color: var(--s-text-secondary); }
-.rate-seg { display: flex; padding: 3px; background: var(--s-surface-sunken); border: 1px solid var(--s-border); border-radius: var(--g-r-full); }
-.rate-opt { appearance: none; border: 0; background: transparent; cursor: pointer; font: inherit; font-size: var(--s-fs-caption); font-weight: var(--g-fw-medium); color: var(--s-text-secondary); padding: var(--g-sp-1) var(--g-sp-3); border-radius: var(--g-r-full); min-height: 34px; }
-.rate-opt--on { background: var(--s-brand); color: var(--s-on-brand); box-shadow: var(--s-shadow-sm); }
-@media (max-width: 560px){ .rate-ctrl > .ico { display: none; } .brand__sub { display: none; } }
+/* short aliases used by this page (all point at semantic/structural tokens) */
+:root {
+  --font: var(--g-font);
+  --text: var(--s-text);
+  --text-secondary: var(--s-text-secondary);
+  --text-muted: var(--s-text-muted);
+  --brand: var(--s-brand);
+  --surface: var(--s-surface);
+  --bg: var(--s-bg);
+  --border: var(--s-border);
+  --border-strong: var(--s-border-strong);
+}
 
-/* buttons */
-.btn { appearance: none; cursor: pointer; font: inherit; font-size: var(--s-fs-body); font-weight: var(--g-fw-medium); border: 1px solid var(--s-border); background: var(--s-surface); color: var(--s-text); border-radius: var(--g-r-lg); padding: var(--g-sp-3) var(--g-sp-5); min-height: 46px; display: inline-flex; align-items: center; gap: var(--g-sp-2); }
-.btn:hover:not(:disabled){ background: var(--s-surface-hover); }
-.btn:disabled { opacity: .45; cursor: default; }
-.btn--primary { background: var(--s-brand); color: var(--s-on-brand); border-color: transparent; }
-.btn--primary:hover:not(:disabled){ background: var(--s-brand); color: var(--s-on-brand); filter: brightness(1.06); }
-.btn--lg { font-size: var(--s-fs-body-lg); padding: var(--g-sp-4) var(--g-sp-8); min-height: 54px; }
-.speak { appearance: none; cursor: pointer; border: 1px solid var(--s-border); background: var(--s-surface); color: var(--s-brand); border-radius: var(--g-r-md); width: 34px; height: 34px; display: inline-grid; place-items: center; flex: none; }
-.speak:hover { background: var(--s-brand-subtle); }
-.speak.playing { background: var(--s-brand); color: var(--s-on-brand); }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0;
+  font-family: var(--font);
+  font-size: var(--g-fs-base);
+  line-height: var(--g-lh-base);
+  color: var(--text);
+  background: var(--bg);
+  -webkit-font-smoothing: antialiased;
+}
 
-/* intro */
-.intro { padding-block: var(--g-sp-8); }
-.intro__card { background: var(--s-surface); border: 1px solid var(--s-border); border-radius: var(--g-r-2xl); box-shadow: var(--s-shadow-sm); padding: clamp(var(--g-sp-6), 5vw, var(--g-sp-10)); text-align: center; }
-.intro__ic { width: 64px; height: 64px; margin: 0 auto var(--g-sp-4); border-radius: var(--g-r-xl); display: grid; place-items: center; background: var(--s-brand); color: var(--s-on-brand); }
-.intro__card h1 { margin: 0; font-size: var(--s-fs-h1); font-weight: var(--g-fw-bold); }
-.intro__desc { margin: var(--g-sp-4) auto; max-width: 640px; color: var(--s-text-secondary); font-size: var(--s-fs-body); line-height: var(--s-lh-body); text-align: left; }
-.intro__secs { display: flex; flex-wrap: wrap; gap: var(--g-sp-3); justify-content: center; margin-bottom: var(--g-sp-6); }
-.intro__sec { display: inline-flex; align-items: center; gap: var(--g-sp-1); font-size: var(--s-fs-caption); background: var(--s-surface-sunken); border: 1px solid var(--s-border); border-radius: var(--g-r-full); padding: var(--g-sp-2) var(--g-sp-4); }
-.intro__sec b { color: var(--s-brand); }
-.intro__sec--brand .ico{color:var(--s-brand)} .intro__sec--cyan .ico{color:var(--g-cyan-700)} .intro__sec--green .ico{color:var(--g-green-700)} .intro__sec--amber .ico{color:var(--g-amber-700)}
+/* screen-only floating controls (hidden in print via .no-print) */
+.toolbar {
+  position: fixed; top: 16px; right: 16px; z-index: var(--g-z-sticky);
+  display: flex; gap: var(--g-sp-2);
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: var(--g-r-md); padding: var(--g-sp-2);
+  box-shadow: var(--s-shadow-md);
+}
+.btn {
+  font: inherit; font-size: var(--g-fs-sm); font-weight: var(--g-fw-semibold);
+  height: 32px; padding: 0 var(--g-sp-4); border-radius: var(--g-r-md);
+  border: 1px solid var(--border-strong); background: var(--surface);
+  color: var(--text); cursor: pointer;
+}
+.btn--primary { background: var(--brand); color: var(--s-on-brand); border-color: transparent; }
 
-/* test */
-.test { padding-block: var(--g-sp-6) var(--g-sp-8); }
-.test__top { margin-bottom: var(--g-sp-4); }
-.test__meta { display: flex; align-items: center; justify-content: space-between; font-size: var(--s-fs-caption); }
-.test__sec { font-weight: var(--g-fw-bold); padding: 2px var(--g-sp-3); border-radius: var(--g-r-full); }
-.test__sec--brand{color:var(--s-brand);background:var(--s-brand-subtle)} .test__sec--cyan{color:var(--g-cyan-700);background:var(--g-cyan-100)} .test__sec--green{color:var(--g-green-700);background:var(--g-green-100)} .test__sec--amber{color:var(--g-amber-700);background:var(--g-amber-100)}
-.test__count { color: var(--s-text-secondary); }
-.test__progress { height: 8px; background: var(--s-surface-sunken); border-radius: var(--g-r-full); overflow: hidden; margin: var(--g-sp-2) 0; }
-.test__progress-fill { height: 100%; background: var(--s-brand); border-radius: var(--g-r-full); transition: width var(--g-dur-base) var(--g-ease); }
-.test__answered { font-size: var(--s-fs-caption); color: var(--s-text-muted); text-align: right; }
-.qcard { background: var(--s-surface); border: 1px solid var(--s-border); border-radius: var(--g-r-xl); box-shadow: var(--s-shadow-sm); padding: clamp(var(--g-sp-5), 4vw, var(--g-sp-8)); }
-.qcard__stem { font-size: var(--s-fs-h3); font-weight: var(--g-fw-medium); line-height: 1.7; }
-.qcard__blank { display: inline-block; min-width: 64px; text-align: center; color: var(--s-brand); font-weight: var(--g-fw-bold); border-bottom: 2px solid var(--s-brand); padding: 0 var(--g-sp-2); vertical-align: bottom; }
-.qcard__blank:empty::before { content: ""; }
-.qcard__zh { margin-top: var(--g-sp-2); color: var(--s-text-secondary); font-size: var(--s-fs-body); }
-.qcard__opts { margin-top: var(--g-sp-5); display: grid; gap: var(--g-sp-3); }
-.opt { appearance: none; cursor: pointer; font: inherit; text-align: left; display: flex; align-items: center; gap: var(--g-sp-3); background: var(--s-surface); border: 1.5px solid var(--s-border); border-radius: var(--g-r-lg); padding: var(--g-sp-3) var(--g-sp-4); min-height: 52px; transition: all var(--g-dur-fast) var(--g-ease); }
-.opt:hover { border-color: var(--s-brand); background: var(--s-brand-subtle); color: var(--s-text); }
-.opt--on { border-color: var(--s-brand); background: var(--s-brand-subtle); box-shadow: var(--s-shadow-sm); }
-.opt__letter { flex: none; width: 28px; height: 28px; border-radius: var(--g-r-full); display: grid; place-items: center; font-weight: var(--g-fw-bold); font-size: var(--s-fs-caption); background: var(--s-surface-sunken); color: var(--s-text-secondary); }
-.opt--on .opt__letter { background: var(--s-brand); color: var(--s-on-brand); }
-.opt__text { font-size: var(--s-fs-body-lg); }
-.test__nav { display: flex; justify-content: space-between; margin-top: var(--g-sp-5); }
+/* the printable sheet — mimics an A4 page on screen */
+.sheet {
+  max-width: 178mm;                 /* A4 width minus 2×16mm margin */
+  margin: 32px auto;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--g-r-lg);
+  box-shadow: var(--s-shadow-sm);
+  padding: var(--g-sp-10) var(--g-sp-12);
+}
 
-/* answer sheet */
-.sheet { margin-top: var(--g-sp-6); background: var(--s-surface); border: 1px solid var(--s-border); border-radius: var(--g-r-xl); padding: var(--g-sp-4); }
-.sheet__title { font-size: var(--s-fs-caption); font-weight: var(--g-fw-bold); color: var(--s-text-secondary); display: flex; align-items: center; gap: var(--g-sp-1); margin-bottom: var(--g-sp-3); }
-.sheet__grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(38px, 1fr)); gap: var(--g-sp-2); }
-.sheet__cell { appearance: none; cursor: pointer; font: inherit; font-size: var(--s-fs-caption); border: 1px solid var(--s-border); background: var(--s-surface); color: var(--s-text-secondary); border-radius: var(--g-r-md); min-height: 38px; }
-.sheet__cell--done { background: var(--s-brand-subtle); color: var(--s-brand); border-color: color-mix(in srgb, var(--s-brand) 30%, transparent); font-weight: var(--g-fw-bold); }
-.sheet__cell--cur { outline: 2px solid var(--s-brand); outline-offset: 1px; }
-.sheet__hint { margin-top: var(--g-sp-3); font-size: var(--s-fs-caption); color: var(--g-amber-700); display: flex; align-items: center; gap: var(--g-sp-1); }
+/* ---- worksheet header ---- */
+.ws-head {
+  display: flex; align-items: flex-start; justify-content: space-between;
+  gap: var(--g-sp-6);
+  padding-bottom: var(--g-sp-5);
+  border-bottom: var(--g-bw-2) solid var(--brand);
+  margin-bottom: var(--g-sp-8);
+}
+.ws-title { font-size: var(--g-fs-2xl); font-weight: var(--g-fw-bold); color: var(--text); margin: 0; }
+.ws-sub { color: var(--text-secondary); font-size: var(--g-fs-sm); margin-top: var(--g-sp-1); }
+.ws-meta { display: grid; gap: var(--g-sp-2); font-size: var(--g-fs-sm); color: var(--text-secondary); text-align: right; }
+.ws-field { display: inline-flex; align-items: baseline; gap: var(--g-sp-2); }
+.ws-line { display: inline-block; min-width: 96px; border-bottom: var(--g-bw-1) solid var(--border-strong); }
+.ws-score {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 56px; height: 56px; border: var(--g-bw-2) solid var(--brand);
+  border-radius: var(--g-r-full); color: var(--brand); font-weight: var(--g-fw-bold);
+}
 
-/* result */
-.result { padding-block: var(--g-sp-8); }
-.result__hero { text-align: center; }
-.result__hero .ico { color: var(--g-amber-500); }
-.result__score { font-size: 64px; font-weight: var(--g-fw-bold); color: var(--s-brand); line-height: 1.1; margin-top: var(--g-sp-2); }
-.result__max { font-size: var(--s-fs-h2); color: var(--s-text-muted); }
-.result__level { font-size: var(--s-fs-h3); font-weight: var(--g-fw-bold); }
-.result__sub { color: var(--s-text-secondary); margin-top: 2px; }
-.result__secs { margin: var(--g-sp-6) 0; display: grid; gap: var(--g-sp-3); }
-.rsec { background: var(--s-surface); border: 1px solid var(--s-border); border-radius: var(--g-r-lg); padding: var(--g-sp-3) var(--g-sp-4); }
-.rsec__head { display: flex; align-items: center; gap: var(--g-sp-2); font-weight: var(--g-fw-medium); }
-.rsec__head b { margin-left: auto; }
-.rsec__head .ico{color:var(--s-brand)} .rsec--cyan .ico{color:var(--g-cyan-700)} .rsec--green .ico{color:var(--g-green-700)} .rsec--amber .ico{color:var(--g-amber-700)}
-.rsec__bar { height: 8px; background: var(--s-surface-sunken); border-radius: var(--g-r-full); overflow: hidden; margin-top: var(--g-sp-2); }
-.rsec__fill { height: 100%; background: var(--s-brand); border-radius: var(--g-r-full); }
-.rsec--cyan .rsec__fill{background:var(--g-cyan-500)} .rsec--green .rsec__fill{background:var(--g-green-500)} .rsec--amber .rsec__fill{background:var(--g-amber-500)}
-.result__btns { display: flex; gap: var(--g-sp-3); flex-wrap: wrap; justify-content: center; }
-.result__perfect { color: var(--g-green-700); font-weight: var(--g-fw-bold); display: inline-flex; align-items: center; gap: var(--g-sp-1); }
+/* ---- sections ---- */
+.ws-section { margin-bottom: var(--g-sp-8); break-inside: avoid; }
+.ws-section__head {
+  display: flex; align-items: baseline; gap: var(--g-sp-3);
+  margin-bottom: var(--g-sp-4);
+}
+.ws-badge {
+  flex-shrink: 0;
+  display: inline-flex; align-items: center; justify-content: center;
+  min-width: 26px; height: 26px; padding: 0 var(--g-sp-2);
+  background: var(--s-brand-subtle); color: var(--brand);
+  border-radius: var(--g-r-sm); font-weight: var(--g-fw-bold); font-size: var(--g-fs-sm);
+}
+.ws-section__title { font-size: var(--g-fs-lg); font-weight: var(--g-fw-semibold); color: var(--text); }
+.ws-section__hint { font-size: var(--g-fs-sm); color: var(--text-muted); }
 
-/* review */
-.review { padding-block: var(--g-sp-6) var(--g-sp-8); }
-.review__head { display: flex; align-items: center; gap: var(--g-sp-4); margin-bottom: var(--g-sp-5); flex-wrap: wrap; }
-.review__title { font-size: var(--s-fs-h2); font-weight: var(--g-fw-bold); display: inline-flex; align-items: center; gap: var(--g-sp-2); }
-.wq { background: var(--s-surface); border: 1px solid var(--s-border); border-radius: var(--g-r-xl); padding: var(--g-sp-4); margin-bottom: var(--g-sp-4); }
-.wq__sec { display: inline-block; font-size: var(--s-fs-caption); font-weight: var(--g-fw-bold); padding: 1px var(--g-sp-3); border-radius: var(--g-r-full); margin-bottom: var(--g-sp-2); }
-.wq__sec--brand{color:var(--s-brand);background:var(--s-brand-subtle)} .wq__sec--cyan{color:var(--g-cyan-700);background:var(--g-cyan-100)} .wq__sec--green{color:var(--g-green-700);background:var(--g-green-100)} .wq__sec--amber{color:var(--g-amber-700);background:var(--g-amber-100)}
-.wq__stem { font-size: var(--s-fs-body-lg); font-weight: var(--g-fw-medium); }
-.wq__zh { color: var(--s-text-secondary); font-size: var(--s-fs-caption); margin-top: 2px; }
-.wq__rows { margin-top: var(--g-sp-3); display: grid; gap: var(--g-sp-1); }
-.wq__row { font-size: var(--s-fs-body); display: flex; align-items: center; gap: var(--g-sp-2); }
-.wq__row--wrong { color: var(--g-red-700); } .wq__row--wrong .ico { color: var(--g-red-500); }
-.wq__row--right { color: var(--g-green-700); font-weight: var(--g-fw-bold); } .wq__row--right .ico { color: var(--g-green-500); }
-.wq__full { margin-top: var(--g-sp-3); font-size: var(--s-fs-body); background: var(--s-surface-sunken); border-radius: var(--g-r-md); padding: var(--g-sp-2) var(--g-sp-3); }
-.wq__ipa { font-family: var(--g-font-mono); color: var(--s-text-secondary); font-size: var(--s-fs-caption); }
-.wq__explain { margin-top: var(--g-sp-2); font-size: var(--s-fs-caption); color: var(--s-text-secondary); background: var(--s-brand-subtle); border-radius: var(--g-r-md); padding: var(--g-sp-2) var(--g-sp-3); display: flex; align-items: flex-start; gap: var(--g-sp-1); line-height: var(--s-lh-body); }
-.wq__explain .ico { color: var(--g-amber-500); flex: none; margin-top: 2px; }
+/* fill-in-the-blank grid */
+.fill-grid { display: grid; grid-template-columns: 1fr 1fr; gap: var(--g-sp-3) var(--g-sp-8); }
+.fill-item { display: flex; align-items: baseline; gap: var(--g-sp-2); font-size: var(--g-fs-md); }
+.fill-item .idx { color: var(--text-muted); font-weight: var(--g-fw-semibold); min-width: 22px; }
+.blank { display: inline-block; min-width: 44px; border-bottom: var(--g-bw-1) solid var(--border-strong); text-align: center; }
+
+/* word / application problems */
+.prob { border: var(--g-bw-1) solid var(--border); border-radius: var(--g-r-md);
+  padding: var(--g-sp-4) var(--g-sp-5); margin-bottom: var(--g-sp-4); break-inside: avoid; }
+.prob__no { display: inline-flex; align-items: center; gap: var(--g-sp-2);
+  font-weight: var(--g-fw-bold); color: var(--brand); margin-bottom: var(--g-sp-2); }
+.prob__body { font-size: var(--g-fs-md); color: var(--text); line-height: var(--g-lh-loose); }
+.prob__points { color: var(--text-muted); font-size: var(--g-fs-xs); font-weight: var(--g-fw-semibold); }
+.answer-area { margin-top: var(--g-sp-3); }
+.answer-label { font-size: var(--g-fs-sm); color: var(--text-secondary); }
+.answer-lines { margin-top: var(--g-sp-2); }
+.answer-lines > div { height: 24px; border-bottom: var(--g-bw-1) dashed var(--border); }
+.answer-lines > div:last-child { margin-bottom: 0; }
+
+/* callout / tip box uses info role */
+.callout {
+  border-left: var(--g-bw-4) solid var(--brand);
+  background: var(--s-brand-subtle);
+  padding: var(--g-sp-3) var(--g-sp-4); border-radius: var(--g-r-sm);
+  color: var(--text-secondary); font-size: var(--g-fs-sm); margin-bottom: var(--g-sp-6);
+}
 
 /* footer */
-.foot { margin-top: auto; border-top: 1px solid var(--s-border); padding-block: var(--g-sp-5); color: var(--s-text-muted); font-size: var(--s-fs-caption); text-align: center; }
+.ws-foot { margin-top: var(--g-sp-8); padding-top: var(--g-sp-4);
+  border-top: var(--g-bw-1) solid var(--border);
+  display: flex; justify-content: space-between;
+  color: var(--text-muted); font-size: var(--g-fs-xs); }
 
-/* 测试中不提示考点:用中性标签替代板块名 */
-.test__label { font-weight: var(--g-fw-bold); color: var(--s-brand); background: var(--s-brand-subtle); padding: 2px var(--g-sp-3); border-radius: var(--g-r-full); font-size: var(--s-fs-caption); }
-.intro__sec { color: var(--s-text-secondary); }
+@media (max-width: 640px) { .fill-grid { grid-template-columns: 1fr; } .sheet { padding: var(--g-sp-6); } }
 
-/* 对错统计 tally */
-.tally { display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--g-sp-3); margin: var(--g-sp-6) 0; }
-.tally__cell { background: var(--s-surface); border: 1px solid var(--s-border); border-radius: var(--g-r-lg); padding: var(--g-sp-3); text-align: center; }
-.tally__num { font-size: var(--s-fs-h1); font-weight: var(--g-fw-bold); line-height: 1.1; }
-.tally__lbl { font-size: var(--s-fs-caption); color: var(--s-text-secondary); display: flex; align-items: center; justify-content: center; gap: 2px; margin-top: 2px; }
-.tally__cell--ok .tally__num { color: var(--g-green-700); } .tally__cell--ok .ico { color: var(--g-green-500); }
-.tally__cell--wrong .tally__num { color: var(--g-red-700); } .tally__cell--wrong .ico { color: var(--g-red-500); }
-.tally__cell--un .tally__num { color: var(--g-amber-700); } .tally__cell--un .ico { color: var(--g-amber-500); }
-@media (max-width: 560px){ .tally { grid-template-columns: repeat(2,1fr); } }
-
-/* 板块标题 + 掌握标签 */
-.result__sectitle { font-size: var(--s-fs-body-lg); font-weight: var(--g-fw-bold); margin: var(--g-sp-2) 0 var(--g-sp-3); }
-.rsec__tag { font-size: var(--s-fs-caption); font-weight: var(--g-fw-bold); padding: 0 var(--g-sp-2); border-radius: var(--g-r-full); margin-left: var(--g-sp-2); }
-.rsec__tag--ok { color: var(--g-green-700); background: var(--g-green-100); }
-.rsec__tag--mid { color: var(--g-amber-700); background: var(--g-amber-100); }
-.rsec__tag--weak { color: var(--g-red-700); background: var(--g-red-100); }
-
-/* 学习改进建议 */
-.advice { margin: var(--g-sp-6) 0; background: var(--s-surface); border: 1px solid var(--s-border); border-radius: var(--g-r-xl); padding: var(--g-sp-4) var(--g-sp-5); }
-.advice__head { font-size: var(--s-fs-body-lg); font-weight: var(--g-fw-bold); display: flex; align-items: center; gap: var(--g-sp-2); margin-bottom: var(--g-sp-3); }
-.advice__head .ico { color: var(--g-amber-500); }
-.advice__row { display: flex; gap: var(--g-sp-3); padding: var(--g-sp-3) 0; border-top: 1px dashed var(--s-border); }
-.advice__row:first-of-type { border-top: none; }
-.advice__label { flex: none; width: 92px; font-size: var(--s-fs-caption); font-weight: var(--g-fw-bold); display: flex; align-items: flex-start; gap: 2px; }
-.advice__row--weak .advice__label { color: var(--g-red-700); }
-.advice__row--mid .advice__label { color: var(--g-amber-700); }
-.advice__row--strong .advice__label { color: var(--g-green-700); }
-.advice__text { font-size: var(--s-fs-caption); color: var(--s-text-secondary); line-height: var(--s-lh-body); }
-.advice__text b { color: var(--s-text); }
-.advice__plan { margin-top: var(--g-sp-3); padding-top: var(--g-sp-3); border-top: 1px solid var(--s-border); font-size: var(--s-fs-caption); color: var(--s-brand); display: flex; align-items: flex-start; gap: var(--g-sp-1); line-height: var(--s-lh-body); }
-
-/* 错题本按板块分组 */
-.rvboard { margin-bottom: var(--g-sp-6); }
-.rvboard__head { display: flex; align-items: center; gap: var(--g-sp-2); font-weight: var(--g-fw-bold); font-size: var(--s-fs-body-lg); padding: var(--g-sp-2) var(--g-sp-3); border-radius: var(--g-r-md); margin-bottom: var(--g-sp-3); background: var(--s-brand-subtle); color: var(--s-brand); }
-.rvboard__head--cyan { background: var(--g-cyan-100); color: var(--g-cyan-700); }
-.rvboard__head--green { background: var(--g-green-100); color: var(--g-green-700); }
-.rvboard__head--amber { background: var(--g-amber-100); color: var(--g-amber-700); }
-.rvboard__count { margin-left: auto; font-size: var(--s-fs-caption); }
-
+/* ---- PRINT extras specific to a worksheet ----
+   The base print layer (tokens.css) already handles grayscale, @page,
+   pagination, chrome hiding. Here we only flatten the on-screen "sheet"
+   frame so it fills the paper, and keep answer lines visible. */
+@media print {
+  /* re-assert the paper type scale — this page's own `body { font-size }`
+     is inlined after tokens.css, so restate it here at print time. */
+  body { background: #fff; font-size: var(--s-print-font-size); line-height: var(--s-print-line-height); }
+  .sheet { max-width: none; margin: 0; border: 0; border-radius: 0;
+           box-shadow: none; padding: 0; }
+  .toolbar { display: none !important; }
+  .ws-section { break-inside: auto; }   /* allow long sections to flow */
+  .prob { break-inside: avoid; }
+}
+[data-print-preview] .sheet { box-shadow: none; }
 </style>
+<style>
+/* figure (SVG) palette bound to design tokens */
+:root{
+  --fig-line: var(--s-text);
+  --fig-fill: var(--s-surface);
+  --fig-shade: var(--s-brand-subtle);
+}
+[data-theme="dark"]{
+  --fig-shade: color-mix(in srgb, var(--s-brand) 26%, transparent);
+}
+.fig{ width:100%; max-width:220px; height:auto; display:block; }
+.fig-t{ font-size:11px; fill: var(--s-text-secondary); font-family: var(--g-font); }
+</style>
+<style>
+.q{ border:var(--g-bw-1) solid var(--s-border); border-radius:var(--g-r-lg);
+    padding:var(--g-sp-5) var(--g-sp-6); margin-bottom:var(--g-sp-5);
+    background:var(--s-surface); break-inside:avoid; }
+.q__head{ display:flex; align-items:center; justify-content:space-between;
+    gap:var(--g-sp-3); margin-bottom:var(--g-sp-3); }
+.q__no{ display:inline-flex; align-items:center; gap:var(--g-sp-2);
+    font-weight:var(--g-fw-bold); color:var(--s-brand); font-size:var(--g-fs-md); }
+.q__no .ico{ color:var(--s-brand); }
+.q__tags{ display:inline-flex; gap:var(--g-sp-2); align-items:center; }
+.tag{ font-size:var(--g-fs-xs); font-weight:var(--g-fw-semibold);
+    padding:2px var(--g-sp-2); border-radius:var(--g-r-full);
+    background:var(--s-brand-subtle); color:var(--s-brand); }
+.tag--适度{ background:var(--s-success-bg); color:var(--s-success-text); }
+.tag--进阶{ background:var(--s-warning-bg); color:var(--s-warning-text); }
+.tag--挑战{ background:var(--s-danger-bg); color:var(--s-danger-text); }
+.q__grid{ display:grid; grid-template-columns:minmax(0,1fr) auto; gap:var(--g-sp-6);
+    align-items:start; }
+.q__grid.nofig{ grid-template-columns:minmax(0,1fr); }
+.q__body{ font-size:var(--g-fs-md); line-height:var(--g-lh-loose); color:var(--s-text); }
+.q__fig{ display:flex; align-items:center; justify-content:center;
+    padding:var(--g-sp-2); border:var(--g-bw-1) solid var(--s-border);
+    border-radius:var(--g-r-md); background:var(--s-bg); }
+.workspace{ margin-top:var(--g-sp-4); }
+.workspace__label{ font-size:var(--g-fs-sm); color:var(--s-text-secondary);
+    display:flex; align-items:center; gap:var(--g-sp-2); }
+.workspace__lines>div{ height:26px; border-bottom:var(--g-bw-1) dashed var(--s-border);
+    margin-top:var(--g-sp-3); }
+@media (max-width:600px){ .q__grid{ grid-template-columns:minmax(0,1fr); } }
+
+/* ---- header layout fix: stop 姓名/班级/日期 labels from wrapping char-by-char ---- */
+.ws-head{ flex-wrap:wrap; }
+.ws-head>div:first-child{ flex:1 1 300px; min-width:0; }
+.ws-meta{ flex:0 0 auto; min-width:210px; justify-items:end; }
+.ws-field{ white-space:nowrap; }               /* 姓名：… never breaks to 姓/名 */
+.ws-field .ws-line{ min-width:120px; }
+.ws-title{ overflow-wrap:anywhere; }
+@media (max-width:560px){
+  .ws-meta{ min-width:0; width:100%; justify-items:stretch; text-align:left; margin-top:var(--g-sp-3); }
+  .ws-field .ws-line{ flex:1; min-width:0; }
+}
+</style>
+<style></style>
 </head>
 <body>
-<!-- AUTO-BACK-NAV-START -->
-<style id="auto-back-nav-style">
-#auto-back-nav{position:sticky;top:0;z-index:999;background:rgba(249,250,251,.9);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);border-bottom:1px solid #e5e7eb;display:flex;align-items:center;padding:0 20px;height:44px;}
-@media(prefers-color-scheme:dark){#auto-back-nav{background:rgba(13,17,23,.9);border-bottom-color:#2d333b;}}
-#auto-back-nav a{display:inline-flex;align-items:center;gap:6px;text-decoration:none;color:#4b5563;font-size:14px;font-weight:600;font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Hiragino Sans GB","Microsoft YaHei",Roboto,Arial,sans-serif;}
-@media(prefers-color-scheme:dark){#auto-back-nav a{color:#9da7b3;}}
-</style>
-<nav id="auto-back-nav">
-  <a href="index.html">
-    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5"/><path d="m12 19-7-7 7-7"/></svg>
-    暑假成长加油站
-  </a>
-</nav>
-<!-- AUTO-BACK-NAV-END -->
-<div id="boot" style="position:fixed;inset:0;display:grid;place-items:center;font:14px system-ui;color:#888;background:var(--s-bg,#f6f7f9)">正在加载…</div>
-<script>
-function boot_fail(m){var b=document.getElementById('boot');if(b)b.innerHTML='<pre style="max-width:80ch;white-space:pre-wrap;color:#c0392b;padding:24px">启动失败:\n'+m+'</pre>';}
-addEventListener('error',function(e){boot_fail(e.message||e.error);});
-addEventListener('unhandledrejection',function(e){boot_fail(e.reason);});
-</script>
-<svg style="position:absolute;width:0;height:0;overflow:hidden" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" style="display:none" aria-hidden="true">
+<svg xmlns="http://www.w3.org/2000/svg" style="display:none" aria-hidden="true">
 <!-- ============================================================
      GENIUS DESIGN ICONS · sprite.svg · v2.0
      Icons reused verbatim from Lucide v1.22.0 (ISC/MIT license).
@@ -1655,1339 +1670,418 @@ addEventListener('unhandledrejection',function(e){boot_fail(e.reason);});
 <symbol id="ic-infinity" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><!--lucide:infinity--><path d="M6 16c5 0 7-8 12-8a4 4 0 0 1 0 8c-5 0-7-8-12-8a4 4 0 1 0 0 8" /></symbol>
 </svg>
 
-<test-app></test-app>
+
+<div class="toolbar no-print">
+  
+  <button class="btn" id="themeBtn" title="切换深色 / 浅色">深色</button>
+  <button class="btn btn--primary" id="printNow" title="打印 / 另存为 PDF">打印</button>
+</div>
+<div class="sheet">
+<header class="ws-head">
+      <div>
+        <h1 class="ws-title">圆与阴影面积 · 数学测试卷</h1>
+        <p class="ws-sub">北京小学高年级 · 共 25 题 · 难度：适度 → 挑战 · 建议用时 80 分钟 · π 取 3.14</p>
+      </div>
+      <div class="ws-meta">
+        <span class="ws-field">姓名：<span class="ws-line"></span></span>
+        <span class="ws-field">班级：<span class="ws-line"></span></span>
+        <span class="ws-field">日期：<span class="ws-line"></span></span>
+        <span class="ws-field" style="align-items:center">得分：<span class="ws-score"></span></span>
+      </div>
+    </header>
+<div class="callout"><svg class="ico ico--sm" aria-hidden="true"><use href="#ic-lightbulb"></use></svg>
+      答题要求：请把<strong>解题思路和完整的计算步骤</strong>写在每题下方的横线上，
+      公式要写清楚、单位不要漏写、最后写出答句。本卷重点考查思维过程与书写规范，
+      只写答案不写过程不得满分。<strong>做题时请勿翻看答案册。</strong></div>
+<section class="ws-section">
+<div class="ws-section__head">
+          <span class="ws-badge">一</span>
+          <span class="ws-section__title">圆·环形与内切图形阴影</span>
+          <span class="ws-section__hint">（1–8 题）</span>
+        </div>
+<div class="q">
+  <div class="q__head">
+    <span class="q__no"><svg class="ico ico--sm" aria-hidden="true"><use href="#ic-circle-dot"></use></svg>第 1 题</span>
+    <span class="q__tags"><span class="tag">环形面积</span><span class="tag tag--适度">适度</span></span>
+  </div>
+  <div class="q__grid">
+    <div class="q__body">如图，大圆半径 6 cm，小圆半径 4 cm，两圆同心。求阴影环形的面积。（π 取 3.14）</div>
+    <div class="q__fig"><svg viewBox="0 0 200 160" class="fig"><circle cx="100" cy="75" r="62" fill="var(--fig-shade)" stroke="var(--fig-line)" stroke-width="2"/><circle cx="100" cy="75" r="40" fill="var(--fig-fill)" stroke="var(--fig-line)" stroke-width="2"/><text x="100" y="80" class="fig-t" text-anchor="middle">R=6 r=4</text></svg></div>
+  </div>
+  <div class="workspace">
+    <div class="workspace__label"><svg class="ico ico--sm" aria-hidden="true"><use href="#ic-edit"></use></svg> 解答：</div>
+    <div class="workspace__lines"><div></div><div></div><div></div><div></div></div>
+  </div>
+</div>
+<div class="q">
+  <div class="q__head">
+    <span class="q__no"><svg class="ico ico--sm" aria-hidden="true"><use href="#ic-circle-dot"></use></svg>第 2 题</span>
+    <span class="q__tags"><span class="tag">正方形内切圆外阴影</span><span class="tag tag--适度">适度</span></span>
+  </div>
+  <div class="q__grid">
+    <div class="q__body">如图，正方形边长 12 cm，里面画一个最大的圆。求正方形内、圆外阴影部分的面积。（π 取 3.14）</div>
+    <div class="q__fig"><svg viewBox="0 0 200 160" class="fig"><rect x="40" y="15" width="120" height="120" fill="var(--fig-shade)" stroke="var(--fig-line)" stroke-width="2"/><circle cx="100" cy="75" r="60" fill="var(--fig-fill)" stroke="var(--fig-line)" stroke-width="2"/><text x="100" y="152" class="fig-t" text-anchor="middle">边长 12 cm</text></svg></div>
+  </div>
+  <div class="workspace">
+    <div class="workspace__label"><svg class="ico ico--sm" aria-hidden="true"><use href="#ic-edit"></use></svg> 解答：</div>
+    <div class="workspace__lines"><div></div><div></div><div></div><div></div></div>
+  </div>
+</div>
+<div class="q">
+  <div class="q__head">
+    <span class="q__no"><svg class="ico ico--sm" aria-hidden="true"><use href="#ic-circle-dot"></use></svg>第 3 题</span>
+    <span class="q__tags"><span class="tag">圆内最大正方形</span><span class="tag tag--进阶">进阶</span></span>
+  </div>
+  <div class="q__grid">
+    <div class="q__body">如图，圆的直径是 10 cm，圆内画一个最大的正方形（正方形的对角线是圆的直径）。求正方形外、圆内的阴影面积。（π 取 3.14）</div>
+    <div class="q__fig"><svg viewBox="0 0 200 160" class="fig"><circle cx="100" cy="75" r="62" fill="var(--fig-shade)" stroke="var(--fig-line)" stroke-width="2"/><polygon points="100,13 162,75 100,137 38,75" fill="var(--fig-fill)" stroke="var(--fig-line)" stroke-width="2"/><text x="100" y="80" class="fig-t" text-anchor="middle">d=10</text></svg></div>
+  </div>
+  <div class="workspace">
+    <div class="workspace__label"><svg class="ico ico--sm" aria-hidden="true"><use href="#ic-edit"></use></svg> 解答：</div>
+    <div class="workspace__lines"><div></div><div></div><div></div><div></div></div>
+  </div>
+</div>
+<div class="q">
+  <div class="q__head">
+    <span class="q__no"><svg class="ico ico--sm" aria-hidden="true"><use href="#ic-circle-dot"></use></svg>第 4 题</span>
+    <span class="q__tags"><span class="tag">四分之一圆</span><span class="tag tag--适度">适度</span></span>
+  </div>
+  <div class="q__grid">
+    <div class="q__body">如图，正方形边长 8 cm，以一个顶点为圆心、边长为半径画一个四分之一圆（扇形）。求阴影（正方形内、扇形外）的面积。（π 取 3.14）</div>
+    <div class="q__fig"><svg viewBox="0 0 200 160" class="fig"><rect x="45" y="20" width="110" height="110" fill="var(--fig-shade)" stroke="var(--fig-line)" stroke-width="2"/><path d="M45 130 L155 130 A110 110 0 0 0 45 20 Z" fill="var(--fig-fill)" stroke="var(--fig-line)" stroke-width="2"/><text x="100" y="150" class="fig-t" text-anchor="middle">边长 8 cm</text></svg></div>
+  </div>
+  <div class="workspace">
+    <div class="workspace__label"><svg class="ico ico--sm" aria-hidden="true"><use href="#ic-edit"></use></svg> 解答：</div>
+    <div class="workspace__lines"><div></div><div></div><div></div><div></div></div>
+  </div>
+</div>
+<div class="q">
+  <div class="q__head">
+    <span class="q__no"><svg class="ico ico--sm" aria-hidden="true"><use href="#ic-circle-dot"></use></svg>第 5 题</span>
+    <span class="q__tags"><span class="tag">两个四分之一圆叶形</span><span class="tag tag--挑战">挑战</span></span>
+  </div>
+  <div class="q__grid">
+    <div class="q__body">如图，正方形边长 10 cm，分别以两个相对的顶点为圆心、边长为半径画两个四分之一圆，中间重叠部分为「叶形」阴影。求叶形阴影的面积。（π 取 3.14）</div>
+    <div class="q__fig"><svg viewBox="0 0 200 160" class="fig"><rect x="45" y="25" width="110" height="110" fill="var(--fig-fill)" stroke="var(--fig-line)" stroke-width="2"/><path d="M45 135 A110 110 0 0 1 155 25 A110 110 0 0 1 45 135 Z" fill="var(--fig-shade)" stroke="var(--fig-line)" stroke-width="2"/><text x="100" y="152" class="fig-t" text-anchor="middle">边长 10 cm</text></svg></div>
+  </div>
+  <div class="workspace">
+    <div class="workspace__label"><svg class="ico ico--sm" aria-hidden="true"><use href="#ic-edit"></use></svg> 解答：</div>
+    <div class="workspace__lines"><div></div><div></div><div></div><div></div></div>
+  </div>
+</div>
+<div class="q">
+  <div class="q__head">
+    <span class="q__no"><svg class="ico ico--sm" aria-hidden="true"><use href="#ic-circle-dot"></use></svg>第 6 题</span>
+    <span class="q__tags"><span class="tag">半圆减三角形</span><span class="tag tag--进阶">进阶</span></span>
+  </div>
+  <div class="q__grid">
+    <div class="q__body">如图，半圆的直径 AB = 12 cm，C 是半圆上一点，连接 AC、BC，其中三角形 ABC 的高为 5 cm。求阴影（半圆内、三角形外）的面积。（π 取 3.14）</div>
+    <div class="q__fig"><svg viewBox="0 0 200 160" class="fig"><path d="M30 110 A70 70 0 0 1 170 110 Z" fill="var(--fig-shade)" stroke="var(--fig-line)" stroke-width="2"/><polygon points="30,110 170,110 120,45" fill="var(--fig-fill)" stroke="var(--fig-line)" stroke-width="2"/><text x="100" y="128" class="fig-t" text-anchor="middle">AB=12 高=5</text></svg></div>
+  </div>
+  <div class="workspace">
+    <div class="workspace__label"><svg class="ico ico--sm" aria-hidden="true"><use href="#ic-edit"></use></svg> 解答：</div>
+    <div class="workspace__lines"><div></div><div></div><div></div><div></div></div>
+  </div>
+</div>
+<div class="q">
+  <div class="q__head">
+    <span class="q__no"><svg class="ico ico--sm" aria-hidden="true"><use href="#ic-circle-dot"></use></svg>第 7 题</span>
+    <span class="q__tags"><span class="tag">长方形内两个半圆</span><span class="tag tag--进阶">进阶</span></span>
+  </div>
+  <div class="q__grid">
+    <div class="q__body">如图，长方形长 16 cm、宽 8 cm，以两条宽为直径在长方形内画两个半圆。求两个半圆的面积之和。（π 取 3.14）</div>
+    <div class="q__fig"><svg viewBox="0 0 200 160" class="fig"><rect x="20" y="45" width="160" height="70" fill="var(--fig-fill)" stroke="var(--fig-line)" stroke-width="2"/><path d="M20 45 A35 35 0 0 1 20 115 Z" fill="var(--fig-shade)" stroke="var(--fig-line)" stroke-width="2"/><path d="M180 45 A35 35 0 0 0 180 115 Z" fill="var(--fig-shade)" stroke="var(--fig-line)" stroke-width="2"/><text x="100" y="135" class="fig-t" text-anchor="middle">长16 宽8</text></svg></div>
+  </div>
+  <div class="workspace">
+    <div class="workspace__label"><svg class="ico ico--sm" aria-hidden="true"><use href="#ic-edit"></use></svg> 解答：</div>
+    <div class="workspace__lines"><div></div><div></div><div></div><div></div></div>
+  </div>
+</div>
+<div class="q">
+  <div class="q__head">
+    <span class="q__no"><svg class="ico ico--sm" aria-hidden="true"><use href="#ic-circle-dot"></use></svg>第 8 题</span>
+    <span class="q__tags"><span class="tag">正方形四角扇形</span><span class="tag tag--挑战">挑战</span></span>
+  </div>
+  <div class="q__grid">
+    <div class="q__body">如图，正方形边长 8 cm，以四个顶点为圆心、以 4 cm 为半径，在正方形内各画一个四分之一圆。求阴影（正方形内、四个扇形外）的面积。（π 取 3.14）</div>
+    <div class="q__fig"><svg viewBox="0 0 200 160" class="fig"><rect x="45" y="20" width="110" height="110" fill="var(--fig-shade)" stroke="var(--fig-line)" stroke-width="2"/><path d="M45 20 A55 55 0 0 1 100 75 A55 55 0 0 1 45 130 M155 20 A55 55 0 0 0 100 75 A55 55 0 0 0 155 130" fill="var(--fig-fill)" stroke="var(--fig-line)" stroke-width="1.5"/><text x="100" y="150" class="fig-t" text-anchor="middle">边长 8，半径 4</text></svg></div>
+  </div>
+  <div class="workspace">
+    <div class="workspace__label"><svg class="ico ico--sm" aria-hidden="true"><use href="#ic-edit"></use></svg> 解答：</div>
+    <div class="workspace__lines"><div></div><div></div><div></div><div></div></div>
+  </div>
+</div>
+</section>
+<section class="ws-section">
+<div class="ws-section__head">
+          <span class="ws-badge">二</span>
+          <span class="ws-section__title">扇形与组合图形阴影</span>
+          <span class="ws-section__hint">（9–16 题）</span>
+        </div>
+<div class="q">
+  <div class="q__head">
+    <span class="q__no"><svg class="ico ico--sm" aria-hidden="true"><use href="#ic-circle-dot"></use></svg>第 9 题</span>
+    <span class="q__tags"><span class="tag">半圆加半圆减长方形</span><span class="tag tag--挑战">挑战</span></span>
+  </div>
+  <div class="q__grid">
+    <div class="q__body">如图，半圆的半径是 5 cm，直径水平放置；在直径下方作一个与直径等宽、高 3 cm 的长方形。求整个图形（半圆 + 长方形）的面积。（π 取 3.14）</div>
+    <div class="q__fig"><svg viewBox="0 0 200 160" class="fig"><path d="M40 90 A60 60 0 0 1 160 90 Z" fill="var(--fig-shade)" stroke="var(--fig-line)" stroke-width="2"/><rect x="40" y="90" width="120" height="40" fill="var(--fig-shade)" stroke="var(--fig-line)" stroke-width="2"/><text x="100" y="148" class="fig-t" text-anchor="middle">r=5 长方形高3</text></svg></div>
+  </div>
+  <div class="workspace">
+    <div class="workspace__label"><svg class="ico ico--sm" aria-hidden="true"><use href="#ic-edit"></use></svg> 解答：</div>
+    <div class="workspace__lines"><div></div><div></div><div></div><div></div></div>
+  </div>
+</div>
+<div class="q">
+  <div class="q__head">
+    <span class="q__no"><svg class="ico ico--sm" aria-hidden="true"><use href="#ic-circle-dot"></use></svg>第 10 题</span>
+    <span class="q__tags"><span class="tag">圆的一半重叠</span><span class="tag tag--挑战">挑战</span></span>
+  </div>
+  <div class="q__grid">
+    <div class="q__body">如图，两个半径都是 4 cm 的圆，圆心距离使得一个圆的圆心恰好在另一圆上，重叠部分为阴影。已知重叠部分上、下两个弓形完全相同，每个弓形的面积为 9.83 cm²，求两圆重叠（阴影)部分的面积。（π 取 3.14）</div>
+    <div class="q__fig"><svg viewBox="0 0 200 160" class="fig"><circle cx="75" cy="75" r="50" fill="var(--fig-fill)" stroke="var(--fig-line)" stroke-width="2"/><circle cx="125" cy="75" r="50" fill="var(--fig-fill)" stroke="var(--fig-line)" stroke-width="2"/><path d="M100 31.7 A50 50 0 0 1 100 118.3 A50 50 0 0 1 100 31.7 Z" fill="var(--fig-shade)" stroke="var(--fig-line)" stroke-width="1.5"/><circle cx="75" cy="75" r="1.5" fill="var(--fig-line)"/><circle cx="125" cy="75" r="1.5" fill="var(--fig-line)"/><text x="100" y="150" class="fig-t" text-anchor="middle">r=4，圆心距=4</text></svg></div>
+  </div>
+  <div class="workspace">
+    <div class="workspace__label"><svg class="ico ico--sm" aria-hidden="true"><use href="#ic-edit"></use></svg> 解答：</div>
+    <div class="workspace__lines"><div></div><div></div><div></div><div></div></div>
+  </div>
+</div>
+<div class="q">
+  <div class="q__head">
+    <span class="q__no"><svg class="ico ico--sm" aria-hidden="true"><use href="#ic-circle-dot"></use></svg>第 11 题</span>
+    <span class="q__tags"><span class="tag">三角形内切扇形</span><span class="tag tag--进阶">进阶</span></span>
+  </div>
+  <div class="q__grid">
+    <div class="q__body">如图，直角三角形的两条直角边分别是 6 cm 和 8 cm，以直角顶点为圆心、3 cm 为半径画一个四分之一圆。求阴影（三角形内、扇形外）的面积。（π 取 3.14）</div>
+    <div class="q__fig"><svg viewBox="0 0 200 160" class="fig"><polygon points="40,130 160,130 40,30" fill="var(--fig-shade)" stroke="var(--fig-line)" stroke-width="2"/><path d="M40 130 L80 130 A40 40 0 0 0 40 90 Z" fill="var(--fig-fill)" stroke="var(--fig-line)" stroke-width="2"/><text x="100" y="150" class="fig-t" text-anchor="middle">直角边 6、8，半径3</text></svg></div>
+  </div>
+  <div class="workspace">
+    <div class="workspace__label"><svg class="ico ico--sm" aria-hidden="true"><use href="#ic-edit"></use></svg> 解答：</div>
+    <div class="workspace__lines"><div></div><div></div><div></div><div></div></div>
+  </div>
+</div>
+<div class="q">
+  <div class="q__head">
+    <span class="q__no"><svg class="ico ico--sm" aria-hidden="true"><use href="#ic-circle-dot"></use></svg>第 12 题</span>
+    <span class="q__tags"><span class="tag">跑道内圈面积</span><span class="tag tag--进阶">进阶</span></span>
+  </div>
+  <div class="q__grid">
+    <div class="q__body">如图，一个「操场」由一个长方形和两端两个半圆组成。长方形长 20 cm、宽 10 cm，两端半圆直径等于宽。求整个操场图形的面积。（π 取 3.14）</div>
+    <div class="q__fig"><svg viewBox="0 0 200 160" class="fig"><rect x="50" y="45" width="100" height="70" fill="var(--fig-shade)" stroke="none"/><path d="M50 45 A35 35 0 0 0 50 115 Z" fill="var(--fig-shade)" stroke="var(--fig-line)" stroke-width="2"/><path d="M150 45 A35 35 0 0 1 150 115 Z" fill="var(--fig-shade)" stroke="var(--fig-line)" stroke-width="2"/><line x1="50" y1="45" x2="150" y2="45" stroke="var(--fig-line)" stroke-width="2"/><line x1="50" y1="115" x2="150" y2="115" stroke="var(--fig-line)" stroke-width="2"/><text x="100" y="140" class="fig-t" text-anchor="middle">长20 宽10</text></svg></div>
+  </div>
+  <div class="workspace">
+    <div class="workspace__label"><svg class="ico ico--sm" aria-hidden="true"><use href="#ic-edit"></use></svg> 解答：</div>
+    <div class="workspace__lines"><div></div><div></div><div></div><div></div></div>
+  </div>
+</div>
+<div class="q">
+  <div class="q__head">
+    <span class="q__no"><svg class="ico ico--sm" aria-hidden="true"><use href="#ic-circle-dot"></use></svg>第 13 题</span>
+    <span class="q__tags"><span class="tag">半圆平移拼合</span><span class="tag tag--挑战">挑战</span></span>
+  </div>
+  <div class="q__grid">
+    <div class="q__body">如图，长方形长 10 cm、宽 6 cm。沿竖直中线，上半段向左凸出一个半径 3 cm 的半圆、下半段向左凹进一个完全相同的半圆，形成一条 S 形分界线。求分界线左侧阴影部分的面积。提示：凸出与凹入的半圆完全相同，可以「割补平移」。（π 取 3.14）</div>
+    <div class="q__fig"><svg viewBox="0 0 200 160" class="fig"><rect x="40" y="40" width="120" height="80" fill="none" stroke="var(--fig-line)" stroke-width="1" stroke-dasharray="4 3"/><path d="M40 40 L100 40 A20 20 0 0 0 100 80 A20 20 0 0 1 100 120 L40 120 Z" fill="var(--fig-shade)" stroke="var(--fig-line)" stroke-width="2"/><line x1="100" y1="40" x2="100" y2="120" stroke="var(--fig-line)" stroke-width="0.8" stroke-dasharray="2 2"/><text x="100" y="138" class="fig-t" text-anchor="middle">长10 宽6，半径3</text></svg></div>
+  </div>
+  <div class="workspace">
+    <div class="workspace__label"><svg class="ico ico--sm" aria-hidden="true"><use href="#ic-edit"></use></svg> 解答：</div>
+    <div class="workspace__lines"><div></div><div></div><div></div><div></div></div>
+  </div>
+</div>
+<div class="q">
+  <div class="q__head">
+    <span class="q__no"><svg class="ico ico--sm" aria-hidden="true"><use href="#ic-circle-dot"></use></svg>第 14 题</span>
+    <span class="q__tags"><span class="tag">扇形减扇形（同圆心角）</span><span class="tag tag--挑战">挑战</span></span>
+  </div>
+  <div class="q__grid">
+    <div class="q__body">如图，两个同心扇形圆心角都是 90°，大扇形半径 8 cm，小扇形半径 4 cm。求阴影（大扇形内、小扇形外）的面积。（π 取 3.14）</div>
+    <div class="q__fig"><svg viewBox="0 0 200 160" class="fig"><path d="M40 130 L40 20 A110 110 0 0 1 150 130 Z" fill="var(--fig-shade)" stroke="var(--fig-line)" stroke-width="2"/><path d="M40 130 L40 75 A55 55 0 0 1 95 130 Z" fill="var(--fig-fill)" stroke="var(--fig-line)" stroke-width="2"/><text x="100" y="150" class="fig-t" text-anchor="middle">R=8 r=4 圆心角90°</text></svg></div>
+  </div>
+  <div class="workspace">
+    <div class="workspace__label"><svg class="ico ico--sm" aria-hidden="true"><use href="#ic-edit"></use></svg> 解答：</div>
+    <div class="workspace__lines"><div></div><div></div><div></div><div></div></div>
+  </div>
+</div>
+<div class="q">
+  <div class="q__head">
+    <span class="q__no"><svg class="ico ico--sm" aria-hidden="true"><use href="#ic-circle-dot"></use></svg>第 15 题</span>
+    <span class="q__tags"><span class="tag">正方形对角线与半圆</span><span class="tag tag--挑战">挑战</span></span>
+  </div>
+  <div class="q__grid">
+    <div class="q__body">如图，正方形边长 10 cm，以正方形一条边为直径向内画半圆，再连正方形另两个顶点与半圆，形成阴影。已知阴影恰好等于「正方形面积减去半圆面积」的部分。求阴影面积。（π 取 3.14）</div>
+    <div class="q__fig"><svg viewBox="0 0 200 160" class="fig"><rect x="50" y="25" width="100" height="100" fill="var(--fig-shade)" stroke="var(--fig-line)" stroke-width="2"/><path d="M50 25 A50 50 0 0 0 150 25 Z" fill="var(--fig-fill)" stroke="var(--fig-line)" stroke-width="2"/><text x="100" y="145" class="fig-t" text-anchor="middle">边长 10 cm</text></svg></div>
+  </div>
+  <div class="workspace">
+    <div class="workspace__label"><svg class="ico ico--sm" aria-hidden="true"><use href="#ic-edit"></use></svg> 解答：</div>
+    <div class="workspace__lines"><div></div><div></div><div></div><div></div></div>
+  </div>
+</div>
+<div class="q">
+  <div class="q__head">
+    <span class="q__no"><svg class="ico ico--sm" aria-hidden="true"><use href="#ic-circle-dot"></use></svg>第 16 题</span>
+    <span class="q__tags"><span class="tag">风车形四扇形</span><span class="tag tag--挑战">挑战</span></span>
+  </div>
+  <div class="q__grid">
+    <div class="q__body">如图，正方形边长 8 cm，以四条边的中点连线为界，画出四个半径 4 cm 的四分之一圆组成「风车」阴影，阴影恰为四个四分之一圆之和。求风车阴影的面积。（π 取 3.14）</div>
+    <div class="q__fig"><svg viewBox="0 0 200 160" class="fig"><rect x="50" y="25" width="100" height="100" fill="var(--fig-fill)" stroke="var(--fig-line)" stroke-width="2"/><path d="M50 25 A50 50 0 0 1 100 75 Z M150 25 A50 50 0 0 1 100 75 Z M150 125 A50 50 0 0 1 100 75 Z M50 125 A50 50 0 0 1 100 75 Z" fill="var(--fig-shade)" stroke="var(--fig-line)" stroke-width="1.5"/><text x="100" y="145" class="fig-t" text-anchor="middle">边长8 半径4</text></svg></div>
+  </div>
+  <div class="workspace">
+    <div class="workspace__label"><svg class="ico ico--sm" aria-hidden="true"><use href="#ic-edit"></use></svg> 解答：</div>
+    <div class="workspace__lines"><div></div><div></div><div></div><div></div></div>
+  </div>
+</div>
+</section>
+<section class="ws-section">
+<div class="ws-section__head">
+          <span class="ws-badge">三</span>
+          <span class="ws-section__title">割补转化与综合应用</span>
+          <span class="ws-section__hint">（17–25 题）</span>
+        </div>
+<div class="q">
+  <div class="q__head">
+    <span class="q__no"><svg class="ico ico--sm" aria-hidden="true"><use href="#ic-circle-dot"></use></svg>第 17 题</span>
+    <span class="q__tags"><span class="tag">两个重叠半圆差</span><span class="tag tag--挑战">挑战</span></span>
+  </div>
+  <div class="q__grid">
+    <div class="q__body">如图，大半圆直径 AB = 20 cm，在 AB 上取中点 O，以 AO、OB 为直径各画一个小半圆（一上一下）。求阴影部分的面积（大半圆内，去掉一个上方小半圆、加上一个下方小半圆）。（π 取 3.14）</div>
+    <div class="q__fig"><svg viewBox="0 0 200 160" class="fig"><path d="M30 100 A70 70 0 0 1 170 100 Z" fill="var(--fig-shade)" stroke="var(--fig-line)" stroke-width="2"/><path d="M30 100 A35 35 0 0 1 100 100 Z" fill="var(--fig-fill)" stroke="var(--fig-line)" stroke-width="2"/><path d="M100 100 A35 35 0 0 0 170 100 Z" fill="var(--fig-shade)" stroke="var(--fig-line)" stroke-width="2"/><text x="100" y="125" class="fig-t" text-anchor="middle">AB=20</text></svg></div>
+  </div>
+  <div class="workspace">
+    <div class="workspace__label"><svg class="ico ico--sm" aria-hidden="true"><use href="#ic-edit"></use></svg> 解答：</div>
+    <div class="workspace__lines"><div></div><div></div><div></div><div></div></div>
+  </div>
+</div>
+<div class="q">
+  <div class="q__head">
+    <span class="q__no"><svg class="ico ico--sm" aria-hidden="true"><use href="#ic-circle-dot"></use></svg>第 18 题</span>
+    <span class="q__tags"><span class="tag">正方形与内切圆周长比较</span><span class="tag tag--进阶">进阶</span></span>
+  </div>
+  <div class="q__grid nofig">
+    <div class="q__body">一个正方形的周长是 25.12 cm，另一个圆的周长也是 25.12 cm。问哪个图形的面积大？大多少？（π 取 3.14）</div>
+    
+  </div>
+  <div class="workspace">
+    <div class="workspace__label"><svg class="ico ico--sm" aria-hidden="true"><use href="#ic-edit"></use></svg> 解答：</div>
+    <div class="workspace__lines"><div></div><div></div><div></div><div></div></div>
+  </div>
+</div>
+<div class="q">
+  <div class="q__head">
+    <span class="q__no"><svg class="ico ico--sm" aria-hidden="true"><use href="#ic-circle-dot"></use></svg>第 19 题</span>
+    <span class="q__tags"><span class="tag">圆内接扇形挖空</span><span class="tag tag--挑战">挑战</span></span>
+  </div>
+  <div class="q__grid">
+    <div class="q__body">如图，大圆半径 10 cm，在圆内挖去一个圆心角 90° 的扇形。求剩下阴影部分的面积。（π 取 3.14）</div>
+    <div class="q__fig"><svg viewBox="0 0 200 160" class="fig"><circle cx="100" cy="75" r="62" fill="var(--fig-shade)" stroke="var(--fig-line)" stroke-width="2"/><path d="M100 75 L100 13 A62 62 0 0 1 162 75 Z" fill="var(--fig-fill)" stroke="var(--fig-line)" stroke-width="2"/><text x="100" y="80" class="fig-t" text-anchor="middle">R=10</text></svg></div>
+  </div>
+  <div class="workspace">
+    <div class="workspace__label"><svg class="ico ico--sm" aria-hidden="true"><use href="#ic-edit"></use></svg> 解答：</div>
+    <div class="workspace__lines"><div></div><div></div><div></div><div></div></div>
+  </div>
+</div>
+<div class="q">
+  <div class="q__head">
+    <span class="q__no"><svg class="ico ico--sm" aria-hidden="true"><use href="#ic-circle-dot"></use></svg>第 20 题</span>
+    <span class="q__tags"><span class="tag">半圆内接三角形转化</span><span class="tag tag--挑战">挑战</span></span>
+  </div>
+  <div class="q__grid">
+    <div class="q__body">如图，边长 6 cm 的正方形，以一条边为直径向正方形内画半圆，再以对边两个顶点向半圆连线。已知阴影 = 正方形面积 − 半圆面积（半圆全在正方形内）。求阴影面积。（π 取 3.14）</div>
+    <div class="q__fig"><svg viewBox="0 0 200 160" class="fig"><rect x="55" y="30" width="90" height="90" fill="var(--fig-shade)" stroke="var(--fig-line)" stroke-width="2"/><path d="M55 120 A45 45 0 0 1 145 120 Z" fill="var(--fig-fill)" stroke="var(--fig-line)" stroke-width="2"/><text x="100" y="140" class="fig-t" text-anchor="middle">边长 6</text></svg></div>
+  </div>
+  <div class="workspace">
+    <div class="workspace__label"><svg class="ico ico--sm" aria-hidden="true"><use href="#ic-edit"></use></svg> 解答：</div>
+    <div class="workspace__lines"><div></div><div></div><div></div><div></div></div>
+  </div>
+</div>
+<div class="q">
+  <div class="q__head">
+    <span class="q__no"><svg class="ico ico--sm" aria-hidden="true"><use href="#ic-circle-dot"></use></svg>第 21 题</span>
+    <span class="q__tags"><span class="tag">四分之三圆环</span><span class="tag tag--挑战">挑战</span></span>
+  </div>
+  <div class="q__grid">
+    <div class="q__body">如图，圆环大圆半径 6 cm、小圆半径 4 cm，只取其中 270°（四分之三）的部分作为阴影。求阴影面积。（π 取 3.14）</div>
+    <div class="q__fig"><svg viewBox="0 0 200 160" class="fig"><path d="M100 75 m0,-60 a60,60 0 1,1 -60,60 L100 75 Z" fill="var(--fig-shade)" stroke="var(--fig-line)" stroke-width="2"/><circle cx="100" cy="75" r="40" fill="var(--fig-fill)" stroke="var(--fig-line)" stroke-width="2"/><text x="100" y="150" class="fig-t" text-anchor="middle">R=6 r=4 取270°</text></svg></div>
+  </div>
+  <div class="workspace">
+    <div class="workspace__label"><svg class="ico ico--sm" aria-hidden="true"><use href="#ic-edit"></use></svg> 解答：</div>
+    <div class="workspace__lines"><div></div><div></div><div></div><div></div></div>
+  </div>
+</div>
+<div class="q">
+  <div class="q__head">
+    <span class="q__no"><svg class="ico ico--sm" aria-hidden="true"><use href="#ic-circle-dot"></use></svg>第 22 题</span>
+    <span class="q__tags"><span class="tag">两圆相切内阴影</span><span class="tag tag--挑战">挑战</span></span>
+  </div>
+  <div class="q__grid">
+    <div class="q__body">如图,大圆直径 12 cm，在大圆内画两个直径都是 6 cm、彼此相切且都与大圆内切的小圆。求阴影（大圆内、两个小圆外）的面积。（π 取 3.14）</div>
+    <div class="q__fig"><svg viewBox="0 0 200 160" class="fig"><circle cx="100" cy="75" r="62" fill="var(--fig-shade)" stroke="var(--fig-line)" stroke-width="2"/><circle cx="69" cy="75" r="31" fill="var(--fig-fill)" stroke="var(--fig-line)" stroke-width="2"/><circle cx="131" cy="75" r="31" fill="var(--fig-fill)" stroke="var(--fig-line)" stroke-width="2"/><text x="100" y="150" class="fig-t" text-anchor="middle">大圆d=12 小圆d=6</text></svg></div>
+  </div>
+  <div class="workspace">
+    <div class="workspace__label"><svg class="ico ico--sm" aria-hidden="true"><use href="#ic-edit"></use></svg> 解答：</div>
+    <div class="workspace__lines"><div></div><div></div><div></div><div></div></div>
+  </div>
+</div>
+<div class="q">
+  <div class="q__head">
+    <span class="q__no"><svg class="ico ico--sm" aria-hidden="true"><use href="#ic-circle-dot"></use></svg>第 23 题</span>
+    <span class="q__tags"><span class="tag">牛吃草绳长扇形</span><span class="tag tag--挑战">挑战</span></span>
+  </div>
+  <div class="q__grid">
+    <div class="q__body">一头牛用 4 m 长的绳子拴在一个边长 3 m 的正方形牛棚的一个墙角外（绳子只能绕墙外活动）。求这头牛在墙外能吃到草的最大面积。（π 取 3.14，绳子超过墙长的部分绕过墙角）</div>
+    <div class="q__fig"><svg viewBox="0 0 200 160" class="fig"><path d="M90 90 L138 90 A48 48 0 1 0 90 138 Z" fill="var(--fig-shade)" stroke="var(--fig-line)" stroke-width="1.5"/><path d="M126 90 L138 90 A12 12 0 0 0 126 102 Z" fill="var(--fig-shade)" stroke="var(--fig-line)" stroke-width="1.2"/><path d="M90 126 L90 138 A12 12 0 0 0 102 126 Z" fill="var(--fig-shade)" stroke="var(--fig-line)" stroke-width="1.2"/><rect x="90" y="90" width="36" height="36" fill="var(--fig-fill)" stroke="var(--fig-line)" stroke-width="2"/><circle cx="90" cy="90" r="2.5" fill="var(--fig-line)"/><text x="108" y="112" class="fig-t" text-anchor="middle">墙</text><text x="100" y="154" class="fig-t" text-anchor="middle">墙边3 绳长4</text></svg></div>
+  </div>
+  <div class="workspace">
+    <div class="workspace__label"><svg class="ico ico--sm" aria-hidden="true"><use href="#ic-edit"></use></svg> 解答：</div>
+    <div class="workspace__lines"><div></div><div></div><div></div><div></div></div>
+  </div>
+</div>
+<div class="q">
+  <div class="q__head">
+    <span class="q__no"><svg class="ico ico--sm" aria-hidden="true"><use href="#ic-circle-dot"></use></svg>第 24 题</span>
+    <span class="q__tags"><span class="tag">转化：不规则阴影等积</span><span class="tag tag--挑战">挑战</span></span>
+  </div>
+  <div class="q__grid">
+    <div class="q__body">如图，正方形边长 4 cm，以每条边为直径向正方形内画四个半圆，四个半圆两两相交形成中间四片「花瓣」阴影。求四片花瓣的总面积。（π 取 3.14）</div>
+    <div class="q__fig"><svg viewBox="0 0 200 160" class="fig"><rect x="55" y="30" width="90" height="90" fill="var(--fig-fill)" stroke="var(--fig-line)" stroke-width="2"/><path d="M100 30 A45 45 0 0 1 100 120 A45 45 0 0 1 100 30 Z M55 75 A45 45 0 0 1 145 75 A45 45 0 0 1 55 75 Z" fill="none" stroke="var(--fig-line)" stroke-width="1"/><path d="M100 75 A45 45 0 0 1 145 30 A45 45 0 0 1 100 75 Z M100 75 A45 45 0 0 1 145 120 A45 45 0 0 1 100 75 Z M100 75 A45 45 0 0 1 55 120 A45 45 0 0 1 100 75 Z M100 75 A45 45 0 0 1 55 30 A45 45 0 0 1 100 75 Z" fill="var(--fig-shade)" stroke="var(--fig-line)" stroke-width="1"/><text x="100" y="138" class="fig-t" text-anchor="middle">边长 4</text></svg></div>
+  </div>
+  <div class="workspace">
+    <div class="workspace__label"><svg class="ico ico--sm" aria-hidden="true"><use href="#ic-edit"></use></svg> 解答：</div>
+    <div class="workspace__lines"><div></div><div></div><div></div><div></div></div>
+  </div>
+</div>
+<div class="q">
+  <div class="q__head">
+    <span class="q__no"><svg class="ico ico--sm" aria-hidden="true"><use href="#ic-circle-dot"></use></svg>第 25 题</span>
+    <span class="q__tags"><span class="tag">综合：组合图形求阴影</span><span class="tag tag--挑战">挑战</span></span>
+  </div>
+  <div class="q__grid">
+    <div class="q__body">如图，一个大长方形长 20 cm、宽 12 cm；左端挖去一个半径 6 cm 的半圆，右上角挖去一个半径 4 cm 的四分之一圆。求剩下阴影部分的面积。（π 取 3.14）</div>
+    <div class="q__fig"><svg viewBox="0 0 200 160" class="fig"><path d="M40 45 L145 45 A15 15 0 0 1 160 60 L160 115 L60 115 A25 25 0 0 1 60 45 Z" fill="var(--fig-shade)" stroke="var(--fig-line)" stroke-width="2"/><rect x="40" y="45" width="120" height="70" fill="none" stroke="var(--fig-line)" stroke-width="1" stroke-dasharray="3 3"/><text x="100" y="135" class="fig-t" text-anchor="middle">长20 宽12</text></svg></div>
+  </div>
+  <div class="workspace">
+    <div class="workspace__label"><svg class="ico ico--sm" aria-hidden="true"><use href="#ic-edit"></use></svg> 解答：</div>
+    <div class="workspace__lines"><div></div><div></div><div></div><div></div></div>
+  </div>
+</div>
+</section>
+<footer class="ws-foot">
+      <span>圆与阴影面积测试卷 · 题目卷</span>
+      <span>答案与解题步骤见《答案册》· π 取 3.14</span>
+    </footer>
+</div>
+
 <script>
-// 英语综合摸底测试 · 150 题(覆盖此前未考的知识点)
-// 每题: q(题干含 ___), zh, options[4], answer, explain
-window.TEST_DATA = {
-  title: "英语综合摸底测试卷 · 150 题(进阶)",
-  intro: "本卷共 150 道单项选择,专门覆盖此前未考到的知识点:名词、代词、冠词、数词、形容词与副词、大量新的固定搭配、情态动词、连词与疑问词、复杂句型、进阶时态。题目已随机打乱、不提示考点,用来更全面地摸底。交卷后自动评分,按板块给出得分分布,再逐题回看错题讲解。满分 150 分(每题 1 分)。",
-  perQuestion: 1,
-  sections: [
-    { id:"noun", name:"名词", en:"Nouns", icon:"ic-box", color:"brand", desc:"单复数、可数不可数、名词所有格。",
-      items:[
-        { q:"There are many ___ in the zoo.", zh:"动物园里有很多狼。", options:["wolves","wolfs","wolf","wolfes"], answer:"wolves", explain:"以 f/fe 结尾变 v 加 -es:wolf→wolves。" },
-        { q:"The ___ are eating grass.", zh:"这些绵羊在吃草。", options:["sheep","sheeps","sheepes","ships"], answer:"sheep", explain:"sheep 单复数同形。" },
-        { q:"I need two ___ of paper.", zh:"我需要两张纸。", options:["pieces","piece","pieceses","pieice"], answer:"pieces", explain:"不可数名词计量用 pieces of paper。" },
-        { q:"These ___ are very busy.", zh:"这些女人很忙。", options:["women","womans","womens","woman"], answer:"women", explain:"woman 的复数是不规则 women。" },
-        { q:"This is ___ bike.", zh:"这是汤姆的自行车。", options:["Tom's","Toms","Tom","Toms'"], answer:"Tom's", explain:"名词所有格加 's:Tom's。" },
-        { q:"There is a lot of ___ on the road.", zh:"路上有很多雪。", options:["snow","snows","a snow","snowes"], answer:"snow", explain:"snow 不可数,不加 -s。" },
-        { q:"The ___ leaves fall in autumn.", zh:"秋天树叶落下。", options:["leaves","leafs","leaf","leafes"], answer:"leaves", explain:"leaf→leaves(f 变 v 加 -es)。" },
-        { q:"I have three ___.", zh:"我有三个小刀。", options:["knives","knifes","knife","knifes'"], answer:"knives", explain:"knife→knives。" },
-        { q:"We bought some ___ at the market.", zh:"我们在市场买了些土豆。", options:["potatoes","potatos","potato","potatoies"], answer:"potatoes", explain:"potato→potatoes(o 结尾加 -es)。" },
-        { q:"The ___ room is upstairs.", zh:"孩子们的房间在楼上。", options:["children's","childrens","children","childrens'"], answer:"children's", explain:"复数不规则名词所有格:children's。" },
-        { q:"Look at those ___!", zh:"看那些老鼠!", options:["mice","mouses","mouse","mices"], answer:"mice", explain:"mouse 的复数是 mice。" },
-        { q:"I'd like a glass of ___.", zh:"我想要一杯牛奶。", options:["milk","milks","a milk","milkes"], answer:"milk", explain:"milk 不可数。" },
-        { q:"The ___ tails are long.", zh:"这些猴子的尾巴很长。", options:["monkeys'","monkey's","monkeys","monkey"], answer:"monkeys'", explain:"复数名词所有格,词尾 s 后只加 ':monkeys'。" },
-        { q:"There are seven ___ in a week.", zh:"一周有七天。", options:["days","day","daies","dayes"], answer:"days", explain:"day→days。" },
-        { q:"He drinks two ___ of tea a day.", zh:"他一天喝两杯茶。", options:["cups","cup","cupes","cups'"], answer:"cups", explain:"a cup of → two cups of。" }
-      ] },
-    { id:"pron", name:"代词", en:"Pronouns", icon:"ic-users", color:"cyan", desc:"人称、物主、反身、不定代词。",
-      items:[
-        { q:"Is there ___ water in the bottle?", zh:"瓶子里有水吗?", options:["any","some","a","many"], answer:"any", explain:"疑问句中不可数名词用 any。" },
-        { q:"I have ___ good news for you.", zh:"我有一些好消息告诉你。", options:["some","any","a","many"], answer:"some", explain:"肯定句用 some。" },
-        { q:"___ of the students likes maths.", zh:"每个学生都喜欢数学。", options:["Every one","Everyone","All","Both"], answer:"Every one", explain:"every one of + 复数名词,谓语用单数。" },
-        { q:"There is ___ in the room. It's empty.", zh:"房间里没有人,空的。", options:["nobody","anybody","somebody","everybody"], answer:"nobody", explain:"表示“没有人”用 nobody。" },
-        { q:"Would you like ___ to eat?", zh:"你想吃点什么吗?", options:["something","anything","nothing","everything"], answer:"something", explain:"表示邀请的疑问句用 something 更礼貌。" },
-        { q:"Help ___, children!", zh:"孩子们,请自便(自己拿)!", options:["yourselves","yourself","you","yours"], answer:"yourselves", explain:"主语 children 复数,反身代词用 yourselves。" },
-        { q:"These books are ___. (指 they)", zh:"这些书是他们的。", options:["theirs","their","them","they"], answer:"theirs", explain:"名词性物主代词 theirs。" },
-        { q:"___ of my parents is a doctor. (两人中的一个)", zh:"我父母中有一个是医生。", options:["One","Both","All","None"], answer:"One", explain:"One of + 复数,谓语单数,指两者之一。" },
-        { q:"I don't like this one. Show me ___.", zh:"我不喜欢这个,给我看另一个。", options:["another","other","others","the other"], answer:"another", explain:"another 指“另一个(泛指)”。" },
-        { q:"Some like tea, ___ like coffee.", zh:"有些人喜欢茶,另一些喜欢咖啡。", options:["others","other","another","the others"], answer:"others", explain:"some…others… 一些…另一些…。" },
-        { q:"There is ___ wrong with my computer.", zh:"我的电脑有点毛病。", options:["something","anything","nothing","everything"], answer:"something", explain:"something wrong 出了点毛病(肯定语境)。" },
-        { q:"Neither of them ___ right.", zh:"他们俩都不对。", options:["is","are","am","be"], answer:"is", explain:"neither of + 复数,谓语用单数 is。" },
-        { q:"Both of the boys ___ tall.", zh:"这两个男孩都很高。", options:["are","is","am","be"], answer:"are", explain:"both 表两者都,谓语用复数 are。" },
-        { q:"This pen is not mine. It's ___. (指 he)", zh:"这支笔不是我的,是他的。", options:["his","him","he","himself"], answer:"his", explain:"名词性物主代词 his。" },
-        { q:"___ knows the answer? — I do.", zh:"谁知道答案?——我知道。", options:["Who","Whose","Which","What"], answer:"Who", explain:"问人作主语用 Who。" }
-      ] },
-    { id:"art", name:"冠词", en:"Articles", icon:"ic-hash", color:"green", desc:"a / an / the / 零冠词。",
-      items:[
-        { q:"He is ___ university student.", zh:"他是一名大学生。", options:["a","an","the","/"], answer:"a", explain:"university 读音以 /j/ 开头,用 a。" },
-        { q:"I go to bed at ___ ten o'clock.", zh:"我十点睡觉。", options:["/","a","an","the"], answer:"/", explain:"钟点前不用冠词。" },
-        { q:"The Earth goes around ___ sun.", zh:"地球围绕太阳转。", options:["the","a","an","/"], answer:"the", explain:"独一无二事物前用 the。" },
-        { q:"We have ___ breakfast at seven.", zh:"我们七点吃早饭。", options:["/","a","an","the"], answer:"/", explain:"一日三餐前不用冠词。" },
-        { q:"There is ___ 'h' in the word 'hour'.", zh:"hour 这个词里有一个 h。", options:["an","a","the","/"], answer:"an", explain:"hour 的 h 不发音,以元音开头,用 an。" },
-        { q:"She can play ___ violin.", zh:"她会拉小提琴。", options:["the","a","an","/"], answer:"the", explain:"乐器前用 the。" },
-        { q:"Shanghai is ___ big city.", zh:"上海是一座大城市。", options:["a","an","the","/"], answer:"a", explain:"泛指“一座大城市”用 a。" },
-        { q:"He goes to ___ school by bike.", zh:"他骑车去上学。", options:["/","a","an","the"], answer:"/", explain:"go to school(去上学)是习惯用法,不加冠词。" },
-        { q:"What ___ interesting film!", zh:"多有趣的一部电影啊!", options:["an","a","the","/"], answer:"an", explain:"interesting 以元音音素开头,用 an。" },
-        { q:"I want to be ___ engineer.", zh:"我想当工程师。", options:["an","a","the","/"], answer:"an", explain:"engineer 以元音开头,用 an。" },
-        { q:"___ Great Wall is very long.", zh:"长城很长。", options:["The","A","An","/"], answer:"The", explain:"专有名词(建筑)前常用 the:the Great Wall。" },
-        { q:"He plays ___ chess very well.", zh:"他象棋下得很好。", options:["/","a","an","the"], answer:"/", explain:"棋类/球类前不加冠词。" }
-      ] },
-    { id:"num", name:"数词", en:"Numbers", icon:"ic-grid", color:"amber", desc:"基数、序数、时间与日期。",
-      items:[
-        { q:"January is the ___ month of the year.", zh:"一月是一年的第一个月。", options:["first","one","oneth","firstth"], answer:"first", explain:"序数词 first 表“第一”。" },
-        { q:"There are ___ days in a week.", zh:"一周有七天。", options:["seven","seventh","the seven","sevens"], answer:"seven", explain:"基数词 seven 表数量。" },
-        { q:"My birthday is on the ___ of May.", zh:"我的生日是五月三日。", options:["third","three","thirdth","threeth"], answer:"third", explain:"日期用序数词:the third of May。" },
-        { q:"He is in ___.", zh:"他上五年级。", options:["Grade Five","Grade Fifth","the Grade Five","Five Grade"], answer:"Grade Five", explain:"年级用基数词:Grade Five。" },
-        { q:"It's ___ now. (7:30)", zh:"现在七点半。", options:["half past seven","seven half","half seven past","past half seven"], answer:"half past seven", explain:"半点用 half past + 钟点。" },
-        { q:"There are ___ students in our class.", zh:"我们班有四十五名学生。", options:["forty-five","fourty-five","forty five","forty-fifth"], answer:"forty-five", explain:"40 拼作 forty,连字符:forty-five。" },
-        { q:"This is his ___ birthday.", zh:"这是他的第九个生日。", options:["ninth","nineth","nine","ninthth"], answer:"ninth", explain:"nine 的序数词是 ninth(去 e 加 th)。" },
-        { q:"Please turn to page ___.", zh:"请翻到第二十页。", options:["twenty","twentieth","the twenty","twenties"], answer:"twenty", explain:"page 后用基数词:page twenty。" },
-        { q:"There are ___ months in a year.", zh:"一年有十二个月。", options:["twelve","twelfth","the twelve","twelves"], answer:"twelve", explain:"基数词 twelve。" },
-        { q:"He came ___ in the race.", zh:"他在比赛中得了第二名。", options:["second","two","secondth","twoth"], answer:"second", explain:"名次用序数词 second。" }
-      ] },
-    { id:"adj", name:"形容词与副词", en:"Adjectives & Adverbs", icon:"ic-thumbs-up", color:"brand", desc:"比较级、最高级、副词、修饰。",
-      items:[
-        { q:"He is ___ boy in his class.", zh:"他是班上最高的男孩。", options:["the tallest","the taller","tallest","taller"], answer:"the tallest", explain:"三者及以上用最高级,前加 the。" },
-        { q:"Which is ___, the sun or the moon?", zh:"太阳和月亮哪个更亮?", options:["brighter","brightest","bright","more bright"], answer:"brighter", explain:"两者比较用比较级 brighter。" },
-        { q:"This story is much ___ than that one.", zh:"这个故事比那个有趣得多。", options:["more interesting","interesting","most interesting","interestinger"], answer:"more interesting", explain:"多音节比较级用 more,much 修饰比较级。" },
-        { q:"She dances ___ of all.", zh:"她跳得最好。", options:["best","better","well","the better"], answer:"best", explain:"副词 well 的最高级 best,表方式。" },
-        { q:"My room is as ___ as yours.", zh:"我的房间和你的一样干净。", options:["clean","cleaner","cleanest","more clean"], answer:"clean", explain:"as…as 之间用形容词原级。" },
-        { q:"He runs ___ than his brother.", zh:"他跑得比他弟弟快。", options:["faster","fast","fastest","more fast"], answer:"faster", explain:"fast 的比较级 faster。" },
-        { q:"It's the ___ day of the year.", zh:"这是一年中最冷的一天。", options:["coldest","colder","cold","most cold"], answer:"coldest", explain:"最高级 coldest。" },
-        { q:"Tom is ___ than Jack.", zh:"汤姆比杰克年龄大。", options:["older","old","oldest","more old"], answer:"older", explain:"两者比较用比较级 older。" },
-        { q:"Please write more ___.", zh:"请写得更仔细些。", options:["carefully","careful","carefuler","carefullest"], answer:"carefully", explain:"修饰动词 write 用副词 carefully,前用 more。" },
-        { q:"This box is ___ heavy for me to carry.", zh:"这个箱子太重我搬不动。", options:["too","very","so","much"], answer:"too", explain:"too…to… 太…以至于不能。" },
-        { q:"The film is ___ boring that I fell asleep.", zh:"电影太无聊了我都睡着了。", options:["so","too","very","much"], answer:"so", explain:"so…that… 如此…以至于。" },
-        { q:"He is old ___ to go to school.", zh:"他到了上学的年龄。", options:["enough","too","very","so"], answer:"enough", explain:"形容词 + enough + to do:old enough to。" },
-        { q:"Of the two girls, Lily is ___.", zh:"两个女孩中,莉莉更漂亮。", options:["the prettier","prettier","prettiest","the prettiest"], answer:"the prettier", explain:"两者比较,特指用 the + 比较级。" },
-        { q:"He speaks English ___.", zh:"他英语说得流利。", options:["fluently","fluent","more fluent","fluentest"], answer:"fluently", explain:"修饰动词用副词 fluently。" },
-        { q:"This is by far the ___ book I've read.", zh:"这是我读过最好的书。", options:["best","better","good","most good"], answer:"best", explain:"good 的最高级 best。" }
-      ] },
-    { id:"coll", name:"固定搭配(新)", en:"More Collocations", icon:"ic-link-2", color:"cyan", desc:"此前未考的动词/形容词短语。",
-      items:[
-        { q:"We will take part ___ the sports meeting.", zh:"我们要参加运动会。", options:["in","at","on","for"], answer:"in", explain:"take part in 参加(活动)。" },
-        { q:"I'm looking forward ___ your letter.", zh:"我盼望你的来信。", options:["to","for","at","on"], answer:"to", explain:"look forward to + 名词/动名词。" },
-        { q:"The desk is made ___ wood.", zh:"桌子是木头做的。", options:["of","from","in","by"], answer:"of", explain:"看得出原料用 be made of。" },
-        { q:"Please get ___ well with your classmates.", zh:"请和同学好好相处。", options:["on","in","at","up"], answer:"on", explain:"get on/along well with 与…相处融洽。" },
-        { q:"She is busy ___ her homework.", zh:"她忙于做作业。", options:["doing","to do","do","did"], answer:"doing", explain:"be busy doing sth 忙于做某事。" },
-        { q:"I would rather ___ at home.", zh:"我宁愿待在家里。", options:["stay","to stay","staying","stayed"], answer:"stay", explain:"would rather + 动词原形。" },
-        { q:"You had better ___ now.", zh:"你最好现在走。", options:["go","to go","going","went"], answer:"go", explain:"had better + 动词原形。" },
-        { q:"I prefer tea ___ coffee.", zh:"和咖啡相比我更喜欢茶。", options:["to","than","for","with"], answer:"to", explain:"prefer A to B 喜欢 A 胜过 B。" },
-        { q:"He spends two hours ___ his homework.", zh:"他花两小时做作业。", options:["on","in","for","at"], answer:"on", explain:"spend time on sth。" },
-        { q:"It takes me an hour ___ to school.", zh:"我花一小时去上学。", options:["to go","going","go","went"], answer:"to go", explain:"It takes sb time to do sth。" },
-        { q:"Thanks ___ your help, I passed.", zh:"多亏你的帮助,我通过了。", options:["to","for","of","with"], answer:"to", explain:"thanks to 多亏、由于。" },
-        { q:"He is good ___ playing the guitar.", zh:"他擅长弹吉他。", options:["at","in","on","for"], answer:"at", explain:"be good at doing。" },
-        { q:"Please pay attention ___ the teacher.", zh:"请注意听老师讲。", options:["to","at","on","for"], answer:"to", explain:"pay attention to 注意。" },
-        { q:"They arrived ___ Beijing yesterday.", zh:"他们昨天到达北京。", options:["in","at","to","on"], answer:"in", explain:"arrive in + 大地方。" },
-        { q:"Don't laugh ___ others.", zh:"不要嘲笑别人。", options:["at","to","on","for"], answer:"at", explain:"laugh at 嘲笑。" },
-        { q:"He is proud ___ being Chinese.", zh:"他为身为中国人自豪。", options:["of","for","at","in"], answer:"of", explain:"be proud of。" },
-        { q:"We should be strict ___ ourselves.", zh:"我们应该严格要求自己。", options:["with","to","for","at"], answer:"with", explain:"be strict with sb 对某人严格。" },
-        { q:"She has been ill ___ three days.", zh:"她已经病了三天了。", options:["for","since","in","at"], answer:"for", explain:"for + 一段时间。" },
-        { q:"Turn ___ the radio; it's too loud.", zh:"把收音机声音关小;太吵了。", options:["down","up","on","off"], answer:"down", explain:"turn down 调小声音;turn up 调大。" },
-        { q:"He fell ___ from the tree.", zh:"他从树上掉下来。", options:["down","up","off","in"], answer:"down", explain:"fall down 摔倒/掉下。" },
-        { q:"Please fill ___ the form.", zh:"请填写这张表格。", options:["in","on","up","at"], answer:"in", explain:"fill in 填写。" },
-        { q:"We are looking ___ the new baby.", zh:"我们在照顾新出生的宝宝。", options:["after","for","at","up"], answer:"after", explain:"look after 照顾。" },
-        { q:"He gives ___ smoking for his health.", zh:"为了健康他戒烟了。", options:["up","in","off","away"], answer:"up", explain:"give up doing 放弃/戒掉。" },
-        { q:"They set ___ early in the morning.", zh:"他们一大早就出发了。", options:["off","on","up","in"], answer:"off", explain:"set off 出发。" },
-        { q:"Please hand ___ your homework.", zh:"请交上你的作业。", options:["in","on","up","at"], answer:"in", explain:"hand in 上交。" },
-        { q:"We put ___ the meeting to Friday.", zh:"我们把会议推迟到星期五。", options:["off","on","up","down"], answer:"off", explain:"put off 推迟。" },
-        { q:"He is interested ___ collecting stamps.", zh:"他对集邮感兴趣。", options:["in","at","on","for"], answer:"in", explain:"be interested in doing。" },
-        { q:"Be careful ___ the car!", zh:"小心那辆车!", options:["of","for","at","in"], answer:"of", explain:"be careful of 当心。" },
-        { q:"She is afraid ___ speaking in public.", zh:"她害怕当众讲话。", options:["of","for","at","to"], answer:"of", explain:"be afraid of doing。" },
-        { q:"Let's talk ___ our summer holiday.", zh:"我们聊聊暑假吧。", options:["about","at","for","of"], answer:"about", explain:"talk about 谈论。" }
-      ] },
-    { id:"modal", name:"情态动词", en:"Modal Verbs", icon:"ic-zap", color:"green", desc:"can/must/should/may/have to 等。",
-      items:[
-        { q:"You ___ finish your homework first.", zh:"你必须先完成作业。", options:["must","can","may","need"], answer:"must", explain:"must 表示“必须”。" },
-        { q:"___ I come in? — Yes, please.", zh:"我可以进来吗?——请进。", options:["May","Must","Need","Would"], answer:"May", explain:"请求许可用 May I…?" },
-        { q:"You ___ worry; everything is fine.", zh:"你不必担心,一切都好。", options:["needn't","mustn't","can't","shouldn't"], answer:"needn't", explain:"needn't 不必。" },
-        { q:"We ___ be quiet in the library.", zh:"我们在图书馆应该保持安静。", options:["should","can","may","need"], answer:"should", explain:"should 表示“应该”。" },
-        { q:"He ___ swim when he was five.", zh:"他五岁就会游泳。", options:["could","can","may","must"], answer:"could", explain:"过去的能力用 could。" },
-        { q:"You ___ play football on the road. It's dangerous.", zh:"你不准在马路上踢球,很危险。", options:["mustn't","needn't","can","may"], answer:"mustn't", explain:"mustn't 表示“禁止”。" },
-        { q:"I ___ to get up early tomorrow.", zh:"我明天得早起。", options:["have","must","can","should"], answer:"have", explain:"have to + 动词原形,表客观必须。" },
-        { q:"___ you help me, please?", zh:"你能帮我一下吗?", options:["Could","Must","Need","Should"], answer:"Could", explain:"礼貌请求用 Could you…?" },
-        { q:"It ___ rain tomorrow.", zh:"明天可能会下雨。", options:["may","must","can","need"], answer:"may", explain:"may 表示“可能”。" },
-        { q:"You ___ take the umbrella; it won't rain.", zh:"你不用带伞,不会下雨。", options:["needn't","mustn't","can't","couldn't"], answer:"needn't", explain:"needn't 表示“不必”。" },
-        { q:"Students ___ listen to the teacher carefully.", zh:"学生应该认真听老师讲。", options:["should","may","need","would"], answer:"should", explain:"应该用 should。" },
-        { q:"___ I use your pen? — Sure.", zh:"我能用你的钢笔吗?——当然。", options:["Can","Must","Should","Need"], answer:"Can", explain:"日常请求许可用 Can I…?" }
-      ] },
-    { id:"conj", name:"连词与疑问词", en:"Conjunctions & Wh-", icon:"ic-git-branch", color:"amber", desc:"because/so/but/if + why/which 等。",
-      items:[
-        { q:"I stayed at home ___ it was raining.", zh:"因为下雨我待在家里。", options:["because","so","but","or"], answer:"because", explain:"because 引导原因。" },
-        { q:"It was late, ___ I went to bed.", zh:"很晚了,所以我睡觉了。", options:["so","because","but","or"], answer:"so", explain:"so 引导结果。" },
-        { q:"He is poor ___ happy.", zh:"他虽穷但快乐。", options:["but","and","so","or"], answer:"but", explain:"but 表转折。" },
-        { q:"Hurry up, ___ you'll be late.", zh:"快点,否则你要迟到了。", options:["or","and","but","so"], answer:"or", explain:"祈使句 + or,否则。" },
-        { q:"Work hard, ___ you'll succeed.", zh:"努力,你就会成功。", options:["and","or","but","so"], answer:"and", explain:"祈使句 + and,就会。" },
-        { q:"___ are you late? — Because I missed the bus.", zh:"你为什么迟到?——因为没赶上车。", options:["Why","How","What","When"], answer:"Why", explain:"问原因用 Why。" },
-        { q:"___ colour do you like, red or blue?", zh:"你喜欢哪种颜色,红的还是蓝的?", options:["Which","What","Whose","Why"], answer:"Which", explain:"在给定范围里选择用 Which。" },
-        { q:"I'll call you ___ I arrive.", zh:"我到了就给你打电话。", options:["when","because","but","or"], answer:"when", explain:"when 引导时间状语从句。" },
-        { q:"___ it is fine tomorrow, we'll go hiking.", zh:"如果明天天气好,我们就去远足。", options:["If","Because","But","So"], answer:"If", explain:"if 引导条件从句。" },
-        { q:"Both Tom ___ Jack are my friends.", zh:"汤姆和杰克都是我的朋友。", options:["and","or","but","nor"], answer:"and", explain:"both…and… 两者都。" },
-        { q:"Either you ___ he must go.", zh:"要么你要么他必须去。", options:["or","and","but","nor"], answer:"or", explain:"either…or… 要么…要么…。" },
-        { q:"___ long is the ruler? — 20 cm.", zh:"这把尺子多长?——20 厘米。", options:["How","What","Which","Why"], answer:"How", explain:"问长度用 How long。" },
-        { q:"He didn't come ___ he was ill.", zh:"他没来因为病了。", options:["because","so","but","and"], answer:"because", explain:"because 引导原因。" }
-      ] },
-    { id:"pattern", name:"常用句型(新)", en:"Sentence Patterns", icon:"ic-message-square", color:"cyan", desc:"感叹句、反意疑问、被动、比较等。",
-      items:[
-        { q:"The classroom ___ cleaned every day.", zh:"教室每天被打扫。", options:["is","are","does","do"], answer:"is", explain:"被动语态:is + 过去分词 cleaned。" },
-        { q:"English ___ spoken in many countries.", zh:"许多国家讲英语。", options:["is","are","does","do"], answer:"is", explain:"English 不可数,被动用 is spoken。" },
-        { q:"Let's go, ___?", zh:"我们走吧,好吗?", options:["shall we","will you","do we","are we"], answer:"shall we", explain:"Let's… 的反意疑问句用 shall we。" },
-        { q:"You are a student, ___?", zh:"你是学生,对吧?", options:["aren't you","are you","don't you","isn't it"], answer:"aren't you", explain:"前肯定后否定:are→aren't you。" },
-        { q:"She doesn't like fish, ___?", zh:"她不喜欢鱼,对吧?", options:["does she","doesn't she","is she","do she"], answer:"does she", explain:"前否定后肯定:doesn't→does she。" },
-        { q:"What ___ delicious cakes they are!", zh:"多美味的蛋糕啊!", options:["/","a","an","the"], answer:"/", explain:"感叹句中复数名词前不加 a/an。" },
-        { q:"How ___ the baby sleeps!", zh:"宝宝睡得多香啊!", options:["well","good","a good","a well"], answer:"well", explain:"How + 副词 well 修饰 sleeps。" },
-        { q:"There ___ a pen and two books on the desk.", zh:"桌上有一支笔和两本书。", options:["is","are","have","has"], answer:"is", explain:"There be 就近原则,靠近 a pen 用 is。" },
-        { q:"Neither he nor I ___ from Beijing.", zh:"他和我都不是北京人。", options:["am","is","are","be"], answer:"am", explain:"neither…nor… 就近一致,靠近 I 用 am。" },
-        { q:"The more you read, the ___ you know.", zh:"你读得越多,懂得越多。", options:["more","most","much","many"], answer:"more", explain:"the more…the more… 越…越…。" },
-        { q:"It is important ___ us to learn English.", zh:"学英语对我们很重要。", options:["for","to","of","with"], answer:"for", explain:"It is + adj + for sb + to do。" },
-        { q:"He is too young ___ go to school.", zh:"他太小还不能上学。", options:["to","for","so","that"], answer:"to", explain:"too…to… 太…以至于不能。" },
-        { q:"Would you like ___ tea? — Yes, please.", zh:"你想喝点茶吗?——好的。", options:["some","any","a","many"], answer:"some", explain:"表邀请的疑问句用 some。" },
-        { q:"There ___ some milk and two eggs in the fridge.", zh:"冰箱里有一些牛奶和两个鸡蛋。", options:["is","are","have","has"], answer:"is", explain:"就近原则,靠近 some milk 用 is。" },
-        { q:"What a ___ day it is!", zh:"多好的一天啊!", options:["fine","finely","well","good a"], answer:"fine", explain:"What a + 形容词 + 名词:a fine day。" },
-        { q:"He asked me ___ I could swim.", zh:"他问我是否会游泳。", options:["if","that","what","which"], answer:"if", explain:"宾语从句表“是否”用 if/whether。" },
-        { q:"This is the boy ___ helped me.", zh:"这就是帮我的那个男孩。", options:["who","which","whose","where"], answer:"who", explain:"定语从句指人用 who。" },
-        { q:"The book ___ cover is red is mine.", zh:"封面是红色的那本书是我的。", options:["whose","who","which","that"], answer:"whose", explain:"表所属关系用 whose。" }
-      ] },
-    { id:"tense", name:"进阶时态", en:"Advanced Tenses", icon:"ic-trending-up", color:"green", desc:"现在完成、过去进行等。",
-      items:[
-        { q:"I have already ___ my homework.", zh:"我已经做完作业了。", options:["done","do","did","doing"], answer:"done", explain:"现在完成时 have + 过去分词 done。" },
-        { q:"She ___ to Beijing twice.", zh:"她去过北京两次。", options:["has been","has gone","went","is going"], answer:"has been", explain:"have been to 去过(强调经历)。" },
-        { q:"They ___ TV when I came in.", zh:"我进来时他们正在看电视。", options:["were watching","watched","are watching","watch"], answer:"were watching", explain:"过去进行时:when + 一般过去时。" },
-        { q:"He ___ here since 2018.", zh:"他从 2018 年起就住在这里。", options:["has lived","lived","lives","is living"], answer:"has lived", explain:"since + 时间点,用现在完成时。" },
-        { q:"Have you ever ___ to a farm?", zh:"你去过农场吗?", options:["been","gone","go","went"], answer:"been", explain:"have been to 去过(经历);ever 与现在完成时连用。" },
-        { q:"I was reading ___ the phone rang.", zh:"电话响时我正在读书。", options:["when","while","because","if"], answer:"when", explain:"when 引导一般过去时的短暂动作。" },
-        { q:"We have known each other ___ ten years.", zh:"我们认识十年了。", options:["for","since","in","at"], answer:"for", explain:"for + 一段时间,现在完成时。" },
-        { q:"Look, it ___! Let's take an umbrella.", zh:"看,下雨了!带把伞吧。", options:["is raining","rains","rained","will rain"], answer:"is raining", explain:"Look 现在进行时。" },
-        { q:"By the time I got there, the bus ___.", zh:"我到那儿时,公交已经走了。", options:["had left","left","has left","leaves"], answer:"had left", explain:"过去的过去用过去完成时 had + 过去分词。" },
-        { q:"She said she ___ busy that day.", zh:"她说那天她很忙。", options:["was","is","were","will be"], answer:"was", explain:"宾语从句主句过去时,从句用相应过去时态。" }
-      ] }
-  ]
-};
-
-</script>
-<script>
-// Word -> IPA (BrE) for test-sentence phonetics.
-window.IPA_DICT = {
-  "toms": "/tɒmz/",
-  "monkeys": "/ˈmʌŋkiz/",
-  "oclock": "/əˈklɒk/",
-  "ive": "/aɪv/",
-  "neednt": "/ˈniːdnt/",
-  "mustnt": "/ˈmʌsnt/",
-  "wont": "/wəʊnt/",
-  "youll": "/juːl/",
-  "didnt": "/ˈdɪdnt/",
-  "arent": "/ɑːnt/",
-  "would": "/wʊd/",
-  "knows": "/nəʊz/",
-  "city": "/ˈsɪti/",
-  "as": "/æz/",
-  "made": "/meɪd/",
-  "pay": "/peɪ/",
-  "ourselves": "/ˌaʊəˈselvz/",
-  "finish": "/ˈfɪnɪʃ/",
-  "'h'": "/eɪtʃ/",
-  "1st": "/fɜːst/",
-  "20": "/twenty/",
-  "2015": "/twenty fifteen/",
-  "2018": "/twenty eighteen/",
-  "2020": "/twenty twenty/",
-  "a": "/ə/",
-  "a little": "/ə ˈlɪtl/",
-  "about": "/əˈbaʊt/",
-  "across": "/əˈkrɒs/",
-  "add": "/æd/",
-  "afraid": "/əˈfreɪd/",
-  "after": "/ˈɑːftə(r)/",
-  "again": "/əˈɡen/",
-  "all": "/ɔːl/",
-  "already": "/ɔːlˈredi/",
-  "am": "/æm/",
-  "an": "/ən/",
-  "and": "/ənd/",
-  "ann": "/æn/",
-  "another": "/əˈnʌðə(r)/",
-  "answer": "/ˈɑːnsə(r)/",
-  "any": "/ˈeni/",
-  "apple": "/ˈæpl/",
-  "apples": "/ˈæplz/",
-  "are": "/ɑː(r)/",
-  "aren't": "/ɑːnt/",
-  "around": "/əˈraʊnd/",
-  "arrive": "/əˈraɪv/",
-  "arrived": "/əˈraɪvd/",
-  "asked": "/ɑːskt/",
-  "asleep": "/əˈsliːp/",
-  "at": "/æt/",
-  "attention": "/əˈtenʃn/",
-  "autumn": "/ˈɔːtəm/",
-  "baby": "/ˈbeɪbi/",
-  "bag": "/bæɡ/",
-  "ball": "/bɔːl/",
-  "bananas": "/bəˈnɑːnəz/",
-  "bank": "/bæŋk/",
-  "basketball": "/ˈbɑːskɪtbɔːl/",
-  "be": "/biː/",
-  "beautiful": "/ˈbjuːtɪfl/",
-  "because": "/bɪˈkɔːz/",
-  "bed": "/bed/",
-  "been": "/biːn/",
-  "before": "/bɪˈfɔː(r)/",
-  "begins": "/bɪˈɡɪnz/",
-  "behind": "/bɪˈhaɪnd/",
-  "beijing": "/beɪˈdʒɪŋ/",
-  "being": "/ˈbiːɪŋ/",
-  "best": "/best/",
-  "better": "/ˈbetə(r)/",
-  "between": "/bɪˈtwiːn/",
-  "big": "/bɪɡ/",
-  "bigger": "/ˈbɪɡə(r)/",
-  "biggest": "/ˈbɪɡɪst/",
-  "bike": "/baɪk/",
-  "bird": "/bɜːd/",
-  "birds": "/bɜːdz/",
-  "birthday": "/ˈbɜːθdeɪ/",
-  "blackboard": "/ˈblækbɔːd/",
-  "blue": "/bluː/",
-  "book": "/bʊk/",
-  "books": "/bʊks/",
-  "boring": "/ˈbɔːrɪŋ/",
-  "born": "/bɔːn/",
-  "both": "/bəʊθ/",
-  "bottle": "/ˈbɒtl/",
-  "bought": "/bɔːt/",
-  "box": "/bɒks/",
-  "boxes": "/ˈbɒksɪz/",
-  "boy": "/bɔɪ/",
-  "boys": "/bɔɪz/",
-  "bread": "/bred/",
-  "breakfast": "/ˈbrekfəst/",
-  "bridge": "/brɪdʒ/",
-  "brighter": "/ˈbraɪtə(r)/",
-  "brother": "/ˈbrʌðə(r)/",
-  "brush": "/brʌʃ/",
-  "bus": "/bʌs/",
-  "busy": "/ˈbɪzi/",
-  "but": "/bʌt/",
-  "buys": "/baɪz/",
-  "by": "/baɪ/",
-  "cakes": "/keɪks/",
-  "call": "/kɔːl/",
-  "came": "/keɪm/",
-  "can": "/kæn/",
-  "can't": "/kɑːnt/",
-  "capital": "/ˈkæpɪtl/",
-  "car": "/kɑː(r)/",
-  "care": "/keə(r)/",
-  "careful": "/ˈkeəfl/",
-  "carefully": "/ˈkeəfəli/",
-  "carry": "/ˈkæri/",
-  "cat": "/kæt/",
-  "celebrate": "/ˈselɪbreɪt/",
-  "chair": "/tʃeə(r)/",
-  "chess": "/tʃes/",
-  "children": "/ˈtʃɪldrən/",
-  "children's": "/ˈtʃɪldrənz/",
-  "childrens": "/ˈtʃɪldrənz/",
-  "childrens day": "/ˈtʃɪldrənz deɪ/",
-  "china": "/ˈtʃaɪnə/",
-  "chinese": "/ˌtʃaɪˈniːz/",
-  "christmas": "/ˈkrɪsməs/",
-  "circle": "/ˈsɜːkl/",
-  "class": "/klɑːs/",
-  "classmates": "/ˈklɑːsmeɪts/",
-  "classroom": "/ˈklɑːsruːm/",
-  "clean": "/kliːn/",
-  "cleaned": "/kliːnd/",
-  "clever": "/ˈklevə(r)/",
-  "close": "/kləʊz/",
-  "club": "/klʌb/",
-  "cm": "/ˈsentɪmiːtə(r)/",
-  "coat": "/kəʊt/",
-  "coffee": "/ˈkɒfi/",
-  "cold": "/kəʊld/",
-  "coldest": "/ˈkəʊldɪst/",
-  "collecting": "/kəˈlektɪŋ/",
-  "colour": "/ˈkʌlə(r)/",
-  "come": "/kʌm/",
-  "computer": "/kəmˈpjuːtə(r)/",
-  "cook": "/kʊk/",
-  "cooking": "/ˈkʊkɪŋ/",
-  "cooks": "/kʊks/",
-  "could": "/kʊd/",
-  "count": "/kaʊnt/",
-  "countries": "/ˈkʌntriz/",
-  "country": "/ˈkʌntri/",
-  "cover": "/ˈkʌvə(r)/",
-  "cries": "/kraɪz/",
-  "crying": "/ˈkraɪɪŋ/",
-  "cup": "/kʌp/",
-  "cups": "/kʌps/",
-  "cut": "/kʌt/",
-  "dance": "/dɑːns/",
-  "dances": "/ˈdɑːnsɪz/",
-  "dancing": "/ˈdɑːnsɪŋ/",
-  "dangerous": "/ˈdeɪndʒərəs/",
-  "dark": "/dɑːk/",
-  "date": "/deɪt/",
-  "day": "/deɪ/",
-  "days": "/deɪz/",
-  "december": "/dɪˈsembə(r)/",
-  "delicious": "/dɪˈlɪʃəs/",
-  "desk": "/desk/",
-  "did": "/dɪd/",
-  "didn't": "/ˈdɪdnt/",
-  "different": "/ˈdɪfrənt/",
-  "difficult": "/ˈdɪfɪkəlt/",
-  "dinner": "/ˈdɪnə(r)/",
-  "dirty": "/ˈdɜːti/",
-  "do": "/duː/",
-  "doctor": "/ˈdɒktə(r)/",
-  "does": "/dʌz/",
-  "doesn't": "/ˈdʌznt/",
-  "doesnt": "/ˈdʌznt/",
-  "dog": "/dɒɡ/",
-  "doing": "/ˈduːɪŋ/",
-  "don't": "/dəʊnt/",
-  "done": "/dʌn/",
-  "dont": "/dəʊnt/",
-  "door": "/dɔː(r)/",
-  "down": "/daʊn/",
-  "draw": "/drɔː/",
-  "drawing": "/ˈdrɔːɪŋ/",
-  "draws": "/drɔːz/",
-  "drink": "/drɪŋk/",
-  "drinks": "/drɪŋks/",
-  "dumplings": "/ˈdʌmplɪŋz/",
-  "during": "/ˈdjʊərɪŋ/",
-  "each": "/iːtʃ/",
-  "early": "/ˈɜːli/",
-  "earth": "/ɜːθ/",
-  "easy": "/ˈiːzi/",
-  "eat": "/iːt/",
-  "eating": "/ˈiːtɪŋ/",
-  "eats": "/iːts/",
-  "egg": "/eɡ/",
-  "eggs": "/eɡz/",
-  "eight": "/eɪt/",
-  "either": "/ˈaɪðə(r)/",
-  "elephant": "/ˈelɪfənt/",
-  "eleven": "/ɪˈlevn/",
-  "empty": "/ˈempti/",
-  "ends": "/endz/",
-  "engineer": "/ˌendʒɪˈnɪə(r)/",
-  "english": "/ˈɪŋɡlɪʃ/",
-  "enjoy": "/ɪnˈdʒɔɪ/",
-  "enough": "/ɪˈnʌf/",
-  "evening": "/ˈiːvnɪŋ/",
-  "ever": "/ˈevə(r)/",
-  "every": "/ˈevri/",
-  "everyone": "/ˈevriwʌn/",
-  "everything": "/ˈevriθɪŋ/",
-  "fall": "/fɔːl/",
-  "far": "/fɑː(r)/",
-  "farm": "/fɑːm/",
-  "fast": "/fɑːst/",
-  "faster": "/ˈfɑːstə(r)/",
-  "father": "/ˈfɑːðə(r)/",
-  "favourite": "/ˈfeɪvərɪt/",
-  "fell": "/fel/",
-  "festival": "/ˈfestɪvl/",
-  "fill": "/fɪl/",
-  "film": "/fɪlm/",
-  "fine": "/faɪn/",
-  "first": "/fɜːst/",
-  "fish": "/fɪʃ/",
-  "fishing": "/ˈfɪʃɪŋ/",
-  "five": "/faɪv/",
-  "flies": "/flaɪz/",
-  "flower": "/ˈflaʊə(r)/",
-  "flowers": "/ˈflaʊəz/",
-  "fluently": "/ˈfluːəntli/",
-  "fly": "/flaɪ/",
-  "flying": "/ˈflaɪɪŋ/",
-  "foot": "/fʊt/",
-  "football": "/ˈfʊtbɔːl/",
-  "for": "/fɔː(r)/",
-  "form": "/fɔːm/",
-  "forty-five": "/ˌfɔːtiˈfaɪv/",
-  "forward": "/ˈfɔːwəd/",
-  "free": "/friː/",
-  "free time": "/friː taɪm/",
-  "friday": "/ˈfraɪdeɪ/",
-  "fridge": "/frɪdʒ/",
-  "friend": "/frend/",
-  "friends": "/frendz/",
-  "from": "/frɒm/",
-  "front": "/frʌnt/",
-  "full": "/fʊl/",
-  "fun": "/fʌn/",
-  "game": "/ɡeɪm/",
-  "games": "/ɡeɪmz/",
-  "garden": "/ˈɡɑːdn/",
-  "gardening": "/ˈɡɑːdnɪŋ/",
-  "gate": "/ɡeɪt/",
-  "get": "/ɡet/",
-  "girls": "/ɡɜːlz/",
-  "give": "/ɡɪv/",
-  "gives": "/ɡɪvz/",
-  "glass": "/ɡlɑːs/",
-  "go": "/ɡəʊ/",
-  "goes": "/ɡəʊz/",
-  "going": "/ˈɡəʊɪŋ/",
-  "gone": "/ɡɒn/",
-  "good": "/ɡʊd/",
-  "got": "/ɡɒt/",
-  "grade": "/ɡreɪd/",
-  "grandma": "/ˈɡrænmɑː/",
-  "grass": "/ɡrɑːs/",
-  "great": "/ɡreɪt/",
-  "grow": "/ɡrəʊ/",
-  "guitar": "/ɡɪˈtɑː(r)/",
-  "h": "/eɪtʃ/",
-  "had": "/hæd/",
-  "half": "/hɑːf/",
-  "hand": "/hænd/",
-  "hands": "/hændz/",
-  "happy": "/ˈhæpi/",
-  "hard": "/hɑːd/",
-  "has": "/hæz/",
-  "hat": "/hæt/",
-  "have": "/hæv/",
-  "he": "/hiː/",
-  "health": "/helθ/",
-  "heart": "/hɑːt/",
-  "heavier": "/ˈheviə(r)/",
-  "heavily": "/ˈhevɪli/",
-  "heavy": "/ˈhevi/",
-  "help": "/help/",
-  "helped": "/helpt/",
-  "helping": "/ˈhelpɪŋ/",
-  "her": "/hɜː(r)/",
-  "here": "/hɪə(r)/",
-  "hers": "/hɜːz/",
-  "hiding": "/ˈhaɪdɪŋ/",
-  "high": "/haɪ/",
-  "hiking": "/ˈhaɪkɪŋ/",
-  "his": "/hɪz/",
-  "hobby": "/ˈhɒbi/",
-  "holiday": "/ˈhɒlədeɪ/",
-  "home": "/həʊm/",
-  "homework": "/ˈhəʊmwɜːk/",
-  "honest": "/ˈɒnɪst/",
-  "hot": "/hɒt/",
-  "hottest": "/ˈhɒtɪst/",
-  "hour": "/ˈaʊə(r)/",
-  "hours": "/ˈaʊəz/",
-  "house": "/haʊs/",
-  "housework": "/ˈhaʊswɜːk/",
-  "how": "/haʊ/",
-  "hundred": "/ˈhʌndrəd/",
-  "hurry": "/ˈhʌri/",
-  "i": "/aɪ/",
-  "i'd": "/aɪd/",
-  "i'll": "/aɪl/",
-  "i'm": "/aɪm/",
-  "i've": "/aɪv/",
-  "ice": "/aɪs/",
-  "id": "/aɪd/",
-  "if": "/ɪf/",
-  "ill": "/ɪl/",
-  "im": "/aɪm/",
-  "important": "/ɪmˈpɔːtnt/",
-  "in": "/ɪn/",
-  "inside": "/ɪnˈsaɪd/",
-  "interested": "/ˈɪntrəstɪd/",
-  "interesting": "/ˈɪntrəstɪŋ/",
-  "is": "/ɪz/",
-  "it": "/ɪt/",
-  "it's": "/ɪts/",
-  "its": "/ɪts/",
-  "itself": "/ɪtˈself/",
-  "jack": "/dʒæk/",
-  "january": "/ˈdʒænjuəri/",
-  "july": "/dʒuˈlaɪ/",
-  "jump": "/dʒʌmp/",
-  "jump rope": "/dʒʌmp rəʊp/",
-  "june": "/dʒuːn/",
-  "keys": "/kiːz/",
-  "knives": "/naɪvz/",
-  "knocking": "/ˈnɒkɪŋ/",
-  "know": "/nəʊ/",
-  "known": "/nəʊn/",
-  "lake": "/leɪk/",
-  "lamp": "/læmp/",
-  "last": "/lɑːst/",
-  "late": "/leɪt/",
-  "laugh": "/lɑːf/",
-  "learn": "/lɜːn/",
-  "leaves": "/liːvz/",
-  "left": "/left/",
-  "let's": "/lets/",
-  "lets": "/lets/",
-  "letter": "/ˈletə(r)/",
-  "library": "/ˈlaɪbrəri/",
-  "light": "/laɪt/",
-  "like": "/laɪk/",
-  "likes": "/laɪks/",
-  "lily": "/ˈlɪli/",
-  "line": "/laɪn/",
-  "listen": "/ˈlɪsn/",
-  "listens": "/ˈlɪsnz/",
-  "little": "/ˈlɪtl/",
-  "live": "/lɪv/",
-  "lived": "/lɪvd/",
-  "lively": "/ˈlaɪvli/",
-  "long": "/lɒŋ/",
-  "look": "/lʊk/",
-  "looking": "/ˈlʊkɪŋ/",
-  "looks": "/lʊks/",
-  "lost": "/lɒst/",
-  "lot": "/lɒt/",
-  "loud": "/laʊd/",
-  "love": "/lʌv/",
-  "loves": "/lʌvz/",
-  "lunch": "/lʌntʃ/",
-  "makes": "/meɪks/",
-  "man": "/mæn/",
-  "many": "/ˈmeni/",
-  "march": "/mɑːtʃ/",
-  "market": "/ˈmɑːkɪt/",
-  "maths": "/mæθs/",
-  "may": "/meɪ/",
-  "me": "/miː/",
-  "meeting": "/ˈmiːtɪŋ/",
-  "mice": "/maɪs/",
-  "mid-autumn": "/mɪd ˈɔːtəm/",
-  "mid-autumn festival": "/mɪd ˈɔːtəm ˈfestɪvl/",
-  "milk": "/mɪlk/",
-  "mine": "/maɪn/",
-  "minus": "/ˈmaɪnəs/",
-  "missed": "/mɪst/",
-  "moment": "/ˈməʊmənt/",
-  "monday": "/ˈmʌndeɪ/",
-  "monkeys'": "/ˈmʌŋkiz/",
-  "month": "/mʌnθ/",
-  "months": "/mʌnθs/",
-  "moon": "/muːn/",
-  "mooncake": "/ˈmuːnkeɪk/",
-  "mooncakes": "/ˈmuːnkeɪks/",
-  "more": "/mɔː(r)/",
-  "morning": "/ˈmɔːnɪŋ/",
-  "mother": "/ˈmʌðə(r)/",
-  "mountains": "/ˈmaʊntənz/",
-  "mouse": "/maʊs/",
-  "much": "/mʌtʃ/",
-  "music": "/ˈmjuːzɪk/",
-  "must": "/mʌst/",
-  "mustn't": "/ˈmʌsnt/",
-  "my": "/maɪ/",
-  "myself": "/maɪˈself/",
-  "name": "/neɪm/",
-  "national": "/ˈnæʃnəl/",
-  "near": "/nɪə(r)/",
-  "need": "/niːd/",
-  "needn't": "/ˈniːdnt/",
-  "neither": "/ˈnaɪðə(r)/",
-  "new": "/njuː/",
-  "news": "/njuːz/",
-  "next": "/nekst/",
-  "nice": "/naɪs/",
-  "night": "/naɪt/",
-  "ninth": "/naɪnθ/",
-  "nobody": "/ˈnəʊbədi/",
-  "noon": "/nuːn/",
-  "nor": "/nɔː(r)/",
-  "not": "/nɒt/",
-  "now": "/naʊ/",
-  "number": "/ˈnʌmbə(r)/",
-  "o'clock": "/əˈklɒk/",
-  "october": "/ɒkˈtəʊbə(r)/",
-  "of": "/əv/",
-  "off": "/ɒf/",
-  "old": "/əʊld/",
-  "older": "/ˈəʊldə(r)/",
-  "on": "/ɒn/",
-  "one": "/wʌn/",
-  "open": "/ˈəʊpən/",
-  "or": "/ɔː(r)/",
-  "other": "/ˈʌðə(r)/",
-  "others": "/ˈʌðəz/",
-  "our": "/ˈaʊə(r)/",
-  "over": "/ˈəʊvə(r)/",
-  "page": "/peɪdʒ/",
-  "painting": "/ˈpeɪntɪŋ/",
-  "paper": "/ˈpeɪpə(r)/",
-  "parents": "/ˈpeərənts/",
-  "park": "/pɑːk/",
-  "part": "/pɑːt/",
-  "party": "/ˈpɑːti/",
-  "passed": "/pɑːst/",
-  "past": "/pɑːst/",
-  "pen": "/pen/",
-  "pens": "/penz/",
-  "phone": "/fəʊn/",
-  "photo": "/ˈfəʊtəʊ/",
-  "photography": "/fəˈtɒɡrəfi/",
-  "piano": "/piˈænəʊ/",
-  "picture": "/ˈpɪktʃə(r)/",
-  "pieces": "/ˈpiːsɪz/",
-  "place": "/pleɪs/",
-  "plate": "/pleɪt/",
-  "play": "/pleɪ/",
-  "played": "/pleɪd/",
-  "players": "/ˈpleɪəz/",
-  "playing": "/ˈpleɪɪŋ/",
-  "plays": "/pleɪz/",
-  "please": "/pliːz/",
-  "poor": "/pɔː(r)/",
-  "potatoes": "/pəˈteɪtəʊz/",
-  "practise": "/ˈpræktɪs/",
-  "prefer": "/prɪˈfɜː(r)/",
-  "present": "/ˈpreznt/",
-  "prettier": "/ˈprɪtiə(r)/",
-  "proud": "/praʊd/",
-  "public": "/ˈpʌblɪk/",
-  "put": "/pʊt/",
-  "question": "/ˈkwestʃən/",
-  "quickly": "/ˈkwɪkli/",
-  "quiet": "/ˈkwaɪət/",
-  "quietly": "/ˈkwaɪətli/",
-  "rabbit": "/ˈræbɪt/",
-  "race": "/reɪs/",
-  "radio": "/ˈreɪdiəʊ/",
-  "rain": "/reɪn/",
-  "rained": "/reɪnd/",
-  "raining": "/ˈreɪnɪŋ/",
-  "rang": "/ræŋ/",
-  "rather": "/ˈrɑːðə(r)/",
-  "read": "/riːd/",
-  "reading": "/ˈriːdɪŋ/",
-  "reads": "/riːdz/",
-  "rectangle": "/ˈrektæŋɡl/",
-  "red": "/red/",
-  "rest": "/rest/",
-  "right": "/raɪt/",
-  "river": "/ˈrɪvə(r)/",
-  "road": "/rəʊd/",
-  "roof": "/ruːf/",
-  "room": "/ruːm/",
-  "rope": "/rəʊp/",
-  "round": "/raʊnd/",
-  "ruler": "/ˈruːlə(r)/",
-  "run": "/rʌn/",
-  "running": "/ˈrʌnɪŋ/",
-  "runs": "/rʌnz/",
-  "said": "/sed/",
-  "sam": "/sæm/",
-  "same": "/seɪm/",
-  "sandwiches": "/ˈsænwɪdʒɪz/",
-  "saturday": "/ˈsætədeɪ/",
-  "say": "/seɪ/",
-  "school": "/skuːl/",
-  "science": "/ˈsaɪəns/",
-  "scissors": "/ˈsɪzəz/",
-  "second": "/ˈsekənd/",
-  "see": "/siː/",
-  "september": "/sepˈtembə(r)/",
-  "set": "/set/",
-  "seven": "/ˈsevn/",
-  "shall": "/ʃæl/",
-  "shanghai": "/ʃæŋˈhaɪ/",
-  "shape": "/ʃeɪp/",
-  "she": "/ʃiː/",
-  "sheep": "/ʃiːp/",
-  "shoes": "/ʃuːz/",
-  "shop": "/ʃɒp/",
-  "short": "/ʃɔːt/",
-  "should": "/ʃʊd/",
-  "show": "/ʃəʊ/",
-  "since": "/sɪns/",
-  "sing": "/sɪŋ/",
-  "singing": "/ˈsɪŋɪŋ/",
-  "sings": "/sɪŋz/",
-  "sister": "/ˈsɪstə(r)/",
-  "sisters": "/ˈsɪstəz/",
-  "sit": "/sɪt/",
-  "sits": "/sɪts/",
-  "six": "/sɪks/",
-  "sky": "/skaɪ/",
-  "sleep": "/sliːp/",
-  "sleeps": "/sliːps/",
-  "slow": "/sləʊ/",
-  "slowly": "/ˈsləʊli/",
-  "small": "/smɔːl/",
-  "smoking": "/ˈsməʊkɪŋ/",
-  "snake": "/sneɪk/",
-  "snow": "/snəʊ/",
-  "so": "/səʊ/",
-  "some": "/sʌm/",
-  "someone": "/ˈsʌmwʌn/",
-  "something": "/ˈsʌmθɪŋ/",
-  "song": "/sɒŋ/",
-  "songs": "/sɒŋz/",
-  "soup": "/suːp/",
-  "speak": "/spiːk/",
-  "speaking": "/ˈspiːkɪŋ/",
-  "speaks": "/spiːks/",
-  "spends": "/spendz/",
-  "spoken": "/ˈspəʊkən/",
-  "sports": "/spɔːts/",
-  "spring": "/sprɪŋ/",
-  "spring festival": "/sprɪŋ ˈfestɪvl/",
-  "square": "/skweə(r)/",
-  "stamps": "/stæmps/",
-  "stand": "/stænd/",
-  "star": "/stɑː(r)/",
-  "starts": "/stɑːts/",
-  "stay": "/steɪ/",
-  "stayed": "/steɪd/",
-  "stop": "/stɒp/",
-  "stories": "/ˈstɔːriz/",
-  "story": "/ˈstɔːri/",
-  "strict": "/strɪkt/",
-  "student": "/ˈstjuːdnt/",
-  "students": "/ˈstjuːdnts/",
-  "succeed": "/səkˈsiːd/",
-  "summer": "/ˈsʌmə(r)/",
-  "sun": "/sʌn/",
-  "sunday": "/ˈsʌndeɪ/",
-  "sure": "/ʃʊə(r)/",
-  "sweet": "/swiːt/",
-  "swim": "/swɪm/",
-  "swimming": "/ˈswɪmɪŋ/",
-  "table": "/ˈteɪbl/",
-  "tails": "/teɪlz/",
-  "take": "/teɪk/",
-  "takes": "/teɪks/",
-  "talk": "/tɔːk/",
-  "tall": "/tɔːl/",
-  "taller": "/ˈtɔːlə(r)/",
-  "tallest": "/ˈtɔːlɪst/",
-  "tea": "/tiː/",
-  "teacher": "/ˈtiːtʃə(r)/",
-  "teachers": "/ˈtiːtʃəz/",
-  "teachers day": "/ˈtiːtʃəz deɪ/",
-  "teeth": "/tiːθ/",
-  "ten": "/ten/",
-  "term": "/tɜːm/",
-  "than": "/ðæn/",
-  "thank": "/θæŋk/",
-  "thanks": "/θæŋks/",
-  "that": "/ðæt/",
-  "the": "/ðə/",
-  "their": "/ðeə(r)/",
-  "theirs": "/ðeəz/",
-  "them": "/ðem/",
-  "there": "/ðeə(r)/",
-  "these": "/ðiːz/",
-  "they": "/ðeɪ/",
-  "third": "/θɜːd/",
-  "this": "/ðɪs/",
-  "those": "/ðəʊz/",
-  "three": "/θriː/",
-  "through": "/θruː/",
-  "time": "/taɪm/",
-  "tired": "/ˈtaɪəd/",
-  "to": "/tuː/",
-  "today": "/təˈdeɪ/",
-  "together": "/təˈɡeðə(r)/",
-  "tom": "/tɒm/",
-  "tom's": "/tɒmz/",
-  "tomatoes": "/təˈmɑːtəʊz/",
-  "tomorrow": "/təˈmɒrəʊ/",
-  "too": "/tuː/",
-  "toys": "/tɔɪz/",
-  "train": "/treɪn/",
-  "tree": "/triː/",
-  "triangle": "/ˈtraɪæŋɡl/",
-  "tunnel": "/ˈtʌnl/",
-  "turn": "/tɜːn/",
-  "turtle": "/ˈtɜːtl/",
-  "tv": "/ˌtiːˈviː/",
-  "twelve": "/twelv/",
-  "twenty": "/ˈtwenti/",
-  "twice": "/twaɪs/",
-  "two": "/tuː/",
-  "umbrella": "/ʌmˈbrelə/",
-  "under": "/ˈʌndə(r)/",
-  "university": "/ˌjuːnɪˈvɜːsəti/",
-  "up": "/ʌp/",
-  "upstairs": "/ˌʌpˈsteəz/",
-  "us": "/ʌs/",
-  "use": "/juːz/",
-  "useful": "/ˈjuːsfl/",
-  "very": "/ˈveri/",
-  "violin": "/ˌvaɪəˈlɪn/",
-  "visit": "/ˈvɪzɪt/",
-  "wait": "/weɪt/",
-  "walk": "/wɔːk/",
-  "wall": "/wɔːl/",
-  "want": "/wɒnt/",
-  "was": "/wɒz/",
-  "washing": "/ˈwɒʃɪŋ/",
-  "watched": "/wɒtʃt/",
-  "watches": "/ˈwɒtʃɪz/",
-  "watching": "/ˈwɒtʃɪŋ/",
-  "water": "/ˈwɔːtə(r)/",
-  "we": "/wiː/",
-  "we'll": "/wiːl/",
-  "weather": "/ˈweðə(r)/",
-  "week": "/wiːk/",
-  "weekend": "/ˌwiːkˈend/",
-  "well": "/wel/",
-  "went": "/went/",
-  "were": "/wɜː(r)/",
-  "what": "/wɒt/",
-  "whats": "/wɒts/",
-  "when": "/wen/",
-  "where": "/weə(r)/",
-  "which": "/wɪtʃ/",
-  "who": "/huː/",
-  "whose": "/huːz/",
-  "why": "/waɪ/",
-  "will": "/wɪl/",
-  "window": "/ˈwɪndəʊ/",
-  "winter": "/ˈwɪntə(r)/",
-  "with": "/wɪð/",
-  "wolves": "/wʊlvz/",
-  "women": "/ˈwɪmɪn/",
-  "won": "/wʌn/",
-  "won't": "/wəʊnt/",
-  "wood": "/wʊd/",
-  "word": "/wɜːd/",
-  "work": "/wɜːk/",
-  "works": "/wɜːks/",
-  "worry": "/ˈwʌri/",
-  "write": "/raɪt/",
-  "wrong": "/rɒŋ/",
-  "year": "/jɪə(r)/",
-  "years": "/jɪəz/",
-  "yes": "/jes/",
-  "yesterday": "/ˈjestədeɪ/",
-  "you": "/juː/",
-  "you'll": "/juːl/",
-  "young": "/jʌŋ/",
-  "younger": "/ˈjʌŋɡə(r)/",
-  "your": "/jɔː(r)/",
-  "yours": "/jɔːz/",
-  "yourselves": "/jɔːˈselvz/",
-  "zero": "/ˈzɪərəʊ/",
-  "zoo": "/zuː/",
-};
-
-</script>
-<script type="module">
-/* --- Lit 运行时内联:Blob URL 动态 import(离线可用、命名导出规范) --- */
-    const __LIT_SRC = "/* esm.sh - lit@3.2.1 */\nvar R=globalThis,T=R.ShadowRoot&&(R.ShadyCSS===void 0||R.ShadyCSS.nativeShadow)&&\"adoptedStyleSheets\"in Document.prototype&&\"replace\"in CSSStyleSheet.prototype,z=Symbol(),Q=new WeakMap,C=class{constructor(t,e,s){if(this._$cssResult$=!0,s!==z)throw Error(\"CSSResult is not constructable. Use `unsafeCSS` or `css` instead.\");this.cssText=t,this.t=e}get styleSheet(){let t=this.o,e=this.t;if(T&&t===void 0){let s=e!==void 0&&e.length===1;s&&(t=Q.get(e)),t===void 0&&((this.o=t=new CSSStyleSheet).replaceSync(this.cssText),s&&Q.set(e,t))}return t}toString(){return this.cssText}},X=o=>new C(typeof o==\"string\"?o:o+\"\",void 0,z),$t=(o,...t)=>{let e=o.length===1?o[0]:t.reduce(((s,i,r)=>s+(n=>{if(n._$cssResult$===!0)return n.cssText;if(typeof n==\"number\")return n;throw Error(\"Value passed to 'css' function must be a 'css' function result: \"+n+\". Use 'unsafeCSS' to pass non-literal values, but take care to ensure page security.\")})(i)+o[r+1]),o[0]);return new C(e,o,z)},Y=(o,t)=>{if(T)o.adoptedStyleSheets=t.map((e=>e instanceof CSSStyleSheet?e:e.styleSheet));else for(let e of t){let s=document.createElement(\"style\"),i=R.litNonce;i!==void 0&&s.setAttribute(\"nonce\",i),s.textContent=e.cssText,o.appendChild(s)}},I=T?o=>o:o=>o instanceof CSSStyleSheet?(t=>{let e=\"\";for(let s of t.cssRules)e+=s.cssText;return X(e)})(o):o;var{is:_t,defineProperty:ft,getOwnPropertyDescriptor:At,getOwnPropertyNames:mt,getOwnPropertySymbols:gt,getPrototypeOf:yt}=Object,M=globalThis,tt=M.trustedTypes,vt=tt?tt.emptyScript:\"\",St=M.reactiveElementPolyfillSupport,w=(o,t)=>o,V={toAttribute(o,t){switch(t){case Boolean:o=o?vt:null;break;case Object:case Array:o=o==null?o:JSON.stringify(o)}return o},fromAttribute(o,t){let e=o;switch(t){case Boolean:e=o!==null;break;case Number:e=o===null?null:Number(o);break;case Object:case Array:try{e=JSON.parse(o)}catch{e=null}}return e}},st=(o,t)=>!_t(o,t),et={attribute:!0,type:String,converter:V,reflect:!1,useDefault:!1,hasChanged:st};Symbol.metadata??=Symbol(\"metadata\"),M.litPropertyMetadata??=new WeakMap;var $=class extends HTMLElement{static addInitializer(t){this._$Ei(),(this.l??=[]).push(t)}static get observedAttributes(){return this.finalize(),this._$Eh&&[...this._$Eh.keys()]}static createProperty(t,e=et){if(e.state&&(e.attribute=!1),this._$Ei(),this.prototype.hasOwnProperty(t)&&((e=Object.create(e)).wrapped=!0),this.elementProperties.set(t,e),!e.noAccessor){let s=Symbol(),i=this.getPropertyDescriptor(t,s,e);i!==void 0&&ft(this.prototype,t,i)}}static getPropertyDescriptor(t,e,s){let{get:i,set:r}=At(this.prototype,t)??{get(){return this[e]},set(n){this[e]=n}};return{get:i,set(n){let l=i?.call(this);r?.call(this,n),this.requestUpdate(t,l,s)},configurable:!0,enumerable:!0}}static getPropertyOptions(t){return this.elementProperties.get(t)??et}static _$Ei(){if(this.hasOwnProperty(w(\"elementProperties\")))return;let t=yt(this);t.finalize(),t.l!==void 0&&(this.l=[...t.l]),this.elementProperties=new Map(t.elementProperties)}static finalize(){if(this.hasOwnProperty(w(\"finalized\")))return;if(this.finalized=!0,this._$Ei(),this.hasOwnProperty(w(\"properties\"))){let e=this.properties,s=[...mt(e),...gt(e)];for(let i of s)this.createProperty(i,e[i])}let t=this[Symbol.metadata];if(t!==null){let e=litPropertyMetadata.get(t);if(e!==void 0)for(let[s,i]of e)this.elementProperties.set(s,i)}this._$Eh=new Map;for(let[e,s]of this.elementProperties){let i=this._$Eu(e,s);i!==void 0&&this._$Eh.set(i,e)}this.elementStyles=this.finalizeStyles(this.styles)}static finalizeStyles(t){let e=[];if(Array.isArray(t)){let s=new Set(t.flat(1/0).reverse());for(let i of s)e.unshift(I(i))}else t!==void 0&&e.push(I(t));return e}static _$Eu(t,e){let s=e.attribute;return s===!1?void 0:typeof s==\"string\"?s:typeof t==\"string\"?t.toLowerCase():void 0}constructor(){super(),this._$Ep=void 0,this.isUpdatePending=!1,this.hasUpdated=!1,this._$Em=null,this._$Ev()}_$Ev(){this._$ES=new Promise((t=>this.enableUpdating=t)),this._$AL=new Map,this._$E_(),this.requestUpdate(),this.constructor.l?.forEach((t=>t(this)))}addController(t){(this._$EO??=new Set).add(t),this.renderRoot!==void 0&&this.isConnected&&t.hostConnected?.()}removeController(t){this._$EO?.delete(t)}_$E_(){let t=new Map,e=this.constructor.elementProperties;for(let s of e.keys())this.hasOwnProperty(s)&&(t.set(s,this[s]),delete this[s]);t.size>0&&(this._$Ep=t)}createRenderRoot(){let t=this.shadowRoot??this.attachShadow(this.constructor.shadowRootOptions);return Y(t,this.constructor.elementStyles),t}connectedCallback(){this.renderRoot??=this.createRenderRoot(),this.enableUpdating(!0),this._$EO?.forEach((t=>t.hostConnected?.()))}enableUpdating(t){}disconnectedCallback(){this._$EO?.forEach((t=>t.hostDisconnected?.()))}attributeChangedCallback(t,e,s){this._$AK(t,s)}_$ET(t,e){let s=this.constructor.elementProperties.get(t),i=this.constructor._$Eu(t,s);if(i!==void 0&&s.reflect===!0){let r=(s.converter?.toAttribute!==void 0?s.converter:V).toAttribute(e,s.type);this._$Em=t,r==null?this.removeAttribute(i):this.setAttribute(i,r),this._$Em=null}}_$AK(t,e){let s=this.constructor,i=s._$Eh.get(t);if(i!==void 0&&this._$Em!==i){let r=s.getPropertyOptions(i),n=typeof r.converter==\"function\"?{fromAttribute:r.converter}:r.converter?.fromAttribute!==void 0?r.converter:V;this._$Em=i;let l=n.fromAttribute(e,r.type);this[i]=l??this._$Ej?.get(i)??l,this._$Em=null}}requestUpdate(t,e,s){if(t!==void 0){let i=this.constructor,r=this[t];if(s??=i.getPropertyOptions(t),!((s.hasChanged??st)(r,e)||s.useDefault&&s.reflect&&r===this._$Ej?.get(t)&&!this.hasAttribute(i._$Eu(t,s))))return;this.C(t,e,s)}this.isUpdatePending===!1&&(this._$ES=this._$EP())}C(t,e,{useDefault:s,reflect:i,wrapped:r},n){s&&!(this._$Ej??=new Map).has(t)&&(this._$Ej.set(t,n??e??this[t]),r!==!0||n!==void 0)||(this._$AL.has(t)||(this.hasUpdated||s||(e=void 0),this._$AL.set(t,e)),i===!0&&this._$Em!==t&&(this._$Eq??=new Set).add(t))}async _$EP(){this.isUpdatePending=!0;try{await this._$ES}catch(e){Promise.reject(e)}let t=this.scheduleUpdate();return t!=null&&await t,!this.isUpdatePending}scheduleUpdate(){return this.performUpdate()}performUpdate(){if(!this.isUpdatePending)return;if(!this.hasUpdated){if(this.renderRoot??=this.createRenderRoot(),this._$Ep){for(let[i,r]of this._$Ep)this[i]=r;this._$Ep=void 0}let s=this.constructor.elementProperties;if(s.size>0)for(let[i,r]of s){let{wrapped:n}=r,l=this[i];n!==!0||this._$AL.has(i)||l===void 0||this.C(i,void 0,r,l)}}let t=!1,e=this._$AL;try{t=this.shouldUpdate(e),t?(this.willUpdate(e),this._$EO?.forEach((s=>s.hostUpdate?.())),this.update(e)):this._$EM()}catch(s){throw t=!1,this._$EM(),s}t&&this._$AE(e)}willUpdate(t){}_$AE(t){this._$EO?.forEach((e=>e.hostUpdated?.())),this.hasUpdated||(this.hasUpdated=!0,this.firstUpdated(t)),this.updated(t)}_$EM(){this._$AL=new Map,this.isUpdatePending=!1}get updateComplete(){return this.getUpdateComplete()}getUpdateComplete(){return this._$ES}shouldUpdate(t){return!0}update(t){this._$Eq&&=this._$Eq.forEach((e=>this._$ET(e,this[e]))),this._$EM()}updated(t){}firstUpdated(t){}};$.elementStyles=[],$.shadowRootOptions={mode:\"open\"},$[w(\"elementProperties\")]=new Map,$[w(\"finalized\")]=new Map,St?.({ReactiveElement:$}),(M.reactiveElementVersions??=[]).push(\"2.1.1\");var q=globalThis,N=q.trustedTypes,it=N?N.createPolicy(\"lit-html\",{createHTML:o=>o}):void 0,K=\"$lit$\",_=`lit$${Math.random().toFixed(9).slice(2)}$`,Z=\"?\"+_,Et=`<${Z}>`,g=document,P=()=>g.createComment(\"\"),U=o=>o===null||typeof o!=\"object\"&&typeof o!=\"function\",F=Array.isArray,lt=o=>F(o)||typeof o?.[Symbol.iterator]==\"function\",W=`[ \t\n\\f\\r]`,x=/<(?:(!--|\\/[^a-zA-Z])|(\\/?[a-zA-Z][^>\\s]*)|(\\/?$))/g,ot=/-->/g,rt=/>/g,A=RegExp(`>|${W}(?:([^\\\\s\"'>=/]+)(${W}*=${W}*(?:[^ \t\n\\f\\r\"'\\`<>=]|(\"|')|))|$)`,\"g\"),nt=/'/g,ht=/\"/g,ct=/^(?:script|style|textarea|title)$/i,J=o=>(t,...e)=>({_$litType$:o,strings:t,values:e}),Ot=J(1),Ht=J(2),Rt=J(3),y=Symbol.for(\"lit-noChange\"),p=Symbol.for(\"lit-nothing\"),at=new WeakMap,m=g.createTreeWalker(g,129);function pt(o,t){if(!F(o)||!o.hasOwnProperty(\"raw\"))throw Error(\"invalid template strings array\");return it!==void 0?it.createHTML(t):t}var dt=(o,t)=>{let e=o.length-1,s=[],i,r=t===2?\"<svg>\":t===3?\"<math>\":\"\",n=x;for(let l=0;l<e;l++){let h=o[l],c,d,a=-1,u=0;for(;u<h.length&&(n.lastIndex=u,d=n.exec(h),d!==null);)u=n.lastIndex,n===x?d[1]===\"!--\"?n=ot:d[1]!==void 0?n=rt:d[2]!==void 0?(ct.test(d[2])&&(i=RegExp(\"</\"+d[2],\"g\")),n=A):d[3]!==void 0&&(n=A):n===A?d[0]===\">\"?(n=i??x,a=-1):d[1]===void 0?a=-2:(a=n.lastIndex-d[2].length,c=d[1],n=d[3]===void 0?A:d[3]==='\"'?ht:nt):n===ht||n===nt?n=A:n===ot||n===rt?n=x:(n=A,i=void 0);let f=n===A&&o[l+1].startsWith(\"/>\")?\" \":\"\";r+=n===x?h+Et:a>=0?(s.push(c),h.slice(0,a)+K+h.slice(a)+_+f):h+_+(a===-2?l:f)}return[pt(o,r+(o[e]||\"<?>\")+(t===2?\"</svg>\":t===3?\"</math>\":\"\")),s]},O=class o{constructor({strings:t,_$litType$:e},s){let i;this.parts=[];let r=0,n=0,l=t.length-1,h=this.parts,[c,d]=dt(t,e);if(this.el=o.createElement(c,s),m.currentNode=this.el.content,e===2||e===3){let a=this.el.content.firstChild;a.replaceWith(...a.childNodes)}for(;(i=m.nextNode())!==null&&h.length<l;){if(i.nodeType===1){if(i.hasAttributes())for(let a of i.getAttributeNames())if(a.endsWith(K)){let u=d[n++],f=i.getAttribute(a).split(_),H=/([.?@])?(.*)/.exec(u);h.push({type:1,index:r,name:H[2],strings:f,ctor:H[1]===\".\"?k:H[1]===\"?\"?D:H[1]===\"@\"?j:S}),i.removeAttribute(a)}else a.startsWith(_)&&(h.push({type:6,index:r}),i.removeAttribute(a));if(ct.test(i.tagName)){let a=i.textContent.split(_),u=a.length-1;if(u>0){i.textContent=N?N.emptyScript:\"\";for(let f=0;f<u;f++)i.append(a[f],P()),m.nextNode(),h.push({type:2,index:++r});i.append(a[u],P())}}}else if(i.nodeType===8)if(i.data===Z)h.push({type:2,index:r});else{let a=-1;for(;(a=i.data.indexOf(_,a+1))!==-1;)h.push({type:7,index:r}),a+=_.length-1}r++}}static createElement(t,e){let s=g.createElement(\"template\");return s.innerHTML=t,s}};function v(o,t,e=o,s){if(t===y)return t;let i=s!==void 0?e._$Co?.[s]:e._$Cl,r=U(t)?void 0:t._$litDirective$;return i?.constructor!==r&&(i?._$AO?.(!1),r===void 0?i=void 0:(i=new r(o),i._$AT(o,e,s)),s!==void 0?(e._$Co??=[])[s]=i:e._$Cl=i),i!==void 0&&(t=v(o,i._$AS(o,t.values),i,s)),t}var L=class{constructor(t,e){this._$AV=[],this._$AN=void 0,this._$AD=t,this._$AM=e}get parentNode(){return this._$AM.parentNode}get _$AU(){return this._$AM._$AU}u(t){let{el:{content:e},parts:s}=this._$AD,i=(t?.creationScope??g).importNode(e,!0);m.currentNode=i;let r=m.nextNode(),n=0,l=0,h=s[0];for(;h!==void 0;){if(n===h.index){let c;h.type===2?c=new E(r,r.nextSibling,this,t):h.type===1?c=new h.ctor(r,h.name,h.strings,this,t):h.type===6&&(c=new B(r,this,t)),this._$AV.push(c),h=s[++l]}n!==h?.index&&(r=m.nextNode(),n++)}return m.currentNode=g,i}p(t){let e=0;for(let s of this._$AV)s!==void 0&&(s.strings!==void 0?(s._$AI(t,s,e),e+=s.strings.length-2):s._$AI(t[e])),e++}},E=class o{get _$AU(){return this._$AM?._$AU??this._$Cv}constructor(t,e,s,i){this.type=2,this._$AH=p,this._$AN=void 0,this._$AA=t,this._$AB=e,this._$AM=s,this.options=i,this._$Cv=i?.isConnected??!0}get parentNode(){let t=this._$AA.parentNode,e=this._$AM;return e!==void 0&&t?.nodeType===11&&(t=e.parentNode),t}get startNode(){return this._$AA}get endNode(){return this._$AB}_$AI(t,e=this){t=v(this,t,e),U(t)?t===p||t==null||t===\"\"?(this._$AH!==p&&this._$AR(),this._$AH=p):t!==this._$AH&&t!==y&&this._(t):t._$litType$!==void 0?this.$(t):t.nodeType!==void 0?this.T(t):lt(t)?this.k(t):this._(t)}O(t){return this._$AA.parentNode.insertBefore(t,this._$AB)}T(t){this._$AH!==t&&(this._$AR(),this._$AH=this.O(t))}_(t){this._$AH!==p&&U(this._$AH)?this._$AA.nextSibling.data=t:this.T(g.createTextNode(t)),this._$AH=t}$(t){let{values:e,_$litType$:s}=t,i=typeof s==\"number\"?this._$AC(t):(s.el===void 0&&(s.el=O.createElement(pt(s.h,s.h[0]),this.options)),s);if(this._$AH?._$AD===i)this._$AH.p(e);else{let r=new L(i,this),n=r.u(this.options);r.p(e),this.T(n),this._$AH=r}}_$AC(t){let e=at.get(t.strings);return e===void 0&&at.set(t.strings,e=new O(t)),e}k(t){F(this._$AH)||(this._$AH=[],this._$AR());let e=this._$AH,s,i=0;for(let r of t)i===e.length?e.push(s=new o(this.O(P()),this.O(P()),this,this.options)):s=e[i],s._$AI(r),i++;i<e.length&&(this._$AR(s&&s._$AB.nextSibling,i),e.length=i)}_$AR(t=this._$AA.nextSibling,e){for(this._$AP?.(!1,!0,e);t!==this._$AB;){let s=t.nextSibling;t.remove(),t=s}}setConnected(t){this._$AM===void 0&&(this._$Cv=t,this._$AP?.(t))}},S=class{get tagName(){return this.element.tagName}get _$AU(){return this._$AM._$AU}constructor(t,e,s,i,r){this.type=1,this._$AH=p,this._$AN=void 0,this.element=t,this.name=e,this._$AM=i,this.options=r,s.length>2||s[0]!==\"\"||s[1]!==\"\"?(this._$AH=Array(s.length-1).fill(new String),this.strings=s):this._$AH=p}_$AI(t,e=this,s,i){let r=this.strings,n=!1;if(r===void 0)t=v(this,t,e,0),n=!U(t)||t!==this._$AH&&t!==y,n&&(this._$AH=t);else{let l=t,h,c;for(t=r[0],h=0;h<r.length-1;h++)c=v(this,l[s+h],e,h),c===y&&(c=this._$AH[h]),n||=!U(c)||c!==this._$AH[h],c===p?t=p:t!==p&&(t+=(c??\"\")+r[h+1]),this._$AH[h]=c}n&&!i&&this.j(t)}j(t){t===p?this.element.removeAttribute(this.name):this.element.setAttribute(this.name,t??\"\")}},k=class extends S{constructor(){super(...arguments),this.type=3}j(t){this.element[this.name]=t===p?void 0:t}},D=class extends S{constructor(){super(...arguments),this.type=4}j(t){this.element.toggleAttribute(this.name,!!t&&t!==p)}},j=class extends S{constructor(t,e,s,i,r){super(t,e,s,i,r),this.type=5}_$AI(t,e=this){if((t=v(this,t,e,0)??p)===y)return;let s=this._$AH,i=t===p&&s!==p||t.capture!==s.capture||t.once!==s.once||t.passive!==s.passive,r=t!==p&&(s===p||i);i&&this.element.removeEventListener(this.name,this,s),r&&this.element.addEventListener(this.name,this,t),this._$AH=t}handleEvent(t){typeof this._$AH==\"function\"?this._$AH.call(this.options?.host??this.element,t):this._$AH.handleEvent(t)}},B=class{constructor(t,e,s){this.element=t,this.type=6,this._$AN=void 0,this._$AM=e,this.options=s}get _$AU(){return this._$AM._$AU}_$AI(t){v(this,t)}},Tt={M:K,P:_,A:Z,C:1,L:dt,R:L,D:lt,V:v,I:E,H:S,N:D,U:j,B:k,F:B},bt=q.litHtmlPolyfillSupport;bt?.(O,E),(q.litHtmlVersions??=[]).push(\"3.3.1\");var ut=(o,t,e)=>{let s=e?.renderBefore??t,i=s._$litPart$;if(i===void 0){let r=e?.renderBefore??null;s._$litPart$=i=new E(t.insertBefore(P(),r),r,void 0,e??{})}return i._$AI(o),i};var G=globalThis,b=class extends ${constructor(){super(...arguments),this.renderOptions={host:this},this._$Do=void 0}createRenderRoot(){let t=super.createRenderRoot();return this.renderOptions.renderBefore??=t.firstChild,t}update(t){let e=this.render();this.hasUpdated||(this.renderOptions.isConnected=this.isConnected),super.update(t),this._$Do=ut(e,this.renderRoot,this.renderOptions)}connectedCallback(){super.connectedCallback(),this._$Do?.setConnected(!0)}disconnectedCallback(){super.disconnectedCallback(),this._$Do?.setConnected(!1)}render(){return y}};b._$litElement$=!0,b.finalized=!0,G.litElementHydrateSupport?.({LitElement:b});var Ct=G.litElementPolyfillSupport;Ct?.({LitElement:b});var kt={_$AK:(o,t,e)=>{o._$AK(t,e)},_$AL:o=>o._$AL};(G.litElementVersions??=[]).push(\"4.2.1\");var zt=!1;export{C as CSSResult,b as LitElement,$ as ReactiveElement,kt as _$LE,Tt as _$LH,Y as adoptStyles,$t as css,V as defaultConverter,I as getCompatibleStyle,Ot as html,zt as isServer,Rt as mathml,y as noChange,st as notEqual,p as nothing,ut as render,T as supportsAdoptingStyleSheets,Ht as svg,X as unsafeCSS};\n/*! Bundled license information:\n\n@lit/reactive-element/css-tag.js:\n  (**\n   * @license\n   * Copyright 2019 Google LLC\n   * SPDX-License-Identifier: BSD-3-Clause\n   *)\n\n@lit/reactive-element/reactive-element.js:\nlit-html/lit-html.js:\nlit-element/lit-element.js:\n  (**\n   * @license\n   * Copyright 2017 Google LLC\n   * SPDX-License-Identifier: BSD-3-Clause\n   *)\n\nlit-html/is-server.js:\n  (**\n   * @license\n   * Copyright 2022 Google LLC\n   * SPDX-License-Identifier: BSD-3-Clause\n   *)\n*/\n//# sourceMappingURL=lit.bundle.mjs.map";
-    const __litUrl = URL.createObjectURL(new Blob([__LIT_SRC], { type: 'text/javascript' }));
-    const { LitElement, html, css, nothing, noChange, svg, unsafeCSS } = await import(__litUrl);
-    URL.revokeObjectURL(__litUrl);
-
-// ================= TTS: Microsoft Edge Neural TTS (browser WebSocket) =================
-// Real neural voice (en-US-AriaNeural). Runs fully in the browser via the same
-// wss endpoint Edge uses — no backend. Falls back to Web Speech TTS if the socket
-// fails (offline / blocked network). Single-file & offline-capable is preserved:
-// online → 真人级发音; offline → 系统语音兜底.
-const EDGE_VOICE = 'en-US-AriaNeural';
-const EDGE_TRUSTED_TOKEN = '6A5AA1D4EAFF4E9FB37E23D68491D6F4';
-const EDGE_WSS = 'wss://speech.platform.bing.com/consumer/speech/synthesize/readaloud/edge/v1?TrustedClientToken=' + EDGE_TRUSTED_TOKEN;
-
-let _edgeBlocked = false;              // once we know it fails, stop retrying → go local
-const _edgeCache = new Map();          // "rate|text" → objectURL (avoid re-synth)
-
-// speech rate: shared by Edge TTS (SSML rate %) and local TTS (utterance.rate)
-const RATE_LEVELS = {
-  slow:   { ssml: '-35%', local: 0.65, label: '慢' },
-  normal: { ssml: '-8%',  local: 0.85, label: '正常' },
-  fast:   { ssml: '+15%', local: 1.05, label: '快' }
-};
-let _rate = 'normal';
-
-function _uuid(){ return 'xxxxxxxxxxxx4xxxyxxxxxxxxxxxxxxx'.replace(/[xy]/g, c => { const r = Math.random()*16|0; return (c==='x'?r:(r&0x3|0x8)).toString(16); }); }
-function _dateStr(){ return new Date().toString().replace(/GMT.*/, 'GMT+0000 (Coordinated Universal Time)'); }
-function _ssml(text){
-  const esc = String(text).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
-  const rate = (RATE_LEVELS[_rate] || RATE_LEVELS.normal).ssml;
-  return `<speak version='1.0' xmlns='http://www.w3.org/2001/10/synthesis' xml:lang='en-US'>`
-    + `<voice name='${EDGE_VOICE}'><prosody rate='${rate}' pitch='+0Hz'>${esc}</prosody></voice></speak>`;
-}
-
-// ---- persistent WebSocket (reused across requests to avoid per-call handshake latency) ----
-let _ws = null, _wsReady = null;
-const _pending = new Map();   // requestId → { chunks, resolve, reject, timer }
-
-function _connect(){
-  if (_wsReady) return _wsReady;
-  _wsReady = new Promise((resolve, reject) => {
-    let ws;
-    try { ws = new WebSocket(EDGE_WSS); } catch(e){ _wsReady = null; return reject(e); }
-    ws.binaryType = 'arraybuffer';
-    const openTimer = setTimeout(() => { try{ws.close();}catch(e){} _wsReady=null; reject(new Error('open timeout')); }, 6000);
-    ws.onopen = () => {
-      clearTimeout(openTimer);
-      ws.send(
-        `X-Timestamp:${_dateStr()}\r\nContent-Type:application/json; charset=utf-8\r\nPath:speech.config\r\n\r\n`
-        + `{"context":{"synthesis":{"audio":{"metadataoptions":{"sentenceBoundaryEnabled":"false","wordBoundaryEnabled":"false"},"outputFormat":"audio-24khz-48kbitrate-mono-mp3"}}}}`
-      );
-      _ws = ws; resolve(ws);
-    };
-    ws.onmessage = (ev) => {
-      if (typeof ev.data === 'string') {
-        // header text frames carry X-RequestId; route by it
-        const m = ev.data.match(/X-RequestId:([0-9a-f]+)/i);
-        const id = m && m[1];
-        if (ev.data.includes('Path:turn.end') && id && _pending.has(id)) {
-          const st = _pending.get(id); _pending.delete(id); clearTimeout(st.timer);
-          if (!st.chunks.length) return st.reject(new Error('no audio'));
-          st.resolve(URL.createObjectURL(new Blob(st.chunks, { type: 'audio/mpeg' })));
-        }
-      } else {
-        const buf = new Uint8Array(ev.data);
-        // audio binary frame: parse X-RequestId from its text header
-        const headerLen = (buf[0] << 8) | buf[1];
-        const header = new TextDecoder().decode(buf.slice(2, 2 + headerLen));
-        const m = header.match(/X-RequestId:([0-9a-f]+)/i);
-        const id = m && m[1];
-        const audio = buf.slice(2 + headerLen);
-        if (id && _pending.has(id) && audio.length) _pending.get(id).chunks.push(audio);
-      }
-    };
-    const drop = () => { _ws = null; _wsReady = null; _pending.forEach(st => { clearTimeout(st.timer); st.reject(new Error('ws closed')); }); _pending.clear(); };
-    ws.onerror = drop; ws.onclose = drop;
+(function(){
+  var root=document.documentElement;
+  var tb=document.getElementById('themeBtn');
+  if(tb) tb.addEventListener('click',function(){
+    var d=root.getAttribute('data-theme')==='dark';
+    root.setAttribute('data-theme', d?'light':'dark');
+    tb.textContent = d?'深色':'浅色';
   });
-  return _wsReady;
-}
-
-// Synthesize via the shared WSS connection, resolve to an audio object URL (mp3).
-function _edgeSynth(text){
-  return _connect().then(ws => new Promise((resolve, reject) => {
-    const id = _uuid().replace(/-/g,'').toUpperCase();
-    const timer = setTimeout(() => { if (_pending.has(id)) { _pending.delete(id); reject(new Error('timeout')); } }, 5000);
-    _pending.set(id, { chunks: [], resolve, reject, timer });
-    try {
-      ws.send(
-        `X-RequestId:${id}\r\nContent-Type:application/ssml+xml\r\nX-Timestamp:${_dateStr()}Z\r\nPath:ssml\r\n\r\n`
-        + _ssml(text)
-      );
-    } catch(e){ _pending.delete(id); clearTimeout(timer); reject(e); }
-  }));
-}
-
-// prewarm: synthesize all page sentences in the background so clicks are instant
-function _prewarm(sentences){
-  if (_edgeBlocked) return;
-  let i = 0;
-  const step = () => {
-    if (i >= sentences.length || _edgeBlocked) return;
-    const text = sentences[i++];
-    const key = _rate + '|' + text;
-    if (_edgeCache.has(key)) { step(); return; }
-    _edgeSynth(text).then(url => { _edgeCache.set(key, url); setTimeout(step, 60); })
-                    .catch(() => { setTimeout(step, 60); });   // keep going even if one fails
-  };
-  // small initial delay so first paint isn't blocked
-  setTimeout(step, 120);
-}
-
-function setRate(r){ if(RATE_LEVELS[r]){ _rate = r; _edgeCache.clear(); if (window.__allSentences) _prewarm(window.__allSentences); } }
-
-function speak(text, btnEl){
-  if (!text) return;
-  if (btnEl) btnEl.classList.add('playing');
-  const done = () => { if (btnEl) btnEl.classList.remove('playing'); };
-  try { window.speechSynthesis && window.speechSynthesis.cancel(); } catch(e){}
-  if (!window.__ttsAudio) window.__ttsAudio = new Audio();
-  const a = window.__ttsAudio;
-  a.volume = 0.6;                 // default playback volume
-  try { a.pause(); } catch(e){}
-
-  const playUrl = (url) => {
-    a.onended = done; a.onerror = () => _localSpeak(text, btnEl);
-    a.src = url; const p = a.play(); if (p && p.catch) p.catch(() => _localSpeak(text, btnEl));
-  };
-
-  if (_edgeBlocked) { _localSpeak(text, btnEl); return; }
-  const cacheKey = _rate + '|' + text;
-  if (_edgeCache.has(cacheKey)) { playUrl(_edgeCache.get(cacheKey)); return; }
-
-  // 抢答式:450ms 内 Edge 没返回就先用系统语音发声,Edge 结果照常回填缓存供下次秒响
-  let settled = false;
-  const grace = setTimeout(() => { if (settled) return; settled = true; _localSpeak(text, btnEl); }, 450);
-  _edgeSynth(text).then(url => {
-    _edgeCache.set(cacheKey, url);
-    if (settled) return;
-    settled = true; clearTimeout(grace); playUrl(url);
-  }).catch(() => {
-    if (settled) { _edgeBlocked = true; return; }
-    settled = true; clearTimeout(grace); _edgeBlocked = true; _localSpeak(text, btnEl);
-  });
-}
-
-// ---------- Local fallback: best available Web Speech voice ----------
-let _voices = [], _bestVoice = null;
-function _pickVoice(){
-  try { _voices = window.speechSynthesis.getVoices() || []; } catch(e){ _voices = []; }
-  if (!_voices.length) return null;
-  const en = _voices.filter(v => /^en(-|_)/i.test(v.lang) || /english/i.test(v.name));
-  if (!en.length) { _bestVoice = _voices[0]; return _bestVoice; }
-  const score = (v) => { const n=(v.name||'').toLowerCase(); let s=0;
-    if(/natural|neural|online|wavenet|premium|enhanced/.test(n)) s+=50;
-    if(/google/.test(n)) s+=30; if(/microsoft|aria|jenny|guy|libby|sonia/.test(n)) s+=28;
-    if(/samantha|karen|daniel|serena|moira/.test(n)) s+=20;
-    if(/^en-us/i.test(v.lang)) s+=12; else if(/^en-gb/i.test(v.lang)) s+=10; else s+=4;
-    if(v.localService===false) s+=8; return s; };
-  en.sort((a,b)=>score(b)-score(a)); _bestVoice = en[0]; return _bestVoice;
-}
-if ('speechSynthesis' in window) { _pickVoice(); window.speechSynthesis.onvoiceschanged = _pickVoice; }
-function _localSpeak(text, btnEl){
-  try {
-    if (!('speechSynthesis' in window)) { if(btnEl) btnEl.classList.remove('playing'); return; }
-    window.speechSynthesis.cancel();
-    const u = new SpeechSynthesisUtterance(text);
-    const v = _bestVoice || _pickVoice();
-    if (v) { u.voice = v; u.lang = v.lang; } else { u.lang = 'en-US'; }
-    u.rate = (RATE_LEVELS[_rate] || RATE_LEVELS.normal).local; u.pitch = 1.0; u.volume = 0.6;
-    if (btnEl) { u.onend = () => btnEl.classList.remove('playing'); u.onerror = () => btnEl.classList.remove('playing'); }
-    window.speechSynthesis.speak(u);
-  } catch (e) { if(btnEl) btnEl.classList.remove('playing'); }
-}
-
-
-const ico = (id, cls) => html`<svg class="ico ${cls || ''}" aria-hidden="true"><use href="#${id}"></use></svg>`;
-
-function sentenceIPA(sentence){
-  const dict=window.IPA_DICT||{};
-  return '/'+sentence.split(/\s+/).filter(Boolean).map(w=>{
-    const c=w.toLowerCase().replace(/[.,!?;:"—]/g,'').replace(/[?!.]$/,'');
-    const ipa=dict[c]; return ipa?ipa.replace(/^\/|\/$/g,''):c;
-  }).join(' ')+'/';
-}
-const LETTERS=['A','B','C','D'];
-
-class TestApp extends LitElement {
-  static properties = {
-    stage:{state:true},        // 'intro' | 'test' | 'result' | 'review'
-    idx:{state:true},          // current question index (flat 0..49)
-    answers:{state:true},      // {globalIndex: chosenText}
-    rate:{state:true}
-  };
-  createRenderRoot(){ return this; }
-  constructor(){
-    super();
-    this.data = window.TEST_DATA;
-    this.rate = 'normal';
-    this.stage = 'intro';
-    this.idx = 0;
-    this.answers = {};
-    // flatten questions with section metadata (kept only for scoring, NOT shown during the test)
-    this.flat = [];
-    this.data.sections.forEach(s=>s.items.forEach(it=>this.flat.push({...it, secId:s.id, secName:s.name, secColor:s.color})));
-    // shuffle so the four boards are interleaved — a real 摸底 must not hint the 考点 by grouping
-    for(let i=this.flat.length-1;i>0;i--){ const j=Math.floor(Math.random()*(i+1)); [this.flat[i],this.flat[j]]=[this.flat[j],this.flat[i]]; }
-    this.total = this.flat.length;
-  }
-  toggleTheme(){ const c=document.documentElement.getAttribute('data-theme'); document.documentElement.setAttribute('data-theme', c==='dark'?'':'dark'); this.requestUpdate(); }
-  get isDark(){ return document.documentElement.getAttribute('data-theme')==='dark'; }
-  changeRate(r){ setRate(r); this.rate=r; }
-  full(q){ return q.q.replace('___', q.answer==='/'?'':q.answer).replace(/\s+/g,' ').trim(); }
-  choose(g, opt){ this.answers = { ...this.answers, [g]: opt }; }
-  goPrev(){ if(this.idx>0) this.idx--; }
-  goNext(){ if(this.idx<this.total-1) this.idx++; }
-  jump(g){ this.idx=g; this.stage='test'; window.scrollTo&&window.scrollTo(0,0); }
-  get answeredCount(){ return Object.keys(this.answers).length; }
-  submit(){ this.stage='result'; window.scrollTo&&window.scrollTo(0,0); }
-  restart(){ this.answers={}; this.idx=0; this.stage='intro'; }
-  // scoring
-  score(){ let ok=0; this.flat.forEach((q,g)=>{ if(this.answers[g]===q.answer) ok++; }); return ok; }
-  sectionScore(secId){ let ok=0,tot=0; this.flat.forEach((q,g)=>{ if(q.secId===secId){ tot++; if(this.answers[g]===q.answer) ok++; } }); return {ok,tot}; }
-  wrongList(){ const w=[]; this.flat.forEach((q,g)=>{ if(this.answers[g]!==q.answer) w.push({...q,g}); }); return w; }
-  correctCount(){ let ok=0; this.flat.forEach((q,g)=>{ if(this.answers[g]===q.answer) ok++; }); return ok; }
-  unansweredCount(){ let u=0; this.flat.forEach((q,g)=>{ if(this.answers[g]===undefined) u++; }); return u; }
-  wrongAnsweredCount(){ let w=0; this.flat.forEach((q,g)=>{ if(this.answers[g]!==undefined && this.answers[g]!==q.answer) w++; }); return w; }
-  // 错题按板块归类:[{sec, items:[wrongQ...]}]  只含有错题的板块
-  wrongByBoard(){
-    return this.data.sections.map(s=>({
-      sec:s,
-      items:this.flat.map((q,g)=>({...q,g})).filter(q=>q.secId===s.id && this.answers[q.g]!==q.answer)
-    })).filter(b=>b.items.length>0);
-  }
-  // 改进学习建议:按各板块正确率排序,给出针对性意见
-  advice(){
-    const rows=this.data.sections.map(s=>{ const r=this.sectionScore(s.id); return {s, ...r, pct:Math.round(r.ok/r.tot*100)}; });
-    const weak=rows.filter(r=>r.pct<60).sort((a,b)=>a.pct-b.pct);       // 薄弱:正确率<60%
-    const mid =rows.filter(r=>r.pct>=60 && r.pct<85).sort((a,b)=>a.pct-b.pct);
-    const strong=rows.filter(r=>r.pct>=85);
-    return {rows, weak, mid, strong};
-  }
-
-  render(){
-    return html`
-      <div class="app">
-        <header class="appbar">
-          <div class="wrap appbar__inner">
-            <div class="brand">
-              <div class="brand__mark">${ico('ic-edit','ico--md')}</div>
-              <div class="brand__txt"><span class="brand__title">英语综合摸底</span><span class="brand__sub">150 题 · 10 大知识板块(进阶)</span></div>
-            </div>
-            <div class="appbar__spacer"></div>
-            <div class="rate-ctrl" title="调节朗读语速">${ico('ic-volume','ico--sm')}
-              <div class="rate-seg">${['slow','normal','fast'].map(r=>html`<button class="rate-opt ${this.rate===r?'rate-opt--on':''}" @click=${()=>this.changeRate(r)}>${RATE_LEVELS[r].label}</button>`)}</div>
-            </div>
-            <button class="iconbtn" title="切换主题" @click=${()=>this.toggleTheme()}>${ico(this.isDark?'ic-sun':'ic-moon','ico--sm')}</button>
-          </div>
-        </header>
-        <main class="wrap" style="flex:1;width:100%;">
-          ${this.stage==='intro'?this.renderIntro():''}
-          ${this.stage==='test'?this.renderTest():''}
-          ${this.stage==='result'?this.renderResult():''}
-          ${this.stage==='review'?this.renderReview():''}
-        </main>
-        <footer class="foot wrap">英语学习摸底测试 · 共 ${this.total} 题 · 满分 ${this.total*(this.data.perQuestion||2)} 分 · 微软神经语音朗读</footer>
-      </div>`;
-  }
-
-  renderIntro(){
-    return html`
-      <section class="intro">
-        <div class="intro__card">
-          <div class="intro__ic">${ico('ic-edit','ico--lg')}</div>
-          <h1>英语学习摸底测试卷</h1>
-          <p class="intro__desc">${this.data.intro}</p>
-          <div class="intro__secs">
-            <div class="intro__sec"><b>${this.total}</b> 道单项选择</div>
-            <div class="intro__sec">满分 <b>${this.total*(this.data.perQuestion||2)}</b> 分</div>
-            <div class="intro__sec">题目<b>随机打乱</b>·不提示考点</div>
-          </div>
-          <button class="btn btn--primary btn--lg" @click=${()=>{this.stage='test';this.idx=0;}}>${ico('ic-arrow-right','ico--sm')} 开始测试</button>
-        </div>
-      </section>`;
-  }
-
-  renderTest(){
-    const g=this.idx; const q=this.flat[g]; const chosen=this.answers[g];
-    const parts=q.q.split('___');
-    const pct=Math.round((this.answeredCount/this.total)*100);
-    return html`
-      <section class="test">
-        <div class="test__top">
-          <div class="test__meta"><span class="test__label">摸底测试 · 单项选择</span>
-            <span class="test__count">第 ${g+1} / ${this.total} 题</span></div>
-          <div class="test__progress"><div class="test__progress-fill" style="width:${pct}%"></div></div>
-          <div class="test__answered">已答 ${this.answeredCount} / ${this.total}</div>
-        </div>
-        <div class="qcard">
-          <div class="qcard__stem">${parts[0]}<span class="qcard__blank ${chosen?'qcard__blank--filled':''}">${chosen||''}</span>${parts[1]||''}</div>
-          <div class="qcard__zh">${q.zh}</div>
-          <div class="qcard__opts">
-            ${q.options.map((opt,i)=>html`
-              <button class="opt ${chosen===opt?'opt--on':''}" @click=${()=>this.choose(g,opt)}>
-                <span class="opt__letter">${LETTERS[i]}</span><span class="opt__text">${opt}</span>
-              </button>`)}
-          </div>
-        </div>
-        <div class="test__nav">
-          <button class="btn" ?disabled=${g===0} @click=${()=>this.goPrev()}>${ico('ic-arrow-left','ico--sm')} 上一题</button>
-          <button class="btn" @click=${()=>{this.stage='sheet';this.requestUpdate();}} style="display:none"></button>
-          ${g<this.total-1
-            ? html`<button class="btn btn--primary" @click=${()=>this.goNext()}>下一题 ${ico('ic-arrow-right','ico--sm')}</button>`
-            : html`<button class="btn btn--primary" @click=${()=>this.submit()}>${ico('ic-check-circle-2','ico--sm')} 交卷</button>`}
-        </div>
-        <div class="sheet">
-          <div class="sheet__title">${ico('ic-grid','ico--xs')} 答题卡(点击跳转)</div>
-          <div class="sheet__grid">
-            ${this.flat.map((_,gi)=>html`<button class="sheet__cell ${this.answers[gi]?'sheet__cell--done':''} ${gi===g?'sheet__cell--cur':''}" @click=${()=>this.jump(gi)}>${gi+1}</button>`)}
-          </div>
-          ${this.answeredCount<this.total?html`<div class="sheet__hint">${ico('ic-info','ico--xs')} 还有 ${this.total-this.answeredCount} 题未作答</div>`:''}
-          <button class="btn btn--primary" style="margin-top:var(--g-sp-3)" @click=${()=>this.submit()}>${ico('ic-check-circle-2','ico--sm')} 交卷评分</button>
-        </div>
-      </section>`;
-  }
-
-  renderResult(){
-    const sc=this.score(); const per=this.data.perQuestion||2; const points=sc*per;
-    const maxPoints=this.total*per; const pctScore=Math.round(sc/this.total*100);
-    const wrongN=this.wrongAnsweredCount(); const unansN=this.unansweredCount();
-    const level = pctScore>=90?'优秀 · 掌握扎实':pctScore>=75?'良好 · 稍加巩固':pctScore>=60?'及格 · 需要加强':'待提升 · 建议系统复习';
-    const ad=this.advice(); const boardName=s=>s.name.replace(/第.[部板][分块] · /,'');
-    return html`
-      <section class="result">
-        <div class="result__hero">
-          ${ico(pctScore>=75?'ic-award':'ic-target','ico--3xl')}
-          <div class="result__score">${points}<span class="result__max">/${maxPoints}</span></div>
-          <div class="result__level">${level} · 正确率 ${pctScore}%</div>
-        </div>
-        <div class="tally">
-          <div class="tally__cell tally__cell--ok"><div class="tally__num">${sc}</div><div class="tally__lbl">${ico('ic-check-circle-2','ico--xs')} 答对</div></div>
-          <div class="tally__cell tally__cell--wrong"><div class="tally__num">${wrongN}</div><div class="tally__lbl">${ico('ic-x-circle','ico--xs')} 答错</div></div>
-          <div class="tally__cell tally__cell--un"><div class="tally__num">${unansN}</div><div class="tally__lbl">${ico('ic-info','ico--xs')} 未答</div></div>
-          <div class="tally__cell"><div class="tally__num">${this.total}</div><div class="tally__lbl">总题数</div></div>
-        </div>
-        <div class="result__sectitle">各板块掌握情况</div>
-        <div class="result__secs">
-          ${this.data.sections.map(s=>{ const r=this.sectionScore(s.id); const p=Math.round(r.ok/r.tot*100);
-            const tag = p>=85?'牢固':p>=60?'一般':'薄弱';
-            return html`<div class="rsec rsec--${s.color}">
-              <div class="rsec__head">${ico(s.icon,'ico--sm')} <span>${boardName(s)}</span>
-                <span class="rsec__tag rsec__tag--${p>=85?'ok':p>=60?'mid':'weak'}">${tag}</span>
-                <b>${r.ok}/${r.tot}</b></div>
-              <div class="rsec__bar"><div class="rsec__fill" style="width:${p}%"></div></div>
-            </div>`; })}
-        </div>
-
-        <div class="advice">
-          <div class="advice__head">${ico('ic-lightbulb','ico--sm')} 学习改进建议</div>
-          ${ad.weak.length?html`
-            <div class="advice__row advice__row--weak">
-              <div class="advice__label">${ico('ic-alert-circle','ico--xs')} 需重点突破</div>
-              <div class="advice__text">这几块正确率偏低,是当前最该补的:<b>${ad.weak.map(r=>boardName(r.s)+'('+r.pct+'%)').join('、')}</b>。建议先看错题讲解弄懂原理,再回到对应专项页反复练习,直到能在句子里正确运用。</div>
-            </div>`:''}
-          ${ad.mid.length?html`
-            <div class="advice__row advice__row--mid">
-              <div class="advice__label">${ico('ic-trending-up','ico--xs')} 仍有提升空间</div>
-              <div class="advice__text">这几块基本会了但不够稳:<b>${ad.mid.map(r=>boardName(r.s)).join('、')}</b>。把错的题重做几遍、多造几个句子,就能变牢固。</div>
-            </div>`:''}
-          ${ad.strong.length?html`
-            <div class="advice__row advice__row--strong">
-              <div class="advice__label">${ico('ic-check-circle-2','ico--xs')} 已经掌握</div>
-              <div class="advice__text">这几块表现很好,继续保持:<b>${ad.strong.map(r=>boardName(r.s)).join('、')}</b>。</div>
-            </div>`:''}
-          <div class="advice__plan">${ico('ic-repeat','ico--xs')} 建议节奏:今天 → 看错题本弄懂;明天 → 只重做错题;一周后 → 再测一次查漏。错的反复练,对的自动淘汰。</div>
-        </div>
-
-        <div class="result__btns">
-          ${this.wrongList().length?html`<button class="btn btn--primary" @click=${()=>{this.stage='review';window.scrollTo&&window.scrollTo(0,0);}}>${ico('ic-book-open','ico--sm')} 打开错题本(${this.wrongList().length} 题·已归类)</button>`:html`<div class="result__perfect">${ico('ic-check-circle-2','ico--sm')} 全部答对,太棒了!</div>`}
-          <button class="btn" @click=${()=>this.restart()}>${ico('ic-refresh','ico--sm')} 重新测试</button>
-        </div>
-      </section>`;
-  }
-
-  renderReview(){
-    const boards=this.wrongByBoard(); const wrongTotal=this.wrongList().length;
-    const boardName=s=>s.name.replace(/第.[部板][分块] · /,'');
-    return html`
-      <section class="review">
-        <div class="review__head">
-          <button class="btn" @click=${()=>{this.stage='result';}}>${ico('ic-arrow-left','ico--sm')} 返回成绩</button>
-          <div class="review__title">${ico('ic-book-open','ico--md')} 错题本 · ${wrongTotal} 题(按板块归类)</div>
-        </div>
-        ${boards.map(b=>html`
-          <div class="rvboard">
-            <div class="rvboard__head rvboard__head--${b.sec.color}">
-              ${ico(b.sec.icon,'ico--sm')} <span class="rvboard__name">${boardName(b.sec)}</span>
-              <span class="rvboard__count">错 ${b.items.length} 题</span>
-            </div>
-            ${b.items.map(q=>{ const your=this.answers[q.g]; const full=this.full(q);
-              return html`
-              <div class="wq">
-                <div class="wq__stem">${q.q.replace('___','______')}</div>
-                <div class="wq__zh">${q.zh}</div>
-                <div class="wq__rows">
-                  <div class="wq__row wq__row--wrong">${ico('ic-x-circle','ico--sm')} 你的答案:${your||'(未作答)'}</div>
-                  <div class="wq__row wq__row--right">${ico('ic-check-circle-2','ico--sm')} 正确答案:${q.answer}
-                    <button class="speak speak--sm" @click=${(e)=>speak(full,e.currentTarget)}>${ico('ic-volume','ico--xs')}</button>
-                  </div>
-                </div>
-                <div class="wq__full">${full} <span class="wq__ipa">${sentenceIPA(full)}</span></div>
-                <div class="wq__explain">${ico('ic-lightbulb','ico--xs')} ${q.explain}</div>
-              </div>`; })}
-          </div>`)}
-        <button class="btn" @click=${()=>{this.stage='result';}} style="margin-top:var(--g-sp-4)">${ico('ic-arrow-left','ico--sm')} 返回成绩</button>
-      </section>`;
-  }
-
-  _allSentences(){ const set=new Set(); this.flat.forEach(q=>set.add(this.full(q))); return [...set]; }
-  async firstUpdated(){
-    await this.updateComplete;
-    const b=document.getElementById('boot'); if(b) b.remove();
-    try{ const list=this._allSentences(); window.__allSentences=list; if(typeof _connect==='function')_connect(); if(typeof _prewarm==='function')_prewarm(list); }catch(e){}
-  }
-}
-customElements.define('test-app', TestApp);
-
+  var pn=document.getElementById('printNow');
+  if(pn) pn.addEventListener('click',function(){ window.print(); });
+})();
 </script>
-</body>
-</html>
+
+</body></html>
