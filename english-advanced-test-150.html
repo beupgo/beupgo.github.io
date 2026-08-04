@@ -1174,23 +1174,48 @@ body { font-family: var(--g-font); color: var(--s-text); min-height: 100dvh; -we
 .test__label { font-weight: var(--g-fw-bold); color: var(--s-brand); background: var(--s-brand-subtle); padding: 2px var(--g-sp-3); border-radius: var(--g-r-full); font-size: var(--s-fs-caption); }
 .intro__sec { color: var(--s-text-secondary); }
 
+/* 对错统计 tally */
+.tally { display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--g-sp-3); margin: var(--g-sp-6) 0; }
+.tally__cell { background: var(--s-surface); border: 1px solid var(--s-border); border-radius: var(--g-r-lg); padding: var(--g-sp-3); text-align: center; }
+.tally__num { font-size: var(--s-fs-h1); font-weight: var(--g-fw-bold); line-height: 1.1; }
+.tally__lbl { font-size: var(--s-fs-caption); color: var(--s-text-secondary); display: flex; align-items: center; justify-content: center; gap: 2px; margin-top: 2px; }
+.tally__cell--ok .tally__num { color: var(--g-green-700); } .tally__cell--ok .ico { color: var(--g-green-500); }
+.tally__cell--wrong .tally__num { color: var(--g-red-700); } .tally__cell--wrong .ico { color: var(--g-red-500); }
+.tally__cell--un .tally__num { color: var(--g-amber-700); } .tally__cell--un .ico { color: var(--g-amber-500); }
+@media (max-width: 560px){ .tally { grid-template-columns: repeat(2,1fr); } }
+
+/* 板块标题 + 掌握标签 */
+.result__sectitle { font-size: var(--s-fs-body-lg); font-weight: var(--g-fw-bold); margin: var(--g-sp-2) 0 var(--g-sp-3); }
+.rsec__tag { font-size: var(--s-fs-caption); font-weight: var(--g-fw-bold); padding: 0 var(--g-sp-2); border-radius: var(--g-r-full); margin-left: var(--g-sp-2); }
+.rsec__tag--ok { color: var(--g-green-700); background: var(--g-green-100); }
+.rsec__tag--mid { color: var(--g-amber-700); background: var(--g-amber-100); }
+.rsec__tag--weak { color: var(--g-red-700); background: var(--g-red-100); }
+
+/* 学习改进建议 */
+.advice { margin: var(--g-sp-6) 0; background: var(--s-surface); border: 1px solid var(--s-border); border-radius: var(--g-r-xl); padding: var(--g-sp-4) var(--g-sp-5); }
+.advice__head { font-size: var(--s-fs-body-lg); font-weight: var(--g-fw-bold); display: flex; align-items: center; gap: var(--g-sp-2); margin-bottom: var(--g-sp-3); }
+.advice__head .ico { color: var(--g-amber-500); }
+.advice__row { display: flex; gap: var(--g-sp-3); padding: var(--g-sp-3) 0; border-top: 1px dashed var(--s-border); }
+.advice__row:first-of-type { border-top: none; }
+.advice__label { flex: none; width: 92px; font-size: var(--s-fs-caption); font-weight: var(--g-fw-bold); display: flex; align-items: flex-start; gap: 2px; }
+.advice__row--weak .advice__label { color: var(--g-red-700); }
+.advice__row--mid .advice__label { color: var(--g-amber-700); }
+.advice__row--strong .advice__label { color: var(--g-green-700); }
+.advice__text { font-size: var(--s-fs-caption); color: var(--s-text-secondary); line-height: var(--s-lh-body); }
+.advice__text b { color: var(--s-text); }
+.advice__plan { margin-top: var(--g-sp-3); padding-top: var(--g-sp-3); border-top: 1px solid var(--s-border); font-size: var(--s-fs-caption); color: var(--s-brand); display: flex; align-items: flex-start; gap: var(--g-sp-1); line-height: var(--s-lh-body); }
+
+/* 错题本按板块分组 */
+.rvboard { margin-bottom: var(--g-sp-6); }
+.rvboard__head { display: flex; align-items: center; gap: var(--g-sp-2); font-weight: var(--g-fw-bold); font-size: var(--s-fs-body-lg); padding: var(--g-sp-2) var(--g-sp-3); border-radius: var(--g-r-md); margin-bottom: var(--g-sp-3); background: var(--s-brand-subtle); color: var(--s-brand); }
+.rvboard__head--cyan { background: var(--g-cyan-100); color: var(--g-cyan-700); }
+.rvboard__head--green { background: var(--g-green-100); color: var(--g-green-700); }
+.rvboard__head--amber { background: var(--g-amber-100); color: var(--g-amber-700); }
+.rvboard__count { margin-left: auto; font-size: var(--s-fs-caption); }
+
 </style>
 </head>
 <body>
-<!-- AUTO-BACK-NAV-START -->
-<style id="auto-back-nav-style">
-#auto-back-nav{position:sticky;top:0;z-index:999;background:rgba(249,250,251,.9);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);border-bottom:1px solid #e5e7eb;display:flex;align-items:center;padding:0 20px;height:44px;}
-@media(prefers-color-scheme:dark){#auto-back-nav{background:rgba(13,17,23,.9);border-bottom-color:#2d333b;}}
-#auto-back-nav a{display:inline-flex;align-items:center;gap:6px;text-decoration:none;color:#4b5563;font-size:14px;font-weight:600;font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Hiragino Sans GB","Microsoft YaHei",Roboto,Arial,sans-serif;}
-@media(prefers-color-scheme:dark){#auto-back-nav a{color:#9da7b3;}}
-</style>
-<nav id="auto-back-nav">
-  <a href="index.html">
-    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5"/><path d="m12 19-7-7 7-7"/></svg>
-    暑假成长加油站
-  </a>
-</nav>
-<!-- AUTO-BACK-NAV-END -->
 <div id="boot" style="position:fixed;inset:0;display:grid;place-items:center;font:14px system-ui;color:#888;background:var(--s-bg,#f6f7f9)">正在加载…</div>
 <script>
 function boot_fail(m){var b=document.getElementById('boot');if(b)b.innerHTML='<pre style="max-width:80ch;white-space:pre-wrap;color:#c0392b;padding:24px">启动失败:\n'+m+'</pre>';}
@@ -2746,6 +2771,24 @@ class TestApp extends LitElement {
   score(){ let ok=0; this.flat.forEach((q,g)=>{ if(this.answers[g]===q.answer) ok++; }); return ok; }
   sectionScore(secId){ let ok=0,tot=0; this.flat.forEach((q,g)=>{ if(q.secId===secId){ tot++; if(this.answers[g]===q.answer) ok++; } }); return {ok,tot}; }
   wrongList(){ const w=[]; this.flat.forEach((q,g)=>{ if(this.answers[g]!==q.answer) w.push({...q,g}); }); return w; }
+  correctCount(){ let ok=0; this.flat.forEach((q,g)=>{ if(this.answers[g]===q.answer) ok++; }); return ok; }
+  unansweredCount(){ let u=0; this.flat.forEach((q,g)=>{ if(this.answers[g]===undefined) u++; }); return u; }
+  wrongAnsweredCount(){ let w=0; this.flat.forEach((q,g)=>{ if(this.answers[g]!==undefined && this.answers[g]!==q.answer) w++; }); return w; }
+  // 错题按板块归类:[{sec, items:[wrongQ...]}]  只含有错题的板块
+  wrongByBoard(){
+    return this.data.sections.map(s=>({
+      sec:s,
+      items:this.flat.map((q,g)=>({...q,g})).filter(q=>q.secId===s.id && this.answers[q.g]!==q.answer)
+    })).filter(b=>b.items.length>0);
+  }
+  // 改进学习建议:按各板块正确率排序,给出针对性意见
+  advice(){
+    const rows=this.data.sections.map(s=>{ const r=this.sectionScore(s.id); return {s, ...r, pct:Math.round(r.ok/r.tot*100)}; });
+    const weak=rows.filter(r=>r.pct<60).sort((a,b)=>a.pct-b.pct);       // 薄弱:正确率<60%
+    const mid =rows.filter(r=>r.pct>=60 && r.pct<85).sort((a,b)=>a.pct-b.pct);
+    const strong=rows.filter(r=>r.pct>=85);
+    return {rows, weak, mid, strong};
+  }
 
   render(){
     return html`
@@ -2769,7 +2812,7 @@ class TestApp extends LitElement {
           ${this.stage==='result'?this.renderResult():''}
           ${this.stage==='review'?this.renderReview():''}
         </main>
-        <footer class="foot wrap">英语学习摸底测试 · 共 ${this.total} 题 · 满分 100 分 · 微软神经语音朗读</footer>
+        <footer class="foot wrap">英语学习摸底测试 · 共 ${this.total} 题 · 满分 ${this.total*(this.data.perQuestion||2)} 分 · 微软神经语音朗读</footer>
       </div>`;
   }
 
@@ -2782,7 +2825,7 @@ class TestApp extends LitElement {
           <p class="intro__desc">${this.data.intro}</p>
           <div class="intro__secs">
             <div class="intro__sec"><b>${this.total}</b> 道单项选择</div>
-            <div class="intro__sec">满分 <b>100</b> 分</div>
+            <div class="intro__sec">满分 <b>${this.total*(this.data.perQuestion||2)}</b> 分</div>
             <div class="intro__sec">题目<b>随机打乱</b>·不提示考点</div>
           </div>
           <button class="btn btn--primary btn--lg" @click=${()=>{this.stage='test';this.idx=0;}}>${ico('ic-arrow-right','ico--sm')} 开始测试</button>
@@ -2832,52 +2875,92 @@ class TestApp extends LitElement {
 
   renderResult(){
     const sc=this.score(); const per=this.data.perQuestion||2; const points=sc*per;
-    const level = points>=90?'优秀 · 掌握扎实':points>=75?'良好 · 稍加巩固':points>=60?'及格 · 需要加强':'待提升 · 建议系统复习';
+    const maxPoints=this.total*per; const pctScore=Math.round(sc/this.total*100);
+    const wrongN=this.wrongAnsweredCount(); const unansN=this.unansweredCount();
+    const level = pctScore>=90?'优秀 · 掌握扎实':pctScore>=75?'良好 · 稍加巩固':pctScore>=60?'及格 · 需要加强':'待提升 · 建议系统复习';
+    const ad=this.advice(); const boardName=s=>s.name.replace(/第.[部板][分块] · /,'');
     return html`
       <section class="result">
         <div class="result__hero">
-          ${ico(points>=75?'ic-award':'ic-target','ico--3xl')}
-          <div class="result__score">${points}<span class="result__max">/100</span></div>
-          <div class="result__level">${level}</div>
-          <div class="result__sub">答对 ${sc} / ${this.total} 题</div>
+          ${ico(pctScore>=75?'ic-award':'ic-target','ico--3xl')}
+          <div class="result__score">${points}<span class="result__max">/${maxPoints}</span></div>
+          <div class="result__level">${level} · 正确率 ${pctScore}%</div>
         </div>
+        <div class="tally">
+          <div class="tally__cell tally__cell--ok"><div class="tally__num">${sc}</div><div class="tally__lbl">${ico('ic-check-circle-2','ico--xs')} 答对</div></div>
+          <div class="tally__cell tally__cell--wrong"><div class="tally__num">${wrongN}</div><div class="tally__lbl">${ico('ic-x-circle','ico--xs')} 答错</div></div>
+          <div class="tally__cell tally__cell--un"><div class="tally__num">${unansN}</div><div class="tally__lbl">${ico('ic-info','ico--xs')} 未答</div></div>
+          <div class="tally__cell"><div class="tally__num">${this.total}</div><div class="tally__lbl">总题数</div></div>
+        </div>
+        <div class="result__sectitle">各板块掌握情况</div>
         <div class="result__secs">
           ${this.data.sections.map(s=>{ const r=this.sectionScore(s.id); const p=Math.round(r.ok/r.tot*100);
+            const tag = p>=85?'牢固':p>=60?'一般':'薄弱';
             return html`<div class="rsec rsec--${s.color}">
-              <div class="rsec__head">${ico(s.icon,'ico--sm')} <span>${s.name.replace(/第.[部板][分块] · /,'')}</span><b>${r.ok}/${r.tot}</b></div>
+              <div class="rsec__head">${ico(s.icon,'ico--sm')} <span>${boardName(s)}</span>
+                <span class="rsec__tag rsec__tag--${p>=85?'ok':p>=60?'mid':'weak'}">${tag}</span>
+                <b>${r.ok}/${r.tot}</b></div>
               <div class="rsec__bar"><div class="rsec__fill" style="width:${p}%"></div></div>
             </div>`; })}
         </div>
+
+        <div class="advice">
+          <div class="advice__head">${ico('ic-lightbulb','ico--sm')} 学习改进建议</div>
+          ${ad.weak.length?html`
+            <div class="advice__row advice__row--weak">
+              <div class="advice__label">${ico('ic-alert-circle','ico--xs')} 需重点突破</div>
+              <div class="advice__text">这几块正确率偏低,是当前最该补的:<b>${ad.weak.map(r=>boardName(r.s)+'('+r.pct+'%)').join('、')}</b>。建议先看错题讲解弄懂原理,再回到对应专项页反复练习,直到能在句子里正确运用。</div>
+            </div>`:''}
+          ${ad.mid.length?html`
+            <div class="advice__row advice__row--mid">
+              <div class="advice__label">${ico('ic-trending-up','ico--xs')} 仍有提升空间</div>
+              <div class="advice__text">这几块基本会了但不够稳:<b>${ad.mid.map(r=>boardName(r.s)).join('、')}</b>。把错的题重做几遍、多造几个句子,就能变牢固。</div>
+            </div>`:''}
+          ${ad.strong.length?html`
+            <div class="advice__row advice__row--strong">
+              <div class="advice__label">${ico('ic-check-circle-2','ico--xs')} 已经掌握</div>
+              <div class="advice__text">这几块表现很好,继续保持:<b>${ad.strong.map(r=>boardName(r.s)).join('、')}</b>。</div>
+            </div>`:''}
+          <div class="advice__plan">${ico('ic-repeat','ico--xs')} 建议节奏:今天 → 看错题本弄懂;明天 → 只重做错题;一周后 → 再测一次查漏。错的反复练,对的自动淘汰。</div>
+        </div>
+
         <div class="result__btns">
-          ${this.wrongList().length?html`<button class="btn btn--primary" @click=${()=>{this.stage='review';window.scrollTo&&window.scrollTo(0,0);}}>${ico('ic-book-open','ico--sm')} 查看错题讲解(${this.wrongList().length})</button>`:html`<div class="result__perfect">${ico('ic-check-circle-2','ico--sm')} 全部答对,太棒了!</div>`}
+          ${this.wrongList().length?html`<button class="btn btn--primary" @click=${()=>{this.stage='review';window.scrollTo&&window.scrollTo(0,0);}}>${ico('ic-book-open','ico--sm')} 打开错题本(${this.wrongList().length} 题·已归类)</button>`:html`<div class="result__perfect">${ico('ic-check-circle-2','ico--sm')} 全部答对,太棒了!</div>`}
           <button class="btn" @click=${()=>this.restart()}>${ico('ic-refresh','ico--sm')} 重新测试</button>
         </div>
       </section>`;
   }
 
   renderReview(){
-    const wrong=this.wrongList();
+    const boards=this.wrongByBoard(); const wrongTotal=this.wrongList().length;
+    const boardName=s=>s.name.replace(/第.[部板][分块] · /,'');
     return html`
       <section class="review">
         <div class="review__head">
           <button class="btn" @click=${()=>{this.stage='result';}}>${ico('ic-arrow-left','ico--sm')} 返回成绩</button>
-          <div class="review__title">${ico('ic-book-open','ico--md')} 错题讲解 · ${wrong.length} 题</div>
+          <div class="review__title">${ico('ic-book-open','ico--md')} 错题本 · ${wrongTotal} 题(按板块归类)</div>
         </div>
-        ${wrong.map(q=>{ const your=this.answers[q.g]; const full=this.full(q);
-          return html`
-          <div class="wq">
-            <div class="wq__sec wq__sec--${q.secColor}">${q.secName.replace(/第.[部板][分块] · /,'')}</div>
-            <div class="wq__stem">${q.q.replace('___','______')}</div>
-            <div class="wq__zh">${q.zh}</div>
-            <div class="wq__rows">
-              <div class="wq__row wq__row--wrong">${ico('ic-x-circle','ico--sm')} 你的答案:${your||'(未作答)'}</div>
-              <div class="wq__row wq__row--right">${ico('ic-check-circle-2','ico--sm')} 正确答案:${q.answer}
-                <button class="speak speak--sm" @click=${(e)=>speak(full,e.currentTarget)}>${ico('ic-volume','ico--xs')}</button>
-              </div>
+        ${boards.map(b=>html`
+          <div class="rvboard">
+            <div class="rvboard__head rvboard__head--${b.sec.color}">
+              ${ico(b.sec.icon,'ico--sm')} <span class="rvboard__name">${boardName(b.sec)}</span>
+              <span class="rvboard__count">错 ${b.items.length} 题</span>
             </div>
-            <div class="wq__full">${full} <span class="wq__ipa">${sentenceIPA(full)}</span></div>
-            <div class="wq__explain">${ico('ic-lightbulb','ico--xs')} ${q.explain}</div>
-          </div>`; })}
+            ${b.items.map(q=>{ const your=this.answers[q.g]; const full=this.full(q);
+              return html`
+              <div class="wq">
+                <div class="wq__stem">${q.q.replace('___','______')}</div>
+                <div class="wq__zh">${q.zh}</div>
+                <div class="wq__rows">
+                  <div class="wq__row wq__row--wrong">${ico('ic-x-circle','ico--sm')} 你的答案:${your||'(未作答)'}</div>
+                  <div class="wq__row wq__row--right">${ico('ic-check-circle-2','ico--sm')} 正确答案:${q.answer}
+                    <button class="speak speak--sm" @click=${(e)=>speak(full,e.currentTarget)}>${ico('ic-volume','ico--xs')}</button>
+                  </div>
+                </div>
+                <div class="wq__full">${full} <span class="wq__ipa">${sentenceIPA(full)}</span></div>
+                <div class="wq__explain">${ico('ic-lightbulb','ico--xs')} ${q.explain}</div>
+              </div>`; })}
+          </div>`)}
         <button class="btn" @click=${()=>{this.stage='result';}} style="margin-top:var(--g-sp-4)">${ico('ic-arrow-left','ico--sm')} 返回成绩</button>
       </section>`;
   }
