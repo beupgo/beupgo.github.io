@@ -35,8 +35,9 @@
 
 | 页面 | 在线访问 | 更新时间 |
 |---|---|---|
-| 英语学习摸底测试卷 | [开始学习](https://beupgo.github.io/english-advanced-test-150.html) | 2026-08-04 22:56 |
-| 小学英语综合语法测试 · 150 题 | [开始学习](https://beupgo.github.io/primary-english-grammar-test-150.html) | 2026-08-04 22:54 |
+| 英语学习摸底测试卷 | [开始学习](https://beupgo.github.io/grade6-grammar-test-100.html) | 2026-08-05 14:14 |
+| 小学英语综合语法测试 · 150 题 | [开始学习](https://beupgo.github.io/primary-english-grammar-test-150.html) | 2026-08-04 14:56 |
+| 英语学习摸底测试卷 | [开始学习](https://beupgo.github.io/english-advanced-test-150.html) | 2026-08-04 14:56 |
 | 英语学习摸底测试卷 | [开始学习](https://beupgo.github.io/english-placement-test-100.html) | 2026-08-03 14:01 |
 | 英语学习摸底测试卷 | [开始学习](https://beupgo.github.io/english-placement-test-50.html) | 2026-08-03 09:44 |
 | 小学英语常用句式大全 | [开始学习](https://beupgo.github.io/primary-sentence-patterns.html) | 2026-08-02 13:23 |
@@ -85,6 +86,7 @@
 ├─ g6-math-fraction-division.html  # 分数除法应用题专题 · 找准单位1
 ├─ g6-math-fractions.html  # 分数专题 · 彻底学会分数
 ├─ g6-math-geometric-thinking.html  # 图形思想专题 · 用画图解数学题
+├─ grade6-grammar-test-100.html  # 英语学习摸底测试卷
 ├─ grade6-math.html  # 北京六年级数学 · 母题学习系统
 ├─ English-G6-Sentence-Building.html  # 英语组句魔法 · 句子小火车 | 小学英语
 ├─ Math-G5-Fraction-Common-Denominator.html  # 通分专项 · 理解通分的本质 | 小学数学
