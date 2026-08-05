@@ -9,6 +9,7 @@
 
 | 页面 | 在线访问 | 更新时间 |
 |---|---|---|
+| 圆与阴影面积测试卷 · 北京小学 | [开始学习](https://beupgo.github.io/math-circle-shaded-area-worksheet.html) | 2026-08-05 18:04 |
 | 小学奥数 · 圆专题练习卷 | [开始学习](https://beupgo.github.io/primary-circle-lessons-problems.html) | 2026-07-31 09:29 |
 | 简易方程应用题练习卷 | [开始学习](https://beupgo.github.io/equation-word-problems.html) | 2026-07-26 03:41 |
 | 通分专项 · 理解通分的本质 \| 小学数学 | [开始学习](https://beupgo.github.io/Math-G5-Fraction-Common-Denominator.html) | 2026-07-10 13:37 |
@@ -35,7 +36,7 @@
 
 | 页面 | 在线访问 | 更新时间 |
 |---|---|---|
-| 英语学习摸底测试卷 | [开始学习](https://beupgo.github.io/grade6-grammar-test-100.html) | 2026-08-05 14:14 |
+| 英语学习摸底测试卷 | [开始学习](https://beupgo.github.io/grade6-grammar-test-100.html) | 2026-08-05 06:14 |
 | 小学英语综合语法测试 · 150 题 | [开始学习](https://beupgo.github.io/primary-english-grammar-test-150.html) | 2026-08-04 14:56 |
 | 英语学习摸底测试卷 | [开始学习](https://beupgo.github.io/english-advanced-test-150.html) | 2026-08-04 14:56 |
 | 英语学习摸底测试卷 | [开始学习](https://beupgo.github.io/english-placement-test-100.html) | 2026-08-03 14:01 |
@@ -100,6 +101,7 @@
 ├─ english-tenses.html  # 英语时态学习专题
 ├─ english5.html  # 英语冒险岛 · 3-6年级暑假
 ├─ equation-word-problems.html  # 简易方程应用题练习卷
+├─ math-circle-shaded-area-worksheet.html  # 圆与阴影面积测试卷 · 北京小学
 ├─ new-vocabulary-5-scenes.html  # 新增单词专项 · 5 大场景
 ├─ primary-circle-lessons-problems.html  # 小学奥数 · 圆专题练习卷
 ├─ primary-english-grammar-test-150.html  # 小学英语综合语法测试 · 150 题
