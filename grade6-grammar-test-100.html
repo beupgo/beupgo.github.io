@@ -1096,6 +1096,8 @@ body { font-family: var(--g-font); color: var(--s-text); min-height: 100dvh; -we
 .intro__sec { display: inline-flex; align-items: center; gap: var(--g-sp-1); font-size: var(--s-fs-caption); background: var(--s-surface-sunken); border: 1px solid var(--s-border); border-radius: var(--g-r-full); padding: var(--g-sp-2) var(--g-sp-4); }
 .intro__sec b { color: var(--s-brand); }
 .intro__sec--brand .ico{color:var(--s-brand)} .intro__sec--cyan .ico{color:var(--g-cyan-700)} .intro__sec--green .ico{color:var(--g-green-700)} .intro__sec--amber .ico{color:var(--g-amber-700)}
+.intro__resume { display:flex; align-items:center; gap:var(--g-sp-2); justify-content:center; font-size:var(--s-fs-caption); color:var(--g-amber-700); background:var(--g-amber-100); border:1px solid var(--g-amber-300,var(--s-border)); border-radius:var(--g-r-md); padding:var(--g-sp-3) var(--g-sp-4); margin-bottom:var(--g-sp-4); }
+.intro__btns { display:flex; flex-wrap:wrap; gap:var(--g-sp-3); justify-content:center; }
 
 /* test */
 .test { padding-block: var(--g-sp-6) var(--g-sp-8); }
@@ -1216,20 +1218,6 @@ body { font-family: var(--g-font); color: var(--s-text); min-height: 100dvh; -we
 </style>
 </head>
 <body>
-<!-- AUTO-BACK-NAV-START -->
-<style id="auto-back-nav-style">
-#auto-back-nav{position:sticky;top:0;z-index:999;background:rgba(249,250,251,.9);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);border-bottom:1px solid #e5e7eb;display:flex;align-items:center;padding:0 20px;height:44px;}
-@media(prefers-color-scheme:dark){#auto-back-nav{background:rgba(13,17,23,.9);border-bottom-color:#2d333b;}}
-#auto-back-nav a{display:inline-flex;align-items:center;gap:6px;text-decoration:none;color:#4b5563;font-size:14px;font-weight:600;font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Hiragino Sans GB","Microsoft YaHei",Roboto,Arial,sans-serif;}
-@media(prefers-color-scheme:dark){#auto-back-nav a{color:#9da7b3;}}
-</style>
-<nav id="auto-back-nav">
-  <a href="index.html">
-    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5"/><path d="m12 19-7-7 7-7"/></svg>
-    暑假成长加油站
-  </a>
-</nav>
-<!-- AUTO-BACK-NAV-END -->
 <div id="boot" style="position:fixed;inset:0;display:grid;place-items:center;font:14px system-ui;color:#888;background:var(--s-bg,#f6f7f9)">正在加载…</div>
 <script>
 function boot_fail(m){var b=document.getElementById('boot');if(b)b.innerHTML='<pre style="max-width:80ch;white-space:pre-wrap;color:#c0392b;padding:24px">启动失败:\n'+m+'</pre>';}
@@ -2799,6 +2787,7 @@ function sentenceIPA(sentence){
   }).join(' ')+'/';
 }
 const LETTERS=['A','B','C','D'];
+const SAVE_KEY='g6grammar_progress_v1';   // 作答进度持久化(防刷新丢失)
 
 class TestApp extends LitElement {
   static properties = {
@@ -2818,21 +2807,39 @@ class TestApp extends LitElement {
     // flatten questions with section metadata (kept only for scoring, NOT shown during the test)
     this.flat = [];
     this.data.sections.forEach(s=>s.items.forEach(it=>this.flat.push({...it, secId:s.id, secName:s.name, secColor:s.color})));
-    // shuffle so the four boards are interleaved — a real 摸底 must not hint the 考点 by grouping
-    for(let i=this.flat.length-1;i>0;i--){ const j=Math.floor(Math.random()*(i+1)); [this.flat[i],this.flat[j]]=[this.flat[j],this.flat[i]]; }
+    // 恢复上次进度(含打乱顺序),避免刷新丢失作答
+    const saved = this._load();
+    if (saved && Array.isArray(saved.order) && saved.order.length===this.flat.length) {
+      this.flat = saved.order.map(i=>this.flat[i]);   // 复用上次的打乱顺序,保证答案与题目对齐
+      this._order = saved.order;
+      this.answers = saved.answers || {};
+      this.idx = Math.min(saved.idx||0, this.flat.length-1);
+      if (saved.stage==='result' || saved.stage==='review') this.stage = saved.stage;
+      else if (Object.keys(this.answers).length>0) this.stage = 'test';   // 有作答则直接回到答题
+    } else {
+      // 首次:shuffle so the four boards are interleaved — a real 摸底 must not hint the 考点 by grouping
+      this._order = this.flat.map((_,i)=>i);
+      for(let i=this._order.length-1;i>0;i--){ const j=Math.floor(Math.random()*(i+1)); [this._order[i],this._order[j]]=[this._order[j],this._order[i]]; }
+      this.flat = this._order.map(i=>this.flat[i]);
+    }
     this.total = this.flat.length;
+    this._save();
   }
   toggleTheme(){ const c=document.documentElement.getAttribute('data-theme'); document.documentElement.setAttribute('data-theme', c==='dark'?'':'dark'); this.requestUpdate(); }
   get isDark(){ return document.documentElement.getAttribute('data-theme')==='dark'; }
   changeRate(r){ setRate(r); this.rate=r; }
   full(q){ return q.q.replace('___', q.answer==='/'?'':q.answer).replace(/\s+/g,' ').trim(); }
-  choose(g, opt){ this.answers = { ...this.answers, [g]: opt }; }
-  goPrev(){ if(this.idx>0) this.idx--; }
-  goNext(){ if(this.idx<this.total-1) this.idx++; }
-  jump(g){ this.idx=g; this.stage='test'; window.scrollTo&&window.scrollTo(0,0); }
+  // ---- 进度持久化:选项/当前题号/阶段/打乱顺序 都存 localStorage,刷新不丢 ----
+  _load(){ try{ return JSON.parse(localStorage.getItem(SAVE_KEY)||'null'); }catch(e){ return null; } }
+  _save(){ try{ localStorage.setItem(SAVE_KEY, JSON.stringify({order:this._order, answers:this.answers, idx:this.idx, stage:this.stage})); }catch(e){} }
+  _clearSave(){ try{ localStorage.removeItem(SAVE_KEY); }catch(e){} }
+  choose(g, opt){ this.answers = { ...this.answers, [g]: opt }; this._save(); }
+  goPrev(){ if(this.idx>0){ this.idx--; this._save(); } }
+  goNext(){ if(this.idx<this.total-1){ this.idx++; this._save(); } }
+  jump(g){ this.idx=g; this.stage='test'; this._save(); window.scrollTo&&window.scrollTo(0,0); }
   get answeredCount(){ return Object.keys(this.answers).length; }
-  submit(){ this.stage='result'; window.scrollTo&&window.scrollTo(0,0); }
-  restart(){ this.answers={}; this.idx=0; this.stage='intro'; }
+  submit(){ this.stage='result'; this._save(); window.scrollTo&&window.scrollTo(0,0); }
+  restart(){ this.answers={}; this.idx=0; this.stage='intro'; this._clearSave(); this._save(); }
   // scoring
   score(){ let ok=0; this.flat.forEach((q,g)=>{ if(this.answers[g]===q.answer) ok++; }); return ok; }
   sectionScore(secId){ let ok=0,tot=0; this.flat.forEach((q,g)=>{ if(q.secId===secId){ tot++; if(this.answers[g]===q.answer) ok++; } }); return {ok,tot}; }
@@ -2883,6 +2890,7 @@ class TestApp extends LitElement {
   }
 
   renderIntro(){
+    const hasSaved = this.answeredCount>0;
     return html`
       <section class="intro">
         <div class="intro__card">
@@ -2894,7 +2902,13 @@ class TestApp extends LitElement {
             <div class="intro__sec">满分 <b>${this.total*(this.data.perQuestion||2)}</b> 分</div>
             <div class="intro__sec">题目<b>随机打乱</b>·不提示考点</div>
           </div>
-          <button class="btn btn--primary btn--lg" @click=${()=>{this.stage='test';this.idx=0;}}>${ico('ic-arrow-right','ico--sm')} 开始测试</button>
+          ${hasSaved?html`
+            <div class="intro__resume">${ico('ic-info','ico--xs')} 检测到上次作答进度(已答 ${this.answeredCount}/${this.total} 题),可继续答题,刷新不会丢失。</div>
+            <div class="intro__btns">
+              <button class="btn btn--primary btn--lg" @click=${()=>{this.stage='test';this._save();}}>${ico('ic-arrow-right','ico--sm')} 继续上次</button>
+              <button class="btn btn--lg" @click=${()=>this.restart()}>${ico('ic-refresh','ico--sm')} 重新开始</button>
+            </div>`
+          :html`<button class="btn btn--primary btn--lg" @click=${()=>{this.stage='test';this.idx=0;this._save();}}>${ico('ic-arrow-right','ico--sm')} 开始测试</button>`}
         </div>
       </section>`;
   }
@@ -2991,7 +3005,7 @@ class TestApp extends LitElement {
         </div>
 
         <div class="result__btns">
-          ${this.wrongList().length?html`<button class="btn btn--primary" @click=${()=>{this.stage='review';window.scrollTo&&window.scrollTo(0,0);}}>${ico('ic-book-open','ico--sm')} 打开错题本(${this.wrongList().length} 题·已归类)</button>`:html`<div class="result__perfect">${ico('ic-check-circle-2','ico--sm')} 全部答对,太棒了!</div>`}
+          ${this.wrongList().length?html`<button class="btn btn--primary" @click=${()=>{this.stage='review';this._save();window.scrollTo&&window.scrollTo(0,0);}}>${ico('ic-book-open','ico--sm')} 打开错题本(${this.wrongList().length} 题·已归类)</button>`:html`<div class="result__perfect">${ico('ic-check-circle-2','ico--sm')} 全部答对,太棒了!</div>`}
           <button class="btn" @click=${()=>this.restart()}>${ico('ic-refresh','ico--sm')} 重新测试</button>
         </div>
       </section>`;
@@ -3003,7 +3017,7 @@ class TestApp extends LitElement {
     return html`
       <section class="review">
         <div class="review__head">
-          <button class="btn" @click=${()=>{this.stage='result';}}>${ico('ic-arrow-left','ico--sm')} 返回成绩</button>
+          <button class="btn" @click=${()=>{this.stage='result';this._save();}}>${ico('ic-arrow-left','ico--sm')} 返回成绩</button>
           <div class="review__title">${ico('ic-book-open','ico--md')} 错题本 · ${wrongTotal} 题(按板块归类)</div>
         </div>
         ${boards.map(b=>html`
@@ -3027,7 +3041,7 @@ class TestApp extends LitElement {
                 <div class="wq__explain">${ico('ic-lightbulb','ico--xs')} ${q.explain}</div>
               </div>`; })}
           </div>`)}
-        <button class="btn" @click=${()=>{this.stage='result';}} style="margin-top:var(--g-sp-4)">${ico('ic-arrow-left','ico--sm')} 返回成绩</button>
+        <button class="btn" @click=${()=>{this.stage='result';this._save();}} style="margin-top:var(--g-sp-4)">${ico('ic-arrow-left','ico--sm')} 返回成绩</button>
       </section>`;
   }
 
