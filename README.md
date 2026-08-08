@@ -36,8 +36,9 @@
 
 | 页面 | 在线访问 | 更新时间 |
 |---|---|---|
-| 小学英语综合语法测试 · 150 题 | [开始学习](https://beupgo.github.io/primary-english-grammar-test-150.html) | 2026-08-06 15:10 |
-| 英语学习摸底测试卷 | [开始学习](https://beupgo.github.io/grade6-grammar-test-100.html) | 2026-08-06 15:10 |
+| 生活场景英语单词 · 关联+对比记忆 | [开始学习](https://beupgo.github.io/life-scenes-vocabulary-assoc-contrast.html) | 2026-08-08 15:51 |
+| 小学英语综合语法测试 · 150 题 | [开始学习](https://beupgo.github.io/primary-english-grammar-test-150.html) | 2026-08-06 07:10 |
+| 英语学习摸底测试卷 | [开始学习](https://beupgo.github.io/grade6-grammar-test-100.html) | 2026-08-06 07:10 |
 | 英语学习摸底测试卷 | [开始学习](https://beupgo.github.io/english-advanced-test-150.html) | 2026-08-04 14:56 |
 | 英语学习摸底测试卷 | [开始学习](https://beupgo.github.io/english-placement-test-100.html) | 2026-08-03 14:01 |
 | 英语学习摸底测试卷 | [开始学习](https://beupgo.github.io/english-placement-test-50.html) | 2026-08-03 09:44 |
@@ -101,6 +102,7 @@
 ├─ english-tenses.html  # 英语时态学习专题
 ├─ english5.html  # 英语冒险岛 · 3-6年级暑假
 ├─ equation-word-problems.html  # 简易方程应用题练习卷
+├─ life-scenes-vocabulary-assoc-contrast.html  # 生活场景英语单词 · 关联+对比记忆
 ├─ math-circle-shaded-area-worksheet.html  # 圆与阴影面积测试卷 · 北京小学
 ├─ new-vocabulary-5-scenes.html  # 新增单词专项 · 5 大场景
 ├─ primary-circle-lessons-problems.html  # 小学奥数 · 圆专题练习卷
