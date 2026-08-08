@@ -1293,23 +1293,17 @@ body { font-family: var(--g-font); color: var(--s-text); min-height: 100dvh; -we
 .chain-play.playing { background: var(--s-brand); color: var(--s-on-brand); }
 .chain-play.playing .ico { color: var(--s-on-brand); }
 
+/* 手动收藏单词(⭐)到错题本 */
+.word-card__acts { display: inline-flex; align-items: center; gap: var(--g-sp-1); flex: none; }
+.collect { appearance: none; cursor: pointer; width: 34px; height: 34px; min-height: 34px; padding: 0; display: inline-grid; place-items: center; border: 1px solid var(--s-border); border-radius: var(--g-r-md); background: var(--s-surface); color: var(--s-text-muted); }
+.collect:hover { background: var(--s-surface-hover); color: var(--g-amber-600, var(--s-brand)); }
+.collect .ico { transition: transform var(--g-dur-fast) var(--g-ease); }
+.collect--on { background: var(--g-amber-100); border-color: color-mix(in srgb, var(--g-amber-500) 40%, transparent); color: var(--g-amber-600); }
+.collect--on .ico { fill: currentColor; }
+
 </style>
 </head>
 <body>
-<!-- AUTO-BACK-NAV-START -->
-<style id="auto-back-nav-style">
-#auto-back-nav{position:sticky;top:0;z-index:999;background:rgba(249,250,251,.9);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);border-bottom:1px solid #e5e7eb;display:flex;align-items:center;padding:0 20px;height:44px;}
-@media(prefers-color-scheme:dark){#auto-back-nav{background:rgba(13,17,23,.9);border-bottom-color:#2d333b;}}
-#auto-back-nav a{display:inline-flex;align-items:center;gap:6px;text-decoration:none;color:#4b5563;font-size:14px;font-weight:600;font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Hiragino Sans GB","Microsoft YaHei",Roboto,Arial,sans-serif;}
-@media(prefers-color-scheme:dark){#auto-back-nav a{color:#9da7b3;}}
-</style>
-<nav id="auto-back-nav">
-  <a href="index.html">
-    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5"/><path d="m12 19-7-7 7-7"/></svg>
-    暑假成长加油站
-  </a>
-</nav>
-<!-- AUTO-BACK-NAV-END -->
 <div id="boot" style="position:fixed;inset:0;display:grid;place-items:center;font:14px system-ui;color:#888;background:var(--s-bg,#f6f7f9)">正在加载…</div>
 <script>
 function boot_fail(m){var b=document.getElementById('boot');if(b)b.innerHTML='<pre style="max-width:80ch;white-space:pre-wrap;color:#c0392b;padding:24px">启动失败:\n'+m+'</pre>';}
@@ -9032,10 +9026,12 @@ let _edgeBlocked = false;              // once we know it fails, stop retrying �
 const _edgeCache = new Map();          // "rate|text" → objectURL (avoid re-synth)
 
 // speech rate: shared by Edge TTS (SSML rate %) and local TTS (utterance.rate)
+// `play` = HTMLAudioElement.playbackRate multiplier, applied to the Edge/cached MP3
+// so 快/慢 audibly changes even when Edge's neural prosody barely differs.
 const RATE_LEVELS = {
-  slow:   { ssml: '-35%', local: 0.65, label: '慢' },
-  normal: { ssml: '-8%',  local: 0.85, label: '正常' },
-  fast:   { ssml: '+15%', local: 1.05, label: '快' }
+  slow:   { ssml: '-35%', local: 0.65, play: 0.75, label: '慢' },
+  normal: { ssml: '-8%',  local: 0.85, play: 1.0,  label: '正常' },
+  fast:   { ssml: '+15%', local: 1.05, play: 1.3,  label: '快' }
 };
 let _rate = 'normal';
 
@@ -9139,7 +9135,12 @@ function speak(text, btnEl){
 
   const playUrl = (url) => {
     a.onended = done; a.onerror = () => _localSpeak(text, btnEl);
-    a.src = url; const p = a.play(); if (p && p.catch) p.catch(() => _localSpeak(text, btnEl));
+    const mult = (RATE_LEVELS[_rate] || RATE_LEVELS.normal).play || 1;
+    try { a.preservesPitch = true; a.mozPreservesPitch = true; a.webkitPreservesPitch = true; } catch(e){}
+    a.src = url;
+    const applyRate = () => { try { a.playbackRate = mult; } catch(e){} };
+    applyRate(); a.onloadedmetadata = applyRate;   // set before and after metadata loads
+    const p = a.play(); if (p && p.catch) p.catch(() => _localSpeak(text, btnEl));
   };
 
   if (_edgeBlocked) { _localSpeak(text, btnEl); return; }
@@ -9380,6 +9381,15 @@ class AvApp extends LitElement {
   }
   nextQ(){ if(this.qIndex<this._quiz.length-1){ this.qIndex++; this.qPicked=-1; this.qAnswered=false; } else { this.qIndex=this._quiz.length; } }
   clearWrong(){ this.wrong=new Set(); this._saveWrong(); this._buildQuiz(); this.requestUpdate(); }
+  // ---- 手动收藏单词到错题本(和答错自动收藏共用同一个本子)----
+  isCollected(en){ return this.wrong.has(en); }
+  toggleCollect(en){
+    const n=new Set(this.wrong);
+    if(n.has(en)) n.delete(en); else n.add(en);
+    this.wrong=n; this._saveWrong();
+    if(this.tab==='review' && this.quizMode==='review'){ this._buildQuiz(); }
+    this.requestUpdate();
+  }
 
   render(){
     return html`
@@ -9483,11 +9493,15 @@ class AvApp extends LitElement {
   }
 
   renderWordCard(w, rel){
+    const collected=this.isCollected(w.en);
     return html`
       <div class="word-card ${rel?'word-card--rel':''}">
         <div class="word-card__head">
           <div><div class="word-card__word">${w.en}</div><div class="word-card__ipa">${w.ipa}</div></div>
-          <button class="speak speak--sm" title="朗读单词" @click=${(e)=>speak(w.en,e.currentTarget)}>${ico('ic-volume','ico--sm')}</button>
+          <div class="word-card__acts">
+            <button class="collect ${collected?'collect--on':''}" title=${collected?'已收藏,点按取消':'收藏到错题本'} aria-pressed=${collected} @click=${()=>this.toggleCollect(w.en)}>${ico('ic-star','ico--sm')}</button>
+            <button class="speak speak--sm" title="朗读单词" @click=${(e)=>speak(w.en,e.currentTarget)}>${ico('ic-volume','ico--sm')}</button>
+          </div>
         </div>
         <div class="word-card__zh">${w.zh}</div>
         <div class="word-card__ex">
@@ -9631,13 +9645,13 @@ class AvApp extends LitElement {
       <section class="quiz-sec">
         <div class="quiz-sechead">
           <div class="quiz-sechead__t">${ico('ic-repeat','ico--md')} 错题本 · 循环记忆</div>
-          <div class="quiz-sechead__s">这里只练你答错过的词。答对一次就自动移出;还没记住的会一直留着,直到全部清空。</div>
+          <div class="quiz-sechead__s">这里练<b>答错的词</b>和你<b>手动收藏(⭐)的词</b>。答对一次就自动移出;还没记住的会一直留着,直到全部清空。</div>
         </div>
         ${n===0 ? html`
           <div class="quiz-card quiz-done">
             ${ico('ic-check-circle-2','ico--3xl')}
             <div class="quiz-done__score" style="font-size:var(--s-fs-h1)">错题本是空的 🎉</div>
-            <p style="color:var(--s-text-secondary)">去「闯关测验」里练一练,答错的词会自动收藏到这里,方便你反复攻克。</p>
+            <p style="color:var(--s-text-secondary)">去「闯关测验」里练一练,答错的词会自动收藏到这里;也可以在「场景单词」里点单词卡上的 ⭐ 手动收藏想重点记的词。</p>
             <button class="btn btn--primary" style="margin-top:var(--g-sp-4)" @click=${()=>this.setTab('quiz')}>${ico('ic-target','ico--sm')} 去测验</button>
           </div>
         ` : html`
