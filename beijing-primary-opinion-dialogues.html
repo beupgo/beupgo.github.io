@@ -1,10 +1,11 @@
-<!doctype html>
-<html lang="zh-CN" data-theme="light">
+<!DOCTYPE html>
+<html lang="zh-CN" data-theme="">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>分数乘除法与比例 · 小升初培优卷</title>
-<style>/* =========================================================================
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>表达观点专项 · 6 大对话场景</title>
+<style>
+/* =========================================================================
    AURORA DESIGN SYSTEM · tokens.css · v2.0
    Three-tier token architecture
      TIER 1  GLOBAL / PRIMITIVE  --g-*   raw values, theme-agnostic
@@ -44,8 +45,8 @@ gc-*, gc-*::before, gc-*::after {
 /* ===================== TIER 1 · GLOBAL / PRIMITIVE ===================== */
 :root {
   /* --- Brand hue (configurable at runtime) --- */
-  --brand-h: 174;
-  --brand-s: 62%;
+  --brand-h: 232;
+  --brand-s: 84%;
 
   /* --- Primary tonal scale --- */
   --g-primary-50:  hsl(var(--brand-h), var(--brand-s), 97%);
@@ -548,8 +549,8 @@ gc-*, gc-*::before, gc-*::after {
   /* Neutralize screen elevation — shadows don't print */
   * { box-shadow: none !important; text-shadow: none !important; }
 }
-</style>
-<style>/* =========================================================================
+
+/* =========================================================================
    GENIUS DESIGN ICONS · icons.css · v1.0
    Token-driven SVG icon layer. Load AFTER genius-design-tokens' tokens.css so
    the semantic icon roles can reference --s-* and the spacing scale.
@@ -758,8 +759,8 @@ gc-*, gc-*::before, gc-*::after {
     stroke-dashoffset: 0 !important;
   }
 }
-</style>
-<style>/* =========================================================================
+
+/* =========================================================================
    GENIUS DESIGN LAYOUT · layout-kit.css
    Token-driven layout layer. Companion to genius-design-tokens (tokens.css).
    Consumes --g-sp-* (8pt spacing), --g-bp-* (breakpoints), semantic/component
@@ -1047,225 +1048,237 @@ gc-*, gc-*::before, gc-*::after {
   }
 }
 
-</style>
-<style>/* ============================================================
-   MATH WORKSHEET · page styles
-   Content page built on the three-tier tokens (+ print layer).
-   References ONLY --s-* / --c-* and structural --g-* primitives,
-   so the print scenario (grayscale ink, @page, pagination) works
-   automatically with zero worksheet-specific print CSS.
+
+/* ============================================================
+   新增单词专项 · 5 大场景 · 单文件离线
    ============================================================ */
+html, body { background: var(--s-bg); margin: 0; }
+body { font-family: var(--g-font); color: var(--s-text); min-height: 100dvh; -webkit-font-smoothing: antialiased; }
+.app { min-height: 100dvh; display: flex; flex-direction: column; }
+:root { --card-min: 300px; --c-container-max: min(94vw, 1240px); }
+.wrap { width: 100%; max-width: var(--c-container-max); margin-inline: auto; padding-inline: var(--c-container-pad, clamp(var(--g-sp-4), 4vw, var(--g-sp-8))); }
 
-/* short aliases used by this page (all point at semantic/structural tokens) */
-:root {
-  --font: var(--g-font);
-  --text: var(--s-text);
-  --text-secondary: var(--s-text-secondary);
-  --text-muted: var(--s-text-muted);
-  --brand: var(--s-brand);
-  --surface: var(--s-surface);
-  --bg: var(--s-bg);
-  --border: var(--s-border);
-  --border-strong: var(--s-border-strong);
-}
+/* appbar */
+.appbar { position: sticky; top: 0; z-index: var(--g-z-sticky); background: color-mix(in srgb, var(--s-bg) 85%, transparent); backdrop-filter: saturate(150%) blur(12px); border-bottom: 1px solid var(--s-border); }
+.appbar__inner { display: flex; align-items: center; gap: var(--g-sp-3); padding-block: var(--g-sp-3); }
+.brand { display: flex; align-items: center; gap: var(--g-sp-3); min-width: 0; }
+.brand__mark { width: 44px; height: 44px; border-radius: var(--g-r-lg); display: grid; place-items: center; flex: none; background: var(--s-brand); color: var(--s-on-brand); box-shadow: var(--s-shadow-sm); }
+.brand__txt { display: flex; flex-direction: column; }
+.brand__title { font-size: var(--s-fs-body-lg); font-weight: var(--g-fw-bold); line-height: 1.2; }
+.brand__sub { font-size: var(--s-fs-caption); color: var(--s-text-secondary); }
+.appbar__spacer { flex: 1; }
+.tabs { display: flex; gap: var(--g-sp-1); background: var(--s-surface-sunken); border: 1px solid var(--s-border); border-radius: var(--g-r-full); padding: 3px; }
+.tab { appearance: none; border: 0; background: transparent; cursor: pointer; font: inherit; font-size: var(--s-fs-caption); font-weight: var(--g-fw-medium); color: var(--s-text-secondary); padding: var(--g-sp-2) var(--g-sp-3); border-radius: var(--g-r-full); min-height: 38px; display: inline-flex; align-items: center; gap: var(--g-sp-1); }
+.tab[aria-selected="true"] { background: var(--s-brand); color: var(--s-on-brand); box-shadow: var(--s-shadow-sm); }
+.iconbtn { width: 40px; height: 40px; border-radius: var(--g-r-md); border: 1px solid var(--s-border); background: var(--s-surface); color: var(--s-text-secondary); display: grid; place-items: center; cursor: pointer; }
+.iconbtn:hover { background: var(--s-surface-hover); color: var(--s-text); }
+@media (max-width: 620px){ .tab__txt { display: none; } .brand__sub { display: none; } }
 
-html { scroll-behavior: smooth; }
-body {
-  margin: 0;
-  font-family: var(--font);
-  font-size: var(--g-fs-base);
-  line-height: var(--g-lh-base);
-  color: var(--text);
-  background: var(--bg);
-  -webkit-font-smoothing: antialiased;
-}
+/* hero */
+.hero { padding-block: var(--g-sp-8) var(--g-sp-4); text-align: center; }
+.hero h1 { margin: 0; font-size: var(--s-fs-display); font-weight: var(--g-fw-bold); letter-spacing: var(--g-ls-tight); }
+.hero p { margin: var(--g-sp-3) auto 0; max-width: 720px; color: var(--s-text-secondary); font-size: var(--s-fs-body); line-height: var(--s-lh-body); }
 
-/* screen-only floating controls (hidden in print via .no-print) */
-.toolbar {
-  position: fixed; top: 16px; right: 16px; z-index: var(--g-z-sticky);
-  display: flex; gap: var(--g-sp-2);
-  background: var(--surface); border: 1px solid var(--border);
-  border-radius: var(--g-r-md); padding: var(--g-sp-2);
-  box-shadow: var(--s-shadow-md);
-}
-.btn {
-  font: inherit; font-size: var(--g-fs-sm); font-weight: var(--g-fw-semibold);
-  height: 32px; padding: 0 var(--g-sp-4); border-radius: var(--g-r-md);
-  border: 1px solid var(--border-strong); background: var(--surface);
-  color: var(--text); cursor: pointer;
-}
-.btn--primary { background: var(--brand); color: var(--s-on-brand); border-color: transparent; }
+/* scene grid */
+.scene-grid { display: grid; gap: var(--g-sp-4); grid-template-columns: repeat(auto-fit, minmax(min(100%, 220px), 1fr)); padding-bottom: var(--g-sp-8); }
+.scene-card { appearance: none; text-align: left; cursor: pointer; font: inherit; background: var(--s-surface); border: 1px solid var(--s-border); border-radius: var(--g-r-xl); padding: var(--g-sp-5); border-top: 4px solid var(--s-brand); transition: all var(--g-dur-fast) var(--g-ease); }
+.scene-card:hover { box-shadow: var(--s-shadow-md); transform: translateY(-2px); }
+.scene-card--brand { border-top-color: var(--s-brand); }
+.scene-card--cyan  { border-top-color: var(--g-cyan-500); }
+.scene-card--green { border-top-color: var(--g-green-500); }
+.scene-card--amber { border-top-color: var(--g-amber-500); }
+.scene-card__ic { width: 48px; height: 48px; border-radius: var(--g-r-lg); display: grid; place-items: center; background: var(--s-brand-subtle); color: var(--s-brand); margin-bottom: var(--g-sp-3); }
+.scene-card__name { font-size: var(--s-fs-h3); font-weight: var(--g-fw-bold); }
+.scene-card__en { font-size: var(--s-fs-caption); color: var(--s-text-muted); }
+.scene-card__count { margin-top: var(--g-sp-2); font-size: var(--s-fs-caption); color: var(--s-text-secondary); }
 
-/* the printable sheet — mimics an A4 page on screen */
-.sheet {
-  max-width: 178mm;                 /* A4 width minus 2×16mm margin */
-  margin: 32px auto;
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: var(--g-r-lg);
-  box-shadow: var(--s-shadow-sm);
-  padding: var(--g-sp-10) var(--g-sp-12);
-}
+/* word list */
+.wl { padding-block: var(--g-sp-5) var(--g-sp-8); }
+.wl__head { display: flex; align-items: center; gap: var(--g-sp-3); flex-wrap: wrap; margin-bottom: var(--g-sp-4); }
+.wl__title { font-size: var(--s-fs-h2); font-weight: var(--g-fw-bold); display: inline-flex; align-items: center; gap: var(--g-sp-2); flex: 1; }
+.wl__en { font-size: var(--s-fs-body); color: var(--s-text-muted); font-weight: 400; }
+.backbtn { appearance: none; cursor: pointer; font: inherit; font-size: var(--s-fs-caption); color: var(--s-text-secondary); background: var(--s-surface); border: 1px solid var(--s-border); border-radius: var(--g-r-md); padding: var(--g-sp-2) var(--g-sp-3); display: inline-flex; align-items: center; gap: var(--g-sp-1); }
+.tbtn { appearance: none; cursor: pointer; font: inherit; font-size: var(--s-fs-caption); font-weight: var(--g-fw-medium); color: var(--s-brand); background: var(--s-brand-subtle); border: 1px solid color-mix(in srgb, var(--s-brand) 25%, transparent); border-radius: var(--g-r-md); padding: var(--g-sp-2) var(--g-sp-3); min-height: 38px; display: inline-flex; align-items: center; gap: var(--g-sp-1); }
+.word-grid { display: grid; gap: var(--g-sp-4); grid-template-columns: repeat(auto-fit, minmax(min(100%, var(--card-min)), 1fr)); }
+.word-card { background: var(--s-surface); border: 1px solid var(--s-border); border-radius: var(--g-r-xl); padding: var(--g-sp-4); }
+.word-card--rel { background: var(--s-surface-sunken); }
+.word-card__head { display: flex; align-items: flex-start; justify-content: space-between; gap: var(--g-sp-2); }
+.word-card__word { font-size: var(--s-fs-h3); font-weight: var(--g-fw-bold); }
+.word-card__ipa { font-family: var(--g-font-mono); color: var(--s-text-secondary); font-size: var(--s-fs-caption); }
+.word-card__zh { margin-top: 2px; font-size: var(--s-fs-body-lg); color: var(--s-text); }
+.word-card__link { margin-top: var(--g-sp-2); font-size: var(--s-fs-caption); color: var(--s-brand); display: flex; align-items: center; gap: var(--g-sp-1); }
+.word-card__ex { margin-top: var(--g-sp-3); border-top: 1px dashed var(--s-border); padding-top: var(--g-sp-3); }
+.word-card__ex-en { display: flex; align-items: flex-start; gap: var(--g-sp-2); font-size: var(--s-fs-body); }
+.word-card__ex-zh { margin-top: 2px; font-size: var(--s-fs-caption); color: var(--s-text-secondary); }
+.rel-block { margin-top: var(--g-sp-8); }
+.rel-head { font-size: var(--s-fs-body-lg); font-weight: var(--g-fw-bold); color: var(--s-brand); display: flex; align-items: center; gap: var(--g-sp-2); margin-bottom: var(--g-sp-3); }
+.speak { appearance: none; cursor: pointer; border: 1px solid var(--s-border); background: var(--s-surface); color: var(--s-brand); border-radius: var(--g-r-md); width: 40px; height: 40px; display: inline-grid; place-items: center; flex: none; }
+.speak--sm { width: 34px; height: 34px; }
+.speak:hover { background: var(--s-brand-subtle); }
+.speak.playing { background: var(--s-brand); color: var(--s-on-brand); }
 
-/* ---- worksheet header ---- */
-.ws-head {
-  display: flex; align-items: flex-start; justify-content: space-between;
-  gap: var(--g-sp-6);
-  padding-bottom: var(--g-sp-5);
-  border-bottom: var(--g-bw-2) solid var(--brand);
-  margin-bottom: var(--g-sp-8);
-}
-.ws-title { font-size: var(--g-fs-2xl); font-weight: var(--g-fw-bold); color: var(--text); margin: 0; }
-.ws-sub { color: var(--text-secondary); font-size: var(--g-fs-sm); margin-top: var(--g-sp-1); }
-.ws-meta { display: grid; gap: var(--g-sp-2); font-size: var(--g-fs-sm); color: var(--text-secondary); text-align: right; }
-.ws-field { display: inline-flex; align-items: baseline; gap: var(--g-sp-2); }
-.ws-line { display: inline-block; min-width: 96px; border-bottom: var(--g-bw-1) solid var(--border-strong); }
-.ws-score {
-  display: inline-flex; align-items: center; justify-content: center;
-  width: 56px; height: 56px; border: var(--g-bw-2) solid var(--brand);
-  border-radius: var(--g-r-full); color: var(--brand); font-weight: var(--g-fw-bold);
-}
+/* tips */
+.tips-sec { padding-block: var(--g-sp-6); }
+.tips-hero { display: flex; align-items: flex-start; gap: var(--g-sp-4); margin-bottom: var(--g-sp-6); }
+.tips-hero__ic { width: 52px; height: 52px; flex: none; border-radius: var(--g-r-lg); display: grid; place-items: center; background: var(--s-brand); color: var(--s-on-brand); }
+.tips-hero__title { margin: 0; font-size: var(--s-fs-h2); font-weight: var(--g-fw-bold); }
+.tips-hero__sub { margin: var(--g-sp-2) 0 0; color: var(--s-text-secondary); font-size: var(--s-fs-body); line-height: var(--s-lh-body); max-width: 720px; }
+.tips-grid { display: grid; gap: var(--g-sp-4); grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr)); }
+.tip-card { background: var(--s-surface); border: 1px solid var(--s-border); border-radius: var(--g-r-xl); padding: var(--g-sp-5); border-top: 4px solid var(--s-brand); }
+.tip-card--brand { border-top-color: var(--s-brand); } .tip-card--cyan { border-top-color: var(--g-cyan-500); } .tip-card--green { border-top-color: var(--g-green-500); } .tip-card--amber { border-top-color: var(--g-amber-500); }
+.tip-card__top { display: flex; align-items: center; gap: var(--g-sp-2); font-weight: var(--g-fw-bold); font-size: var(--s-fs-body-lg); }
+.tip-card__ic { width: 34px; height: 34px; flex: none; border-radius: var(--g-r-md); display: grid; place-items: center; background: var(--s-brand-subtle); color: var(--s-brand); }
+.tip-card__idea { margin-top: var(--g-sp-3); font-size: var(--s-fs-body); line-height: var(--s-lh-body); }
+.tip-card__how-label { margin-top: var(--g-sp-3); font-size: var(--s-fs-caption); font-weight: var(--g-fw-bold); color: var(--s-text-secondary); }
+.tip-card__how { margin: var(--g-sp-1) 0 0; padding-left: var(--g-sp-5); color: var(--s-text-secondary); font-size: var(--s-fs-caption); line-height: var(--s-lh-body); }
+.tip-card__how li { margin-bottom: var(--g-sp-1); }
+.tip-card__eg { margin-top: var(--g-sp-3); font-size: var(--s-fs-caption); color: var(--s-text-secondary); background: var(--s-surface-sunken); border-radius: var(--g-r-md); padding: var(--g-sp-2) var(--g-sp-3); line-height: var(--s-lh-body); display: flex; align-items: flex-start; gap: var(--g-sp-1); }
+.tip-card__eg .ico { color: var(--g-amber-500); flex: none; margin-top: 2px; }
 
-/* ---- sections ---- */
-.ws-section { margin-bottom: var(--g-sp-8); break-inside: avoid; }
-.ws-section__head {
-  display: flex; align-items: baseline; gap: var(--g-sp-3);
-  margin-bottom: var(--g-sp-4);
-}
-.ws-badge {
-  flex-shrink: 0;
-  display: inline-flex; align-items: center; justify-content: center;
-  min-width: 26px; height: 26px; padding: 0 var(--g-sp-2);
-  background: var(--s-brand-subtle); color: var(--brand);
-  border-radius: var(--g-r-sm); font-weight: var(--g-fw-bold); font-size: var(--g-fs-sm);
-}
-.ws-section__title { font-size: var(--g-fs-lg); font-weight: var(--g-fw-semibold); color: var(--text); }
-.ws-section__hint { font-size: var(--g-fs-sm); color: var(--text-muted); }
-
-/* fill-in-the-blank grid */
-.fill-grid { display: grid; grid-template-columns: 1fr 1fr; gap: var(--g-sp-3) var(--g-sp-8); }
-.fill-item { display: flex; align-items: baseline; gap: var(--g-sp-2); font-size: var(--g-fs-md); }
-.fill-item .idx { color: var(--text-muted); font-weight: var(--g-fw-semibold); min-width: 22px; }
-.blank { display: inline-block; min-width: 44px; border-bottom: var(--g-bw-1) solid var(--border-strong); text-align: center; }
-
-/* word / application problems */
-.prob { border: var(--g-bw-1) solid var(--border); border-radius: var(--g-r-md);
-  padding: var(--g-sp-4) var(--g-sp-5); margin-bottom: var(--g-sp-4); break-inside: avoid; }
-.prob__no { display: inline-flex; align-items: center; gap: var(--g-sp-2);
-  font-weight: var(--g-fw-bold); color: var(--brand); margin-bottom: var(--g-sp-2); }
-.prob__body { font-size: var(--g-fs-md); color: var(--text); line-height: var(--g-lh-loose); }
-.prob__points { color: var(--text-muted); font-size: var(--g-fs-xs); font-weight: var(--g-fw-semibold); }
-.answer-area { margin-top: var(--g-sp-3); }
-.answer-label { font-size: var(--g-fs-sm); color: var(--text-secondary); }
-.answer-lines { margin-top: var(--g-sp-2); }
-.answer-lines > div { height: 24px; border-bottom: var(--g-bw-1) dashed var(--border); }
-.answer-lines > div:last-child { margin-bottom: 0; }
-
-/* callout / tip box uses info role */
-.callout {
-  border-left: var(--g-bw-4) solid var(--brand);
-  background: var(--s-brand-subtle);
-  padding: var(--g-sp-3) var(--g-sp-4); border-radius: var(--g-r-sm);
-  color: var(--text-secondary); font-size: var(--g-fs-sm); margin-bottom: var(--g-sp-6);
-}
+/* quiz */
+.quiz-sec { padding-block: var(--g-sp-6); max-width: 640px; margin-inline: auto; }
+.quiz-sechead { text-align: center; margin-bottom: var(--g-sp-5); }
+.quiz-sechead__t { font-size: var(--s-fs-h2); font-weight: var(--g-fw-bold); display: inline-flex; align-items: center; gap: var(--g-sp-2); }
+.quiz-sechead__s { margin-top: var(--g-sp-2); color: var(--s-text-secondary); font-size: var(--s-fs-caption); }
+.quiz-card { background: var(--s-surface); border: 1px solid var(--s-border); border-radius: var(--g-r-2xl); box-shadow: var(--s-shadow-sm); padding: clamp(var(--g-sp-5), 4vw, var(--g-sp-8)); }
+.quiz-progress { display: flex; justify-content: space-between; font-size: var(--s-fs-caption); color: var(--s-text-secondary); }
+.quiz-status { display: inline-flex; align-items: center; gap: var(--g-sp-3); }
+.combo { color: var(--g-amber-700); font-weight: var(--g-fw-bold); }
+.quiz-bar { height: 8px; background: var(--s-surface-sunken); border-radius: var(--g-r-full); overflow: hidden; margin: var(--g-sp-2) 0 var(--g-sp-5); }
+.quiz-bar__fill { height: 100%; background: var(--s-brand); border-radius: var(--g-r-full); transition: width var(--g-dur-base) var(--g-ease); }
+.quiz-ask { text-align: center; margin-bottom: var(--g-sp-5); }
+.quiz-ask__mode { font-size: var(--s-fs-caption); color: var(--s-text-muted); }
+.quiz-ask__prompt { font-size: var(--s-fs-h1); font-weight: var(--g-fw-bold); margin-top: var(--g-sp-2); display: inline-flex; align-items: center; gap: var(--g-sp-2); }
+.quiz-ask__sub { font-family: var(--g-font-mono); color: var(--s-text-secondary); font-size: var(--s-fs-body); margin-top: 2px; }
+.quiz-opts { display: grid; gap: var(--g-sp-3); grid-template-columns: 1fr 1fr; }
+.quiz-opt { appearance: none; cursor: pointer; font: inherit; font-size: var(--s-fs-body-lg); background: var(--s-surface); border: 1.5px solid var(--s-border); border-radius: var(--g-r-lg); padding: var(--g-sp-3) var(--g-sp-4); min-height: 54px; transition: all var(--g-dur-fast) var(--g-ease); }
+.quiz-opt:hover:not(:disabled) { border-color: var(--s-brand); background: var(--s-brand-subtle); }
+.quiz-opt.correct { background: var(--g-green-100); border-color: var(--g-green-500); color: var(--g-green-700); font-weight: var(--g-fw-bold); }
+.quiz-opt.wrong { background: var(--g-red-100); border-color: var(--g-red-500); color: var(--g-red-700); }
+.quiz-feedback { text-align: center; margin-top: var(--g-sp-4); display: flex; flex-direction: column; gap: var(--g-sp-1); align-items: center; }
+.quiz-feedback__ipa { font-family: var(--g-font-mono); color: var(--s-text-secondary); font-size: var(--s-fs-caption); }
+.quiz-next { text-align: center; margin-top: var(--g-sp-4); }
+.btn { appearance: none; cursor: pointer; font: inherit; font-size: var(--s-fs-body); font-weight: var(--g-fw-medium); border: 1px solid var(--s-border); background: var(--s-surface); color: var(--s-text); border-radius: var(--g-r-lg); padding: var(--g-sp-3) var(--g-sp-5); min-height: 46px; display: inline-flex; align-items: center; gap: var(--g-sp-2); }
+.btn--primary { background: var(--s-brand); color: var(--s-on-brand); border-color: transparent; }
+.quiz-done { text-align: center; }
+.quiz-done .ico { color: var(--g-amber-500); }
+.quiz-done__score { font-size: var(--s-fs-display); font-weight: var(--g-fw-bold); color: var(--s-brand); margin-top: var(--g-sp-2); }
+@media (max-width: 480px){ .quiz-opts { grid-template-columns: 1fr; } }
 
 /* footer */
-.ws-foot { margin-top: var(--g-sp-8); padding-top: var(--g-sp-4);
-  border-top: var(--g-bw-1) solid var(--border);
-  display: flex; justify-content: space-between;
-  color: var(--text-muted); font-size: var(--g-fs-xs); }
+.foot { margin-top: auto; border-top: 1px solid var(--s-border); padding-block: var(--g-sp-5); color: var(--s-text-muted); font-size: var(--s-fs-caption); text-align: center; }
 
-@media (max-width: 640px) { .fill-grid { grid-template-columns: 1fr; } .sheet { padding: var(--g-sp-6); } }
+/* 错题本 tab 徽标 + 反馈标签 + 复习条 */
+.tab__badge { display: inline-grid; place-items: center; min-width: 18px; height: 18px; padding: 0 5px; border-radius: var(--g-r-full); background: var(--g-red-500); color: #fff; font-size: 11px; font-weight: var(--g-fw-bold); line-height: 1; }
+.tab[aria-selected="true"] .tab__badge { background: var(--s-on-brand); color: var(--s-brand); }
+.fb-tag { display: inline-flex; align-items: center; gap: 2px; font-size: var(--s-fs-caption); font-weight: var(--g-fw-medium); padding: 1px var(--g-sp-2); border-radius: var(--g-r-full); margin-left: var(--g-sp-1); }
+.fb-tag--in { color: var(--g-amber-700); background: var(--g-amber-100); }
+.fb-tag--out { color: var(--g-green-700); background: var(--g-green-100); }
+.review-bar { display: flex; align-items: center; justify-content: space-between; gap: var(--g-sp-3); margin-bottom: var(--g-sp-4); font-size: var(--s-fs-body); color: var(--s-text-secondary); }
+.review-bar b { color: var(--g-red-700); font-size: var(--s-fs-body-lg); }
+.linkbtn { appearance: none; cursor: pointer; font: inherit; font-size: var(--s-fs-caption); color: var(--s-text-secondary); background: transparent; border: 1px solid var(--s-border); border-radius: var(--g-r-md); padding: var(--g-sp-1) var(--g-sp-3); display: inline-flex; align-items: center; gap: 2px; }
+.linkbtn:hover { color: var(--g-red-700); border-color: var(--g-red-500); }
+.quiz-done__btns { display: flex; gap: var(--g-sp-3); flex-wrap: wrap; justify-content: center; }
 
-/* ---- PRINT extras specific to a worksheet ----
-   The base print layer (tokens.css) already handles grayscale, @page,
-   pagination, chrome hiding. Here we only flatten the on-screen "sheet"
-   frame so it fills the paper, and keep answer lines visible. */
-@media print {
-  /* re-assert the paper type scale — this page's own `body { font-size }`
-     is inlined after tokens.css, so restate it here at print time. */
-  body { background: #fff; font-size: var(--s-print-font-size); line-height: var(--s-print-line-height); }
-  .sheet { max-width: none; margin: 0; border: 0; border-radius: 0;
-           box-shadow: none; padding: 0; }
-  .toolbar { display: none !important; }
-  .ws-section { break-inside: auto; }   /* allow long sections to flow */
-  .prob { break-inside: avoid; }
-}
-[data-print-preview] .sheet { box-shadow: none; }
-</style>
-<style>
-/* figure (SVG) palette bound to design tokens */
-:root{
-  --fig-line: var(--s-text);
-  --fig-fill: var(--s-surface);
-  --fig-shade: var(--s-brand-subtle);
-}
-[data-theme="dark"]{
-  --fig-shade: color-mix(in srgb, var(--s-brand) 26%, transparent);
-}
-.fig{ width:100%; max-width:220px; height:auto; display:block; }
-.fig-t{ font-size:11px; fill: var(--s-text-secondary); font-family: var(--g-font); }
-</style>
-<style>
-.q{ border:var(--g-bw-1) solid var(--s-border); border-radius:var(--g-r-lg);
-    padding:var(--g-sp-5) var(--g-sp-6); margin-bottom:var(--g-sp-5);
-    background:var(--s-surface); break-inside:avoid; }
-.q__head{ display:flex; align-items:center; justify-content:space-between;
-    gap:var(--g-sp-3); margin-bottom:var(--g-sp-3); }
-.q__no{ display:inline-flex; align-items:center; gap:var(--g-sp-2);
-    font-weight:var(--g-fw-bold); color:var(--s-brand); font-size:var(--g-fs-md); }
-.q__no .ico{ color:var(--s-brand); }
-.q__tags{ display:inline-flex; gap:var(--g-sp-2); align-items:center; }
-.tag{ font-size:var(--g-fs-xs); font-weight:var(--g-fw-semibold);
-    padding:2px var(--g-sp-2); border-radius:var(--g-r-full);
-    background:var(--s-brand-subtle); color:var(--s-brand); }
-.tag--适度{ background:var(--s-success-bg); color:var(--s-success-text); }
-.tag--进阶{ background:var(--s-warning-bg); color:var(--s-warning-text); }
-.tag--挑战{ background:var(--s-danger-bg); color:var(--s-danger-text); }
-.q__grid{ display:grid; grid-template-columns:minmax(0,1fr) auto; gap:var(--g-sp-6);
-    align-items:start; }
-.q__grid.nofig{ grid-template-columns:minmax(0,1fr); }
-.q__body{ font-size:var(--g-fs-md); line-height:var(--g-lh-loose); color:var(--s-text); }
-.q__fig{ display:flex; align-items:center; justify-content:center;
-    padding:var(--g-sp-2); border:var(--g-bw-1) solid var(--s-border);
-    border-radius:var(--g-r-md); background:var(--s-bg); }
-.workspace{ margin-top:var(--g-sp-4); }
-.workspace__label{ font-size:var(--g-fs-sm); color:var(--s-text-secondary);
-    display:flex; align-items:center; gap:var(--g-sp-2); }
-.workspace__lines>div{ height:26px; border-bottom:var(--g-bw-1) dashed var(--s-border);
-    margin-top:var(--g-sp-3); }
-@media (max-width:600px){ .q__grid{ grid-template-columns:minmax(0,1fr); } }
+/* 例句音标 + 句子成分配色 */
+.word-card__ex-ipa { margin-top: 2px; font-family: var(--g-font-mono); font-size: var(--s-fs-caption); color: var(--s-text-secondary); display: flex; align-items: center; gap: 4px; }
+.word-card__ex-ipa .ico { color: var(--s-brand); flex: none; }
+.tk { border-radius: 4px; padding: 0 2px; }
+.tk--subj { color: var(--g-cyan-700); background: color-mix(in srgb, var(--g-cyan-500) 16%, transparent); }
+.tk--verb { color: var(--g-red-700);  background: color-mix(in srgb, var(--g-red-500) 16%, transparent); font-weight: var(--g-fw-bold); }
+.tk--obj  { color: var(--g-green-700); background: color-mix(in srgb, var(--g-green-500) 16%, transparent); }
+.tk--other{ color: var(--g-amber-700); background: color-mix(in srgb, var(--g-amber-500) 18%, transparent); }
+.sent-struct { margin-top: var(--g-sp-2); }
+.sent-struct__formula { font-size: var(--s-fs-caption); color: var(--s-text-secondary); background: var(--s-surface-sunken); border-radius: var(--g-r-md); padding: var(--g-sp-1) var(--g-sp-2); line-height: 1.6; }
 
-/* ---- header layout fix: stop 姓名/班级/日期 labels from wrapping char-by-char ---- */
-.ws-head{ flex-wrap:wrap; }
-.ws-head>div:first-child{ flex:1 1 300px; min-width:0; }
-.ws-meta{ flex:0 0 auto; min-width:210px; justify-items:end; }
-.ws-field{ white-space:nowrap; }               /* 姓名：… never breaks to 姓/名 */
-.ws-field .ws-line{ min-width:120px; }
-.ws-title{ overflow-wrap:anywhere; }
-@media (max-width:560px){
-  .ws-meta{ min-width:0; width:100%; justify-items:stretch; text-align:left; margin-top:var(--g-sp-3); }
-  .ws-field .ws-line{ flex:1; min-width:0; }
-}
+/* 怎么组句子 复习条 */
+.sent-guide { background: var(--s-surface); border: 1px solid var(--s-border); border-left: 3px solid var(--s-brand); border-radius: var(--g-r-lg); padding: var(--g-sp-4); margin-bottom: var(--g-sp-5); }
+.sent-guide__head { font-weight: var(--g-fw-bold); color: var(--s-brand); display: flex; align-items: center; gap: var(--g-sp-2); font-size: var(--s-fs-body); }
+.sent-guide__rule { margin-top: var(--g-sp-2); font-size: var(--s-fs-caption); color: var(--s-text-secondary); line-height: var(--s-lh-body); }
+.sent-legend { margin-top: var(--g-sp-3); display: flex; flex-wrap: wrap; gap: var(--g-sp-3); font-size: var(--s-fs-caption); color: var(--s-text-secondary); }
+.sent-legend__item { display: inline-flex; align-items: center; gap: var(--g-sp-1); }
+
+/* 句子表示:下划线 + 成分标签组合 */
+.sent-underline { line-height: 2.6; }   /* 给标签留出下方空间 */
+.tk-u { position: relative; display: inline-flex; flex-direction: column; align-items: center; vertical-align: bottom; }
+.tk-u__word { border-bottom: 2.5px solid currentColor; padding: 0 1px 1px; line-height: 1.3; }
+.tk-u__tag { font-size: 10px; line-height: 1.2; font-weight: var(--g-fw-bold); margin-top: 1px; letter-spacing: 0.5px; }
+.tk-u--subj { color: var(--g-cyan-700); }
+.tk-u--verb { color: var(--g-red-700); }
+.tk-u--obj  { color: var(--g-green-700); }
+.tk-u--other{ color: var(--g-amber-700); }
+/* 单词本体保持正文色,只有下划线和标签用成分色 */
+.tk-u .tk-u__word { color: var(--s-text); }
+[data-theme="dark"] .tk-u .tk-u__word { color: var(--s-text); }
+
+/* 句子填空题 */
+.quiz-ask__cloze { font-size: var(--s-fs-h3); font-weight: var(--g-fw-medium); line-height: 1.7; margin-top: var(--g-sp-2); }
+.quiz-ask__cloze { color: var(--s-text); }
+.quiz-feedback__sent { margin-top: var(--g-sp-2); font-size: var(--s-fs-body); line-height: 2.4; display: flex; align-items: center; gap: var(--g-sp-2); justify-content: center; flex-wrap: wrap; }
+
+/* ============================================================
+   表达观点专项 · 新增组件样式(语速档 / 收藏 ⭐ / 收藏本 / 引导词色)
+   ============================================================ */
+
+/* btn--primary hover 必须保留品牌底色 + 白字(否则悬停看不清) */
+.btn--primary:hover { background: color-mix(in srgb, var(--s-brand) 90%, black); color: var(--s-on-brand); border-color: transparent; }
+
+/* 语速档(slow / normal / fast)—整段分段控件,选中用整体底色变化,无单侧高亮 */
+.rate-seg { display: inline-flex; gap: 2px; background: var(--s-surface-sunken); border: 1px solid var(--s-border); border-radius: var(--g-r-full); padding: 3px; }
+.rate-opt { appearance: none; cursor: pointer; font: inherit; font-size: var(--s-fs-caption); font-weight: var(--g-fw-medium); color: var(--s-text-secondary); background: transparent; border: 0; border-radius: var(--g-r-full); padding: var(--g-sp-1) var(--g-sp-3); min-height: 34px; }
+.rate-opt:hover { color: var(--s-text); }
+.rate-opt--on { background: var(--s-brand); color: var(--s-on-brand); box-shadow: var(--s-shadow-sm); }
+@media (max-width: 620px){ .rate-seg { display: none; } }
+
+/* 词卡按钮区(发音 + 收藏) */
+.word-card__btns { display: inline-flex; align-items: center; gap: var(--g-sp-2); flex: none; }
+.collect { appearance: none; cursor: pointer; border: 1px solid var(--s-border); background: var(--s-surface); color: var(--s-text-muted); border-radius: var(--g-r-md); width: 40px; height: 40px; display: inline-grid; place-items: center; flex: none; transition: all var(--g-dur-fast) var(--g-ease); }
+.collect:hover { background: var(--s-brand-subtle); color: var(--g-amber-700); border-color: color-mix(in srgb, var(--g-amber-500) 40%, transparent); }
+.collect--on { background: color-mix(in srgb, var(--g-amber-500) 16%, transparent); color: var(--g-amber-700); border-color: color-mix(in srgb, var(--g-amber-500) 45%, transparent); }
+.collect--on .ico { fill: currentColor; }
+
+/* 图标尺寸辅助 */
+.ico--sm { width: 18px; height: 18px; }
+.ico--xs { width: 16px; height: 16px; }
+
+/* tip 卡片标题 */
+.tip-card__name { flex: 1; }
+
+/* 引导词(c)颜色—与其它成分区分,用品牌紫 */
+.tk--conj { color: var(--s-brand); background: color-mix(in srgb, var(--s-brand) 16%, transparent); font-weight: var(--g-fw-bold); }
+.tk-u--conj { color: var(--s-brand); }
+
+/* ============ 收藏本(间隔重复)============ */
+.fav-stat { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--g-sp-3); margin-bottom: var(--g-sp-5); }
+.fav-stat__cell { background: var(--s-surface); border: 1px solid var(--s-border); border-radius: var(--g-r-xl); padding: var(--g-sp-4); text-align: center; }
+.fav-stat__cell--due { background: color-mix(in srgb, var(--g-amber-500) 12%, var(--s-surface)); border-color: color-mix(in srgb, var(--g-amber-500) 40%, transparent); }
+.fav-stat__n { font-size: var(--s-fs-h1); font-weight: var(--g-fw-bold); color: var(--s-brand); line-height: 1.1; }
+.fav-stat__cell--due .fav-stat__n { color: var(--g-amber-700); }
+.fav-stat__l { margin-top: var(--g-sp-1); font-size: var(--s-fs-caption); color: var(--s-text-secondary); }
+.fav-actions { display: flex; gap: var(--g-sp-3); flex-wrap: wrap; margin-bottom: var(--g-sp-5); }
+.fav-list { display: grid; gap: var(--g-sp-3); }
+.fav-item { display: flex; align-items: center; gap: var(--g-sp-3); background: var(--s-surface); border: 1px solid var(--s-border); border-radius: var(--g-r-lg); padding: var(--g-sp-3) var(--g-sp-4); }
+.fav-item__main { flex: 1; min-width: 0; }
+.fav-item__word { font-size: var(--s-fs-body-lg); font-weight: var(--g-fw-bold); display: flex; align-items: baseline; gap: var(--g-sp-2); flex-wrap: wrap; }
+.fav-item__ipa { font-family: var(--g-font-mono); font-size: var(--s-fs-caption); color: var(--s-text-secondary); font-weight: 400; }
+.fav-item__zh { margin-top: 2px; font-size: var(--s-fs-caption); color: var(--s-text-secondary); }
+.fav-item__meta { display: flex; flex-direction: column; align-items: flex-end; gap: 2px; font-size: var(--s-fs-caption); color: var(--s-text-muted); flex: none; }
+.fav-item__due { padding: 1px var(--g-sp-2); border-radius: var(--g-r-full); background: var(--s-surface-sunken); }
+.fav-item__due--now { color: var(--g-amber-700); background: color-mix(in srgb, var(--g-amber-500) 18%, transparent); font-weight: var(--g-fw-bold); }
+.fav-item__lv { color: var(--s-text-secondary); }
+.fav-item__rm { appearance: none; cursor: pointer; border: 1px solid var(--s-border); background: var(--s-surface); color: var(--s-text-muted); border-radius: var(--g-r-md); width: 34px; height: 34px; display: inline-grid; place-items: center; flex: none; }
+.fav-item__rm:hover { color: var(--g-red-700); border-color: var(--g-red-500); background: var(--g-red-100); }
+
 </style>
-<style></style>
 </head>
 <body>
-<!-- AUTO-BACK-NAV-START -->
-<style id="auto-back-nav-style">
-#auto-back-nav{position:sticky;top:0;z-index:999;background:rgba(249,250,251,.9);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);border-bottom:1px solid #e5e7eb;display:flex;align-items:center;padding:0 20px;height:44px;}
-@media(prefers-color-scheme:dark){#auto-back-nav{background:rgba(13,17,23,.9);border-bottom-color:#2d333b;}}
-#auto-back-nav a{display:inline-flex;align-items:center;gap:6px;text-decoration:none;color:#4b5563;font-size:14px;font-weight:600;font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Hiragino Sans GB","Microsoft YaHei",Roboto,Arial,sans-serif;}
-@media(prefers-color-scheme:dark){#auto-back-nav a{color:#9da7b3;}}
-</style>
-<nav id="auto-back-nav">
-  <a href="index.html">
-    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5"/><path d="m12 19-7-7 7-7"/></svg>
-    暑假成长加油站
-  </a>
-</nav>
-<!-- AUTO-BACK-NAV-END -->
-<svg xmlns="http://www.w3.org/2000/svg" style="display:none" aria-hidden="true">
+<div id="boot" style="position:fixed;inset:0;display:grid;place-items:center;font:14px system-ui;color:#888;background:var(--s-bg,#f6f7f9)">正在加载…</div>
+<script>
+function boot_fail(m){var b=document.getElementById('boot');if(b)b.innerHTML='<pre style="max-width:80ch;white-space:pre-wrap;color:#c0392b;padding:24px">启动失败:\n'+m+'</pre>';}
+addEventListener('error',function(e){boot_fail(e.message||e.error);});
+addEventListener('unhandledrejection',function(e){boot_fail(e.reason);});
+</script>
+<svg style="position:absolute;width:0;height:0;overflow:hidden" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" style="display:none" aria-hidden="true">
 <!-- ============================================================
      GENIUS DESIGN ICONS · sprite.svg · v2.0
      Icons reused verbatim from Lucide v1.22.0 (ISC/MIT license).
@@ -1684,172 +1697,4156 @@ body {
 <symbol id="ic-infinity" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><!--lucide:infinity--><path d="M6 16c5 0 7-8 12-8a4 4 0 0 1 0 8c-5 0-7-8-12-8a4 4 0 1 0 0 8" /></symbol>
 </svg>
 
-
-<div class="toolbar no-print">
-  
-  <button class="btn" id="themeBtn" title="切换深色 / 浅色">深色</button>
-  <button class="btn btn--primary" id="printNow" title="打印 / 另存为 PDF">打印</button>
-</div>
-<div class="sheet">
-<header class="ws-head">
-      <div>
-        <h1 class="ws-title">分数乘除法与比例 · 数学培优卷</h1>
-        <p class="ws-sub">北京小学六年级 · 小升初培优 · 共 8 题 · 全部为拔高难题 · 建议用时 60 分钟</p>
-      </div>
-      <div class="ws-meta">
-        <span class="ws-field">姓名：<span class="ws-line"></span></span>
-        <span class="ws-field">班级：<span class="ws-line"></span></span>
-        <span class="ws-field">日期：<span class="ws-line"></span></span>
-        <span class="ws-field" style="align-items:center">得分：<span class="ws-score"></span></span>
-      </div>
-    </header>
-<div class="callout"><svg class="ico ico--sm" aria-hidden="true"><use href="#ic-lightbulb"></use></svg>
-      答题要求：请把<strong>解题思路和完整的计算步骤</strong>写在每题下方的横线上，
-      单位「1」看清楚、量率要对应、比例式要写规范、最后写出答句。本卷重点考查思维过程与书写规范，
-      只写答案不写过程不得满分。<strong>做题时请勿翻看答案册。</strong></div>
-<section class="ws-section">
-<div class="ws-section__head">
-          <span class="ws-badge">一</span>
-          <span class="ws-section__title">分数乘除法应用</span>
-          <span class="ws-section__hint">（1–3 题）</span>
-        </div>
-<div class="q">
-  <div class="q__head">
-    <span class="q__no"><svg class="ico ico--sm" aria-hidden="true"><use href="#ic-circle-dot"></use></svg>第 1 题</span>
-    <span class="q__tags"><span class="tag">分数应用·量率对应</span><span class="tag tag--挑战">挑战</span></span>
-  </div>
-  <div class="q__grid nofig">
-    <div class="q__body">一堆煤，第一天用去全部的 2/5，第二天用去剩下的 3/4，这时还剩 30 吨。这堆煤原来有多少吨？</div>
-  </div>
-  <div class="workspace">
-    <div class="workspace__label"><svg class="ico ico--sm" aria-hidden="true"><use href="#ic-edit"></use></svg> 解答：</div>
-    <div class="workspace__lines"><div></div><div></div><div></div><div></div><div></div><div></div></div>
-  </div>
-</div>
-<div class="q">
-  <div class="q__head">
-    <span class="q__no"><svg class="ico ico--sm" aria-hidden="true"><use href="#ic-circle-dot"></use></svg>第 2 题</span>
-    <span class="q__tags"><span class="tag">分数应用·转化与不变量</span><span class="tag tag--挑战">挑战</span></span>
-  </div>
-  <div class="q__grid nofig">
-    <div class="q__body">甲、乙两桶油一共 96 kg。如果从甲桶倒出它自己的 1/4 给乙桶，两桶油就一样重了。原来甲、乙两桶各有多少千克？</div>
-  </div>
-  <div class="workspace">
-    <div class="workspace__label"><svg class="ico ico--sm" aria-hidden="true"><use href="#ic-edit"></use></svg> 解答：</div>
-    <div class="workspace__lines"><div></div><div></div><div></div><div></div><div></div><div></div></div>
-  </div>
-</div>
-<div class="q">
-  <div class="q__head">
-    <span class="q__no"><svg class="ico ico--sm" aria-hidden="true"><use href="#ic-circle-dot"></use></svg>第 3 题</span>
-    <span class="q__tags"><span class="tag">分数·工程问题</span><span class="tag tag--挑战">挑战</span></span>
-  </div>
-  <div class="q__grid nofig">
-    <div class="q__body">一项工程，甲单独做 9 天完成，乙单独做 18 天完成。两人一起开工，中途甲因故休息了几天（休息期间只有乙在做），结果从开工到完工一共用了 12 天。求甲休息了多少天？</div>
-  </div>
-  <div class="workspace">
-    <div class="workspace__label"><svg class="ico ico--sm" aria-hidden="true"><use href="#ic-edit"></use></svg> 解答：</div>
-    <div class="workspace__lines"><div></div><div></div><div></div><div></div><div></div><div></div></div>
-  </div>
-</div>
-</section>
-<section class="ws-section">
-<div class="ws-section__head">
-          <span class="ws-badge">二</span>
-          <span class="ws-section__title">比例与正反比例</span>
-          <span class="ws-section__hint">（4–7 题）</span>
-        </div>
-<div class="q">
-  <div class="q__head">
-    <span class="q__no"><svg class="ico ico--sm" aria-hidden="true"><use href="#ic-circle-dot"></use></svg>第 4 题</span>
-    <span class="q__tags"><span class="tag">比例·按比分配</span><span class="tag tag--挑战">挑战</span></span>
-  </div>
-  <div class="q__grid nofig">
-    <div class="q__body">一批图书按 3 : 4 : 5 分给甲、乙、丙三个班。已知丙班比甲班多分到 40 本。这批图书一共有多少本？</div>
-  </div>
-  <div class="workspace">
-    <div class="workspace__label"><svg class="ico ico--sm" aria-hidden="true"><use href="#ic-edit"></use></svg> 解答：</div>
-    <div class="workspace__lines"><div></div><div></div><div></div><div></div><div></div><div></div></div>
-  </div>
-</div>
-<div class="q">
-  <div class="q__head">
-    <span class="q__no"><svg class="ico ico--sm" aria-hidden="true"><use href="#ic-circle-dot"></use></svg>第 5 题</span>
-    <span class="q__tags"><span class="tag">比例·正比例应用</span><span class="tag tag--挑战">挑战</span></span>
-  </div>
-  <div class="q__grid nofig">
-    <div class="q__body">用同一种方砖铺地，铺 18 m² 需要 480 块砖。现在要给一个长 6 m、宽 5 m 的长方形房间铺同样的砖，需要多少块砖？</div>
-  </div>
-  <div class="workspace">
-    <div class="workspace__label"><svg class="ico ico--sm" aria-hidden="true"><use href="#ic-edit"></use></svg> 解答：</div>
-    <div class="workspace__lines"><div></div><div></div><div></div><div></div><div></div><div></div></div>
-  </div>
-</div>
-<div class="q">
-  <div class="q__head">
-    <span class="q__no"><svg class="ico ico--sm" aria-hidden="true"><use href="#ic-circle-dot"></use></svg>第 6 题</span>
-    <span class="q__tags"><span class="tag">比例·前后项变化</span><span class="tag tag--挑战">挑战</span></span>
-  </div>
-  <div class="q__grid nofig">
-    <div class="q__body">甲、乙两数的比是 5 : 3。如果甲减少 12、乙增加 12，那么甲、乙的比就变成 3 : 5。求原来甲、乙两数各是多少？</div>
-  </div>
-  <div class="workspace">
-    <div class="workspace__label"><svg class="ico ico--sm" aria-hidden="true"><use href="#ic-edit"></use></svg> 解答：</div>
-    <div class="workspace__lines"><div></div><div></div><div></div><div></div><div></div><div></div></div>
-  </div>
-</div>
-<div class="q">
-  <div class="q__head">
-    <span class="q__no"><svg class="ico ico--sm" aria-hidden="true"><use href="#ic-circle-dot"></use></svg>第 7 题</span>
-    <span class="q__tags"><span class="tag">分数·反比例（行程）</span><span class="tag tag--挑战">挑战</span></span>
-  </div>
-  <div class="q__grid nofig">
-    <div class="q__body">一辆汽车从 A 地到 B 地，去时用了 5 小时。返回时速度比去时提高了 1/4，返回一共用了多少小时？</div>
-  </div>
-  <div class="workspace">
-    <div class="workspace__label"><svg class="ico ico--sm" aria-hidden="true"><use href="#ic-edit"></use></svg> 解答：</div>
-    <div class="workspace__lines"><div></div><div></div><div></div><div></div><div></div><div></div></div>
-  </div>
-</div>
-</section>
-<section class="ws-section">
-<div class="ws-section__head">
-          <span class="ws-badge">三</span>
-          <span class="ws-section__title">综合压轴</span>
-          <span class="ws-section__hint">（8 题）</span>
-        </div>
-<div class="q">
-  <div class="q__head">
-    <span class="q__no"><svg class="ico ico--sm" aria-hidden="true"><use href="#ic-circle-dot"></use></svg>第 8 题</span>
-    <span class="q__tags"><span class="tag">综合·比例与分数（压轴）</span><span class="tag tag--挑战">挑战</span></span>
-  </div>
-  <div class="q__grid nofig">
-    <div class="q__body">六年级三个班参加植树。一班植的棵数是二班的 5/6，二班植的棵数是三班的 6/7。已知三班比一班多植 22 棵。三个班一共植树多少棵？</div>
-  </div>
-  <div class="workspace">
-    <div class="workspace__label"><svg class="ico ico--sm" aria-hidden="true"><use href="#ic-edit"></use></svg> 解答：</div>
-    <div class="workspace__lines"><div></div><div></div><div></div><div></div><div></div><div></div></div>
-  </div>
-</div>
-</section>
-<footer class="ws-foot">
-      <span>分数乘除法与比例 · 题目卷</span>
-      <span>答案与解题步骤见《答案册》</span>
-    </footer>
-</div>
-
+<op-app></op-app>
 <script>
-(function(){
-  var root=document.documentElement;
-  var tb=document.getElementById('themeBtn');
-  if(tb) tb.addEventListener('click',function(){
-    var d=root.getAttribute('data-theme')==='dark';
-    root.setAttribute('data-theme', d?'light':'dark');
-    tb.textContent = d?'深色':'浅色';
-  });
-  var pn=document.getElementById('printNow');
-  if(pn) pn.addEventListener('click',function(){ window.print(); });
-})();
-</script>
+window.OP_DATA = {
+ "title": "表达观点专项 · 6 大对话场景",
+ "intro": "这是围绕「表达观点」的对话场景专项学习页,覆盖北京小学英语·新课标里表达看法、同意、反对、喜好、评价和建议的核心词汇与常用句型。每个词都有音标、真人发音、对话例句和例句发音;例句用彩色下划线标出句子成分。先按场景过一遍,看看背词技巧,再到「闯关测验」大量练习,错题会自动进错题本,想重点记的词可以点 ⭐ 收藏定期复习。",
+ "scenes": [
+  {
+   "id": "ask",
+   "name": "问看法·征求意见",
+   "en": "Asking for Opinions",
+   "icon": "ic-help",
+   "color": "brand",
+   "words": [
+    {
+     "en": "think",
+     "ipa": "/θɪŋk/",
+     "zh": "认为;想",
+     "example": "What do you think?",
+     "exampleZh": "你觉得怎么样?"
+    },
+    {
+     "en": "opinion",
+     "ipa": "/əˈpɪnjən/",
+     "zh": "看法;意见",
+     "example": "What is your opinion?",
+     "exampleZh": "你的看法是什么?"
+    },
+    {
+     "en": "idea",
+     "ipa": "/aɪˈdɪə/",
+     "zh": "主意;想法",
+     "example": "Do you have any idea?",
+     "exampleZh": "你有什么想法吗?"
+    },
+    {
+     "en": "mean",
+     "ipa": "/miːn/",
+     "zh": "意思是;意味着",
+     "example": "What do you mean?",
+     "exampleZh": "你是什么意思?"
+    },
+    {
+     "en": "feel",
+     "ipa": "/fiːl/",
+     "zh": "感觉;认为",
+     "example": "How do you feel about it?",
+     "exampleZh": "你觉得它怎么样?"
+    },
+    {
+     "en": "ask",
+     "ipa": "/ɑːsk/",
+     "zh": "问;询问",
+     "example": "May I ask you a question?",
+     "exampleZh": "我可以问你一个问题吗?"
+    },
+    {
+     "en": "question",
+     "ipa": "/ˈkwestʃən/",
+     "zh": "问题",
+     "example": "I have a question.",
+     "exampleZh": "我有一个问题。"
+    },
+    {
+     "en": "why",
+     "ipa": "/waɪ/",
+     "zh": "为什么",
+     "example": "Why do you say so?",
+     "exampleZh": "你为什么这么说?"
+    },
+    {
+     "en": "how",
+     "ipa": "/haʊ/",
+     "zh": "怎么;如何",
+     "example": "How about this one?",
+     "exampleZh": "这个怎么样?"
+    },
+    {
+     "en": "sure",
+     "ipa": "/ʃʊə(r)/",
+     "zh": "确定的;肯定的",
+     "example": "Are you sure?",
+     "exampleZh": "你确定吗?"
+    }
+   ]
+  },
+  {
+   "id": "agree",
+   "name": "赞成·表示同意",
+   "en": "Agreeing",
+   "icon": "ic-thumbs-up",
+   "color": "green",
+   "words": [
+    {
+     "en": "agree",
+     "ipa": "/əˈɡriː/",
+     "zh": "同意;赞成",
+     "example": "I agree with you.",
+     "exampleZh": "我同意你的看法。"
+    },
+    {
+     "en": "yes",
+     "ipa": "/jes/",
+     "zh": "是的;对",
+     "example": "Yes, you are right.",
+     "exampleZh": "是的,你说得对。"
+    },
+    {
+     "en": "right",
+     "ipa": "/raɪt/",
+     "zh": "对的;正确的",
+     "example": "You are quite right.",
+     "exampleZh": "你说得很对。"
+    },
+    {
+     "en": "sure",
+     "ipa": "/ʃʊə(r)/",
+     "zh": "当然;肯定",
+     "example": "Sure, I think so.",
+     "exampleZh": "当然,我也这么想。"
+    },
+    {
+     "en": "course",
+     "ipa": "/kɔːs/",
+     "zh": "当然(of course)",
+     "example": "Of course, I agree.",
+     "exampleZh": "当然,我同意。"
+    },
+    {
+     "en": "too",
+     "ipa": "/tuː/",
+     "zh": "也;太",
+     "example": "I think so too.",
+     "exampleZh": "我也这么认为。"
+    },
+    {
+     "en": "great",
+     "ipa": "/ɡreɪt/",
+     "zh": "太好了;很棒",
+     "example": "That's a great idea!",
+     "exampleZh": "那是个好主意!"
+    },
+    {
+     "en": "true",
+     "ipa": "/truː/",
+     "zh": "真的;正确的",
+     "example": "That's true.",
+     "exampleZh": "那是真的。"
+    },
+    {
+     "en": "same",
+     "ipa": "/seɪm/",
+     "zh": "相同的",
+     "example": "We have the same idea.",
+     "exampleZh": "我们的想法一样。"
+    },
+    {
+     "en": "okay",
+     "ipa": "/ˌəʊˈkeɪ/",
+     "zh": "好的;可以",
+     "example": "Okay, let's do it.",
+     "exampleZh": "好的,我们就这么做。"
+    }
+   ]
+  },
+  {
+   "id": "disagree",
+   "name": "反对·表示不同意",
+   "en": "Disagreeing",
+   "icon": "ic-thumbs-down",
+   "color": "amber",
+   "words": [
+    {
+     "en": "disagree",
+     "ipa": "/ˌdɪsəˈɡriː/",
+     "zh": "不同意",
+     "example": "I disagree with you.",
+     "exampleZh": "我不同意你的看法。"
+    },
+    {
+     "en": "no",
+     "ipa": "/nəʊ/",
+     "zh": "不;不是",
+     "example": "No, I don't think so.",
+     "exampleZh": "不,我不这么认为。"
+    },
+    {
+     "en": "but",
+     "ipa": "/bʌt/",
+     "zh": "但是",
+     "example": "I like it, but it is expensive.",
+     "exampleZh": "我喜欢它,但是它很贵。"
+    },
+    {
+     "en": "wrong",
+     "ipa": "/rɒŋ/",
+     "zh": "错的;不对的",
+     "example": "I think you are wrong.",
+     "exampleZh": "我觉得你错了。"
+    },
+    {
+     "en": "sorry",
+     "ipa": "/ˈsɒri/",
+     "zh": "对不起;抱歉",
+     "example": "Sorry, I can't agree.",
+     "exampleZh": "抱歉,我不能同意。"
+    },
+    {
+     "en": "different",
+     "ipa": "/ˈdɪfrənt/",
+     "zh": "不同的",
+     "example": "We have different opinions.",
+     "exampleZh": "我们的看法不同。"
+    },
+    {
+     "en": "really",
+     "ipa": "/ˈrɪəli/",
+     "zh": "真的;确实(反问)",
+     "example": "Really? I don't agree.",
+     "exampleZh": "真的吗?我不同意。"
+    },
+    {
+     "en": "maybe",
+     "ipa": "/ˈmeɪbi/",
+     "zh": "也许;可能",
+     "example": "Maybe, but I am not sure.",
+     "exampleZh": "也许吧,但我不确定。"
+    },
+    {
+     "en": "agree",
+     "ipa": "/əˈɡriː/",
+     "zh": "同意(否定)",
+     "example": "I don't quite agree.",
+     "exampleZh": "我不太同意。"
+    },
+    {
+     "en": "mind",
+     "ipa": "/maɪnd/",
+     "zh": "介意;在意",
+     "example": "I don't mind.",
+     "exampleZh": "我不介意。"
+    }
+   ]
+  },
+  {
+   "id": "like",
+   "name": "喜好·表达好恶",
+   "en": "Likes & Dislikes",
+   "icon": "ic-heart",
+   "color": "cyan",
+   "words": [
+    {
+     "en": "like",
+     "ipa": "/laɪk/",
+     "zh": "喜欢",
+     "example": "I like this book.",
+     "exampleZh": "我喜欢这本书。"
+    },
+    {
+     "en": "love",
+     "ipa": "/lʌv/",
+     "zh": "热爱;喜爱",
+     "example": "I love music.",
+     "exampleZh": "我热爱音乐。"
+    },
+    {
+     "en": "favourite",
+     "ipa": "/ˈfeɪvərɪt/",
+     "zh": "最喜爱的",
+     "example": "Blue is my favourite colour.",
+     "exampleZh": "蓝色是我最喜欢的颜色。"
+    },
+    {
+     "en": "enjoy",
+     "ipa": "/ɪnˈdʒɔɪ/",
+     "zh": "享受;喜欢",
+     "example": "I enjoy reading.",
+     "exampleZh": "我喜欢阅读。"
+    },
+    {
+     "en": "hate",
+     "ipa": "/heɪt/",
+     "zh": "讨厌;恨",
+     "example": "I hate rainy days.",
+     "exampleZh": "我讨厌下雨天。"
+    },
+    {
+     "en": "prefer",
+     "ipa": "/prɪˈfɜː(r)/",
+     "zh": "更喜欢",
+     "example": "I prefer tea to coffee.",
+     "exampleZh": "比起咖啡我更喜欢茶。"
+    },
+    {
+     "en": "want",
+     "ipa": "/wɒnt/",
+     "zh": "想要",
+     "example": "I want to try it.",
+     "exampleZh": "我想试一试。"
+    },
+    {
+     "en": "hope",
+     "ipa": "/həʊp/",
+     "zh": "希望",
+     "example": "I hope you like it.",
+     "exampleZh": "我希望你喜欢它。"
+    },
+    {
+     "en": "interested",
+     "ipa": "/ˈɪntrəstɪd/",
+     "zh": "感兴趣的",
+     "example": "I am interested in art.",
+     "exampleZh": "我对艺术感兴趣。"
+    },
+    {
+     "en": "dislike",
+     "ipa": "/dɪsˈlaɪk/",
+     "zh": "不喜欢",
+     "example": "I dislike loud noise.",
+     "exampleZh": "我不喜欢很吵的声音。"
+    }
+   ]
+  },
+  {
+   "id": "judge",
+   "name": "评价·说好说坏",
+   "en": "Good or Bad",
+   "icon": "ic-star",
+   "color": "brand",
+   "words": [
+    {
+     "en": "good",
+     "ipa": "/ɡʊd/",
+     "zh": "好的",
+     "example": "This film is very good.",
+     "exampleZh": "这部电影很好看。"
+    },
+    {
+     "en": "bad",
+     "ipa": "/bæd/",
+     "zh": "坏的;差的",
+     "example": "The weather is bad today.",
+     "exampleZh": "今天天气很糟。"
+    },
+    {
+     "en": "great",
+     "ipa": "/ɡreɪt/",
+     "zh": "很棒的",
+     "example": "The show was great.",
+     "exampleZh": "那场演出很棒。"
+    },
+    {
+     "en": "wonderful",
+     "ipa": "/ˈwʌndəfl/",
+     "zh": "精彩的;极好的",
+     "example": "What a wonderful trip!",
+     "exampleZh": "多么美妙的旅行啊!"
+    },
+    {
+     "en": "interesting",
+     "ipa": "/ˈɪntrəstɪŋ/",
+     "zh": "有趣的",
+     "example": "This story is interesting.",
+     "exampleZh": "这个故事很有趣。"
+    },
+    {
+     "en": "boring",
+     "ipa": "/ˈbɔːrɪŋ/",
+     "zh": "无聊的",
+     "example": "The game is boring.",
+     "exampleZh": "这个游戏很无聊。"
+    },
+    {
+     "en": "important",
+     "ipa": "/ɪmˈpɔːtnt/",
+     "zh": "重要的",
+     "example": "Health is important.",
+     "exampleZh": "健康很重要。"
+    },
+    {
+     "en": "delicious",
+     "ipa": "/dɪˈlɪʃəs/",
+     "zh": "美味的",
+     "example": "The cake is delicious.",
+     "exampleZh": "这个蛋糕很好吃。"
+    },
+    {
+     "en": "beautiful",
+     "ipa": "/ˈbjuːtɪfl/",
+     "zh": "美丽的",
+     "example": "The garden is beautiful.",
+     "exampleZh": "这个花园很美。"
+    },
+    {
+     "en": "difficult",
+     "ipa": "/ˈdɪfɪkəlt/",
+     "zh": "困难的",
+     "example": "This question is difficult.",
+     "exampleZh": "这个问题很难。"
+    }
+   ]
+  },
+  {
+   "id": "advise",
+   "name": "建议·表明态度",
+   "en": "Suggesting & Attitude",
+   "icon": "ic-message-square",
+   "color": "green",
+   "words": [
+    {
+     "en": "should",
+     "ipa": "/ʃʊd/",
+     "zh": "应该",
+     "example": "We should help others.",
+     "exampleZh": "我们应该帮助别人。"
+    },
+    {
+     "en": "can",
+     "ipa": "/kæn/",
+     "zh": "能;可以",
+     "example": "You can try again.",
+     "exampleZh": "你可以再试一次。"
+    },
+    {
+     "en": "let",
+     "ipa": "/let/",
+     "zh": "让(let's)",
+     "example": "Let's talk about it.",
+     "exampleZh": "我们来谈谈这个吧。"
+    },
+    {
+     "en": "believe",
+     "ipa": "/bɪˈliːv/",
+     "zh": "相信;认为",
+     "example": "I believe you can do it.",
+     "exampleZh": "我相信你能做到。"
+    },
+    {
+     "en": "suppose",
+     "ipa": "/səˈpəʊz/",
+     "zh": "猜想;认为",
+     "example": "I suppose you are busy.",
+     "exampleZh": "我想你很忙吧。"
+    },
+    {
+     "en": "need",
+     "ipa": "/niːd/",
+     "zh": "需要",
+     "example": "You need more practice.",
+     "exampleZh": "你需要多加练习。"
+    },
+    {
+     "en": "better",
+     "ipa": "/ˈbetə(r)/",
+     "zh": "更好的",
+     "example": "This way is better.",
+     "exampleZh": "这个办法更好。"
+    },
+    {
+     "en": "best",
+     "ipa": "/best/",
+     "zh": "最好的",
+     "example": "This is the best plan.",
+     "exampleZh": "这是最好的计划。"
+    },
+    {
+     "en": "perhaps",
+     "ipa": "/pəˈhæps/",
+     "zh": "也许;可能",
+     "example": "Perhaps we can go later.",
+     "exampleZh": "也许我们可以晚点去。"
+    },
+    {
+     "en": "agree",
+     "ipa": "/əˈɡriː/",
+     "zh": "一致(let's agree)",
+     "example": "Let's agree on a time.",
+     "exampleZh": "我们定一个时间吧。"
+    }
+   ]
+  }
+ ],
+ "tips": [
+  {
+   "id": "phonics",
+   "icon": "ic-volume",
+   "color": "brand",
+   "name": "① 拼读记忆(自然拼读)",
+   "idea": "按字母组合的发音规律去拼,看到音标就能读出来,不用死背字母。",
+   "how": [
+    "先看音标分音节读:o-pin-ion /əˈpɪnjən/。",
+    "记常见组合:th /θ/(think)、ea /iː/(really)、oo /uː/(course→course)。",
+    "边读边写,读音和拼写一起进脑子。"
+   ],
+   "example": "agree = a + gree(/ɡriː/);free、tree 韵脚相同一起记。"
+  },
+  {
+   "id": "pair",
+   "icon": "ic-arrow-left-right",
+   "color": "cyan",
+   "name": "② 对比记忆(正反成对)",
+   "idea": "把意思相反的词成对记,一次记住两个,还不容易混。",
+   "how": [
+    "同意 vs 不同意:agree ↔ disagree。",
+    "喜欢 vs 讨厌:like ↔ hate、love ↔ dislike。",
+    "好 vs 坏:good ↔ bad、interesting ↔ boring。"
+   ],
+   "example": "agree(同意)加 dis- 就是 disagree(不同意)。"
+  },
+  {
+   "id": "root",
+   "icon": "ic-git-branch",
+   "color": "green",
+   "name": "③ 词根词缀记忆",
+   "idea": "记住词根和词缀,一个词能带出一串。",
+   "how": [
+    "前缀 dis-(不):agree→disagree、like→dislike。",
+    "后缀 -ful(充满):wonder→wonderful、beauty→beautiful。",
+    "后缀 -ing/-ed(有趣的/感兴趣的):interest→interesting / interested。"
+   ],
+   "example": "interest → interesting(令人有趣的)、interested(感到有趣的)。"
+  },
+  {
+   "id": "chunk",
+   "icon": "ic-link-2",
+   "color": "amber",
+   "name": "④ 整句成串记(功能句)",
+   "idea": "表达观点靠的是「整句」,把常用句型当一个词组一起记。",
+   "how": [
+    "征求意见:What do you think? / How about…?",
+    "表示同意:I agree. / Of course. / That's true.",
+    "表示反对:I disagree. / I don't think so."
+   ],
+   "example": "记 opinion → 一起记 “In my opinion,…”(在我看来……)。"
+  },
+  {
+   "id": "context",
+   "icon": "ic-book-open",
+   "color": "cyan",
+   "name": "⑤ 例句/语境记忆",
+   "idea": "把词放进对话里记,记住的是「怎么用」而不是孤零零一个词。",
+   "how": [
+    "每个新词都读一个对话例句。",
+    "记搭配:agree with sb、be interested in、of course。",
+    "朗读整句,连读音带用法一起记。"
+   ],
+   "example": "记 agree → “I agree with you.”(我同意你)。"
+  },
+  {
+   "id": "repeat",
+   "icon": "ic-repeat",
+   "color": "green",
+   "name": "⑥ 间隔重复(反复巩固)",
+   "idea": "记忆会遗忘,按「今天—明天—一周后」的节奏复习,记得最牢。",
+   "how": [
+    "当天学完先自测一遍。",
+    "第二天、三天后、一周后各复习一次。",
+    "用「闯关测验」检验,错的进错题本重点再记;想重点记的点 ⭐ 收藏。"
+   ],
+   "example": "周一学 10 个观点词,周二先复习再学新的,周末全部过一遍。"
+  }
+ ],
+ "quiz": [
+  {
+   "type": "en2zh",
+   "mode": "en2zh",
+   "word": "think",
+   "prompt": "think",
+   "promptSub": "/θɪŋk/",
+   "answer": "认为",
+   "ipa": "/θɪŋk/",
+   "options": [
+    "认为",
+    "同意",
+    "不同的",
+    "介意"
+   ],
+   "say": "think"
+  },
+  {
+   "type": "zh2en",
+   "mode": "zh2en",
+   "word": "think",
+   "prompt": "认为",
+   "promptSub": "表达观点",
+   "answer": "think",
+   "ipa": "/θɪŋk/",
+   "options": [
+    "think",
+    "same",
+    "agree",
+    "idea"
+   ],
+   "say": "think"
+  },
+  {
+   "type": "en2zh",
+   "mode": "en2zh",
+   "word": "opinion",
+   "prompt": "opinion",
+   "promptSub": "/əˈpɪnjən/",
+   "answer": "看法",
+   "ipa": "/əˈpɪnjən/",
+   "options": [
+    "看法",
+    "喜欢",
+    "怎么",
+    "困难的"
+   ],
+   "say": "opinion"
+  },
+  {
+   "type": "zh2en",
+   "mode": "zh2en",
+   "word": "opinion",
+   "prompt": "看法",
+   "promptSub": "表达观点",
+   "answer": "opinion",
+   "ipa": "/əˈpɪnjən/",
+   "options": [
+    "opinion",
+    "enjoy",
+    "too",
+    "like"
+   ],
+   "say": "opinion"
+  },
+  {
+   "type": "en2zh",
+   "mode": "en2zh",
+   "word": "idea",
+   "prompt": "idea",
+   "promptSub": "/aɪˈdɪə/",
+   "answer": "主意",
+   "ipa": "/aɪˈdɪə/",
+   "options": [
+    "主意",
+    "讨厌",
+    "享受",
+    "美味的"
+   ],
+   "say": "idea"
+  },
+  {
+   "type": "zh2en",
+   "mode": "zh2en",
+   "word": "idea",
+   "prompt": "主意",
+   "promptSub": "表达观点",
+   "answer": "idea",
+   "ipa": "/aɪˈdɪə/",
+   "options": [
+    "idea",
+    "delicious",
+    "really",
+    "mind"
+   ],
+   "say": "idea"
+  },
+  {
+   "type": "en2zh",
+   "mode": "en2zh",
+   "word": "mean",
+   "prompt": "mean",
+   "promptSub": "/miːn/",
+   "answer": "意思是",
+   "ipa": "/miːn/",
+   "options": [
+    "意思是",
+    "感兴趣的",
+    "不喜欢",
+    "也"
+   ],
+   "say": "mean"
+  },
+  {
+   "type": "zh2en",
+   "mode": "zh2en",
+   "word": "mean",
+   "prompt": "意思是",
+   "promptSub": "表达观点",
+   "answer": "mean",
+   "ipa": "/miːn/",
+   "options": [
+    "mean",
+    "better",
+    "feel",
+    "great"
+   ],
+   "say": "mean"
+  },
+  {
+   "type": "en2zh",
+   "mode": "en2zh",
+   "word": "feel",
+   "prompt": "feel",
+   "promptSub": "/fiːl/",
+   "answer": "感觉",
+   "ipa": "/fiːl/",
+   "options": [
+    "感觉",
+    "希望",
+    "重要的",
+    "美丽的"
+   ],
+   "say": "feel"
+  },
+  {
+   "type": "zh2en",
+   "mode": "zh2en",
+   "word": "feel",
+   "prompt": "感觉",
+   "promptSub": "表达观点",
+   "answer": "feel",
+   "ipa": "/fiːl/",
+   "options": [
+    "feel",
+    "great",
+    "should",
+    "really"
+   ],
+   "say": "feel"
+  },
+  {
+   "type": "en2zh",
+   "mode": "en2zh",
+   "word": "ask",
+   "prompt": "ask",
+   "promptSub": "/ɑːsk/",
+   "answer": "问",
+   "ipa": "/ɑːsk/",
+   "options": [
+    "问",
+    "看法",
+    "喜欢",
+    "猜想"
+   ],
+   "say": "ask"
+  },
+  {
+   "type": "zh2en",
+   "mode": "zh2en",
+   "word": "ask",
+   "prompt": "问",
+   "promptSub": "表达观点",
+   "answer": "ask",
+   "ipa": "/ɑːsk/",
+   "options": [
+    "ask",
+    "should",
+    "suppose",
+    "let"
+   ],
+   "say": "ask"
+  },
+  {
+   "type": "en2zh",
+   "mode": "en2zh",
+   "word": "question",
+   "prompt": "question",
+   "promptSub": "/ˈkwestʃən/",
+   "answer": "问题",
+   "ipa": "/ˈkwestʃən/",
+   "options": [
+    "问题",
+    "好的",
+    "是的",
+    "主意"
+   ],
+   "say": "question"
+  },
+  {
+   "type": "zh2en",
+   "mode": "zh2en",
+   "word": "question",
+   "prompt": "问题",
+   "promptSub": "表达观点",
+   "answer": "question",
+   "ipa": "/ˈkwestʃən/",
+   "options": [
+    "question",
+    "should",
+    "prefer",
+    "enjoy"
+   ],
+   "say": "question"
+  },
+  {
+   "type": "en2zh",
+   "mode": "en2zh",
+   "word": "why",
+   "prompt": "why",
+   "promptSub": "/waɪ/",
+   "answer": "为什么",
+   "ipa": "/waɪ/",
+   "options": [
+    "为什么",
+    "应该",
+    "美丽的",
+    "让"
+   ],
+   "say": "why"
+  },
+  {
+   "type": "zh2en",
+   "mode": "zh2en",
+   "word": "why",
+   "prompt": "为什么",
+   "promptSub": "表达观点",
+   "answer": "why",
+   "ipa": "/waɪ/",
+   "options": [
+    "why",
+    "mind",
+    "difficult",
+    "sure"
+   ],
+   "say": "why"
+  },
+  {
+   "type": "en2zh",
+   "mode": "en2zh",
+   "word": "how",
+   "prompt": "how",
+   "promptSub": "/haʊ/",
+   "answer": "怎么",
+   "ipa": "/haʊ/",
+   "options": [
+    "怎么",
+    "意思是",
+    "是的",
+    "热爱"
+   ],
+   "say": "how"
+  },
+  {
+   "type": "zh2en",
+   "mode": "zh2en",
+   "word": "how",
+   "prompt": "怎么",
+   "promptSub": "表达观点",
+   "answer": "how",
+   "ipa": "/haʊ/",
+   "options": [
+    "how",
+    "same",
+    "suppose",
+    "sorry"
+   ],
+   "say": "how"
+  },
+  {
+   "type": "en2zh",
+   "mode": "en2zh",
+   "word": "sure",
+   "prompt": "sure",
+   "promptSub": "/ʃʊə(r)/",
+   "answer": "确定的",
+   "ipa": "/ʃʊə(r)/",
+   "options": [
+    "确定的",
+    "也许",
+    "想要",
+    "主意"
+   ],
+   "say": "sure"
+  },
+  {
+   "type": "zh2en",
+   "mode": "zh2en",
+   "word": "sure",
+   "prompt": "确定的",
+   "promptSub": "表达观点",
+   "answer": "sure",
+   "ipa": "/ʃʊə(r)/",
+   "options": [
+    "sure",
+    "important",
+    "beautiful",
+    "wonderful"
+   ],
+   "say": "sure"
+  },
+  {
+   "type": "en2zh",
+   "mode": "en2zh",
+   "word": "agree",
+   "prompt": "agree",
+   "promptSub": "/əˈɡriː/",
+   "answer": "同意",
+   "ipa": "/əˈɡriː/",
+   "options": [
+    "同意",
+    "想要",
+    "也许",
+    "美味的"
+   ],
+   "say": "agree"
+  },
+  {
+   "type": "zh2en",
+   "mode": "zh2en",
+   "word": "agree",
+   "prompt": "同意",
+   "promptSub": "表达观点",
+   "answer": "agree",
+   "ipa": "/əˈɡriː/",
+   "options": [
+    "agree",
+    "question",
+    "difficult",
+    "same"
+   ],
+   "say": "agree"
+  },
+  {
+   "type": "en2zh",
+   "mode": "en2zh",
+   "word": "yes",
+   "prompt": "yes",
+   "promptSub": "/jes/",
+   "answer": "是的",
+   "ipa": "/jes/",
+   "options": [
+    "是的",
+    "不",
+    "享受",
+    "为什么"
+   ],
+   "say": "yes"
+  },
+  {
+   "type": "zh2en",
+   "mode": "zh2en",
+   "word": "yes",
+   "prompt": "是的",
+   "promptSub": "表达观点",
+   "answer": "yes",
+   "ipa": "/jes/",
+   "options": [
+    "yes",
+    "question",
+    "boring",
+    "best"
+   ],
+   "say": "yes"
+  },
+  {
+   "type": "en2zh",
+   "mode": "en2zh",
+   "word": "right",
+   "prompt": "right",
+   "promptSub": "/raɪt/",
+   "answer": "对的",
+   "ipa": "/raɪt/",
+   "options": [
+    "对的",
+    "热爱",
+    "也许",
+    "对不起"
+   ],
+   "say": "right"
+  },
+  {
+   "type": "zh2en",
+   "mode": "zh2en",
+   "word": "right",
+   "prompt": "对的",
+   "promptSub": "表达观点",
+   "answer": "right",
+   "ipa": "/raɪt/",
+   "options": [
+    "right",
+    "should",
+    "different",
+    "maybe"
+   ],
+   "say": "right"
+  },
+  {
+   "type": "en2zh",
+   "mode": "en2zh",
+   "word": "course",
+   "prompt": "course",
+   "promptSub": "/kɔːs/",
+   "answer": "当然",
+   "ipa": "/kɔːs/",
+   "options": [
+    "当然",
+    "但是",
+    "让",
+    "问题"
+   ],
+   "say": "course"
+  },
+  {
+   "type": "zh2en",
+   "mode": "zh2en",
+   "word": "course",
+   "prompt": "当然",
+   "promptSub": "表达观点",
+   "answer": "course",
+   "ipa": "/kɔːs/",
+   "options": [
+    "course",
+    "true",
+    "interested",
+    "dislike"
+   ],
+   "say": "course"
+  },
+  {
+   "type": "en2zh",
+   "mode": "en2zh",
+   "word": "too",
+   "prompt": "too",
+   "promptSub": "/tuː/",
+   "answer": "也",
+   "ipa": "/tuː/",
+   "options": [
+    "也",
+    "不",
+    "让",
+    "最好的"
+   ],
+   "say": "too"
+  },
+  {
+   "type": "zh2en",
+   "mode": "zh2en",
+   "word": "too",
+   "prompt": "也",
+   "promptSub": "表达观点",
+   "answer": "too",
+   "ipa": "/tuː/",
+   "options": [
+    "too",
+    "mean",
+    "why",
+    "beautiful"
+   ],
+   "say": "too"
+  },
+  {
+   "type": "en2zh",
+   "mode": "en2zh",
+   "word": "great",
+   "prompt": "great",
+   "promptSub": "/ɡreɪt/",
+   "answer": "太好了",
+   "ipa": "/ɡreɪt/",
+   "options": [
+    "太好了",
+    "困难的",
+    "享受",
+    "不同的"
+   ],
+   "say": "great"
+  },
+  {
+   "type": "zh2en",
+   "mode": "zh2en",
+   "word": "great",
+   "prompt": "太好了",
+   "promptSub": "表达观点",
+   "answer": "great",
+   "ipa": "/ɡreɪt/",
+   "options": [
+    "great",
+    "how",
+    "think",
+    "yes"
+   ],
+   "say": "great"
+  },
+  {
+   "type": "en2zh",
+   "mode": "en2zh",
+   "word": "true",
+   "prompt": "true",
+   "promptSub": "/truː/",
+   "answer": "真的",
+   "ipa": "/truː/",
+   "options": [
+    "真的",
+    "同意",
+    "问",
+    "想要"
+   ],
+   "say": "true"
+  },
+  {
+   "type": "zh2en",
+   "mode": "zh2en",
+   "word": "true",
+   "prompt": "真的",
+   "promptSub": "表达观点",
+   "answer": "true",
+   "ipa": "/truː/",
+   "options": [
+    "true",
+    "like",
+    "too",
+    "enjoy"
+   ],
+   "say": "true"
+  },
+  {
+   "type": "en2zh",
+   "mode": "en2zh",
+   "word": "same",
+   "prompt": "same",
+   "promptSub": "/seɪm/",
+   "answer": "相同的",
+   "ipa": "/seɪm/",
+   "options": [
+    "相同的",
+    "猜想",
+    "让",
+    "对不起"
+   ],
+   "say": "same"
+  },
+  {
+   "type": "zh2en",
+   "mode": "zh2en",
+   "word": "same",
+   "prompt": "相同的",
+   "promptSub": "表达观点",
+   "answer": "same",
+   "ipa": "/seɪm/",
+   "options": [
+    "same",
+    "interesting",
+    "important",
+    "believe"
+   ],
+   "say": "same"
+  },
+  {
+   "type": "en2zh",
+   "mode": "en2zh",
+   "word": "okay",
+   "prompt": "okay",
+   "promptSub": "/ˌəʊˈkeɪ/",
+   "answer": "好的",
+   "ipa": "/ˌəʊˈkeɪ/",
+   "options": [
+    "好的",
+    "无聊的",
+    "精彩的",
+    "重要的"
+   ],
+   "say": "okay"
+  },
+  {
+   "type": "zh2en",
+   "mode": "zh2en",
+   "word": "okay",
+   "prompt": "好的",
+   "promptSub": "表达观点",
+   "answer": "okay",
+   "ipa": "/ˌəʊˈkeɪ/",
+   "options": [
+    "okay",
+    "course",
+    "favourite",
+    "true"
+   ],
+   "say": "okay"
+  },
+  {
+   "type": "en2zh",
+   "mode": "en2zh",
+   "word": "disagree",
+   "prompt": "disagree",
+   "promptSub": "/ˌdɪsəˈɡriː/",
+   "answer": "不同意",
+   "ipa": "/ˌdɪsəˈɡriː/",
+   "options": [
+    "不同意",
+    "认为",
+    "坏的",
+    "希望"
+   ],
+   "say": "disagree"
+  },
+  {
+   "type": "zh2en",
+   "mode": "zh2en",
+   "word": "disagree",
+   "prompt": "不同意",
+   "promptSub": "表达观点",
+   "answer": "disagree",
+   "ipa": "/ˌdɪsəˈɡriː/",
+   "options": [
+    "disagree",
+    "true",
+    "want",
+    "course"
+   ],
+   "say": "disagree"
+  },
+  {
+   "type": "en2zh",
+   "mode": "en2zh",
+   "word": "no",
+   "prompt": "no",
+   "promptSub": "/nəʊ/",
+   "answer": "不",
+   "ipa": "/nəʊ/",
+   "options": [
+    "不",
+    "主意",
+    "热爱",
+    "也"
+   ],
+   "say": "no"
+  },
+  {
+   "type": "zh2en",
+   "mode": "zh2en",
+   "word": "no",
+   "prompt": "不",
+   "promptSub": "表达观点",
+   "answer": "no",
+   "ipa": "/nəʊ/",
+   "options": [
+    "no",
+    "beautiful",
+    "interesting",
+    "think"
+   ],
+   "say": "no"
+  },
+  {
+   "type": "en2zh",
+   "mode": "en2zh",
+   "word": "but",
+   "prompt": "but",
+   "promptSub": "/bʌt/",
+   "answer": "但是",
+   "ipa": "/bʌt/",
+   "options": [
+    "但是",
+    "为什么",
+    "不喜欢",
+    "错的"
+   ],
+   "say": "but"
+  },
+  {
+   "type": "zh2en",
+   "mode": "zh2en",
+   "word": "but",
+   "prompt": "但是",
+   "promptSub": "表达观点",
+   "answer": "but",
+   "ipa": "/bʌt/",
+   "options": [
+    "but",
+    "how",
+    "course",
+    "like"
+   ],
+   "say": "but"
+  },
+  {
+   "type": "en2zh",
+   "mode": "en2zh",
+   "word": "wrong",
+   "prompt": "wrong",
+   "promptSub": "/rɒŋ/",
+   "answer": "错的",
+   "ipa": "/rɒŋ/",
+   "options": [
+    "错的",
+    "当然",
+    "热爱",
+    "认为"
+   ],
+   "say": "wrong"
+  },
+  {
+   "type": "zh2en",
+   "mode": "zh2en",
+   "word": "wrong",
+   "prompt": "错的",
+   "promptSub": "表达观点",
+   "answer": "wrong",
+   "ipa": "/rɒŋ/",
+   "options": [
+    "wrong",
+    "maybe",
+    "prefer",
+    "perhaps"
+   ],
+   "say": "wrong"
+  },
+  {
+   "type": "en2zh",
+   "mode": "en2zh",
+   "word": "sorry",
+   "prompt": "sorry",
+   "promptSub": "/ˈsɒri/",
+   "answer": "对不起",
+   "ipa": "/ˈsɒri/",
+   "options": [
+    "对不起",
+    "问题",
+    "喜欢",
+    "认为"
+   ],
+   "say": "sorry"
+  },
+  {
+   "type": "zh2en",
+   "mode": "zh2en",
+   "word": "sorry",
+   "prompt": "对不起",
+   "promptSub": "表达观点",
+   "answer": "sorry",
+   "ipa": "/ˈsɒri/",
+   "options": [
+    "sorry",
+    "delicious",
+    "maybe",
+    "difficult"
+   ],
+   "say": "sorry"
+  },
+  {
+   "type": "en2zh",
+   "mode": "en2zh",
+   "word": "different",
+   "prompt": "different",
+   "promptSub": "/ˈdɪfrənt/",
+   "answer": "不同的",
+   "ipa": "/ˈdɪfrənt/",
+   "options": [
+    "不同的",
+    "相信",
+    "错的",
+    "看法"
+   ],
+   "say": "different"
+  },
+  {
+   "type": "zh2en",
+   "mode": "zh2en",
+   "word": "different",
+   "prompt": "不同的",
+   "promptSub": "表达观点",
+   "answer": "different",
+   "ipa": "/ˈdɪfrənt/",
+   "options": [
+    "different",
+    "perhaps",
+    "ask",
+    "love"
+   ],
+   "say": "different"
+  },
+  {
+   "type": "en2zh",
+   "mode": "en2zh",
+   "word": "really",
+   "prompt": "really",
+   "promptSub": "/ˈrɪəli/",
+   "answer": "真的",
+   "ipa": "/ˈrɪəli/",
+   "options": [
+    "真的",
+    "错的",
+    "感觉",
+    "让"
+   ],
+   "say": "really"
+  },
+  {
+   "type": "zh2en",
+   "mode": "zh2en",
+   "word": "really",
+   "prompt": "真的",
+   "promptSub": "表达观点",
+   "answer": "really",
+   "ipa": "/ˈrɪəli/",
+   "options": [
+    "really",
+    "dislike",
+    "hate",
+    "can"
+   ],
+   "say": "really"
+  },
+  {
+   "type": "en2zh",
+   "mode": "en2zh",
+   "word": "maybe",
+   "prompt": "maybe",
+   "promptSub": "/ˈmeɪbi/",
+   "answer": "也许",
+   "ipa": "/ˈmeɪbi/",
+   "options": [
+    "也许",
+    "错的",
+    "怎么",
+    "更好的"
+   ],
+   "say": "maybe"
+  },
+  {
+   "type": "zh2en",
+   "mode": "zh2en",
+   "word": "maybe",
+   "prompt": "也许",
+   "promptSub": "表达观点",
+   "answer": "maybe",
+   "ipa": "/ˈmeɪbi/",
+   "options": [
+    "maybe",
+    "too",
+    "opinion",
+    "wonderful"
+   ],
+   "say": "maybe"
+  },
+  {
+   "type": "en2zh",
+   "mode": "en2zh",
+   "word": "mind",
+   "prompt": "mind",
+   "promptSub": "/maɪnd/",
+   "answer": "介意",
+   "ipa": "/maɪnd/",
+   "options": [
+    "介意",
+    "错的",
+    "意思是",
+    "美味的"
+   ],
+   "say": "mind"
+  },
+  {
+   "type": "zh2en",
+   "mode": "zh2en",
+   "word": "mind",
+   "prompt": "介意",
+   "promptSub": "表达观点",
+   "answer": "mind",
+   "ipa": "/maɪnd/",
+   "options": [
+    "mind",
+    "great",
+    "love",
+    "no"
+   ],
+   "say": "mind"
+  },
+  {
+   "type": "en2zh",
+   "mode": "en2zh",
+   "word": "like",
+   "prompt": "like",
+   "promptSub": "/laɪk/",
+   "answer": "喜欢",
+   "ipa": "/laɪk/",
+   "options": [
+    "喜欢",
+    "坏的",
+    "真的",
+    "为什么"
+   ],
+   "say": "like"
+  },
+  {
+   "type": "zh2en",
+   "mode": "zh2en",
+   "word": "like",
+   "prompt": "喜欢",
+   "promptSub": "表达观点",
+   "answer": "like",
+   "ipa": "/laɪk/",
+   "options": [
+    "like",
+    "interesting",
+    "believe",
+    "interested"
+   ],
+   "say": "like"
+  },
+  {
+   "type": "en2zh",
+   "mode": "en2zh",
+   "word": "love",
+   "prompt": "love",
+   "promptSub": "/lʌv/",
+   "answer": "热爱",
+   "ipa": "/lʌv/",
+   "options": [
+    "热爱",
+    "坏的",
+    "但是",
+    "让"
+   ],
+   "say": "love"
+  },
+  {
+   "type": "zh2en",
+   "mode": "zh2en",
+   "word": "love",
+   "prompt": "热爱",
+   "promptSub": "表达观点",
+   "answer": "love",
+   "ipa": "/lʌv/",
+   "options": [
+    "love",
+    "best",
+    "delicious",
+    "feel"
+   ],
+   "say": "love"
+  },
+  {
+   "type": "en2zh",
+   "mode": "en2zh",
+   "word": "favourite",
+   "prompt": "favourite",
+   "promptSub": "/ˈfeɪvərɪt/",
+   "answer": "最喜爱的",
+   "ipa": "/ˈfeɪvərɪt/",
+   "options": [
+    "最喜爱的",
+    "希望",
+    "猜想",
+    "能"
+   ],
+   "say": "favourite"
+  },
+  {
+   "type": "zh2en",
+   "mode": "zh2en",
+   "word": "favourite",
+   "prompt": "最喜爱的",
+   "promptSub": "表达观点",
+   "answer": "favourite",
+   "ipa": "/ˈfeɪvərɪt/",
+   "options": [
+    "favourite",
+    "suppose",
+    "too",
+    "right"
+   ],
+   "say": "favourite"
+  },
+  {
+   "type": "en2zh",
+   "mode": "en2zh",
+   "word": "enjoy",
+   "prompt": "enjoy",
+   "promptSub": "/ɪnˈdʒɔɪ/",
+   "answer": "享受",
+   "ipa": "/ɪnˈdʒɔɪ/",
+   "options": [
+    "享受",
+    "怎么",
+    "更好的",
+    "想要"
+   ],
+   "say": "enjoy"
+  },
+  {
+   "type": "zh2en",
+   "mode": "zh2en",
+   "word": "enjoy",
+   "prompt": "享受",
+   "promptSub": "表达观点",
+   "answer": "enjoy",
+   "ipa": "/ɪnˈdʒɔɪ/",
+   "options": [
+    "enjoy",
+    "can",
+    "sorry",
+    "best"
+   ],
+   "say": "enjoy"
+  },
+  {
+   "type": "en2zh",
+   "mode": "en2zh",
+   "word": "hate",
+   "prompt": "hate",
+   "promptSub": "/heɪt/",
+   "answer": "讨厌",
+   "ipa": "/heɪt/",
+   "options": [
+    "讨厌",
+    "意思是",
+    "对不起",
+    "不喜欢"
+   ],
+   "say": "hate"
+  },
+  {
+   "type": "zh2en",
+   "mode": "zh2en",
+   "word": "hate",
+   "prompt": "讨厌",
+   "promptSub": "表达观点",
+   "answer": "hate",
+   "ipa": "/heɪt/",
+   "options": [
+    "hate",
+    "opinion",
+    "true",
+    "how"
+   ],
+   "say": "hate"
+  },
+  {
+   "type": "en2zh",
+   "mode": "en2zh",
+   "word": "prefer",
+   "prompt": "prefer",
+   "promptSub": "/prɪˈfɜː(r)/",
+   "answer": "更喜欢",
+   "ipa": "/prɪˈfɜː(r)/",
+   "options": [
+    "更喜欢",
+    "享受",
+    "感觉",
+    "精彩的"
+   ],
+   "say": "prefer"
+  },
+  {
+   "type": "zh2en",
+   "mode": "zh2en",
+   "word": "prefer",
+   "prompt": "更喜欢",
+   "promptSub": "表达观点",
+   "answer": "prefer",
+   "ipa": "/prɪˈfɜː(r)/",
+   "options": [
+    "prefer",
+    "hope",
+    "why",
+    "enjoy"
+   ],
+   "say": "prefer"
+  },
+  {
+   "type": "en2zh",
+   "mode": "en2zh",
+   "word": "want",
+   "prompt": "want",
+   "promptSub": "/wɒnt/",
+   "answer": "想要",
+   "ipa": "/wɒnt/",
+   "options": [
+    "想要",
+    "感兴趣的",
+    "享受",
+    "困难的"
+   ],
+   "say": "want"
+  },
+  {
+   "type": "zh2en",
+   "mode": "zh2en",
+   "word": "want",
+   "prompt": "想要",
+   "promptSub": "表达观点",
+   "answer": "want",
+   "ipa": "/wɒnt/",
+   "options": [
+    "want",
+    "agree",
+    "prefer",
+    "favourite"
+   ],
+   "say": "want"
+  },
+  {
+   "type": "en2zh",
+   "mode": "en2zh",
+   "word": "hope",
+   "prompt": "hope",
+   "promptSub": "/həʊp/",
+   "answer": "希望",
+   "ipa": "/həʊp/",
+   "options": [
+    "希望",
+    "好的",
+    "重要的",
+    "更好的"
+   ],
+   "say": "hope"
+  },
+  {
+   "type": "zh2en",
+   "mode": "zh2en",
+   "word": "hope",
+   "prompt": "希望",
+   "promptSub": "表达观点",
+   "answer": "hope",
+   "ipa": "/həʊp/",
+   "options": [
+    "hope",
+    "suppose",
+    "how",
+    "beautiful"
+   ],
+   "say": "hope"
+  },
+  {
+   "type": "en2zh",
+   "mode": "en2zh",
+   "word": "interested",
+   "prompt": "interested",
+   "promptSub": "/ˈɪntrəstɪd/",
+   "answer": "感兴趣的",
+   "ipa": "/ˈɪntrəstɪd/",
+   "options": [
+    "感兴趣的",
+    "不喜欢",
+    "是的",
+    "最喜爱的"
+   ],
+   "say": "interested"
+  },
+  {
+   "type": "zh2en",
+   "mode": "zh2en",
+   "word": "interested",
+   "prompt": "感兴趣的",
+   "promptSub": "表达观点",
+   "answer": "interested",
+   "ipa": "/ˈɪntrəstɪd/",
+   "options": [
+    "interested",
+    "delicious",
+    "same",
+    "let"
+   ],
+   "say": "interested"
+  },
+  {
+   "type": "en2zh",
+   "mode": "en2zh",
+   "word": "dislike",
+   "prompt": "dislike",
+   "promptSub": "/dɪsˈlaɪk/",
+   "answer": "不喜欢",
+   "ipa": "/dɪsˈlaɪk/",
+   "options": [
+    "不喜欢",
+    "同意",
+    "更喜欢",
+    "意思是"
+   ],
+   "say": "dislike"
+  },
+  {
+   "type": "zh2en",
+   "mode": "zh2en",
+   "word": "dislike",
+   "prompt": "不喜欢",
+   "promptSub": "表达观点",
+   "answer": "dislike",
+   "ipa": "/dɪsˈlaɪk/",
+   "options": [
+    "dislike",
+    "but",
+    "interesting",
+    "ask"
+   ],
+   "say": "dislike"
+  },
+  {
+   "type": "en2zh",
+   "mode": "en2zh",
+   "word": "good",
+   "prompt": "good",
+   "promptSub": "/ɡʊd/",
+   "answer": "好的",
+   "ipa": "/ɡʊd/",
+   "options": [
+    "好的",
+    "真的",
+    "猜想",
+    "美味的"
+   ],
+   "say": "good"
+  },
+  {
+   "type": "zh2en",
+   "mode": "zh2en",
+   "word": "good",
+   "prompt": "好的",
+   "promptSub": "表达观点",
+   "answer": "good",
+   "ipa": "/ɡʊd/",
+   "options": [
+    "good",
+    "same",
+    "hate",
+    "love"
+   ],
+   "say": "good"
+  },
+  {
+   "type": "en2zh",
+   "mode": "en2zh",
+   "word": "bad",
+   "prompt": "bad",
+   "promptSub": "/bæd/",
+   "answer": "坏的",
+   "ipa": "/bæd/",
+   "options": [
+    "坏的",
+    "真的",
+    "也",
+    "太好了"
+   ],
+   "say": "bad"
+  },
+  {
+   "type": "zh2en",
+   "mode": "zh2en",
+   "word": "bad",
+   "prompt": "坏的",
+   "promptSub": "表达观点",
+   "answer": "bad",
+   "ipa": "/bæd/",
+   "options": [
+    "bad",
+    "wonderful",
+    "wrong",
+    "need"
+   ],
+   "say": "bad"
+  },
+  {
+   "type": "en2zh",
+   "mode": "en2zh",
+   "word": "wonderful",
+   "prompt": "wonderful",
+   "promptSub": "/ˈwʌndəfl/",
+   "answer": "精彩的",
+   "ipa": "/ˈwʌndəfl/",
+   "options": [
+    "精彩的",
+    "感兴趣的",
+    "意思是",
+    "应该"
+   ],
+   "say": "wonderful"
+  },
+  {
+   "type": "zh2en",
+   "mode": "zh2en",
+   "word": "wonderful",
+   "prompt": "精彩的",
+   "promptSub": "表达观点",
+   "answer": "wonderful",
+   "ipa": "/ˈwʌndəfl/",
+   "options": [
+    "wonderful",
+    "right",
+    "okay",
+    "ask"
+   ],
+   "say": "wonderful"
+  },
+  {
+   "type": "en2zh",
+   "mode": "en2zh",
+   "word": "interesting",
+   "prompt": "interesting",
+   "promptSub": "/ˈɪntrəstɪŋ/",
+   "answer": "有趣的",
+   "ipa": "/ˈɪntrəstɪŋ/",
+   "options": [
+    "有趣的",
+    "相信",
+    "当然",
+    "错的"
+   ],
+   "say": "interesting"
+  },
+  {
+   "type": "zh2en",
+   "mode": "zh2en",
+   "word": "interesting",
+   "prompt": "有趣的",
+   "promptSub": "表达观点",
+   "answer": "interesting",
+   "ipa": "/ˈɪntrəstɪŋ/",
+   "options": [
+    "interesting",
+    "great",
+    "believe",
+    "hope"
+   ],
+   "say": "interesting"
+  },
+  {
+   "type": "en2zh",
+   "mode": "en2zh",
+   "word": "boring",
+   "prompt": "boring",
+   "promptSub": "/ˈbɔːrɪŋ/",
+   "answer": "无聊的",
+   "ipa": "/ˈbɔːrɪŋ/",
+   "options": [
+    "无聊的",
+    "想要",
+    "认为",
+    "当然"
+   ],
+   "say": "boring"
+  },
+  {
+   "type": "zh2en",
+   "mode": "zh2en",
+   "word": "boring",
+   "prompt": "无聊的",
+   "promptSub": "表达观点",
+   "answer": "boring",
+   "ipa": "/ˈbɔːrɪŋ/",
+   "options": [
+    "boring",
+    "okay",
+    "yes",
+    "true"
+   ],
+   "say": "boring"
+  },
+  {
+   "type": "en2zh",
+   "mode": "en2zh",
+   "word": "important",
+   "prompt": "important",
+   "promptSub": "/ɪmˈpɔːtnt/",
+   "answer": "重要的",
+   "ipa": "/ɪmˈpɔːtnt/",
+   "options": [
+    "重要的",
+    "相同的",
+    "为什么",
+    "是的"
+   ],
+   "say": "important"
+  },
+  {
+   "type": "zh2en",
+   "mode": "zh2en",
+   "word": "important",
+   "prompt": "重要的",
+   "promptSub": "表达观点",
+   "answer": "important",
+   "ipa": "/ɪmˈpɔːtnt/",
+   "options": [
+    "important",
+    "ask",
+    "better",
+    "great"
+   ],
+   "say": "important"
+  },
+  {
+   "type": "en2zh",
+   "mode": "en2zh",
+   "word": "delicious",
+   "prompt": "delicious",
+   "promptSub": "/dɪˈlɪʃəs/",
+   "answer": "美味的",
+   "ipa": "/dɪˈlɪʃəs/",
+   "options": [
+    "美味的",
+    "也许",
+    "不同意",
+    "更好的"
+   ],
+   "say": "delicious"
+  },
+  {
+   "type": "zh2en",
+   "mode": "zh2en",
+   "word": "delicious",
+   "prompt": "美味的",
+   "promptSub": "表达观点",
+   "answer": "delicious",
+   "ipa": "/dɪˈlɪʃəs/",
+   "options": [
+    "delicious",
+    "no",
+    "sure",
+    "true"
+   ],
+   "say": "delicious"
+  },
+  {
+   "type": "en2zh",
+   "mode": "en2zh",
+   "word": "beautiful",
+   "prompt": "beautiful",
+   "promptSub": "/ˈbjuːtɪfl/",
+   "answer": "美丽的",
+   "ipa": "/ˈbjuːtɪfl/",
+   "options": [
+    "美丽的",
+    "热爱",
+    "精彩的",
+    "是的"
+   ],
+   "say": "beautiful"
+  },
+  {
+   "type": "zh2en",
+   "mode": "zh2en",
+   "word": "beautiful",
+   "prompt": "美丽的",
+   "promptSub": "表达观点",
+   "answer": "beautiful",
+   "ipa": "/ˈbjuːtɪfl/",
+   "options": [
+    "beautiful",
+    "different",
+    "agree",
+    "okay"
+   ],
+   "say": "beautiful"
+  },
+  {
+   "type": "en2zh",
+   "mode": "en2zh",
+   "word": "difficult",
+   "prompt": "difficult",
+   "promptSub": "/ˈdɪfɪkəlt/",
+   "answer": "困难的",
+   "ipa": "/ˈdɪfɪkəlt/",
+   "options": [
+    "困难的",
+    "重要的",
+    "介意",
+    "美丽的"
+   ],
+   "say": "difficult"
+  },
+  {
+   "type": "zh2en",
+   "mode": "zh2en",
+   "word": "difficult",
+   "prompt": "困难的",
+   "promptSub": "表达观点",
+   "answer": "difficult",
+   "ipa": "/ˈdɪfɪkəlt/",
+   "options": [
+    "difficult",
+    "idea",
+    "course",
+    "can"
+   ],
+   "say": "difficult"
+  },
+  {
+   "type": "en2zh",
+   "mode": "en2zh",
+   "word": "should",
+   "prompt": "should",
+   "promptSub": "/ʃʊd/",
+   "answer": "应该",
+   "ipa": "/ʃʊd/",
+   "options": [
+    "应该",
+    "也许",
+    "问题",
+    "同意"
+   ],
+   "say": "should"
+  },
+  {
+   "type": "zh2en",
+   "mode": "zh2en",
+   "word": "should",
+   "prompt": "应该",
+   "promptSub": "表达观点",
+   "answer": "should",
+   "ipa": "/ʃʊd/",
+   "options": [
+    "should",
+    "right",
+    "like",
+    "interesting"
+   ],
+   "say": "should"
+  },
+  {
+   "type": "en2zh",
+   "mode": "en2zh",
+   "word": "can",
+   "prompt": "can",
+   "promptSub": "/kæn/",
+   "answer": "能",
+   "ipa": "/kæn/",
+   "options": [
+    "能",
+    "对不起",
+    "意思是",
+    "不同意"
+   ],
+   "say": "can"
+  },
+  {
+   "type": "zh2en",
+   "mode": "zh2en",
+   "word": "can",
+   "prompt": "能",
+   "promptSub": "表达观点",
+   "answer": "can",
+   "ipa": "/kæn/",
+   "options": [
+    "can",
+    "true",
+    "course",
+    "great"
+   ],
+   "say": "can"
+  },
+  {
+   "type": "en2zh",
+   "mode": "en2zh",
+   "word": "let",
+   "prompt": "let",
+   "promptSub": "/let/",
+   "answer": "让",
+   "ipa": "/let/",
+   "options": [
+    "让",
+    "不同的",
+    "介意",
+    "更喜欢"
+   ],
+   "say": "let"
+  },
+  {
+   "type": "zh2en",
+   "mode": "zh2en",
+   "word": "let",
+   "prompt": "让",
+   "promptSub": "表达观点",
+   "answer": "let",
+   "ipa": "/let/",
+   "options": [
+    "let",
+    "sure",
+    "perhaps",
+    "wonderful"
+   ],
+   "say": "let"
+  },
+  {
+   "type": "en2zh",
+   "mode": "en2zh",
+   "word": "believe",
+   "prompt": "believe",
+   "promptSub": "/bɪˈliːv/",
+   "answer": "相信",
+   "ipa": "/bɪˈliːv/",
+   "options": [
+    "相信",
+    "不同意",
+    "不",
+    "当然"
+   ],
+   "say": "believe"
+  },
+  {
+   "type": "zh2en",
+   "mode": "zh2en",
+   "word": "believe",
+   "prompt": "相信",
+   "promptSub": "表达观点",
+   "answer": "believe",
+   "ipa": "/bɪˈliːv/",
+   "options": [
+    "believe",
+    "okay",
+    "better",
+    "hope"
+   ],
+   "say": "believe"
+  },
+  {
+   "type": "en2zh",
+   "mode": "en2zh",
+   "word": "suppose",
+   "prompt": "suppose",
+   "promptSub": "/səˈpəʊz/",
+   "answer": "猜想",
+   "ipa": "/səˈpəʊz/",
+   "options": [
+    "猜想",
+    "更喜欢",
+    "需要",
+    "相信"
+   ],
+   "say": "suppose"
+  },
+  {
+   "type": "zh2en",
+   "mode": "zh2en",
+   "word": "suppose",
+   "prompt": "猜想",
+   "promptSub": "表达观点",
+   "answer": "suppose",
+   "ipa": "/səˈpəʊz/",
+   "options": [
+    "suppose",
+    "dislike",
+    "but",
+    "really"
+   ],
+   "say": "suppose"
+  },
+  {
+   "type": "en2zh",
+   "mode": "en2zh",
+   "word": "need",
+   "prompt": "need",
+   "promptSub": "/niːd/",
+   "answer": "需要",
+   "ipa": "/niːd/",
+   "options": [
+    "需要",
+    "感觉",
+    "热爱",
+    "讨厌"
+   ],
+   "say": "need"
+  },
+  {
+   "type": "zh2en",
+   "mode": "zh2en",
+   "word": "need",
+   "prompt": "需要",
+   "promptSub": "表达观点",
+   "answer": "need",
+   "ipa": "/niːd/",
+   "options": [
+    "need",
+    "great",
+    "mind",
+    "should"
+   ],
+   "say": "need"
+  },
+  {
+   "type": "en2zh",
+   "mode": "en2zh",
+   "word": "better",
+   "prompt": "better",
+   "promptSub": "/ˈbetə(r)/",
+   "answer": "更好的",
+   "ipa": "/ˈbetə(r)/",
+   "options": [
+    "更好的",
+    "看法",
+    "当然",
+    "困难的"
+   ],
+   "say": "better"
+  },
+  {
+   "type": "zh2en",
+   "mode": "zh2en",
+   "word": "better",
+   "prompt": "更好的",
+   "promptSub": "表达观点",
+   "answer": "better",
+   "ipa": "/ˈbetə(r)/",
+   "options": [
+    "better",
+    "love",
+    "sorry",
+    "bad"
+   ],
+   "say": "better"
+  },
+  {
+   "type": "en2zh",
+   "mode": "en2zh",
+   "word": "best",
+   "prompt": "best",
+   "promptSub": "/best/",
+   "answer": "最好的",
+   "ipa": "/best/",
+   "options": [
+    "最好的",
+    "相同的",
+    "无聊的",
+    "精彩的"
+   ],
+   "say": "best"
+  },
+  {
+   "type": "zh2en",
+   "mode": "zh2en",
+   "word": "best",
+   "prompt": "最好的",
+   "promptSub": "表达观点",
+   "answer": "best",
+   "ipa": "/best/",
+   "options": [
+    "best",
+    "sorry",
+    "right",
+    "good"
+   ],
+   "say": "best"
+  },
+  {
+   "type": "en2zh",
+   "mode": "en2zh",
+   "word": "perhaps",
+   "prompt": "perhaps",
+   "promptSub": "/pəˈhæps/",
+   "answer": "也许",
+   "ipa": "/pəˈhæps/",
+   "options": [
+    "也许",
+    "更好的",
+    "问题",
+    "感兴趣的"
+   ],
+   "say": "perhaps"
+  },
+  {
+   "type": "zh2en",
+   "mode": "zh2en",
+   "word": "perhaps",
+   "prompt": "也许",
+   "promptSub": "表达观点",
+   "answer": "perhaps",
+   "ipa": "/pəˈhæps/",
+   "options": [
+    "perhaps",
+    "important",
+    "right",
+    "favourite"
+   ],
+   "say": "perhaps"
+  },
+  {
+   "type": "cloze",
+   "mode": "cloze",
+   "word": "think",
+   "prompt": "What do you _____?",
+   "promptSub": "你觉得怎么样?",
+   "answer": "think",
+   "ipa": "/θɪŋk/",
+   "options": [
+    "think",
+    "favourite",
+    "why",
+    "true"
+   ],
+   "say": "What do you think?",
+   "full": "What do you think?"
+  },
+  {
+   "type": "cloze",
+   "mode": "cloze",
+   "word": "opinion",
+   "prompt": "What is your _____?",
+   "promptSub": "你的看法是什么?",
+   "answer": "opinion",
+   "ipa": "/əˈpɪnjən/",
+   "options": [
+    "opinion",
+    "wrong",
+    "question",
+    "let"
+   ],
+   "say": "What is your opinion?",
+   "full": "What is your opinion?"
+  },
+  {
+   "type": "cloze",
+   "mode": "cloze",
+   "word": "idea",
+   "prompt": "Do you have any _____?",
+   "promptSub": "你有什么想法吗?",
+   "answer": "idea",
+   "ipa": "/aɪˈdɪə/",
+   "options": [
+    "idea",
+    "okay",
+    "sorry",
+    "mind"
+   ],
+   "say": "Do you have any idea?",
+   "full": "Do you have any idea?"
+  },
+  {
+   "type": "cloze",
+   "mode": "cloze",
+   "word": "mean",
+   "prompt": "What do you _____?",
+   "promptSub": "你是什么意思?",
+   "answer": "mean",
+   "ipa": "/miːn/",
+   "options": [
+    "mean",
+    "no",
+    "think",
+    "bad"
+   ],
+   "say": "What do you mean?",
+   "full": "What do you mean?"
+  },
+  {
+   "type": "cloze",
+   "mode": "cloze",
+   "word": "feel",
+   "prompt": "How do you _____ about it?",
+   "promptSub": "你觉得它怎么样?",
+   "answer": "feel",
+   "ipa": "/fiːl/",
+   "options": [
+    "feel",
+    "better",
+    "boring",
+    "okay"
+   ],
+   "say": "How do you feel about it?",
+   "full": "How do you feel about it?"
+  },
+  {
+   "type": "cloze",
+   "mode": "cloze",
+   "word": "ask",
+   "prompt": "May I _____ you a question?",
+   "promptSub": "我可以问你一个问题吗?",
+   "answer": "ask",
+   "ipa": "/ɑːsk/",
+   "options": [
+    "ask",
+    "think",
+    "like",
+    "agree"
+   ],
+   "say": "May I ask you a question?",
+   "full": "May I ask you a question?"
+  },
+  {
+   "type": "cloze",
+   "mode": "cloze",
+   "word": "question",
+   "prompt": "I have a _____.",
+   "promptSub": "我有一个问题。",
+   "answer": "question",
+   "ipa": "/ˈkwestʃən/",
+   "options": [
+    "question",
+    "boring",
+    "sorry",
+    "believe"
+   ],
+   "say": "I have a question.",
+   "full": "I have a question."
+  },
+  {
+   "type": "cloze",
+   "mode": "cloze",
+   "word": "why",
+   "prompt": "_____ do you say so?",
+   "promptSub": "你为什么这么说?",
+   "answer": "why",
+   "ipa": "/waɪ/",
+   "options": [
+    "why",
+    "true",
+    "important",
+    "maybe"
+   ],
+   "say": "Why do you say so?",
+   "full": "Why do you say so?"
+  },
+  {
+   "type": "cloze",
+   "mode": "cloze",
+   "word": "how",
+   "prompt": "_____ about this one?",
+   "promptSub": "这个怎么样?",
+   "answer": "how",
+   "ipa": "/haʊ/",
+   "options": [
+    "how",
+    "believe",
+    "opinion",
+    "want"
+   ],
+   "say": "How about this one?",
+   "full": "How about this one?"
+  },
+  {
+   "type": "cloze",
+   "mode": "cloze",
+   "word": "sure",
+   "prompt": "Are you _____?",
+   "promptSub": "你确定吗?",
+   "answer": "sure",
+   "ipa": "/ʃʊə(r)/",
+   "options": [
+    "sure",
+    "suppose",
+    "mind",
+    "dislike"
+   ],
+   "say": "Are you sure?",
+   "full": "Are you sure?"
+  },
+  {
+   "type": "cloze",
+   "mode": "cloze",
+   "word": "agree",
+   "prompt": "I _____ with you.",
+   "promptSub": "我同意你的看法。",
+   "answer": "agree",
+   "ipa": "/əˈɡriː/",
+   "options": [
+    "agree",
+    "maybe",
+    "good",
+    "favourite"
+   ],
+   "say": "I agree with you.",
+   "full": "I agree with you."
+  },
+  {
+   "type": "cloze",
+   "mode": "cloze",
+   "word": "yes",
+   "prompt": "_____, you are right.",
+   "promptSub": "是的,你说得对。",
+   "answer": "yes",
+   "ipa": "/jes/",
+   "options": [
+    "yes",
+    "why",
+    "let",
+    "course"
+   ],
+   "say": "Yes, you are right.",
+   "full": "Yes, you are right."
+  },
+  {
+   "type": "cloze",
+   "mode": "cloze",
+   "word": "right",
+   "prompt": "You are quite _____.",
+   "promptSub": "你说得很对。",
+   "answer": "right",
+   "ipa": "/raɪt/",
+   "options": [
+    "right",
+    "agree",
+    "disagree",
+    "idea"
+   ],
+   "say": "You are quite right.",
+   "full": "You are quite right."
+  },
+  {
+   "type": "cloze",
+   "mode": "cloze",
+   "word": "sure",
+   "prompt": "_____, I think so.",
+   "promptSub": "当然,我也这么想。",
+   "answer": "sure",
+   "ipa": "/ʃʊə(r)/",
+   "options": [
+    "sure",
+    "enjoy",
+    "no",
+    "mean"
+   ],
+   "say": "Sure, I think so.",
+   "full": "Sure, I think so."
+  },
+  {
+   "type": "cloze",
+   "mode": "cloze",
+   "word": "course",
+   "prompt": "Of _____, I agree.",
+   "promptSub": "当然,我同意。",
+   "answer": "course",
+   "ipa": "/kɔːs/",
+   "options": [
+    "course",
+    "mean",
+    "question",
+    "interested"
+   ],
+   "say": "Of course, I agree.",
+   "full": "Of course, I agree."
+  },
+  {
+   "type": "cloze",
+   "mode": "cloze",
+   "word": "too",
+   "prompt": "I think so _____.",
+   "promptSub": "我也这么认为。",
+   "answer": "too",
+   "ipa": "/tuː/",
+   "options": [
+    "too",
+    "better",
+    "question",
+    "difficult"
+   ],
+   "say": "I think so too.",
+   "full": "I think so too."
+  },
+  {
+   "type": "cloze",
+   "mode": "cloze",
+   "word": "great",
+   "prompt": "That's a _____ idea!",
+   "promptSub": "那是个好主意!",
+   "answer": "great",
+   "ipa": "/ɡreɪt/",
+   "options": [
+    "great",
+    "suppose",
+    "too",
+    "prefer"
+   ],
+   "say": "That's a great idea!",
+   "full": "That's a great idea!"
+  },
+  {
+   "type": "cloze",
+   "mode": "cloze",
+   "word": "true",
+   "prompt": "That's _____.",
+   "promptSub": "那是真的。",
+   "answer": "true",
+   "ipa": "/truː/",
+   "options": [
+    "true",
+    "like",
+    "bad",
+    "mean"
+   ],
+   "say": "That's true.",
+   "full": "That's true."
+  },
+  {
+   "type": "cloze",
+   "mode": "cloze",
+   "word": "same",
+   "prompt": "We have the _____ idea.",
+   "promptSub": "我们的想法一样。",
+   "answer": "same",
+   "ipa": "/seɪm/",
+   "options": [
+    "same",
+    "should",
+    "bad",
+    "like"
+   ],
+   "say": "We have the same idea.",
+   "full": "We have the same idea."
+  },
+  {
+   "type": "cloze",
+   "mode": "cloze",
+   "word": "okay",
+   "prompt": "_____, let's do it.",
+   "promptSub": "好的,我们就这么做。",
+   "answer": "okay",
+   "ipa": "/ˌəʊˈkeɪ/",
+   "options": [
+    "okay",
+    "like",
+    "yes",
+    "different"
+   ],
+   "say": "Okay, let's do it.",
+   "full": "Okay, let's do it."
+  },
+  {
+   "type": "cloze",
+   "mode": "cloze",
+   "word": "disagree",
+   "prompt": "I _____ with you.",
+   "promptSub": "我不同意你的看法。",
+   "answer": "disagree",
+   "ipa": "/ˌdɪsəˈɡriː/",
+   "options": [
+    "disagree",
+    "suppose",
+    "course",
+    "think"
+   ],
+   "say": "I disagree with you.",
+   "full": "I disagree with you."
+  },
+  {
+   "type": "cloze",
+   "mode": "cloze",
+   "word": "no",
+   "prompt": "_____, I don't think so.",
+   "promptSub": "不,我不这么认为。",
+   "answer": "no",
+   "ipa": "/nəʊ/",
+   "options": [
+    "no",
+    "like",
+    "think",
+    "should"
+   ],
+   "say": "No, I don't think so.",
+   "full": "No, I don't think so."
+  },
+  {
+   "type": "cloze",
+   "mode": "cloze",
+   "word": "but",
+   "prompt": "I like it, _____ it is expensive.",
+   "promptSub": "我喜欢它,但是它很贵。",
+   "answer": "but",
+   "ipa": "/bʌt/",
+   "options": [
+    "but",
+    "course",
+    "wonderful",
+    "should"
+   ],
+   "say": "I like it, but it is expensive.",
+   "full": "I like it, but it is expensive."
+  },
+  {
+   "type": "cloze",
+   "mode": "cloze",
+   "word": "wrong",
+   "prompt": "I think you are _____.",
+   "promptSub": "我觉得你错了。",
+   "answer": "wrong",
+   "ipa": "/rɒŋ/",
+   "options": [
+    "wrong",
+    "best",
+    "love",
+    "want"
+   ],
+   "say": "I think you are wrong.",
+   "full": "I think you are wrong."
+  },
+  {
+   "type": "cloze",
+   "mode": "cloze",
+   "word": "sorry",
+   "prompt": "_____, I can't agree.",
+   "promptSub": "抱歉,我不能同意。",
+   "answer": "sorry",
+   "ipa": "/ˈsɒri/",
+   "options": [
+    "sorry",
+    "wonderful",
+    "question",
+    "sure"
+   ],
+   "say": "Sorry, I can't agree.",
+   "full": "Sorry, I can't agree."
+  },
+  {
+   "type": "cloze",
+   "mode": "cloze",
+   "word": "different",
+   "prompt": "We have _____ opinions.",
+   "promptSub": "我们的看法不同。",
+   "answer": "different",
+   "ipa": "/ˈdɪfrənt/",
+   "options": [
+    "different",
+    "want",
+    "sure",
+    "right"
+   ],
+   "say": "We have different opinions.",
+   "full": "We have different opinions."
+  },
+  {
+   "type": "cloze",
+   "mode": "cloze",
+   "word": "really",
+   "prompt": "_____? I don't agree.",
+   "promptSub": "真的吗?我不同意。",
+   "answer": "really",
+   "ipa": "/ˈrɪəli/",
+   "options": [
+    "really",
+    "yes",
+    "opinion",
+    "difficult"
+   ],
+   "say": "Really? I don't agree.",
+   "full": "Really? I don't agree."
+  },
+  {
+   "type": "cloze",
+   "mode": "cloze",
+   "word": "maybe",
+   "prompt": "_____, but I am not sure.",
+   "promptSub": "也许吧,但我不确定。",
+   "answer": "maybe",
+   "ipa": "/ˈmeɪbi/",
+   "options": [
+    "maybe",
+    "love",
+    "like",
+    "okay"
+   ],
+   "say": "Maybe, but I am not sure.",
+   "full": "Maybe, but I am not sure."
+  },
+  {
+   "type": "cloze",
+   "mode": "cloze",
+   "word": "agree",
+   "prompt": "I don't quite _____.",
+   "promptSub": "我不太同意。",
+   "answer": "agree",
+   "ipa": "/əˈɡriː/",
+   "options": [
+    "agree",
+    "let",
+    "how",
+    "dislike"
+   ],
+   "say": "I don't quite agree.",
+   "full": "I don't quite agree."
+  },
+  {
+   "type": "cloze",
+   "mode": "cloze",
+   "word": "mind",
+   "prompt": "I don't _____.",
+   "promptSub": "我不介意。",
+   "answer": "mind",
+   "ipa": "/maɪnd/",
+   "options": [
+    "mind",
+    "great",
+    "want",
+    "can"
+   ],
+   "say": "I don't mind.",
+   "full": "I don't mind."
+  },
+  {
+   "type": "cloze",
+   "mode": "cloze",
+   "word": "like",
+   "prompt": "I _____ this book.",
+   "promptSub": "我喜欢这本书。",
+   "answer": "like",
+   "ipa": "/laɪk/",
+   "options": [
+    "like",
+    "wrong",
+    "ask",
+    "sure"
+   ],
+   "say": "I like this book.",
+   "full": "I like this book."
+  },
+  {
+   "type": "cloze",
+   "mode": "cloze",
+   "word": "love",
+   "prompt": "I _____ music.",
+   "promptSub": "我热爱音乐。",
+   "answer": "love",
+   "ipa": "/lʌv/",
+   "options": [
+    "love",
+    "sorry",
+    "great",
+    "true"
+   ],
+   "say": "I love music.",
+   "full": "I love music."
+  },
+  {
+   "type": "cloze",
+   "mode": "cloze",
+   "word": "favourite",
+   "prompt": "Blue is my _____ colour.",
+   "promptSub": "蓝色是我最喜欢的颜色。",
+   "answer": "favourite",
+   "ipa": "/ˈfeɪvərɪt/",
+   "options": [
+    "favourite",
+    "okay",
+    "but",
+    "no"
+   ],
+   "say": "Blue is my favourite colour.",
+   "full": "Blue is my favourite colour."
+  },
+  {
+   "type": "cloze",
+   "mode": "cloze",
+   "word": "enjoy",
+   "prompt": "I _____ reading.",
+   "promptSub": "我喜欢阅读。",
+   "answer": "enjoy",
+   "ipa": "/ɪnˈdʒɔɪ/",
+   "options": [
+    "enjoy",
+    "dislike",
+    "important",
+    "ask"
+   ],
+   "say": "I enjoy reading.",
+   "full": "I enjoy reading."
+  },
+  {
+   "type": "cloze",
+   "mode": "cloze",
+   "word": "hate",
+   "prompt": "I _____ rainy days.",
+   "promptSub": "我讨厌下雨天。",
+   "answer": "hate",
+   "ipa": "/heɪt/",
+   "options": [
+    "hate",
+    "yes",
+    "need",
+    "opinion"
+   ],
+   "say": "I hate rainy days.",
+   "full": "I hate rainy days."
+  },
+  {
+   "type": "cloze",
+   "mode": "cloze",
+   "word": "prefer",
+   "prompt": "I _____ tea to coffee.",
+   "promptSub": "比起咖啡我更喜欢茶。",
+   "answer": "prefer",
+   "ipa": "/prɪˈfɜː(r)/",
+   "options": [
+    "prefer",
+    "why",
+    "true",
+    "important"
+   ],
+   "say": "I prefer tea to coffee.",
+   "full": "I prefer tea to coffee."
+  },
+  {
+   "type": "cloze",
+   "mode": "cloze",
+   "word": "want",
+   "prompt": "I _____ to try it.",
+   "promptSub": "我想试一试。",
+   "answer": "want",
+   "ipa": "/wɒnt/",
+   "options": [
+    "want",
+    "beautiful",
+    "like",
+    "question"
+   ],
+   "say": "I want to try it.",
+   "full": "I want to try it."
+  },
+  {
+   "type": "cloze",
+   "mode": "cloze",
+   "word": "hope",
+   "prompt": "I _____ you like it.",
+   "promptSub": "我希望你喜欢它。",
+   "answer": "hope",
+   "ipa": "/həʊp/",
+   "options": [
+    "hope",
+    "sorry",
+    "ask",
+    "difficult"
+   ],
+   "say": "I hope you like it.",
+   "full": "I hope you like it."
+  },
+  {
+   "type": "cloze",
+   "mode": "cloze",
+   "word": "interested",
+   "prompt": "I am _____ in art.",
+   "promptSub": "我对艺术感兴趣。",
+   "answer": "interested",
+   "ipa": "/ˈɪntrəstɪd/",
+   "options": [
+    "interested",
+    "really",
+    "mind",
+    "prefer"
+   ],
+   "say": "I am interested in art.",
+   "full": "I am interested in art."
+  },
+  {
+   "type": "cloze",
+   "mode": "cloze",
+   "word": "dislike",
+   "prompt": "I _____ loud noise.",
+   "promptSub": "我不喜欢很吵的声音。",
+   "answer": "dislike",
+   "ipa": "/dɪsˈlaɪk/",
+   "options": [
+    "dislike",
+    "suppose",
+    "feel",
+    "course"
+   ],
+   "say": "I dislike loud noise.",
+   "full": "I dislike loud noise."
+  },
+  {
+   "type": "cloze",
+   "mode": "cloze",
+   "word": "good",
+   "prompt": "This film is very _____.",
+   "promptSub": "这部电影很好看。",
+   "answer": "good",
+   "ipa": "/ɡʊd/",
+   "options": [
+    "good",
+    "boring",
+    "opinion",
+    "prefer"
+   ],
+   "say": "This film is very good.",
+   "full": "This film is very good."
+  },
+  {
+   "type": "cloze",
+   "mode": "cloze",
+   "word": "bad",
+   "prompt": "The weather is _____ today.",
+   "promptSub": "今天天气很糟。",
+   "answer": "bad",
+   "ipa": "/bæd/",
+   "options": [
+    "bad",
+    "question",
+    "interested",
+    "hate"
+   ],
+   "say": "The weather is bad today.",
+   "full": "The weather is bad today."
+  },
+  {
+   "type": "cloze",
+   "mode": "cloze",
+   "word": "great",
+   "prompt": "The show was _____.",
+   "promptSub": "那场演出很棒。",
+   "answer": "great",
+   "ipa": "/ɡreɪt/",
+   "options": [
+    "great",
+    "love",
+    "delicious",
+    "maybe"
+   ],
+   "say": "The show was great.",
+   "full": "The show was great."
+  },
+  {
+   "type": "cloze",
+   "mode": "cloze",
+   "word": "wonderful",
+   "prompt": "What a _____ trip!",
+   "promptSub": "多么美妙的旅行啊!",
+   "answer": "wonderful",
+   "ipa": "/ˈwʌndəfl/",
+   "options": [
+    "wonderful",
+    "interested",
+    "hope",
+    "agree"
+   ],
+   "say": "What a wonderful trip!",
+   "full": "What a wonderful trip!"
+  },
+  {
+   "type": "cloze",
+   "mode": "cloze",
+   "word": "interesting",
+   "prompt": "This story is _____.",
+   "promptSub": "这个故事很有趣。",
+   "answer": "interesting",
+   "ipa": "/ˈɪntrəstɪŋ/",
+   "options": [
+    "interesting",
+    "difficult",
+    "delicious",
+    "let"
+   ],
+   "say": "This story is interesting.",
+   "full": "This story is interesting."
+  },
+  {
+   "type": "cloze",
+   "mode": "cloze",
+   "word": "boring",
+   "prompt": "The game is _____.",
+   "promptSub": "这个游戏很无聊。",
+   "answer": "boring",
+   "ipa": "/ˈbɔːrɪŋ/",
+   "options": [
+    "boring",
+    "want",
+    "same",
+    "great"
+   ],
+   "say": "The game is boring.",
+   "full": "The game is boring."
+  },
+  {
+   "type": "cloze",
+   "mode": "cloze",
+   "word": "important",
+   "prompt": "Health is _____.",
+   "promptSub": "健康很重要。",
+   "answer": "important",
+   "ipa": "/ɪmˈpɔːtnt/",
+   "options": [
+    "important",
+    "best",
+    "like",
+    "let"
+   ],
+   "say": "Health is important.",
+   "full": "Health is important."
+  },
+  {
+   "type": "cloze",
+   "mode": "cloze",
+   "word": "delicious",
+   "prompt": "The cake is _____.",
+   "promptSub": "这个蛋糕很好吃。",
+   "answer": "delicious",
+   "ipa": "/dɪˈlɪʃəs/",
+   "options": [
+    "delicious",
+    "dislike",
+    "should",
+    "hate"
+   ],
+   "say": "The cake is delicious.",
+   "full": "The cake is delicious."
+  },
+  {
+   "type": "cloze",
+   "mode": "cloze",
+   "word": "beautiful",
+   "prompt": "The garden is _____.",
+   "promptSub": "这个花园很美。",
+   "answer": "beautiful",
+   "ipa": "/ˈbjuːtɪfl/",
+   "options": [
+    "beautiful",
+    "too",
+    "course",
+    "sure"
+   ],
+   "say": "The garden is beautiful.",
+   "full": "The garden is beautiful."
+  },
+  {
+   "type": "cloze",
+   "mode": "cloze",
+   "word": "difficult",
+   "prompt": "This question is _____.",
+   "promptSub": "这个问题很难。",
+   "answer": "difficult",
+   "ipa": "/ˈdɪfɪkəlt/",
+   "options": [
+    "difficult",
+    "opinion",
+    "great",
+    "sorry"
+   ],
+   "say": "This question is difficult.",
+   "full": "This question is difficult."
+  },
+  {
+   "type": "cloze",
+   "mode": "cloze",
+   "word": "should",
+   "prompt": "We _____ help others.",
+   "promptSub": "我们应该帮助别人。",
+   "answer": "should",
+   "ipa": "/ʃʊd/",
+   "options": [
+    "should",
+    "different",
+    "interested",
+    "but"
+   ],
+   "say": "We should help others.",
+   "full": "We should help others."
+  },
+  {
+   "type": "cloze",
+   "mode": "cloze",
+   "word": "can",
+   "prompt": "You _____ try again.",
+   "promptSub": "你可以再试一次。",
+   "answer": "can",
+   "ipa": "/kæn/",
+   "options": [
+    "can",
+    "love",
+    "but",
+    "opinion"
+   ],
+   "say": "You can try again.",
+   "full": "You can try again."
+  },
+  {
+   "type": "cloze",
+   "mode": "cloze",
+   "word": "let",
+   "prompt": "_____'s talk about it.",
+   "promptSub": "我们来谈谈这个吧。",
+   "answer": "let",
+   "ipa": "/let/",
+   "options": [
+    "let",
+    "feel",
+    "prefer",
+    "believe"
+   ],
+   "say": "Let's talk about it.",
+   "full": "Let's talk about it."
+  },
+  {
+   "type": "cloze",
+   "mode": "cloze",
+   "word": "believe",
+   "prompt": "I _____ you can do it.",
+   "promptSub": "我相信你能做到。",
+   "answer": "believe",
+   "ipa": "/bɪˈliːv/",
+   "options": [
+    "believe",
+    "boring",
+    "dislike",
+    "let"
+   ],
+   "say": "I believe you can do it.",
+   "full": "I believe you can do it."
+  },
+  {
+   "type": "cloze",
+   "mode": "cloze",
+   "word": "suppose",
+   "prompt": "I _____ you are busy.",
+   "promptSub": "我想你很忙吧。",
+   "answer": "suppose",
+   "ipa": "/səˈpəʊz/",
+   "options": [
+    "suppose",
+    "better",
+    "idea",
+    "yes"
+   ],
+   "say": "I suppose you are busy.",
+   "full": "I suppose you are busy."
+  },
+  {
+   "type": "cloze",
+   "mode": "cloze",
+   "word": "need",
+   "prompt": "You _____ more practice.",
+   "promptSub": "你需要多加练习。",
+   "answer": "need",
+   "ipa": "/niːd/",
+   "options": [
+    "need",
+    "beautiful",
+    "want",
+    "better"
+   ],
+   "say": "You need more practice.",
+   "full": "You need more practice."
+  },
+  {
+   "type": "cloze",
+   "mode": "cloze",
+   "word": "better",
+   "prompt": "This way is _____.",
+   "promptSub": "这个办法更好。",
+   "answer": "better",
+   "ipa": "/ˈbetə(r)/",
+   "options": [
+    "better",
+    "favourite",
+    "disagree",
+    "difficult"
+   ],
+   "say": "This way is better.",
+   "full": "This way is better."
+  },
+  {
+   "type": "cloze",
+   "mode": "cloze",
+   "word": "best",
+   "prompt": "This is the _____ plan.",
+   "promptSub": "这是最好的计划。",
+   "answer": "best",
+   "ipa": "/best/",
+   "options": [
+    "best",
+    "no",
+    "favourite",
+    "right"
+   ],
+   "say": "This is the best plan.",
+   "full": "This is the best plan."
+  },
+  {
+   "type": "cloze",
+   "mode": "cloze",
+   "word": "perhaps",
+   "prompt": "_____ we can go later.",
+   "promptSub": "也许我们可以晚点去。",
+   "answer": "perhaps",
+   "ipa": "/pəˈhæps/",
+   "options": [
+    "perhaps",
+    "like",
+    "no",
+    "favourite"
+   ],
+   "say": "Perhaps we can go later.",
+   "full": "Perhaps we can go later."
+  },
+  {
+   "type": "cloze",
+   "mode": "cloze",
+   "word": "agree",
+   "prompt": "Let's _____ on a time.",
+   "promptSub": "我们定一个时间吧。",
+   "answer": "agree",
+   "ipa": "/əˈɡriː/",
+   "options": [
+    "agree",
+    "let",
+    "course",
+    "really"
+   ],
+   "say": "Let's agree on a time.",
+   "full": "Let's agree on a time."
+  }
+ ]
+};
 
-</body></html>
+</script>
+<script>
+window.IPA_DICT = {
+"think": "/θɪŋk/",
+"opinion": "/əˈpɪnjən/",
+"idea": "/aɪˈdɪə/",
+"mean": "/miːn/",
+"feel": "/fiːl/",
+"ask": "/ɑːsk/",
+"question": "/ˈkwestʃən/",
+"why": "/waɪ/",
+"how": "/haʊ/",
+"sure": "/ʃʊə(r)/",
+"agree": "/əˈɡriː/",
+"yes": "/jes/",
+"right": "/raɪt/",
+"course": "/kɔːs/",
+"too": "/tuː/",
+"great": "/ɡreɪt/",
+"true": "/truː/",
+"same": "/seɪm/",
+"okay": "/ˌəʊˈkeɪ/",
+"disagree": "/ˌdɪsəˈɡriː/",
+"no": "/nəʊ/",
+"but": "/bʌt/",
+"wrong": "/rɒŋ/",
+"sorry": "/ˈsɒri/",
+"different": "/ˈdɪfrənt/",
+"really": "/ˈrɪəli/",
+"maybe": "/ˈmeɪbi/",
+"mind": "/maɪnd/",
+"like": "/laɪk/",
+"love": "/lʌv/",
+"favourite": "/ˈfeɪvərɪt/",
+"enjoy": "/ɪnˈdʒɔɪ/",
+"hate": "/heɪt/",
+"prefer": "/prɪˈfɜː(r)/",
+"want": "/wɒnt/",
+"hope": "/həʊp/",
+"interested": "/ˈɪntrəstɪd/",
+"dislike": "/dɪsˈlaɪk/",
+"good": "/ɡʊd/",
+"bad": "/bæd/",
+"wonderful": "/ˈwʌndəfl/",
+"interesting": "/ˈɪntrəstɪŋ/",
+"boring": "/ˈbɔːrɪŋ/",
+"important": "/ɪmˈpɔːtnt/",
+"delicious": "/dɪˈlɪʃəs/",
+"beautiful": "/ˈbjuːtɪfl/",
+"difficult": "/ˈdɪfɪkəlt/",
+"should": "/ʃʊd/",
+"can": "/kæn/",
+"let": "/let/",
+"believe": "/bɪˈliːv/",
+"suppose": "/səˈpəʊz/",
+"need": "/niːd/",
+"better": "/ˈbetə(r)/",
+"best": "/best/",
+"perhaps": "/pəˈhæps/",
+"my": "/maɪ/",
+"opinions": "/əˈpɪnjənz/",
+"say": "/seɪ/",
+"what": "/wɒt/",
+"do": "/duː/",
+"you": "/juː/",
+"is": "/ɪz/",
+"your": "/jɔː(r)/",
+"have": "/hæv/",
+"any": "/ˈeni/",
+"about": "/əˈbaʊt/",
+"it": "/ɪt/",
+"may": "/meɪ/",
+"i": "/aɪ/",
+"a": "/ə/",
+"so": "/səʊ/",
+"this": "/ðɪs/",
+"one": "/wʌn/",
+"are": "/ɑː(r)/",
+"with": "/wɪð/",
+"quite": "/kwaɪt/",
+"of": "/əv/",
+"that": "/ðæt/",
+"the": "/ðə/",
+"we": "/wiː/",
+"am": "/æm/",
+"not": "/nɒt/",
+"in": "/ɪn/",
+"art": "/ɑːt/",
+"music": "/ˈmjuːzɪk/",
+"book": "/bʊk/",
+"blue": "/bluː/",
+"colour": "/ˈkʌlə(r)/",
+"reading": "/ˈriːdɪŋ/",
+"rainy": "/ˈreɪni/",
+"days": "/deɪz/",
+"day": "/deɪ/",
+"tea": "/tiː/",
+"to": "/tuː/",
+"coffee": "/ˈkɒfi/",
+"try": "/traɪ/",
+"loud": "/laʊd/",
+"noise": "/nɔɪz/",
+"film": "/fɪlm/",
+"very": "/ˈveri/",
+"weather": "/ˈweðə(r)/",
+"today": "/təˈdeɪ/",
+"show": "/ʃəʊ/",
+"was": "/wɒz/",
+"trip": "/trɪp/",
+"story": "/ˈstɔːri/",
+"game": "/ɡeɪm/",
+"health": "/helθ/",
+"cake": "/keɪk/",
+"garden": "/ˈɡɑːdn/",
+"help": "/help/",
+"others": "/ˈʌðəz/",
+"again": "/əˈɡen/",
+"talk": "/tɔːk/",
+"busy": "/ˈbɪzi/",
+"more": "/mɔː(r)/",
+"practice": "/ˈpræktɪs/",
+"way": "/weɪ/",
+"plan": "/plæn/",
+"later": "/ˈleɪtə(r)/",
+"time": "/taɪm/",
+"go": "/ɡəʊ/",
+"on": "/ɒn/",
+"expensive": "/ɪkˈspensɪv/",
+"books": "/bʊks/",
+"dont": "/dəʊnt/",
+"cant": "/kɑːnt/",
+"thats": "/ðæts/",
+"lets": "/lets/",
+"don't": "/dəʊnt/",
+"can't": "/kɑːnt/",
+"that's": "/ðæts/",
+"let's": "/lets/"
+};
+
+</script>
+<script>
+// 人工校对的句子成分标注(role: s主语 v谓语 o宾语/表语 a状语 c引导词)。渲染优先用它,保证正确。
+window.SENT_ANN = {"What do you think?": [["c", "What"], ["v", "do"], ["s", "you"], ["v", "think?"]], "What is your opinion?": [["c", "What"], ["v", "is"], ["s", "your opinion?"]], "Do you have any idea?": [["v", "Do"], ["s", "you"], ["v", "have"], ["o", "any idea?"]], "What do you mean?": [["c", "What"], ["v", "do"], ["s", "you"], ["v", "mean?"]], "How do you feel about it?": [["c", "How"], ["v", "do"], ["s", "you"], ["v", "feel"], ["a", "about it?"]], "May I ask you a question?": [["v", "May"], ["s", "I"], ["v", "ask"], ["o", "you a question?"]], "I have a question.": [["s", "I"], ["v", "have"], ["o", "a question"]], "Why do you say so?": [["c", "Why"], ["v", "do"], ["s", "you"], ["v", "say"], ["a", "so?"]], "How about this one?": [["c", "How"], ["a", "about this one?"]], "Are you sure?": [["v", "Are"], ["s", "you"], ["o", "sure?"]], "I agree with you.": [["s", "I"], ["v", "agree"], ["a", "with you"]], "Yes, you are right.": [["o", "Yes"], ["s", "you"], ["v", "are"], ["o", "right"]], "You are quite right.": [["s", "You"], ["v", "are"], ["o", "quite right"]], "Sure, I think so.": [["o", "Sure"], ["s", "I"], ["v", "think"], ["a", "so"]], "Of course, I agree.": [["a", "Of course"], ["s", "I"], ["v", "agree"]], "I think so too.": [["s", "I"], ["v", "think"], ["a", "so too"]], "That's a great idea!": [["s", "That's"], ["o", "a great idea!"]], "That's true.": [["s", "That's"], ["o", "true"]], "We have the same idea.": [["s", "We"], ["v", "have"], ["o", "the same idea"]], "Okay, let's do it.": [["o", "Okay"], ["s", "let's"], ["v", "do"], ["o", "it"]], "I disagree with you.": [["s", "I"], ["v", "disagree"], ["a", "with you"]], "No, I don't think so.": [["o", "No"], ["s", "I"], ["v", "don't think"], ["a", "so"]], "I like it, but it is expensive.": [["s", "I"], ["v", "like"], ["o", "it,"], ["c", "but"], ["s", "it"], ["v", "is"], ["o", "expensive"]], "I think you are wrong.": [["s", "I"], ["v", "think"], ["s", "you"], ["v", "are"], ["o", "wrong"]], "Sorry, I can't agree.": [["o", "Sorry"], ["s", "I"], ["v", "can't agree"]], "We have different opinions.": [["s", "We"], ["v", "have"], ["o", "different opinions"]], "Really? I don't agree.": [["o", "Really?"], ["s", "I"], ["v", "don't agree"]], "Maybe, but I am not sure.": [["a", "Maybe,"], ["c", "but"], ["s", "I"], ["v", "am not"], ["o", "sure"]], "I don't quite agree.": [["s", "I"], ["v", "don't quite agree"]], "I don't mind.": [["s", "I"], ["v", "don't mind"]], "I like this book.": [["s", "I"], ["v", "like"], ["o", "this book"]], "I love music.": [["s", "I"], ["v", "love"], ["o", "music"]], "Blue is my favourite colour.": [["s", "Blue"], ["v", "is"], ["o", "my favourite colour"]], "I enjoy reading.": [["s", "I"], ["v", "enjoy"], ["o", "reading"]], "I hate rainy days.": [["s", "I"], ["v", "hate"], ["o", "rainy days"]], "I prefer tea to coffee.": [["s", "I"], ["v", "prefer"], ["o", "tea"], ["a", "to coffee"]], "I want to try it.": [["s", "I"], ["v", "want"], ["o", "to try it"]], "I hope you like it.": [["s", "I"], ["v", "hope"], ["o", "you like it"]], "I am interested in art.": [["s", "I"], ["v", "am"], ["o", "interested"], ["a", "in art"]], "I dislike loud noise.": [["s", "I"], ["v", "dislike"], ["o", "loud noise"]], "This film is very good.": [["s", "This film"], ["v", "is"], ["o", "very good"]], "The weather is bad today.": [["s", "The weather"], ["v", "is"], ["o", "bad"], ["a", "today"]], "The show was great.": [["s", "The show"], ["v", "was"], ["o", "great"]], "What a wonderful trip!": [["c", "What"], ["o", "a wonderful trip!"]], "This story is interesting.": [["s", "This story"], ["v", "is"], ["o", "interesting"]], "The game is boring.": [["s", "The game"], ["v", "is"], ["o", "boring"]], "Health is important.": [["s", "Health"], ["v", "is"], ["o", "important"]], "The cake is delicious.": [["s", "The cake"], ["v", "is"], ["o", "delicious"]], "The garden is beautiful.": [["s", "The garden"], ["v", "is"], ["o", "beautiful"]], "This question is difficult.": [["s", "This question"], ["v", "is"], ["o", "difficult"]], "We should help others.": [["s", "We"], ["v", "should help"], ["o", "others"]], "You can try again.": [["s", "You"], ["v", "can try"], ["a", "again"]], "Let's talk about it.": [["s", "Let's"], ["v", "talk"], ["a", "about it"]], "I believe you can do it.": [["s", "I"], ["v", "believe"], ["o", "you can do it"]], "I suppose you are busy.": [["s", "I"], ["v", "suppose"], ["o", "you are busy"]], "You need more practice.": [["s", "You"], ["v", "need"], ["o", "more practice"]], "This way is better.": [["s", "This way"], ["v", "is"], ["o", "better"]], "This is the best plan.": [["s", "This"], ["v", "is"], ["o", "the best plan"]], "Perhaps we can go later.": [["a", "Perhaps"], ["s", "we"], ["v", "can go"], ["a", "later"]], "Let's agree on a time.": [["s", "Let's"], ["v", "agree"], ["a", "on a time"]]};
+
+</script>
+<script type="module">
+/* --- Lit 运行时内联:Blob URL 动态 import(离线可用、命名导出规范) --- */
+    const __LIT_SRC = "/* esm.sh - lit@3.2.1 */\nvar R=globalThis,T=R.ShadowRoot&&(R.ShadyCSS===void 0||R.ShadyCSS.nativeShadow)&&\"adoptedStyleSheets\"in Document.prototype&&\"replace\"in CSSStyleSheet.prototype,z=Symbol(),Q=new WeakMap,C=class{constructor(t,e,s){if(this._$cssResult$=!0,s!==z)throw Error(\"CSSResult is not constructable. Use `unsafeCSS` or `css` instead.\");this.cssText=t,this.t=e}get styleSheet(){let t=this.o,e=this.t;if(T&&t===void 0){let s=e!==void 0&&e.length===1;s&&(t=Q.get(e)),t===void 0&&((this.o=t=new CSSStyleSheet).replaceSync(this.cssText),s&&Q.set(e,t))}return t}toString(){return this.cssText}},X=o=>new C(typeof o==\"string\"?o:o+\"\",void 0,z),$t=(o,...t)=>{let e=o.length===1?o[0]:t.reduce(((s,i,r)=>s+(n=>{if(n._$cssResult$===!0)return n.cssText;if(typeof n==\"number\")return n;throw Error(\"Value passed to 'css' function must be a 'css' function result: \"+n+\". Use 'unsafeCSS' to pass non-literal values, but take care to ensure page security.\")})(i)+o[r+1]),o[0]);return new C(e,o,z)},Y=(o,t)=>{if(T)o.adoptedStyleSheets=t.map((e=>e instanceof CSSStyleSheet?e:e.styleSheet));else for(let e of t){let s=document.createElement(\"style\"),i=R.litNonce;i!==void 0&&s.setAttribute(\"nonce\",i),s.textContent=e.cssText,o.appendChild(s)}},I=T?o=>o:o=>o instanceof CSSStyleSheet?(t=>{let e=\"\";for(let s of t.cssRules)e+=s.cssText;return X(e)})(o):o;var{is:_t,defineProperty:ft,getOwnPropertyDescriptor:At,getOwnPropertyNames:mt,getOwnPropertySymbols:gt,getPrototypeOf:yt}=Object,M=globalThis,tt=M.trustedTypes,vt=tt?tt.emptyScript:\"\",St=M.reactiveElementPolyfillSupport,w=(o,t)=>o,V={toAttribute(o,t){switch(t){case Boolean:o=o?vt:null;break;case Object:case Array:o=o==null?o:JSON.stringify(o)}return o},fromAttribute(o,t){let e=o;switch(t){case Boolean:e=o!==null;break;case Number:e=o===null?null:Number(o);break;case Object:case Array:try{e=JSON.parse(o)}catch{e=null}}return e}},st=(o,t)=>!_t(o,t),et={attribute:!0,type:String,converter:V,reflect:!1,useDefault:!1,hasChanged:st};Symbol.metadata??=Symbol(\"metadata\"),M.litPropertyMetadata??=new WeakMap;var $=class extends HTMLElement{static addInitializer(t){this._$Ei(),(this.l??=[]).push(t)}static get observedAttributes(){return this.finalize(),this._$Eh&&[...this._$Eh.keys()]}static createProperty(t,e=et){if(e.state&&(e.attribute=!1),this._$Ei(),this.prototype.hasOwnProperty(t)&&((e=Object.create(e)).wrapped=!0),this.elementProperties.set(t,e),!e.noAccessor){let s=Symbol(),i=this.getPropertyDescriptor(t,s,e);i!==void 0&&ft(this.prototype,t,i)}}static getPropertyDescriptor(t,e,s){let{get:i,set:r}=At(this.prototype,t)??{get(){return this[e]},set(n){this[e]=n}};return{get:i,set(n){let l=i?.call(this);r?.call(this,n),this.requestUpdate(t,l,s)},configurable:!0,enumerable:!0}}static getPropertyOptions(t){return this.elementProperties.get(t)??et}static _$Ei(){if(this.hasOwnProperty(w(\"elementProperties\")))return;let t=yt(this);t.finalize(),t.l!==void 0&&(this.l=[...t.l]),this.elementProperties=new Map(t.elementProperties)}static finalize(){if(this.hasOwnProperty(w(\"finalized\")))return;if(this.finalized=!0,this._$Ei(),this.hasOwnProperty(w(\"properties\"))){let e=this.properties,s=[...mt(e),...gt(e)];for(let i of s)this.createProperty(i,e[i])}let t=this[Symbol.metadata];if(t!==null){let e=litPropertyMetadata.get(t);if(e!==void 0)for(let[s,i]of e)this.elementProperties.set(s,i)}this._$Eh=new Map;for(let[e,s]of this.elementProperties){let i=this._$Eu(e,s);i!==void 0&&this._$Eh.set(i,e)}this.elementStyles=this.finalizeStyles(this.styles)}static finalizeStyles(t){let e=[];if(Array.isArray(t)){let s=new Set(t.flat(1/0).reverse());for(let i of s)e.unshift(I(i))}else t!==void 0&&e.push(I(t));return e}static _$Eu(t,e){let s=e.attribute;return s===!1?void 0:typeof s==\"string\"?s:typeof t==\"string\"?t.toLowerCase():void 0}constructor(){super(),this._$Ep=void 0,this.isUpdatePending=!1,this.hasUpdated=!1,this._$Em=null,this._$Ev()}_$Ev(){this._$ES=new Promise((t=>this.enableUpdating=t)),this._$AL=new Map,this._$E_(),this.requestUpdate(),this.constructor.l?.forEach((t=>t(this)))}addController(t){(this._$EO??=new Set).add(t),this.renderRoot!==void 0&&this.isConnected&&t.hostConnected?.()}removeController(t){this._$EO?.delete(t)}_$E_(){let t=new Map,e=this.constructor.elementProperties;for(let s of e.keys())this.hasOwnProperty(s)&&(t.set(s,this[s]),delete this[s]);t.size>0&&(this._$Ep=t)}createRenderRoot(){let t=this.shadowRoot??this.attachShadow(this.constructor.shadowRootOptions);return Y(t,this.constructor.elementStyles),t}connectedCallback(){this.renderRoot??=this.createRenderRoot(),this.enableUpdating(!0),this._$EO?.forEach((t=>t.hostConnected?.()))}enableUpdating(t){}disconnectedCallback(){this._$EO?.forEach((t=>t.hostDisconnected?.()))}attributeChangedCallback(t,e,s){this._$AK(t,s)}_$ET(t,e){let s=this.constructor.elementProperties.get(t),i=this.constructor._$Eu(t,s);if(i!==void 0&&s.reflect===!0){let r=(s.converter?.toAttribute!==void 0?s.converter:V).toAttribute(e,s.type);this._$Em=t,r==null?this.removeAttribute(i):this.setAttribute(i,r),this._$Em=null}}_$AK(t,e){let s=this.constructor,i=s._$Eh.get(t);if(i!==void 0&&this._$Em!==i){let r=s.getPropertyOptions(i),n=typeof r.converter==\"function\"?{fromAttribute:r.converter}:r.converter?.fromAttribute!==void 0?r.converter:V;this._$Em=i;let l=n.fromAttribute(e,r.type);this[i]=l??this._$Ej?.get(i)??l,this._$Em=null}}requestUpdate(t,e,s){if(t!==void 0){let i=this.constructor,r=this[t];if(s??=i.getPropertyOptions(t),!((s.hasChanged??st)(r,e)||s.useDefault&&s.reflect&&r===this._$Ej?.get(t)&&!this.hasAttribute(i._$Eu(t,s))))return;this.C(t,e,s)}this.isUpdatePending===!1&&(this._$ES=this._$EP())}C(t,e,{useDefault:s,reflect:i,wrapped:r},n){s&&!(this._$Ej??=new Map).has(t)&&(this._$Ej.set(t,n??e??this[t]),r!==!0||n!==void 0)||(this._$AL.has(t)||(this.hasUpdated||s||(e=void 0),this._$AL.set(t,e)),i===!0&&this._$Em!==t&&(this._$Eq??=new Set).add(t))}async _$EP(){this.isUpdatePending=!0;try{await this._$ES}catch(e){Promise.reject(e)}let t=this.scheduleUpdate();return t!=null&&await t,!this.isUpdatePending}scheduleUpdate(){return this.performUpdate()}performUpdate(){if(!this.isUpdatePending)return;if(!this.hasUpdated){if(this.renderRoot??=this.createRenderRoot(),this._$Ep){for(let[i,r]of this._$Ep)this[i]=r;this._$Ep=void 0}let s=this.constructor.elementProperties;if(s.size>0)for(let[i,r]of s){let{wrapped:n}=r,l=this[i];n!==!0||this._$AL.has(i)||l===void 0||this.C(i,void 0,r,l)}}let t=!1,e=this._$AL;try{t=this.shouldUpdate(e),t?(this.willUpdate(e),this._$EO?.forEach((s=>s.hostUpdate?.())),this.update(e)):this._$EM()}catch(s){throw t=!1,this._$EM(),s}t&&this._$AE(e)}willUpdate(t){}_$AE(t){this._$EO?.forEach((e=>e.hostUpdated?.())),this.hasUpdated||(this.hasUpdated=!0,this.firstUpdated(t)),this.updated(t)}_$EM(){this._$AL=new Map,this.isUpdatePending=!1}get updateComplete(){return this.getUpdateComplete()}getUpdateComplete(){return this._$ES}shouldUpdate(t){return!0}update(t){this._$Eq&&=this._$Eq.forEach((e=>this._$ET(e,this[e]))),this._$EM()}updated(t){}firstUpdated(t){}};$.elementStyles=[],$.shadowRootOptions={mode:\"open\"},$[w(\"elementProperties\")]=new Map,$[w(\"finalized\")]=new Map,St?.({ReactiveElement:$}),(M.reactiveElementVersions??=[]).push(\"2.1.1\");var q=globalThis,N=q.trustedTypes,it=N?N.createPolicy(\"lit-html\",{createHTML:o=>o}):void 0,K=\"$lit$\",_=`lit$${Math.random().toFixed(9).slice(2)}$`,Z=\"?\"+_,Et=`<${Z}>`,g=document,P=()=>g.createComment(\"\"),U=o=>o===null||typeof o!=\"object\"&&typeof o!=\"function\",F=Array.isArray,lt=o=>F(o)||typeof o?.[Symbol.iterator]==\"function\",W=`[ \t\n\\f\\r]`,x=/<(?:(!--|\\/[^a-zA-Z])|(\\/?[a-zA-Z][^>\\s]*)|(\\/?$))/g,ot=/-->/g,rt=/>/g,A=RegExp(`>|${W}(?:([^\\\\s\"'>=/]+)(${W}*=${W}*(?:[^ \t\n\\f\\r\"'\\`<>=]|(\"|')|))|$)`,\"g\"),nt=/'/g,ht=/\"/g,ct=/^(?:script|style|textarea|title)$/i,J=o=>(t,...e)=>({_$litType$:o,strings:t,values:e}),Ot=J(1),Ht=J(2),Rt=J(3),y=Symbol.for(\"lit-noChange\"),p=Symbol.for(\"lit-nothing\"),at=new WeakMap,m=g.createTreeWalker(g,129);function pt(o,t){if(!F(o)||!o.hasOwnProperty(\"raw\"))throw Error(\"invalid template strings array\");return it!==void 0?it.createHTML(t):t}var dt=(o,t)=>{let e=o.length-1,s=[],i,r=t===2?\"<svg>\":t===3?\"<math>\":\"\",n=x;for(let l=0;l<e;l++){let h=o[l],c,d,a=-1,u=0;for(;u<h.length&&(n.lastIndex=u,d=n.exec(h),d!==null);)u=n.lastIndex,n===x?d[1]===\"!--\"?n=ot:d[1]!==void 0?n=rt:d[2]!==void 0?(ct.test(d[2])&&(i=RegExp(\"</\"+d[2],\"g\")),n=A):d[3]!==void 0&&(n=A):n===A?d[0]===\">\"?(n=i??x,a=-1):d[1]===void 0?a=-2:(a=n.lastIndex-d[2].length,c=d[1],n=d[3]===void 0?A:d[3]==='\"'?ht:nt):n===ht||n===nt?n=A:n===ot||n===rt?n=x:(n=A,i=void 0);let f=n===A&&o[l+1].startsWith(\"/>\")?\" \":\"\";r+=n===x?h+Et:a>=0?(s.push(c),h.slice(0,a)+K+h.slice(a)+_+f):h+_+(a===-2?l:f)}return[pt(o,r+(o[e]||\"<?>\")+(t===2?\"</svg>\":t===3?\"</math>\":\"\")),s]},O=class o{constructor({strings:t,_$litType$:e},s){let i;this.parts=[];let r=0,n=0,l=t.length-1,h=this.parts,[c,d]=dt(t,e);if(this.el=o.createElement(c,s),m.currentNode=this.el.content,e===2||e===3){let a=this.el.content.firstChild;a.replaceWith(...a.childNodes)}for(;(i=m.nextNode())!==null&&h.length<l;){if(i.nodeType===1){if(i.hasAttributes())for(let a of i.getAttributeNames())if(a.endsWith(K)){let u=d[n++],f=i.getAttribute(a).split(_),H=/([.?@])?(.*)/.exec(u);h.push({type:1,index:r,name:H[2],strings:f,ctor:H[1]===\".\"?k:H[1]===\"?\"?D:H[1]===\"@\"?j:S}),i.removeAttribute(a)}else a.startsWith(_)&&(h.push({type:6,index:r}),i.removeAttribute(a));if(ct.test(i.tagName)){let a=i.textContent.split(_),u=a.length-1;if(u>0){i.textContent=N?N.emptyScript:\"\";for(let f=0;f<u;f++)i.append(a[f],P()),m.nextNode(),h.push({type:2,index:++r});i.append(a[u],P())}}}else if(i.nodeType===8)if(i.data===Z)h.push({type:2,index:r});else{let a=-1;for(;(a=i.data.indexOf(_,a+1))!==-1;)h.push({type:7,index:r}),a+=_.length-1}r++}}static createElement(t,e){let s=g.createElement(\"template\");return s.innerHTML=t,s}};function v(o,t,e=o,s){if(t===y)return t;let i=s!==void 0?e._$Co?.[s]:e._$Cl,r=U(t)?void 0:t._$litDirective$;return i?.constructor!==r&&(i?._$AO?.(!1),r===void 0?i=void 0:(i=new r(o),i._$AT(o,e,s)),s!==void 0?(e._$Co??=[])[s]=i:e._$Cl=i),i!==void 0&&(t=v(o,i._$AS(o,t.values),i,s)),t}var L=class{constructor(t,e){this._$AV=[],this._$AN=void 0,this._$AD=t,this._$AM=e}get parentNode(){return this._$AM.parentNode}get _$AU(){return this._$AM._$AU}u(t){let{el:{content:e},parts:s}=this._$AD,i=(t?.creationScope??g).importNode(e,!0);m.currentNode=i;let r=m.nextNode(),n=0,l=0,h=s[0];for(;h!==void 0;){if(n===h.index){let c;h.type===2?c=new E(r,r.nextSibling,this,t):h.type===1?c=new h.ctor(r,h.name,h.strings,this,t):h.type===6&&(c=new B(r,this,t)),this._$AV.push(c),h=s[++l]}n!==h?.index&&(r=m.nextNode(),n++)}return m.currentNode=g,i}p(t){let e=0;for(let s of this._$AV)s!==void 0&&(s.strings!==void 0?(s._$AI(t,s,e),e+=s.strings.length-2):s._$AI(t[e])),e++}},E=class o{get _$AU(){return this._$AM?._$AU??this._$Cv}constructor(t,e,s,i){this.type=2,this._$AH=p,this._$AN=void 0,this._$AA=t,this._$AB=e,this._$AM=s,this.options=i,this._$Cv=i?.isConnected??!0}get parentNode(){let t=this._$AA.parentNode,e=this._$AM;return e!==void 0&&t?.nodeType===11&&(t=e.parentNode),t}get startNode(){return this._$AA}get endNode(){return this._$AB}_$AI(t,e=this){t=v(this,t,e),U(t)?t===p||t==null||t===\"\"?(this._$AH!==p&&this._$AR(),this._$AH=p):t!==this._$AH&&t!==y&&this._(t):t._$litType$!==void 0?this.$(t):t.nodeType!==void 0?this.T(t):lt(t)?this.k(t):this._(t)}O(t){return this._$AA.parentNode.insertBefore(t,this._$AB)}T(t){this._$AH!==t&&(this._$AR(),this._$AH=this.O(t))}_(t){this._$AH!==p&&U(this._$AH)?this._$AA.nextSibling.data=t:this.T(g.createTextNode(t)),this._$AH=t}$(t){let{values:e,_$litType$:s}=t,i=typeof s==\"number\"?this._$AC(t):(s.el===void 0&&(s.el=O.createElement(pt(s.h,s.h[0]),this.options)),s);if(this._$AH?._$AD===i)this._$AH.p(e);else{let r=new L(i,this),n=r.u(this.options);r.p(e),this.T(n),this._$AH=r}}_$AC(t){let e=at.get(t.strings);return e===void 0&&at.set(t.strings,e=new O(t)),e}k(t){F(this._$AH)||(this._$AH=[],this._$AR());let e=this._$AH,s,i=0;for(let r of t)i===e.length?e.push(s=new o(this.O(P()),this.O(P()),this,this.options)):s=e[i],s._$AI(r),i++;i<e.length&&(this._$AR(s&&s._$AB.nextSibling,i),e.length=i)}_$AR(t=this._$AA.nextSibling,e){for(this._$AP?.(!1,!0,e);t!==this._$AB;){let s=t.nextSibling;t.remove(),t=s}}setConnected(t){this._$AM===void 0&&(this._$Cv=t,this._$AP?.(t))}},S=class{get tagName(){return this.element.tagName}get _$AU(){return this._$AM._$AU}constructor(t,e,s,i,r){this.type=1,this._$AH=p,this._$AN=void 0,this.element=t,this.name=e,this._$AM=i,this.options=r,s.length>2||s[0]!==\"\"||s[1]!==\"\"?(this._$AH=Array(s.length-1).fill(new String),this.strings=s):this._$AH=p}_$AI(t,e=this,s,i){let r=this.strings,n=!1;if(r===void 0)t=v(this,t,e,0),n=!U(t)||t!==this._$AH&&t!==y,n&&(this._$AH=t);else{let l=t,h,c;for(t=r[0],h=0;h<r.length-1;h++)c=v(this,l[s+h],e,h),c===y&&(c=this._$AH[h]),n||=!U(c)||c!==this._$AH[h],c===p?t=p:t!==p&&(t+=(c??\"\")+r[h+1]),this._$AH[h]=c}n&&!i&&this.j(t)}j(t){t===p?this.element.removeAttribute(this.name):this.element.setAttribute(this.name,t??\"\")}},k=class extends S{constructor(){super(...arguments),this.type=3}j(t){this.element[this.name]=t===p?void 0:t}},D=class extends S{constructor(){super(...arguments),this.type=4}j(t){this.element.toggleAttribute(this.name,!!t&&t!==p)}},j=class extends S{constructor(t,e,s,i,r){super(t,e,s,i,r),this.type=5}_$AI(t,e=this){if((t=v(this,t,e,0)??p)===y)return;let s=this._$AH,i=t===p&&s!==p||t.capture!==s.capture||t.once!==s.once||t.passive!==s.passive,r=t!==p&&(s===p||i);i&&this.element.removeEventListener(this.name,this,s),r&&this.element.addEventListener(this.name,this,t),this._$AH=t}handleEvent(t){typeof this._$AH==\"function\"?this._$AH.call(this.options?.host??this.element,t):this._$AH.handleEvent(t)}},B=class{constructor(t,e,s){this.element=t,this.type=6,this._$AN=void 0,this._$AM=e,this.options=s}get _$AU(){return this._$AM._$AU}_$AI(t){v(this,t)}},Tt={M:K,P:_,A:Z,C:1,L:dt,R:L,D:lt,V:v,I:E,H:S,N:D,U:j,B:k,F:B},bt=q.litHtmlPolyfillSupport;bt?.(O,E),(q.litHtmlVersions??=[]).push(\"3.3.1\");var ut=(o,t,e)=>{let s=e?.renderBefore??t,i=s._$litPart$;if(i===void 0){let r=e?.renderBefore??null;s._$litPart$=i=new E(t.insertBefore(P(),r),r,void 0,e??{})}return i._$AI(o),i};var G=globalThis,b=class extends ${constructor(){super(...arguments),this.renderOptions={host:this},this._$Do=void 0}createRenderRoot(){let t=super.createRenderRoot();return this.renderOptions.renderBefore??=t.firstChild,t}update(t){let e=this.render();this.hasUpdated||(this.renderOptions.isConnected=this.isConnected),super.update(t),this._$Do=ut(e,this.renderRoot,this.renderOptions)}connectedCallback(){super.connectedCallback(),this._$Do?.setConnected(!0)}disconnectedCallback(){super.disconnectedCallback(),this._$Do?.setConnected(!1)}render(){return y}};b._$litElement$=!0,b.finalized=!0,G.litElementHydrateSupport?.({LitElement:b});var Ct=G.litElementPolyfillSupport;Ct?.({LitElement:b});var kt={_$AK:(o,t,e)=>{o._$AK(t,e)},_$AL:o=>o._$AL};(G.litElementVersions??=[]).push(\"4.2.1\");var zt=!1;export{C as CSSResult,b as LitElement,$ as ReactiveElement,kt as _$LE,Tt as _$LH,Y as adoptStyles,$t as css,V as defaultConverter,I as getCompatibleStyle,Ot as html,zt as isServer,Rt as mathml,y as noChange,st as notEqual,p as nothing,ut as render,T as supportsAdoptingStyleSheets,Ht as svg,X as unsafeCSS};\n/*! Bundled license information:\n\n@lit/reactive-element/css-tag.js:\n  (**\n   * @license\n   * Copyright 2019 Google LLC\n   * SPDX-License-Identifier: BSD-3-Clause\n   *)\n\n@lit/reactive-element/reactive-element.js:\nlit-html/lit-html.js:\nlit-element/lit-element.js:\n  (**\n   * @license\n   * Copyright 2017 Google LLC\n   * SPDX-License-Identifier: BSD-3-Clause\n   *)\n\nlit-html/is-server.js:\n  (**\n   * @license\n   * Copyright 2022 Google LLC\n   * SPDX-License-Identifier: BSD-3-Clause\n   *)\n*/\n//# sourceMappingURL=lit.bundle.mjs.map";
+    const __litUrl = URL.createObjectURL(new Blob([__LIT_SRC], { type: 'text/javascript' }));
+    const { LitElement, html, css, nothing, noChange, svg, unsafeCSS } = await import(__litUrl);
+    URL.revokeObjectURL(__litUrl);
+
+// ================= TTS: Microsoft Edge Neural TTS (browser WebSocket) =================
+// Real neural voice (en-US-AriaNeural). Runs fully in the browser via the same
+// wss endpoint Edge uses — no backend. Falls back to Web Speech TTS if the socket
+// fails (offline / blocked network). Single-file & offline-capable is preserved:
+// online → 真人级发音; offline → 系统语音兜底.
+const EDGE_VOICE = 'en-US-AriaNeural';
+const EDGE_TRUSTED_TOKEN = '6A5AA1D4EAFF4E9FB37E23D68491D6F4';
+const EDGE_WSS = 'wss://speech.platform.bing.com/consumer/speech/synthesize/readaloud/edge/v1?TrustedClientToken=' + EDGE_TRUSTED_TOKEN;
+
+let _edgeBlocked = false;              // once we know it fails, stop retrying → go local
+const _edgeCache = new Map();          // "rate|text" → objectURL (avoid re-synth)
+
+// speech rate: shared by Edge TTS (SSML rate %) and local TTS (utterance.rate)
+const RATE_LEVELS = {
+  slow:   { ssml: '-35%', local: 0.65, label: '慢' },
+  normal: { ssml: '-8%',  local: 0.85, label: '正常' },
+  fast:   { ssml: '+15%', local: 1.05, label: '快' }
+};
+let _rate = 'normal';
+
+function _uuid(){ return 'xxxxxxxxxxxx4xxxyxxxxxxxxxxxxxxx'.replace(/[xy]/g, c => { const r = Math.random()*16|0; return (c==='x'?r:(r&0x3|0x8)).toString(16); }); }
+function _dateStr(){ return new Date().toString().replace(/GMT.*/, 'GMT+0000 (Coordinated Universal Time)'); }
+function _ssml(text){
+  const esc = String(text).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+  const rate = (RATE_LEVELS[_rate] || RATE_LEVELS.normal).ssml;
+  return `<speak version='1.0' xmlns='http://www.w3.org/2001/10/synthesis' xml:lang='en-US'>`
+    + `<voice name='${EDGE_VOICE}'><prosody rate='${rate}' pitch='+0Hz'>${esc}</prosody></voice></speak>`;
+}
+
+// ---- persistent WebSocket (reused across requests to avoid per-call handshake latency) ----
+let _ws = null, _wsReady = null;
+const _pending = new Map();   // requestId → { chunks, resolve, reject, timer }
+
+function _connect(){
+  if (_wsReady) return _wsReady;
+  _wsReady = new Promise((resolve, reject) => {
+    let ws;
+    try { ws = new WebSocket(EDGE_WSS); } catch(e){ _wsReady = null; return reject(e); }
+    ws.binaryType = 'arraybuffer';
+    const openTimer = setTimeout(() => { try{ws.close();}catch(e){} _wsReady=null; reject(new Error('open timeout')); }, 6000);
+    ws.onopen = () => {
+      clearTimeout(openTimer);
+      ws.send(
+        `X-Timestamp:${_dateStr()}\r\nContent-Type:application/json; charset=utf-8\r\nPath:speech.config\r\n\r\n`
+        + `{"context":{"synthesis":{"audio":{"metadataoptions":{"sentenceBoundaryEnabled":"false","wordBoundaryEnabled":"false"},"outputFormat":"audio-24khz-48kbitrate-mono-mp3"}}}}`
+      );
+      _ws = ws; resolve(ws);
+    };
+    ws.onmessage = (ev) => {
+      if (typeof ev.data === 'string') {
+        // header text frames carry X-RequestId; route by it
+        const m = ev.data.match(/X-RequestId:([0-9a-f]+)/i);
+        const id = m && m[1];
+        if (ev.data.includes('Path:turn.end') && id && _pending.has(id)) {
+          const st = _pending.get(id); _pending.delete(id); clearTimeout(st.timer);
+          if (!st.chunks.length) return st.reject(new Error('no audio'));
+          st.resolve(URL.createObjectURL(new Blob(st.chunks, { type: 'audio/mpeg' })));
+        }
+      } else {
+        const buf = new Uint8Array(ev.data);
+        // audio binary frame: parse X-RequestId from its text header
+        const headerLen = (buf[0] << 8) | buf[1];
+        const header = new TextDecoder().decode(buf.slice(2, 2 + headerLen));
+        const m = header.match(/X-RequestId:([0-9a-f]+)/i);
+        const id = m && m[1];
+        const audio = buf.slice(2 + headerLen);
+        if (id && _pending.has(id) && audio.length) _pending.get(id).chunks.push(audio);
+      }
+    };
+    const drop = () => { _ws = null; _wsReady = null; _pending.forEach(st => { clearTimeout(st.timer); st.reject(new Error('ws closed')); }); _pending.clear(); };
+    ws.onerror = drop; ws.onclose = drop;
+  });
+  return _wsReady;
+}
+
+// Synthesize via the shared WSS connection, resolve to an audio object URL (mp3).
+function _edgeSynth(text){
+  return _connect().then(ws => new Promise((resolve, reject) => {
+    const id = _uuid().replace(/-/g,'').toUpperCase();
+    const timer = setTimeout(() => { if (_pending.has(id)) { _pending.delete(id); reject(new Error('timeout')); } }, 5000);
+    _pending.set(id, { chunks: [], resolve, reject, timer });
+    try {
+      ws.send(
+        `X-RequestId:${id}\r\nContent-Type:application/ssml+xml\r\nX-Timestamp:${_dateStr()}Z\r\nPath:ssml\r\n\r\n`
+        + _ssml(text)
+      );
+    } catch(e){ _pending.delete(id); clearTimeout(timer); reject(e); }
+  }));
+}
+
+// prewarm: synthesize all page sentences in the background so clicks are instant
+function _prewarm(sentences){
+  if (_edgeBlocked) return;
+  let i = 0;
+  const step = () => {
+    if (i >= sentences.length || _edgeBlocked) return;
+    const text = sentences[i++];
+    const key = _rate + '|' + text;
+    if (_edgeCache.has(key)) { step(); return; }
+    _edgeSynth(text).then(url => { _edgeCache.set(key, url); setTimeout(step, 60); })
+                    .catch(() => { setTimeout(step, 60); });   // keep going even if one fails
+  };
+  // small initial delay so first paint isn't blocked
+  setTimeout(step, 120);
+}
+
+function setRate(r){ if(RATE_LEVELS[r]){ _rate = r; _edgeCache.clear(); if (window.__allSentences) _prewarm(window.__allSentences); } }
+
+function speak(text, btnEl){
+  if (!text) return;
+  if (btnEl) btnEl.classList.add('playing');
+  const done = () => { if (btnEl) btnEl.classList.remove('playing'); };
+  try { window.speechSynthesis && window.speechSynthesis.cancel(); } catch(e){}
+  if (!window.__ttsAudio) window.__ttsAudio = new Audio();
+  const a = window.__ttsAudio;
+  a.volume = 0.6;                 // default playback volume
+  try { a.pause(); } catch(e){}
+
+  const playUrl = (url) => {
+    a.onended = done; a.onerror = () => _localSpeak(text, btnEl);
+    a.src = url; const p = a.play(); if (p && p.catch) p.catch(() => _localSpeak(text, btnEl));
+  };
+
+  if (_edgeBlocked) { _localSpeak(text, btnEl); return; }
+  const cacheKey = _rate + '|' + text;
+  if (_edgeCache.has(cacheKey)) { playUrl(_edgeCache.get(cacheKey)); return; }
+
+  // 抢答式:450ms 内 Edge 没返回就先用系统语音发声,Edge 结果照常回填缓存供下次秒响
+  let settled = false;
+  const grace = setTimeout(() => { if (settled) return; settled = true; _localSpeak(text, btnEl); }, 450);
+  _edgeSynth(text).then(url => {
+    _edgeCache.set(cacheKey, url);
+    if (settled) return;
+    settled = true; clearTimeout(grace); playUrl(url);
+  }).catch(() => {
+    if (settled) { _edgeBlocked = true; return; }
+    settled = true; clearTimeout(grace); _edgeBlocked = true; _localSpeak(text, btnEl);
+  });
+}
+
+// ---------- Local fallback: best available Web Speech voice ----------
+let _voices = [], _bestVoice = null;
+function _pickVoice(){
+  try { _voices = window.speechSynthesis.getVoices() || []; } catch(e){ _voices = []; }
+  if (!_voices.length) return null;
+  const en = _voices.filter(v => /^en(-|_)/i.test(v.lang) || /english/i.test(v.name));
+  if (!en.length) { _bestVoice = _voices[0]; return _bestVoice; }
+  const score = (v) => { const n=(v.name||'').toLowerCase(); let s=0;
+    if(/natural|neural|online|wavenet|premium|enhanced/.test(n)) s+=50;
+    if(/google/.test(n)) s+=30; if(/microsoft|aria|jenny|guy|libby|sonia/.test(n)) s+=28;
+    if(/samantha|karen|daniel|serena|moira/.test(n)) s+=20;
+    if(/^en-us/i.test(v.lang)) s+=12; else if(/^en-gb/i.test(v.lang)) s+=10; else s+=4;
+    if(v.localService===false) s+=8; return s; };
+  en.sort((a,b)=>score(b)-score(a)); _bestVoice = en[0]; return _bestVoice;
+}
+if ('speechSynthesis' in window) { _pickVoice(); window.speechSynthesis.onvoiceschanged = _pickVoice; }
+function _localSpeak(text, btnEl){
+  try {
+    if (!('speechSynthesis' in window)) { if(btnEl) btnEl.classList.remove('playing'); return; }
+    window.speechSynthesis.cancel();
+    const u = new SpeechSynthesisUtterance(text);
+    const v = _bestVoice || _pickVoice();
+    if (v) { u.voice = v; u.lang = v.lang; } else { u.lang = 'en-US'; }
+    u.rate = (RATE_LEVELS[_rate] || RATE_LEVELS.normal).local; u.pitch = 1.0; u.volume = 0.6;
+    if (btnEl) { u.onend = () => btnEl.classList.remove('playing'); u.onerror = () => btnEl.classList.remove('playing'); }
+    window.speechSynthesis.speak(u);
+  } catch (e) { if(btnEl) btnEl.classList.remove('playing'); }
+}
+
+const ico = (id, cls) => html`<svg class="ico ${cls || ''}" aria-hidden="true"><use href="#${id}"></use></svg>`;
+
+// ---------- 例句配色 + 句子成分 + 句子音标 ----------
+const _ROLE_SHORT = { s:'主语', v:'谓语', o:'宾语', a:'状语', c:'引导词' };
+const _ROLE_MAP   = { s:'subj', v:'verb', o:'obj', a:'other', c:'conj' };
+function colorSentence(sentence){
+  const ann = (typeof window!=='undefined' && window.SENT_ANN) ? window.SENT_ANN[sentence] : null;
+  if (ann){
+    const joined = ann.map(p=>p[1]).join(' ');
+    let tail = '';
+    const rest = sentence.slice(joined.length);
+    if (/^[.?!,]+/.test(rest.trimStart())) tail = rest.trim();
+    return html`<span class="sent-underline">${ann.map((p,i) => {
+      const role = _ROLE_MAP[p[0]] || 'obj';
+      const isLast = i===ann.length-1;
+      return html`<span class="tk-u tk-u--${role}"><span class="tk-u__word">${p[1]}${isLast&&tail?tail:''}</span><span class="tk-u__tag">${_ROLE_SHORT[p[0]]||''}</span></span>${isLast?'':' '}`;
+    })}</span>`;
+  }
+  return html`<span class="sent-underline">${sentence}</span>`;
+}
+
+function explainSentence(sentence){
+  const ann = (typeof window!=='undefined' && window.SENT_ANN) ? window.SENT_ANN[sentence] : null;
+  if (ann){
+    const nm = { s:'主语', v:'谓语', o:'宾语', a:'状语', c:'引导词' };
+    const isBe = ann.some(p=>p[0]==='v' && /^(am|is|are|was|were)$/i.test(p[1].trim()));
+    const roleName = code => (code==='o' && isBe) ? '表语' : nm[code];
+    const formula = ann.map(p=>`${roleName(p[0])}(${p[1]})`).join('  →  ');
+    return { formula, note:'' };
+  }
+  return { formula:'', note:'' };
+}
+
+function sentenceIPA(sentence){
+  const dict = window.IPA_DICT || {};
+  const words = sentence.split(/\s+/).filter(Boolean);
+  const parts = words.map(w => {
+    const clean = w.toLowerCase().replace(/[.,!?;:'"]/g,'');
+    const ipa = dict[clean];
+    return ipa ? ipa.replace(/^\/|\/$/g,'') : clean;
+  });
+  return '/' + parts.join(' ') + '/';
+}
+
+class OpApp extends LitElement {
+  static properties = {
+    tab: { state: true }, activeScene: { state: true },
+    qIndex: { state: true }, qPicked: { state: true }, qAnswered: { state: true }, qScore: { state: true }, combo: { state: true },
+    wrong: { state: true }, favs: { state: true }, quizMode: { state: true }, rate: { state: true }, _tick: { state: true }
+  };
+  static get FAV_INTERVALS(){ return [1,2,4,7,15,30]; }   // 间隔重复天数
+  createRenderRoot(){ return this; }
+  constructor(){
+    super();
+    this.data = window.OP_DATA;
+    this.tab = 'words';
+    this.activeScene = null;
+    this.qIndex = 0; this.qPicked = -1; this.qAnswered = false; this.qScore = 0; this.combo = 0;
+    this.quizMode = 'all';                 // 'all' | 'review'(错题本) | 'fav'(收藏本到期词)
+    this.rate = 'normal';
+    this.wrong = this._loadWrong();        // Set<word>
+    this.favs  = this._loadFavs();         // Map<word,{level,due,added}>
+    this._tick = 0;
+    this._quiz = []; this._buildQuiz();
+  }
+  toggleTheme(){ const c=document.documentElement.getAttribute('data-theme'); document.documentElement.setAttribute('data-theme', c==='dark'?'':'dark'); this.requestUpdate(); }
+  get isDark(){ return document.documentElement.getAttribute('data-theme')==='dark'; }
+  setTab(t){ this.tab=t; this.activeScene=null;
+    if(t==='quiz'){ this.quizMode='all'; this._buildQuiz(); }
+    if(t==='review'){ this.quizMode='review'; this._buildQuiz(); }
+    // 'favs' tab shows the list first; review starts from a button
+  }
+  openScene(id){ this.activeScene=id; window.scrollTo&&window.scrollTo(0,0); }
+  changeRate(r){ setRate(r); this.rate = r; }
+
+  // ---------------- 错题本(自动收藏答错的词,按 word 去重)----------------
+  _loadWrong(){ try{ const r=localStorage.getItem('op_wrong'); return new Set(r?JSON.parse(r):[]); }catch(e){ return new Set(); } }
+  _saveWrong(){ try{ localStorage.setItem('op_wrong', JSON.stringify([...this.wrong])); }catch(e){} }
+  _qWord(q){ return q.word || q.say; }
+  _wrongQuestions(){                       // 每个错词只取一道代表题(去重)
+    const byWord=new Map();
+    this.data.quiz.forEach(q=>{ const k=this._qWord(q); if(this.wrong.has(k)&&!byWord.has(k)) byWord.set(k,q); });
+    return [...byWord.values()];
+  }
+  clearWrong(){ this.wrong=new Set(); this._saveWrong(); this._buildQuiz(); this.requestUpdate(); }
+
+  // ---------------- 收藏本(⭐ 手动收藏,间隔重复,独立本子,永不自动删除)---------
+  _loadFavs(){ try{ return new Map(Object.entries(JSON.parse(localStorage.getItem('op_favs')||'{}'))); }catch(e){ return new Map(); } }
+  _saveFavs(){ try{ localStorage.setItem('op_favs', JSON.stringify(Object.fromEntries(this.favs))); }catch(e){} }
+  isCollected(en){ return this.favs.has(en); }
+  toggleCollect(en){ const m=new Map(this.favs);
+    if(m.has(en)) m.delete(en); else m.set(en,{level:0,due:Date.now(),added:Date.now()});
+    this.favs=m; this._saveFavs(); this.requestUpdate(); }
+  _dueWords(){ const now=Date.now(),o=[]; this.favs.forEach((v,w)=>{ if(!v.due||v.due<=now) o.push(w); }); return o; }
+  _reviewFav(word, correct){ const IV=OpApp.FAV_INTERVALS, m=new Map(this.favs), cur=m.get(word)||{level:0,added:Date.now()};
+    const level = correct ? Math.min((cur.level||0)+1, IV.length-1) : 0;
+    m.set(word,{level,due:Date.now()+IV[level]*86400000,added:cur.added||Date.now()});
+    this.favs=m; this._saveFavs(); }
+  _favQuestions(){                         // 到期收藏词,每词一题
+    const due=new Set(this._dueWords()); const byWord=new Map();
+    this.data.quiz.forEach(q=>{ const k=this._qWord(q); if(due.has(k)&&!byWord.has(k)) byWord.set(k,q); });
+    return [...byWord.values()];
+  }
+
+  _buildQuiz(){
+    let pool;
+    if(this.quizMode==='review'){ pool=this._wrongQuestions(); }
+    else if(this.quizMode==='fav'){ pool=this._favQuestions(); }
+    else { pool=this.data.quiz; }
+    const cap = (this.quizMode==='all') ? 25 : 9999;
+    this._quiz = [...pool].sort(()=>Math.random()-0.5).slice(0, cap)
+      .map(q=>({ ...q, opts:[...q.options].sort(()=>Math.random()-0.5) }));
+    this.qIndex=0; this.qPicked=-1; this.qAnswered=false; this.qScore=0; this.combo=0;
+  }
+  startFavReview(){ this.tab='favs'; this.quizMode='fav'; this._buildQuiz(); this.requestUpdate(); }
+
+  pickQ(i){
+    if(this.qAnswered) return;
+    this.qAnswered=true; this.qPicked=i;
+    const q=this._quiz[this.qIndex]; const k=this._qWord(q);
+    const correct = q.opts[i]===q.answer;
+    if(correct){ this.qScore++; this.combo++; } else { this.combo=0; }
+    if(this.quizMode==='review'){
+      if(correct && this.wrong.has(k)){ const n=new Set(this.wrong); n.delete(k); this.wrong=n; this._saveWrong(); }
+    } else if(this.quizMode==='fav'){
+      this._reviewFav(k, correct);         // 间隔重复:对→level+1推远,错→level0很快再来
+    } else {
+      if(!correct && !this.wrong.has(k)){ this.wrong=new Set([...this.wrong,k]); this._saveWrong(); }
+    }
+    speak(q.say);
+  }
+  nextQ(){ if(this.qIndex<this._quiz.length-1){ this.qIndex++; this.qPicked=-1; this.qAnswered=false; } else { this.qIndex=this._quiz.length; } }
+
+  render(){
+    return html`
+      <div class="app">
+        ${this.renderBar()}
+        <main class="wrap" style="flex:1;width:100%;">
+          ${this.tab==='words' ? (this.activeScene ? this.renderWordList() : this.renderScenes()) : ''}
+          ${this.tab==='tips' ? this.renderTips() : ''}
+          ${this.tab==='quiz' ? this.renderQuiz() : ''}
+          ${this.tab==='review' ? this.renderReview() : ''}
+          ${this.tab==='favs' ? this.renderFavs() : ''}
+        </main>
+        <footer class="foot wrap">表达观点专项 · 6 大对话场景 · 点 ${ico('ic-volume','ico--xs')} 听发音 · 微软神经语音</footer>
+      </div>`;
+  }
+
+  renderBar(){
+    return html`
+      <header class="appbar">
+        <div class="wrap appbar__inner">
+          <div class="brand">
+            <div class="brand__mark">${ico('ic-messages','ico--md')}</div>
+            <div class="brand__txt"><span class="brand__title">表达观点专项</span><span class="brand__sub">Beijing Primary · Expressing Opinions</span></div>
+          </div>
+          <div class="appbar__spacer"></div>
+          <div class="rate-seg" title="朗读语速">${['slow','normal','fast'].map(r=>html`
+            <button class="rate-opt ${this.rate===r?'rate-opt--on':''}" @click=${()=>this.changeRate(r)}>${RATE_LEVELS[r].label}</button>`)}</div>
+          <nav class="tabs" role="tablist">
+            <button class="tab" aria-selected=${this.tab==='words'} @click=${()=>this.setTab('words')}>${ico('ic-grid','ico--sm')}<span class="tab__txt">场景单词</span></button>
+            <button class="tab" aria-selected=${this.tab==='tips'} @click=${()=>this.setTab('tips')}>${ico('ic-brain','ico--sm')}<span class="tab__txt">背词技巧</span></button>
+            <button class="tab" aria-selected=${this.tab==='quiz'} @click=${()=>this.setTab('quiz')}>${ico('ic-target','ico--sm')}<span class="tab__txt">闯关测验</span></button>
+            <button class="tab" aria-selected=${this.tab==='review'} @click=${()=>this.setTab('review')}>${ico('ic-repeat','ico--sm')}<span class="tab__txt">错题本${this.wrong.size?html` <span class="tab__badge">${this.wrong.size}</span>`:''}</span></button>
+            <button class="tab" aria-selected=${this.tab==='favs'} @click=${()=>this.setTab('favs')}>${ico('ic-star','ico--sm')}<span class="tab__txt">收藏本${this.favs.size?html` <span class="tab__badge">${this.favs.size}</span>`:''}</span></button>
+          </nav>
+          <button class="iconbtn" title="切换主题" @click=${()=>this.toggleTheme()}>${ico(this.isDark?'ic-sun':'ic-moon','ico--sm')}</button>
+        </div>
+      </header>`;
+  }
+
+  renderScenes(){
+    return html`
+      <section class="hero">
+        <h1>表达观点 · 6 大对话场景</h1>
+        <p>${this.data.intro}</p>
+      </section>
+      <div class="scene-grid">
+        ${this.data.scenes.map(s => html`
+          <button class="scene-card scene-card--${s.color}" @click=${()=>this.openScene(s.id)}>
+            <div class="scene-card__ic">${ico(s.icon,'ico--md')}</div>
+            <div class="scene-card__name">${s.name}</div>
+            <div class="scene-card__en">${s.en}</div>
+            <div class="scene-card__count">${s.words.length} 词 / 句</div>
+          </button>`)}
+      </div>`;
+  }
+
+  renderSentLegend(){
+    return html`
+      <div class="sent-guide">
+        <div class="sent-guide__head">${ico('ic-book-open','ico--sm')} 顺便复习:表达观点的句子怎么组?</div>
+        <div class="sent-guide__rule">常见顺序是 <b>主语 → 谓语 → 宾语/表语</b>(谁 → 是/做什么 → 什么),问句用 <b>引导词</b>(What/How/Why…)开头,地点/时间等<b>状语</b>放后面。每个例句都用<b>彩色下划线 + 成分标注</b>标出结构:</div>
+        <div class="sent-legend">
+          <span class="sent-legend__item"><span class="tk-u tk-u--subj"><span class="tk-u__word">主语</span></span> 谁</span>
+          <span class="sent-legend__item"><span class="tk-u tk-u--verb"><span class="tk-u__word">谓语</span></span> 是/做什么</span>
+          <span class="sent-legend__item"><span class="tk-u tk-u--obj"><span class="tk-u__word">宾语</span></span> 什么/怎么样</span>
+          <span class="sent-legend__item"><span class="tk-u tk-u--other"><span class="tk-u__word">状语</span></span> 地点/时间</span>
+          <span class="sent-legend__item"><span class="tk-u tk-u--conj"><span class="tk-u__word">引导词</span></span> What/How/Why</span>
+        </div>
+      </div>`;
+  }
+
+  renderWordList(){
+    const s=this.data.scenes.find(x=>x.id===this.activeScene);
+    return html`
+      <section class="wl">
+        <div class="wl__head">
+          <button class="backbtn" @click=${()=>{this.activeScene=null;}}>${ico('ic-arrow-left','ico--sm')} 返回</button>
+          <div class="wl__title">${ico(s.icon,'ico--sm')} ${s.name} <span class="wl__en">${s.en}</span></div>
+          <button class="tbtn" @click=${()=>this.readAll(s)}>${ico('ic-volume','ico--sm')} 整组朗读</button>
+        </div>
+        ${this.renderSentLegend()}
+        <div class="word-grid">
+          ${s.words.map(w => this.renderWordCard(w))}
+        </div>
+      </section>`;
+  }
+
+  renderWordCard(w){
+    const collected=this.isCollected(w.en);
+    return html`
+      <div class="word-card">
+        <div class="word-card__head">
+          <div><div class="word-card__word">${w.en}</div><div class="word-card__ipa">${w.ipa}</div></div>
+          <div class="word-card__btns">
+            <button class="collect ${collected?'collect--on':''}" title=${collected?'已加入收藏本,点按取消':'收藏到收藏本(单独记忆·定期复习)'} aria-pressed=${collected} @click=${()=>this.toggleCollect(w.en)}>${ico('ic-star','ico--sm')}</button>
+            <button class="speak speak--sm" title="朗读单词" @click=${(e)=>speak(w.en,e.currentTarget)}>${ico('ic-volume','ico--sm')}</button>
+          </div>
+        </div>
+        <div class="word-card__zh">${w.zh}</div>
+        <div class="word-card__ex">
+          <div class="word-card__ex-en"><span>${colorSentence(w.example)}</span>
+            <button class="speak speak--sm" title="朗读例句" @click=${(e)=>speak(w.example,e.currentTarget)}>${ico('ic-volume','ico--xs')}</button>
+          </div>
+          <div class="word-card__ex-ipa">${ico('ic-volume','ico--xs')} ${sentenceIPA(w.example)}</div>
+          <div class="word-card__ex-zh">${w.exampleZh}</div>
+          ${this.sentStruct(w.example)}
+        </div>
+      </div>`;
+  }
+
+  sentStruct(sentence){
+    const e = explainSentence(sentence);
+    return html`
+      <div class="sent-struct">
+        <div class="sent-struct__formula">${e.formula}</div>
+      </div>`;
+  }
+
+  readAll(s){
+    const list=s.words.map(w=>w.en); let i=0;
+    const step=()=>{ if(i>=list.length) return; speak(list[i++]); const a=window.__ttsAudio;
+      if(a){ a.onended=()=>setTimeout(step,120); a.onerror=()=>setTimeout(step,700);} else setTimeout(step,900); };
+    step();
+  }
+
+  renderTips(){
+    const tips=this.data.tips||[];
+    return html`
+      <section class="tips-sec">
+        <div class="tips-hero">
+          <div class="tips-hero__ic">${ico('ic-brain','ico--md')}</div>
+          <div><h2 class="tips-hero__title">记「观点词」的 6 个技巧</h2>
+          <p class="tips-hero__sub">表达观点靠的是整句功能句,把词「理解着记、成对成串地记、反复地记」,又快又牢。</p></div>
+        </div>
+        <div class="tips-grid">
+          ${tips.map(t=>html`
+            <div class="tip-card tip-card--${t.color}">
+              <div class="tip-card__top"><span class="tip-card__ic">${ico(t.icon,'ico--sm')}</span><span class="tip-card__name">${t.name}</span></div>
+              <div class="tip-card__idea">${t.idea}</div>
+              <div class="tip-card__how-label">怎么做</div>
+              <ul class="tip-card__how">${t.how.map(h=>html`<li>${h}</li>`)}</ul>
+              <div class="tip-card__eg">${ico('ic-lightbulb','ico--xs')} 举例:${t.example}</div>
+            </div>`)}
+        </div>
+      </section>`;
+  }
+
+  renderQuiz(){
+    return html`
+      <section class="quiz-sec">
+        <div class="quiz-sechead">
+          <div class="quiz-sechead__t">${ico('ic-target','ico--md')} 闯关测验</div>
+          <div class="quiz-sechead__s">题库共 ${this.data.quiz.length} 题:中↔英互译 + <b>句子填空</b>(在对话句子里选对词,考的是用法和搭配,不只是死记单词)。每轮随机抽 25 题,<b>答错自动进「错题本」</b>循环复习。</div>
+        </div>
+        ${this._renderQuizBody()}
+      </section>`;
+  }
+
+  renderReview(){
+    const n=this.wrong.size;
+    return html`
+      <section class="quiz-sec">
+        <div class="quiz-sechead">
+          <div class="quiz-sechead__t">${ico('ic-repeat','ico--md')} 错题本 · 循环记忆</div>
+          <div class="quiz-sechead__s">这里只练你<b>答错过</b>的词,每个词一道题。答对一次就自动移出;还没记住的会一直留着,直到全部清空。</div>
+        </div>
+        ${n===0 ? html`
+          <div class="quiz-card quiz-done">
+            ${ico('ic-check-circle-2','ico--3xl')}
+            <div class="quiz-done__score" style="font-size:var(--s-fs-h1)">错题本是空的</div>
+            <p style="color:var(--s-text-secondary)">去「闯关测验」里练一练,答错的词会自动收藏到这里,方便你反复攻克。</p>
+            <button class="btn btn--primary" style="margin-top:var(--g-sp-4)" @click=${()=>this.setTab('quiz')}>${ico('ic-target','ico--sm')} 去测验</button>
+          </div>
+        ` : html`
+          <div class="review-bar">
+            <span>${ico('ic-repeat','ico--sm')} 待复习错词:<b>${n}</b> 个</span>
+            <button class="linkbtn" @click=${()=>this.clearWrong()}>${ico('ic-x-circle','ico--xs')} 清空错题本</button>
+          </div>
+          ${this._renderQuizBody()}
+        `}
+      </section>`;
+  }
+
+  // ---------------- 收藏本页面(列表 + 间隔重复复习)----------------
+  renderFavs(){
+    if(this.quizMode==='fav' && this._quiz.length>0 && this.qIndex<this._quiz.length){
+      return html`<section class="quiz-sec">
+        <div class="quiz-sechead"><div class="quiz-sechead__t">${ico('ic-star','ico--md')} 收藏本 · 复习到期词</div>
+          <div class="quiz-sechead__s">答对 → 熟练度 +1,下次隔更久再复习;答错 → 熟练度归零,很快再来。词永远留在收藏本里。</div></div>
+        ${this._renderQuizBody()}
+      </section>`;
+    }
+    const total=this.favs.size; const due=this._dueWords(); const dueN=due.length;
+    const now=Date.now();
+    // build a lookup for word data (first occurrence)
+    const wmap={};
+    this.data.scenes.forEach(s=>s.words.forEach(w=>{ if(!wmap[w.en]) wmap[w.en]=w; }));
+    const maxLv = OpApp.FAV_INTERVALS.length-1;
+    const items=[...this.favs.entries()].sort((a,b)=>(a[1].due||0)-(b[1].due||0));
+    return html`
+      <section class="quiz-sec">
+        <div class="quiz-sechead">
+          <div class="quiz-sechead__t">${ico('ic-star','ico--md')} 收藏本 · 间隔重复</div>
+          <div class="quiz-sechead__s">在「场景单词」里点单词卡上的 ⭐ 收藏想重点记的词。收藏的词<b>单独记忆、定期复习</b>(间隔 1/2/4/7/15/30 天),<b>不会自动删除</b>,只有你取消 ⭐ 才移出。</div>
+        </div>
+        ${total===0 ? html`
+          <div class="quiz-card quiz-done">
+            ${ico('ic-star','ico--3xl')}
+            <div class="quiz-done__score" style="font-size:var(--s-fs-h1)">收藏本是空的</div>
+            <p style="color:var(--s-text-secondary)">去「场景单词」里,点你想重点记的词卡上的 ⭐,把它加进收藏本,之后按间隔重复来复习。</p>
+            <button class="btn btn--primary" style="margin-top:var(--g-sp-4)" @click=${()=>this.setTab('words')}>${ico('ic-grid','ico--sm')} 去挑词收藏</button>
+          </div>
+        ` : html`
+          <div class="fav-stat">
+            <div class="fav-stat__cell"><div class="fav-stat__n">${total}</div><div class="fav-stat__l">收藏总数</div></div>
+            <div class="fav-stat__cell fav-stat__cell--due"><div class="fav-stat__n">${dueN}</div><div class="fav-stat__l">今天待复习</div></div>
+            <div class="fav-stat__cell"><div class="fav-stat__n">${total-dueN}</div><div class="fav-stat__l">已排期</div></div>
+          </div>
+          <div class="fav-actions">
+            <button class="btn btn--primary" ?disabled=${dueN===0} @click=${()=>this.startFavReview()}>${ico('ic-repeat','ico--sm')} 复习到期词(${dueN})</button>
+          </div>
+          <div class="fav-list">
+            ${items.map(([en,st])=>{
+              const w=wmap[en]||{en,ipa:'',zh:''};
+              const isDue=!st.due||st.due<=now;
+              const days=isDue?0:Math.ceil((st.due-now)/86400000);
+              return html`<div class="fav-item">
+                <div class="fav-item__main">
+                  <div class="fav-item__word">${en} <span class="fav-item__ipa">${w.ipa}</span></div>
+                  <div class="fav-item__zh">${w.zh}</div>
+                </div>
+                <div class="fav-item__meta">
+                  <span class="fav-item__due ${isDue?'fav-item__due--now':''}">${isDue?'待复习':days+' 天后复习'}</span>
+                  <span class="fav-item__lv">熟练度 ${st.level||0}/${maxLv}</span>
+                </div>
+                <button class="speak speak--sm" title="朗读" @click=${(e)=>speak(en,e.currentTarget)}>${ico('ic-volume','ico--xs')}</button>
+                <button class="fav-item__rm" title="移出收藏本" @click=${()=>this.toggleCollect(en)}>${ico('ic-x-circle','ico--xs')}</button>
+              </div>`;
+            })}
+          </div>
+        `}
+      </section>`;
+  }
+
+  _renderQuizBody(){
+    if(this.qIndex>=this._quiz.length){
+      const rev=this.quizMode==='review', fav=this.quizMode==='fav';
+      const done = rev && this.wrong.size===0;
+      let msg;
+      if(fav){ msg='这一轮到期收藏词复习完啦!按熟练度它们会在不同天数后再回来找你。'; }
+      else if(rev){ msg = done ? '错题全部攻克,错题本清空啦!' : '这一轮完成!还有没记牢的词,再来一轮继续攻克。'; }
+      else { msg = this.qScore>=22?'太棒了,观点词掌握得很牢!':this.qScore>=15?'不错,再刷一轮就更熟了!':'答错的已进错题本,去错题本重点复习!'; }
+      return html`
+        <div class="quiz-card quiz-done">
+          ${ico(done?'ic-award':'ic-check-circle-2','ico--3xl')}
+          <div class="quiz-done__score">${this.qScore} / ${this._quiz.length}</div>
+          <p style="color:var(--s-text-secondary)">${msg}</p>
+          <div class="quiz-done__btns">
+            ${fav ? html`
+              <button class="btn btn--primary" style="margin-top:var(--g-sp-4)" @click=${()=>{this.quizMode='fav';this._buildQuiz();this.requestUpdate();}} ?disabled=${this._dueWords().length===0}>${ico('ic-refresh','ico--sm')} 再复习到期词</button>
+              <button class="btn" style="margin-top:var(--g-sp-4)" @click=${()=>{this.quizMode='all';this.setTab('favs');}}>${ico('ic-star','ico--sm')} 回收藏本</button>
+            ` : html`
+              ${(!rev || (rev && this.wrong.size>0)) ? html`<button class="btn btn--primary" style="margin-top:var(--g-sp-4)" @click=${()=>{this._buildQuiz();this.requestUpdate();}}>${ico('ic-refresh','ico--sm')} ${rev?'再练一轮错题':'再来一轮'}</button>`:''}
+              ${!rev && this.wrong.size>0 ? html`<button class="btn" style="margin-top:var(--g-sp-4)" @click=${()=>this.setTab('review')}>${ico('ic-repeat','ico--sm')} 去错题本(${this.wrong.size})</button>`:''}
+            `}
+          </div>
+        </div>`;
+    }
+    const q=this._quiz[this.qIndex]; const pct=Math.round(this.qIndex/this._quiz.length*100);
+    return html`
+      <div class="quiz-card">
+        <div class="quiz-progress"><span>第 ${this.qIndex+1} / ${this._quiz.length} 题</span>
+          <span class="quiz-status">${this.combo>=2?html`<span class="combo">${ico('ic-zap','ico--xs')} 连对 ${this.combo}</span>`:''} 得分 ${this.qScore}</span></div>
+        <div class="quiz-bar"><div class="quiz-bar__fill" style="width:${pct}%"></div></div>
+        <div class="quiz-ask">
+          <div class="quiz-ask__mode">${q.mode==='zh2en'?'看中文,选英文':q.mode==='en2zh'?'看英文,选中文':'读对话句子,选出填空的词(看它在句子里怎么用)'}</div>
+          ${q.mode==='cloze' ? html`
+            <div class="quiz-ask__cloze">${q.prompt}</div>
+            <div class="quiz-ask__sub">${q.promptSub||''}</div>
+          ` : html`
+            <div class="quiz-ask__prompt">${q.prompt}
+              ${q.mode==='en2zh'?html`<button class="speak speak--sm" title="朗读" @click=${(e)=>speak(q.say,e.currentTarget)}>${ico('ic-volume','ico--sm')}</button>`:''}
+            </div>
+            <div class="quiz-ask__sub">${q.promptSub||''}</div>
+          `}
+        </div>
+        <div class="quiz-opts">
+          ${q.opts.map((opt,i)=>{ let cls=''; if(this.qAnswered){ if(opt===q.answer)cls='correct'; else if(i===this.qPicked)cls='wrong'; }
+            return html`<button class="quiz-opt ${cls}" ?disabled=${this.qAnswered} @click=${()=>this.pickQ(i)}>${opt}</button>`; })}
+        </div>
+        ${this.qAnswered?html`
+          <div class="quiz-feedback">
+            ${q.opts[this.qPicked]===q.answer
+              ? html`<span style="color:var(--g-green-700);font-weight:600">${ico('ic-check-circle-2','ico--sm')} 正确!${this.quizMode==='review'?html` <span class="fb-tag fb-tag--out">已移出错题本</span>`:''}${this.quizMode==='fav'?html` <span class="fb-tag fb-tag--out">熟练度 +1</span>`:''}</span>`
+              : html`<span style="color:var(--g-red-700);font-weight:600">${ico('ic-x-circle','ico--sm')} 正确答案:${q.answer} ${this.quizMode==='all'?html`<span class="fb-tag fb-tag--in">${ico('ic-repeat','ico--xs')} 已自动收藏</span>`:''}</span>`}
+            ${q.mode==='cloze' ? html`
+              <div class="quiz-feedback__sent">${colorSentence(q.full)}
+                <button class="speak speak--sm" title="朗读整句" @click=${(e)=>speak(q.full,e.currentTarget)}>${ico('ic-volume','ico--xs')}</button>
+              </div>
+              <span class="quiz-feedback__ipa">${sentenceIPA(q.full)}</span>
+            ` : html`<span class="quiz-feedback__ipa">${q.ipa||''}</span>`}
+          </div>
+          <div class="quiz-next"><button class="btn btn--primary" @click=${()=>this.nextQ()}>${this.qIndex<this._quiz.length-1?'下一题':'查看结果'} ${ico('ic-arrow-right','ico--sm')}</button></div>
+        `:''}
+      </div>`;
+  }
+
+  _collectSentences(){
+    const set=new Set();
+    this.data.scenes.forEach(s=>{ s.words.forEach(w=>{set.add(w.en);if(w.example)set.add(w.example);}); });
+    return [...set];
+  }
+  async firstUpdated(){
+    await this.updateComplete;
+    const b=document.getElementById('boot'); if(b) b.remove();
+    try{ const list=this._collectSentences(); window.__allSentences=list; if(typeof _connect==='function')_connect(); if(typeof _prewarm==='function')_prewarm(list); }catch(e){}
+  }
+}
+customElements.define('op-app', OpApp);
+
+</script>
+</body>
+</html>
