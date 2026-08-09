@@ -36,7 +36,8 @@
 
 | 页面 | 在线访问 | 更新时间 |
 |---|---|---|
-| 生活场景英语单词 · 关联+对比记忆 | [开始学习](https://beupgo.github.io/life-scenes-vocabulary-assoc-contrast.html) | 2026-08-08 21:41 |
+| 花钱主题英语单词 · 对比与用法区别 | [开始学习](https://beupgo.github.io/money-spending-vocabulary-contrast-usage.html) | 2026-08-09 13:26 |
+| 生活场景英语单词 · 关联+对比记忆 | [开始学习](https://beupgo.github.io/life-scenes-vocabulary-assoc-contrast.html) | 2026-08-08 13:42 |
 | 小学英语综合语法测试 · 150 题 | [开始学习](https://beupgo.github.io/primary-english-grammar-test-150.html) | 2026-08-06 07:10 |
 | 英语学习摸底测试卷 | [开始学习](https://beupgo.github.io/grade6-grammar-test-100.html) | 2026-08-06 07:10 |
 | 英语学习摸底测试卷 | [开始学习](https://beupgo.github.io/english-advanced-test-150.html) | 2026-08-04 14:56 |
@@ -104,6 +105,7 @@
 ├─ equation-word-problems.html  # 简易方程应用题练习卷
 ├─ life-scenes-vocabulary-assoc-contrast.html  # 生活场景英语单词 · 关联+对比记忆
 ├─ math-circle-shaded-area-worksheet.html  # 圆与阴影面积测试卷 · 北京小学
+├─ money-spending-vocabulary-contrast-usage.html  # 花钱主题英语单词 · 对比与用法区别
 ├─ new-vocabulary-5-scenes.html  # 新增单词专项 · 5 大场景
 ├─ primary-circle-lessons-problems.html  # 小学奥数 · 圆专题练习卷
 ├─ primary-english-grammar-test-150.html  # 小学英语综合语法测试 · 150 题
