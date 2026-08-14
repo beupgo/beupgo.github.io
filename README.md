@@ -9,7 +9,7 @@
 
 | 页面 | 在线访问 | 更新时间 |
 |---|---|---|
-| 分数乘除法与比例 · 小升初培优卷 | [开始学习](https://beupgo.github.io/math-fraction-ratio-worksheet.html) | 2026-08-09 20:21 |
+| 分数乘除法与比例 · 小升初培优卷 | [开始学习](https://beupgo.github.io/math-fraction-ratio-worksheet.html) | 2026-08-09 12:21 |
 | 圆与阴影面积测试卷 · 北京小学 | [开始学习](https://beupgo.github.io/math-circle-shaded-area-worksheet.html) | 2026-08-05 10:04 |
 | 小学奥数 · 圆专题练习卷 | [开始学习](https://beupgo.github.io/primary-circle-lessons-problems.html) | 2026-07-31 09:29 |
 | 简易方程应用题练习卷 | [开始学习](https://beupgo.github.io/equation-word-problems.html) | 2026-07-26 03:41 |
@@ -57,6 +57,12 @@
 | 英语组句魔法 · 句子小火车 \| 小学英语 | [开始学习](https://beupgo.github.io/English-G6-Sentence-Building.html) | 2026-07-10 14:16 |
 | 英语冒险岛 · 3-6年级暑假 | [开始学习](https://beupgo.github.io/english5.html) | 2026-07-04 21:41 |
 
+### 未分类
+
+| 页面 | 在线访问 | 更新时间 |
+|---|---|---|
+| 表达观点专项 · 6 大对话场景 | [开始学习](https://beupgo.github.io/beijing-primary-opinion-dialogues.html) | 2026-08-14 21:44 |
+
 ### 导航
 
 | 页面 | 在线访问 | 更新时间 |
@@ -94,6 +100,7 @@
 ├─ grade6-math.html  # 北京六年级数学 · 母题学习系统
 ├─ English-G6-Sentence-Building.html  # 英语组句魔法 · 句子小火车 | 小学英语
 ├─ Math-G5-Fraction-Common-Denominator.html  # 通分专项 · 理解通分的本质 | 小学数学
+├─ beijing-primary-opinion-dialogues.html  # 表达观点专项 · 6 大对话场景
 ├─ english-advanced-test-150.html  # 英语学习摸底测试卷
 ├─ english-collocations.html  # 英语固定搭配学习专题
 ├─ english-mixed-quiz.html  # 英语综合练习
