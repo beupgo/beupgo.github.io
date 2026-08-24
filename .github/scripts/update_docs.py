@@ -57,9 +57,9 @@ SUBJECT_ALIASES = {
 }
 
 SUBJECT_KEYWORDS = [
-    ("english", re.compile(r"英语|单词|词根|词缀|组句|句子")),
+    ("english", re.compile(r"英语|单词|词根|词缀|组句|句子|词汇|对话|健康|自然|观点")),
     ("chinese", re.compile(r"语文|作文|写作")),
-    ("math", re.compile(r"数学|奥数|方程|分数|几何|多边形|通分|运算|因数|倍数|圆|面积")),
+    ("math", re.compile(r"数学|奥数|方程|分数|几何|多边形|通分|运算|因数|倍数|圆|面积|浓度")),
 ]
 
 TRUE_VALUES = {"1", "true", "yes", "y", "on"}
