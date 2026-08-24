@@ -9,6 +9,14 @@
 
 | 页面 | 在线访问 | 更新时间 |
 |---|---|---|
+| 工程问题 · 数学培优卷 · 题目卷 | [开始学习](https://beupgo.github.io/math-work-rate-worksheet.html) | 2026-08-24 11:25 |
+| 工程问题 · 数学培优卷 · 答案与解析 | [开始学习](https://beupgo.github.io/math-work-rate-answers.html) | 2026-08-24 11:25 |
+| 按比例分配 · 数学培优卷 · 题目卷 | [开始学习](https://beupgo.github.io/math-ratio-allocation-worksheet.html) | 2026-08-24 11:25 |
+| 按比例分配 · 数学培优卷 · 答案与解析 | [开始学习](https://beupgo.github.io/math-ratio-allocation-answers.html) | 2026-08-24 11:25 |
+| 量率对应 · 数学培优卷 · 题目卷 | [开始学习](https://beupgo.github.io/math-quantity-rate-worksheet.html) | 2026-08-24 11:25 |
+| 量率对应 · 数学培优卷 · 答案与解析 | [开始学习](https://beupgo.github.io/math-quantity-rate-answers.html) | 2026-08-24 11:25 |
+| 圆环面积 · 数学培优卷 · 题目卷 | [开始学习](https://beupgo.github.io/math-annulus-area-worksheet.html) | 2026-08-24 11:25 |
+| 圆环面积 · 数学培优卷 · 答案与解析 | [开始学习](https://beupgo.github.io/math-annulus-area-answers.html) | 2026-08-24 11:25 |
 | 分数乘除法与比例 · 小升初培优卷 | [开始学习](https://beupgo.github.io/math-fraction-ratio-worksheet.html) | 2026-08-09 12:21 |
 | 圆与阴影面积测试卷 · 北京小学 | [开始学习](https://beupgo.github.io/math-circle-shaded-area-worksheet.html) | 2026-08-05 10:04 |
 | 小学奥数 · 圆专题练习卷 | [开始学习](https://beupgo.github.io/primary-circle-lessons-problems.html) | 2026-07-31 09:29 |
@@ -61,7 +69,8 @@
 
 | 页面 | 在线访问 | 更新时间 |
 |---|---|---|
-| 浓度问题 · 小升初培优卷 | [开始学习](https://beupgo.github.io/math-concentration-worksheet.html) | 2026-08-24 11:08 |
+| 浓度问题 · 小升初培优卷 | [开始学习](https://beupgo.github.io/math-concentration-worksheet.html) | 2026-08-24 11:25 |
+| 浓度问题 · 答案与解析 | [开始学习](https://beupgo.github.io/math-concentration-answers.html) | 2026-08-24 11:25 |
 | 健康很重要 · 6 大场景 | [开始学习](https://beupgo.github.io/health-matters-vocabulary.html) | 2026-08-14 14:20 |
 | 奇妙的大自然专项 · 6 大对话场景 | [开始学习](https://beupgo.github.io/beijing-primary-nature-dialogues.html) | 2026-08-14 14:20 |
 | 表达观点专项 · 6 大对话场景 | [开始学习](https://beupgo.github.io/beijing-primary-opinion-dialogues.html) | 2026-08-14 13:45 |
@@ -117,9 +126,18 @@
 ├─ equation-word-problems.html  # 简易方程应用题练习卷
 ├─ health-matters-vocabulary.html  # 健康很重要 · 6 大场景
 ├─ life-scenes-vocabulary-assoc-contrast.html  # 生活场景英语单词 · 关联+对比记忆
+├─ math-annulus-area-answers.html  # 圆环面积 · 数学培优卷 · 答案与解析
+├─ math-annulus-area-worksheet.html  # 圆环面积 · 数学培优卷 · 题目卷
 ├─ math-circle-shaded-area-worksheet.html  # 圆与阴影面积测试卷 · 北京小学
+├─ math-concentration-answers.html  # 浓度问题 · 答案与解析
 ├─ math-concentration-worksheet.html  # 浓度问题 · 小升初培优卷
 ├─ math-fraction-ratio-worksheet.html  # 分数乘除法与比例 · 小升初培优卷
+├─ math-quantity-rate-answers.html  # 量率对应 · 数学培优卷 · 答案与解析
+├─ math-quantity-rate-worksheet.html  # 量率对应 · 数学培优卷 · 题目卷
+├─ math-ratio-allocation-answers.html  # 按比例分配 · 数学培优卷 · 答案与解析
+├─ math-ratio-allocation-worksheet.html  # 按比例分配 · 数学培优卷 · 题目卷
+├─ math-work-rate-answers.html  # 工程问题 · 数学培优卷 · 答案与解析
+├─ math-work-rate-worksheet.html  # 工程问题 · 数学培优卷 · 题目卷
 ├─ money-spending-vocabulary-contrast-usage.html  # 花钱主题英语单词 · 对比与用法区别
 ├─ new-vocabulary-5-scenes.html  # 新增单词专项 · 5 大场景
 ├─ primary-circle-lessons-problems.html  # 小学奥数 · 圆专题练习卷
