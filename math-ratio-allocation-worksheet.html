@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>浓度问题 · 小升初培优卷</title>
+<title>按比例分配 · 数学培优卷 · 题目卷</title>
 <style>/* =========================================================================
    AURORA DESIGN SYSTEM · tokens.css · v2.0
    Three-tier token architecture
@@ -1194,6 +1194,12 @@ body {
 [data-print-preview] .sheet { box-shadow: none; }
 </style>
 <style>
+:root{ --fig-line: var(--s-text); --fig-fill: var(--s-surface); --fig-shade: var(--s-brand-subtle); }
+[data-theme="dark"]{ --fig-shade: color-mix(in srgb, var(--s-brand) 26%, transparent); }
+.fig{ width:100%; max-width:220px; height:auto; display:block; }
+.fig-t{ font-size:11px; fill: var(--s-text-secondary); font-family: var(--g-font); }
+</style>
+<style>
 .q{ border:var(--g-bw-1) solid var(--s-border); border-radius:var(--g-r-lg);
     padding:var(--g-sp-5) var(--g-sp-6); margin-bottom:var(--g-sp-5);
     background:var(--s-surface); break-inside:avoid; }
@@ -1209,13 +1215,16 @@ body {
 .tag--适度{ background:var(--s-success-bg); color:var(--s-success-text); }
 .tag--进阶{ background:var(--s-warning-bg); color:var(--s-warning-text); }
 .tag--挑战{ background:var(--s-danger-bg); color:var(--s-danger-text); }
-.q__grid{ display:grid; grid-template-columns:minmax(0,1fr); gap:var(--g-sp-6); align-items:start; }
+.q__grid{ display:grid; grid-template-columns:minmax(0,1fr) auto; gap:var(--g-sp-6); align-items:start; }
+.q__grid.nofig{ grid-template-columns:minmax(0,1fr); }
 .q__body{ font-size:var(--g-fs-md); line-height:var(--g-lh-loose); color:var(--s-text); }
+.q__fig{ display:flex; align-items:center; justify-content:center; padding:var(--g-sp-2);
+    border:var(--g-bw-1) solid var(--s-border); border-radius:var(--g-r-md); background:var(--s-bg); }
 .workspace{ margin-top:var(--g-sp-4); }
 .workspace__label{ font-size:var(--g-fs-sm); color:var(--s-text-secondary);
     display:flex; align-items:center; gap:var(--g-sp-2); }
-.workspace__lines>div{ height:26px; border-bottom:var(--g-bw-1) dashed var(--s-border);
-    margin-top:var(--g-sp-3); }
+.workspace__lines>div{ height:26px; border-bottom:var(--g-bw-1) dashed var(--s-border); margin-top:var(--g-sp-3); }
+@media (max-width:600px){ .q__grid{ grid-template-columns:minmax(0,1fr); } }
 .ws-head{ flex-wrap:wrap; }
 .ws-head>div:first-child{ flex:1 1 300px; min-width:0; }
 .ws-meta{ flex:0 0 auto; min-width:210px; justify-items:end; }
@@ -1658,8 +1667,8 @@ body {
 <div class="sheet">
 <header class="ws-head">
       <div>
-        <h1 class="ws-title">浓度问题 · 数学培优卷</h1>
-        <p class="ws-sub">北京小学六年级 · 小升初培优 · 共 12 题 · 难度：适度 → 挑战 · 建议用时 60 分钟</p>
+        <h1 class="ws-title">按比例分配 · 数学培优卷</h1>
+        <p class="ws-sub">北京小学六年级 · 小升初培优 · 共 6 题 · 难度：适度 → 挑战 · 建议用时 45 分钟</p>
       </div>
       <div class="ws-meta">
         <span class="ws-field">姓名：<span class="ws-line"></span></span>
@@ -1668,23 +1677,22 @@ body {
         <span class="ws-field" style="align-items:center">得分：<span class="ws-score"></span></span>
       </div>
     </header>
-<div class="callout"><svg class="ico ico--sm" aria-hidden="true"><use href="#ic-lightbulb"></use></svg>
-      答题要求：请把<strong>解题思路和完整的计算步骤</strong>写在每题下方的横线上。
-      牢记「浓度 = 溶质 ÷ 溶液，溶液 = 溶质 + 水」，抓住<strong>不变量</strong>(加水/蒸发时盐不变、加盐时水不变)，
-      设量或列方程要写规范，最后写出答句。只写答案不写过程不得满分。<strong>做题时请勿翻看答案册。</strong></div>
+<div class="callout"><svg class="ico ico--sm" aria-hidden="true"><use href="#ic-lightbulb"></use></svg>答题要求：请把<strong>解题思路和完整的计算步骤</strong>写在每题下方的横线上。牢记按比分配三步：①求总份数;②求每一份;③每份乘各自份数。抓住「几份对应哪个具体量」是关键，最后写出答句。只写答案不写过程不得满分。
+      <strong>做题时请勿翻看答案册。</strong></div>
 <section class="ws-section">
 <div class="ws-section__head">
           <span class="ws-badge">一</span>
-          <span class="ws-section__title">浓度基本关系</span>
+          <span class="ws-section__title">按比分配的基本方法</span>
           <span class="ws-section__hint">（1–2 题）</span>
         </div>
 <div class="q">
   <div class="q__head">
     <span class="q__no"><svg class="ico ico--sm" aria-hidden="true"><use href="#ic-circle-dot"></use></svg>第 1 题</span>
-    <span class="q__tags"><span class="tag">求浓度</span><span class="tag tag--适度">适度</span></span>
+    <span class="q__tags"><span class="tag">三项按比分配</span><span class="tag tag--适度">适度</span></span>
   </div>
-  <div class="q__grid">
-    <div class="q__body">在 180 克水中溶解 20 克盐，完全溶解后得到一杯盐水。这杯盐水的<strong>含盐率(浓度)</strong>是百分之几？</div>
+  <div class="q__grid nofig">
+    <div class="q__body">把 360 个苹果按 <strong>2 ∶ 3 ∶ 4</strong> 分给甲、乙、丙三个班。三个班各分得多少个?</div>
+    
   </div>
   <div class="workspace">
     <div class="workspace__label"><svg class="ico ico--sm" aria-hidden="true"><use href="#ic-edit"></use></svg> 解答：</div>
@@ -1694,10 +1702,11 @@ body {
 <div class="q">
   <div class="q__head">
     <span class="q__no"><svg class="ico ico--sm" aria-hidden="true"><use href="#ic-circle-dot"></use></svg>第 2 题</span>
-    <span class="q__tags"><span class="tag">求盐与水</span><span class="tag tag--适度">适度</span></span>
+    <span class="q__tags"><span class="tag">由差求各量</span><span class="tag tag--适度">适度</span></span>
   </div>
-  <div class="q__grid">
-    <div class="q__body">一杯 500 克的盐水，浓度是 16%。这杯盐水里含盐多少克？含水多少克？</div>
+  <div class="q__grid nofig">
+    <div class="q__body">一笔钱按 <strong>5 ∶ 3</strong> 分给两人,已知第一个人比第二个人多得 40 元。两人各得多少元?一共多少元?</div>
+    
   </div>
   <div class="workspace">
     <div class="workspace__label"><svg class="ico ico--sm" aria-hidden="true"><use href="#ic-edit"></use></svg> 解答：</div>
@@ -1708,16 +1717,17 @@ body {
 <section class="ws-section">
 <div class="ws-section__head">
           <span class="ws-badge">二</span>
-          <span class="ws-section__title">加水 · 加盐 · 蒸发 · 混合</span>
-          <span class="ws-section__hint">（3–6 题）</span>
+          <span class="ws-section__title">连比与由差求量</span>
+          <span class="ws-section__hint">（3–4 题）</span>
         </div>
 <div class="q">
   <div class="q__head">
     <span class="q__no"><svg class="ico ico--sm" aria-hidden="true"><use href="#ic-circle-dot"></use></svg>第 3 题</span>
-    <span class="q__tags"><span class="tag">加水稀释·盐不变</span><span class="tag tag--进阶">进阶</span></span>
+    <span class="q__tags"><span class="tag">连比·统一中间量</span><span class="tag tag--进阶">进阶</span></span>
   </div>
-  <div class="q__grid">
-    <div class="q__body">一杯浓度为 20% 的盐水，含盐 40 克。要使浓度降到 8%，需要再加入多少克水？</div>
+  <div class="q__grid nofig">
+    <div class="q__body">已知 <strong>a ∶ b = 2 ∶ 3</strong>,<strong>b ∶ c = 4 ∶ 5</strong>。若 c = 45,求 a、b 各是多少,以及 a + b + c。</div>
+    
   </div>
   <div class="workspace">
     <div class="workspace__label"><svg class="ico ico--sm" aria-hidden="true"><use href="#ic-edit"></use></svg> 解答：</div>
@@ -1727,36 +1737,11 @@ body {
 <div class="q">
   <div class="q__head">
     <span class="q__no"><svg class="ico ico--sm" aria-hidden="true"><use href="#ic-circle-dot"></use></svg>第 4 题</span>
-    <span class="q__tags"><span class="tag">加盐·水不变</span><span class="tag tag--进阶">进阶</span></span>
+    <span class="q__tags"><span class="tag">按比分配求总量</span><span class="tag tag--进阶">进阶</span></span>
   </div>
-  <div class="q__grid">
-    <div class="q__body">一杯 400 克、浓度 10% 的盐水，要把浓度提高到 20%，需要再加入多少克盐？(不加水)</div>
-  </div>
-  <div class="workspace">
-    <div class="workspace__label"><svg class="ico ico--sm" aria-hidden="true"><use href="#ic-edit"></use></svg> 解答：</div>
-    <div class="workspace__lines"><div></div><div></div><div></div><div></div><div></div><div></div></div>
-  </div>
-</div>
-<div class="q">
-  <div class="q__head">
-    <span class="q__no"><svg class="ico ico--sm" aria-hidden="true"><use href="#ic-circle-dot"></use></svg>第 5 题</span>
-    <span class="q__tags"><span class="tag">蒸发浓缩·盐不变</span><span class="tag tag--进阶">进阶</span></span>
-  </div>
-  <div class="q__grid">
-    <div class="q__body">一杯 600 克、浓度 5% 的盐水，通过加热蒸发掉一些水，使浓度上升到 15%。蒸发掉了多少克水？</div>
-  </div>
-  <div class="workspace">
-    <div class="workspace__label"><svg class="ico ico--sm" aria-hidden="true"><use href="#ic-edit"></use></svg> 解答：</div>
-    <div class="workspace__lines"><div></div><div></div><div></div><div></div><div></div><div></div></div>
-  </div>
-</div>
-<div class="q">
-  <div class="q__head">
-    <span class="q__no"><svg class="ico ico--sm" aria-hidden="true"><use href="#ic-circle-dot"></use></svg>第 6 题</span>
-    <span class="q__tags"><span class="tag">两液混合求浓度</span><span class="tag tag--进阶">进阶</span></span>
-  </div>
-  <div class="q__grid">
-    <div class="q__body">把 200 克浓度 12% 的盐水与 300 克浓度 22% 的盐水混合在一起，混合后盐水的浓度是多少？</div>
+  <div class="q__grid nofig">
+    <div class="q__body">一批零件由甲、乙、丙三人按 <strong>3 ∶ 4 ∶ 5</strong> 的工作量完成。已知丙比甲多完成 24 个。这批零件共有多少个?</div>
+    
   </div>
   <div class="workspace">
     <div class="workspace__label"><svg class="ico ico--sm" aria-hidden="true"><use href="#ic-edit"></use></svg> 解答：</div>
@@ -1767,29 +1752,17 @@ body {
 <section class="ws-section">
 <div class="ws-section__head">
           <span class="ws-badge">三</span>
-          <span class="ws-section__title">配比 · 倒推 · 置换 · 压轴</span>
-          <span class="ws-section__hint">（7–12 题）</span>
+          <span class="ws-section__title">比的变化与压轴</span>
+          <span class="ws-section__hint">（5–6 题）</span>
         </div>
 <div class="q">
   <div class="q__head">
-    <span class="q__no"><svg class="ico ico--sm" aria-hidden="true"><use href="#ic-circle-dot"></use></svg>第 7 题</span>
-    <span class="q__tags"><span class="tag">配比·十字交叉</span><span class="tag tag--挑战">挑战</span></span>
+    <span class="q__no"><svg class="ico ico--sm" aria-hidden="true"><use href="#ic-circle-dot"></use></svg>第 5 题</span>
+    <span class="q__tags"><span class="tag">比的变化·设份数</span><span class="tag tag--挑战">挑战</span></span>
   </div>
-  <div class="q__grid">
-    <div class="q__body">现有浓度 10% 和浓度 25% 的两种盐水，要配成浓度 16% 的盐水。所用这两种盐水的<strong>质量比</strong>是多少？</div>
-  </div>
-  <div class="workspace">
-    <div class="workspace__label"><svg class="ico ico--sm" aria-hidden="true"><use href="#ic-edit"></use></svg> 解答：</div>
-    <div class="workspace__lines"><div></div><div></div><div></div><div></div><div></div><div></div></div>
-  </div>
-</div>
-<div class="q">
-  <div class="q__head">
-    <span class="q__no"><svg class="ico ico--sm" aria-hidden="true"><use href="#ic-circle-dot"></use></svg>第 8 题</span>
-    <span class="q__tags"><span class="tag">加盐倒推原量</span><span class="tag tag--挑战">挑战</span></span>
-  </div>
-  <div class="q__grid">
-    <div class="q__body">一杯盐水的浓度是 10%。往里加入 10 克盐并充分溶解后，浓度变成了 20%。原来这杯盐水有多少克？其中含盐多少克？</div>
+  <div class="q__grid nofig">
+    <div class="q__body">一个班男、女生人数的比是 <strong>3 ∶ 2</strong>。后来又转来 4 名女生,这时男、女生人数的比变成 <strong>6 ∶ 5</strong>。原来这个班共有多少人?</div>
+    
   </div>
   <div class="workspace">
     <div class="workspace__label"><svg class="ico ico--sm" aria-hidden="true"><use href="#ic-edit"></use></svg> 解答：</div>
@@ -1798,50 +1771,12 @@ body {
 </div>
 <div class="q">
   <div class="q__head">
-    <span class="q__no"><svg class="ico ico--sm" aria-hidden="true"><use href="#ic-circle-dot"></use></svg>第 9 题</span>
-    <span class="q__tags"><span class="tag">倒出再加水</span><span class="tag tag--挑战">挑战</span></span>
+    <span class="q__no"><svg class="ico ico--sm" aria-hidden="true"><use href="#ic-circle-dot"></use></svg>第 6 题</span>
+    <span class="q__tags"><span class="tag">多人按比分配(压轴)</span><span class="tag tag--挑战">挑战</span></span>
   </div>
-  <div class="q__grid">
-    <div class="q__body">一杯 500 克、浓度 20% 的盐水。先倒出 100 克盐水，再往剩下的盐水里加入 100 克水。现在盐水的浓度是多少？</div>
-  </div>
-  <div class="workspace">
-    <div class="workspace__label"><svg class="ico ico--sm" aria-hidden="true"><use href="#ic-edit"></use></svg> 解答：</div>
-    <div class="workspace__lines"><div></div><div></div><div></div><div></div><div></div><div></div></div>
-  </div>
-</div>
-<div class="q">
-  <div class="q__head">
-    <span class="q__no"><svg class="ico ico--sm" aria-hidden="true"><use href="#ic-circle-dot"></use></svg>第 10 题</span>
-    <span class="q__tags"><span class="tag">反复置换</span><span class="tag tag--挑战">挑战</span></span>
-  </div>
-  <div class="q__grid">
-    <div class="q__body">一桶 1000 克、浓度 30% 的盐水。每次操作:先倒出 200 克盐水，再加入 200 克水搅匀。连续做<strong>两次</strong>这样的操作后，盐水的浓度是多少？</div>
-  </div>
-  <div class="workspace">
-    <div class="workspace__label"><svg class="ico ico--sm" aria-hidden="true"><use href="#ic-edit"></use></svg> 解答：</div>
-    <div class="workspace__lines"><div></div><div></div><div></div><div></div><div></div><div></div></div>
-  </div>
-</div>
-<div class="q">
-  <div class="q__head">
-    <span class="q__no"><svg class="ico ico--sm" aria-hidden="true"><use href="#ic-circle-dot"></use></svg>第 11 题</span>
-    <span class="q__tags"><span class="tag">混合含未知浓度</span><span class="tag tag--挑战">挑战</span></span>
-  </div>
-  <div class="q__grid">
-    <div class="q__body">甲盐水 300 克，浓度 15%;乙盐水 200 克，浓度未知。把甲、乙全部混合后，浓度恰好是 18%。乙盐水的浓度是多少？</div>
-  </div>
-  <div class="workspace">
-    <div class="workspace__label"><svg class="ico ico--sm" aria-hidden="true"><use href="#ic-edit"></use></svg> 解答：</div>
-    <div class="workspace__lines"><div></div><div></div><div></div><div></div><div></div><div></div></div>
-  </div>
-</div>
-<div class="q">
-  <div class="q__head">
-    <span class="q__no"><svg class="ico ico--sm" aria-hidden="true"><use href="#ic-circle-dot"></use></svg>第 12 题</span>
-    <span class="q__tags"><span class="tag">糖水·设量列方程(压轴)</span><span class="tag tag--挑战">挑战</span></span>
-  </div>
-  <div class="q__grid">
-    <div class="q__body">一杯糖水，糖的质量占糖水的 1/9。往里加入 40 克糖并充分溶解后，糖的质量变成占糖水的 1/5。原来这杯糖水有多少克？</div>
+  <div class="q__grid nofig">
+    <div class="q__body">一项工程的奖金 <strong>4200 元</strong>,按三名工人的实际工时比 <strong>7 ∶ 6 ∶ 8</strong> 分配。每人各得奖金多少元?</div>
+    
   </div>
   <div class="workspace">
     <div class="workspace__label"><svg class="ico ico--sm" aria-hidden="true"><use href="#ic-edit"></use></svg> 解答：</div>
@@ -1850,7 +1785,7 @@ body {
 </div>
 </section>
 <footer class="ws-foot">
-      <span>浓度问题 · 题目卷</span>
+      <span>按比例分配 · 数学培优卷 · 题目卷</span>
       <span>答案与解题步骤见《答案册》</span>
     </footer>
 </div>

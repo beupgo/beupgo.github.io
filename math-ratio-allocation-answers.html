@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>浓度问题 · 小升初培优卷</title>
+<title>按比例分配 · 数学培优卷 · 答案与解析</title>
 <style>/* =========================================================================
    AURORA DESIGN SYSTEM · tokens.css · v2.0
    Three-tier token architecture
@@ -1194,6 +1194,12 @@ body {
 [data-print-preview] .sheet { box-shadow: none; }
 </style>
 <style>
+:root{ --fig-line: var(--s-text); --fig-fill: var(--s-surface); --fig-shade: var(--s-brand-subtle); }
+[data-theme="dark"]{ --fig-shade: color-mix(in srgb, var(--s-brand) 26%, transparent); }
+.fig{ width:100%; max-width:220px; height:auto; display:block; }
+.fig-t{ font-size:11px; fill: var(--s-text-secondary); font-family: var(--g-font); }
+</style>
+<style>
 .q{ border:var(--g-bw-1) solid var(--s-border); border-radius:var(--g-r-lg);
     padding:var(--g-sp-5) var(--g-sp-6); margin-bottom:var(--g-sp-5);
     background:var(--s-surface); break-inside:avoid; }
@@ -1209,13 +1215,16 @@ body {
 .tag--适度{ background:var(--s-success-bg); color:var(--s-success-text); }
 .tag--进阶{ background:var(--s-warning-bg); color:var(--s-warning-text); }
 .tag--挑战{ background:var(--s-danger-bg); color:var(--s-danger-text); }
-.q__grid{ display:grid; grid-template-columns:minmax(0,1fr); gap:var(--g-sp-6); align-items:start; }
+.q__grid{ display:grid; grid-template-columns:minmax(0,1fr) auto; gap:var(--g-sp-6); align-items:start; }
+.q__grid.nofig{ grid-template-columns:minmax(0,1fr); }
 .q__body{ font-size:var(--g-fs-md); line-height:var(--g-lh-loose); color:var(--s-text); }
+.q__fig{ display:flex; align-items:center; justify-content:center; padding:var(--g-sp-2);
+    border:var(--g-bw-1) solid var(--s-border); border-radius:var(--g-r-md); background:var(--s-bg); }
 .workspace{ margin-top:var(--g-sp-4); }
 .workspace__label{ font-size:var(--g-fs-sm); color:var(--s-text-secondary);
     display:flex; align-items:center; gap:var(--g-sp-2); }
-.workspace__lines>div{ height:26px; border-bottom:var(--g-bw-1) dashed var(--s-border);
-    margin-top:var(--g-sp-3); }
+.workspace__lines>div{ height:26px; border-bottom:var(--g-bw-1) dashed var(--s-border); margin-top:var(--g-sp-3); }
+@media (max-width:600px){ .q__grid{ grid-template-columns:minmax(0,1fr); } }
 .ws-head{ flex-wrap:wrap; }
 .ws-head>div:first-child{ flex:1 1 300px; min-width:0; }
 .ws-meta{ flex:0 0 auto; min-width:210px; justify-items:end; }
@@ -1227,7 +1236,47 @@ body {
   .ws-field .ws-line{ flex:1; min-width:0; }
 }
 </style>
-<style></style>
+<style>
+.ans-controls{ display:flex; gap:var(--g-sp-3); flex-wrap:wrap; margin-bottom:var(--g-sp-6); }
+.ans{ border:var(--g-bw-1) solid var(--s-border); border-radius:var(--g-r-lg);
+      margin-bottom:var(--g-sp-4); overflow:hidden; background:var(--s-surface); break-inside:avoid; }
+.ans__bar{ display:flex; align-items:center; gap:var(--g-sp-3); width:100%;
+      padding:var(--g-sp-4) var(--g-sp-5); background:none; border:0; cursor:pointer;
+      font:inherit; text-align:left; color:var(--s-text); }
+.ans__bar:hover{ background:var(--s-surface-hover); }
+.ans__no{ font-weight:var(--g-fw-bold); color:var(--s-brand); display:inline-flex;
+      align-items:center; gap:var(--g-sp-2); min-width:64px; }
+.ans__q{ flex:1; min-width:0; font-size:var(--g-fs-sm); color:var(--s-text-secondary);
+      overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+.ans__chev{ transition:transform .18s; color:var(--s-text-muted); }
+.ans[open] .ans__chev{ transform:rotate(90deg); }
+.ans__body{ padding:0 var(--g-sp-5) var(--g-sp-5); }
+.ans__grid{ display:grid; grid-template-columns:minmax(0,1fr) auto; gap:var(--g-sp-5); align-items:start; }
+.ans__grid.nofig{ grid-template-columns:minmax(0,1fr); }
+.ans__fig{ display:flex; align-items:center; justify-content:center; padding:var(--g-sp-2);
+      border:var(--g-bw-1) solid var(--s-border); border-radius:var(--g-r-md); background:var(--s-bg); }
+.qtext{ font-size:var(--g-fs-md); line-height:var(--g-lh-loose); color:var(--s-text); margin-bottom:var(--g-sp-4); }
+.block{ margin-top:var(--g-sp-4); }
+.block__h{ display:inline-flex; align-items:center; gap:var(--g-sp-2);
+      font-weight:var(--g-fw-semibold); font-size:var(--g-fs-sm); margin-bottom:var(--g-sp-2); }
+.think{ border-left:var(--g-bw-4) solid var(--s-brand); background:var(--s-brand-subtle);
+      padding:var(--g-sp-3) var(--g-sp-4); border-radius:var(--g-r-sm);
+      color:var(--s-text-secondary); font-size:var(--g-fs-sm); line-height:var(--g-lh-base); }
+.steps{ list-style:none; margin:0; padding:0; counter-reset:s; }
+.steps li{ counter-increment:s; position:relative; padding:var(--g-sp-2) 0 var(--g-sp-2) var(--g-sp-8);
+      font-size:var(--g-fs-md); color:var(--s-text); line-height:var(--g-lh-base); }
+.steps li::before{ content:counter(s); position:absolute; left:0; top:var(--g-sp-2);
+      width:22px; height:22px; border-radius:var(--g-r-full);
+      background:var(--s-brand-subtle); color:var(--s-brand);
+      font-size:var(--g-fs-xs); font-weight:var(--g-fw-bold);
+      display:inline-flex; align-items:center; justify-content:center; }
+.finalans{ margin-top:var(--g-sp-4); padding:var(--g-sp-3) var(--g-sp-4);
+      background:var(--s-success-bg); border:var(--g-bw-1) solid var(--s-success-border);
+      border-radius:var(--g-r-md); color:var(--s-success-text);
+      font-weight:var(--g-fw-semibold); display:flex; align-items:center; gap:var(--g-sp-2); }
+@media (max-width:600px){ .ans__grid{ grid-template-columns:minmax(0,1fr); } .ans__q{ display:none; } }
+@media print{ .ans__body{ display:block !important; } .ans__chev{ display:none; } }
+</style>
 </head>
 <body>
 <svg xmlns="http://www.w3.org/2000/svg" style="display:none" aria-hidden="true">
@@ -1651,222 +1700,95 @@ body {
 
 
 <div class="toolbar no-print">
-  
+  <button class="btn" id="expandAll">全部展开</button><button class="btn" id="collapseAll">全部收起</button>
   <button class="btn" id="themeBtn" title="切换深色 / 浅色">深色</button>
   <button class="btn btn--primary" id="printNow" title="打印 / 另存为 PDF">打印</button>
 </div>
 <div class="sheet">
 <header class="ws-head">
       <div>
-        <h1 class="ws-title">浓度问题 · 数学培优卷</h1>
-        <p class="ws-sub">北京小学六年级 · 小升初培优 · 共 12 题 · 难度：适度 → 挑战 · 建议用时 60 分钟</p>
-      </div>
-      <div class="ws-meta">
-        <span class="ws-field">姓名：<span class="ws-line"></span></span>
-        <span class="ws-field">班级：<span class="ws-line"></span></span>
-        <span class="ws-field">日期：<span class="ws-line"></span></span>
-        <span class="ws-field" style="align-items:center">得分：<span class="ws-score"></span></span>
+        <h1 class="ws-title">答案与解题步骤 · 解析册</h1>
+        <p class="ws-sub">按比例分配培优卷配套答案 · 每题含「解题思路 + 书写步骤 + 答句」</p>
       </div>
     </header>
-<div class="callout"><svg class="ico ico--sm" aria-hidden="true"><use href="#ic-lightbulb"></use></svg>
-      答题要求：请把<strong>解题思路和完整的计算步骤</strong>写在每题下方的横线上。
-      牢记「浓度 = 溶质 ÷ 溶液，溶液 = 溶质 + 水」，抓住<strong>不变量</strong>(加水/蒸发时盐不变、加盐时水不变)，
-      设量或列方程要写规范，最后写出答句。只写答案不写过程不得满分。<strong>做题时请勿翻看答案册。</strong></div>
-<section class="ws-section">
-<div class="ws-section__head">
-          <span class="ws-badge">一</span>
-          <span class="ws-section__title">浓度基本关系</span>
-          <span class="ws-section__hint">（1–2 题）</span>
-        </div>
-<div class="q">
-  <div class="q__head">
-    <span class="q__no"><svg class="ico ico--sm" aria-hidden="true"><use href="#ic-circle-dot"></use></svg>第 1 题</span>
-    <span class="q__tags"><span class="tag">求浓度</span><span class="tag tag--适度">适度</span></span>
-  </div>
-  <div class="q__grid">
-    <div class="q__body">在 180 克水中溶解 20 克盐，完全溶解后得到一杯盐水。这杯盐水的<strong>含盐率(浓度)</strong>是百分之几？</div>
-  </div>
-  <div class="workspace">
-    <div class="workspace__label"><svg class="ico ico--sm" aria-hidden="true"><use href="#ic-edit"></use></svg> 解答：</div>
-    <div class="workspace__lines"><div></div><div></div><div></div><div></div><div></div><div></div></div>
-  </div>
+<div class="callout"><svg class="ico ico--sm" aria-hidden="true"><use href="#ic-brain"></use></svg>
+      使用建议：先独立完成题目卷，再对照本册的<strong>解题思路</strong>反思突破口，
+      最后逐步核对<strong>书写步骤</strong>，检查公式、单位与答句是否规范。默认全部收起，点击题目条即可展开。</div>
+<div id="app"></div>
 </div>
-<div class="q">
-  <div class="q__head">
-    <span class="q__no"><svg class="ico ico--sm" aria-hidden="true"><use href="#ic-circle-dot"></use></svg>第 2 题</span>
-    <span class="q__tags"><span class="tag">求盐与水</span><span class="tag tag--适度">适度</span></span>
-  </div>
-  <div class="q__grid">
-    <div class="q__body">一杯 500 克的盐水，浓度是 16%。这杯盐水里含盐多少克？含水多少克？</div>
-  </div>
-  <div class="workspace">
-    <div class="workspace__label"><svg class="ico ico--sm" aria-hidden="true"><use href="#ic-edit"></use></svg> 解答：</div>
-    <div class="workspace__lines"><div></div><div></div><div></div><div></div><div></div><div></div></div>
-  </div>
-</div>
-</section>
-<section class="ws-section">
-<div class="ws-section__head">
-          <span class="ws-badge">二</span>
-          <span class="ws-section__title">加水 · 加盐 · 蒸发 · 混合</span>
-          <span class="ws-section__hint">（3–6 题）</span>
-        </div>
-<div class="q">
-  <div class="q__head">
-    <span class="q__no"><svg class="ico ico--sm" aria-hidden="true"><use href="#ic-circle-dot"></use></svg>第 3 题</span>
-    <span class="q__tags"><span class="tag">加水稀释·盐不变</span><span class="tag tag--进阶">进阶</span></span>
-  </div>
-  <div class="q__grid">
-    <div class="q__body">一杯浓度为 20% 的盐水，含盐 40 克。要使浓度降到 8%，需要再加入多少克水？</div>
-  </div>
-  <div class="workspace">
-    <div class="workspace__label"><svg class="ico ico--sm" aria-hidden="true"><use href="#ic-edit"></use></svg> 解答：</div>
-    <div class="workspace__lines"><div></div><div></div><div></div><div></div><div></div><div></div></div>
-  </div>
-</div>
-<div class="q">
-  <div class="q__head">
-    <span class="q__no"><svg class="ico ico--sm" aria-hidden="true"><use href="#ic-circle-dot"></use></svg>第 4 题</span>
-    <span class="q__tags"><span class="tag">加盐·水不变</span><span class="tag tag--进阶">进阶</span></span>
-  </div>
-  <div class="q__grid">
-    <div class="q__body">一杯 400 克、浓度 10% 的盐水，要把浓度提高到 20%，需要再加入多少克盐？(不加水)</div>
-  </div>
-  <div class="workspace">
-    <div class="workspace__label"><svg class="ico ico--sm" aria-hidden="true"><use href="#ic-edit"></use></svg> 解答：</div>
-    <div class="workspace__lines"><div></div><div></div><div></div><div></div><div></div><div></div></div>
-  </div>
-</div>
-<div class="q">
-  <div class="q__head">
-    <span class="q__no"><svg class="ico ico--sm" aria-hidden="true"><use href="#ic-circle-dot"></use></svg>第 5 题</span>
-    <span class="q__tags"><span class="tag">蒸发浓缩·盐不变</span><span class="tag tag--进阶">进阶</span></span>
-  </div>
-  <div class="q__grid">
-    <div class="q__body">一杯 600 克、浓度 5% 的盐水，通过加热蒸发掉一些水，使浓度上升到 15%。蒸发掉了多少克水？</div>
-  </div>
-  <div class="workspace">
-    <div class="workspace__label"><svg class="ico ico--sm" aria-hidden="true"><use href="#ic-edit"></use></svg> 解答：</div>
-    <div class="workspace__lines"><div></div><div></div><div></div><div></div><div></div><div></div></div>
-  </div>
-</div>
-<div class="q">
-  <div class="q__head">
-    <span class="q__no"><svg class="ico ico--sm" aria-hidden="true"><use href="#ic-circle-dot"></use></svg>第 6 题</span>
-    <span class="q__tags"><span class="tag">两液混合求浓度</span><span class="tag tag--进阶">进阶</span></span>
-  </div>
-  <div class="q__grid">
-    <div class="q__body">把 200 克浓度 12% 的盐水与 300 克浓度 22% 的盐水混合在一起，混合后盐水的浓度是多少？</div>
-  </div>
-  <div class="workspace">
-    <div class="workspace__label"><svg class="ico ico--sm" aria-hidden="true"><use href="#ic-edit"></use></svg> 解答：</div>
-    <div class="workspace__lines"><div></div><div></div><div></div><div></div><div></div><div></div></div>
-  </div>
-</div>
-</section>
-<section class="ws-section">
-<div class="ws-section__head">
-          <span class="ws-badge">三</span>
-          <span class="ws-section__title">配比 · 倒推 · 置换 · 压轴</span>
-          <span class="ws-section__hint">（7–12 题）</span>
-        </div>
-<div class="q">
-  <div class="q__head">
-    <span class="q__no"><svg class="ico ico--sm" aria-hidden="true"><use href="#ic-circle-dot"></use></svg>第 7 题</span>
-    <span class="q__tags"><span class="tag">配比·十字交叉</span><span class="tag tag--挑战">挑战</span></span>
-  </div>
-  <div class="q__grid">
-    <div class="q__body">现有浓度 10% 和浓度 25% 的两种盐水，要配成浓度 16% 的盐水。所用这两种盐水的<strong>质量比</strong>是多少？</div>
-  </div>
-  <div class="workspace">
-    <div class="workspace__label"><svg class="ico ico--sm" aria-hidden="true"><use href="#ic-edit"></use></svg> 解答：</div>
-    <div class="workspace__lines"><div></div><div></div><div></div><div></div><div></div><div></div></div>
-  </div>
-</div>
-<div class="q">
-  <div class="q__head">
-    <span class="q__no"><svg class="ico ico--sm" aria-hidden="true"><use href="#ic-circle-dot"></use></svg>第 8 题</span>
-    <span class="q__tags"><span class="tag">加盐倒推原量</span><span class="tag tag--挑战">挑战</span></span>
-  </div>
-  <div class="q__grid">
-    <div class="q__body">一杯盐水的浓度是 10%。往里加入 10 克盐并充分溶解后，浓度变成了 20%。原来这杯盐水有多少克？其中含盐多少克？</div>
-  </div>
-  <div class="workspace">
-    <div class="workspace__label"><svg class="ico ico--sm" aria-hidden="true"><use href="#ic-edit"></use></svg> 解答：</div>
-    <div class="workspace__lines"><div></div><div></div><div></div><div></div><div></div><div></div></div>
-  </div>
-</div>
-<div class="q">
-  <div class="q__head">
-    <span class="q__no"><svg class="ico ico--sm" aria-hidden="true"><use href="#ic-circle-dot"></use></svg>第 9 题</span>
-    <span class="q__tags"><span class="tag">倒出再加水</span><span class="tag tag--挑战">挑战</span></span>
-  </div>
-  <div class="q__grid">
-    <div class="q__body">一杯 500 克、浓度 20% 的盐水。先倒出 100 克盐水，再往剩下的盐水里加入 100 克水。现在盐水的浓度是多少？</div>
-  </div>
-  <div class="workspace">
-    <div class="workspace__label"><svg class="ico ico--sm" aria-hidden="true"><use href="#ic-edit"></use></svg> 解答：</div>
-    <div class="workspace__lines"><div></div><div></div><div></div><div></div><div></div><div></div></div>
-  </div>
-</div>
-<div class="q">
-  <div class="q__head">
-    <span class="q__no"><svg class="ico ico--sm" aria-hidden="true"><use href="#ic-circle-dot"></use></svg>第 10 题</span>
-    <span class="q__tags"><span class="tag">反复置换</span><span class="tag tag--挑战">挑战</span></span>
-  </div>
-  <div class="q__grid">
-    <div class="q__body">一桶 1000 克、浓度 30% 的盐水。每次操作:先倒出 200 克盐水，再加入 200 克水搅匀。连续做<strong>两次</strong>这样的操作后，盐水的浓度是多少？</div>
-  </div>
-  <div class="workspace">
-    <div class="workspace__label"><svg class="ico ico--sm" aria-hidden="true"><use href="#ic-edit"></use></svg> 解答：</div>
-    <div class="workspace__lines"><div></div><div></div><div></div><div></div><div></div><div></div></div>
-  </div>
-</div>
-<div class="q">
-  <div class="q__head">
-    <span class="q__no"><svg class="ico ico--sm" aria-hidden="true"><use href="#ic-circle-dot"></use></svg>第 11 题</span>
-    <span class="q__tags"><span class="tag">混合含未知浓度</span><span class="tag tag--挑战">挑战</span></span>
-  </div>
-  <div class="q__grid">
-    <div class="q__body">甲盐水 300 克，浓度 15%;乙盐水 200 克，浓度未知。把甲、乙全部混合后，浓度恰好是 18%。乙盐水的浓度是多少？</div>
-  </div>
-  <div class="workspace">
-    <div class="workspace__label"><svg class="ico ico--sm" aria-hidden="true"><use href="#ic-edit"></use></svg> 解答：</div>
-    <div class="workspace__lines"><div></div><div></div><div></div><div></div><div></div><div></div></div>
-  </div>
-</div>
-<div class="q">
-  <div class="q__head">
-    <span class="q__no"><svg class="ico ico--sm" aria-hidden="true"><use href="#ic-circle-dot"></use></svg>第 12 题</span>
-    <span class="q__tags"><span class="tag">糖水·设量列方程(压轴)</span><span class="tag tag--挑战">挑战</span></span>
-  </div>
-  <div class="q__grid">
-    <div class="q__body">一杯糖水，糖的质量占糖水的 1/9。往里加入 40 克糖并充分溶解后，糖的质量变成占糖水的 1/5。原来这杯糖水有多少克？</div>
-  </div>
-  <div class="workspace">
-    <div class="workspace__label"><svg class="ico ico--sm" aria-hidden="true"><use href="#ic-edit"></use></svg> 解答：</div>
-    <div class="workspace__lines"><div></div><div></div><div></div><div></div><div></div><div></div></div>
-  </div>
-</div>
-</section>
-<footer class="ws-foot">
-      <span>浓度问题 · 题目卷</span>
-      <span>答案与解题步骤见《答案册》</span>
-    </footer>
-</div>
+<script id="answerData" type="application/json">[{"no": 1, "tag": "三项按比分配", "diff": "适度", "q": "把 360 个苹果按 <strong>2 ∶ 3 ∶ 4</strong> 分给甲、乙、丙三个班。三个班各分得多少个?", "svg": "", "think": "按比分配的通法:先把比的各项加起来求出「总份数」,再用总量除以总份数求出「每一份」,最后每份乘各自的份数。", "steps": ["总份数 = 2 + 3 + 4 = 9 (份)", "每份 = 360 ÷ 9 = 40 (个)", "甲 = 40 × 2 = 80(个);乙 = 40 × 3 = 120(个);丙 = 40 × 4 = 160(个)"], "ans": "甲、乙、丙三个班分别分得 80 个、120 个、160 个。"}, {"no": 2, "tag": "由差求各量", "diff": "适度", "q": "一笔钱按 <strong>5 ∶ 3</strong> 分给两人,已知第一个人比第二个人多得 40 元。两人各得多少元?一共多少元?", "svg": "", "think": "两人相差 (5−3) 份,正好对应 40 元。先求出「一份」,再分别乘份数,相加得总数。", "steps": ["相差份数 = 5 − 3 = 2 (份),对应 40 元", "每份 = 40 ÷ 2 = 20 (元)", "第一人 = 20 × 5 = 100(元);第二人 = 20 × 3 = 60(元);共 100 + 60 = 160(元)"], "ans": "第一人得 100 元,第二人得 60 元,一共 160 元。"}, {"no": 3, "tag": "连比·统一中间量", "diff": "进阶", "q": "已知 <strong>a ∶ b = 2 ∶ 3</strong>,<strong>b ∶ c = 4 ∶ 5</strong>。若 c = 45,求 a、b 各是多少,以及 a + b + c。", "svg": "", "think": "两个比里 b 的份数不同(3 和 4),要先把 b 统一成公倍数 12,再把三项连成一个比,最后用 c 对应的份数求出「每份」。", "steps": ["把 b 统一为 12:a ∶ b = 2 ∶ 3 = 8 ∶ 12,b ∶ c = 4 ∶ 5 = 12 ∶ 15", "连比 a ∶ b ∶ c = 8 ∶ 12 ∶ 15", "每份 = c ÷ 15 = 45 ÷ 15 = 3;a = 3 × 8 = 24,b = 3 × 12 = 36", "a + b + c = 24 + 36 + 45 = 105"], "ans": "a = 24,b = 36,a + b + c = 105。"}, {"no": 4, "tag": "按比分配求总量", "diff": "进阶", "q": "一批零件由甲、乙、丙三人按 <strong>3 ∶ 4 ∶ 5</strong> 的工作量完成。已知丙比甲多完成 24 个。这批零件共有多少个?", "svg": "", "think": "丙与甲相差 (5−3) 份,对应 24 个。先求「一份」,再乘总份数得总量。", "steps": ["相差份数 = 5 − 3 = 2 (份),对应 24 个", "每份 = 24 ÷ 2 = 12 (个)", "总份数 = 3 + 4 + 5 = 12 (份);共 = 12 × 12 = 144 (个)"], "ans": "这批零件共有 144 个。"}, {"no": 5, "tag": "比的变化·设份数", "diff": "挑战", "q": "一个班男、女生人数的比是 <strong>3 ∶ 2</strong>。后来又转来 4 名女生,这时男、女生人数的比变成 <strong>6 ∶ 5</strong>。原来这个班共有多少人?", "svg": "", "think": "男生人数没变,是「不变量」。设原来每份是 x 人,则男生 3x、女生 2x;女生增加 4 人后,用新比列方程 (2x+4) ∶ 3x = 5 ∶ 6。", "steps": ["设原来每份 x 人:男生 3x,女生 2x。转来 4 名女生后女生为 (2x + 4)。", "按新比列方程:(2x + 4) ∶ 3x = 5 ∶ 6,即 6(2x + 4) = 5 × 3x", "12x + 24 = 15x ⇒ 3x = 24 ⇒ x = 8", "原有男生 3×8 = 24 人,女生 2×8 = 16 人,共 24 + 16 = 40 (人)"], "ans": "原来这个班共有 40 人。"}, {"no": 6, "tag": "多人按比分配(压轴)", "diff": "挑战", "q": "一项工程的奖金 <strong>4200 元</strong>,按三名工人的实际工时比 <strong>7 ∶ 6 ∶ 8</strong> 分配。每人各得奖金多少元?", "svg": "", "think": "先求总份数,再求「每份」值,最后每份乘各自份数;分配后各项之和应等于总奖金,可用来检验。", "steps": ["总份数 = 7 + 6 + 8 = 21 (份)", "每份 = 4200 ÷ 21 = 200 (元)", "甲 = 200 × 7 = 1400;乙 = 200 × 6 = 1200;丙 = 200 × 8 = 1600 (元)", "检验:1400 + 1200 + 1600 = 4200 (元) ✓"], "ans": "三人分别得奖金 1400 元、1200 元、1600 元。"}]</script>
 
+<div id="boot" style="position:fixed;inset:0;display:grid;place-items:center;font:14px system-ui;color:var(--s-text-muted,#888)">加载答案册…</div>
 <script>
-(function(){
-  var root=document.documentElement;
-  var tb=document.getElementById('themeBtn');
-  if(tb) tb.addEventListener('click',function(){
-    var d=root.getAttribute('data-theme')==='dark';
-    root.setAttribute('data-theme', d?'light':'dark');
-    tb.textContent = d?'深色':'浅色';
-  });
-  var pn=document.getElementById('printNow');
-  if(pn) pn.addEventListener('click',function(){ window.print(); });
-})();
+  function boot_fail(msg){var b=document.getElementById('boot');if(b)b.innerHTML='<pre style="max-width:80ch;white-space:pre-wrap;color:#c0392b;padding:24px">加载失败:\n'+msg+'</pre>';}
+  addEventListener('error',function(e){boot_fail(e.message||e.error);});
+  addEventListener('unhandledrejection',function(e){boot_fail(e.reason);});
+</script>
+<script type="module">
+    /* --- Lit 运行时内联:Blob URL 动态 import(离线可用、命名导出规范) --- */
+    const __LIT_SRC = "/* esm.sh - lit@3.2.1 */\nvar R=globalThis,T=R.ShadowRoot&&(R.ShadyCSS===void 0||R.ShadyCSS.nativeShadow)&&\"adoptedStyleSheets\"in Document.prototype&&\"replace\"in CSSStyleSheet.prototype,z=Symbol(),Q=new WeakMap,C=class{constructor(t,e,s){if(this._$cssResult$=!0,s!==z)throw Error(\"CSSResult is not constructable. Use `unsafeCSS` or `css` instead.\");this.cssText=t,this.t=e}get styleSheet(){let t=this.o,e=this.t;if(T&&t===void 0){let s=e!==void 0&&e.length===1;s&&(t=Q.get(e)),t===void 0&&((this.o=t=new CSSStyleSheet).replaceSync(this.cssText),s&&Q.set(e,t))}return t}toString(){return this.cssText}},X=o=>new C(typeof o==\"string\"?o:o+\"\",void 0,z),$t=(o,...t)=>{let e=o.length===1?o[0]:t.reduce(((s,i,r)=>s+(n=>{if(n._$cssResult$===!0)return n.cssText;if(typeof n==\"number\")return n;throw Error(\"Value passed to 'css' function must be a 'css' function result: \"+n+\". Use 'unsafeCSS' to pass non-literal values, but take care to ensure page security.\")})(i)+o[r+1]),o[0]);return new C(e,o,z)},Y=(o,t)=>{if(T)o.adoptedStyleSheets=t.map((e=>e instanceof CSSStyleSheet?e:e.styleSheet));else for(let e of t){let s=document.createElement(\"style\"),i=R.litNonce;i!==void 0&&s.setAttribute(\"nonce\",i),s.textContent=e.cssText,o.appendChild(s)}},I=T?o=>o:o=>o instanceof CSSStyleSheet?(t=>{let e=\"\";for(let s of t.cssRules)e+=s.cssText;return X(e)})(o):o;var{is:_t,defineProperty:ft,getOwnPropertyDescriptor:At,getOwnPropertyNames:mt,getOwnPropertySymbols:gt,getPrototypeOf:yt}=Object,M=globalThis,tt=M.trustedTypes,vt=tt?tt.emptyScript:\"\",St=M.reactiveElementPolyfillSupport,w=(o,t)=>o,V={toAttribute(o,t){switch(t){case Boolean:o=o?vt:null;break;case Object:case Array:o=o==null?o:JSON.stringify(o)}return o},fromAttribute(o,t){let e=o;switch(t){case Boolean:e=o!==null;break;case Number:e=o===null?null:Number(o);break;case Object:case Array:try{e=JSON.parse(o)}catch{e=null}}return e}},st=(o,t)=>!_t(o,t),et={attribute:!0,type:String,converter:V,reflect:!1,useDefault:!1,hasChanged:st};Symbol.metadata??=Symbol(\"metadata\"),M.litPropertyMetadata??=new WeakMap;var $=class extends HTMLElement{static addInitializer(t){this._$Ei(),(this.l??=[]).push(t)}static get observedAttributes(){return this.finalize(),this._$Eh&&[...this._$Eh.keys()]}static createProperty(t,e=et){if(e.state&&(e.attribute=!1),this._$Ei(),this.prototype.hasOwnProperty(t)&&((e=Object.create(e)).wrapped=!0),this.elementProperties.set(t,e),!e.noAccessor){let s=Symbol(),i=this.getPropertyDescriptor(t,s,e);i!==void 0&&ft(this.prototype,t,i)}}static getPropertyDescriptor(t,e,s){let{get:i,set:r}=At(this.prototype,t)??{get(){return this[e]},set(n){this[e]=n}};return{get:i,set(n){let l=i?.call(this);r?.call(this,n),this.requestUpdate(t,l,s)},configurable:!0,enumerable:!0}}static getPropertyOptions(t){return this.elementProperties.get(t)??et}static _$Ei(){if(this.hasOwnProperty(w(\"elementProperties\")))return;let t=yt(this);t.finalize(),t.l!==void 0&&(this.l=[...t.l]),this.elementProperties=new Map(t.elementProperties)}static finalize(){if(this.hasOwnProperty(w(\"finalized\")))return;if(this.finalized=!0,this._$Ei(),this.hasOwnProperty(w(\"properties\"))){let e=this.properties,s=[...mt(e),...gt(e)];for(let i of s)this.createProperty(i,e[i])}let t=this[Symbol.metadata];if(t!==null){let e=litPropertyMetadata.get(t);if(e!==void 0)for(let[s,i]of e)this.elementProperties.set(s,i)}this._$Eh=new Map;for(let[e,s]of this.elementProperties){let i=this._$Eu(e,s);i!==void 0&&this._$Eh.set(i,e)}this.elementStyles=this.finalizeStyles(this.styles)}static finalizeStyles(t){let e=[];if(Array.isArray(t)){let s=new Set(t.flat(1/0).reverse());for(let i of s)e.unshift(I(i))}else t!==void 0&&e.push(I(t));return e}static _$Eu(t,e){let s=e.attribute;return s===!1?void 0:typeof s==\"string\"?s:typeof t==\"string\"?t.toLowerCase():void 0}constructor(){super(),this._$Ep=void 0,this.isUpdatePending=!1,this.hasUpdated=!1,this._$Em=null,this._$Ev()}_$Ev(){this._$ES=new Promise((t=>this.enableUpdating=t)),this._$AL=new Map,this._$E_(),this.requestUpdate(),this.constructor.l?.forEach((t=>t(this)))}addController(t){(this._$EO??=new Set).add(t),this.renderRoot!==void 0&&this.isConnected&&t.hostConnected?.()}removeController(t){this._$EO?.delete(t)}_$E_(){let t=new Map,e=this.constructor.elementProperties;for(let s of e.keys())this.hasOwnProperty(s)&&(t.set(s,this[s]),delete this[s]);t.size>0&&(this._$Ep=t)}createRenderRoot(){let t=this.shadowRoot??this.attachShadow(this.constructor.shadowRootOptions);return Y(t,this.constructor.elementStyles),t}connectedCallback(){this.renderRoot??=this.createRenderRoot(),this.enableUpdating(!0),this._$EO?.forEach((t=>t.hostConnected?.()))}enableUpdating(t){}disconnectedCallback(){this._$EO?.forEach((t=>t.hostDisconnected?.()))}attributeChangedCallback(t,e,s){this._$AK(t,s)}_$ET(t,e){let s=this.constructor.elementProperties.get(t),i=this.constructor._$Eu(t,s);if(i!==void 0&&s.reflect===!0){let r=(s.converter?.toAttribute!==void 0?s.converter:V).toAttribute(e,s.type);this._$Em=t,r==null?this.removeAttribute(i):this.setAttribute(i,r),this._$Em=null}}_$AK(t,e){let s=this.constructor,i=s._$Eh.get(t);if(i!==void 0&&this._$Em!==i){let r=s.getPropertyOptions(i),n=typeof r.converter==\"function\"?{fromAttribute:r.converter}:r.converter?.fromAttribute!==void 0?r.converter:V;this._$Em=i;let l=n.fromAttribute(e,r.type);this[i]=l??this._$Ej?.get(i)??l,this._$Em=null}}requestUpdate(t,e,s){if(t!==void 0){let i=this.constructor,r=this[t];if(s??=i.getPropertyOptions(t),!((s.hasChanged??st)(r,e)||s.useDefault&&s.reflect&&r===this._$Ej?.get(t)&&!this.hasAttribute(i._$Eu(t,s))))return;this.C(t,e,s)}this.isUpdatePending===!1&&(this._$ES=this._$EP())}C(t,e,{useDefault:s,reflect:i,wrapped:r},n){s&&!(this._$Ej??=new Map).has(t)&&(this._$Ej.set(t,n??e??this[t]),r!==!0||n!==void 0)||(this._$AL.has(t)||(this.hasUpdated||s||(e=void 0),this._$AL.set(t,e)),i===!0&&this._$Em!==t&&(this._$Eq??=new Set).add(t))}async _$EP(){this.isUpdatePending=!0;try{await this._$ES}catch(e){Promise.reject(e)}let t=this.scheduleUpdate();return t!=null&&await t,!this.isUpdatePending}scheduleUpdate(){return this.performUpdate()}performUpdate(){if(!this.isUpdatePending)return;if(!this.hasUpdated){if(this.renderRoot??=this.createRenderRoot(),this._$Ep){for(let[i,r]of this._$Ep)this[i]=r;this._$Ep=void 0}let s=this.constructor.elementProperties;if(s.size>0)for(let[i,r]of s){let{wrapped:n}=r,l=this[i];n!==!0||this._$AL.has(i)||l===void 0||this.C(i,void 0,r,l)}}let t=!1,e=this._$AL;try{t=this.shouldUpdate(e),t?(this.willUpdate(e),this._$EO?.forEach((s=>s.hostUpdate?.())),this.update(e)):this._$EM()}catch(s){throw t=!1,this._$EM(),s}t&&this._$AE(e)}willUpdate(t){}_$AE(t){this._$EO?.forEach((e=>e.hostUpdated?.())),this.hasUpdated||(this.hasUpdated=!0,this.firstUpdated(t)),this.updated(t)}_$EM(){this._$AL=new Map,this.isUpdatePending=!1}get updateComplete(){return this.getUpdateComplete()}getUpdateComplete(){return this._$ES}shouldUpdate(t){return!0}update(t){this._$Eq&&=this._$Eq.forEach((e=>this._$ET(e,this[e]))),this._$EM()}updated(t){}firstUpdated(t){}};$.elementStyles=[],$.shadowRootOptions={mode:\"open\"},$[w(\"elementProperties\")]=new Map,$[w(\"finalized\")]=new Map,St?.({ReactiveElement:$}),(M.reactiveElementVersions??=[]).push(\"2.1.1\");var q=globalThis,N=q.trustedTypes,it=N?N.createPolicy(\"lit-html\",{createHTML:o=>o}):void 0,K=\"$lit$\",_=`lit$${Math.random().toFixed(9).slice(2)}$`,Z=\"?\"+_,Et=`<${Z}>`,g=document,P=()=>g.createComment(\"\"),U=o=>o===null||typeof o!=\"object\"&&typeof o!=\"function\",F=Array.isArray,lt=o=>F(o)||typeof o?.[Symbol.iterator]==\"function\",W=`[ \t\n\\f\\r]`,x=/<(?:(!--|\\/[^a-zA-Z])|(\\/?[a-zA-Z][^>\\s]*)|(\\/?$))/g,ot=/-->/g,rt=/>/g,A=RegExp(`>|${W}(?:([^\\\\s\"'>=/]+)(${W}*=${W}*(?:[^ \t\n\\f\\r\"'\\`<>=]|(\"|')|))|$)`,\"g\"),nt=/'/g,ht=/\"/g,ct=/^(?:script|style|textarea|title)$/i,J=o=>(t,...e)=>({_$litType$:o,strings:t,values:e}),Ot=J(1),Ht=J(2),Rt=J(3),y=Symbol.for(\"lit-noChange\"),p=Symbol.for(\"lit-nothing\"),at=new WeakMap,m=g.createTreeWalker(g,129);function pt(o,t){if(!F(o)||!o.hasOwnProperty(\"raw\"))throw Error(\"invalid template strings array\");return it!==void 0?it.createHTML(t):t}var dt=(o,t)=>{let e=o.length-1,s=[],i,r=t===2?\"<svg>\":t===3?\"<math>\":\"\",n=x;for(let l=0;l<e;l++){let h=o[l],c,d,a=-1,u=0;for(;u<h.length&&(n.lastIndex=u,d=n.exec(h),d!==null);)u=n.lastIndex,n===x?d[1]===\"!--\"?n=ot:d[1]!==void 0?n=rt:d[2]!==void 0?(ct.test(d[2])&&(i=RegExp(\"</\"+d[2],\"g\")),n=A):d[3]!==void 0&&(n=A):n===A?d[0]===\">\"?(n=i??x,a=-1):d[1]===void 0?a=-2:(a=n.lastIndex-d[2].length,c=d[1],n=d[3]===void 0?A:d[3]==='\"'?ht:nt):n===ht||n===nt?n=A:n===ot||n===rt?n=x:(n=A,i=void 0);let f=n===A&&o[l+1].startsWith(\"/>\")?\" \":\"\";r+=n===x?h+Et:a>=0?(s.push(c),h.slice(0,a)+K+h.slice(a)+_+f):h+_+(a===-2?l:f)}return[pt(o,r+(o[e]||\"<?>\")+(t===2?\"</svg>\":t===3?\"</math>\":\"\")),s]},O=class o{constructor({strings:t,_$litType$:e},s){let i;this.parts=[];let r=0,n=0,l=t.length-1,h=this.parts,[c,d]=dt(t,e);if(this.el=o.createElement(c,s),m.currentNode=this.el.content,e===2||e===3){let a=this.el.content.firstChild;a.replaceWith(...a.childNodes)}for(;(i=m.nextNode())!==null&&h.length<l;){if(i.nodeType===1){if(i.hasAttributes())for(let a of i.getAttributeNames())if(a.endsWith(K)){let u=d[n++],f=i.getAttribute(a).split(_),H=/([.?@])?(.*)/.exec(u);h.push({type:1,index:r,name:H[2],strings:f,ctor:H[1]===\".\"?k:H[1]===\"?\"?D:H[1]===\"@\"?j:S}),i.removeAttribute(a)}else a.startsWith(_)&&(h.push({type:6,index:r}),i.removeAttribute(a));if(ct.test(i.tagName)){let a=i.textContent.split(_),u=a.length-1;if(u>0){i.textContent=N?N.emptyScript:\"\";for(let f=0;f<u;f++)i.append(a[f],P()),m.nextNode(),h.push({type:2,index:++r});i.append(a[u],P())}}}else if(i.nodeType===8)if(i.data===Z)h.push({type:2,index:r});else{let a=-1;for(;(a=i.data.indexOf(_,a+1))!==-1;)h.push({type:7,index:r}),a+=_.length-1}r++}}static createElement(t,e){let s=g.createElement(\"template\");return s.innerHTML=t,s}};function v(o,t,e=o,s){if(t===y)return t;let i=s!==void 0?e._$Co?.[s]:e._$Cl,r=U(t)?void 0:t._$litDirective$;return i?.constructor!==r&&(i?._$AO?.(!1),r===void 0?i=void 0:(i=new r(o),i._$AT(o,e,s)),s!==void 0?(e._$Co??=[])[s]=i:e._$Cl=i),i!==void 0&&(t=v(o,i._$AS(o,t.values),i,s)),t}var L=class{constructor(t,e){this._$AV=[],this._$AN=void 0,this._$AD=t,this._$AM=e}get parentNode(){return this._$AM.parentNode}get _$AU(){return this._$AM._$AU}u(t){let{el:{content:e},parts:s}=this._$AD,i=(t?.creationScope??g).importNode(e,!0);m.currentNode=i;let r=m.nextNode(),n=0,l=0,h=s[0];for(;h!==void 0;){if(n===h.index){let c;h.type===2?c=new E(r,r.nextSibling,this,t):h.type===1?c=new h.ctor(r,h.name,h.strings,this,t):h.type===6&&(c=new B(r,this,t)),this._$AV.push(c),h=s[++l]}n!==h?.index&&(r=m.nextNode(),n++)}return m.currentNode=g,i}p(t){let e=0;for(let s of this._$AV)s!==void 0&&(s.strings!==void 0?(s._$AI(t,s,e),e+=s.strings.length-2):s._$AI(t[e])),e++}},E=class o{get _$AU(){return this._$AM?._$AU??this._$Cv}constructor(t,e,s,i){this.type=2,this._$AH=p,this._$AN=void 0,this._$AA=t,this._$AB=e,this._$AM=s,this.options=i,this._$Cv=i?.isConnected??!0}get parentNode(){let t=this._$AA.parentNode,e=this._$AM;return e!==void 0&&t?.nodeType===11&&(t=e.parentNode),t}get startNode(){return this._$AA}get endNode(){return this._$AB}_$AI(t,e=this){t=v(this,t,e),U(t)?t===p||t==null||t===\"\"?(this._$AH!==p&&this._$AR(),this._$AH=p):t!==this._$AH&&t!==y&&this._(t):t._$litType$!==void 0?this.$(t):t.nodeType!==void 0?this.T(t):lt(t)?this.k(t):this._(t)}O(t){return this._$AA.parentNode.insertBefore(t,this._$AB)}T(t){this._$AH!==t&&(this._$AR(),this._$AH=this.O(t))}_(t){this._$AH!==p&&U(this._$AH)?this._$AA.nextSibling.data=t:this.T(g.createTextNode(t)),this._$AH=t}$(t){let{values:e,_$litType$:s}=t,i=typeof s==\"number\"?this._$AC(t):(s.el===void 0&&(s.el=O.createElement(pt(s.h,s.h[0]),this.options)),s);if(this._$AH?._$AD===i)this._$AH.p(e);else{let r=new L(i,this),n=r.u(this.options);r.p(e),this.T(n),this._$AH=r}}_$AC(t){let e=at.get(t.strings);return e===void 0&&at.set(t.strings,e=new O(t)),e}k(t){F(this._$AH)||(this._$AH=[],this._$AR());let e=this._$AH,s,i=0;for(let r of t)i===e.length?e.push(s=new o(this.O(P()),this.O(P()),this,this.options)):s=e[i],s._$AI(r),i++;i<e.length&&(this._$AR(s&&s._$AB.nextSibling,i),e.length=i)}_$AR(t=this._$AA.nextSibling,e){for(this._$AP?.(!1,!0,e);t!==this._$AB;){let s=t.nextSibling;t.remove(),t=s}}setConnected(t){this._$AM===void 0&&(this._$Cv=t,this._$AP?.(t))}},S=class{get tagName(){return this.element.tagName}get _$AU(){return this._$AM._$AU}constructor(t,e,s,i,r){this.type=1,this._$AH=p,this._$AN=void 0,this.element=t,this.name=e,this._$AM=i,this.options=r,s.length>2||s[0]!==\"\"||s[1]!==\"\"?(this._$AH=Array(s.length-1).fill(new String),this.strings=s):this._$AH=p}_$AI(t,e=this,s,i){let r=this.strings,n=!1;if(r===void 0)t=v(this,t,e,0),n=!U(t)||t!==this._$AH&&t!==y,n&&(this._$AH=t);else{let l=t,h,c;for(t=r[0],h=0;h<r.length-1;h++)c=v(this,l[s+h],e,h),c===y&&(c=this._$AH[h]),n||=!U(c)||c!==this._$AH[h],c===p?t=p:t!==p&&(t+=(c??\"\")+r[h+1]),this._$AH[h]=c}n&&!i&&this.j(t)}j(t){t===p?this.element.removeAttribute(this.name):this.element.setAttribute(this.name,t??\"\")}},k=class extends S{constructor(){super(...arguments),this.type=3}j(t){this.element[this.name]=t===p?void 0:t}},D=class extends S{constructor(){super(...arguments),this.type=4}j(t){this.element.toggleAttribute(this.name,!!t&&t!==p)}},j=class extends S{constructor(t,e,s,i,r){super(t,e,s,i,r),this.type=5}_$AI(t,e=this){if((t=v(this,t,e,0)??p)===y)return;let s=this._$AH,i=t===p&&s!==p||t.capture!==s.capture||t.once!==s.once||t.passive!==s.passive,r=t!==p&&(s===p||i);i&&this.element.removeEventListener(this.name,this,s),r&&this.element.addEventListener(this.name,this,t),this._$AH=t}handleEvent(t){typeof this._$AH==\"function\"?this._$AH.call(this.options?.host??this.element,t):this._$AH.handleEvent(t)}},B=class{constructor(t,e,s){this.element=t,this.type=6,this._$AN=void 0,this._$AM=e,this.options=s}get _$AU(){return this._$AM._$AU}_$AI(t){v(this,t)}},Tt={M:K,P:_,A:Z,C:1,L:dt,R:L,D:lt,V:v,I:E,H:S,N:D,U:j,B:k,F:B},bt=q.litHtmlPolyfillSupport;bt?.(O,E),(q.litHtmlVersions??=[]).push(\"3.3.1\");var ut=(o,t,e)=>{let s=e?.renderBefore??t,i=s._$litPart$;if(i===void 0){let r=e?.renderBefore??null;s._$litPart$=i=new E(t.insertBefore(P(),r),r,void 0,e??{})}return i._$AI(o),i};var G=globalThis,b=class extends ${constructor(){super(...arguments),this.renderOptions={host:this},this._$Do=void 0}createRenderRoot(){let t=super.createRenderRoot();return this.renderOptions.renderBefore??=t.firstChild,t}update(t){let e=this.render();this.hasUpdated||(this.renderOptions.isConnected=this.isConnected),super.update(t),this._$Do=ut(e,this.renderRoot,this.renderOptions)}connectedCallback(){super.connectedCallback(),this._$Do?.setConnected(!0)}disconnectedCallback(){super.disconnectedCallback(),this._$Do?.setConnected(!1)}render(){return y}};b._$litElement$=!0,b.finalized=!0,G.litElementHydrateSupport?.({LitElement:b});var Ct=G.litElementPolyfillSupport;Ct?.({LitElement:b});var kt={_$AK:(o,t,e)=>{o._$AK(t,e)},_$AL:o=>o._$AL};(G.litElementVersions??=[]).push(\"4.2.1\");var zt=!1;export{C as CSSResult,b as LitElement,$ as ReactiveElement,kt as _$LE,Tt as _$LH,Y as adoptStyles,$t as css,V as defaultConverter,I as getCompatibleStyle,Ot as html,zt as isServer,Rt as mathml,y as noChange,st as notEqual,p as nothing,ut as render,T as supportsAdoptingStyleSheets,Ht as svg,X as unsafeCSS};\n/*! Bundled license information:\n\n@lit/reactive-element/css-tag.js:\n  (**\n   * @license\n   * Copyright 2019 Google LLC\n   * SPDX-License-Identifier: BSD-3-Clause\n   *)\n\n@lit/reactive-element/reactive-element.js:\nlit-html/lit-html.js:\nlit-element/lit-element.js:\n  (**\n   * @license\n   * Copyright 2017 Google LLC\n   * SPDX-License-Identifier: BSD-3-Clause\n   *)\n\nlit-html/is-server.js:\n  (**\n   * @license\n   * Copyright 2022 Google LLC\n   * SPDX-License-Identifier: BSD-3-Clause\n   *)\n*/\n//# sourceMappingURL=lit.bundle.mjs.map";
+    const __litUrl = URL.createObjectURL(new Blob([__LIT_SRC], { type: 'text/javascript' }));
+    const { LitElement, html, css, nothing, noChange, svg, unsafeCSS } = await import(__litUrl);
+    URL.revokeObjectURL(__litUrl);
+
+const HAS_FIG = false;
+const DATA = JSON.parse(document.getElementById('answerData').textContent);
+const ic = (n,c='ico ico--sm')=>html`<svg class="${c}" aria-hidden="true"><use href="#ic-${n}"></use></svg>`;
+class AnswerBook extends LitElement{
+  static properties = { open:{state:true} };
+  createRenderRoot(){ return this; }
+  constructor(){ super(); this.open = new Set(); }
+  connectedCallback(){ super.connectedCallback(); this.open = new Set(); }
+  toggle(no){ const s=new Set(this.open); s.has(no)?s.delete(no):s.add(no); this.open=s; }
+  expandAll(){ this.open = new Set(DATA.map(d=>d.no)); }
+  collapseAll(){ this.open = new Set(); }
+  render(){
+    return html`${DATA.map(d=>{
+      const isOpen = this.open.has(d.no);
+      const nofig = (HAS_FIG && d.svg) ? '' : ' nofig';
+      return html`<div class="ans" ?open=${isOpen}>
+        <button class="ans__bar" @click=${()=>this.toggle(d.no)} aria-expanded=${isOpen}>
+          ${ic('chevron-right','ico ico--sm ans__chev')}
+          <span class="ans__no">${ic('circle-dot')}第 ${d.no} 题</span>
+          <span class="tag tag--${d.diff}">${d.diff}</span>
+          <span class="ans__q">${d.tag}</span>
+        </button>
+        ${isOpen ? html`<div class="ans__body">
+          <div class="ans__grid${nofig}">
+            <div class="qtext">${rawNodes(d.q)}</div>
+            ${(HAS_FIG && d.svg) ? html`<div class="ans__fig">${rawNodes(d.svg)}</div>`:''}
+          </div>
+          <div class="block">
+            <div class="block__h">${ic('brain')}解题思路</div>
+            <div class="think">${rawNodes(d.think)}</div>
+          </div>
+          <div class="block">
+            <div class="block__h">${ic('list-ordered')}书写步骤</div>
+            <ol class="steps">${d.steps.map(s=>html`<li>${rawNodes(s)}</li>`)}</ol>
+          </div>
+          <div class="finalans">${ic('check-circle-2')}${d.ans}</div>
+        </div>`:''}
+      </div>`;
+    })}`;
+  }
+}
+function rawNodes(str){
+  const t = document.createElement('template');
+  t.innerHTML = str;
+  return Array.from(t.content.cloneNode(true).childNodes);
+}
+customElements.define('answer-book', AnswerBook);
+const el = document.createElement('answer-book');
+document.getElementById('app').appendChild(el);
+await el.updateComplete;
+document.getElementById('boot')?.remove();
+document.getElementById('expandAll').addEventListener('click',()=>el.expandAll());
+document.getElementById('collapseAll').addEventListener('click',()=>el.collapseAll());
+document.getElementById('themeBtn').addEventListener('click',function(){
+  var root=document.documentElement, d=root.getAttribute('data-theme')==='dark';
+  root.setAttribute('data-theme', d?'light':'dark'); this.textContent=d?'深色':'浅色';
+});
+document.getElementById('printNow').addEventListener('click',()=>{ el.expandAll(); setTimeout(()=>window.print(),50); });
 </script>
 
 </body></html>
