@@ -8,6 +8,8 @@ on:
     paths:
       - '*.html'
       - '!index.html'
+      - '.github/scripts/update_docs.py'
+      - '.github/workflows/update-docs.yml'
 
 jobs:
   update-docs:
