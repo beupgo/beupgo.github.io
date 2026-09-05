@@ -9,6 +9,7 @@
 
 | 页面 | 在线访问 | 更新时间 |
 |---|---|---|
+| 分数灵活运算与应用 · 小升初培优卷 | [开始学习](https://beupgo.github.io/math-fraction-flexible-worksheet.html) | 2026-09-05 22:51 |
 | 工程问题 · 数学培优卷 · 题目卷 | [开始学习](https://beupgo.github.io/math-work-rate-worksheet.html) | 2026-08-24 03:26 |
 | 工程问题 · 数学培优卷 · 答案与解析 | [开始学习](https://beupgo.github.io/math-work-rate-answers.html) | 2026-08-24 03:26 |
 | 按比例分配 · 数学培优卷 · 题目卷 | [开始学习](https://beupgo.github.io/math-ratio-allocation-worksheet.html) | 2026-08-24 03:26 |
@@ -70,6 +71,12 @@
 | 英语组句魔法 · 句子小火车 \| 小学英语 | [开始学习](https://beupgo.github.io/English-G6-Sentence-Building.html) | 2026-07-10 14:16 |
 | 英语冒险岛 · 3-6年级暑假 | [开始学习](https://beupgo.github.io/english5.html) | 2026-07-04 21:41 |
 
+### 未分类
+
+| 页面 | 在线访问 | 更新时间 |
+|---|---|---|
+| 六年级上册 Unit 1-2 · 必考精练 | [开始学习](https://beupgo.github.io/primary-english-unit1-2-practice.html) | 2026-09-05 22:51 |
+
 ### 导航
 
 | 页面 | 在线访问 | 更新时间 |
@@ -126,6 +133,7 @@
 ├─ math-circle-shaded-area-worksheet.html  # 圆与阴影面积测试卷 · 北京小学
 ├─ math-concentration-answers.html  # 浓度问题 · 答案与解析
 ├─ math-concentration-worksheet.html  # 浓度问题 · 小升初培优卷
+├─ math-fraction-flexible-worksheet.html  # 分数灵活运算与应用 · 小升初培优卷
 ├─ math-fraction-ratio-worksheet.html  # 分数乘除法与比例 · 小升初培优卷
 ├─ math-quantity-rate-answers.html  # 量率对应 · 数学培优卷 · 答案与解析
 ├─ math-quantity-rate-worksheet.html  # 量率对应 · 数学培优卷 · 题目卷
@@ -137,6 +145,7 @@
 ├─ new-vocabulary-5-scenes.html  # 新增单词专项 · 5 大场景
 ├─ primary-circle-lessons-problems.html  # 小学奥数 · 圆专题练习卷
 ├─ primary-english-grammar-test-150.html  # 小学英语综合语法测试 · 150 题
+├─ primary-english-unit1-2-practice.html  # 六年级上册 Unit 1-2 · 必考精练
 ├─ primary-sentence-patterns.html  # 小学英语常用句式大全
 ├─ vocabulary-review.html  # 北京小学英语 · 单词复习营
 ├─ word-learning.html  # 小学英语单词乐园 · 时间 · 交通 · 天气
