@@ -62,6 +62,25 @@ SUBJECT_KEYWORDS = [
     ("math", re.compile(r"数学|奥数|方程|分数|几何|多边形|通分|运算|因数|倍数|圆|面积|浓度")),
 ]
 
+# Many uploaded pages do not follow the recommended `gradeN-subject.html`
+# naming convention. Keep filename inference deliberately conservative: only
+# recognize explicit subject tokens, so words such as `primary` or `advanced`
+# do not accidentally determine a category.
+FILENAME_SUBJECT_KEYWORDS = [
+    ("english", re.compile(r"(?:^|[-_])(english|英语)(?:[-_]|$)", re.IGNORECASE)),
+    ("chinese", re.compile(r"(?:^|[-_])(chinese|语文)(?:[-_]|$)", re.IGNORECASE)),
+    ("math", re.compile(r"(?:^|[-_])(math|数学)(?:[-_]|$)", re.IGNORECASE)),
+    ("science", re.compile(r"(?:^|[-_])(science|科学)(?:[-_]|$)", re.IGNORECASE)),
+    ("physics", re.compile(r"(?:^|[-_])(physics|物理)(?:[-_]|$)", re.IGNORECASE)),
+    ("chemistry", re.compile(r"(?:^|[-_])(chemistry|化学)(?:[-_]|$)", re.IGNORECASE)),
+    ("biology", re.compile(r"(?:^|[-_])(biology|生物)(?:[-_]|$)", re.IGNORECASE)),
+    ("history", re.compile(r"(?:^|[-_])(history|历史)(?:[-_]|$)", re.IGNORECASE)),
+    ("geography", re.compile(r"(?:^|[-_])(geography|地理)(?:[-_]|$)", re.IGNORECASE)),
+    ("art", re.compile(r"(?:^|[-_])(art|美术)(?:[-_]|$)", re.IGNORECASE)),
+    ("music", re.compile(r"(?:^|[-_])(music|音乐)(?:[-_]|$)", re.IGNORECASE)),
+    ("pe", re.compile(r"(?:^|[-_])(pe|体育)(?:[-_]|$)", re.IGNORECASE)),
+]
+
 TRUE_VALUES = {"1", "true", "yes", "y", "on"}
 
 ARROW_SVG = (
@@ -134,9 +153,17 @@ def normalize_subject_slug(value: str) -> str | None:
     return SUBJECT_ALIASES.get(v)
 
 
-def infer_subject_slug(title: str) -> str | None:
+def infer_subject_slug(title: str, description: str = "") -> str | None:
+    searchable = f"{title} {description}"
     for slug, pattern in SUBJECT_KEYWORDS:
-        if pattern.search(title):
+        if pattern.search(searchable):
+            return slug
+    return None
+
+
+def infer_subject_from_filename(filename: str) -> str | None:
+    for slug, pattern in FILENAME_SUBJECT_KEYWORDS:
+        if pattern.search(filename):
             return slug
     return None
 
@@ -145,16 +172,18 @@ def extract_meta_description(text: str) -> str:
     return extract_meta_content(text, {"description"})
 
 
-def extract_subject_slug(text: str, title: str) -> str | None:
+def extract_subject_slug(text: str, title: str, filename: str = "") -> str | None:
     meta_subject = extract_meta_content(
         text,
         {"subject", "auto-subject", "beupgo-subject", "page-subject"},
     )
     comment_subject = extract_comment_value(text, "AUTO-SUBJECT")
+    description = extract_meta_description(text)
     return (
         normalize_subject_slug(meta_subject)
         or normalize_subject_slug(comment_subject)
-        or infer_subject_slug(title)
+        or infer_subject_from_filename(filename)
+        or infer_subject_slug(title, description)
     )
 
 
@@ -220,7 +249,7 @@ def collect_pages() -> list[dict]:
         grade_num, filename_subject_slug, extra = parse_filename(f.name)
         title = extract_title(text, f.stem)
         description = extract_meta_description(text)
-        subject_slug = normalize_subject_slug(filename_subject_slug or "") or extract_subject_slug(text, title)
+        subject_slug = normalize_subject_slug(filename_subject_slug or "") or extract_subject_slug(text, title, f.name)
         uploaded_ts, uploaded_at = get_git_uploaded_at(f.name)
         updated_ts, updated_at = get_git_last_updated(f.name)
         pages.append(
@@ -479,7 +508,8 @@ def main() -> int:
     changed_readme = update_readme(visible_pages)
     changed_index = update_index(visible_pages)
     changed_subpages = update_subpages(pages)
-    return 0 if (changed_readme or changed_index or changed_subpages) else 1
+    # A clean regeneration is a successful no-op, not a workflow failure.
+    return 0
 
 
 if __name__ == "__main__":
