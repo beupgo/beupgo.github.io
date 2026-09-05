@@ -48,6 +48,7 @@
 
 | 页面 | 在线访问 | 更新时间 |
 |---|---|---|
+| 六年级上册 Unit 1-2 · 必考精练 | [开始学习](https://beupgo.github.io/primary-english-unit1-2-practice.html) | 2026-09-05 22:51 |
 | 健康很重要 · 6 大场景 | [开始学习](https://beupgo.github.io/health-matters-vocabulary.html) | 2026-08-14 14:20 |
 | 奇妙的大自然专项 · 6 大对话场景 | [开始学习](https://beupgo.github.io/beijing-primary-nature-dialogues.html) | 2026-08-14 14:20 |
 | 表达观点专项 · 6 大对话场景 | [开始学习](https://beupgo.github.io/beijing-primary-opinion-dialogues.html) | 2026-08-14 13:45 |
@@ -70,12 +71,6 @@
 | 小学英语单词乐园 · 时间 · 交通 · 天气 | [开始学习](https://beupgo.github.io/word-learning.html) | 2026-07-19 13:27 |
 | 英语组句魔法 · 句子小火车 \| 小学英语 | [开始学习](https://beupgo.github.io/English-G6-Sentence-Building.html) | 2026-07-10 14:16 |
 | 英语冒险岛 · 3-6年级暑假 | [开始学习](https://beupgo.github.io/english5.html) | 2026-07-04 21:41 |
-
-### 未分类
-
-| 页面 | 在线访问 | 更新时间 |
-|---|---|---|
-| 六年级上册 Unit 1-2 · 必考精练 | [开始学习](https://beupgo.github.io/primary-english-unit1-2-practice.html) | 2026-09-05 22:51 |
 
 ### 导航
 
