@@ -48,6 +48,7 @@
 
 | 页面 | 在线访问 | 更新时间 |
 |---|---|---|
+| 六年级上册 Unit 1-2 · 必考精练 | [开始学习](https://beupgo.github.io/primary-english-unit1-2-practice .html) | 2026-09-06 18:25 |
 | 六年级上册 Unit 1-2 · 必考精练 | [开始学习](https://beupgo.github.io/primary-english-unit1-2-practice.html) | 2026-09-05 14:51 |
 | 健康很重要 · 6 大场景 | [开始学习](https://beupgo.github.io/health-matters-vocabulary.html) | 2026-08-14 14:20 |
 | 奇妙的大自然专项 · 6 大对话场景 | [开始学习](https://beupgo.github.io/beijing-primary-nature-dialogues.html) | 2026-08-14 14:20 |
@@ -140,6 +141,7 @@
 ├─ new-vocabulary-5-scenes.html  # 新增单词专项 · 5 大场景
 ├─ primary-circle-lessons-problems.html  # 小学奥数 · 圆专题练习卷
 ├─ primary-english-grammar-test-150.html  # 小学英语综合语法测试 · 150 题
+├─ primary-english-unit1-2-practice .html  # 六年级上册 Unit 1-2 · 必考精练
 ├─ primary-english-unit1-2-practice.html  # 六年级上册 Unit 1-2 · 必考精练
 ├─ primary-sentence-patterns.html  # 小学英语常用句式大全
 ├─ vocabulary-review.html  # 北京小学英语 · 单词复习营
