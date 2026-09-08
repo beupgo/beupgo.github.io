@@ -407,6 +407,22 @@ table{ border-collapse:collapse; width:100%; }
 .wb-full{ font-size:12.5px; color:var(--s-fg-2); margin-top:4px; display:flex; align-items:center; gap:6px; flex-wrap:wrap; }
 .wb-ex{ font-size:12px; color:var(--s-fg-3); margin-top:4px; }
 
+/* ---------- 综合测试 (test50 · 只呈现题目) ---------- */
+.test50 .paper-head{ display:flex; flex-wrap:wrap; gap:var(--g-sp-3) var(--g-sp-5);
+  font-size:13px; color:var(--s-fg-2); padding:var(--g-sp-3) 0; margin-bottom:var(--g-sp-2);
+  border-top:1px dashed var(--s-line-strong); border-bottom:1px dashed var(--s-line-strong); }
+.t50-sec{ margin-top:var(--g-sp-4); }
+.t50-list{ list-style:none; margin:0; padding:0; display:grid; gap:var(--g-sp-3); }
+.t50-q{ padding:var(--g-sp-3); border:1px solid var(--s-line); border-radius:var(--g-r-2);
+  background:var(--s-surface-2); break-inside:avoid; }
+.t50-stem{ font-size:15px; font-weight:600; line-height:1.7; display:flex; align-items:baseline;
+  flex-wrap:wrap; gap:6px; }
+.t50-no{ font-weight:800; color:var(--s-brand-strong); flex:0 0 auto; }
+.t50-opts{ display:grid; grid-template-columns:1fr 1fr; gap:6px 16px; margin-top:8px; padding-left:22px; }
+@media(max-width:520px){ .t50-opts{ grid-template-columns:1fr; } }
+.t50-opt{ font-size:14px; color:var(--s-fg); }
+.t50-opt--ans{ color:var(--ok); font-weight:700; }
+
 /* ---------- footer ---------- */
 .foot{ text-align:center; font-size:11.5px; color:var(--s-fg-3);
   padding:var(--g-sp-6) var(--g-sp-4); }
@@ -420,20 +436,6 @@ table{ border-collapse:collapse; width:100%; }
 </style>
 </head>
 <body>
-<!-- AUTO-BACK-NAV-START -->
-<style id="auto-back-nav-style">
-#auto-back-nav{position:sticky;top:0;z-index:999;background:rgba(249,250,251,.9);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);border-bottom:1px solid #e5e7eb;display:flex;align-items:center;padding:0 20px;height:44px;}
-@media(prefers-color-scheme:dark){#auto-back-nav{background:rgba(13,17,23,.9);border-bottom-color:#2d333b;}}
-#auto-back-nav a{display:inline-flex;align-items:center;gap:6px;text-decoration:none;color:#4b5563;font-size:14px;font-weight:600;font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Hiragino Sans GB","Microsoft YaHei",Roboto,Arial,sans-serif;}
-@media(prefers-color-scheme:dark){#auto-back-nav a{color:#9da7b3;}}
-</style>
-<nav id="auto-back-nav">
-  <a href="index.html">
-    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5"/><path d="m12 19-7-7 7-7"/></svg>
-    暑假成长加油站
-  </a>
-</nav>
-<!-- AUTO-BACK-NAV-END -->
 <div id="boot" style="position:fixed;inset:0;display:grid;place-items:center;font:14px system-ui;color:#888;background:var(--s-bg,#f6f7f9)">正在加载…</div>
 <script>
 function boot_fail(m){var b=document.getElementById('boot');if(b)b.innerHTML='<pre style="max-width:80ch;white-space:pre-wrap;color:#c0392b;padding:24px">启动失败:\n'+m+'</pre>';}
@@ -796,7 +798,304 @@ window.TOPIC_DATA = {
 
 </script>
 <script>
-window.IPA_DICT = {"10": "/ten/","35": "/ˌθɜːti ˈfaɪv/","5": "/faɪv/","99": "/ˌnaɪnti ˈnaɪn/","a": "/ə/","about": "/əˈbaʊt/","after": "/ˈɑːftə/","all": "/ɔːl/","always": "/ˈɔːlweɪz/","am": "/æm/","an": "/ən/","and": "/ənd/","apple": "/ˈæpl/","apples": "/ˈæplz/","are": "/ɑː/","arent": "/ɑːnt/","argue": "/ˈɑːɡjuː/","as": "/æz/","ask": "/ɑːsk/","at": "/ət/","autumn": "/ˈɔːtəm/","away": "/əˈweɪ/","bad": "/bæd/","badly": "/ˈbædli/","be": "/biː/","beautiful": "/ˈbjuːtɪfl/","been": "/biːn/","better": "/ˈbetə/","big": "/bɪɡ/","bigger": "/ˈbɪɡə/","birthday": "/ˈbɜːθdeɪ/","book": "/bʊk/","books": "/bʊks/","box": "/bɒks/","buy": "/baɪ/","cake": "/keɪk/","cakes": "/keɪks/","can": "/kæn/","cant": "/kɑːnt/","careful": "/ˈkeəfl/","carefully": "/ˈkeəfəli/","children": "/ˈtʃɪldrən/","choice": "/tʃɔɪs/","come": "/kʌm/","could": "/kʊd/","crayon": "/ˈkreɪən/","crayons": "/ˈkreɪənz/","cupcake": "/ˈkʌpkeɪk/","cupcakes": "/ˈkʌpkeɪks/","day": "/deɪ/","did": "/dɪd/","discussion": "/dɪˈskʌʃn/","do": "/duː/","doctor": "/ˈdɒktə/","does": "/dʌz/","done": "/dʌn/","dont": "/dəʊnt/","draw": "/drɔː/","drop": "/drɒp/","each": "/iːtʃ/","earthquake": "/ˈɜːθkweɪk/","easier": "/ˈiːziə/","easy": "/ˈiːzi/","eat": "/iːt/","even": "/ˈiːvn/","every": "/ˈevri/","everything": "/ˈevriθɪŋ/","explore": "/ɪkˈsplɔː/","fairy": "/ˈfeəri/","fear": "/fɪə/","fears": "/fɪəz/","find": "/faɪnd/","follow": "/ˈfɒləʊ/","for": "/fə/","friend": "/frend/","friends": "/frendz/","from": "/frəm/","fruit": "/fruːt/","full": "/fʊl/","get": "/ɡet/","girl": "/ɡɜːl/","give": "/ɡɪv/","gives": "/ɡɪvz/","gold": "/ɡəʊld/","golden": "/ˈɡəʊldən/","good": "/ɡʊd/","great": "/ɡreɪt/","grey": "/ɡreɪ/","had": "/hæd/","happier": "/ˈhæpiə/","happy": "/ˈhæpi/","has": "/hæz/","have": "/hæv/","he": "/hiː/","health": "/helθ/","healthier": "/ˈhelθiə/","healthily": "/ˈhelθɪli/","healthy": "/ˈhelθi/","heart": "/hɑːt/","help": "/help/","helped": "/helpt/","her": "/hɜː/","here": "/hɪə/","him": "/hɪm/","his": "/hɪz/","hot": "/hɒt/","hotter": "/ˈhɒtə/","how": "/haʊ/","i": "/aɪ/","idea": "/aɪˈdɪə/","ill": "/aɪl/","in": "/ɪn/","interesting": "/ˈɪntrəstɪŋ/","into": "/ˈɪntə/","is": "/ɪz/","isnt": "/ˈɪznt/","it": "/ɪt/","its": "/ɪts/","just": "/dʒʌst/","keep": "/kiːp/","keeps": "/kiːps/","kind": "/kaɪnd/","large": "/lɑːdʒ/","larger": "/ˈlɑːdʒə/","leaves": "/liːvz/","like": "/laɪk/","line": "/laɪn/","listen": "/ˈlɪsn/","live": "/lɪv/","long": "/lɒŋ/","love": "/lʌv/","make": "/meɪk/","many": "/ˈmeni/","may": "/meɪ/","me": "/miː/","might": "/maɪt/","money": "/ˈmʌni/","more": "/mɔː/","most": "/məʊst/","much": "/mʌtʃ/","must": "/mʌst/","my": "/maɪ/","need": "/niːd/","nice": "/naɪs/","nicer": "/ˈnaɪsə/","no": "/nəʊ/","not": "/nɒt/","now": "/naʊ/","of": "/əv/","old": "/əʊld/","on": "/ɒn/","one": "/wʌn/","opinion": "/əˈpɪnjən/","our": "/ˈaʊə/","out": "/aʊt/","over": "/ˈəʊvə/","peel": "/piːl/","pen": "/pen/","people": "/ˈpiːpl/","plan": "/plæn/","please": "/pliːz/","pocket": "/ˈpɒkɪt/","price": "/praɪs/","read": "/riːd/","reason": "/ˈriːzn/","remember": "/rɪˈmembə/","right": "/raɪt/","robot": "/ˈrəʊbɒt/","rule": "/ruːl/","rules": "/ruːlz/","sam": "/sæm/","save": "/seɪv/","saved": "/seɪvd/","saves": "/seɪvz/","saving": "/ˈseɪvɪŋ/","sb": "/ˈsʌmbədi/","schoolbag": "/ˈskuːlbæɡ/","shall": "/ʃæl/","share": "/ʃeə/","she": "/ʃiː/","shopkeeper": "/ˈʃɒpkiːpə/","should": "/ʃʊd/","sky": "/skaɪ/","small": "/smɔːl/","smile": "/smaɪl/","some": "/sʌm/","spend": "/spend/","spending": "/ˈspendɪŋ/","spends": "/spendz/","spent": "/spent/","sth": "/ˈsʌmθɪŋ/","story": "/ˈstɔːri/","straight": "/streɪt/","sugar": "/ˈʃʊɡə/","sweet": "/swiːt/","sweeter": "/ˈswiːtə/","take": "/teɪk/","takes": "/teɪks/","taking": "/ˈteɪkɪŋ/","tale": "/teɪl/","tales": "/teɪlz/","tall": "/tɔːl/","taller": "/ˈtɔːlə/","taste": "/teɪst/","tastes": "/teɪsts/","teacher": "/ˈtiːtʃə/","teeth": "/tiːθ/","tell": "/tel/","than": "/ðən/","that": "/ðæt/","the": "/ðə/","their": "/ðeə/","them": "/ðem/","then": "/ðen/","these": "/ðiːz/","they": "/ðeɪ/","theyre": "/ðeə/","thing": "/θɪŋ/","things": "/θɪŋz/","this": "/ðɪs/","those": "/ðəʊz/","time": "/taɪm/","to": "/tə/","today": "/təˈdeɪ/","told": "/təʊld/","too": "/tuː/","took": "/tʊk/","toy": "/tɔɪ/","true": "/truː/","trust": "/trʌst/","truth": "/truːθ/","turn": "/tɜːn/","under": "/ˈʌndə/","us": "/ʌs/","usually": "/ˈjuːʒuəli/","vegetables": "/ˈvedʒtəblz/","very": "/ˈveri/","want": "/wɒnt/","was": "/wɒz/","water": "/ˈwɔːtə/","we": "/wiː/","week": "/wiːk/","well": "/wel/","were": "/wɜː/","why": "/waɪ/","will": "/wɪl/","with": "/wɪð/","without": "/wɪˈðaʊt/","world": "/wɜːld/","worse": "/wɜːs/","would": "/wʊd/","yes": "/jes/","you": "/juː/","your": "/jɔː/","yours": "/jɔːz/","yuan": "/jʊˈæn/"};
+/* Unit 1 专项强化 · 50 题(多题型)—— 追加到 window.TOPIC_DATA.unit1Drill
+ * 题型:cloze(选词填空/句型运用) / trans(词义辨析·中英互译) / grammar(比较级·三单·时态) / identify(句型识别) / order(句子排序)
+ * 每题带 word(错题本去重键) + say(朗读);带完整句子的题目附 ann(逐词还原)供揭晓展示。
+ * 考点全部落在 Unit 1:save/spend/pocket money/shopkeeper/golden/gold/even/smile/choice/crayon/earthquake,
+ *   短语 save money / spend...on / from now on / come true / turn...into / ask sb to do / people in need / make a spending plan,
+ *   句型 How much is/are、I'll take it、Just remember、Why not,好句 Gold isn't everything 等。
+ */
+(function(D){
+  const U1 = [
+    /* ---------- A. 选词填空 · 词义在语境中的运用(cloze) ---------- */
+    { type:"cloze", word:"save", prompt:"I want to ___ my pocket money for a new book.", promptZh:"我想存零花钱买本新书。",
+      answer:"save", options:["save","spend","turn","ask"], say:"I want to save my pocket money for a new book.",
+      full:"I want to save my pocket money for a new book.", ann:[["s","I"],["v","want to save"],["o","my pocket money"],["a","for a new book"]] },
+    { type:"cloze", word:"spend", prompt:"Don't ___ all your money on toys.", promptZh:"别把钱都花在玩具上。",
+      answer:"spend", options:["spend","save","smile","take"], say:"Don't spend all your money on toys.",
+      full:"Don't spend all your money on toys.", ann:[["v","Don't spend"],["o","all your money"],["a","on toys"]] },
+    { type:"cloze", word:"pocket money", prompt:"My mum gives me ten yuan ___ ___ every week.", promptZh:"妈妈每周给我十元零花钱。",
+      answer:"pocket money", options:["pocket money","fairy tale","spending plan","people in need"], say:"My mum gives me ten yuan pocket money every week.",
+      full:"My mum gives me ten yuan pocket money every week.", ann:[["s","My mum"],["v","gives"],["o","me ten yuan pocket money"],["a","every week"]] },
+    { type:"cloze", word:"shopkeeper", prompt:"The ___ tells me the price of the crayons.", promptZh:"店主告诉我蜡笔的价格。",
+      answer:"shopkeeper", options:["shopkeeper","teacher","doctor","farmer"], say:"The shopkeeper tells me the price of the crayons.",
+      full:"The shopkeeper tells me the price of the crayons.", ann:[["s","The shopkeeper"],["v","tells"],["o","me the price of the crayons"]] },
+    { type:"cloze", word:"golden", prompt:"The leaves turn ___ in autumn.", promptZh:"秋天树叶变金黄。",
+      answer:"golden", options:["golden","gold","grey","green"], say:"The leaves turn golden in autumn.",
+      full:"The leaves turn golden in autumn.", ann:[["s","The leaves"],["v","turn"],["o","golden"],["a","in autumn"]] },
+    { type:"cloze", word:"gold", prompt:"Just remember, ___ isn't everything.", promptZh:"只要记住,金子不是万能的。",
+      answer:"gold", options:["gold","golden","grey","money"], say:"Just remember, gold isn't everything.",
+      full:"Just remember, gold isn't everything.", ann:[["v","Just remember"],["s","gold"],["v","isn't"],["o","everything"]] },
+    { type:"cloze", word:"even", prompt:"He saves all his money. He ___ saves his birthday money.", promptZh:"他把所有钱都存起来,甚至连生日的钱都存。",
+      answer:"even", options:["even","never","only","just"], say:"He even saves his birthday money.",
+      full:"He even saves his birthday money.", ann:[["s","He"],["a","even"],["v","saves"],["o","his birthday money"]] },
+    { type:"cloze", word:"smile", prompt:"The kind shopkeeper gives me a ___.", promptZh:"和善的店主对我微笑。",
+      answer:"smile", options:["smile","choice","reason","rule"], say:"The kind shopkeeper gives me a smile.",
+      full:"The kind shopkeeper gives me a smile.", ann:[["s","The kind shopkeeper"],["v","gives"],["o","me a smile"]] },
+    { type:"cloze", word:"choice", prompt:"Saving money is a good ___.", promptZh:"存钱是个好选择。",
+      answer:"choice", options:["choice","chance","change","cheese"], say:"Saving money is a good choice.",
+      full:"Saving money is a good choice.", ann:[["s","Saving money"],["v","is"],["o","a good choice"]] },
+    { type:"cloze", word:"crayon", prompt:"I want to buy some ___ to draw a picture.", promptZh:"我想买些蜡笔来画画。",
+      answer:"crayons", options:["crayons","cakes","coins","cars"], say:"I want to buy some crayons to draw a picture.",
+      full:"I want to buy some crayons to draw a picture.", ann:[["s","I"],["v","want to buy"],["o","some crayons"],["a","to draw a picture"]] },
+    { type:"cloze", word:"earthquake", prompt:"They gave money to help people after the ___.", promptZh:"地震后他们捐钱帮助人们。",
+      answer:"earthquake", options:["earthquake","weekend","morning","holiday"], say:"They gave money to help people after the earthquake.",
+      full:"They gave money to help people after the earthquake.", ann:[["s","They"],["v","gave"],["o","money"],["a","to help people"],["a","after the earthquake"]] },
+
+    /* ---------- B. 词义辨析 · 中→英 / 英→中(trans) ---------- */
+    { type:"trans", word:"save", kind:"zh2en", prompt:"选出「储蓄;存(钱)」对应的英文:", answer:"save", options:["save","spend","smile","choice"], say:"save" },
+    { type:"trans", word:"spend", kind:"zh2en", prompt:"选出「花费(钱);度过」对应的英文:", answer:"spend", options:["spend","save","take","even"], say:"spend" },
+    { type:"trans", word:"shopkeeper", kind:"zh2en", prompt:"选出「店主」对应的英文:", answer:"shopkeeper", options:["shopkeeper","shop","keeper","teacher"], say:"shopkeeper" },
+    { type:"trans", word:"golden", kind:"en2zh", prompt:"选出 golden 的正确中文意思:", answer:"金色的;金黄色的", options:["金色的;金黄色的","金子","灰色的","甚至"], say:"golden" },
+    { type:"trans", word:"gold", kind:"en2zh", prompt:"选出 gold 的正确中文意思:", answer:"金子,黄金", options:["金子,黄金","金色的","选择","微笑"], say:"gold" },
+    { type:"trans", word:"even", kind:"en2zh", prompt:"选出 even 在“He even saves…”中的意思:", answer:"甚至", options:["甚至","从不","只","已经"], say:"even" },
+    { type:"trans", word:"choice", kind:"zh2en", prompt:"选出「选择」对应的英文:", answer:"choice", options:["choice","chance","change","choose"], say:"choice" },
+    { type:"trans", word:"crayon", kind:"zh2en", prompt:"选出「彩色蜡笔」对应的英文:", answer:"crayon", options:["crayon","cartoon","crown","cream"], say:"crayon" },
+    { type:"trans", word:"earthquake", kind:"zh2en", prompt:"选出「地震」对应的英文:", answer:"earthquake", options:["earthquake","earth","quake","weather"], say:"earthquake" },
+    { type:"trans", word:"smile", kind:"zh2en", prompt:"选出「微笑」对应的英文:", answer:"smile", options:["smile","smell","small","smart"], say:"smile" },
+
+    /* ---------- C. 短语专练(cloze,考搭配) ---------- */
+    { type:"cloze", word:"save money", prompt:"From now on, I will ___ ___ for people in need.", promptZh:"从现在起,我要为需要帮助的人存钱。",
+      answer:"save money", options:["save money","spend money","make money","take money"], say:"From now on, I will save money for people in need.",
+      full:"From now on, I will save money for people in need.", ann:[["a","From now on"],["s","I"],["v","will save"],["o","money"],["a","for people in need"]] },
+    { type:"cloze", word:"spend money on sth", prompt:"He likes to ___ his money ___ books.", promptZh:"他喜欢把钱花在书上。",
+      answer:"spend / on", options:["spend / on","save / on","spend / in","cost / on"], say:"He likes to spend his money on books.",
+      full:"He likes to spend his money on books.", ann:[["s","He"],["v","likes to spend"],["o","his money"],["a","on books"]] },
+    { type:"cloze", word:"from now on", prompt:"___ ___ ___, I'll make a spending plan.", promptZh:"从现在起,我要制定消费计划。",
+      answer:"From now on", options:["From now on","In my opinion","People in need","Come true"], say:"From now on, I'll make a spending plan.",
+      full:"From now on, I'll make a spending plan.", ann:[["a","From now on"],["s","I'll"],["v","make"],["o","a spending plan"]] },
+    { type:"cloze", word:"come true", prompt:"If you save money, your dream will ___ ___.", promptZh:"如果你存钱,你的梦想就会实现。",
+      answer:"come true", options:["come true","turn into","take off","give up"], say:"Your dream will come true.",
+      full:"Your dream will come true.", ann:[["s","Your dream"],["v","will come true"]] },
+    { type:"cloze", word:"turn ... into ...", prompt:"Hard work can ___ a dream ___ real life.", promptZh:"努力能把梦想变成现实。",
+      answer:"turn / into", options:["turn / into","make / into","come / true","put / on"], say:"Hard work can turn a dream into real life.",
+      full:"Hard work can turn a dream into real life.", ann:[["s","Hard work"],["v","can turn"],["o","a dream"],["a","into real life"]] },
+    { type:"cloze", word:"ask sb to do sth", prompt:"My mum ___ me ___ save some money.", promptZh:"妈妈让我存一些钱。",
+      answer:"asks / to", options:["asks / to","asks / for","tells / for","says / to"], say:"My mum asks me to save some money.",
+      full:"My mum asks me to save some money.", ann:[["s","My mum"],["v","asks"],["o","me"],["a","to save some money"]] },
+    { type:"cloze", word:"people in need", prompt:"It's a good thing to share with ___ ___ ___.", promptZh:"帮助需要帮助的人是件好事。",
+      answer:"people in need", options:["people in need","from now on","pocket money","a spending plan"], say:"It's a good thing to share with people in need.",
+      full:"It's a good thing to share with people in need.", ann:[["s","It's"],["o","a good thing"],["a","to share with people in need"]] },
+    { type:"cloze", word:"make a spending plan", prompt:"Before shopping, we should ___ ___ ___ ___ ___.", promptZh:"购物前我们应该制定一个消费计划。",
+      answer:"make a spending plan", options:["make a spending plan","save the pocket money","turn into a plan","come true soon"], say:"We should make a spending plan.",
+      full:"We should make a spending plan.", ann:[["s","We"],["v","should make"],["o","a spending plan"]] },
+
+    /* ---------- D. 句型运用(How much / I'll take / Why not / Just remember) ---------- */
+    { type:"cloze", word:"p_howmuch_sing", pattern:"p_howmuch_sing", prompt:"— How much ___ the crayon? — It's 5 yuan.", promptZh:"这支蜡笔多少钱?5元。",
+      answer:"is", options:["is","are","do","many"], say:"How much is the crayon?",
+      full:"How much is the crayon?", ann:[["c","How much"],["v","is"],["s","the crayon"]] },
+    { type:"cloze", word:"p_howmuch_plur", pattern:"p_howmuch_plur", prompt:"— How much ___ the crayons? — They're 3 yuan each.", promptZh:"这些蜡笔多少钱?每支3元。",
+      answer:"are", options:["are","is","do","does"], say:"How much are the crayons?",
+      full:"How much are the crayons?", ann:[["c","How much"],["v","are"],["s","the crayons"]] },
+    { type:"cloze", word:"p_howmuch_ans", pattern:"p_howmuch_plur", prompt:"— How much are the pens? — ___ 4 yuan each.", promptZh:"这些钢笔多少钱?每支4元。",
+      answer:"They're", options:["They're","It's","There's","That's"], say:"They're 4 yuan each.",
+      full:"They're 4 yuan each.", ann:[["s","They're"],["o","4 yuan"],["a","each"]] },
+    { type:"cloze", word:"p_take", pattern:"p_take", prompt:"It's a good price. I'll ___ it.", promptZh:"价格不错,我买了。",
+      answer:"take", options:["take","takes","taking","took"], say:"I'll take it.",
+      full:"I'll take it.", ann:[["s","I'll"],["v","take"],["o","it"]] },
+    { type:"cloze", word:"p_take_them", pattern:"p_take", prompt:"The crayons are nice. I'll take ___.", promptZh:"这些蜡笔很好,我全买了。",
+      answer:"them", options:["them","it","they","the"], say:"I'll take them.",
+      full:"I'll take them.", ann:[["s","I'll"],["v","take"],["o","them"]] },
+    { type:"cloze", word:"p_whynot", pattern:"p_whynot", prompt:"Why not ___ your pocket money?", promptZh:"为什么不把零花钱存起来呢?",
+      answer:"save", options:["save","saves","saving","to save"], say:"Why not save your pocket money?",
+      full:"Why not save your pocket money?", ann:[["c","Why not"],["v","save"],["o","your pocket money"]] },
+    { type:"cloze", word:"p_whynot_help", pattern:"p_whynot", prompt:"Why not ___ people in need?", promptZh:"为什么不帮助需要帮助的人呢?",
+      answer:"help", options:["help","helps","helping","to help"], say:"Why not help people in need?",
+      full:"Why not help people in need?", ann:[["c","Why not"],["v","help"],["o","people in need"]] },
+    { type:"cloze", word:"p_remember", pattern:"p_remember", prompt:"Just remember, gold ___ everything.", promptZh:"只要记住,金子不是万能的。",
+      answer:"isn't", options:["isn't","aren't","don't","not"], say:"Just remember, gold isn't everything.",
+      full:"Just remember, gold isn't everything.", ann:[["v","Just remember"],["s","gold"],["v","isn't"],["o","everything"]] },
+
+    /* ---------- E. 语法专练(一般现在时三单 / 情态动词 / 不可数名词) ---------- */
+    { type:"grammar", word:"g_spends", pattern:"p_verb3", prompt:"He always ___ his pocket money on books.(用 spend 的正确形式)", answer:"spends", options:["spends","spend","spending","spent"], say:"He always spends his pocket money on books." },
+    { type:"grammar", word:"g_saves", pattern:"p_verb3", prompt:"My sister ___ money every month.(用 save 的正确形式)", answer:"saves", options:["saves","save","saveing","saved"], say:"My sister saves money every month." },
+    { type:"grammar", word:"g_money_uncount", pattern:"p_uncount", prompt:"How ___ money do you have?(选择正确的词)", answer:"much", options:["much","many","more","a lot"], say:"How much money do you have?" },
+    { type:"grammar", word:"g_willsave", pattern:"p_will", prompt:"From now on, I ___ save my money.(选择正确的词)", answer:"will", options:["will","am","do","was"], say:"From now on, I will save my money." },
+    { type:"grammar", word:"g_dont_spend", pattern:"p_imperative", prompt:"___ spend all your money!(否定祈使句)", answer:"Don't", options:["Don't","Not","No","Doesn't"], say:"Don't spend all your money!" },
+
+    /* ---------- F. 句型识别(identify) ---------- */
+    { type:"identify", word:"id_howmuch", pattern:"p_howmuch_sing", prompt:"下面这句用了哪个句型?\n「How much is the robot?」",
+      answer:"How much is + 单数/不可数名词? → It's + 价格.", options:["How much is + 单数/不可数名词? → It's + 价格.","I'll take it / them.","Why not + 动词原形?","Just remember, + 句子."],
+      say:"How much is the robot?", full:"How much is the robot?", ann:[["c","How much"],["v","is"],["s","the robot"]] },
+    { type:"identify", word:"id_take", pattern:"p_take", prompt:"下面这句用了哪个句型?\n「I'll take them.」",
+      answer:"I'll take it / them.", options:["I'll take it / them.","How much are + 复数名词?","Why not + 动词原形?","In my opinion, + 句子."],
+      say:"I'll take them.", full:"I'll take them.", ann:[["s","I'll"],["v","take"],["o","them"]] },
+    { type:"identify", word:"id_whynot", pattern:"p_whynot", prompt:"下面这句用了哪个句型?\n「Why not save your money?」",
+      answer:"Why not + 动词原形?", options:["Why not + 动词原形?","I'll take it / them.","Just remember, + 句子.","How much is + 单数名词?"],
+      say:"Why not save your money?", full:"Why not save your money?", ann:[["c","Why not"],["v","save"],["o","your money"]] },
+    { type:"identify", word:"id_remember", pattern:"p_remember", prompt:"下面这句用了哪个句型?\n「Just remember, gold isn't everything.」",
+      answer:"Just remember, + 句子.", options:["Just remember, + 句子.","Why not + 动词原形?","How much are + 复数名词?","I'll take it / them."],
+      say:"Just remember, gold isn't everything.", full:"Just remember, gold isn't everything.", ann:[["v","Just remember"],["s","gold"],["v","isn't"],["o","everything"]] },
+
+    /* ---------- G. 句子排序(order) ---------- */
+    { type:"order", word:"o_howmuch", prompt:"连词成句(选出正确语序):", answer:"How much is the pen?",
+      options:["How much is the pen?","How much the pen is?","How is much the pen?","Much how is the pen?"], say:"How much is the pen?",
+      full:"How much is the pen?", ann:[["c","How much"],["v","is"],["s","the pen"]] },
+    { type:"order", word:"o_save", prompt:"连词成句(选出正确语序):", answer:"I'll save my pocket money.",
+      options:["I'll save my pocket money.","I'll my pocket money save.","Save I'll my pocket money.","My pocket money I'll save."], say:"I'll save my pocket money.",
+      full:"I'll save my pocket money.", ann:[["s","I'll"],["v","save"],["o","my pocket money"]] },
+    { type:"order", word:"o_whynot", prompt:"连词成句(选出正确语序):", answer:"Why not make a spending plan?",
+      options:["Why not make a spending plan?","Why not a spending plan make?","Not why make a spending plan?","Why make not a spending plan?"], say:"Why not make a spending plan?",
+      full:"Why not make a spending plan?", ann:[["c","Why not"],["v","make"],["o","a spending plan"]] },
+    { type:"order", word:"o_share", prompt:"连词成句(选出正确语序):", answer:"We should share with people in need.",
+      options:["We should share with people in need.","We should with people in need share.","Share we should with people in need.","People in need we should share with."], say:"We should share with people in need.",
+      full:"We should share with people in need.", ann:[["s","We"],["v","should share"],["a","with people in need"]] },
+
+    /* ---------- H. 情景对话补全(cloze) ---------- */
+    { type:"cloze", word:"dlg_price", prompt:"(在商店)— ___ ___ is this crayon? — It's 5 yuan.", promptZh:"这支蜡笔多少钱?5元。",
+      answer:"How much", options:["How much","How many","What color","How old"], say:"How much is this crayon?",
+      full:"How much is this crayon?", ann:[["c","How much"],["v","is"],["s","this crayon"]] },
+    { type:"cloze", word:"dlg_buy", prompt:"— It's only 5 yuan. — Great, I'll ___ it.", promptZh:"才5元。太好了,我买了。",
+      answer:"take", options:["take","make","give","see"], say:"I'll take it.",
+      full:"I'll take it.", ann:[["s","I'll"],["v","take"],["o","it"]] },
+    { type:"cloze", word:"dlg_advice", prompt:"— I have some pocket money. — ___ ___ save it?", promptZh:"我有些零花钱。为什么不把它存起来?",
+      answer:"Why not", options:["Why not","How much","What about","Let us"], say:"Why not save it?",
+      full:"Why not save it?", ann:[["c","Why not"],["v","save"],["o","it"]] },
+  ];
+
+  D.unit1Drill = {
+    id: "unit1Drill",
+    title: "Unit 1 专项强化 · 53 题",
+    desc: "围绕 Unit 1「钱与消费」的单词、短语、句型、语法,53 道多题型专项训练:选词填空 · 词义辨析 · 短语搭配 · 句型运用 · 语法 · 句型识别 · 连词成句 · 情景对话。答错自动进错题本。",
+    items: U1
+  };
+})(window.TOPIC_DATA);
+
+</script>
+<script>
+/* Unit 1 综合测试 · 50 题(全新)—— 追加到 window.TOPIC_DATA.unit1Test50
+ * 只呈现题目(不显示答案),供打印/考试使用。每题带 options(A/B/C/D)。
+ * 保留 answer 字段仅用于校验器检查(选项含答案),UI 不显示。
+ * 综合覆盖 Unit 1:单词(save/spend/pocket money/shopkeeper/golden/gold/even/smile/choice/crayon/earthquake),
+ *   短语(save money / spend...on / from now on / come true / turn...into / ask sb to do / people in need / make a spending plan),
+ *   句型(How much is/are、I'll take it/them、Why not、Just remember),
+ *   语法(三单/时态/情态动词/不可数名词/祈使句/比较),好句(Gold isn't everything)。
+ */
+(function(D){
+  const T = [
+    /* ---------- 一、单项选择:单词与词义(1-14) ---------- */
+    { no:1,  type:"choice", sec:"词汇", stem:"I want to ______ my pocket money for a new book.",
+      options:["save","spend","take","buy"], answer:"save" },
+    { no:2,  type:"choice", sec:"词汇", stem:"Don't ______ all your money on toys.",
+      options:["spend","save","turn","ask"], answer:"spend" },
+    { no:3,  type:"choice", sec:"词汇", stem:"The ______ in the shop is very kind to us.",
+      options:["shopkeeper","teacher","doctor","farmer"], answer:"shopkeeper" },
+    { no:4,  type:"choice", sec:"词汇", stem:"In autumn the leaves turn ______.",
+      options:["golden","gold","grey","green"], answer:"golden" },
+    { no:5,  type:"choice", sec:"词汇", stem:"Just remember, ______ isn't everything.",
+      options:["gold","golden","money","choice"], answer:"gold" },
+    { no:6,  type:"choice", sec:"词汇", stem:"He saves all his money. He ______ saves his birthday money.",
+      options:["even","never","only","just"], answer:"even" },
+    { no:7,  type:"choice", sec:"词汇", stem:"Saving money is a good ______.",
+      options:["choice","chance","change","cheese"], answer:"choice" },
+    { no:8,  type:"choice", sec:"词汇", stem:"I use my ______ to draw a colourful picture.",
+      options:["crayons","coins","cakes","cars"], answer:"crayons" },
+    { no:9,  type:"choice", sec:"词汇", stem:"Many people lost their homes after the ______.",
+      options:["earthquake","weekend","holiday","morning"], answer:"earthquake" },
+    { no:10, type:"choice", sec:"词汇", stem:"The kind lady gives me a warm ______.",
+      options:["smile","smell","choice","reason"], answer:"smile" },
+    { no:11, type:"choice", sec:"词汇", stem:"My mum gives me ten yuan ______ every week.",
+      options:["pocket money","fairy tale","spending plan","people in need"], answer:"pocket money" },
+    { no:12, type:"choice", sec:"词汇", stem:"选出与 gold(金子)词性搭配正确的一项:a ______ ring(一枚金戒指).",
+      options:["gold","golden","goldly","golder"], answer:"gold" },
+    { no:13, type:"choice", sec:"词汇", stem:"—Which word means「甚至」? —It is ______.",
+      options:["even","only","ever","never"], answer:"even" },
+    { no:14, type:"choice", sec:"词汇", stem:"A ______ sells things in a shop.",
+      options:["shopkeeper","customer","doctor","driver"], answer:"shopkeeper" },
+
+    /* ---------- 二、单项选择:短语搭配(15-26) ---------- */
+    { no:15, type:"choice", sec:"短语", stem:"From now on, I'll ______ money for people in need.",
+      options:["save","spend","cost","take"], answer:"save" },
+    { no:16, type:"choice", sec:"短语", stem:"He likes to spend his money ______ books.",
+      options:["on","in","for","to"], answer:"on" },
+    { no:17, type:"choice", sec:"短语", stem:"______ now on, I will make a spending plan.",
+      options:["From","At","In","On"], answer:"From" },
+    { no:18, type:"choice", sec:"短语", stem:"If you keep working hard, your dream will ______.",
+      options:["come true","turn into","take off","give up"], answer:"come true" },
+    { no:19, type:"choice", sec:"短语", stem:"Hard work can ______ a dream ______ real life.",
+      options:["turn / into","make / into","come / true","put / on"], answer:"turn / into" },
+    { no:20, type:"choice", sec:"短语", stem:"My mum ______ me ______ save some money.",
+      options:["asks / to","asks / for","tells / for","says / to"], answer:"asks / to" },
+    { no:21, type:"choice", sec:"短语", stem:"It's a good thing to help ______.",
+      options:["people in need","from now on","pocket money","a spending plan"], answer:"people in need" },
+    { no:22, type:"choice", sec:"短语", stem:"Before shopping, we should ______.",
+      options:["make a spending plan","come true soon","turn into a plan","take off money"], answer:"make a spending plan" },
+    { no:23, type:"choice", sec:"短语", stem:"选出「存钱」的正确英文短语:",
+      options:["save money","make money","take money","cost money"], answer:"save money" },
+    { no:24, type:"choice", sec:"短语", stem:"We give food and clothes to ______ after the earthquake.",
+      options:["people in need","a fairy tale","pocket money","a good price"], answer:"people in need" },
+    { no:25, type:"choice", sec:"短语", stem:"I want my wish to ______ one day.",
+      options:["come true","come here","come back","come in"], answer:"come true" },
+    { no:26, type:"choice", sec:"短语", stem:"Please don't ______ too much money ______ snacks.",
+      options:["spend / on","save / on","spend / in","cost / for"], answer:"spend / on" },
+
+    /* ---------- 三、单项选择:句型(27-36) ---------- */
+    { no:27, type:"choice", sec:"句型", stem:"—How much ______ the crayon? —It's 5 yuan.",
+      options:["is","are","do","many"], answer:"is" },
+    { no:28, type:"choice", sec:"句型", stem:"—How much ______ the crayons? —They're 3 yuan each.",
+      options:["are","is","do","does"], answer:"are" },
+    { no:29, type:"choice", sec:"句型", stem:"—How much are the pens? —______ 4 yuan each.",
+      options:["They're","It's","There's","That's"], answer:"They're" },
+    { no:30, type:"choice", sec:"句型", stem:"It's a good price. I'll ______ it.",
+      options:["take","takes","taking","took"], answer:"take" },
+    { no:31, type:"choice", sec:"句型", stem:"The crayons are nice. I'll take ______.",
+      options:["them","it","they","the"], answer:"them" },
+    { no:32, type:"choice", sec:"句型", stem:"Why not ______ your pocket money?",
+      options:["save","saves","saving","to save"], answer:"save" },
+    { no:33, type:"choice", sec:"句型", stem:"Why not ______ people in need?",
+      options:["help","helps","helping","to help"], answer:"help" },
+    { no:34, type:"choice", sec:"句型", stem:"Just remember, gold ______ everything.",
+      options:["isn't","aren't","don't","not"], answer:"isn't" },
+    { no:35, type:"choice", sec:"句型", stem:"—______ is this schoolbag? —It's ninety-nine yuan.",
+      options:["How much","How many","What colour","How old"], answer:"How much" },
+    { no:36, type:"choice", sec:"句型", stem:"选出「我买了(它们)」的正确表达:",
+      options:["I'll take them.","I'll take it them.","I'll takes them.","I take them will."], answer:"I'll take them." },
+
+    /* ---------- 四、单项选择:语法(37-46) ---------- */
+    { no:37, type:"choice", sec:"语法", stem:"He always ______ his pocket money on books.",
+      options:["spends","spend","spending","spent"], answer:"spends" },
+    { no:38, type:"choice", sec:"语法", stem:"My sister ______ money every month.",
+      options:["saves","save","saveing","saved"], answer:"saves" },
+    { no:39, type:"choice", sec:"语法", stem:"How ______ money do you have?",
+      options:["much","many","more","a lot"], answer:"much" },
+    { no:40, type:"choice", sec:"语法", stem:"From now on, I ______ save my money.",
+      options:["will","am","do","was"], answer:"will" },
+    { no:41, type:"choice", sec:"语法", stem:"______ spend all your money! (否定祈使句)",
+      options:["Don't","Not","No","Doesn't"], answer:"Don't" },
+    { no:42, type:"choice", sec:"语法", stem:"There ______ some money in my pocket.",
+      options:["is","are","have","has"], answer:"is" },
+    { no:43, type:"choice", sec:"语法", stem:"We ______ help people in need. (应该)",
+      options:["should","shoulds","shall to","musts"], answer:"should" },
+    { no:44, type:"choice", sec:"语法", stem:"Look! The boy ______ his money into the box now.",
+      options:["is putting","put","puts","putted"], answer:"is putting" },
+    { no:45, type:"choice", sec:"语法", stem:"This box is ______ than that one.",
+      options:["bigger","big","biggest","more big"], answer:"bigger" },
+    { no:46, type:"choice", sec:"语法", stem:"Yesterday I ______ ten yuan on a book.",
+      options:["spent","spend","spends","spending"], answer:"spent" },
+
+    /* ---------- 五、单项选择:情景交际(47-50) ---------- */
+    { no:47, type:"choice", sec:"交际", stem:"(在商店)你想问价格,应该说:",
+      options:["How much is it?","How old is it?","What colour is it?","Where is it?"], answer:"How much is it?" },
+    { no:48, type:"choice", sec:"交际", stem:"—It's only 5 yuan. —Great, ______",
+      options:["I'll take it.","I'll make it.","I'll see it.","I'll give it."], answer:"I'll take it." },
+    { no:49, type:"choice", sec:"交际", stem:"—I have some pocket money. —______ save it?",
+      options:["Why not","How much","What about","Let us"], answer:"Why not" },
+    { no:50, type:"choice", sec:"交际", stem:"朋友想把钱都花光,你劝他,最合适的一句是:",
+      options:["Just remember, gold isn't everything.","How much is the gold?","I'll take them all.","Gold is everything."], answer:"Just remember, gold isn't everything." },
+  ];
+
+  D.unit1Test50 = {
+    id: "unit1Test50",
+    title: "Unit 1 综合测试 · 50 题",
+    desc: "覆盖 Unit 1 单词、短语、句型、语法、情景交际的 50 道单项选择,只呈现题目(不显示答案),可直接打印作答。",
+    sections: ["词汇","短语","句型","语法","交际"],
+    items: T
+  };
+})(window.TOPIC_DATA);
+
+</script>
+<script>
+window.IPA_DICT = {"10": "/ten/","3": "/θriː/","35": "/ˌθɜːti ˈfaɪv/","4": "/fɔː/","5": "/faɪv/","99": "/ˌnaɪnti ˈnaɪn/","a": "/ə/","about": "/əˈbaʊt/","after": "/ˈɑːftə/","all": "/ɔːl/","always": "/ˈɔːlweɪz/","am": "/æm/","an": "/ən/","and": "/ənd/","apple": "/ˈæpl/","apples": "/ˈæplz/","are": "/ɑː/","arent": "/ɑːnt/","argue": "/ˈɑːɡjuː/","as": "/æz/","ask": "/ɑːsk/","asks": "/ɑːsks/","at": "/ət/","autumn": "/ˈɔːtəm/","away": "/əˈweɪ/","bad": "/bæd/","badly": "/ˈbædli/","be": "/biː/","beautiful": "/ˈbjuːtɪfl/","been": "/biːn/","better": "/ˈbetə/","big": "/bɪɡ/","bigger": "/ˈbɪɡə/","birthday": "/ˈbɜːθdeɪ/","book": "/bʊk/","books": "/bʊks/","box": "/bɒks/","buy": "/baɪ/","cake": "/keɪk/","cakes": "/keɪks/","can": "/kæn/","cant": "/kɑːnt/","careful": "/ˈkeəfl/","carefully": "/ˈkeəfəli/","children": "/ˈtʃɪldrən/","choice": "/tʃɔɪs/","come": "/kʌm/","could": "/kʊd/","crayon": "/ˈkreɪən/","crayons": "/ˈkreɪənz/","cupcake": "/ˈkʌpkeɪk/","cupcakes": "/ˈkʌpkeɪks/","day": "/deɪ/","did": "/dɪd/","discussion": "/dɪˈskʌʃn/","do": "/duː/","doctor": "/ˈdɒktə/","does": "/dʌz/","done": "/dʌn/","dont": "/dəʊnt/","draw": "/drɔː/","dream": "/driːm/","drop": "/drɒp/","each": "/iːtʃ/","earthquake": "/ˈɜːθkweɪk/","easier": "/ˈiːziə/","easy": "/ˈiːzi/","eat": "/iːt/","even": "/ˈiːvn/","every": "/ˈevri/","everything": "/ˈevriθɪŋ/","explore": "/ɪkˈsplɔː/","fairy": "/ˈfeəri/","fear": "/fɪə/","fears": "/fɪəz/","find": "/faɪnd/","follow": "/ˈfɒləʊ/","for": "/fə/","friend": "/frend/","friends": "/frendz/","from": "/frəm/","fruit": "/fruːt/","full": "/fʊl/","gave": "/ɡeɪv/","get": "/ɡet/","girl": "/ɡɜːl/","give": "/ɡɪv/","gives": "/ɡɪvz/","gold": "/ɡəʊld/","golden": "/ˈɡəʊldən/","good": "/ɡʊd/","great": "/ɡreɪt/","grey": "/ɡreɪ/","had": "/hæd/","happier": "/ˈhæpiə/","happy": "/ˈhæpi/","hard": "/hɑːd/","has": "/hæz/","have": "/hæv/","he": "/hiː/","health": "/helθ/","healthier": "/ˈhelθiə/","healthily": "/ˈhelθɪli/","healthy": "/ˈhelθi/","heart": "/hɑːt/","help": "/help/","helped": "/helpt/","her": "/hɜː/","here": "/hɪə/","him": "/hɪm/","his": "/hɪz/","hot": "/hɒt/","hotter": "/ˈhɒtə/","how": "/haʊ/","i": "/aɪ/","idea": "/aɪˈdɪə/","ill": "/aɪl/","in": "/ɪn/","interesting": "/ˈɪntrəstɪŋ/","into": "/ˈɪntə/","is": "/ɪz/","isnt": "/ˈɪznt/","it": "/ɪt/","its": "/ɪts/","just": "/dʒʌst/","keep": "/kiːp/","keeps": "/kiːps/","kind": "/kaɪnd/","large": "/lɑːdʒ/","larger": "/ˈlɑːdʒə/","leaves": "/liːvz/","life": "/laɪf/","like": "/laɪk/","likes": "/laɪks/","line": "/laɪn/","listen": "/ˈlɪsn/","live": "/lɪv/","long": "/lɒŋ/","love": "/lʌv/","make": "/meɪk/","many": "/ˈmeni/","may": "/meɪ/","me": "/miː/","might": "/maɪt/","money": "/ˈmʌni/","month": "/mʌnθ/","more": "/mɔː/","most": "/məʊst/","much": "/mʌtʃ/","mum": "/mʌm/","must": "/mʌst/","my": "/maɪ/","need": "/niːd/","new": "/njuː/","nice": "/naɪs/","nicer": "/ˈnaɪsə/","no": "/nəʊ/","not": "/nɒt/","now": "/naʊ/","of": "/əv/","old": "/əʊld/","on": "/ɒn/","one": "/wʌn/","opinion": "/əˈpɪnjən/","our": "/ˈaʊə/","out": "/aʊt/","over": "/ˈəʊvə/","peel": "/piːl/","pen": "/pen/","people": "/ˈpiːpl/","picture": "/ˈpɪktʃə/","plan": "/plæn/","please": "/pliːz/","pocket": "/ˈpɒkɪt/","price": "/praɪs/","read": "/riːd/","real": "/rɪəl/","reason": "/ˈriːzn/","remember": "/rɪˈmembə/","right": "/raɪt/","robot": "/ˈrəʊbɒt/","rule": "/ruːl/","rules": "/ruːlz/","sam": "/sæm/","save": "/seɪv/","saved": "/seɪvd/","saves": "/seɪvz/","saving": "/ˈseɪvɪŋ/","sb": "/ˈsʌmbədi/","schoolbag": "/ˈskuːlbæɡ/","shall": "/ʃæl/","share": "/ʃeə/","she": "/ʃiː/","shopkeeper": "/ˈʃɒpkiːpə/","should": "/ʃʊd/","sister": "/ˈsɪstə/","sky": "/skaɪ/","small": "/smɔːl/","smile": "/smaɪl/","some": "/sʌm/","spend": "/spend/","spending": "/ˈspendɪŋ/","spends": "/spendz/","spent": "/spent/","sth": "/ˈsʌmθɪŋ/","story": "/ˈstɔːri/","straight": "/streɪt/","sugar": "/ˈʃʊɡə/","sweet": "/swiːt/","sweeter": "/ˈswiːtə/","take": "/teɪk/","takes": "/teɪks/","taking": "/ˈteɪkɪŋ/","tale": "/teɪl/","tales": "/teɪlz/","tall": "/tɔːl/","taller": "/ˈtɔːlə/","taste": "/teɪst/","tastes": "/teɪsts/","teacher": "/ˈtiːtʃə/","teeth": "/tiːθ/","tell": "/tel/","tells": "/telz/","ten": "/ten/","than": "/ðən/","that": "/ðæt/","the": "/ðə/","their": "/ðeə/","them": "/ðem/","then": "/ðen/","these": "/ðiːz/","they": "/ðeɪ/","theyre": "/ðeə/","thing": "/θɪŋ/","things": "/θɪŋz/","this": "/ðɪs/","those": "/ðəʊz/","time": "/taɪm/","to": "/tə/","today": "/təˈdeɪ/","told": "/təʊld/","too": "/tuː/","took": "/tʊk/","toy": "/tɔɪ/","toys": "/tɔɪz/","true": "/truː/","trust": "/trʌst/","truth": "/truːθ/","turn": "/tɜːn/","under": "/ˈʌndə/","us": "/ʌs/","usually": "/ˈjuːʒuəli/","vegetables": "/ˈvedʒtəblz/","very": "/ˈveri/","want": "/wɒnt/","was": "/wɒz/","water": "/ˈwɔːtə/","we": "/wiː/","week": "/wiːk/","well": "/wel/","were": "/wɜː/","why": "/waɪ/","will": "/wɪl/","with": "/wɪð/","without": "/wɪˈðaʊt/","work": "/wɜːk/","world": "/wɜːld/","worse": "/wɜːs/","would": "/wʊd/","yes": "/jes/","you": "/juː/","your": "/jɔː/","yours": "/jɔːz/","yuan": "/jʊˈæn/"};
 
 </script>
 <script type="module">
@@ -984,6 +1283,8 @@ class TopicApp extends LitElement {
     picked:{state:true}, score:{state:true}, combo:{state:true}, _tick:{state:true},
     // exam
     examStage:{state:true}, examIdx:{state:true},
+    // test50
+    test50Answers:{state:true},
   };}
   constructor(){
     super();
@@ -1000,6 +1301,8 @@ class TopicApp extends LitElement {
     this.examStage = 'intro'; this.examIdx = 0;
     this.examAnswers = {};
     this._examFlat = this._shuffleExam();
+    // test50 (综合测试:只呈现题目)
+    this.test50Answers = false;
   }
   static get FAV_INTERVALS(){ return [1,2,4,7,15,30]; }
 
@@ -1055,6 +1358,7 @@ class TopicApp extends LitElement {
     const tabs = [
       ['learn','知识讲解','ic-book-open'],
       ['quiz','闯关练习','ic-target'],
+      ['test50','综合测试','ic-edit'],
       ['wrong','错题本','ic-refresh'],
       ['fav','收藏本','ic-star'],
       ['exam','摸底测试','ic-award'],
@@ -1084,6 +1388,7 @@ class TopicApp extends LitElement {
       <main class="wrap">
         ${this.tab==='learn'?this.renderLearn():''}
         ${this.tab==='quiz'?this.renderQuiz():''}
+        ${this.tab==='test50'?this.renderTest50():''}
         ${this.tab==='wrong'?this.renderWrong():''}
         ${this.tab==='fav'?this.renderFav():''}
         ${this.tab==='exam'?this.renderExam():''}
@@ -1197,6 +1502,7 @@ class TopicApp extends LitElement {
     let pool;
     if (mode==='review') pool = this._wrongQuestions();
     else if (mode==='fav') pool = this._favDueQuestions();
+    else if (mode==='unit1') pool = ((this.data.unit1Drill&&this.data.unit1Drill.items)||[]).slice();
     else pool = (this.data.quiz||[]).slice();
     pool = this._shuffle(pool.slice());
     if (mode==='normal') pool = pool.slice(0, Math.min(25, pool.length));
@@ -1236,6 +1542,7 @@ class TopicApp extends LitElement {
         ${this.quizStage==='empty'?html`<p class="warn">当前没有可练习的题目。</p>`:''}
         <div class="btnrow">
           <button class="btn btn--primary" @click=${()=>this.startQuiz('normal')}>${ico('ic-target')} 开始练习(随机25题)</button>
+          ${this.data.unit1Drill?html`<button class="btn" @click=${()=>this.startQuiz('unit1')}>${ico('ic-layers')} Unit 1 专项(${this.data.unit1Drill.items.length}题)</button>`:''}
           ${this.wrong.size?html`<button class="btn" @click=${()=>this.startQuiz('review')}>${ico('ic-refresh')} 复习错题(${this.wrong.size})</button>`:''}
         </div>
         <div class="qtypes">
@@ -1280,7 +1587,12 @@ class TopicApp extends LitElement {
   }
   _qTypeName(q){ return ({trans:'中英互译',cloze:'句中填空',identify:'句型识别',grammar:'比较级',order:'句子排序'})[q.type]||'练习'; }
   _qStem(q){
-    if (q.type==='cloze'){ const parts=String(q.prompt).split('___'); return html`<span class="stem-clz">${parts[0]}<span class="blank"></span>${parts[1]||''}</span>`; }
+    if (q.type==='cloze'){
+      const parts=String(q.prompt).split('___');
+      const out=[];
+      for(let i=0;i<parts.length;i++){ out.push(parts[i]); if(i<parts.length-1) out.push(html`<span class="blank"></span>`); }
+      return html`<span class="stem-clz">${out}</span>`;
+    }
     return html`<span>${q.prompt}</span>`;
   }
   _qReveal(q){
@@ -1289,6 +1601,47 @@ class TopicApp extends LitElement {
       <div class="reveal__hd">${right?html`${ico('ic-check-circle-2')} 回答正确`:html`${ico('ic-x-circle')} 正确答案:<b>${q.answer}</b>`}</div>
       ${q.full?html`<div class="reveal__sent">${q.ann?annUnderline(q.ann):q.full}<div class="wex__ipa">${sentenceIPA(q.full)} ${this._audioBtn(q.full)}</div></div>`:''}
     </div>`;
+  }
+
+  // ---------- 综合测试(50题·只呈现题目) ----------
+  _t50Stem(stem){
+    const parts=String(stem).split(/_{3,}/);
+    const out=[];
+    for(let i=0;i<parts.length;i++){ out.push(parts[i]); if(i<parts.length-1) out.push(html`<span class="blank"></span>`); }
+    return html`<span class="stem-clz">${out}</span>`;
+  }
+  renderTest50(){
+    const t = this.data.unit1Test50;
+    if(!t) return html`<section class="card"><p class="muted">暂无综合测试数据。</p></section>`;
+    const letters=['A','B','C','D','E','F'];
+    const show=this.test50Answers;
+    return html`<section class="card test50">
+      <div class="card__hd hd--brand">${ico('ic-edit')}<h2>${t.title}<small>综合测试 · 只呈现题目</small></h2></div>
+      <p class="muted">${t.desc}</p>
+      <div class="paper-head">
+        <span>姓名:____________</span><span>班级:____________</span><span>日期:____________</span><span>得分:________</span>
+      </div>
+      <div class="btnrow" style="justify-content:flex-start">
+        <button class="btn btn--ghost sm" @click=${()=>{ this.test50Answers=!this.test50Answers; }}>${ico(show?'ic-x-circle':'ic-check-circle-2')} ${show?'隐藏答案':'显示答案'}</button>
+        <button class="btn btn--ghost sm" @click=${()=>{ try{ window.print(); }catch(e){} }}>${ico('ic-book-open')} 打印试卷</button>
+      </div>
+      ${t.sections.map(sec=>{
+        const qs=t.items.filter(q=>q.sec===sec);
+        if(!qs.length) return '';
+        return html`
+        <div class="t50-sec">
+          <div class="sec-sub">${ico('ic-hash')} ${sec}(${qs.length}题)</div>
+          <ol class="t50-list">
+            ${qs.map(q=>html`<li class="t50-q" value=${q.no}>
+              <div class="t50-stem"><span class="t50-no">${q.no}.</span> ${this._t50Stem(q.stem)} ${this._audioBtn(q.say||q.answer)}</div>
+              <div class="t50-opts">
+                ${q.options.map((o,i)=>html`<span class="t50-opt ${show&&o===q.answer?'t50-opt--ans':''}">${letters[i]}. ${o}</span>`)}
+              </div>
+            </li>`)}
+          </ol>
+        </div>`;
+      })}
+    </section>`;
   }
 
   // ---------- 错题本 ----------
