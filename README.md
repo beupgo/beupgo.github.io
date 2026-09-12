@@ -4,6 +4,8 @@
 
 ## 在线访问
 
+英语单词与打字练习：[打开 Qwerty Learner](https://beupgo.github.io/english-words/)。
+
 <!-- AUTO-TABLE-START -->
 ### 数学
 
@@ -48,8 +50,8 @@
 
 | 页面 | 在线访问 | 更新时间 |
 |---|---|---|
-| 六年级上册 Unit 1-2 · 必考精练 | [开始学习](https://beupgo.github.io/primary-english-unit1-2-practice.html) | 2026-09-11 22:13 |
-| 六年级上册 Unit 1-2 · 必考精练 | [开始学习](https://beupgo.github.io/primary-english-unit1-2-practice .html) | 2026-09-06 10:25 |
+| 六年级上册 Unit 1-2 · 必考精练 | [开始学习](https://beupgo.github.io/primary-english-unit1-2-practice.html) | 2026-09-12 02:52 |
+| 六年级上册 Unit 1-2 · 必考精练 | [开始学习](https://beupgo.github.io/primary-english-unit1-2-practice%20.html) | 2026-09-06 10:25 |
 | 健康很重要 · 6 大场景 | [开始学习](https://beupgo.github.io/health-matters-vocabulary.html) | 2026-08-14 14:20 |
 | 奇妙的大自然专项 · 6 大对话场景 | [开始学习](https://beupgo.github.io/beijing-primary-nature-dialogues.html) | 2026-08-14 14:20 |
 | 表达观点专项 · 6 大对话场景 | [开始学习](https://beupgo.github.io/beijing-primary-opinion-dialogues.html) | 2026-08-14 13:45 |
