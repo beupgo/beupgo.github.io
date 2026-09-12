@@ -433,6 +433,15 @@ table{ border-collapse:collapse; width:100%; }
 .t50-opt--sel{ background:var(--s-brand-weak,rgba(88,101,242,.12)); border-color:var(--s-brand);
   color:var(--s-brand-strong); font-weight:700; }
 
+/* Unit 1 / Unit 2 test switcher */
+.t50-switch{ display:inline-flex; gap:6px; margin:var(--g-sp-3) 0; flex-wrap:wrap; justify-content:center; }
+.t50-swbtn{ font:inherit; font-size:13px; cursor:pointer; padding:7px 16px;
+  border:1.5px solid var(--s-line); border-radius:var(--g-r-pill);
+  background:var(--s-surface); color:var(--s-fg-2); transition:background .15s,border-color .15s,color .15s; }
+.t50-swbtn:hover{ border-color:var(--s-brand); color:var(--s-fg); }
+.t50-swbtn--on{ background:var(--s-brand-weak,rgba(88,101,242,.12)); border-color:var(--s-brand);
+  color:var(--s-brand-strong); font-weight:700; }
+
 /* ---------- footer ---------- */
 .foot{ text-align:center; font-size:11.5px; color:var(--s-fg-3);
   padding:var(--g-sp-6) var(--g-sp-4); }
@@ -446,20 +455,6 @@ table{ border-collapse:collapse; width:100%; }
 </style>
 </head>
 <body>
-<!-- AUTO-BACK-NAV-START -->
-<style id="auto-back-nav-style">
-#auto-back-nav{position:sticky;top:0;z-index:999;background:rgba(249,250,251,.9);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);border-bottom:1px solid #e5e7eb;display:flex;align-items:center;padding:0 20px;height:44px;}
-@media(prefers-color-scheme:dark){#auto-back-nav{background:rgba(13,17,23,.9);border-bottom-color:#2d333b;}}
-#auto-back-nav a{display:inline-flex;align-items:center;gap:6px;text-decoration:none;color:#4b5563;font-size:14px;font-weight:600;font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Hiragino Sans GB","Microsoft YaHei",Roboto,Arial,sans-serif;}
-@media(prefers-color-scheme:dark){#auto-back-nav a{color:#9da7b3;}}
-</style>
-<nav id="auto-back-nav">
-  <a href="index.html">
-    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5"/><path d="m12 19-7-7 7-7"/></svg>
-    暑假成长加油站
-  </a>
-</nav>
-<!-- AUTO-BACK-NAV-END -->
 <div id="boot" style="position:fixed;inset:0;display:grid;place-items:center;font:14px system-ui;color:#888;background:var(--s-bg,#f6f7f9)">正在加载…</div>
 <script>
 function boot_fail(m){var b=document.getElementById('boot');if(b)b.innerHTML='<pre style="max-width:80ch;white-space:pre-wrap;color:#c0392b;padding:24px">启动失败:\n'+m+'</pre>';}
@@ -1119,7 +1114,141 @@ window.TOPIC_DATA = {
 
 </script>
 <script>
-window.IPA_DICT = {"10": "/ten/","3": "/θriː/","35": "/ˌθɜːti ˈfaɪv/","4": "/fɔː/","5": "/faɪv/","99": "/ˌnaɪnti ˈnaɪn/","a": "/ə/","about": "/əˈbaʊt/","after": "/ˈɑːftə/","all": "/ɔːl/","always": "/ˈɔːlweɪz/","am": "/æm/","an": "/ən/","and": "/ənd/","apple": "/ˈæpl/","apples": "/ˈæplz/","are": "/ɑː/","arent": "/ɑːnt/","argue": "/ˈɑːɡjuː/","as": "/æz/","ask": "/ɑːsk/","asks": "/ɑːsks/","at": "/ət/","autumn": "/ˈɔːtəm/","away": "/əˈweɪ/","bad": "/bæd/","badly": "/ˈbædli/","be": "/biː/","beautiful": "/ˈbjuːtɪfl/","been": "/biːn/","better": "/ˈbetə/","big": "/bɪɡ/","bigger": "/ˈbɪɡə/","birthday": "/ˈbɜːθdeɪ/","book": "/bʊk/","books": "/bʊks/","box": "/bɒks/","buy": "/baɪ/","cake": "/keɪk/","cakes": "/keɪks/","can": "/kæn/","cant": "/kɑːnt/","careful": "/ˈkeəfl/","carefully": "/ˈkeəfəli/","children": "/ˈtʃɪldrən/","choice": "/tʃɔɪs/","come": "/kʌm/","could": "/kʊd/","crayon": "/ˈkreɪən/","crayons": "/ˈkreɪənz/","cupcake": "/ˈkʌpkeɪk/","cupcakes": "/ˈkʌpkeɪks/","day": "/deɪ/","did": "/dɪd/","discussion": "/dɪˈskʌʃn/","do": "/duː/","doctor": "/ˈdɒktə/","does": "/dʌz/","done": "/dʌn/","dont": "/dəʊnt/","draw": "/drɔː/","dream": "/driːm/","drop": "/drɒp/","each": "/iːtʃ/","earthquake": "/ˈɜːθkweɪk/","easier": "/ˈiːziə/","easy": "/ˈiːzi/","eat": "/iːt/","even": "/ˈiːvn/","every": "/ˈevri/","everything": "/ˈevriθɪŋ/","explore": "/ɪkˈsplɔː/","fairy": "/ˈfeəri/","fear": "/fɪə/","fears": "/fɪəz/","find": "/faɪnd/","follow": "/ˈfɒləʊ/","for": "/fə/","friend": "/frend/","friends": "/frendz/","from": "/frəm/","fruit": "/fruːt/","full": "/fʊl/","gave": "/ɡeɪv/","get": "/ɡet/","girl": "/ɡɜːl/","give": "/ɡɪv/","gives": "/ɡɪvz/","gold": "/ɡəʊld/","golden": "/ˈɡəʊldən/","good": "/ɡʊd/","great": "/ɡreɪt/","grey": "/ɡreɪ/","had": "/hæd/","happier": "/ˈhæpiə/","happy": "/ˈhæpi/","hard": "/hɑːd/","has": "/hæz/","have": "/hæv/","he": "/hiː/","health": "/helθ/","healthier": "/ˈhelθiə/","healthily": "/ˈhelθɪli/","healthy": "/ˈhelθi/","heart": "/hɑːt/","help": "/help/","helped": "/helpt/","her": "/hɜː/","here": "/hɪə/","him": "/hɪm/","his": "/hɪz/","hot": "/hɒt/","hotter": "/ˈhɒtə/","how": "/haʊ/","i": "/aɪ/","idea": "/aɪˈdɪə/","ill": "/aɪl/","in": "/ɪn/","interesting": "/ˈɪntrəstɪŋ/","into": "/ˈɪntə/","is": "/ɪz/","isnt": "/ˈɪznt/","it": "/ɪt/","its": "/ɪts/","just": "/dʒʌst/","keep": "/kiːp/","keeps": "/kiːps/","kind": "/kaɪnd/","large": "/lɑːdʒ/","larger": "/ˈlɑːdʒə/","leaves": "/liːvz/","life": "/laɪf/","like": "/laɪk/","likes": "/laɪks/","line": "/laɪn/","listen": "/ˈlɪsn/","live": "/lɪv/","long": "/lɒŋ/","love": "/lʌv/","make": "/meɪk/","many": "/ˈmeni/","may": "/meɪ/","me": "/miː/","might": "/maɪt/","money": "/ˈmʌni/","month": "/mʌnθ/","more": "/mɔː/","most": "/məʊst/","much": "/mʌtʃ/","mum": "/mʌm/","must": "/mʌst/","my": "/maɪ/","need": "/niːd/","new": "/njuː/","nice": "/naɪs/","nicer": "/ˈnaɪsə/","no": "/nəʊ/","not": "/nɒt/","now": "/naʊ/","of": "/əv/","old": "/əʊld/","on": "/ɒn/","one": "/wʌn/","opinion": "/əˈpɪnjən/","our": "/ˈaʊə/","out": "/aʊt/","over": "/ˈəʊvə/","peel": "/piːl/","pen": "/pen/","people": "/ˈpiːpl/","picture": "/ˈpɪktʃə/","plan": "/plæn/","please": "/pliːz/","pocket": "/ˈpɒkɪt/","price": "/praɪs/","read": "/riːd/","real": "/rɪəl/","reason": "/ˈriːzn/","remember": "/rɪˈmembə/","right": "/raɪt/","robot": "/ˈrəʊbɒt/","rule": "/ruːl/","rules": "/ruːlz/","sam": "/sæm/","save": "/seɪv/","saved": "/seɪvd/","saves": "/seɪvz/","saving": "/ˈseɪvɪŋ/","sb": "/ˈsʌmbədi/","schoolbag": "/ˈskuːlbæɡ/","shall": "/ʃæl/","share": "/ʃeə/","she": "/ʃiː/","shopkeeper": "/ˈʃɒpkiːpə/","should": "/ʃʊd/","sister": "/ˈsɪstə/","sky": "/skaɪ/","small": "/smɔːl/","smile": "/smaɪl/","some": "/sʌm/","spend": "/spend/","spending": "/ˈspendɪŋ/","spends": "/spendz/","spent": "/spent/","sth": "/ˈsʌmθɪŋ/","story": "/ˈstɔːri/","straight": "/streɪt/","sugar": "/ˈʃʊɡə/","sweet": "/swiːt/","sweeter": "/ˈswiːtə/","take": "/teɪk/","takes": "/teɪks/","taking": "/ˈteɪkɪŋ/","tale": "/teɪl/","tales": "/teɪlz/","tall": "/tɔːl/","taller": "/ˈtɔːlə/","taste": "/teɪst/","tastes": "/teɪsts/","teacher": "/ˈtiːtʃə/","teeth": "/tiːθ/","tell": "/tel/","tells": "/telz/","ten": "/ten/","than": "/ðən/","that": "/ðæt/","the": "/ðə/","their": "/ðeə/","them": "/ðem/","then": "/ðen/","these": "/ðiːz/","they": "/ðeɪ/","theyre": "/ðeə/","thing": "/θɪŋ/","things": "/θɪŋz/","this": "/ðɪs/","those": "/ðəʊz/","time": "/taɪm/","to": "/tə/","today": "/təˈdeɪ/","told": "/təʊld/","too": "/tuː/","took": "/tʊk/","toy": "/tɔɪ/","toys": "/tɔɪz/","true": "/truː/","trust": "/trʌst/","truth": "/truːθ/","turn": "/tɜːn/","under": "/ˈʌndə/","us": "/ʌs/","usually": "/ˈjuːʒuəli/","vegetables": "/ˈvedʒtəblz/","very": "/ˈveri/","want": "/wɒnt/","was": "/wɒz/","water": "/ˈwɔːtə/","we": "/wiː/","week": "/wiːk/","well": "/wel/","were": "/wɜː/","why": "/waɪ/","will": "/wɪl/","with": "/wɪð/","without": "/wɪˈðaʊt/","work": "/wɜːk/","world": "/wɜːld/","worse": "/wɜːs/","would": "/wʊd/","yes": "/jes/","you": "/juː/","your": "/jɔː/","yours": "/jɔːz/","yuan": "/jʊˈæn/"};
+/* Unit 2 综合测试 · 50 题(全新)—— 追加到 window.TOPIC_DATA.unit2Test50
+ * 在线作答 + 自动判分(与 Unit 1 综合测试共用答题引擎)。每题带 options(A/B/C/D)。
+ * 题目与本页 Unit 2(观点与探索)内容严格一致:
+ *   单词:opinion/peel/health(healthy/healthier)/without/grey/line/explore/truth/
+ *        fear/trust/discussion/fairy tale/reason/rule
+ *   短语:be full of / be good for / be bad for / take time / argue with sb /
+ *        help sb with sth / listen to
+ *   句型:In my opinion, + 句子;Why not + 动词原形?
+ *   语法:形容词比较级(healthy→healthier 等)、健康饮食建议
+ *   好句:An apple a day keeps the doctor away. / Drop all your fears and trust your heart.
+ */
+(function(D){
+  const T = [
+    /* ---------- 一、单词与词义(1-14) ---------- */
+    { no:1,  type:"choice", sec:"词汇", stem:"In my ______, we should eat more fruit.",
+      options:["opinion","reason","truth","fear"], answer:"opinion" },
+    { no:2,  type:"choice", sec:"词汇", stem:"Please ______ the apple before you eat it.",
+      options:["peel","explore","trust","argue"], answer:"peel" },
+    { no:3,  type:"choice", sec:"词汇", stem:"Eating vegetables is good for our ______.",
+      options:["health","opinion","line","fear"], answer:"health" },
+    { no:4,  type:"choice", sec:"词汇", stem:"We can't live ______ water.",
+      options:["without","with","for","about"], answer:"without" },
+    { no:5,  type:"choice", sec:"词汇", stem:"The sky is ______ and it may rain soon.",
+      options:["grey","gold","golden","green"], answer:"grey" },
+    { no:6,  type:"choice", sec:"词汇", stem:"Please draw a straight ______ here.",
+      options:["line","rule","peel","truth"], answer:"line" },
+    { no:7,  type:"choice", sec:"词汇", stem:"Scientists like to ______ the world around us.",
+      options:["explore","argue","peel","trust"], answer:"explore" },
+    { no:8,  type:"choice", sec:"词汇", stem:"You should always tell the ______.",
+      options:["truth","fear","rule","line"], answer:"truth" },
+    { no:9,  type:"choice", sec:"词汇", stem:"Drop all your ______ and trust your heart.",
+      options:["fears","reasons","rules","lines"], answer:"fears" },
+    { no:10, type:"choice", sec:"词汇", stem:"Good friends ______ each other.",
+      options:["trust","peel","explore","argue"], answer:"trust" },
+    { no:11, type:"choice", sec:"词汇", stem:"We had a long ______ about the story in class.",
+      options:["discussion","opinion","reason","line"], answer:"discussion" },
+    { no:12, type:"choice", sec:"词汇", stem:"Cinderella is a famous ______.",
+      options:["fairy tale","spending plan","pocket money","people in need"], answer:"fairy tale" },
+    { no:13, type:"choice", sec:"词汇", stem:"Tell me the ______ why you are late.",
+      options:["reason","truth","fear","line"], answer:"reason" },
+    { no:14, type:"choice", sec:"词汇", stem:"We must follow the ______ in the library: keep quiet.",
+      options:["rules","reasons","opinions","fears"], answer:"rules" },
+
+    /* ---------- 二、短语(15-26) ---------- */
+    { no:15, type:"choice", sec:"短语", stem:"The book is ______ interesting stories.",
+      options:["full of","good for","bad for","without"], answer:"full of" },
+    { no:16, type:"choice", sec:"短语", stem:"Fresh fruit is ______ our health.",
+      options:["good for","full of","bad for","made of"], answer:"good for" },
+    { no:17, type:"choice", sec:"短语", stem:"Too much sugar is ______ your teeth.",
+      options:["bad for","good for","full of","famous for"], answer:"bad for" },
+    { no:18, type:"choice", sec:"短语", stem:"Learning English well may ______.",
+      options:["take time","come true","turn into","save money"], answer:"take time" },
+    { no:19, type:"choice", sec:"短语", stem:"Don't ______ your friends over small things.",
+      options:["argue with","listen to","help with","full of"], answer:"argue with" },
+    { no:20, type:"choice", sec:"短语", stem:"Can you ______ me ______ my homework?",
+      options:["help; with","argue; with","listen; to","be; full of"], answer:"help; with" },
+    { no:21, type:"choice", sec:"短语", stem:"You should ______ your teacher carefully in class.",
+      options:["listen to","argue with","turn into","be full of"], answer:"listen to" },
+    { no:22, type:"choice", sec:"短语", stem:"—Your bag is ______ books! —Yes, I love reading.",
+      options:["full of","good for","bad for","without"], answer:"full of" },
+    { no:23, type:"choice", sec:"短语", stem:"Doing morning exercises is ______ us.",
+      options:["good for","bad for","full of","argue with"], answer:"good for" },
+    { no:24, type:"choice", sec:"短语", stem:"Watching TV too long is ______ your eyes.",
+      options:["bad for","good for","full of","help with"], answer:"bad for" },
+    { no:25, type:"choice", sec:"短语", stem:"A big change may ______, so be patient.",
+      options:["take time","come true","people in need","spend money"], answer:"take time" },
+    { no:26, type:"choice", sec:"短语", stem:"Please ______ the music; it's beautiful.",
+      options:["listen to","argue with","full of","good for"], answer:"listen to" },
+
+    /* ---------- 三、句型(27-36) ---------- */
+    { no:27, type:"choice", sec:"句型", stem:"______ my opinion, reading is very important.",
+      options:["In","On","At","For"], answer:"In" },
+    { no:28, type:"choice", sec:"句型", stem:"In my opinion, we ______ eat more vegetables.",
+      options:["should","are","does","is"], answer:"should" },
+    { no:29, type:"choice", sec:"句型", stem:"—I feel tired. —______ have a short rest?",
+      options:["Why not","Why don't","What about not","How about"], answer:"Why not" },
+    { no:30, type:"choice", sec:"句型", stem:"Why not ______ some water? It's good for you.",
+      options:["drink","drinks","drinking","to drink"], answer:"drink" },
+    { no:31, type:"choice", sec:"句型", stem:"—The room is dirty. —Why not ______ it now?",
+      options:["clean","cleans","cleaning","cleaned"], answer:"clean" },
+    { no:32, type:"choice", sec:"句型", stem:"选出「在我看来」的正确表达:",
+      options:["In my opinion","On my opinion","In my reason","By my opinion"], answer:"In my opinion" },
+    { no:33, type:"choice", sec:"句型", stem:"Why not ______ a fairy tale before bed?",
+      options:["read","reads","reading","to read"], answer:"read" },
+    { no:34, type:"choice", sec:"句型", stem:"In my opinion, this idea ______ great.",
+      options:["is","are","be","being"], answer:"is" },
+    { no:35, type:"choice", sec:"句型", stem:"—How can I keep healthy? —______ do morning exercises?",
+      options:["Why not","Why don't we not","What not","How not"], answer:"Why not" },
+    { no:36, type:"choice", sec:"句型", stem:"Why not ______ your fears and try again?",
+      options:["drop","drops","dropping","to drop"], answer:"drop" },
+
+    /* ---------- 四、语法:比较级 / 健康(37-46) ---------- */
+    { no:37, type:"choice", sec:"语法", stem:"Eating fruit makes us ______ than eating sweets.",
+      options:["healthier","healthy","healthily","health"], answer:"healthier" },
+    { no:38, type:"choice", sec:"语法", stem:"An orange is ______ than a lemon.",
+      options:["sweeter","sweet","sweetly","most sweet"], answer:"sweeter" },
+    { no:39, type:"choice", sec:"语法", stem:"This box is ______ than that one.",
+      options:["bigger","big","biger","more big"], answer:"bigger" },
+    { no:40, type:"choice", sec:"语法", stem:"My schoolbag is ______ than yours.",
+      options:["nicer","nice","nicerer","more nice"], answer:"nicer" },
+    { no:41, type:"choice", sec:"语法", stem:"English is ______ for me than maths.",
+      options:["easier","easy","easily","more easy"], answer:"easier" },
+    { no:42, type:"choice", sec:"语法", stem:"He is ______ than his brother.",
+      options:["taller","tall","more tall","tallest"], answer:"taller" },
+    { no:43, type:"choice", sec:"语法", stem:"Reading books is ______ than watching TV.",
+      options:["more interesting","interesting","interestinger","most interesting"], answer:"more interesting" },
+    { no:44, type:"choice", sec:"语法", stem:"Please read the words ______.",
+      options:["carefully","careful","carefuler","care"], answer:"carefully" },
+    { no:45, type:"choice", sec:"语法", stem:"Today is ______ than yesterday.",
+      options:["hotter","hot","hoter","more hot"], answer:"hotter" },
+    { no:46, type:"choice", sec:"语法", stem:"Vegetables are ______ for your body.",
+      options:["healthy","health","healthier","healthily"], answer:"healthy" },
+
+    /* ---------- 五、交际 / 好句(47-50) ---------- */
+    { no:47, type:"choice", sec:"交际", stem:"An apple a day keeps the ______ away.",
+      options:["doctor","teacher","fear","truth"], answer:"doctor" },
+    { no:48, type:"choice", sec:"交际", stem:"Drop all your fears and ______ your heart.",
+      options:["trust","peel","argue","explore"], answer:"trust" },
+    { no:49, type:"choice", sec:"交际", stem:"—Which is healthier, fruit or sweets? —______ is healthier.",
+      options:["Fruit","Sweets","Sugar","Cake"], answer:"Fruit" },
+    { no:50, type:"choice", sec:"交际", stem:"—Why do you like science? —Because I like to ______ new things.",
+      options:["explore","argue","peel","spend"], answer:"explore" },
+  ];
+  D.unit2Test50 = {
+    id: "unit2Test50",
+    title: "Unit 2 综合测试 · 50 题",
+    desc: "覆盖 Unit 2(观点与探索)全部知识点:单词、短语、句型(In my opinion / Why not)、比较级语法与经典好句,共 50 道单项选择,在线作答自动判分。",
+    sections: ["词汇","短语","句型","语法","交际"],
+    items: T
+  };
+})(window.TOPIC_DATA);
+
+</script>
+<script>
+window.IPA_DICT = {"10": "/ten/","3": "/θriː/","35": "/ˌθɜːti ˈfaɪv/","4": "/fɔː/","5": "/faɪv/","99": "/ˌnaɪnti ˈnaɪn/","a": "/ə/","about": "/əˈbaʊt/","after": "/ˈɑːftə/","all": "/ɔːl/","always": "/ˈɔːlweɪz/","am": "/æm/","an": "/ən/","and": "/ənd/","apple": "/ˈæpl/","apples": "/ˈæplz/","are": "/ɑː/","arent": "/ɑːnt/","argue": "/ˈɑːɡjuː/","as": "/æz/","ask": "/ɑːsk/","asks": "/ɑːsks/","at": "/ət/","autumn": "/ˈɔːtəm/","away": "/əˈweɪ/","bad": "/bæd/","badly": "/ˈbædli/","be": "/biː/","beautiful": "/ˈbjuːtɪfl/","been": "/biːn/","better": "/ˈbetə/","big": "/bɪɡ/","bigger": "/ˈbɪɡə/","birthday": "/ˈbɜːθdeɪ/","book": "/bʊk/","books": "/bʊks/","box": "/bɒks/","buy": "/baɪ/","cake": "/keɪk/","cakes": "/keɪks/","can": "/kæn/","cant": "/kɑːnt/","careful": "/ˈkeəfl/","carefully": "/ˈkeəfəli/","children": "/ˈtʃɪldrən/","choice": "/tʃɔɪs/","clean": "/kliːn/","come": "/kʌm/","could": "/kʊd/","crayon": "/ˈkreɪən/","crayons": "/ˈkreɪənz/","cupcake": "/ˈkʌpkeɪk/","cupcakes": "/ˈkʌpkeɪks/","day": "/deɪ/","did": "/dɪd/","discussion": "/dɪˈskʌʃn/","do": "/duː/","doctor": "/ˈdɒktə/","does": "/dʌz/","done": "/dʌn/","dont": "/dəʊnt/","draw": "/drɔː/","dream": "/driːm/","drink": "/drɪŋk/","drop": "/drɒp/","each": "/iːtʃ/","earthquake": "/ˈɜːθkweɪk/","easier": "/ˈiːziə/","easy": "/ˈiːzi/","eat": "/iːt/","even": "/ˈiːvn/","every": "/ˈevri/","everything": "/ˈevriθɪŋ/","explore": "/ɪkˈsplɔː/","fairy": "/ˈfeəri/","fear": "/fɪə/","fears": "/fɪəz/","find": "/faɪnd/","follow": "/ˈfɒləʊ/","for": "/fə/","friend": "/frend/","friends": "/frendz/","from": "/frəm/","fruit": "/fruːt/","full": "/fʊl/","gave": "/ɡeɪv/","get": "/ɡet/","girl": "/ɡɜːl/","give": "/ɡɪv/","gives": "/ɡɪvz/","gold": "/ɡəʊld/","golden": "/ˈɡəʊldən/","good": "/ɡʊd/","great": "/ɡreɪt/","grey": "/ɡreɪ/","had": "/hæd/","happier": "/ˈhæpiə/","happy": "/ˈhæpi/","hard": "/hɑːd/","has": "/hæz/","have": "/hæv/","he": "/hiː/","health": "/helθ/","healthier": "/ˈhelθiə/","healthily": "/ˈhelθɪli/","healthy": "/ˈhelθi/","heart": "/hɑːt/","help": "/help/","helped": "/helpt/","her": "/hɜː/","here": "/hɪə/","him": "/hɪm/","his": "/hɪz/","hot": "/hɒt/","hotter": "/ˈhɒtə/","how": "/haʊ/","i": "/aɪ/","idea": "/aɪˈdɪə/","ill": "/aɪl/","in": "/ɪn/","interesting": "/ˈɪntrəstɪŋ/","into": "/ˈɪntə/","is": "/ɪz/","isnt": "/ˈɪznt/","it": "/ɪt/","its": "/ɪts/","just": "/dʒʌst/","keep": "/kiːp/","keeps": "/kiːps/","kind": "/kaɪnd/","large": "/lɑːdʒ/","larger": "/ˈlɑːdʒə/","leaves": "/liːvz/","life": "/laɪf/","like": "/laɪk/","likes": "/laɪks/","line": "/laɪn/","listen": "/ˈlɪsn/","live": "/lɪv/","long": "/lɒŋ/","love": "/lʌv/","make": "/meɪk/","many": "/ˈmeni/","may": "/meɪ/","me": "/miː/","might": "/maɪt/","money": "/ˈmʌni/","month": "/mʌnθ/","more": "/mɔː/","most": "/məʊst/","much": "/mʌtʃ/","mum": "/mʌm/","must": "/mʌst/","my": "/maɪ/","need": "/niːd/","new": "/njuː/","nice": "/naɪs/","nicer": "/ˈnaɪsə/","no": "/nəʊ/","not": "/nɒt/","now": "/naʊ/","of": "/əv/","old": "/əʊld/","on": "/ɒn/","one": "/wʌn/","opinion": "/əˈpɪnjən/","our": "/ˈaʊə/","out": "/aʊt/","over": "/ˈəʊvə/","peel": "/piːl/","pen": "/pen/","people": "/ˈpiːpl/","picture": "/ˈpɪktʃə/","plan": "/plæn/","please": "/pliːz/","pocket": "/ˈpɒkɪt/","price": "/praɪs/","putting": "/ˈpʊtɪŋ/","read": "/riːd/","real": "/rɪəl/","reason": "/ˈriːzn/","remember": "/rɪˈmembə/","right": "/raɪt/","robot": "/ˈrəʊbɒt/","rule": "/ruːl/","rules": "/ruːlz/","sam": "/sæm/","save": "/seɪv/","saved": "/seɪvd/","saves": "/seɪvz/","saving": "/ˈseɪvɪŋ/","sb": "/ˈsʌmbədi/","schoolbag": "/ˈskuːlbæɡ/","shall": "/ʃæl/","share": "/ʃeə/","she": "/ʃiː/","shopkeeper": "/ˈʃɒpkiːpə/","should": "/ʃʊd/","sister": "/ˈsɪstə/","sky": "/skaɪ/","small": "/smɔːl/","smile": "/smaɪl/","some": "/sʌm/","spend": "/spend/","spending": "/ˈspendɪŋ/","spends": "/spendz/","spent": "/spent/","sth": "/ˈsʌmθɪŋ/","story": "/ˈstɔːri/","straight": "/streɪt/","sugar": "/ˈʃʊɡə/","sweet": "/swiːt/","sweeter": "/ˈswiːtə/","take": "/teɪk/","takes": "/teɪks/","taking": "/ˈteɪkɪŋ/","tale": "/teɪl/","tales": "/teɪlz/","tall": "/tɔːl/","taller": "/ˈtɔːlə/","taste": "/teɪst/","tastes": "/teɪsts/","teacher": "/ˈtiːtʃə/","teeth": "/tiːθ/","tell": "/tel/","tells": "/telz/","ten": "/ten/","than": "/ðən/","that": "/ðæt/","the": "/ðə/","their": "/ðeə/","them": "/ðem/","then": "/ðen/","these": "/ðiːz/","they": "/ðeɪ/","theyre": "/ðeə/","thing": "/θɪŋ/","things": "/θɪŋz/","this": "/ðɪs/","those": "/ðəʊz/","time": "/taɪm/","to": "/tə/","today": "/təˈdeɪ/","told": "/təʊld/","too": "/tuː/","took": "/tʊk/","toy": "/tɔɪ/","toys": "/tɔɪz/","true": "/truː/","trust": "/trʌst/","truth": "/truːθ/","turn": "/tɜːn/","under": "/ˈʌndə/","us": "/ʌs/","usually": "/ˈjuːʒuəli/","vegetables": "/ˈvedʒtəblz/","very": "/ˈveri/","want": "/wɒnt/","was": "/wɒz/","water": "/ˈwɔːtə/","we": "/wiː/","week": "/wiːk/","well": "/wel/","were": "/wɜː/","why": "/waɪ/","will": "/wɪl/","with": "/wɪð/","without": "/wɪˈðaʊt/","work": "/wɜːk/","world": "/wɜːld/","worse": "/wɜːs/","would": "/wʊd/","yes": "/jes/","you": "/juː/","your": "/jɔː/","yours": "/jɔːz/","yuan": "/jʊˈæn/"};
 
 </script>
 <script type="module">
@@ -1308,7 +1437,7 @@ class TopicApp extends LitElement {
     // exam
     examStage:{state:true}, examIdx:{state:true},
     // test50
-    test50Answers:{state:true}, t50Stage:{state:true}, t50Picks:{state:true},
+    test50Answers:{state:true}, t50Stage:{state:true}, t50Picks:{state:true}, t50Which:{state:true},
   };}
   constructor(){
     super();
@@ -1328,6 +1457,7 @@ class TopicApp extends LitElement {
     // test50 (综合测试:在线作答 + 出结果)
     this.test50Answers = false;
     this.t50Stage = 'intro';   // intro | run | result
+    this.t50Which = 'unit1';   // unit1 | unit2
     this.t50Picks = {};        // { [no]: selectedOption }
   }
   static get FAV_INTERVALS(){ return [1,2,4,7,15,30]; }
@@ -1636,7 +1766,9 @@ class TopicApp extends LitElement {
     for(let i=0;i<parts.length;i++){ out.push(parts[i]); if(i<parts.length-1) out.push(html`<span class="blank"></span>`); }
     return html`<span class="stem-clz">${out}</span>`;
   }
-  _t50Items(){ return (this.data.unit1Test50 && this.data.unit1Test50.items) || []; }
+  _t50Data(){ return this.t50Which==='unit2' ? this.data.unit2Test50 : this.data.unit1Test50; }
+  _t50Items(){ const t=this._t50Data(); return (t && t.items) || []; }
+  t50SetWhich(which){ if(this.t50Which===which) return; this.t50Which = which; this.t50Picks = {}; this.t50Stage = 'intro'; }
   t50Start(){ this.t50Picks = {}; this.t50Stage = 'run'; try{ scrollTo(0,0); }catch(e){} }
   t50Pick(no, opt){ this.t50Picks = { ...this.t50Picks, [no]:opt }; }
   t50Answered(){ return Object.keys(this.t50Picks).length; }
@@ -1644,7 +1776,7 @@ class TopicApp extends LitElement {
   t50Retry(){ this.t50Picks = {}; this.t50Stage = 'run'; try{ scrollTo(0,0); }catch(e){} }
   t50Correct(){ return this._t50Items().filter(q=>this.t50Picks[q.no]===q.answer).length; }
   t50SectionStat(){
-    const t=this.data.unit1Test50; const out=[];
+    const t=this._t50Data(); const out=[];
     t.sections.forEach(sec=>{
       const qs=t.items.filter(q=>q.sec===sec);
       const ok=qs.filter(q=>this.t50Picks[q.no]===q.answer).length;
@@ -1654,16 +1786,23 @@ class TopicApp extends LitElement {
   }
 
   renderTest50(){
-    const t = this.data.unit1Test50;
+    const t = this._t50Data();
     if(!t) return html`<section class="card"><p class="muted">暂无综合测试数据。</p></section>`;
     if(this.t50Stage==='result') return this._renderTest50Result();
     if(this.t50Stage==='run') return this._renderTest50Run();
     return this._renderTest50Intro();
   }
+  _t50Switcher(){
+    const opts=[['unit1','Unit 1 · 消费与钱'],['unit2','Unit 2 · 观点与探索']];
+    return html`<div class="t50-switch">
+      ${opts.map(([k,label])=>html`<button class="t50-swbtn ${this.t50Which===k?'t50-swbtn--on':''}" @click=${()=>this.t50SetWhich(k)}>${label}</button>`)}
+    </div>`;
+  }
   _renderTest50Intro(){
-    const t=this.data.unit1Test50;
+    const t=this._t50Data();
     return html`<section class="card center test50">
       <div class="card__hd hd--brand" style="justify-content:center">${ico('ic-edit')}<h2>${t.title}<small>在线作答 · 自动判分</small></h2></div>
+      ${this._t50Switcher()}
       <p class="muted">${t.desc}</p>
       <div class="qtypes">${t.sections.map(s=>{const n=t.items.filter(q=>q.sec===s).length;return html`<span class="chip">${s} ${n}题</span>`;})}</div>
       <p class="muted" style="margin-top:12px">共 <b>${t.items.length}</b> 道单项选择,每题 <b>2</b> 分,满分 <b>${t.items.length*2}</b> 分。作答完成后点「交卷」查看成绩与逐题解析。</p>
@@ -1673,7 +1812,7 @@ class TopicApp extends LitElement {
     </section>`;
   }
   _renderTest50Run(){
-    const t=this.data.unit1Test50; const letters=['A','B','C','D','E','F'];
+    const t=this._t50Data(); const letters=['A','B','C','D','E','F'];
     const answered=this.t50Answered(), total=t.items.length;
     return html`<section class="card test50">
       <div class="card__hd hd--brand">${ico('ic-edit')}<h2>${t.title}<small>在线作答</small></h2></div>
@@ -1706,7 +1845,7 @@ class TopicApp extends LitElement {
     </section>`;
   }
   _renderTest50Result(){
-    const t=this.data.unit1Test50; const letters=['A','B','C','D','E','F'];
+    const t=this._t50Data(); const letters=['A','B','C','D','E','F'];
     const total=t.items.length, correct=this.t50Correct();
     const answered=this.t50Answered(), wrong=answered-correct, blank=total-answered;
     const score=correct*2, full=total*2, pct=Math.round(correct/total*100);
@@ -1714,7 +1853,7 @@ class TopicApp extends LitElement {
     const secs=this.t50SectionStat();
     const wrongItems=t.items.filter(q=>this.t50Picks[q.no]!==q.answer);
     return html`<section class="card test50">
-      <div class="card__hd hd--brand">${ico('ic-award')}<h2>综合测试 · 成绩报告<small>Unit 1</small></h2></div>
+      <div class="card__hd hd--brand">${ico('ic-award')}<h2>综合测试 · 成绩报告<small>${this.t50Which==='unit2'?'Unit 2':'Unit 1'}</small></h2></div>
       <div class="result-score">
         <div class="rs__num">${score}<small> / ${full}</small></div>
         <div class="rs__lv rs--${level}">${level} · 正确率 ${pct}%</div>
