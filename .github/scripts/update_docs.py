@@ -17,6 +17,7 @@ import re
 import subprocess
 import sys
 from pathlib import Path
+from urllib.parse import quote
 
 ROOT = Path(__file__).resolve().parent.parent.parent  # repo root
 
@@ -351,7 +352,7 @@ def gen_readme_table(pages: list[dict]) -> str:
         lines.append("| 页面 | 在线访问 | 更新时间 |")
         lines.append("|---|---|---|")
         for p in grouped[subject_slug]:
-            url = f"https://beupgo.github.io/{p['file']}"
+            url = f"https://beupgo.github.io/{quote(p['file'], safe='')}"
             title = p["title"].replace("|", "\\|")
             updated_at = p["updated_at"] or "-"
             lines.append(f"| {title} | [开始学习]({url}) | {updated_at} |")
