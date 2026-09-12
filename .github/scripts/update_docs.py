@@ -13,6 +13,8 @@ Sentinel markers used:
                on first run, updated in-place on subsequent runs)
 """
 
+import hashlib
+import json
 import re
 import subprocess
 import sys
@@ -20,6 +22,35 @@ from pathlib import Path
 from urllib.parse import quote
 
 ROOT = Path(__file__).resolve().parent.parent.parent  # repo root
+DATE_FIELDS = ("uploaded_ts", "uploaded_at", "updated_ts", "updated_at")
+
+
+def load_page_metadata() -> dict:
+    path = ROOT / ".github/page-metadata.json"
+    if not path.exists():
+        return {}
+    data = json.loads(path.read_text(encoding="utf-8"))
+    if data.get("version") != 1 or not isinstance(data.get("pages"), dict):
+        raise ValueError("Unsupported page metadata format")
+    return data["pages"]
+
+
+def page_digest(path: Path) -> str:
+    return hashlib.sha256(path.read_bytes()).hexdigest()
+
+
+def update_page_metadata(pages: list[dict]) -> None:
+    # Hash after generated navigation is written, so a no-op run keeps dates.
+    data = {
+        "version": 1,
+        "pages": {
+            p["file"]: {"sha256": page_digest(ROOT / p["file"]),
+                        **{key: p[key] for key in DATE_FIELDS}}
+            for p in sorted(pages, key=lambda p: p["file"])
+        },
+    }
+    path = ROOT / ".github/page-metadata.json"
+    path.write_text(json.dumps(data, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
 
 GRADE_NAMES_ZH = {
     1: "一年级", 2: "二年级", 3: "三年级",
@@ -243,6 +274,7 @@ def parse_filename(name: str):
 def collect_pages() -> list[dict]:
     pages = []
     existing_cards = extract_existing_cards()
+    metadata = load_page_metadata()
     for f in sorted(ROOT.glob("*.html")):
         if f.name == "index.html":
             continue
@@ -251,8 +283,15 @@ def collect_pages() -> list[dict]:
         title = extract_title(text, f.stem)
         description = extract_meta_description(text)
         subject_slug = normalize_subject_slug(filename_subject_slug or "") or extract_subject_slug(text, title, f.name)
-        uploaded_ts, uploaded_at = get_git_uploaded_at(f.name)
-        updated_ts, updated_at = get_git_last_updated(f.name)
+        previous = metadata.get(f.name)
+        if previous:
+            uploaded_ts, uploaded_at = previous["uploaded_ts"], previous["uploaded_at"]
+        else:
+            uploaded_ts, uploaded_at = get_git_uploaded_at(f.name)
+        if previous and previous["sha256"] == page_digest(f):
+            updated_ts, updated_at = previous["updated_ts"], previous["updated_at"]
+        else:
+            updated_ts, updated_at = get_git_last_updated(f.name)
         pages.append(
             dict(
                 file=f.name,
@@ -509,6 +548,7 @@ def main() -> int:
     changed_readme = update_readme(visible_pages)
     changed_index = update_index(visible_pages)
     changed_subpages = update_subpages(pages)
+    update_page_metadata(pages)
     # A clean regeneration is a successful no-op, not a workflow failure.
     return 0
 

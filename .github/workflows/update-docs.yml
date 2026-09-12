@@ -1,47 +1,51 @@
-name: Auto-update docs
+name: Publish latest artifacts
 
-# Trigger when any content HTML page is pushed to main.
-# index.html is excluded because it is one of the files this workflow writes.
 on:
   push:
-    branches: [main]
-    paths:
-      - '*.html'
-      - '!index.html'
-      - '.github/scripts/update_docs.py'
-      - '.github/workflows/update-docs.yml'
+    branches: [main, master]
+  workflow_dispatch:
+
+# Serialize publication; a queued run checks out the latest default branch.
+concurrency:
+  group: publish-latest-artifacts
+  cancel-in-progress: false
+
+permissions:
+  contents: write
+  pages: write
 
 jobs:
-  update-docs:
-    # Skip commits made by this workflow itself to avoid infinite loops.
-    if: github.actor != 'github-actions[bot]'
+  publish:
+    if: github.ref_name == github.event.repository.default_branch
     runs-on: ubuntu-latest
-    permissions:
-      contents: write
-
+    env:
+      PYTHONDONTWRITEBYTECODE: '1'
+      PUBLISH_BRANCH: ${{ github.event.repository.default_branch }}
     steps:
       - uses: actions/checkout@v4
         with:
-          token: ${{ secrets.GITHUB_TOKEN }}
+          ref: ${{ github.event.repository.default_branch }}
           fetch-depth: 0
 
-      - name: Set up Python
-        uses: actions/setup-python@v5
+      - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
 
-      - name: Regenerate README and index
-        run: |
-          python .github/scripts/update_docs.py
+      - name: Verify publishing behavior
+        run: python -m unittest discover -s .github/scripts/tests -v
 
-      - name: Commit and push if changed
+      - name: Regenerate navigation and save page dates
+        run: python .github/scripts/update_docs.py
+
+      - name: Replace default branch with one artifact snapshot
         run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add README.md index.html *.html
-          if git diff --staged --quiet; then
-            echo "No changes to commit."
-          else
-            git commit -m "docs: auto-update README and index [skip ci]"
-            git push
-          fi
+          python .github/scripts/publish_snapshot.py \
+            --branch "$PUBLISH_BRANCH" \
+            --expected-head "$(git rev-parse HEAD)"
+
+      # GITHUB_TOKEN pushes do not trigger another workflow or a Pages build.
+      # Explicitly build Pages from the newly published default-branch snapshot.
+      - name: Request GitHub Pages build
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh api --method POST "repos/$GITHUB_REPOSITORY/pages/builds"
