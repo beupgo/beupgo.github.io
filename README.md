@@ -4,6 +4,8 @@
 
 ## 在线访问
 
+英语单词与打字练习：[打开 Qwerty Learner](https://beupgo.github.io/english-words/)。
+
 <!-- AUTO-TABLE-START -->
 ### 数学
 
