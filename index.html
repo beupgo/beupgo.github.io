@@ -1,0 +1,1354 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="theme-color" content="#4338ca">
+<title>暑假成长加油站 · 小学语数英复习导航</title>
+<style>
+:root{
+  --font:-apple-system,BlinkMacSystemFont,"PingFang SC","Hiragino Sans GB","Microsoft YaHei",Roboto,Arial,sans-serif;
+  --bg:#f0f2f8;
+  --card:#fff;
+  --text:#111827;
+  --text-2:#4b5563;
+  --text-3:#9ca3af;
+  --border:#e5e7eb;
+  --content-max:1120px;
+  --content-pad:clamp(16px,3vw,28px);
+  /* subject accents */
+  --math:#4f46e5; --math-light:#eef2ff; --math-mid:#c7d2fe;
+  --zh:#ea580c;   --zh-light:#fff7ed;   --zh-mid:#fed7aa;
+  --en:#059669;   --en-light:#ecfdf5;   --en-mid:#6ee7b7;
+  --other:#7c3aed;--other-light:#faf5ff;--other-mid:#ddd6fe;
+}
+@media(prefers-color-scheme:dark){
+  :root{
+    --bg:#0f1117; --card:#1c2030; --text:#e2e8f0; --text-2:#94a3b8;
+    --text-3:#475569; --border:#2d3748;
+    --math-light:#1e1b4b; --math-mid:#312e81;
+    --zh-light:#1c0a00;   --zh-mid:#7c2d12;
+    --en-light:#022c22;   --en-mid:#064e3b;
+    --other-light:#1e1030;--other-mid:#3b0764;
+  }
+  .tab-wrap{background:rgba(15,17,23,.88);}
+  .panel-meta{background:rgba(28,32,48,.82);}
+  .crd-head{border-bottom-color:rgba(148,163,184,.08);}
+  .crd-icon{
+    background:rgba(15,23,42,.22);
+    border-color:rgba(148,163,184,.12);
+    box-shadow:inset 0 1px 0 rgba(255,255,255,.03),0 10px 22px rgba(2,6,23,.22);
+  }
+}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent;margin:0;padding:0;}
+html{height:100%;}
+body{
+  font-family:var(--font);
+  background:var(--bg);
+  color:var(--text);
+  min-height:100%;
+  -webkit-font-smoothing:antialiased;
+}
+
+/* ── Top bar ──────────────────────────────────────────── */
+.topbar{
+  background:linear-gradient(135deg,#4338ca 0%,#6366f1 60%,#8b5cf6 100%);
+  color:#fff;
+  position:sticky;top:0;z-index:300;
+  box-shadow:0 10px 28px rgba(67,56,202,.18);
+}
+.topbar-inner{
+  max-width:calc(var(--content-max) + var(--content-pad) * 2);
+  margin:0 auto;
+  padding:calc(env(safe-area-inset-top,0px) + 16px) var(--content-pad) 18px;
+  display:flex;align-items:flex-start;justify-content:space-between;gap:16px;
+}
+.topbar-title{
+  display:flex;flex-direction:column;
+}
+.topbar-title h1{
+  font-size:clamp(17px,2.4vw,22px);
+  font-weight:900;letter-spacing:-.02em;
+  line-height:1.2;
+}
+.topbar-title p{
+  font-size:13px;opacity:.86;margin-top:4px;
+}
+.topbar-actions{display:flex;gap:8px;align-items:center;}
+.btn-icon{
+  width:38px;height:38px;
+  display:flex;align-items:center;justify-content:center;
+  border:none;cursor:pointer;
+  background:rgba(255,255,255,.15);
+  border-radius:50%;
+  color:#fff;
+  transition:background .15s,transform .1s;
+  flex-shrink:0;
+}
+.btn-icon:active{transform:scale(.88);background:rgba(255,255,255,.28);}
+@media(hover:hover){.btn-icon:hover{background:rgba(255,255,255,.25);}}
+.btn-icon svg{width:20px;height:20px;display:block;}
+
+/* ── Subject tabs ─────────────────────────────────────── */
+.tab-wrap{
+  position:sticky;top:calc(env(safe-area-inset-top,0px) + 68px);
+  z-index:200;
+  background:rgba(255,255,255,.92);
+  backdrop-filter:blur(16px);
+  -webkit-backdrop-filter:blur(16px);
+  border-bottom:1px solid var(--border);
+}
+.tab-shell{
+  max-width:calc(var(--content-max) + var(--content-pad) * 2);
+  margin:0 auto;
+  padding:0 var(--content-pad);
+}
+.tab-bar{
+  display:flex;gap:0;
+  overflow-x:auto;scrollbar-width:none;
+  padding:0;
+}
+.tab-bar::-webkit-scrollbar{display:none;}
+.tab-btn{
+  flex:none;
+  display:inline-flex;align-items:center;gap:8px;
+  padding:14px 18px;
+  border:none;background:none;
+  font-family:var(--font);font-size:14px;font-weight:700;
+  color:var(--text-2);
+  cursor:pointer;white-space:nowrap;
+  position:relative;
+  transition:color .15s;
+}
+.tab-btn::after{
+  content:'';
+  position:absolute;bottom:0;left:50%;right:50%;
+  height:3px;border-radius:3px 3px 0 0;
+  background:var(--math);
+  transition:left .2s,right .2s;
+}
+.tab-btn:active{opacity:.7;}
+.tab-btn svg{width:16px;height:16px;display:block;stroke:currentColor;}
+/* active indicator colors per subject */
+.tab-btn[data-subj="数学"].active{color:var(--math);}
+.tab-btn[data-subj="数学"].active::after{left:12px;right:12px;}
+.tab-btn[data-subj="语文"].active{color:var(--zh);}
+.tab-btn[data-subj="语文"].active::after{left:12px;right:12px;background:var(--zh);}
+.tab-btn[data-subj="英语"].active{color:var(--en);}
+.tab-btn[data-subj="英语"].active::after{left:12px;right:12px;background:var(--en);}
+.tab-btn[data-subj="other"].active{color:var(--other);}
+.tab-btn[data-subj="other"].active::after{left:12px;right:12px;background:var(--other);}
+
+/* ── Tab panels ───────────────────────────────────────── */
+.tab-panel{display:none;padding:22px 0 calc(env(safe-area-inset-bottom,16px) + 60px);}
+.tab-panel.active{display:block;}
+.panel-inner{
+  max-width:calc(var(--content-max) + var(--content-pad) * 2);
+  margin:0 auto;
+  padding:0 var(--content-pad);
+}
+.panel-head{
+  display:flex;align-items:flex-end;justify-content:space-between;
+  gap:14px;flex-wrap:wrap;
+  margin:0 0 18px;
+}
+.panel-copy{min-width:0;}
+.panel-kicker{
+  font-size:11px;font-weight:800;letter-spacing:.12em;
+  color:var(--text-3);text-transform:uppercase;
+}
+.panel-title{
+  font-size:26px;font-weight:900;line-height:1.15;
+  letter-spacing:-.03em;margin-top:4px;
+}
+.panel-desc{
+  font-size:13px;line-height:1.6;color:var(--text-2);margin-top:6px;
+}
+.panel-meta{
+  font-size:12px;font-weight:700;color:var(--text-3);
+  padding:7px 12px;border:1px solid var(--border);border-radius:999px;
+  background:rgba(255,255,255,.7);
+}
+
+/* ── Card grid ────────────────────────────────────────── */
+.card-list{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:14px;
+}
+@media(min-width:540px){.card-list{grid-template-columns:repeat(3,1fr);}}
+@media(min-width:860px){.card-list{grid-template-columns:repeat(4,1fr);gap:16px;}}
+
+.crd{
+  display:flex;flex-direction:column;
+  border-radius:20px;
+  background:var(--card);
+  border:1px solid var(--border);
+  text-decoration:none;color:var(--text);
+  box-shadow:0 8px 24px rgba(15,23,42,.06),0 2px 8px rgba(15,23,42,.04);
+  transition:transform .12s,box-shadow .12s;
+}
+.crd:active{transform:scale(.95);}
+@media(hover:hover){
+  .crd:hover{transform:translateY(-4px);box-shadow:0 18px 34px rgba(15,23,42,.12),0 8px 16px rgba(15,23,42,.08);}
+}
+
+.crd-icon{
+  width:42px;height:42px;
+  display:flex;align-items:center;justify-content:center;
+  border-radius:14px;
+  background:rgba(255,255,255,.72);
+  border:1px solid rgba(255,255,255,.78);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.85),0 6px 16px rgba(79,70,229,.08);
+  flex:none;
+}
+.crd-icon svg{
+  width:22px;height:22px;display:block;
+  fill:none;stroke:currentColor;stroke-width:1.9;
+  stroke-linecap:round;stroke-linejoin:round;
+}
+[data-subj="数学"] .crd-icon{color:var(--math);}
+[data-subj="语文"] .crd-icon{color:var(--zh);}
+[data-subj="英语"] .crd-icon{color:var(--en);}
+[data-subj="other"] .crd-icon{color:var(--other);}
+
+/* card body */
+.crd-body{
+  flex:1;display:flex;flex-direction:column;
+  padding:16px;
+}
+.crd-title-row{
+  display:flex;align-items:flex-start;gap:12px;
+}
+.crd-copy{
+  flex:1;min-width:0;
+}
+.crd-title{
+  font-size:16px;font-weight:850;line-height:1.42;
+  display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;
+}
+.crd-desc{
+  font-size:13px;color:var(--text-2);margin-top:6px;line-height:1.6;
+  display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;
+}
+.crd-foot{
+  display:flex;align-items:center;justify-content:space-between;
+  margin-top:auto;padding-top:12px;
+  gap:10px;
+}
+.crd-meta{
+  display:flex;flex-wrap:wrap;gap:8px 12px;
+  min-width:0;
+}
+.crd-chip{
+  font-size:11px;font-weight:800;
+  padding:2px 8px;border-radius:99px;
+  letter-spacing:.03em;flex:none;
+  margin-left:auto;
+}
+[data-subj="数学"] .crd-chip{background:var(--math-light);color:var(--math);border:1px solid var(--math-mid);}
+[data-subj="语文"] .crd-chip{background:var(--zh-light);color:var(--zh);border:1px solid var(--zh-mid);}
+[data-subj="英语"] .crd-chip{background:var(--en-light);color:var(--en);border:1px solid var(--en-mid);}
+[data-subj="other"] .crd-chip{background:var(--other-light);color:var(--other);border:1px solid var(--other-mid);}
+
+/* ── Card metadata ─────────────────────────────────────── */
+.crd-time,.crd-date{
+  display:flex;align-items:center;gap:3px;
+  font-size:11px;font-weight:700;color:var(--text-3);
+  white-space:nowrap;
+}
+.crd-time svg,.crd-date svg{width:11px;height:11px;flex:none;}
+
+/* ── Footer ───────────────────────────────────────────── */
+.foot{
+  text-align:center;color:var(--text-3);font-size:12px;line-height:1.8;
+  padding:4px 20px 12px;max-width:720px;margin:0 auto;
+}
+
+/* ── Hidden data source ───────────────────────────────── */
+#card-data{display:none;}
+</style>
+</head>
+<body>
+
+<!-- Top bar -->
+<div class="topbar">
+  <div class="topbar-inner">
+    <div class="topbar-title">
+      <h1>暑假成长加油站 🌟</h1>
+      <p>语文 · 数学 · 英语 — 点击卡片开始学习</p>
+      <p><a href="english-words/">英语单词与打字练习 · Qwerty Learner</a></p>
+    </div>
+    <div class="topbar-actions">
+      <button class="btn-icon" id="btn-refresh" type="button" title="刷新页面" aria-label="刷新页面">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M3 12a9 9 0 0 1 15-6.7L21 8"/>
+          <path d="M21 3v5h-5"/>
+          <path d="M21 12a9 9 0 0 1-15 6.7L3 16"/>
+          <path d="M3 21v-5h5"/>
+        </svg>
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- Subject tabs -->
+<div class="tab-wrap">
+  <div class="tab-shell">
+    <div class="tab-bar" id="tab-bar" role="tablist"></div>
+  </div>
+</div>
+
+<!-- Card panels (populated by JS) -->
+<div id="tab-panels"></div>
+
+<!-- Footer -->
+<div class="foot">依据人教版(PEP)教材整理 · 供个人学习使用</div>
+
+<!-- Auto-generated card data (hidden, used as data source by JS) -->
+<div id="card-data">
+  <!-- AUTO-CARDS-START -->
+    <h2 class="subject-heading">数学</h2>
+
+    <a class="card" href="math-fraction-flexible-worksheet.html" data-date="2026-09-05 14:51">
+      <div class="top">
+        <div class="icon">分</div>
+        <div>
+          <h2>分数灵活运算与应用 · 小升初培优卷</h2>
+          <div class="grade-en">MATH-FRACTION-FLEXIBLE-WORKSHEET</div>
+        </div>
+      </div>
+      <p class="desc">分数灵活运算与应用 · 小升初培优卷</p>
+      <span class="go">开始学习
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+      </span>
+    </a>
+
+    <a class="card" href="math-annulus-area-answers.html" data-date="2026-08-24 03:26">
+      <div class="top">
+        <div class="icon">圆</div>
+        <div>
+          <h2>圆环面积 · 数学培优卷 · 答案与解析</h2>
+          <div class="grade-en">MATH-ANNULUS-AREA-ANSWERS</div>
+        </div>
+      </div>
+      <p class="desc">圆环面积 · 数学培优卷 · 答案与解析</p>
+      <span class="go">开始学习
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+      </span>
+    </a>
+
+    <a class="card" href="math-annulus-area-worksheet.html" data-date="2026-08-24 03:26">
+      <div class="top">
+        <div class="icon">圆</div>
+        <div>
+          <h2>圆环面积 · 数学培优卷 · 题目卷</h2>
+          <div class="grade-en">MATH-ANNULUS-AREA-WORKSHEET</div>
+        </div>
+      </div>
+      <p class="desc">圆环面积 · 数学培优卷 · 题目卷</p>
+      <span class="go">开始学习
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+      </span>
+    </a>
+
+    <a class="card" href="math-concentration-answers.html" data-date="2026-08-24 03:26">
+      <div class="top">
+        <div class="icon">浓</div>
+        <div>
+          <h2>浓度问题 · 答案与解析</h2>
+          <div class="grade-en">MATH-CONCENTRATION-ANSWERS</div>
+        </div>
+      </div>
+      <p class="desc">浓度问题 · 答案与解析</p>
+      <span class="go">开始学习
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+      </span>
+    </a>
+
+    <a class="card" href="math-concentration-worksheet.html" data-date="2026-08-24 03:26">
+      <div class="top">
+        <div class="icon">浓</div>
+        <div>
+          <h2>浓度问题 · 小升初培优卷</h2>
+          <div class="grade-en">MATH-CONCENTRATION-WORKSHEET</div>
+        </div>
+      </div>
+      <p class="desc">浓度问题 · 小升初培优卷</p>
+      <span class="go">开始学习
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+      </span>
+    </a>
+
+    <a class="card" href="math-quantity-rate-answers.html" data-date="2026-08-24 03:26">
+      <div class="top">
+        <div class="icon">量</div>
+        <div>
+          <h2>量率对应 · 数学培优卷 · 答案与解析</h2>
+          <div class="grade-en">MATH-QUANTITY-RATE-ANSWERS</div>
+        </div>
+      </div>
+      <p class="desc">量率对应 · 数学培优卷 · 答案与解析</p>
+      <span class="go">开始学习
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+      </span>
+    </a>
+
+    <a class="card" href="math-quantity-rate-worksheet.html" data-date="2026-08-24 03:26">
+      <div class="top">
+        <div class="icon">量</div>
+        <div>
+          <h2>量率对应 · 数学培优卷 · 题目卷</h2>
+          <div class="grade-en">MATH-QUANTITY-RATE-WORKSHEET</div>
+        </div>
+      </div>
+      <p class="desc">量率对应 · 数学培优卷 · 题目卷</p>
+      <span class="go">开始学习
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+      </span>
+    </a>
+
+    <a class="card" href="math-ratio-allocation-answers.html" data-date="2026-08-24 03:26">
+      <div class="top">
+        <div class="icon">按</div>
+        <div>
+          <h2>按比例分配 · 数学培优卷 · 答案与解析</h2>
+          <div class="grade-en">MATH-RATIO-ALLOCATION-ANSWERS</div>
+        </div>
+      </div>
+      <p class="desc">按比例分配 · 数学培优卷 · 答案与解析</p>
+      <span class="go">开始学习
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+      </span>
+    </a>
+
+    <a class="card" href="math-ratio-allocation-worksheet.html" data-date="2026-08-24 03:26">
+      <div class="top">
+        <div class="icon">按</div>
+        <div>
+          <h2>按比例分配 · 数学培优卷 · 题目卷</h2>
+          <div class="grade-en">MATH-RATIO-ALLOCATION-WORKSHEET</div>
+        </div>
+      </div>
+      <p class="desc">按比例分配 · 数学培优卷 · 题目卷</p>
+      <span class="go">开始学习
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+      </span>
+    </a>
+
+    <a class="card" href="math-work-rate-answers.html" data-date="2026-08-24 03:26">
+      <div class="top">
+        <div class="icon">工</div>
+        <div>
+          <h2>工程问题 · 数学培优卷 · 答案与解析</h2>
+          <div class="grade-en">MATH-WORK-RATE-ANSWERS</div>
+        </div>
+      </div>
+      <p class="desc">工程问题 · 数学培优卷 · 答案与解析</p>
+      <span class="go">开始学习
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+      </span>
+    </a>
+
+    <a class="card" href="math-work-rate-worksheet.html" data-date="2026-08-24 03:26">
+      <div class="top">
+        <div class="icon">工</div>
+        <div>
+          <h2>工程问题 · 数学培优卷 · 题目卷</h2>
+          <div class="grade-en">MATH-WORK-RATE-WORKSHEET</div>
+        </div>
+      </div>
+      <p class="desc">工程问题 · 数学培优卷 · 题目卷</p>
+      <span class="go">开始学习
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+      </span>
+    </a>
+
+    <a class="card" href="math-fraction-ratio-worksheet.html" data-date="2026-08-09 12:21">
+      <div class="top">
+        <div class="icon">分</div>
+        <div>
+          <h2>分数乘除法与比例 · 小升初培优卷</h2>
+          <div class="grade-en">MATH-FRACTION-RATIO-WORKSHEET</div>
+        </div>
+      </div>
+      <p class="desc">分数乘除法与比例 · 小升初培优卷</p>
+      <span class="go">开始学习
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+      </span>
+    </a>
+
+    <a class="card" href="math-circle-shaded-area-worksheet.html" data-date="2026-08-05 10:04">
+      <div class="top">
+        <div class="icon">圆</div>
+        <div>
+          <h2>圆与阴影面积测试卷 · 北京小学</h2>
+          <div class="grade-en">MATH-CIRCLE-SHADED-AREA-WORKSHEET</div>
+        </div>
+      </div>
+      <p class="desc">圆与阴影面积测试卷 · 北京小学</p>
+      <span class="go">开始学习
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+      </span>
+    </a>
+
+    <a class="card" href="primary-circle-lessons-problems.html" data-time="约 35 分钟" data-date="2026-07-31 09:29">
+      <div class="top">
+        <div class="icon">奥</div>
+        <div>
+          <h2>奥数·圆的面积进阶应用题</h2>
+          <div class="grade-en">PRIMARY-CIRCLE-LESSONS-PROBLEMS</div>
+        </div>
+      </div>
+      <p class="desc">圆与扇形面积、割补等积、阴影面积求法 — 小学奥数竞赛专题练习卷</p>
+      <span class="go">开始学习
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+      </span>
+    </a>
+
+    <a class="card" href="equation-word-problems.html" data-time="约 25 分钟" data-date="2026-07-26 03:41">
+      <div class="top">
+        <div class="icon">简</div>
+        <div>
+          <h2>简易方程应用题练习卷</h2>
+          <div class="grade-en">EQUATION-WORD-PROBLEMS</div>
+        </div>
+      </div>
+      <p class="desc">用方程解决行程、购物、工程等应用题，含基础与进阶两级</p>
+      <span class="go">开始学习
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+      </span>
+    </a>
+
+    <a class="card" href="Math-G5-Fraction-Common-Denominator.html" data-time="约 20 分钟" data-date="2026-07-10 13:37">
+      <div class="top">
+        <div class="icon">通</div>
+        <div>
+          <h2>通分：理解通分的本质</h2>
+          <div class="grade-en">MATH-G5-FRACTION-COMMON-DENOMINATOR</div>
+        </div>
+      </div>
+      <p class="desc">从"为什么要通分"出发，理解公分母的意义，掌握通分步骤</p>
+      <span class="go">开始学习
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+      </span>
+    </a>
+
+    <a class="card" href="g5-math-fraction-split-exercises.html" data-time="约 20 分钟" data-date="2026-07-10 18:57">
+      <div class="top">
+        <div class="icon">5</div>
+        <div>
+          <h2>裂差 · 裂和专项练习</h2>
+          <div class="grade-en">GRADE 5 · MATH</div>
+        </div>
+      </div>
+      <p class="desc">把分数拆成两个分数之差或之和，专项练习题强化裂项技巧</p>
+      <span class="go">开始学习
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+      </span>
+    </a>
+
+    <a class="card" href="g5-math-fraction-split-practice.html" data-time="约 20 分钟" data-date="2026-07-10 18:57">
+      <div class="top">
+        <div class="icon">5</div>
+        <div>
+          <h2>裂差 · 裂和应用练习</h2>
+          <div class="grade-en">GRADE 5 · MATH</div>
+        </div>
+      </div>
+      <p class="desc">裂差裂和方法在实际应用题中的综合运用练习</p>
+      <span class="go">开始学习
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+      </span>
+    </a>
+
+    <a class="card" href="g4-math-simple-calc.html" data-time="约 30 分钟" data-date="2026-07-04 21:41">
+      <div class="top">
+        <div class="icon">4</div>
+        <div>
+          <h2>运算定律：拆数凑整巧算</h2>
+          <div class="grade-en">GRADE 4 · MATH</div>
+        </div>
+      </div>
+      <p class="desc">加法交换律、结合律，乘法分配律 — 用拆数凑整把计算变简单</p>
+      <span class="go">开始学习
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+      </span>
+    </a>
+
+    <a class="card" href="g5-math-equation.html" data-time="约 30 分钟" data-date="2026-07-04 21:41">
+      <div class="top">
+        <div class="icon">5</div>
+        <div>
+          <h2>简易方程：从天平到解方程</h2>
+          <div class="grade-en">GRADE 5 · MATH</div>
+        </div>
+      </div>
+      <p class="desc">用天平模型理解等式，掌握解方程三步骤，含和差倍题型练习</p>
+      <span class="go">开始学习
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+      </span>
+    </a>
+
+    <a class="card" href="g5-math-factors-multiples.html" data-time="约 25 分钟" data-date="2026-07-04 21:41">
+      <div class="top">
+        <div class="icon">5</div>
+        <div>
+          <h2>因数与倍数：质数合数 · 公因数公倍数</h2>
+          <div class="grade-en">GRADE 5 · MATH</div>
+        </div>
+      </div>
+      <p class="desc">理解质数、合数、奇偶数，求最大公因数与最小公倍数</p>
+      <span class="go">开始学习
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+      </span>
+    </a>
+
+    <a class="card" href="g5-math-polygon-area.html" data-time="约 30 分钟" data-date="2026-07-04 21:41">
+      <div class="top">
+        <div class="icon">5</div>
+        <div>
+          <h2>多边形面积：割补转化思想</h2>
+          <div class="grade-en">GRADE 5 · MATH</div>
+        </div>
+      </div>
+      <p class="desc">平行四边形、三角形、梯形面积，用割补法解组合图形面积难题</p>
+      <span class="go">开始学习
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+      </span>
+    </a>
+
+    <a class="card" href="grade5-math.html" data-time="约 45 分钟" data-date="2026-07-04 21:41">
+      <div class="top">
+        <div class="icon">5</div>
+        <div>
+          <h2>五年级数学母题系统</h2>
+          <div class="grade-en">GRADE 5 · MATH</div>
+        </div>
+      </div>
+      <p class="desc">覆盖小数乘除法、方程、多边形面积、长方体、分数、植树问题共 8 大模块</p>
+      <span class="go">开始学习
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+      </span>
+    </a>
+
+    <a class="card" href="g6-math-fraction-division.html" data-time="约 25 分钟" data-date="2026-07-04 21:41">
+      <div class="top">
+        <div class="icon">6</div>
+        <div>
+          <h2>分数除法应用题：找准单位 1</h2>
+          <div class="grade-en">GRADE 6 · MATH</div>
+        </div>
+      </div>
+      <p class="desc">识别"单位 1"是关键，含已知部分量求总量、分率与数量转化等题型</p>
+      <span class="go">开始学习
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+      </span>
+    </a>
+
+    <a class="card" href="g6-math-fractions.html" data-time="约 50 分钟" data-date="2026-07-04 21:41">
+      <div class="top">
+        <div class="icon">6</div>
+        <div>
+          <h2>分数：从概念到四则运算全覆盖</h2>
+          <div class="grade-en">GRADE 6 · MATH</div>
+        </div>
+      </div>
+      <p class="desc">分数的意义、约分通分、加减乘除运算，覆盖真假分数等变种题型</p>
+      <span class="go">开始学习
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+      </span>
+    </a>
+
+    <a class="card" href="g6-math-geometric-thinking.html" data-time="约 30 分钟" data-date="2026-07-04 21:41">
+      <div class="top">
+        <div class="icon">6</div>
+        <div>
+          <h2>图形思想：画图法解数学题</h2>
+          <div class="grade-en">GRADE 6 · MATH</div>
+        </div>
+      </div>
+      <p class="desc">用线段图、示意图把文字题变成直观图形，快速找到解题思路</p>
+      <span class="go">开始学习
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+      </span>
+    </a>
+
+    <a class="card" href="grade6-math.html" data-time="约 45 分钟" data-date="2026-07-04 21:41">
+      <div class="top">
+        <div class="icon">6</div>
+        <div>
+          <h2>六年级数学母题系统</h2>
+          <div class="grade-en">GRADE 6 · MATH</div>
+        </div>
+      </div>
+      <p class="desc">覆盖分数乘除法、按比分配、圆的周长/面积、圆柱圆锥体积、百分数共 8 模块</p>
+      <span class="go">开始学习
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+      </span>
+    </a>
+
+    <h2 class="subject-heading">语文</h2>
+
+    <a class="card" href="grade5-chinese-essay-process.html" data-time="约 25 分钟" data-date="2026-07-04 21:41">
+      <div class="top">
+        <div class="icon">5</div>
+        <div>
+          <h2>作文是怎么"长"出来的</h2>
+          <div class="grade-en">GRADE 5 · CHINESE</div>
+        </div>
+      </div>
+      <p class="desc">拆解一篇优秀作文的诞生过程：选材→构思→开头→结尾，附示范全文</p>
+      <span class="go">开始学习
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+      </span>
+    </a>
+
+    <a class="card" href="grade5-chinese-writing.html" data-time="约 30 分钟" data-date="2026-07-04 21:41">
+      <div class="top">
+        <div class="icon">5</div>
+        <div>
+          <h2>写作提升训练手册</h2>
+          <div class="grade-en">GRADE 5 · CHINESE</div>
+        </div>
+      </div>
+      <p class="desc">针对五年级写作痛点的专项训练：细节描写、过渡句、结构布局</p>
+      <span class="go">开始学习
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+      </span>
+    </a>
+
+    <h2 class="subject-heading">英语</h2>
+
+    <a class="card" href="english-unit2.html" data-date="2026-09-12 22:13">
+      <div class="top">
+        <div class="icon">U</div>
+        <div>
+          <h2>Unit 2 综合能力测试 - 中考难度 (考试模式)</h2>
+          <div class="grade-en">ENGLISH-UNIT2</div>
+        </div>
+      </div>
+      <p class="desc">Unit 2 综合能力测试 - 中考难度 (考试模式)</p>
+      <span class="go">开始学习
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+      </span>
+    </a>
+
+    <a class="card" href="primary-english-unit1-2-practice.html" data-date="2026-09-12 02:52">
+      <div class="top">
+        <div class="icon">六</div>
+        <div>
+          <h2>六年级上册 Unit 1-2 · 必考精练</h2>
+          <div class="grade-en">PRIMARY-ENGLISH-UNIT1-2-PRACTICE</div>
+        </div>
+      </div>
+      <p class="desc">六年级上册 Unit 1-2 · 必考精练</p>
+      <span class="go">开始学习
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+      </span>
+    </a>
+
+    <a class="card" href="primary-english-unit1-2-practice .html" data-date="2026-09-06 10:25">
+      <div class="top">
+        <div class="icon">六</div>
+        <div>
+          <h2>六年级上册 Unit 1-2 · 必考精练</h2>
+          <div class="grade-en">PRIMARY-ENGLISH-UNIT1-2-PRACTICE </div>
+        </div>
+      </div>
+      <p class="desc">六年级上册 Unit 1-2 · 必考精练</p>
+      <span class="go">开始学习
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+      </span>
+    </a>
+
+    <a class="card" href="beijing-primary-nature-dialogues.html" data-date="2026-08-14 14:20">
+      <div class="top">
+        <div class="icon">奇</div>
+        <div>
+          <h2>奇妙的大自然专项 · 6 大对话场景</h2>
+          <div class="grade-en">BEIJING-PRIMARY-NATURE-DIALOGUES</div>
+        </div>
+      </div>
+      <p class="desc">奇妙的大自然专项 · 6 大对话场景</p>
+      <span class="go">开始学习
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+      </span>
+    </a>
+
+    <a class="card" href="health-matters-vocabulary.html" data-date="2026-08-14 14:20">
+      <div class="top">
+        <div class="icon">健</div>
+        <div>
+          <h2>健康很重要 · 6 大场景</h2>
+          <div class="grade-en">HEALTH-MATTERS-VOCABULARY</div>
+        </div>
+      </div>
+      <p class="desc">健康很重要 · 6 大场景</p>
+      <span class="go">开始学习
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+      </span>
+    </a>
+
+    <a class="card" href="beijing-primary-opinion-dialogues.html" data-date="2026-08-14 13:45">
+      <div class="top">
+        <div class="icon">表</div>
+        <div>
+          <h2>表达观点专项 · 6 大对话场景</h2>
+          <div class="grade-en">BEIJING-PRIMARY-OPINION-DIALOGUES</div>
+        </div>
+      </div>
+      <p class="desc">表达观点专项 · 6 大对话场景</p>
+      <span class="go">开始学习
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+      </span>
+    </a>
+
+    <a class="card" href="money-spending-vocabulary-contrast-usage.html" data-date="2026-08-09 05:26">
+      <div class="top">
+        <div class="icon">花</div>
+        <div>
+          <h2>花钱主题英语单词 · 对比与用法区别</h2>
+          <div class="grade-en">MONEY-SPENDING-VOCABULARY-CONTRAST-USAGE</div>
+        </div>
+      </div>
+      <p class="desc">花钱主题英语单词 · 对比与用法区别</p>
+      <span class="go">开始学习
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+      </span>
+    </a>
+
+    <a class="card" href="life-scenes-vocabulary-assoc-contrast.html" data-date="2026-08-08 13:42">
+      <div class="top">
+        <div class="icon">生</div>
+        <div>
+          <h2>生活场景英语单词 · 关联+对比记忆</h2>
+          <div class="grade-en">LIFE-SCENES-VOCABULARY-ASSOC-CONTRAST</div>
+        </div>
+      </div>
+      <p class="desc">生活场景英语单词 · 关联+对比记忆</p>
+      <span class="go">开始学习
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+      </span>
+    </a>
+
+    <a class="card" href="grade6-grammar-test-100.html" data-date="2026-08-06 07:10">
+      <div class="top">
+        <div class="icon">6</div>
+        <div>
+          <h2>英语学习摸底测试卷</h2>
+          <div class="grade-en">GRADE 6 · ENGLISH</div>
+        </div>
+      </div>
+      <p class="desc">英语学习摸底测试卷</p>
+      <span class="go">开始学习
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+      </span>
+    </a>
+
+    <a class="card" href="primary-english-grammar-test-150.html" data-date="2026-08-06 07:10">
+      <div class="top">
+        <div class="icon">小</div>
+        <div>
+          <h2>小学英语综合语法测试 · 150 题</h2>
+          <div class="grade-en">PRIMARY-ENGLISH-GRAMMAR-TEST-150</div>
+        </div>
+      </div>
+      <p class="desc">小学英语综合语法测试 · 150 题</p>
+      <span class="go">开始学习
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+      </span>
+    </a>
+
+    <a class="card" href="english-advanced-test-150.html" data-date="2026-08-04 14:56">
+      <div class="top">
+        <div class="icon">英</div>
+        <div>
+          <h2>英语学习摸底测试卷</h2>
+          <div class="grade-en">ENGLISH-ADVANCED-TEST-150</div>
+        </div>
+      </div>
+      <p class="desc">英语学习摸底测试卷</p>
+      <span class="go">开始学习
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+      </span>
+    </a>
+
+    <a class="card" href="english-placement-test-100.html" data-date="2026-08-03 14:01">
+      <div class="top">
+        <div class="icon">英</div>
+        <div>
+          <h2>英语学习摸底测试卷</h2>
+          <div class="grade-en">ENGLISH-PLACEMENT-TEST-100</div>
+        </div>
+      </div>
+      <p class="desc">英语学习摸底测试卷</p>
+      <span class="go">开始学习
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+      </span>
+    </a>
+
+    <a class="card" href="english-placement-test-50.html" data-date="2026-08-03 09:44">
+      <div class="top">
+        <div class="icon">英</div>
+        <div>
+          <h2>英语学习摸底测试卷</h2>
+          <div class="grade-en">ENGLISH-PLACEMENT-TEST-50</div>
+        </div>
+      </div>
+      <p class="desc">英语学习摸底测试卷</p>
+      <span class="go">开始学习
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+      </span>
+    </a>
+
+    <a class="card" href="primary-sentence-patterns.html" data-date="2026-08-02 13:23">
+      <div class="top">
+        <div class="icon">小</div>
+        <div>
+          <h2>小学英语常用句式大全</h2>
+          <div class="grade-en">PRIMARY-SENTENCE-PATTERNS</div>
+        </div>
+      </div>
+      <p class="desc">小学英语常用句式大全</p>
+      <span class="go">开始学习
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+      </span>
+    </a>
+
+    <a class="card" href="new-vocabulary-5-scenes.html" data-time="约 25 分钟" data-date="2026-08-02 06:29">
+      <div class="top">
+        <div class="icon">新</div>
+        <div>
+          <h2>新增单词：5 大生活场景</h2>
+          <div class="grade-en">NEW-VOCABULARY-5-SCENES</div>
+        </div>
+      </div>
+      <p class="desc">按学校、家庭、购物、运动、自然 5 大场景分组的新单词闪卡学习</p>
+      <span class="go">开始学习
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+      </span>
+    </a>
+
+    <a class="card" href="vocabulary-review.html" data-time="约 35 分钟" data-date="2026-07-26 14:29">
+      <div class="top">
+        <div class="icon">北</div>
+        <div>
+          <h2>北京小学英语单词复习营</h2>
+          <div class="grade-en">VOCABULARY-REVIEW</div>
+        </div>
+      </div>
+      <p class="desc">按 16 个主题场景复习北京小学英语全册单词，含拼写与配图记忆</p>
+      <span class="go">开始学习
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+      </span>
+    </a>
+
+    <a class="card" href="english-collocations.html" data-time="约 20 分钟" data-date="2026-07-26 05:13">
+      <div class="top">
+        <div class="icon">英</div>
+        <div>
+          <h2>英语固定搭配：词和词"交朋友"</h2>
+          <div class="grade-en">ENGLISH-COLLOCATIONS</div>
+        </div>
+      </div>
+      <p class="desc">动词+名词、形容词+名词高频固定搭配记忆与练习，含 12 组题</p>
+      <span class="go">开始学习
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+      </span>
+    </a>
+
+    <a class="card" href="english-mixed-quiz.html" data-time="约 20 分钟" data-date="2026-07-26 03:13">
+      <div class="top">
+        <div class="icon">英</div>
+        <div>
+          <h2>英语综合练习：时态·介词·搭配三合一</h2>
+          <div class="grade-en">ENGLISH-MIXED-QUIZ</div>
+        </div>
+      </div>
+      <p class="desc">一次搞定三大专题，随机出题，含即时解析与错题标注</p>
+      <span class="go">开始学习
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+      </span>
+    </a>
+
+    <a class="card" href="english-tenses.html" data-time="约 20 分钟" data-date="2026-07-23 10:56">
+      <div class="top">
+        <div class="icon">英</div>
+        <div>
+          <h2>英语时态：动词如何"变身"</h2>
+          <div class="grade-en">ENGLISH-TENSES</div>
+        </div>
+      </div>
+      <p class="desc">一般现在时、过去时、现在进行时的构成规则与变形练习，含 13 组题</p>
+      <span class="go">开始学习
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+      </span>
+    </a>
+
+    <a class="card" href="english-sentence-structure.html" data-time="约 25 分钟" data-date="2026-07-23 06:04">
+      <div class="top">
+        <div class="icon">英</div>
+        <div>
+          <h2>英语句子构成：五大句子成分</h2>
+          <div class="grade-en">ENGLISH-SENTENCE-STRUCTURE</div>
+        </div>
+      </div>
+      <p class="desc">主语、谓语、宾语、定语、状语的作用与位置，词块拖拽组句练习</p>
+      <span class="go">开始学习
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+      </span>
+    </a>
+
+    <a class="card" href="english-prepositions.html" data-time="约 20 分钟" data-date="2026-07-23 03:24">
+      <div class="top">
+        <div class="icon">英</div>
+        <div>
+          <h2>英语介词：in / on / at 等高频用法</h2>
+          <div class="grade-en">ENGLISH-PREPOSITIONS</div>
+        </div>
+      </div>
+      <p class="desc">时间、地点、方向介词的区别与搭配，含 11 组选择填空练习</p>
+      <span class="go">开始学习
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+      </span>
+    </a>
+
+    <a class="card" href="word-learning.html" data-time="约 15 分钟" data-date="2026-07-19 13:27">
+      <div class="top">
+        <div class="icon">单</div>
+        <div>
+          <h2>单词乐园：时间 · 交通 · 天气</h2>
+          <div class="grade-en">WORD-LEARNING</div>
+        </div>
+      </div>
+      <p class="desc">真人发音 + 国际音标 + 情境例句，听读跟读三主题单词</p>
+      <span class="go">开始学习
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+      </span>
+    </a>
+
+    <a class="card" href="word-roots.html" data-time="约 20 分钟" data-date="2026-07-19 13:27">
+      <div class="top">
+        <div class="icon">词</div>
+        <div>
+          <h2>词根词缀：拆词记单词</h2>
+          <div class="grade-en">WORD-ROOTS</div>
+        </div>
+      </div>
+      <p class="desc">认识 un- / re- 前缀和 -ful / -less 后缀，一个词根派生出一大家族</p>
+      <span class="go">开始学习
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+      </span>
+    </a>
+
+    <a class="card" href="English-G6-Sentence-Building.html" data-time="约 15 分钟" data-date="2026-07-10 14:16">
+      <div class="top">
+        <div class="icon">英</div>
+        <div>
+          <h2>英语组句：把词语挂成句子小火车</h2>
+          <div class="grade-en">ENGLISH-G6-SENTENCE-BUILDING</div>
+        </div>
+      </div>
+      <p class="desc">按语法顺序将词块拼成正确句子，趣味小火车动画即时反馈</p>
+      <span class="go">开始学习
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+      </span>
+    </a>
+
+    <a class="card" href="english5.html" data-time="约 45 分钟" data-date="2026-07-04 21:41">
+      <div class="top">
+        <div class="icon">英</div>
+        <div>
+          <h2>英语冒险岛：闯关式暑假单词营</h2>
+          <div class="grade-en">ENGLISH5</div>
+        </div>
+      </div>
+      <p class="desc">3-6 年级核心单词按日分关，听音·跟读·拼写·对话，闯关日历打卡</p>
+      <span class="go">开始学习
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+      </span>
+    </a>
+<!-- AUTO-CARDS-END -->
+</div>
+
+<script>
+(function () {
+  /* ── refresh button ────────────────────────────────── */
+  var refreshBtn = document.getElementById('btn-refresh');
+  var isRefreshing = false;
+  function refreshPage(e) {
+    if (e && e.preventDefault) e.preventDefault();
+    if (isRefreshing) return;
+    isRefreshing = true;
+
+    var href = window.location.href;
+    var hashIndex = href.indexOf('#');
+    var hash = hashIndex >= 0 ? href.slice(hashIndex) : '';
+    var withoutHash = hashIndex >= 0 ? href.slice(0, hashIndex) : href;
+    var queryIndex = withoutHash.indexOf('?');
+    var base = queryIndex >= 0 ? withoutHash.slice(0, queryIndex) : withoutHash;
+    var query = queryIndex >= 0 ? withoutHash.slice(queryIndex + 1) : '';
+    var params = query ? query.split('&') : [];
+    var kept = [];
+    for (var i = 0; i < params.length; i++) {
+      if (params[i] && params[i].indexOf('_refresh=') !== 0) kept.push(params[i]);
+    }
+    kept.push('_refresh=' + Date.now());
+    window.location.href = base + '?' + kept.join('&') + hash;
+  }
+
+  if (refreshBtn) {
+    refreshBtn.addEventListener('click', refreshPage, false);
+    refreshBtn.addEventListener('touchend', refreshPage, false);
+  }
+
+  /* ── icon system ───────────────────────────────────── */
+  var ICONS = {
+    spark: '<svg viewBox="0 0 24 24"><path d="M12 3v4"/><path d="M12 17v4"/><path d="M4.9 4.9l2.8 2.8"/><path d="M16.3 16.3l2.8 2.8"/><path d="M3 12h4"/><path d="M17 12h4"/><path d="M4.9 19.1l2.8-2.8"/><path d="M16.3 7.7l2.8-2.8"/></svg>',
+    calculator: '<svg viewBox="0 0 24 24"><rect x="5" y="3.5" width="14" height="17" rx="2.5"/><path d="M8 7.5h8"/><path d="M8 11.5h2"/><path d="M12 11.5h2"/><path d="M16 11.5h0"/><path d="M8 15.5h2"/><path d="M12 15.5h2"/><path d="M16 15.5h0"/></svg>',
+    scale: '<svg viewBox="0 0 24 24"><path d="M12 4v14"/><path d="M8 7h8"/><path d="M5 20h14"/><path d="M8 7 5 12h6Z"/><path d="M16 7 13 12h6Z"/></svg>',
+    hash: '<svg viewBox="0 0 24 24"><path d="M9 4 7 20"/><path d="M17 4 15 20"/><path d="M4 9h16"/><path d="M3 15h16"/></svg>',
+    scissors: '<svg viewBox="0 0 24 24"><circle cx="6.5" cy="7.5" r="2.5"/><circle cx="6.5" cy="16.5" r="2.5"/><path d="M9 9 20 4"/><path d="M9 15 20 20"/></svg>',
+    checklist: '<svg viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16" rx="2.5"/><path d="m8 9 1.8 1.8L13 7.8"/><path d="M8 15h8"/></svg>',
+    ruler: '<svg viewBox="0 0 24 24"><path d="M4 19 19 4"/><path d="M6.5 16.5 8 18"/><path d="M10 13 12 15"/><path d="M13.5 9.5 15 11"/><path d="M17 6l1.5 1.5"/><rect x="4" y="4" width="16" height="16" rx="2.5" transform="rotate(45 12 12)"/></svg>',
+    grid: '<svg viewBox="0 0 24 24"><rect x="4" y="4" width="7" height="7" rx="1.5"/><rect x="13" y="4" width="7" height="7" rx="1.5"/><rect x="4" y="13" width="7" height="7" rx="1.5"/><rect x="13" y="13" width="7" height="7" rx="1.5"/></svg>',
+    pie: '<svg viewBox="0 0 24 24"><path d="M12 3v9l7.2 4.2"/><path d="M20.3 13A8.3 8.3 0 1 1 11 3.1"/></svg>',
+    filemath: '<svg viewBox="0 0 24 24"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8Z"/><path d="M14 3v5h5"/><path d="M8 13h8"/><path d="M10 11v4"/></svg>',
+    divide: '<svg viewBox="0 0 24 24"><circle cx="12" cy="6.5" r="1.5"/><circle cx="12" cy="17.5" r="1.5"/><path d="M6 12h12"/><circle cx="12" cy="12" r="8.5"/></svg>',
+    layers: '<svg viewBox="0 0 24 24"><path d="m12 4 8 4-8 4-8-4Z"/><path d="m4 12 8 4 8-4"/><path d="m4 16 8 4 8-4"/></svg>',
+    compass: '<svg viewBox="0 0 24 24"><path d="m10 14 4-4"/><path d="m14 10 4-4"/><path d="m10 14-4 4"/><path d="m14 10 2 8-8-2Z"/><circle cx="12" cy="12" r="8.5"/></svg>',
+    medal: '<svg viewBox="0 0 24 24"><path d="m8 3 4 6 4-6"/><circle cx="12" cy="15" r="5"/><path d="m10.5 15 1 1 2-2"/></svg>',
+    pen: '<svg viewBox="0 0 24 24"><path d="m4 20 4.5-1 9.3-9.3a1.8 1.8 0 0 0 0-2.5l-1-1a1.8 1.8 0 0 0-2.5 0L5 15.5Z"/><path d="m13.5 6.5 4 4"/></svg>',
+    notebook: '<svg viewBox="0 0 24 24"><rect x="6" y="4" width="12" height="16" rx="2"/><path d="M9 4v16"/><path d="M12 8h3"/><path d="M12 12h3"/><path d="M12 16h3"/></svg>',
+    island: '<svg viewBox="0 0 24 24"><path d="M3 19h18"/><path d="M7 19c1.2-3 3.6-4.5 7-4.5 2.4 0 4.5.7 6 2"/><path d="M10 14V6"/><path d="M10 7c2 0 3.4.8 4.5 2.4"/><path d="M10 10c-2 0-3.4.8-4.5 2.4"/></svg>',
+    clock: '<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"/><path d="M12 7v5l3 2"/></svg>',
+    brackets: '<svg viewBox="0 0 24 24"><path d="M8 5H6v14h2"/><path d="M16 5h2v14h-2"/><path d="M10 9h4"/><path d="M10 15h4"/><path d="M12 9v6"/></svg>',
+    pin: '<svg viewBox="0 0 24 24"><path d="M12 20s-5-4.7-5-9a5 5 0 1 1 10 0c0 4.3-5 9-5 9Z"/><circle cx="12" cy="11" r="1.8"/></svg>',
+    link: '<svg viewBox="0 0 24 24"><path d="M9.5 14.5 14.5 9.5"/><path d="M7.8 16.2a3.5 3.5 0 0 1 0-5l2-2a3.5 3.5 0 0 1 5 5l-.8.8"/><path d="M16.2 7.8a3.5 3.5 0 0 1 0 5l-2 2a3.5 3.5 0 0 1-5-5l.8-.8"/></svg>',
+    train: '<svg viewBox="0 0 24 24"><rect x="6" y="4" width="12" height="11" rx="2"/><path d="M9 8h2"/><path d="M13 8h2"/><path d="M8 19l2-3"/><path d="M16 19l-2-3"/><path d="M6 15h12"/></svg>',
+    target: '<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"/><circle cx="12" cy="12" r="4.5"/><circle cx="12" cy="12" r="1.5"/></svg>',
+    books: '<svg viewBox="0 0 24 24"><path d="M5 6.5A2.5 2.5 0 0 1 7.5 4H19v13H7.5A2.5 2.5 0 0 0 5 19.5Z"/><path d="M5 6.5V19.5"/><path d="M9 8h6"/><path d="M9 12h6"/></svg>',
+    volume: '<svg viewBox="0 0 24 24"><path d="M5 14h3l4 3V7L8 10H5Z"/><path d="M16 9.5a4.5 4.5 0 0 1 0 5"/><path d="M18.5 7a8 8 0 0 1 0 10"/></svg>',
+    sprout: '<svg viewBox="0 0 24 24"><path d="M12 20v-6"/><path d="M12 14c0-3 2.5-5.5 5.5-5.5 0 3-2.5 5.5-5.5 5.5Z"/><path d="M12 12c0-2.8-2.2-5-5-5 0 2.8 2.2 5 5 5Z"/></svg>',
+    bookopen: '<svg viewBox="0 0 24 24"><path d="M4 6.5A2.5 2.5 0 0 1 6.5 4H11v15H6.5A2.5 2.5 0 0 0 4 21.5Z"/><path d="M20 6.5A2.5 2.5 0 0 0 17.5 4H13v15h4.5A2.5 2.5 0 0 1 20 21.5Z"/></svg>',
+    message: '<svg viewBox="0 0 24 24"><path d="M7 17.5 4 20V6.5A2.5 2.5 0 0 1 6.5 4h11A2.5 2.5 0 0 1 20 6.5v8A2.5 2.5 0 0 1 17.5 17H7Z"/><path d="M8 9h8"/><path d="M8 12h5"/></svg>',
+    calendar: '<svg viewBox="0 0 24 24"><path d="M7 3v3"/><path d="M17 3v3"/><rect x="4" y="5" width="16" height="15" rx="2"/><path d="M4 10h16"/></svg>'
+  };
+  var CARD_ICON_BY_FILE = {
+    'g4-math-simple-calc.html': 'calculator',
+    'g5-math-equation.html': 'scale',
+    'g5-math-factors-multiples.html': 'hash',
+    'g5-math-fraction-split-exercises.html': 'scissors',
+    'g5-math-fraction-split-practice.html': 'checklist',
+    'g5-math-polygon-area.html': 'ruler',
+    'grade5-math.html': 'grid',
+    'Math-G5-Fraction-Common-Denominator.html': 'pie',
+    'equation-word-problems.html': 'filemath',
+    'g6-math-fraction-division.html': 'divide',
+    'g6-math-fractions.html': 'layers',
+    'g6-math-geometric-thinking.html': 'compass',
+    'grade6-math.html': 'bookopen',
+    'primary-circle-lessons-problems.html': 'medal',
+    'grade5-chinese-essay-process.html': 'pen',
+    'grade5-chinese-writing.html': 'notebook',
+    'english5.html': 'island',
+    'english-tenses.html': 'clock',
+    'english-sentence-structure.html': 'brackets',
+    'english-prepositions.html': 'pin',
+    'english-collocations.html': 'link',
+    'English-G6-Sentence-Building.html': 'train',
+    'english-mixed-quiz.html': 'target',
+    'new-vocabulary-5-scenes.html': 'books',
+    'vocabulary-review.html': 'bookopen',
+    'word-learning.html': 'volume',
+    'word-roots.html': 'sprout'
+  };
+  var TAB_ICONS = { '数学': 'calculator', '语文': 'pen', '英语': 'message' };
+  var PANEL_META = {
+    '数学': '方法专题、题型训练与母题系统',
+    '语文': '聚焦写作表达、结构组织与素材运用',
+    '英语': '覆盖词汇、句型、语法与综合练习'
+  };
+  var SUBJ_SLUG  = { '数学': '数学', '语文': '语文', '英语': '英语' };
+
+  function iconSvg(name) {
+    return ICONS[name] || ICONS.spark;
+  }
+
+  function pickCardIcon(item) {
+    if (CARD_ICON_BY_FILE[item.href]) return iconSvg(CARD_ICON_BY_FILE[item.href]);
+    var combined = item.title + ' ' + item.desc;
+    if (/作文|写作/.test(combined)) return iconSvg('pen');
+    if (/英语|单词|词汇/.test(combined)) return iconSvg('books');
+    if (/方程/.test(combined)) return iconSvg('scale');
+    if (/分数|通分/.test(combined)) return iconSvg('pie');
+    if (/面积|图形|几何/.test(combined)) return iconSvg('ruler');
+    return iconSvg('spark');
+  }
+
+  /* ── parse hidden card data ────────────────────────── */
+  var dataDiv  = document.getElementById('card-data');
+  var sections = {};
+  var order    = [];
+  var curSubj  = null;
+
+  var nodes = dataDiv.children;
+  for (var n = 0; n < nodes.length; n++) {
+    var el = nodes[n];
+    if (el.classList.contains('subject-heading')) {
+      curSubj = el.textContent.trim();
+      if (!sections[curSubj]) { sections[curSubj] = []; order.push(curSubj); }
+    } else if (el.classList.contains('card') && curSubj) {
+      var h2el   = el.querySelector('h2');
+      var genEl  = el.querySelector('.grade-en');
+      var descEl = el.querySelector('.desc');
+      sections[curSubj].push({
+        href:       el.getAttribute('href') || '#',
+        title:      h2el   ? h2el.textContent.trim()  : '',
+        gradeLabel: genEl  ? genEl.textContent.trim() : '',
+        desc:       descEl ? descEl.textContent.trim(): '',
+        time:       el.dataset.time || '',
+        date:       el.dataset.date || '',
+      });
+    }
+  }
+
+  /* ── build tab bar + panels ────────────────────────── */
+  var tabBar    = document.getElementById('tab-bar');
+  var tabPanels = document.getElementById('tab-panels');
+  var btns      = [];
+  var panels    = [];
+
+  order.forEach(function (subj) {
+    var slug = SUBJ_SLUG[subj] || 'other';
+
+    /* tab button */
+    var btn = document.createElement('button');
+    btn.className = 'tab-btn';
+    btn.setAttribute('role', 'tab');
+    btn.dataset.subj = slug;
+    btn.innerHTML = iconSvg(TAB_ICONS[subj]) + '<span>' + subj + '</span>';
+    btns.push(btn);
+    tabBar.appendChild(btn);
+
+    /* panel */
+    var panel = document.createElement('div');
+    panel.className    = 'tab-panel';
+    panel.dataset.subj = slug;
+    panels.push(panel);
+
+    var inner = document.createElement('div');
+    inner.className = 'panel-inner';
+
+    var head = document.createElement('div');
+    head.className = 'panel-head';
+    head.innerHTML =
+      '<div class="panel-copy">' +
+        '<div class="panel-kicker">学习分组</div>' +
+        '<div class="panel-title">' + subj + '</div>' +
+        '<div class="panel-desc">' + (PANEL_META[subj] || '精选内容导航') + '</div>' +
+      '</div>' +
+      '<div class="panel-meta">' + sections[subj].length + ' 个内容</div>';
+
+    var list = document.createElement('div');
+    list.className = 'card-list';
+
+    sections[subj].forEach(function (item) {
+      var gradeNum = (item.gradeLabel.match(/GRADE\s*(\d+)/i) || [])[1];
+      var chipText = gradeNum ? 'G' + gradeNum : '';
+
+      var a = document.createElement('a');
+      a.className = 'crd';
+      a.href      = item.href;
+
+      var titleRow = document.createElement('div');
+      titleRow.className = 'crd-title-row';
+      var iconDiv = document.createElement('div');
+      iconDiv.className   = 'crd-icon';
+      iconDiv.innerHTML = pickCardIcon(item);
+      titleRow.appendChild(iconDiv);
+
+      var bodyDiv = document.createElement('div');
+      bodyDiv.className = 'crd-body';
+      bodyDiv.appendChild(titleRow);
+
+      var copyDiv = document.createElement('div');
+      copyDiv.className = 'crd-copy';
+      titleRow.appendChild(copyDiv);
+
+      var titleSpan = document.createElement('div');
+      titleSpan.className   = 'crd-title';
+      titleSpan.textContent = item.title;
+      copyDiv.appendChild(titleSpan);
+
+      if (item.desc && item.desc !== item.title) {
+        var descSpan = document.createElement('div');
+        descSpan.className   = 'crd-desc';
+        descSpan.textContent = item.desc;
+        bodyDiv.appendChild(descSpan);
+      }
+
+      var footDiv = document.createElement('div');
+      footDiv.className = 'crd-foot';
+      var metaDiv = document.createElement('div');
+      metaDiv.className = 'crd-meta';
+
+      if (item.date) {
+        var dateSpan = document.createElement('div');
+        dateSpan.className = 'crd-date';
+        dateSpan.innerHTML = iconSvg('calendar') + '更新 ' + item.date;
+        metaDiv.appendChild(dateSpan);
+      }
+      if (item.time) {
+        var timeSpan = document.createElement('div');
+        timeSpan.className = 'crd-time';
+        timeSpan.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>' + item.time;
+        metaDiv.appendChild(timeSpan);
+      }
+
+      if (chipText) {
+        var chip = document.createElement('span');
+        chip.className   = 'crd-chip';
+        chip.textContent = chipText;
+        titleRow.appendChild(chip);
+      }
+
+      if (metaDiv.children.length) {
+        footDiv.appendChild(metaDiv);
+      }
+      bodyDiv.appendChild(footDiv);
+
+      a.appendChild(bodyDiv);
+
+      list.appendChild(a);
+    });
+
+    inner.appendChild(head);
+    inner.appendChild(list);
+    panel.appendChild(inner);
+    tabPanels.appendChild(panel);
+  });
+
+  /* ── tab switching ─────────────────────────────────── */
+  function activate(idx) {
+    btns.forEach(function (b, i) {
+      b.classList.toggle('active', i === idx);
+      b.setAttribute('aria-selected', i === idx ? 'true' : 'false');
+    });
+    panels.forEach(function (p, i) {
+      p.classList.toggle('active', i === idx);
+    });
+  }
+
+  btns.forEach(function (btn, idx) {
+    btn.addEventListener('click', function () { activate(idx); });
+  });
+
+  activate(0);
+})();
+</script>
+</body>
+</html>

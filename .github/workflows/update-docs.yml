@@ -1,0 +1,51 @@
+name: Publish latest artifacts
+
+on:
+  push:
+    branches: [main, master]
+  workflow_dispatch:
+
+# Serialize publication; a queued run checks out the latest default branch.
+concurrency:
+  group: publish-latest-artifacts
+  cancel-in-progress: false
+
+permissions:
+  contents: write
+  pages: write
+
+jobs:
+  publish:
+    if: github.ref_name == github.event.repository.default_branch
+    runs-on: ubuntu-latest
+    env:
+      PYTHONDONTWRITEBYTECODE: '1'
+      PUBLISH_BRANCH: ${{ github.event.repository.default_branch }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.repository.default_branch }}
+          fetch-depth: 0
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Verify publishing behavior
+        run: python -m unittest discover -s .github/scripts/tests -v
+
+      - name: Regenerate navigation and save page dates
+        run: python .github/scripts/update_docs.py
+
+      - name: Replace default branch with one artifact snapshot
+        run: |
+          python .github/scripts/publish_snapshot.py \
+            --branch "$PUBLISH_BRANCH" \
+            --expected-head "$(git rev-parse HEAD)"
+
+      # GITHUB_TOKEN pushes do not trigger another workflow or a Pages build.
+      # Explicitly build Pages from the newly published default-branch snapshot.
+      - name: Request GitHub Pages build
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh api --method POST "repos/$GITHUB_REPOSITORY/pages/builds"

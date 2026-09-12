@@ -1,0 +1,191 @@
+# 人教版小学数学 · 五 / 六年级知识点学习页
+
+> 面向小学高年级的**人教版(PEP)数学**知识点学习页面:图形化讲解、母题精讲、生活应用三大板块,单文件、纯离线、手机 / 平板 / 电脑均可直接打开。
+
+## 在线访问
+
+英语单词与打字练习：[打开 Qwerty Learner](https://beupgo.github.io/english-words/)。
+
+<!-- AUTO-TABLE-START -->
+### 数学
+
+| 页面 | 在线访问 | 更新时间 |
+|---|---|---|
+| 分数灵活运算与应用 · 小升初培优卷 | [开始学习](https://beupgo.github.io/math-fraction-flexible-worksheet.html) | 2026-09-05 14:51 |
+| 工程问题 · 数学培优卷 · 题目卷 | [开始学习](https://beupgo.github.io/math-work-rate-worksheet.html) | 2026-08-24 03:26 |
+| 工程问题 · 数学培优卷 · 答案与解析 | [开始学习](https://beupgo.github.io/math-work-rate-answers.html) | 2026-08-24 03:26 |
+| 按比例分配 · 数学培优卷 · 题目卷 | [开始学习](https://beupgo.github.io/math-ratio-allocation-worksheet.html) | 2026-08-24 03:26 |
+| 按比例分配 · 数学培优卷 · 答案与解析 | [开始学习](https://beupgo.github.io/math-ratio-allocation-answers.html) | 2026-08-24 03:26 |
+| 量率对应 · 数学培优卷 · 题目卷 | [开始学习](https://beupgo.github.io/math-quantity-rate-worksheet.html) | 2026-08-24 03:26 |
+| 量率对应 · 数学培优卷 · 答案与解析 | [开始学习](https://beupgo.github.io/math-quantity-rate-answers.html) | 2026-08-24 03:26 |
+| 浓度问题 · 小升初培优卷 | [开始学习](https://beupgo.github.io/math-concentration-worksheet.html) | 2026-08-24 03:26 |
+| 浓度问题 · 答案与解析 | [开始学习](https://beupgo.github.io/math-concentration-answers.html) | 2026-08-24 03:26 |
+| 圆环面积 · 数学培优卷 · 题目卷 | [开始学习](https://beupgo.github.io/math-annulus-area-worksheet.html) | 2026-08-24 03:26 |
+| 圆环面积 · 数学培优卷 · 答案与解析 | [开始学习](https://beupgo.github.io/math-annulus-area-answers.html) | 2026-08-24 03:26 |
+| 分数乘除法与比例 · 小升初培优卷 | [开始学习](https://beupgo.github.io/math-fraction-ratio-worksheet.html) | 2026-08-09 12:21 |
+| 圆与阴影面积测试卷 · 北京小学 | [开始学习](https://beupgo.github.io/math-circle-shaded-area-worksheet.html) | 2026-08-05 10:04 |
+| 小学奥数 · 圆专题练习卷 | [开始学习](https://beupgo.github.io/primary-circle-lessons-problems.html) | 2026-07-31 09:29 |
+| 简易方程应用题练习卷 | [开始学习](https://beupgo.github.io/equation-word-problems.html) | 2026-07-26 03:41 |
+| 通分专项 · 理解通分的本质 \| 小学数学 | [开始学习](https://beupgo.github.io/Math-G5-Fraction-Common-Denominator.html) | 2026-07-10 13:37 |
+| 裂差 · 裂和 应用练习 · 小学数学专题 | [开始学习](https://beupgo.github.io/g5-math-fraction-split-practice.html) | 2026-07-10 18:57 |
+| 裂差 · 裂和 专项练习题 · 小学数学专题 | [开始学习](https://beupgo.github.io/g5-math-fraction-split-exercises.html) | 2026-07-10 18:57 |
+| 北京六年级数学 · 母题学习系统 | [开始学习](https://beupgo.github.io/grade6-math.html) | 2026-07-04 21:41 |
+| 北京五年级数学 · 母题学习系统 | [开始学习](https://beupgo.github.io/grade5-math.html) | 2026-07-04 21:41 |
+| 图形思想专题 · 用画图解数学题 | [开始学习](https://beupgo.github.io/g6-math-geometric-thinking.html) | 2026-07-04 21:41 |
+| 分数专题 · 彻底学会分数 | [开始学习](https://beupgo.github.io/g6-math-fractions.html) | 2026-07-04 21:41 |
+| 分数除法应用题专题 · 找准单位1 | [开始学习](https://beupgo.github.io/g6-math-fraction-division.html) | 2026-07-04 21:41 |
+| 多边形面积专题 · 割补转化思想 | [开始学习](https://beupgo.github.io/g5-math-polygon-area.html) | 2026-07-04 21:41 |
+| 因数与倍数专题 · 数的秘密 | [开始学习](https://beupgo.github.io/g5-math-factors-multiples.html) | 2026-07-04 21:41 |
+| 简易方程专题 · 从天平到解方程 | [开始学习](https://beupgo.github.io/g5-math-equation.html) | 2026-07-04 21:41 |
+| 运算定律专题 · 拆数凑整巧算 | [开始学习](https://beupgo.github.io/g4-math-simple-calc.html) | 2026-07-04 21:41 |
+
+### 语文
+
+| 页面 | 在线访问 | 更新时间 |
+|---|---|---|
+| 写作提升训练 | [开始学习](https://beupgo.github.io/grade5-chinese-writing.html) | 2026-07-04 21:41 |
+| 作文是怎么"长"出来的 · 五年级写作创作过程 | [开始学习](https://beupgo.github.io/grade5-chinese-essay-process.html) | 2026-07-04 21:41 |
+
+### 英语
+
+| 页面 | 在线访问 | 更新时间 |
+|---|---|---|
+| Unit 2 综合能力测试 - 中考难度 (考试模式) | [开始学习](https://beupgo.github.io/english-unit2.html) | 2026-09-12 22:13 |
+| 六年级上册 Unit 1-2 · 必考精练 | [开始学习](https://beupgo.github.io/primary-english-unit1-2-practice.html) | 2026-09-12 02:52 |
+| 六年级上册 Unit 1-2 · 必考精练 | [开始学习](https://beupgo.github.io/primary-english-unit1-2-practice%20.html) | 2026-09-06 10:25 |
+| 健康很重要 · 6 大场景 | [开始学习](https://beupgo.github.io/health-matters-vocabulary.html) | 2026-08-14 14:20 |
+| 奇妙的大自然专项 · 6 大对话场景 | [开始学习](https://beupgo.github.io/beijing-primary-nature-dialogues.html) | 2026-08-14 14:20 |
+| 表达观点专项 · 6 大对话场景 | [开始学习](https://beupgo.github.io/beijing-primary-opinion-dialogues.html) | 2026-08-14 13:45 |
+| 花钱主题英语单词 · 对比与用法区别 | [开始学习](https://beupgo.github.io/money-spending-vocabulary-contrast-usage.html) | 2026-08-09 05:26 |
+| 生活场景英语单词 · 关联+对比记忆 | [开始学习](https://beupgo.github.io/life-scenes-vocabulary-assoc-contrast.html) | 2026-08-08 13:42 |
+| 小学英语综合语法测试 · 150 题 | [开始学习](https://beupgo.github.io/primary-english-grammar-test-150.html) | 2026-08-06 07:10 |
+| 英语学习摸底测试卷 | [开始学习](https://beupgo.github.io/grade6-grammar-test-100.html) | 2026-08-06 07:10 |
+| 英语学习摸底测试卷 | [开始学习](https://beupgo.github.io/english-advanced-test-150.html) | 2026-08-04 14:56 |
+| 英语学习摸底测试卷 | [开始学习](https://beupgo.github.io/english-placement-test-100.html) | 2026-08-03 14:01 |
+| 英语学习摸底测试卷 | [开始学习](https://beupgo.github.io/english-placement-test-50.html) | 2026-08-03 09:44 |
+| 小学英语常用句式大全 | [开始学习](https://beupgo.github.io/primary-sentence-patterns.html) | 2026-08-02 13:23 |
+| 新增单词专项 · 5 大场景 | [开始学习](https://beupgo.github.io/new-vocabulary-5-scenes.html) | 2026-08-02 06:29 |
+| 北京小学英语 · 单词复习营 | [开始学习](https://beupgo.github.io/vocabulary-review.html) | 2026-07-26 14:29 |
+| 英语固定搭配学习专题 | [开始学习](https://beupgo.github.io/english-collocations.html) | 2026-07-26 05:13 |
+| 英语综合练习 | [开始学习](https://beupgo.github.io/english-mixed-quiz.html) | 2026-07-26 03:13 |
+| 英语时态学习专题 | [开始学习](https://beupgo.github.io/english-tenses.html) | 2026-07-23 10:56 |
+| 英语句子构成专题 | [开始学习](https://beupgo.github.io/english-sentence-structure.html) | 2026-07-23 06:04 |
+| 英语介词学习专题 | [开始学习](https://beupgo.github.io/english-prepositions.html) | 2026-07-23 03:24 |
+| 小学英语词根词缀乐园 · 拆词记单词 | [开始学习](https://beupgo.github.io/word-roots.html) | 2026-07-19 13:27 |
+| 小学英语单词乐园 · 时间 · 交通 · 天气 | [开始学习](https://beupgo.github.io/word-learning.html) | 2026-07-19 13:27 |
+| 英语组句魔法 · 句子小火车 \| 小学英语 | [开始学习](https://beupgo.github.io/English-G6-Sentence-Building.html) | 2026-07-10 14:16 |
+| 英语冒险岛 · 3-6年级暑假 | [开始学习](https://beupgo.github.io/english5.html) | 2026-07-04 21:41 |
+
+### 导航
+
+| 页面 | 在线访问 | 更新时间 |
+|---|---|---|
+| 导航首页 | [进入首页](https://beupgo.github.io/) | - |
+<!-- AUTO-TABLE-END -->
+
+## 功能特点
+
+- **三大板块**:知识点(图文/动画讲解)· 母题(典型例题分步精讲)· 应用(生活场景练习)。
+- **图形结合**:大量 SVG 手绘示意图与动画,把抽象概念(如比例、分数除法、数与形)讲直观,帮助形成长期记忆。
+- **单文件离线**:每个页面所有 CSS / JS / 图标(Lucide SVG 雪碧图)全部内联,断网也能用,无任何外部依赖。
+- **移动端友好**:自适应布局,底部标签栏导航,适配手机与 iPad。
+- **微信兼容**:纯 ES5 + SMIL 动画,兼容微信内置浏览器(X5 内核)。
+
+## 目录结构
+
+<!-- AUTO-FILES-START -->
+```
+.
+├─ index.html      # 导航首页
+├─ g4-math-simple-calc.html  # 运算定律专题 · 拆数凑整巧算
+├─ g5-math-equation.html  # 简易方程专题 · 从天平到解方程
+├─ g5-math-factors-multiples.html  # 因数与倍数专题 · 数的秘密
+├─ g5-math-fraction-split-exercises.html  # 裂差 · 裂和 专项练习题 · 小学数学专题
+├─ g5-math-fraction-split-practice.html  # 裂差 · 裂和 应用练习 · 小学数学专题
+├─ g5-math-polygon-area.html  # 多边形面积专题 · 割补转化思想
+├─ grade5-chinese-essay-process.html  # 作文是怎么"长"出来的 · 五年级写作创作过程
+├─ grade5-chinese-writing.html  # 写作提升训练
+├─ grade5-math.html  # 北京五年级数学 · 母题学习系统
+├─ g6-math-fraction-division.html  # 分数除法应用题专题 · 找准单位1
+├─ g6-math-fractions.html  # 分数专题 · 彻底学会分数
+├─ g6-math-geometric-thinking.html  # 图形思想专题 · 用画图解数学题
+├─ grade6-grammar-test-100.html  # 英语学习摸底测试卷
+├─ grade6-math.html  # 北京六年级数学 · 母题学习系统
+├─ English-G6-Sentence-Building.html  # 英语组句魔法 · 句子小火车 | 小学英语
+├─ Math-G5-Fraction-Common-Denominator.html  # 通分专项 · 理解通分的本质 | 小学数学
+├─ beijing-primary-nature-dialogues.html  # 奇妙的大自然专项 · 6 大对话场景
+├─ beijing-primary-opinion-dialogues.html  # 表达观点专项 · 6 大对话场景
+├─ english-advanced-test-150.html  # 英语学习摸底测试卷
+├─ english-collocations.html  # 英语固定搭配学习专题
+├─ english-mixed-quiz.html  # 英语综合练习
+├─ english-placement-test-100.html  # 英语学习摸底测试卷
+├─ english-placement-test-50.html  # 英语学习摸底测试卷
+├─ english-prepositions.html  # 英语介词学习专题
+├─ english-sentence-structure.html  # 英语句子构成专题
+├─ english-tenses.html  # 英语时态学习专题
+├─ english-unit2.html  # Unit 2 综合能力测试 - 中考难度 (考试模式)
+├─ english5.html  # 英语冒险岛 · 3-6年级暑假
+├─ equation-word-problems.html  # 简易方程应用题练习卷
+├─ health-matters-vocabulary.html  # 健康很重要 · 6 大场景
+├─ life-scenes-vocabulary-assoc-contrast.html  # 生活场景英语单词 · 关联+对比记忆
+├─ math-annulus-area-answers.html  # 圆环面积 · 数学培优卷 · 答案与解析
+├─ math-annulus-area-worksheet.html  # 圆环面积 · 数学培优卷 · 题目卷
+├─ math-circle-shaded-area-worksheet.html  # 圆与阴影面积测试卷 · 北京小学
+├─ math-concentration-answers.html  # 浓度问题 · 答案与解析
+├─ math-concentration-worksheet.html  # 浓度问题 · 小升初培优卷
+├─ math-fraction-flexible-worksheet.html  # 分数灵活运算与应用 · 小升初培优卷
+├─ math-fraction-ratio-worksheet.html  # 分数乘除法与比例 · 小升初培优卷
+├─ math-quantity-rate-answers.html  # 量率对应 · 数学培优卷 · 答案与解析
+├─ math-quantity-rate-worksheet.html  # 量率对应 · 数学培优卷 · 题目卷
+├─ math-ratio-allocation-answers.html  # 按比例分配 · 数学培优卷 · 答案与解析
+├─ math-ratio-allocation-worksheet.html  # 按比例分配 · 数学培优卷 · 题目卷
+├─ math-work-rate-answers.html  # 工程问题 · 数学培优卷 · 答案与解析
+├─ math-work-rate-worksheet.html  # 工程问题 · 数学培优卷 · 题目卷
+├─ money-spending-vocabulary-contrast-usage.html  # 花钱主题英语单词 · 对比与用法区别
+├─ new-vocabulary-5-scenes.html  # 新增单词专项 · 5 大场景
+├─ primary-circle-lessons-problems.html  # 小学奥数 · 圆专题练习卷
+├─ primary-english-grammar-test-150.html  # 小学英语综合语法测试 · 150 题
+├─ primary-english-unit1-2-practice .html  # 六年级上册 Unit 1-2 · 必考精练
+├─ primary-english-unit1-2-practice.html  # 六年级上册 Unit 1-2 · 必考精练
+├─ primary-sentence-patterns.html  # 小学英语常用句式大全
+├─ vocabulary-review.html  # 北京小学英语 · 单词复习营
+├─ word-learning.html  # 小学英语单词乐园 · 时间 · 交通 · 天气
+└─ word-roots.html  # 小学英语词根词缀乐园 · 拆词记单词
+└─ README.md
+```
+<!-- AUTO-FILES-END -->
+
+> 仓库里的文件建议使用英文名 `grade5-math.html` / `grade6-math.html`。
+> 中文文件名(如「五年级数学.html」)在 GitHub Pages 链接里需要 URL 编码,容易出错,不推荐直接作为线上路径。
+
+## 内容概览
+
+**五年级(共 15 个单元)**
+小数乘法 · 位置 · 小数除法 · 可能性 · 简易方程 · 多边形的面积 · 植树问题 · 观察物体(三) · 因数与倍数 · 长方体和正方体 · 分数的意义和性质 · 分数的加法和减法 · 图形的运动(三) · 折线统计图 · 打电话
+
+**六年级(共 12 个单元)**
+分数乘法 · 位置与方向(二) · 分数除法 · 比 · 圆 · 百分数 · 扇形统计图 · 数学广角(数与形) · 比例 · 圆柱与圆锥 · 百分数(二) · 统计与概率(整理复习)
+
+## 部署到 GitHub Pages
+
+1. 新建一个 GitHub 仓库(如 `math-notes`),把 `grade5-math.html`、`grade6-math.html`、`index.html`、`README.md` 上传到仓库根目录。
+2. 进入仓库 **Settings → Pages**。
+3. **Build and deployment → Source** 选 **Deploy from a branch**;**Branch** 选 `main`(或 `master`),目录选 `/ (root)`,点 **Save**。
+4. 等 1–2 分钟,页面顶部会出现发布地址 `https://beupgo.github.io/`,即可访问。
+
+> 小技巧:iPad / iPhone 用 Safari 打开在线地址后,点分享 → **添加到主屏幕**,即可像 App 一样全屏使用。
+
+## 更新内容
+
+用新的 HTML 覆盖对应文件并提交，或通过 PR 合入默认分支。当前默认分支为 `main`；工作流也支持默认分支名为 `master` 的情况。
+
+`Publish latest artifacts` Action 会生成目录、保存页面日期，并将默认分支替换为**一个最新产物快照提交**，随后主动触发 GitHub Pages 构建。所有文件保留，默认分支不累计历史 commit；合并后的来源分支保留，Action 不删除分支。
+
+页面的上传和更新时间保存在 `.github/page-metadata.json` 中，通过内容摘要识别变更，压缩提交不会重置日期。该文件由工作流维护，更新页面时请一并保留。可在 Actions 中手动运行工作流重试发布。
+
+每次发布会改写默认分支历史，后续修改请从最新默认分支新建分支；保留的旧分支可能仍包含原来的历史。发布使用精确版本检查，遇到并发新提交会停止，避免覆盖新内容。Pages 保持 **Deploy from a branch → 默认分支 → / (root)** 配置。
+
+## 许可与说明
+
+- 内容依据人教版(PEP)小学数学教材编写整理,供个人学习使用。
+- 页面图标复用自开源图标库 [Lucide](https://lucide.dev)(ISC License)。
