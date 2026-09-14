@@ -1,0 +1,17 @@
+{
+  "provider": "Microsoft Edge Read Aloud TTS",
+  "library": "edge-tts",
+  "voice": "en-GB-SoniaNeural",
+  "rate": "-10%",
+  "clips": {
+    "intro": "Welcome to your English practice for units one and two. Listen carefully, and write your answers. You can play each recording again.",
+    "l1": "wallet. wallet.",
+    "l2": "banknote. banknote.",
+    "l3": "opinion. opinion.",
+    "l4": "dinosaur. dinosaur.",
+    "l5": "Some children spend all their pocket money. Others save some of it. We should learn to use our pocket money well.",
+    "l6": "We may have different ideas, but we should always tell the truth. We should always tell the truth.",
+    "l7": "In my opinion, doing exercise every day is good for our health. Doing exercise every day is good for our health.",
+    "l8": "On Saturday, Ben went to a shop with twenty yuan. The notebook had a price of twelve yuan on it, but the shopkeeper said, Today it is only ten yuan. Ben bought one notebook and paid with a twenty-yuan banknote. He got ten yuan in change. Then he donated four yuan to a charity to help people in need. He put the other six yuan in his wallet."
+  }
+}

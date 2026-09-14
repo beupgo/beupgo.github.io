@@ -1,0 +1,1636 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-theme="">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>六年级上册 Unit 1-2 · 必考精练</title>
+<style>
+/* ============ Design tokens (genius-design derived) ============ */
+:root{
+  /* brand hue system */
+  --brand-h: 231;
+  --brand-s: 84%;
+  --brand-l: 58%;
+  --s-brand: hsl(var(--brand-h) var(--brand-s) var(--brand-l));
+  --s-brand-weak: hsl(var(--brand-h) var(--brand-s) 96%);
+  --s-brand-strong: hsl(var(--brand-h) var(--brand-s) 46%);
+  --s-brand-fg: #ffffff;
+
+  /* semantic accent hues */
+  --cyan:   #0891b2;   --cyan-weak:#ecfeff;
+  --amber:  #b45309;   --amber-weak:#fffbeb;
+  --green:  #15803d;   --green-weak:#f0fdf4;
+  --rose:   #be123c;   --rose-weak:#fff1f2;
+
+  /* surfaces */
+  --s-bg: #f5f6f8;
+  --s-surface: #ffffff;
+  --s-surface-2: #f1f3f6;
+  --s-line: #e4e7ec;
+  --s-line-strong:#d0d5dd;
+
+  /* text */
+  --s-fg: #1f2430;
+  --s-fg-2: #4a5261;
+  --s-fg-3: #7b8494;
+
+  /* status */
+  --ok: #16a34a;   --ok-weak:#dcfce7;
+  --no: #dc2626;   --no-weak:#fee2e2;
+  --mid:#d97706;   --mid-weak:#fef3c7;
+
+  /* spacing scale */
+  --g-sp-1: 4px;  --g-sp-2: 8px;  --g-sp-3: 12px; --g-sp-4: 16px;
+  --g-sp-5: 20px; --g-sp-6: 24px; --g-sp-8: 32px; --g-sp-10: 40px;
+
+  /* radius */
+  --g-r-1: 6px; --g-r-2: 10px; --g-r-3: 14px; --g-r-4: 20px; --g-r-pill: 999px;
+
+  /* elevation */
+  --g-sh-1: 0 1px 2px rgba(16,24,40,.06), 0 1px 3px rgba(16,24,40,.08);
+  --g-sh-2: 0 4px 12px rgba(16,24,40,.08), 0 2px 6px rgba(16,24,40,.06);
+  --g-sh-3: 0 12px 32px rgba(16,24,40,.14);
+
+  /* container widths */
+  --c-container-max: 1080px;
+  --c-container-wide: 1280px;
+  --c-container-read: 720px;
+
+  /* type */
+  --g-font: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", system-ui, sans-serif;
+  --g-mono: "SF Mono", ui-monospace, "Roboto Mono", Menlo, Consolas, monospace;
+}
+
+/* dark mode */
+:root[data-theme="dark"]{
+  --s-brand-weak: hsl(var(--brand-h) 40% 22%);
+  --cyan-weak:#0b2e33; --amber-weak:#3a2708; --green-weak:#0c2d18; --rose-weak:#3a1017;
+  --s-bg: #0f1218;
+  --s-surface: #171b23;
+  --s-surface-2: #1e242e;
+  --s-line: #2a313c;
+  --s-line-strong:#3a424e;
+  --s-fg: #eaedf2;
+  --s-fg-2: #b7c0cd;
+  --s-fg-3: #8a94a3;
+  --ok-weak:#0d2a17; --no-weak:#341113; --mid-weak:#3a2a07;
+}
+
+/* ============ icon utility ============ */
+.ic{
+  width:1.15em; height:1.15em;
+  display:inline-block; vertical-align:-0.18em;
+  fill:none; stroke:currentColor; stroke-width:2;
+  stroke-linecap:round; stroke-linejoin:round;
+  flex:0 0 auto;
+}
+
+/* ============ layout kit ============ */
+*,*::before,*::after{ box-sizing:border-box; }
+html,body{ margin:0; padding:0; }
+body{
+  font-family:var(--g-font);
+  color:var(--s-fg);
+  background:var(--s-bg);
+  line-height:1.6;
+  -webkit-text-size-adjust:100%;
+  -webkit-font-smoothing:antialiased;
+}
+.wrap{
+  max-width:var(--c-container-max);
+  margin:0 auto;
+  padding:var(--g-sp-5) var(--g-sp-4) var(--g-sp-10);
+}
+h1,h2,h3,h4{ margin:0; font-weight:700; }
+p{ margin:0 0 var(--g-sp-3); }
+button{ font-family:inherit; cursor:pointer; }
+small{ font-weight:400; }
+table{ border-collapse:collapse; width:100%; }
+
+/* ============ app.css — Unit 1-2 练习页 (tokens only) ============ */
+
+/* ---------- appbar ---------- */
+.appbar{
+  position:sticky; top:0; z-index:20;
+  display:flex; align-items:center; justify-content:space-between; gap:var(--g-sp-3);
+  padding:var(--g-sp-3) var(--g-sp-4);
+  background:color-mix(in srgb, var(--s-surface) 88%, transparent);
+  backdrop-filter:saturate(1.4) blur(10px);
+  border-bottom:1px solid var(--s-line);
+}
+.appbar__title{ display:flex; align-items:center; gap:var(--g-sp-3); min-width:0; }
+.brandmark{
+  display:grid; place-items:center; width:40px; height:40px; flex:0 0 auto;
+  border-radius:var(--g-r-2); color:var(--s-brand-fg);
+  background:linear-gradient(135deg, var(--s-brand), var(--s-brand-strong));
+  font-size:20px; box-shadow:var(--g-sh-1);
+}
+.appbar .ttl{ font-size:16px; font-weight:800; line-height:1.25; }
+.appbar .sub{ font-size:11.5px; color:var(--s-fg-3); line-height:1.3;
+  overflow:hidden; text-overflow:ellipsis; white-space:nowrap; max-width:52vw; }
+.appbar__tools{ display:flex; align-items:center; gap:var(--g-sp-2); flex:0 0 auto; }
+.rate-seg{ display:inline-flex; background:var(--s-surface-2); border:1px solid var(--s-line);
+  border-radius:var(--g-r-pill); padding:2px; }
+.rate-opt{ border:none; background:transparent; color:var(--s-fg-2);
+  font-size:12px; padding:4px 10px; border-radius:var(--g-r-pill); }
+.rate-opt--on{ background:var(--s-brand); color:var(--s-brand-fg); font-weight:700; }
+.icon-btn{ display:grid; place-items:center; width:36px; height:36px; font-size:18px;
+  border:1px solid var(--s-line); background:var(--s-surface); color:var(--s-fg-2);
+  border-radius:var(--g-r-2); }
+.icon-btn:hover{ border-color:var(--s-line-strong); color:var(--s-fg); }
+
+/* ---------- tabbar ---------- */
+.tabbar{
+  position:sticky; top:57px; z-index:19;
+  display:flex; gap:var(--g-sp-1); overflow-x:auto;
+  padding:var(--g-sp-2) var(--g-sp-4);
+  background:var(--s-surface); border-bottom:1px solid var(--s-line);
+}
+.tab{ position:relative; display:inline-flex; align-items:center; gap:6px;
+  border:none; background:transparent; color:var(--s-fg-2);
+  font-size:13.5px; font-weight:600; padding:8px 14px; border-radius:var(--g-r-pill);
+  white-space:nowrap; }
+.tab .ic{ font-size:16px; }
+.tab--on{ background:var(--s-brand-weak); color:var(--s-brand-strong); }
+.tab-badge{ font-style:normal; font-size:10.5px; font-weight:700; min-width:17px;
+  height:17px; padding:0 4px; display:inline-grid; place-items:center;
+  background:var(--no); color:#fff; border-radius:var(--g-r-pill); }
+
+/* ---------- cards ---------- */
+.card{ background:var(--s-surface); border:1px solid var(--s-line);
+  border-radius:var(--g-r-3); box-shadow:var(--g-sh-1);
+  padding:var(--g-sp-4) var(--g-sp-5); margin-bottom:var(--g-sp-5); }
+.card.center{ text-align:center; }
+.card__hd{ display:flex; align-items:center; gap:var(--g-sp-2);
+  margin:calc(-1*var(--g-sp-1)) 0 var(--g-sp-4); }
+.card__hd .ic{ font-size:20px; color:var(--s-brand); flex:0 0 auto; }
+.card__hd h2{ font-size:16px; display:flex; align-items:baseline; gap:8px; flex:1; }
+.card__hd h2 small{ font-size:11.5px; color:var(--s-fg-3); font-weight:500; }
+.card__hd .btn{ margin-left:auto; }
+.hd--cyan .ic{ color:var(--cyan); } .hd--amber .ic{ color:var(--amber); }
+.hd--green .ic{ color:var(--green); } .hd--brand .ic{ color:var(--s-brand); }
+
+/* ---------- legend ---------- */
+.legend{ background:var(--s-brand-weak); border:1px solid var(--s-line);
+  border-radius:var(--g-r-2); padding:var(--g-sp-3) var(--g-sp-4); margin-bottom:var(--g-sp-5); }
+.legend__t{ font-size:13px; color:var(--s-fg-2); }
+.legend__t .ic{ color:var(--s-brand); }
+.legend__items{ display:flex; flex-wrap:wrap; gap:var(--g-sp-2); margin-top:var(--g-sp-2); }
+.lg{ font-size:12px; font-weight:700; padding:3px 10px; border-radius:var(--g-r-pill); }
+.lg--subj{ background:#e0e7ff; color:#3730a3; }
+.lg--verb{ background:#dcfce7; color:#166534; }
+.lg--obj{  background:#fef3c7; color:#92400e; }
+.lg--other{background:#e0f2fe; color:#075985; }
+.lg--conj{ background:#fae8ff; color:#86198f; }
+:root[data-theme="dark"] .lg--subj{ background:#312e81; color:#c7d2fe; }
+:root[data-theme="dark"] .lg--verb{ background:#14532d; color:#bbf7d0; }
+:root[data-theme="dark"] .lg--obj{ background:#78350f; color:#fde68a; }
+:root[data-theme="dark"] .lg--other{ background:#075985; color:#bae6fd; }
+:root[data-theme="dark"] .lg--conj{ background:#701a75; color:#f5d0fe; }
+
+/* ---------- word grid / cards ---------- */
+.wordgrid{ display:grid; gap:var(--g-sp-3);
+  grid-template-columns:repeat(auto-fill, minmax(238px, 1fr)); }
+.wcard{ border:1px solid var(--s-line); border-radius:var(--g-r-2);
+  padding:var(--g-sp-3); background:var(--s-surface-2); display:flex; flex-direction:column; gap:4px; }
+.wcard__top{ display:flex; align-items:center; gap:6px; }
+.wen{ font-size:17px; font-weight:800; flex:1; }
+.wipa{ font-family:var(--g-mono); font-size:12.5px; color:var(--s-brand-strong); }
+.wzh{ font-size:13px; color:var(--s-fg-2); }
+.wex{ margin-top:6px; padding-top:6px; border-top:1px dashed var(--s-line-strong); }
+.wex__ipa{ font-family:var(--g-mono); font-size:11.5px; color:var(--s-fg-3);
+  display:flex; align-items:center; gap:6px; margin-top:3px; flex-wrap:wrap; }
+.wex__zh{ font-size:12px; color:var(--s-fg-3); margin-top:2px; }
+
+.play{ display:inline-grid; place-items:center; width:26px; height:26px; flex:0 0 auto;
+  border:1px solid var(--s-line); background:var(--s-surface); color:var(--s-brand);
+  border-radius:var(--g-r-pill); font-size:13px; }
+.play:hover{ background:var(--s-brand-weak); }
+.play.playing{ background:var(--s-brand); color:var(--s-brand-fg);
+  animation:pulse 1s ease-in-out infinite; }
+@keyframes pulse{ 50%{ opacity:.55; } }
+.collect{ display:inline-grid; place-items:center; width:26px; height:26px; flex:0 0 auto;
+  border:1px solid var(--s-line); background:var(--s-surface); color:var(--s-fg-3);
+  border-radius:var(--g-r-pill); font-size:13px; }
+.collect--on{ color:#f59e0b; border-color:#fcd34d; background:#fffbeb; }
+:root[data-theme="dark"] .collect--on{ background:#3a2708; }
+.collect--on .ic{ fill:#f59e0b; }
+
+/* ---------- annotation ---------- */
+.sent-underline{ display:inline; line-height:2.4; font-size:15px; }
+.tk-u{ display:inline-flex; flex-direction:column; align-items:center;
+  margin:0 1px; vertical-align:bottom; }
+.tk-u__word{ padding:0 2px; border-bottom:2.5px solid transparent; }
+.tk-u__tag{ font-size:9px; line-height:1.1; margin-top:1px; font-weight:700; opacity:.9; }
+.tk-u--subj  .tk-u__word{ border-color:#6366f1; } .tk-u--subj  .tk-u__tag{ color:#4f46e5; }
+.tk-u--verb  .tk-u__word{ border-color:#22c55e; } .tk-u--verb  .tk-u__tag{ color:#16a34a; }
+.tk-u--obj   .tk-u__word{ border-color:#f59e0b; } .tk-u--obj   .tk-u__tag{ color:#d97706; }
+.tk-u--other .tk-u__word{ border-color:#0ea5e9; } .tk-u--other .tk-u__tag{ color:#0284c7; }
+.tk-u--conj  .tk-u__word{ border-color:#d946ef; } .tk-u--conj  .tk-u__tag{ color:#c026d3; }
+
+/* ---------- phrases ---------- */
+.phrasegrid{ display:grid; gap:var(--g-sp-3);
+  grid-template-columns:repeat(auto-fill, minmax(230px,1fr)); }
+.pcard{ border:1px solid var(--s-line); border-radius:var(--g-r-2);
+  padding:var(--g-sp-3); background:var(--s-surface-2); }
+.pcard__en{ font-size:15px; font-weight:700; display:flex; align-items:center; gap:6px; }
+.pcard__ipa{ font-family:var(--g-mono); font-size:11.5px; color:var(--s-brand-strong); margin-top:2px; }
+.pcard__zh{ font-size:12.5px; color:var(--s-fg-2); margin-top:2px; }
+
+/* ---------- patterns ---------- */
+.pat-group{ margin-bottom:var(--g-sp-4); }
+.pat-group__name{ font-size:13.5px; font-weight:800; padding:5px 12px; border-radius:var(--g-r-pill);
+  display:inline-block; margin-bottom:var(--g-sp-2); background:var(--s-surface-2); }
+.pgn--cyan{ background:var(--cyan-weak); color:var(--cyan); }
+.pgn--amber{ background:var(--amber-weak); color:var(--amber); }
+.pgn--green{ background:var(--green-weak); color:var(--green); }
+.pgn--brand{ background:var(--s-brand-weak); color:var(--s-brand-strong); }
+.pat{ border:1px solid var(--s-line); border-left:none; border-radius:var(--g-r-2);
+  padding:var(--g-sp-3); margin-bottom:var(--g-sp-2); background:var(--s-surface); }
+.pat__tpl{ font-size:14px; display:flex; align-items:center; gap:6px; }
+.pat__tpl .ic{ color:var(--s-brand); }
+.pat__use{ font-size:12.5px; color:var(--s-fg-3); margin:3px 0 8px; }
+.pat__ex{ padding:8px 10px; border-radius:var(--g-r-1); background:var(--s-surface-2);
+  margin-top:6px; }
+
+/* ---------- grammar ---------- */
+.gram{ display:grid; gap:var(--g-sp-4); grid-template-columns:1fr; }
+@media(min-width:760px){ .gram{ grid-template-columns:1.4fr 1fr; } }
+.gram__sub{ font-size:13px; font-weight:700; color:var(--s-fg-2); margin-bottom:6px; }
+.gtable td{ padding:7px 8px; border-bottom:1px solid var(--s-line); vertical-align:top; font-size:13px; }
+.grule{ color:var(--s-fg-2); width:44%; }
+.gex{ display:flex; flex-wrap:wrap; gap:6px; }
+.chip{ display:inline-flex; align-items:center; gap:5px; font-size:12.5px;
+  padding:3px 9px; border-radius:var(--g-r-pill); background:var(--s-brand-weak);
+  color:var(--s-fg); }
+.chip b{ color:var(--s-brand-strong); }
+.chip--warn{ background:var(--amber-weak); }
+.chip--warn b{ color:var(--amber); }
+.irr{ display:flex; flex-wrap:wrap; gap:6px; }
+
+/* ---------- good sentences ---------- */
+.good .pat__ex{ background:var(--cyan-weak); }
+
+/* ---------- buttons ---------- */
+.btn{ display:inline-flex; align-items:center; gap:6px; justify-content:center;
+  border:1px solid var(--s-line-strong); background:var(--s-surface); color:var(--s-fg);
+  font-size:13.5px; font-weight:600; padding:9px 16px; border-radius:var(--g-r-2); }
+.btn:hover{ background:var(--s-surface-2); }
+.btn.sm{ font-size:12px; padding:6px 11px; }
+.btn--primary{ background:var(--s-brand); color:var(--s-brand-fg); border-color:transparent; }
+.btn--primary:hover{ background:var(--s-brand-strong); color:var(--s-brand-fg); }
+.btn--ghost{ background:transparent; border-color:var(--s-line); color:var(--s-fg-2); }
+.btn--ghost:hover{ background:var(--s-surface-2); color:var(--s-fg); }
+.btn[disabled]{ opacity:.4; cursor:not-allowed; }
+.btnrow{ display:flex; flex-wrap:wrap; gap:var(--g-sp-2); justify-content:center; margin:var(--g-sp-3) 0; }
+
+.big{ font-size:20px; display:flex; align-items:center; justify-content:center; gap:8px; }
+.muted{ color:var(--s-fg-2); font-size:13.5px; }
+.warn{ color:var(--no); font-weight:600; }
+.ok{ color:var(--ok); font-weight:700; }
+.qtypes{ display:flex; flex-wrap:wrap; gap:6px; justify-content:center; margin-top:var(--g-sp-3); }
+
+/* ---------- quiz ---------- */
+.quiz-hd{ margin-bottom:var(--g-sp-3); }
+.progress{ height:7px; border-radius:var(--g-r-pill); background:var(--s-surface-2); overflow:hidden; }
+.progress span{ display:block; height:100%; background:var(--s-brand); transition:width .3s; }
+.quiz-meta{ display:flex; justify-content:space-between; align-items:center; gap:10px;
+  font-size:12.5px; color:var(--s-fg-3); margin-top:6px; }
+.combo{ color:var(--amber); font-weight:700; }
+.qtype{ display:inline-block; font-size:11.5px; font-weight:700; color:var(--s-brand-strong);
+  background:var(--s-brand-weak); padding:3px 10px; border-radius:var(--g-r-pill); margin-bottom:8px; }
+.qstem{ font-size:17px; font-weight:600; line-height:1.7; }
+.qzh{ font-size:13px; color:var(--s-fg-3); margin-top:4px; }
+.qplay{ margin-top:8px; }
+.stem-clz .blank{ display:inline-block; min-width:66px; border-bottom:2.5px solid var(--s-brand);
+  margin:0 4px; vertical-align:baseline; height:1.1em; }
+.opts{ display:grid; gap:var(--g-sp-2); margin-top:var(--g-sp-3); }
+@media(min-width:560px){ .opts{ grid-template-columns:1fr 1fr; } }
+.opt{ text-align:left; border:1.5px solid var(--s-line); background:var(--s-surface);
+  color:var(--s-fg); font-size:15px; font-weight:600; padding:12px 14px; border-radius:var(--g-r-2);
+  transition:border-color .15s, background .15s; }
+.opt:hover{ border-color:var(--s-brand); }
+.opt--sel{ border-color:var(--s-brand); background:var(--s-brand-weak); }
+.opt--right{ border-color:var(--ok); background:var(--ok-weak); color:var(--ok); }
+.opt--wrong{ border-color:var(--no); background:var(--no-weak); color:var(--no); }
+.reveal{ margin-top:var(--g-sp-3); padding:var(--g-sp-3); border-radius:var(--g-r-2);
+  border:1px solid var(--s-line); }
+.reveal--ok{ background:var(--ok-weak); border-color:var(--ok); }
+.reveal--no{ background:var(--no-weak); border-color:var(--no); }
+.reveal__hd{ font-weight:700; font-size:14px; display:flex; align-items:center; gap:6px; }
+.reveal--ok .reveal__hd{ color:var(--ok); } .reveal--no .reveal__hd{ color:var(--no); }
+.reveal__sent{ margin-top:8px; padding-top:8px; border-top:1px dashed var(--s-line-strong); }
+.scorebig{ font-size:38px; font-weight:800; color:var(--s-brand); margin:var(--g-sp-3) 0; }
+.scorebig small{ font-size:18px; color:var(--s-fg-3); }
+
+/* ---------- 错题本 ---------- */
+.miss-list{ display:grid; gap:var(--g-sp-2); margin-top:var(--g-sp-3); }
+.miss{ display:grid; grid-template-columns:auto 1fr auto; gap:10px; align-items:center;
+  padding:10px 12px; border:1px solid var(--s-line); border-radius:var(--g-r-2);
+  background:var(--s-surface-2); font-size:13px; }
+.miss__w{ font-weight:800; color:var(--amber); }
+.miss__q{ color:var(--s-fg-2); overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+.miss__a{ color:var(--ok); font-weight:600; display:flex; align-items:center; gap:6px; white-space:nowrap; }
+.empty{ text-align:center; color:var(--s-fg-3); padding:var(--g-sp-8) 0; }
+.empty .ic{ font-size:36px; color:var(--s-line-strong); }
+
+/* ---------- 收藏本 ---------- */
+.fav-stat{ display:grid; grid-template-columns:repeat(3,1fr); gap:var(--g-sp-2); margin-bottom:var(--g-sp-3); }
+.fs{ text-align:center; padding:var(--g-sp-3); border:1px solid var(--s-line);
+  border-radius:var(--g-r-2); background:var(--s-surface-2); }
+.fs b{ display:block; font-size:24px; font-weight:800; color:var(--s-brand); }
+.fs span{ font-size:12px; color:var(--s-fg-3); }
+.fs--due b{ color:var(--amber); }
+.fav-list{ display:grid; gap:var(--g-sp-2); }
+.fav{ display:flex; align-items:center; justify-content:space-between; gap:10px;
+  padding:10px 12px; border:1px solid var(--s-line); border-radius:var(--g-r-2); background:var(--s-surface-2); }
+.fav__l{ display:flex; align-items:center; gap:8px; min-width:0; }
+.fav__w{ font-weight:800; font-size:15px; }
+.fav__zh{ font-size:12px; color:var(--s-fg-3); }
+.fav__r{ display:flex; align-items:center; gap:8px; flex:0 0 auto; }
+.fav__due{ font-size:11.5px; color:var(--s-fg-3); padding:2px 8px; border-radius:var(--g-r-pill); background:var(--s-surface); }
+.fav__due.due-now{ background:var(--amber-weak); color:var(--amber); font-weight:700; }
+.fav__lv{ font-size:11px; color:var(--s-fg-3); }
+
+/* ---------- exam ---------- */
+.exam-q{ font-size:17px; font-weight:600; line-height:1.8; display:flex; gap:6px; }
+.exam-no{ font-weight:800; color:var(--s-brand); }
+.exam-nav{ display:flex; gap:var(--g-sp-2); justify-content:space-between; margin-top:var(--g-sp-4); flex-wrap:wrap; }
+.exam-nav .btn--primary{ margin-left:auto; }
+.sheet{ margin-top:var(--g-sp-4); padding-top:var(--g-sp-3); border-top:1px dashed var(--s-line-strong); }
+.sheet__t{ font-size:12.5px; font-weight:700; color:var(--s-fg-2); margin-bottom:8px; }
+.sheet__grid{ display:grid; grid-template-columns:repeat(auto-fill,minmax(38px,1fr)); gap:6px; }
+.cell{ height:36px; border:1px solid var(--s-line); border-radius:var(--g-r-1);
+  background:var(--s-surface); color:var(--s-fg-2); font-weight:700; font-size:13px; }
+.cell--done{ background:var(--s-brand-weak); color:var(--s-brand-strong); border-color:var(--s-brand); }
+.cell--cur{ outline:2px solid var(--s-brand); outline-offset:1px; }
+
+.result-score{ text-align:center; margin:var(--g-sp-3) 0; }
+.rs__num{ font-size:44px; font-weight:800; color:var(--s-brand); }
+.rs__num small{ font-size:20px; color:var(--s-fg-3); }
+.rs__lv{ display:inline-block; font-weight:700; font-size:14px; padding:4px 14px;
+  border-radius:var(--g-r-pill); background:var(--s-brand-weak); color:var(--s-brand-strong); margin-top:6px; }
+.rs--优秀{ background:var(--ok-weak); color:var(--ok); }
+.rs--及格{ background:var(--mid-weak); color:var(--mid); }
+.rs--待提升{ background:var(--no-weak); color:var(--no); }
+.tally{ display:grid; grid-template-columns:repeat(4,1fr); gap:var(--g-sp-2); margin:var(--g-sp-4) 0; }
+.ty{ text-align:center; padding:var(--g-sp-3); border:1px solid var(--s-line);
+  border-radius:var(--g-r-2); background:var(--s-surface-2); }
+.ty b{ display:block; font-size:24px; font-weight:800; }
+.ty span{ font-size:11.5px; color:var(--s-fg-3); }
+.ty--ok b{ color:var(--ok); } .ty--no b{ color:var(--no); } .ty--un b{ color:var(--mid); }
+.sec-sub{ font-size:14px; font-weight:800; margin:var(--g-sp-4) 0 var(--g-sp-2); display:flex; align-items:center; gap:6px; }
+.board-mastery{ display:grid; gap:var(--g-sp-2); }
+.bm{ display:grid; grid-template-columns:70px 1fr auto auto; gap:10px; align-items:center; font-size:13px; }
+.bm__name{ font-weight:700; }
+.bm__bar{ height:9px; border-radius:var(--g-r-pill); background:var(--s-surface-2); overflow:hidden; }
+.bm__bar i{ display:block; height:100%; }
+.bar--ok{ background:var(--ok); } .bar--mid{ background:var(--mid); } .bar--no{ background:var(--no); }
+.bm__num{ color:var(--s-fg-3); font-size:12px; }
+.bm__tag{ font-size:11px; font-weight:700; padding:2px 8px; border-radius:var(--g-r-pill); }
+.tag--ok{ background:var(--ok-weak); color:var(--ok); }
+.tag--mid{ background:var(--mid-weak); color:var(--mid); }
+.tag--no{ background:var(--no-weak); color:var(--no); }
+.advice{ background:var(--s-surface-2); border:1px solid var(--s-line);
+  border-radius:var(--g-r-2); padding:var(--g-sp-3) var(--g-sp-4); margin-top:var(--g-sp-3); }
+.advice p{ font-size:13px; color:var(--s-fg-2); margin-bottom:8px; }
+.advice .plan{ font-size:12.5px; color:var(--s-fg-3); border-top:1px dashed var(--s-line-strong); padding-top:8px; margin:0; }
+.c-ok{ color:var(--ok); } .c-no{ color:var(--no); } .c-mid{ color:var(--mid); }
+.wrong-board{ margin-top:var(--g-sp-3); }
+.wb-group{ margin-bottom:var(--g-sp-3); }
+.wb-hd{ font-size:13px; font-weight:800; padding:6px 10px; border-radius:var(--g-r-1);
+  background:var(--s-surface-2); display:flex; align-items:center; gap:6px; margin-bottom:6px; }
+.wb-item{ border:1px solid var(--s-line); border-radius:var(--g-r-2); padding:10px 12px;
+  margin-bottom:6px; background:var(--s-surface); }
+.wb-q{ font-size:14px; font-weight:600; }
+.wb-ans{ font-size:12.5px; margin-top:4px; display:flex; gap:12px; flex-wrap:wrap; }
+.wb-full{ font-size:12.5px; color:var(--s-fg-2); margin-top:4px; display:flex; align-items:center; gap:6px; flex-wrap:wrap; }
+.wb-ex{ font-size:12px; color:var(--s-fg-3); margin-top:4px; }
+
+/* ---------- footer ---------- */
+.foot{ text-align:center; font-size:11.5px; color:var(--s-fg-3);
+  padding:var(--g-sp-6) var(--g-sp-4); }
+
+/* ---------- print ---------- */
+@media print{
+  .appbar,.tabbar,.play,.collect,.foot,.btnrow,.exam-nav,.sheet{ display:none !important; }
+  .card{ box-shadow:none; break-inside:avoid; }
+}
+
+</style>
+</head>
+<body>
+<!-- AUTO-BACK-NAV-START -->
+<style id="auto-back-nav-style">
+#auto-back-nav{position:sticky;top:0;z-index:999;background:rgba(249,250,251,.9);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);border-bottom:1px solid #e5e7eb;display:flex;align-items:center;padding:0 20px;height:44px;}
+@media(prefers-color-scheme:dark){#auto-back-nav{background:rgba(13,17,23,.9);border-bottom-color:#2d333b;}}
+#auto-back-nav a{display:inline-flex;align-items:center;gap:6px;text-decoration:none;color:#4b5563;font-size:14px;font-weight:600;font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Hiragino Sans GB","Microsoft YaHei",Roboto,Arial,sans-serif;}
+@media(prefers-color-scheme:dark){#auto-back-nav a{color:#9da7b3;}}
+</style>
+<nav id="auto-back-nav">
+  <a href="index.html">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5"/><path d="m12 19-7-7 7-7"/></svg>
+    暑假成长加油站
+  </a>
+</nav>
+<!-- AUTO-BACK-NAV-END -->
+<div id="boot" style="position:fixed;inset:0;display:grid;place-items:center;font:14px system-ui;color:#888;background:var(--s-bg,#f6f7f9)">正在加载…</div>
+<script>
+function boot_fail(m){var b=document.getElementById('boot');if(b)b.innerHTML='<pre style="max-width:80ch;white-space:pre-wrap;color:#c0392b;padding:24px">启动失败:\n'+m+'</pre>';}
+addEventListener('error',function(e){boot_fail(e.message||e.error);});
+addEventListener('unhandledrejection',function(e){boot_fail(e.reason);});
+</script>
+<svg style="position:absolute;width:0;height:0;overflow:hidden" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"><defs>
+<g id="ic-app"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/></g>
+<g id="ic-book-open"><path d="M2 4h6a4 4 0 0 1 4 4v12a3 3 0 0 0-3-3H2z"/><path d="M22 4h-6a4 4 0 0 0-4 4v12a3 3 0 0 1 3-3h7z"/></g>
+<g id="ic-target"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1.4" fill="currentColor" stroke="none"/></g>
+<g id="ic-refresh"><path d="M21 12a9 9 0 1 1-2.64-6.36"/><path d="M21 4v5h-5"/></g>
+<g id="ic-star"><path d="M12 3l2.6 5.3 5.9.9-4.3 4.1 1 5.8L12 16.9 6.8 19.2l1-5.8-4.3-4.1 5.9-.9z"/></g>
+<g id="ic-award"><circle cx="12" cy="9" r="6"/><path d="M8.2 14.3 6.5 22l5.5-3 5.5 3-1.7-7.7"/></g>
+<g id="ic-sun"><circle cx="12" cy="12" r="4.2"/><path d="M12 2v2.5M12 19.5V22M2 12h2.5M19.5 12H22M4.8 4.8l1.8 1.8M17.4 17.4l1.8 1.8M19.2 4.8l-1.8 1.8M6.6 17.4l-1.8 1.8"/></g>
+<g id="ic-moon"><path d="M21 12.8A8.5 8.5 0 1 1 11.2 3 6.6 6.6 0 0 0 21 12.8z"/></g>
+<g id="ic-volume"><path d="M11 5 6 9H2v6h4l5 4z"/><path d="M15.5 8.5a5 5 0 0 1 0 7"/><path d="M18.5 5.5a9 9 0 0 1 0 13"/></g>
+<g id="ic-layers"><path d="M12 2 2 7l10 5 10-5z"/><path d="M2 12l10 5 10-5"/><path d="M2 17l10 5 10-5"/></g>
+<g id="ic-message-square"><path d="M21 11.5a7.5 7.5 0 0 1-10.6 6.8L3 20l1.7-6.1A7.5 7.5 0 1 1 21 11.5z"/></g>
+<g id="ic-git-branch"><line x1="6" y1="3" x2="6" y2="15"/><circle cx="18" cy="6" r="3"/><circle cx="6" cy="18" r="3"/><path d="M18 9a9 9 0 0 1-9 9"/></g>
+<g id="ic-quote"><path d="M7 7H4a1 1 0 0 0-1 1v4a1 1 0 0 0 1 1h3v3a3 3 0 0 1-3 3"/><path d="M20 7h-3a1 1 0 0 0-1 1v4a1 1 0 0 0 1 1h3v3a3 3 0 0 1-3 3"/></g>
+<g id="ic-info"><circle cx="12" cy="12" r="9"/><line x1="12" y1="11" x2="12" y2="16"/><circle cx="12" cy="8" r="1" fill="currentColor" stroke="none"/></g>
+<g id="ic-check-circle-2"><circle cx="12" cy="12" r="9"/><path d="m8.5 12 2.5 2.5 4.5-5"/></g>
+<g id="ic-x-circle"><circle cx="12" cy="12" r="9"/><line x1="9" y1="9" x2="15" y2="15"/><line x1="15" y1="9" x2="9" y2="15"/></g>
+<g id="ic-arrow-right"><line x1="4" y1="12" x2="20" y2="12"/><polyline points="14 6 20 12 14 18"/></g>
+<g id="ic-lightbulb"><path d="M9 18h6"/><path d="M10 21h4"/><path d="M12 3a6 6 0 0 0-3.5 10.9c.6.5 1 1.3 1 2.1h5c0-.8.4-1.6 1-2.1A6 6 0 0 0 12 3z"/></g>
+<g id="ic-edit"><path d="M11 4H5a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2h13a2 2 0 0 0 2-2v-6"/><path d="M18.5 3.5a1.9 1.9 0 0 1 2.7 2.7L12 15l-4 1 1-4z"/></g>
+<g id="ic-hash"><line x1="4" y1="9" x2="20" y2="9"/><line x1="4" y1="15" x2="20" y2="15"/><line x1="10" y1="3" x2="8" y2="21"/><line x1="16" y1="3" x2="14" y2="21"/></g>
+<g id="ic-repeat"><polyline points="17 2 21 6 17 10"/><path d="M3 11V9a4 4 0 0 1 4-4h14"/><polyline points="7 22 3 18 7 14"/><path d="M21 13v2a4 4 0 0 1-4 4H3"/></g>
+</defs></svg>
+
+<topic-app></topic-app>
+<script>
+/* 外研版六年级上册 Unit 1 & Unit 2 必考知识点 训练题 —— 数据层
+ * 结构:scenes(单词卡·分主题) + patterns(母题+多例子·带手工标注ann) + quiz(全覆盖练习) + exam(摸底卷)
+ * 每个例句都带 ann(手工核对的成分标注),每个词都带 ipa。
+ */
+window.TOPIC_DATA = {
+  title: "六年级上册 Unit 1–2 · 必考精练",
+  subtitle: "外研版 · 存钱与消费 / 观点与比较 —— 词汇 · 短语 · 句型 · 语法 · 摸底测试",
+
+  /* ============ 一、重点单词(按单元分主题) ============ */
+  scenes: [
+    {
+      id: "u1w", name: "Unit 1 · 钱与消费", en: "Money & Spending", icon: "ic-hash", color: "cyan",
+      words: [
+        { en:"save", ipa:"/seɪv/", zh:"v. 储蓄;存(钱);拯救", example:"I'll save my pocket money.", ann:[["s","I'll"],["v","save"],["o","my pocket money"]] },
+        { en:"spend", ipa:"/spend/", zh:"v. 花费(钱);度过", example:"Don't spend all your money.", ann:[["v","Don't spend"],["o","all your money"]] },
+        { en:"pocket money", ipa:"/ˈpɒkɪt ˌmʌni/", zh:"n. 零花钱", example:"I get some pocket money every week.", ann:[["s","I"],["v","get"],["o","some pocket money"],["a","every week"]] },
+        { en:"shopkeeper", ipa:"/ˈʃɒpkiːpə(r)/", zh:"n. 店主", example:"The shopkeeper is very kind.", ann:[["s","The shopkeeper"],["v","is"],["o","very kind"]] },
+        { en:"golden", ipa:"/ˈɡəʊldən/", zh:"adj. 金色的;金黄色的", example:"The leaves are golden in autumn.", ann:[["s","The leaves"],["v","are"],["o","golden"],["a","in autumn"]] },
+        { en:"gold", ipa:"/ɡəʊld/", zh:"n. 金子,黄金", example:"Gold isn't everything.", ann:[["s","Gold"],["v","isn't"],["o","everything"]] },
+        { en:"even", ipa:"/ˈiːvn/", zh:"adv. 甚至", example:"He even saves his birthday money.", ann:[["s","He"],["a","even"],["v","saves"],["o","his birthday money"]] },
+        { en:"smile", ipa:"/smaɪl/", zh:"v./n. 微笑", example:"The girl gives me a smile.", ann:[["s","The girl"],["v","gives"],["o","me a smile"]] },
+        { en:"choice", ipa:"/tʃɔɪs/", zh:"n. 选择", example:"It's a good choice.", ann:[["s","It's"],["o","a good choice"]] },
+        { en:"crayon", ipa:"/ˈkreɪən/", zh:"n. 彩色蜡笔", example:"I want to buy some crayons.", ann:[["s","I"],["v","want to buy"],["o","some crayons"]] },
+        { en:"earthquake", ipa:"/ˈɜːθkweɪk/", zh:"n. 地震", example:"They helped people after the earthquake.", ann:[["s","They"],["v","helped"],["o","people"],["a","after the earthquake"]] }
+      ]
+    },
+    {
+      id: "u2w", name: "Unit 2 · 观点与探索", en: "Opinion & Explore", icon: "ic-message-square", color: "brand",
+      words: [
+        { en:"opinion", ipa:"/əˈpɪnjən/", zh:"n. 意见,看法,主张", example:"In my opinion, this book is very interesting.", ann:[["a","In my opinion"],["s","this book"],["v","is"],["o","very interesting"]] },
+        { en:"peel", ipa:"/piːl/", zh:"n. 外皮 v. 削皮", example:"Apples without peel taste sweeter.", ann:[["s","Apples without peel"],["v","taste"],["o","sweeter"]] },
+        { en:"health", ipa:"/helθ/", zh:"n. 健康(状况)", example:"Fruit is good for our health.", ann:[["s","Fruit"],["v","is"],["o","good"],["a","for our health"]] },
+        { en:"without", ipa:"/wɪˈðaʊt/", zh:"prep. 缺乏,没有", example:"We can't live without water.", ann:[["s","We"],["v","can't live"],["a","without water"]] },
+        { en:"grey", ipa:"/ɡreɪ/", zh:"adj./n. 灰色的;灰色", example:"The sky is grey today.", ann:[["s","The sky"],["v","is"],["o","grey"],["a","today"]] },
+        { en:"line", ipa:"/laɪn/", zh:"n. 线,线条", example:"Please draw a straight line.", ann:[["v","Please draw"],["o","a straight line"]] },
+        { en:"explore", ipa:"/ɪkˈsplɔː(r)/", zh:"v. 探讨,探究,探索", example:"We can read and explore the world.", ann:[["s","We"],["v","can read and explore"],["o","the world"]] },
+        { en:"truth", ipa:"/truːθ/", zh:"n. 事实,真相", example:"We should find out the truth.", ann:[["s","We"],["v","should find out"],["o","the truth"]] },
+        { en:"fear", ipa:"/fɪə(r)/", zh:"n. 害怕,恐惧", example:"Drop all your fears.", ann:[["v","Drop"],["o","all your fears"]] },
+        { en:"trust", ipa:"/trʌst/", zh:"v. 信任,相信", example:"Trust your heart.", ann:[["v","Trust"],["o","your heart"]] },
+        { en:"discussion", ipa:"/dɪˈskʌʃn/", zh:"n. 讨论,谈论", example:"We had a long discussion about it.", ann:[["s","We"],["v","had"],["o","a long discussion"],["a","about it"]] },
+        { en:"fairy tale", ipa:"/ˈfeəri teɪl/", zh:"n. 童话;神话", example:"Children love fairy tales.", ann:[["s","Children"],["v","love"],["o","fairy tales"]] },
+        { en:"reason", ipa:"/ˈriːzn/", zh:"n. 原因,理由", example:"Tell me the reason.", ann:[["v","Tell"],["o","me the reason"]] },
+        { en:"rule", ipa:"/ruːl/", zh:"n. 规定,规则", example:"We must follow the rules.", ann:[["s","We"],["v","must follow"],["o","the rules"]] }
+      ]
+    }
+  ],
+
+  /* ============ 二、重点短语 ============ */
+  phrases: [
+    { en:"save money", ipa:"/seɪv ˈmʌni/", zh:"存钱,攒钱" },
+    { en:"spend money on sth", ipa:"/spend ˈmʌni ɒn/", zh:"在某物上花钱" },
+    { en:"from now on", ipa:"/frəm naʊ ɒn/", zh:"从现在起" },
+    { en:"come true", ipa:"/kʌm truː/", zh:"实现" },
+    { en:"turn ... into ...", ipa:"/tɜːn ˈɪntə/", zh:"把……变成……" },
+    { en:"ask sb to do sth", ipa:"/ɑːsk ... tə duː/", zh:"请求某人做某事" },
+    { en:"people in need", ipa:"/ˈpiːpl ɪn niːd/", zh:"需要帮助的人" },
+    { en:"make a spending plan", ipa:"/meɪk ə ˈspendɪŋ plæn/", zh:"制定消费计划" },
+    { en:"be full of", ipa:"/bi fʊl əv/", zh:"充满……" },
+    { en:"be good for", ipa:"/bi ɡʊd fə/", zh:"对……有益" },
+    { en:"be bad for", ipa:"/bi bæd fə/", zh:"对……有害" },
+    { en:"take time", ipa:"/teɪk taɪm/", zh:"花费时间" },
+    { en:"argue with sb", ipa:"/ˈɑːɡjuː wɪð/", zh:"和某人争吵" },
+    { en:"help sb with sth", ipa:"/help ... wɪð/", zh:"帮助某人做某事" },
+    { en:"listen to", ipa:"/ˈlɪsn tə/", zh:"听" }
+  ],
+
+  /* ============ 三、重点句型(母题 + 多例子) ============ */
+  groups: [
+    {
+      id:"g_howmuch", name:"询问价格 How much", color:"cyan",
+      patterns:[
+        { id:"p_howmuch_sing", tpl:"How much is + 单数/不可数名词? → It's + 价格.", use:"问单数或不可数物品的价格。",
+          examples:[
+            { en:"How much is the robot?", zh:"这个机器人多少钱?", ann:[["c","How much"],["v","is"],["s","the robot"]] },
+            { en:"How much is the pen? It's 10 yuan.", zh:"这支钢笔多少钱?10元。", ann:[["c","How much"],["v","is"],["s","the pen"],["s","It's"],["o","10 yuan"]] }
+          ] },
+        { id:"p_howmuch_plur", tpl:"How much are + 复数名词? → They're + 价格 + each.", use:"问复数物品的价格,回答常加 each(每个)。",
+          examples:[
+            { en:"How much are the cupcakes?", zh:"这些纸杯蛋糕多少钱?", ann:[["c","How much"],["v","are"],["s","the cupcakes"]] },
+            { en:"They're 5 yuan each.", zh:"每个5元。", ann:[["s","They're"],["o","5 yuan"],["a","each"]] }
+          ] }
+      ]
+    },
+    {
+      id:"g_take", name:"表决定与提醒", color:"amber",
+      patterns:[
+        { id:"p_take", tpl:"I'll take it / them.", use:"购物时表示“我买了/我要了”。",
+          examples:[
+            { en:"It's 35 yuan. I'll take it.", zh:"35元。我买了。", ann:[["s","It's"],["o","35 yuan"],["s","I'll"],["v","take"],["o","it"]] },
+            { en:"I'll take them.", zh:"我把它们都买了。", ann:[["s","I'll"],["v","take"],["o","them"]] }
+          ] },
+        { id:"p_remember", tpl:"Just remember, + 句子.", use:"“只要记住……”,用于提醒或告诫。",
+          examples:[
+            { en:"Just remember, gold isn't everything.", zh:"只要记住,金子不是万能的。", ann:[["v","Just remember"],["s","gold"],["v","isn't"],["o","everything"]] }
+          ] }
+      ]
+    },
+    {
+      id:"g_compare", name:"形容词比较级 -er than", color:"green",
+      patterns:[
+        { id:"p_compare", tpl:"A + be + 形容词比较级 + than + B.", use:"比较两者,“A 比 B 更……”。",
+          examples:[
+            { en:"Apples are healthier than sweet cakes.", zh:"苹果比甜蛋糕更健康。", ann:[["s","Apples"],["v","are"],["o","healthier"],["a","than sweet cakes"]] },
+            { en:"This book is more interesting than that one.", zh:"这本书比那本更有趣。", ann:[["s","This book"],["v","is"],["o","more interesting"],["a","than that one"]] }
+          ] }
+      ]
+    },
+    {
+      id:"g_opinion", name:"表达观点与建议", color:"brand",
+      patterns:[
+        { id:"p_opinion", tpl:"In my opinion, + 句子.", use:"“在我看来……”,表达个人观点。",
+          examples:[
+            { en:"In my opinion, this book is very interesting.", zh:"在我看来,这本书很有趣。", ann:[["a","In my opinion"],["s","this book"],["v","is"],["o","very interesting"]] }
+          ] },
+        { id:"p_whynot", tpl:"Why not + 动词原形?", use:"“为什么不……呢?”,提出建议,not 后接动词原形。",
+          examples:[
+            { en:"Why not just eat it?", zh:"为什么不直接吃了它呢?", ann:[["c","Why not"],["v","just eat"],["o","it"]] },
+            { en:"Why not save your money?", zh:"为什么不把钱存起来呢?", ann:[["c","Why not"],["v","save"],["o","your money"]] }
+          ] }
+      ]
+    }
+  ],
+
+  /* ============ 四、形容词比较级变化规则(语法卡) ============ */
+  gramCompare: {
+    title: "形容词比较级变化规则",
+    rules: [
+      { rule:"一般在词尾加 -er", ex:[["sweet","sweeter"],["tall","taller"]] },
+      { rule:"以不发音 e 结尾加 -r", ex:[["nice","nicer"],["large","larger"]] },
+      { rule:"重读闭音节双写末字母加 -er", ex:[["big","bigger"],["hot","hotter"]] },
+      { rule:"以“辅音字母 + y”结尾,变 y 为 i 加 -er", ex:[["happy","happier"],["easy","easier"]] },
+      { rule:"多音节及部分双音节词前加 more", ex:[["careful","more careful"],["beautiful","more beautiful"]] }
+    ],
+    irregular: [ ["good/well","better"], ["bad/badly","worse"], ["many/much","more"] ]
+  },
+
+  /* ============ 五、教材必背好句 ============ */
+  goodSentences: [
+    { en:"I'll save my money for the right things from now on.", zh:"从现在起,我要把钱存起来用在该用的地方。", ann:[["s","I'll"],["v","save"],["o","my money"],["a","for the right things"],["a","from now on"]] },
+    { en:"Gold isn't everything.", zh:"金子不是万能的。", ann:[["s","Gold"],["v","isn't"],["o","everything"]] },
+    { en:"It's a good thing for us to share with people in need.", zh:"帮助需要帮助的人是一件好事。", ann:[["s","It's"],["o","a good thing"],["a","for us to share with people in need"]] },
+    { en:"An apple a day keeps the doctor away.", zh:"一天一苹果,医生远离我。", ann:[["s","An apple a day"],["v","keeps"],["o","the doctor"],["a","away"]] },
+    { en:"Drop all your fears and trust your heart.", zh:"放下所有恐惧,相信自己的内心。", ann:[["v","Drop"],["o","all your fears"],["v","and trust"],["o","your heart"]] }
+  ],
+
+  /* quiz 与 exam 在 topic_data_quiz.js 中追加 */
+};
+
+</script>
+<script>
+/* quiz(全覆盖练习·多题型) + exam(摸底测试卷) —— 追加到 window.TOPIC_DATA */
+(function(D){
+  /* ---------- 练习闯关:covers ALL words + ALL patterns ----------
+   * 题型:trans(中英互译) / cloze(句中填空·考搭配用法) / grammar(比较级/句型) / order(词序)
+   * 每题带 word(错题本按词去重的键) + say(朗读) + 可选 full/ann(揭晓时展示带标注的整句)
+   */
+  const Q = [];
+
+  // 1) 单词 中→英 (覆盖全部 25 个单词) —— word 键 = 英文词
+  const W = [];
+  D.scenes.forEach(s => s.words.forEach(w => W.push(w)));
+  const wordEns = W.map(w => w.en);
+  W.forEach(w => {
+    // 干扰项:同表其它词
+    const distract = wordEns.filter(e => e !== w.en);
+    Q.push({
+      type:"trans", word:w.en, kind:"zh2en",
+      prompt:"选出对应的英文:「" + w.zh.replace(/^(n\.|v\.|adj\.|adv\.|prep\.|v\.\/n\.|adj\.\/n\.)\s*/,'') + "」",
+      answer:w.en, options:[w.en, ...pick(distract,3)], say:w.en
+    });
+  });
+
+  // 2) 单词 cloze(句中填空,考在真实语境中的用法) —— 用词卡例句挖空
+  W.forEach(w => {
+    const blanked = blankWord(w.example, w.en);
+    if (!blanked) return;
+    const distract = wordEns.filter(e => e !== w.en);
+    Q.push({
+      type:"cloze", word:w.en,
+      prompt:blanked, promptZh:w.zh,
+      answer:w.en, options:[w.en, ...pick(distract,3)],
+      say:w.example, full:w.example, ann:w.ann
+    });
+  });
+
+  // 3) 重点短语 中→英 (覆盖全部短语)
+  D.phrases.forEach(p => {
+    const distract = D.phrases.filter(x => x.en !== p.en).map(x => x.en);
+    Q.push({
+      type:"trans", word:p.en, kind:"phrase",
+      prompt:"选出对应的英文短语:「" + p.zh + "」",
+      answer:p.en, options:[p.en, ...pick(distract,3)], say:p.en
+    });
+  });
+
+  // 4) 句型识别 identify (覆盖每个母题) —— 给例句判断属于哪个句型
+  const allPat = [];
+  D.groups.forEach(g => g.patterns.forEach(p => allPat.push({ ...p, gName:g.name })));
+  allPat.forEach(p => {
+    const ex = p.examples[0];
+    const distract = allPat.filter(x => x.id !== p.id).map(x => x.tpl);
+    Q.push({
+      type:"identify", word:p.id, pattern:p.id,
+      prompt:"下面这句用了哪个句型?\n「" + ex.en + "」",
+      answer:p.tpl, options:[p.tpl, ...pick(distract,3)],
+      say:ex.en, full:ex.en, ann:ex.ann
+    });
+  });
+
+  // 5) 语法专练:比较级变化(规则+不规则)
+  const compPairs = [];
+  D.gramCompare.rules.forEach(r => r.ex.forEach(e => compPairs.push(e)));
+  D.gramCompare.irregular.forEach(e => compPairs.push(e));
+  compPairs.forEach(pair => {
+    const base = pair[0], comp = pair[1];
+    const distract = compPairs.filter(x => x[1] !== comp).map(x => x[1]);
+    // 制造形近干扰(错误加 er / 直接加 more)
+    const bads = wrongComps(base, comp);
+    const opts = uniq([comp, ...bads, ...pick(distract,2)]).slice(0,4);
+    if (!opts.includes(comp)) opts[0] = comp;
+    Q.push({
+      type:"grammar", word:"cmp_"+base, pattern:"p_compare",
+      prompt:"写出「" + base + "」的比较级形式:",
+      answer:comp, options:shuffle(opts.length<4 ? uniq([...opts, comp+"er", "more "+base]).slice(0,4) : opts),
+      say:comp
+    });
+  });
+
+  // 6) 句型综合运用:句子填空(How much / Why not / than / In my opinion)
+  const usage = [
+    { word:"p_howmuch_sing", pattern:"p_howmuch_sing",
+      q:"___ much is the robot?", answer:"How",
+      options:["How","What","How many","Which"], zh:"这个机器人多少钱?",
+      full:"How much is the robot?", ann:[["c","How much"],["v","is"],["s","the robot"]] },
+    { word:"p_howmuch_plur", pattern:"p_howmuch_plur",
+      q:"How much ___ the cupcakes?", answer:"are",
+      options:["are","is","do","does"], zh:"这些纸杯蛋糕多少钱?",
+      full:"How much are the cupcakes?", ann:[["c","How much"],["v","are"],["s","the cupcakes"]] },
+    { word:"p_take", pattern:"p_take",
+      q:"It's 35 yuan. I'll ___ it.", answer:"take",
+      options:["take","takes","taking","took"], zh:"35元,我买了。",
+      full:"I'll take it.", ann:[["s","I'll"],["v","take"],["o","it"]] },
+    { word:"p_compare", pattern:"p_compare",
+      q:"Apples are healthier ___ sweet cakes.", answer:"than",
+      options:["than","then","that","as"], zh:"苹果比甜蛋糕更健康。",
+      full:"Apples are healthier than sweet cakes.", ann:[["s","Apples"],["v","are"],["o","healthier"],["a","than sweet cakes"]] },
+    { word:"p_whynot", pattern:"p_whynot",
+      q:"Why not ___ your money?", answer:"save",
+      options:["save","saves","saving","to save"], zh:"为什么不把钱存起来呢?",
+      full:"Why not save your money?", ann:[["c","Why not"],["v","save"],["o","your money"]] },
+    { word:"p_opinion", pattern:"p_opinion",
+      q:"In my ___, this book is interesting.", answer:"opinion",
+      options:["opinion","idea","think","reason"], zh:"在我看来,这本书很有趣。",
+      full:"In my opinion, this book is interesting.", ann:[["a","In my opinion"],["s","this book"],["v","is"],["o","interesting"]] },
+    { word:"p_remember", pattern:"p_remember",
+      q:"Just remember, gold ___ everything.", answer:"isn't",
+      options:["isn't","aren't","don't","not"], zh:"只要记住,金子不是万能的。",
+      full:"Just remember, gold isn't everything.", ann:[["v","Just remember"],["s","gold"],["v","isn't"],["o","everything"]] }
+  ];
+  usage.forEach(u => {
+    Q.push({ type:"cloze", word:u.word, pattern:u.pattern,
+      prompt:u.q, promptZh:u.zh, answer:u.answer, options:shuffle(u.options.slice()),
+      say:u.full, full:u.full, ann:u.ann });
+  });
+
+  D.quiz = Q;
+
+  /* ---------- 摸底测试卷(单项选择·不提示考点) ----------
+   * perQuestion: 每题分值;20题 × 5分 = 100分
+   */
+  D.exam = {
+    title: "Unit 1–2 摸底测试卷",
+    intro: "共 20 道单项选择 · 满分 100 分 · 题目随机打乱、不提示考点。答完后给出对/错统计、各板块掌握情况和学习建议。",
+    perQuestion: 5,
+    sections: [
+      { id:"vocab", name:"词汇", en:"Vocabulary", icon:"ic-hash", color:"cyan", desc:"单词与短语的含义、辨析", items:[
+        { q:"I want to ___ my pocket money, not spend it.", zh:"我想存零花钱,而不是花掉。", options:["save","spend","cost","pay"], answer:"save", explain:"save 存钱;spend 花钱。语义与后半句对比,选 save。" },
+        { q:"Fruit and vegetables are good for our ___.", zh:"水果和蔬菜对我们的健康有益。", options:["health","healthy","healthily","healthier"], answer:"health", explain:"介词 for 后接名词,health 为名词“健康”。" },
+        { q:"We should help ___ in need.", zh:"我们应该帮助需要帮助的人。", options:["people","peoples","person","the peoples"], answer:"people", explain:"people 本身是复数,不加 s;people in need 需要帮助的人。" },
+        { q:"The ___ told me the price of the toy.", zh:"店主告诉了我玩具的价格。", options:["shopkeeper","teacher","doctor","farmer"], answer:"shopkeeper", explain:"shopkeeper 店主,与 price of the toy 语境相符。" }
+      ]},
+      { id:"phrase", name:"短语", en:"Phrases", icon:"ic-layers", color:"amber", desc:"固定搭配", items:[
+        { q:"Too much sugar is bad ___ your teeth.", zh:"太多糖对你的牙齿有害。", options:["for","to","at","with"], answer:"for", explain:"be bad for sth 对……有害;固定搭配用 for。" },
+        { q:"The box is full ___ old books.", zh:"这个箱子装满了旧书。", options:["of","with","in","at"], answer:"of", explain:"be full of 充满……,固定搭配。" },
+        { q:"Don't ___ with your friends over small things.", zh:"别为小事和朋友争吵。", options:["argue","talk","listen","agree"], answer:"argue", explain:"argue with sb 和某人争吵。" },
+        { q:"From now ___, I'll make a spending plan.", zh:"从现在起,我要制定消费计划。", options:["on","in","at","to"], answer:"on", explain:"from now on 从现在起,固定短语。" }
+      ]},
+      { id:"pattern", name:"句型", en:"Patterns", icon:"ic-message-square", color:"brand", desc:"询价·建议·观点·购买", items:[
+        { q:"— How much ___ the cupcakes? — They're 5 yuan each.", zh:"这些纸杯蛋糕多少钱?每个5元。", options:["are","is","do","does"], answer:"are", explain:"cupcakes 为复数,How much are...? 回答 They're... each。" },
+        { q:"How much ___ the robot? It's 99 yuan.", zh:"这个机器人多少钱?99元。", options:["is","are","many","much"], answer:"is", explain:"robot 单数,用 How much is...? 回答 It's...。" },
+        { q:"Why not ___ some money for people in need?", zh:"为什么不为需要帮助的人存点钱呢?", options:["save","saves","saving","to save"], answer:"save", explain:"Why not + 动词原形,提出建议。" },
+        { q:"— Do you like this idea? — ___ my opinion, it's great.", zh:"在我看来,这主意很棒。", options:["In","On","At","For"], answer:"In", explain:"In my opinion 在我看来,固定表达。" }
+      ]},
+      { id:"grammar", name:"语法", en:"Grammar", icon:"ic-git-branch", color:"green", desc:"比较级·一般现在时", items:[
+        { q:"Apples are ___ than sweet cakes.", zh:"苹果比甜蛋糕更健康。", options:["healthier","healthy","more healthy","healthiest"], answer:"healthier", explain:"“辅音+y”结尾变 y 为 i 加 er:healthy → healthier;than 表比较。" },
+        { q:"This story is ___ interesting than that one.", zh:"这个故事比那个更有趣。", options:["more","much","many","most"], answer:"more", explain:"多音节词 interesting 前加 more 构成比较级。" },
+        { q:"My schoolbag is ___ than yours.", zh:"我的书包比你的更大。", options:["bigger","biger","more big","biggest"], answer:"bigger", explain:"重读闭音节双写末字母加 er:big → bigger。" },
+        { q:"Sam always ___ his pocket money on books.", zh:"萨姆总是把零花钱花在书上。", options:["spends","spend","spending","spent"], answer:"spends", explain:"always 表习惯,用一般现在时;主语 Sam 第三人称单数,动词加 s。" }
+      ]},
+      { id:"lex2", name:"词形与用法", en:"Word Form", icon:"ic-edit", color:"cyan", desc:"词性变化·惯用法", items:[
+        { q:"good → ___ (比较级)", zh:"good 的比较级", options:["better","gooder","best","more good"], answer:"better", explain:"good/well 的比较级是不规则形式 better。" },
+        { q:"We can't live ___ water.", zh:"没有水我们无法生存。", options:["without","with","under","about"], answer:"without", explain:"without 没有,与 can't live 语义相符。" },
+        { q:"Please listen ___ the teacher carefully.", zh:"请认真听老师讲。", options:["to","at","for","on"], answer:"to", explain:"listen to sb/sth 听……,固定搭配。" },
+        { q:"I'll ___ it. Here is 35 yuan.", zh:"我买了,这是35元。", options:["take","cost","pay","spend"], answer:"take", explain:"购物场景表“我买了”用 I'll take it。" }
+      ]}
+    ]
+  };
+
+  /* ---------- 工具函数 ---------- */
+  function pick(arr, n){ const a=arr.slice(); shuffle(a); return a.slice(0,n); }
+  function shuffle(a){ for(let i=a.length-1;i>0;i--){ const j=Math.floor(Math.random()*(i+1)); [a[i],a[j]]=[a[j],a[i]]; } return a; }
+  function uniq(a){ return [...new Set(a)]; }
+  function blankWord(sent, word){
+    // 用单条下划线空位替换句中的目标词(整词匹配,忽略大小写)
+    const re = new RegExp("\\b" + word.replace(/[.*+?^${}()|[\]\\]/g,'\\$&') + "\\b", "i");
+    if (!re.test(sent)) return null;
+    return sent.replace(re, "___");
+  }
+  function wrongComps(base, comp){
+    const out = [];
+    if (comp === base + "er") { out.push("more " + base, base + "est"); }
+    else if (comp.endsWith("r")) { out.push(base + "er", "more " + base); }
+    else if (comp.startsWith("more ")) { out.push(base + "er", base + "r"); }
+    else { out.push(base + "er", "more " + base); } // 不规则
+    return out;
+  }
+})(window.TOPIC_DATA);
+
+</script>
+<script>
+/* Unit 1 专项强化 · 50 题(多题型)—— 追加到 window.TOPIC_DATA.unit1Drill
+ * 题型:cloze(选词填空/句型运用) / trans(词义辨析·中英互译) / grammar(比较级·三单·时态) / identify(句型识别) / order(句子排序)
+ * 每题带 word(错题本去重键) + say(朗读);带完整句子的题目附 ann(逐词还原)供揭晓展示。
+ * 考点全部落在 Unit 1:save/spend/pocket money/shopkeeper/golden/gold/even/smile/choice/crayon/earthquake,
+ *   短语 save money / spend...on / from now on / come true / turn...into / ask sb to do / people in need / make a spending plan,
+ *   句型 How much is/are、I'll take it、Just remember、Why not,好句 Gold isn't everything 等。
+ */
+(function(D){
+  const U1 = [
+    /* ---------- A. 选词填空 · 词义在语境中的运用(cloze) ---------- */
+    { type:"cloze", word:"save", prompt:"I want to ___ my pocket money for a new book.", promptZh:"我想存零花钱买本新书。",
+      answer:"save", options:["save","spend","turn","ask"], say:"I want to save my pocket money for a new book.",
+      full:"I want to save my pocket money for a new book.", ann:[["s","I"],["v","want to save"],["o","my pocket money"],["a","for a new book"]] },
+    { type:"cloze", word:"spend", prompt:"Don't ___ all your money on toys.", promptZh:"别把钱都花在玩具上。",
+      answer:"spend", options:["spend","save","smile","take"], say:"Don't spend all your money on toys.",
+      full:"Don't spend all your money on toys.", ann:[["v","Don't spend"],["o","all your money"],["a","on toys"]] },
+    { type:"cloze", word:"pocket money", prompt:"My mum gives me ten yuan ___ ___ every week.", promptZh:"妈妈每周给我十元零花钱。",
+      answer:"pocket money", options:["pocket money","fairy tale","spending plan","people in need"], say:"My mum gives me ten yuan pocket money every week.",
+      full:"My mum gives me ten yuan pocket money every week.", ann:[["s","My mum"],["v","gives"],["o","me ten yuan pocket money"],["a","every week"]] },
+    { type:"cloze", word:"shopkeeper", prompt:"The ___ tells me the price of the crayons.", promptZh:"店主告诉我蜡笔的价格。",
+      answer:"shopkeeper", options:["shopkeeper","teacher","doctor","farmer"], say:"The shopkeeper tells me the price of the crayons.",
+      full:"The shopkeeper tells me the price of the crayons.", ann:[["s","The shopkeeper"],["v","tells"],["o","me the price of the crayons"]] },
+    { type:"cloze", word:"golden", prompt:"The leaves turn ___ in autumn.", promptZh:"秋天树叶变金黄。",
+      answer:"golden", options:["golden","gold","grey","green"], say:"The leaves turn golden in autumn.",
+      full:"The leaves turn golden in autumn.", ann:[["s","The leaves"],["v","turn"],["o","golden"],["a","in autumn"]] },
+    { type:"cloze", word:"gold", prompt:"Just remember, ___ isn't everything.", promptZh:"只要记住,金子不是万能的。",
+      answer:"gold", options:["gold","golden","grey","money"], say:"Just remember, gold isn't everything.",
+      full:"Just remember, gold isn't everything.", ann:[["v","Just remember"],["s","gold"],["v","isn't"],["o","everything"]] },
+    { type:"cloze", word:"even", prompt:"He saves all his money. He ___ saves his birthday money.", promptZh:"他把所有钱都存起来,甚至连生日的钱都存。",
+      answer:"even", options:["even","never","only","just"], say:"He even saves his birthday money.",
+      full:"He even saves his birthday money.", ann:[["s","He"],["a","even"],["v","saves"],["o","his birthday money"]] },
+    { type:"cloze", word:"smile", prompt:"The kind shopkeeper gives me a ___.", promptZh:"和善的店主对我微笑。",
+      answer:"smile", options:["smile","choice","reason","rule"], say:"The kind shopkeeper gives me a smile.",
+      full:"The kind shopkeeper gives me a smile.", ann:[["s","The kind shopkeeper"],["v","gives"],["o","me a smile"]] },
+    { type:"cloze", word:"choice", prompt:"Saving money is a good ___.", promptZh:"存钱是个好选择。",
+      answer:"choice", options:["choice","chance","change","cheese"], say:"Saving money is a good choice.",
+      full:"Saving money is a good choice.", ann:[["s","Saving money"],["v","is"],["o","a good choice"]] },
+    { type:"cloze", word:"crayon", prompt:"I want to buy some ___ to draw a picture.", promptZh:"我想买些蜡笔来画画。",
+      answer:"crayons", options:["crayons","cakes","coins","cars"], say:"I want to buy some crayons to draw a picture.",
+      full:"I want to buy some crayons to draw a picture.", ann:[["s","I"],["v","want to buy"],["o","some crayons"],["a","to draw a picture"]] },
+    { type:"cloze", word:"earthquake", prompt:"They gave money to help people after the ___.", promptZh:"地震后他们捐钱帮助人们。",
+      answer:"earthquake", options:["earthquake","weekend","morning","holiday"], say:"They gave money to help people after the earthquake.",
+      full:"They gave money to help people after the earthquake.", ann:[["s","They"],["v","gave"],["o","money"],["a","to help people"],["a","after the earthquake"]] },
+
+    /* ---------- B. 词义辨析 · 中→英 / 英→中(trans) ---------- */
+    { type:"trans", word:"save", kind:"zh2en", prompt:"选出「储蓄;存(钱)」对应的英文:", answer:"save", options:["save","spend","smile","choice"], say:"save" },
+    { type:"trans", word:"spend", kind:"zh2en", prompt:"选出「花费(钱);度过」对应的英文:", answer:"spend", options:["spend","save","take","even"], say:"spend" },
+    { type:"trans", word:"shopkeeper", kind:"zh2en", prompt:"选出「店主」对应的英文:", answer:"shopkeeper", options:["shopkeeper","shop","keeper","teacher"], say:"shopkeeper" },
+    { type:"trans", word:"golden", kind:"en2zh", prompt:"选出 golden 的正确中文意思:", answer:"金色的;金黄色的", options:["金色的;金黄色的","金子","灰色的","甚至"], say:"golden" },
+    { type:"trans", word:"gold", kind:"en2zh", prompt:"选出 gold 的正确中文意思:", answer:"金子,黄金", options:["金子,黄金","金色的","选择","微笑"], say:"gold" },
+    { type:"trans", word:"even", kind:"en2zh", prompt:"选出 even 在“He even saves…”中的意思:", answer:"甚至", options:["甚至","从不","只","已经"], say:"even" },
+    { type:"trans", word:"choice", kind:"zh2en", prompt:"选出「选择」对应的英文:", answer:"choice", options:["choice","chance","change","choose"], say:"choice" },
+    { type:"trans", word:"crayon", kind:"zh2en", prompt:"选出「彩色蜡笔」对应的英文:", answer:"crayon", options:["crayon","cartoon","crown","cream"], say:"crayon" },
+    { type:"trans", word:"earthquake", kind:"zh2en", prompt:"选出「地震」对应的英文:", answer:"earthquake", options:["earthquake","earth","quake","weather"], say:"earthquake" },
+    { type:"trans", word:"smile", kind:"zh2en", prompt:"选出「微笑」对应的英文:", answer:"smile", options:["smile","smell","small","smart"], say:"smile" },
+
+    /* ---------- C. 短语专练(cloze,考搭配) ---------- */
+    { type:"cloze", word:"save money", prompt:"From now on, I will ___ ___ for people in need.", promptZh:"从现在起,我要为需要帮助的人存钱。",
+      answer:"save money", options:["save money","spend money","make money","take money"], say:"From now on, I will save money for people in need.",
+      full:"From now on, I will save money for people in need.", ann:[["a","From now on"],["s","I"],["v","will save"],["o","money"],["a","for people in need"]] },
+    { type:"cloze", word:"spend money on sth", prompt:"He likes to ___ his money ___ books.", promptZh:"他喜欢把钱花在书上。",
+      answer:"spend / on", options:["spend / on","save / on","spend / in","cost / on"], say:"He likes to spend his money on books.",
+      full:"He likes to spend his money on books.", ann:[["s","He"],["v","likes to spend"],["o","his money"],["a","on books"]] },
+    { type:"cloze", word:"from now on", prompt:"___ ___ ___, I'll make a spending plan.", promptZh:"从现在起,我要制定消费计划。",
+      answer:"From now on", options:["From now on","In my opinion","People in need","Come true"], say:"From now on, I'll make a spending plan.",
+      full:"From now on, I'll make a spending plan.", ann:[["a","From now on"],["s","I'll"],["v","make"],["o","a spending plan"]] },
+    { type:"cloze", word:"come true", prompt:"If you save money, your dream will ___ ___.", promptZh:"如果你存钱,你的梦想就会实现。",
+      answer:"come true", options:["come true","turn into","take off","give up"], say:"Your dream will come true.",
+      full:"Your dream will come true.", ann:[["s","Your dream"],["v","will come true"]] },
+    { type:"cloze", word:"turn ... into ...", prompt:"Hard work can ___ a dream ___ real life.", promptZh:"努力能把梦想变成现实。",
+      answer:"turn / into", options:["turn / into","make / into","come / true","put / on"], say:"Hard work can turn a dream into real life.",
+      full:"Hard work can turn a dream into real life.", ann:[["s","Hard work"],["v","can turn"],["o","a dream"],["a","into real life"]] },
+    { type:"cloze", word:"ask sb to do sth", prompt:"My mum ___ me ___ save some money.", promptZh:"妈妈让我存一些钱。",
+      answer:"asks / to", options:["asks / to","asks / for","tells / for","says / to"], say:"My mum asks me to save some money.",
+      full:"My mum asks me to save some money.", ann:[["s","My mum"],["v","asks"],["o","me"],["a","to save some money"]] },
+    { type:"cloze", word:"people in need", prompt:"It's a good thing to share with ___ ___ ___.", promptZh:"帮助需要帮助的人是件好事。",
+      answer:"people in need", options:["people in need","from now on","pocket money","a spending plan"], say:"It's a good thing to share with people in need.",
+      full:"It's a good thing to share with people in need.", ann:[["s","It's"],["o","a good thing"],["a","to share with people in need"]] },
+    { type:"cloze", word:"make a spending plan", prompt:"Before shopping, we should ___ ___ ___ ___ ___.", promptZh:"购物前我们应该制定一个消费计划。",
+      answer:"make a spending plan", options:["make a spending plan","save the pocket money","turn into a plan","come true soon"], say:"We should make a spending plan.",
+      full:"We should make a spending plan.", ann:[["s","We"],["v","should make"],["o","a spending plan"]] },
+
+    /* ---------- D. 句型运用(How much / I'll take / Why not / Just remember) ---------- */
+    { type:"cloze", word:"p_howmuch_sing", pattern:"p_howmuch_sing", prompt:"— How much ___ the crayon? — It's 5 yuan.", promptZh:"这支蜡笔多少钱?5元。",
+      answer:"is", options:["is","are","do","many"], say:"How much is the crayon?",
+      full:"How much is the crayon?", ann:[["c","How much"],["v","is"],["s","the crayon"]] },
+    { type:"cloze", word:"p_howmuch_plur", pattern:"p_howmuch_plur", prompt:"— How much ___ the crayons? — They're 3 yuan each.", promptZh:"这些蜡笔多少钱?每支3元。",
+      answer:"are", options:["are","is","do","does"], say:"How much are the crayons?",
+      full:"How much are the crayons?", ann:[["c","How much"],["v","are"],["s","the crayons"]] },
+    { type:"cloze", word:"p_howmuch_ans", pattern:"p_howmuch_plur", prompt:"— How much are the pens? — ___ 4 yuan each.", promptZh:"这些钢笔多少钱?每支4元。",
+      answer:"They're", options:["They're","It's","There's","That's"], say:"They're 4 yuan each.",
+      full:"They're 4 yuan each.", ann:[["s","They're"],["o","4 yuan"],["a","each"]] },
+    { type:"cloze", word:"p_take", pattern:"p_take", prompt:"It's a good price. I'll ___ it.", promptZh:"价格不错,我买了。",
+      answer:"take", options:["take","takes","taking","took"], say:"I'll take it.",
+      full:"I'll take it.", ann:[["s","I'll"],["v","take"],["o","it"]] },
+    { type:"cloze", word:"p_take_them", pattern:"p_take", prompt:"The crayons are nice. I'll take ___.", promptZh:"这些蜡笔很好,我全买了。",
+      answer:"them", options:["them","it","they","the"], say:"I'll take them.",
+      full:"I'll take them.", ann:[["s","I'll"],["v","take"],["o","them"]] },
+    { type:"cloze", word:"p_whynot", pattern:"p_whynot", prompt:"Why not ___ your pocket money?", promptZh:"为什么不把零花钱存起来呢?",
+      answer:"save", options:["save","saves","saving","to save"], say:"Why not save your pocket money?",
+      full:"Why not save your pocket money?", ann:[["c","Why not"],["v","save"],["o","your pocket money"]] },
+    { type:"cloze", word:"p_whynot_help", pattern:"p_whynot", prompt:"Why not ___ people in need?", promptZh:"为什么不帮助需要帮助的人呢?",
+      answer:"help", options:["help","helps","helping","to help"], say:"Why not help people in need?",
+      full:"Why not help people in need?", ann:[["c","Why not"],["v","help"],["o","people in need"]] },
+    { type:"cloze", word:"p_remember", pattern:"p_remember", prompt:"Just remember, gold ___ everything.", promptZh:"只要记住,金子不是万能的。",
+      answer:"isn't", options:["isn't","aren't","don't","not"], say:"Just remember, gold isn't everything.",
+      full:"Just remember, gold isn't everything.", ann:[["v","Just remember"],["s","gold"],["v","isn't"],["o","everything"]] },
+
+    /* ---------- E. 语法专练(一般现在时三单 / 情态动词 / 不可数名词) ---------- */
+    { type:"grammar", word:"g_spends", pattern:"p_verb3", prompt:"He always ___ his pocket money on books.(用 spend 的正确形式)", answer:"spends", options:["spends","spend","spending","spent"], say:"He always spends his pocket money on books." },
+    { type:"grammar", word:"g_saves", pattern:"p_verb3", prompt:"My sister ___ money every month.(用 save 的正确形式)", answer:"saves", options:["saves","save","saveing","saved"], say:"My sister saves money every month." },
+    { type:"grammar", word:"g_money_uncount", pattern:"p_uncount", prompt:"How ___ money do you have?(选择正确的词)", answer:"much", options:["much","many","more","a lot"], say:"How much money do you have?" },
+    { type:"grammar", word:"g_willsave", pattern:"p_will", prompt:"From now on, I ___ save my money.(选择正确的词)", answer:"will", options:["will","am","do","was"], say:"From now on, I will save my money." },
+    { type:"grammar", word:"g_dont_spend", pattern:"p_imperative", prompt:"___ spend all your money!(否定祈使句)", answer:"Don't", options:["Don't","Not","No","Doesn't"], say:"Don't spend all your money!" },
+
+    /* ---------- F. 句型识别(identify) ---------- */
+    { type:"identify", word:"id_howmuch", pattern:"p_howmuch_sing", prompt:"下面这句用了哪个句型?\n「How much is the robot?」",
+      answer:"How much is + 单数/不可数名词? → It's + 价格.", options:["How much is + 单数/不可数名词? → It's + 价格.","I'll take it / them.","Why not + 动词原形?","Just remember, + 句子."],
+      say:"How much is the robot?", full:"How much is the robot?", ann:[["c","How much"],["v","is"],["s","the robot"]] },
+    { type:"identify", word:"id_take", pattern:"p_take", prompt:"下面这句用了哪个句型?\n「I'll take them.」",
+      answer:"I'll take it / them.", options:["I'll take it / them.","How much are + 复数名词?","Why not + 动词原形?","In my opinion, + 句子."],
+      say:"I'll take them.", full:"I'll take them.", ann:[["s","I'll"],["v","take"],["o","them"]] },
+    { type:"identify", word:"id_whynot", pattern:"p_whynot", prompt:"下面这句用了哪个句型?\n「Why not save your money?」",
+      answer:"Why not + 动词原形?", options:["Why not + 动词原形?","I'll take it / them.","Just remember, + 句子.","How much is + 单数名词?"],
+      say:"Why not save your money?", full:"Why not save your money?", ann:[["c","Why not"],["v","save"],["o","your money"]] },
+    { type:"identify", word:"id_remember", pattern:"p_remember", prompt:"下面这句用了哪个句型?\n「Just remember, gold isn't everything.」",
+      answer:"Just remember, + 句子.", options:["Just remember, + 句子.","Why not + 动词原形?","How much are + 复数名词?","I'll take it / them."],
+      say:"Just remember, gold isn't everything.", full:"Just remember, gold isn't everything.", ann:[["v","Just remember"],["s","gold"],["v","isn't"],["o","everything"]] },
+
+    /* ---------- G. 句子排序(order) ---------- */
+    { type:"order", word:"o_howmuch", prompt:"连词成句(选出正确语序):", answer:"How much is the pen?",
+      options:["How much is the pen?","How much the pen is?","How is much the pen?","Much how is the pen?"], say:"How much is the pen?",
+      full:"How much is the pen?", ann:[["c","How much"],["v","is"],["s","the pen"]] },
+    { type:"order", word:"o_save", prompt:"连词成句(选出正确语序):", answer:"I'll save my pocket money.",
+      options:["I'll save my pocket money.","I'll my pocket money save.","Save I'll my pocket money.","My pocket money I'll save."], say:"I'll save my pocket money.",
+      full:"I'll save my pocket money.", ann:[["s","I'll"],["v","save"],["o","my pocket money"]] },
+    { type:"order", word:"o_whynot", prompt:"连词成句(选出正确语序):", answer:"Why not make a spending plan?",
+      options:["Why not make a spending plan?","Why not a spending plan make?","Not why make a spending plan?","Why make not a spending plan?"], say:"Why not make a spending plan?",
+      full:"Why not make a spending plan?", ann:[["c","Why not"],["v","make"],["o","a spending plan"]] },
+    { type:"order", word:"o_share", prompt:"连词成句(选出正确语序):", answer:"We should share with people in need.",
+      options:["We should share with people in need.","We should with people in need share.","Share we should with people in need.","People in need we should share with."], say:"We should share with people in need.",
+      full:"We should share with people in need.", ann:[["s","We"],["v","should share"],["a","with people in need"]] },
+
+    /* ---------- H. 情景对话补全(cloze) ---------- */
+    { type:"cloze", word:"dlg_price", prompt:"(在商店)— ___ ___ is this crayon? — It's 5 yuan.", promptZh:"这支蜡笔多少钱?5元。",
+      answer:"How much", options:["How much","How many","What color","How old"], say:"How much is this crayon?",
+      full:"How much is this crayon?", ann:[["c","How much"],["v","is"],["s","this crayon"]] },
+    { type:"cloze", word:"dlg_buy", prompt:"— It's only 5 yuan. — Great, I'll ___ it.", promptZh:"才5元。太好了,我买了。",
+      answer:"take", options:["take","make","give","see"], say:"I'll take it.",
+      full:"I'll take it.", ann:[["s","I'll"],["v","take"],["o","it"]] },
+    { type:"cloze", word:"dlg_advice", prompt:"— I have some pocket money. — ___ ___ save it?", promptZh:"我有些零花钱。为什么不把它存起来?",
+      answer:"Why not", options:["Why not","How much","What about","Let us"], say:"Why not save it?",
+      full:"Why not save it?", ann:[["c","Why not"],["v","save"],["o","it"]] },
+  ];
+
+  D.unit1Drill = {
+    id: "unit1Drill",
+    title: "Unit 1 专项强化 · 53 题",
+    desc: "围绕 Unit 1「钱与消费」的单词、短语、句型、语法,53 道多题型专项训练:选词填空 · 词义辨析 · 短语搭配 · 句型运用 · 语法 · 句型识别 · 连词成句 · 情景对话。答错自动进错题本。",
+    items: U1
+  };
+})(window.TOPIC_DATA);
+
+</script>
+<script>
+window.IPA_DICT = {"10": "/ten/","3": "/θriː/","35": "/ˌθɜːti ˈfaɪv/","4": "/fɔː/","5": "/faɪv/","99": "/ˌnaɪnti ˈnaɪn/","a": "/ə/","about": "/əˈbaʊt/","after": "/ˈɑːftə/","all": "/ɔːl/","always": "/ˈɔːlweɪz/","am": "/æm/","an": "/ən/","and": "/ənd/","apple": "/ˈæpl/","apples": "/ˈæplz/","are": "/ɑː/","arent": "/ɑːnt/","argue": "/ˈɑːɡjuː/","as": "/æz/","ask": "/ɑːsk/","asks": "/ɑːsks/","at": "/ət/","autumn": "/ˈɔːtəm/","away": "/əˈweɪ/","bad": "/bæd/","badly": "/ˈbædli/","be": "/biː/","beautiful": "/ˈbjuːtɪfl/","been": "/biːn/","better": "/ˈbetə/","big": "/bɪɡ/","bigger": "/ˈbɪɡə/","birthday": "/ˈbɜːθdeɪ/","book": "/bʊk/","books": "/bʊks/","box": "/bɒks/","buy": "/baɪ/","cake": "/keɪk/","cakes": "/keɪks/","can": "/kæn/","cant": "/kɑːnt/","careful": "/ˈkeəfl/","carefully": "/ˈkeəfəli/","children": "/ˈtʃɪldrən/","choice": "/tʃɔɪs/","come": "/kʌm/","could": "/kʊd/","crayon": "/ˈkreɪən/","crayons": "/ˈkreɪənz/","cupcake": "/ˈkʌpkeɪk/","cupcakes": "/ˈkʌpkeɪks/","day": "/deɪ/","did": "/dɪd/","discussion": "/dɪˈskʌʃn/","do": "/duː/","doctor": "/ˈdɒktə/","does": "/dʌz/","done": "/dʌn/","dont": "/dəʊnt/","draw": "/drɔː/","dream": "/driːm/","drop": "/drɒp/","each": "/iːtʃ/","earthquake": "/ˈɜːθkweɪk/","easier": "/ˈiːziə/","easy": "/ˈiːzi/","eat": "/iːt/","even": "/ˈiːvn/","every": "/ˈevri/","everything": "/ˈevriθɪŋ/","explore": "/ɪkˈsplɔː/","fairy": "/ˈfeəri/","fear": "/fɪə/","fears": "/fɪəz/","find": "/faɪnd/","follow": "/ˈfɒləʊ/","for": "/fə/","friend": "/frend/","friends": "/frendz/","from": "/frəm/","fruit": "/fruːt/","full": "/fʊl/","gave": "/ɡeɪv/","get": "/ɡet/","girl": "/ɡɜːl/","give": "/ɡɪv/","gives": "/ɡɪvz/","gold": "/ɡəʊld/","golden": "/ˈɡəʊldən/","good": "/ɡʊd/","great": "/ɡreɪt/","grey": "/ɡreɪ/","had": "/hæd/","happier": "/ˈhæpiə/","happy": "/ˈhæpi/","hard": "/hɑːd/","has": "/hæz/","have": "/hæv/","he": "/hiː/","health": "/helθ/","healthier": "/ˈhelθiə/","healthily": "/ˈhelθɪli/","healthy": "/ˈhelθi/","heart": "/hɑːt/","help": "/help/","helped": "/helpt/","her": "/hɜː/","here": "/hɪə/","him": "/hɪm/","his": "/hɪz/","hot": "/hɒt/","hotter": "/ˈhɒtə/","how": "/haʊ/","i": "/aɪ/","idea": "/aɪˈdɪə/","ill": "/aɪl/","in": "/ɪn/","interesting": "/ˈɪntrəstɪŋ/","into": "/ˈɪntə/","is": "/ɪz/","isnt": "/ˈɪznt/","it": "/ɪt/","its": "/ɪts/","just": "/dʒʌst/","keep": "/kiːp/","keeps": "/kiːps/","kind": "/kaɪnd/","large": "/lɑːdʒ/","larger": "/ˈlɑːdʒə/","leaves": "/liːvz/","life": "/laɪf/","like": "/laɪk/","likes": "/laɪks/","line": "/laɪn/","listen": "/ˈlɪsn/","live": "/lɪv/","long": "/lɒŋ/","love": "/lʌv/","make": "/meɪk/","many": "/ˈmeni/","may": "/meɪ/","me": "/miː/","might": "/maɪt/","money": "/ˈmʌni/","month": "/mʌnθ/","more": "/mɔː/","most": "/məʊst/","much": "/mʌtʃ/","mum": "/mʌm/","must": "/mʌst/","my": "/maɪ/","need": "/niːd/","new": "/njuː/","nice": "/naɪs/","nicer": "/ˈnaɪsə/","no": "/nəʊ/","not": "/nɒt/","now": "/naʊ/","of": "/əv/","old": "/əʊld/","on": "/ɒn/","one": "/wʌn/","opinion": "/əˈpɪnjən/","our": "/ˈaʊə/","out": "/aʊt/","over": "/ˈəʊvə/","peel": "/piːl/","pen": "/pen/","people": "/ˈpiːpl/","picture": "/ˈpɪktʃə/","plan": "/plæn/","please": "/pliːz/","pocket": "/ˈpɒkɪt/","price": "/praɪs/","read": "/riːd/","real": "/rɪəl/","reason": "/ˈriːzn/","remember": "/rɪˈmembə/","right": "/raɪt/","robot": "/ˈrəʊbɒt/","rule": "/ruːl/","rules": "/ruːlz/","sam": "/sæm/","save": "/seɪv/","saved": "/seɪvd/","saves": "/seɪvz/","saving": "/ˈseɪvɪŋ/","sb": "/ˈsʌmbədi/","schoolbag": "/ˈskuːlbæɡ/","shall": "/ʃæl/","share": "/ʃeə/","she": "/ʃiː/","shopkeeper": "/ˈʃɒpkiːpə/","should": "/ʃʊd/","sister": "/ˈsɪstə/","sky": "/skaɪ/","small": "/smɔːl/","smile": "/smaɪl/","some": "/sʌm/","spend": "/spend/","spending": "/ˈspendɪŋ/","spends": "/spendz/","spent": "/spent/","sth": "/ˈsʌmθɪŋ/","story": "/ˈstɔːri/","straight": "/streɪt/","sugar": "/ˈʃʊɡə/","sweet": "/swiːt/","sweeter": "/ˈswiːtə/","take": "/teɪk/","takes": "/teɪks/","taking": "/ˈteɪkɪŋ/","tale": "/teɪl/","tales": "/teɪlz/","tall": "/tɔːl/","taller": "/ˈtɔːlə/","taste": "/teɪst/","tastes": "/teɪsts/","teacher": "/ˈtiːtʃə/","teeth": "/tiːθ/","tell": "/tel/","tells": "/telz/","ten": "/ten/","than": "/ðən/","that": "/ðæt/","the": "/ðə/","their": "/ðeə/","them": "/ðem/","then": "/ðen/","these": "/ðiːz/","they": "/ðeɪ/","theyre": "/ðeə/","thing": "/θɪŋ/","things": "/θɪŋz/","this": "/ðɪs/","those": "/ðəʊz/","time": "/taɪm/","to": "/tə/","today": "/təˈdeɪ/","told": "/təʊld/","too": "/tuː/","took": "/tʊk/","toy": "/tɔɪ/","toys": "/tɔɪz/","true": "/truː/","trust": "/trʌst/","truth": "/truːθ/","turn": "/tɜːn/","under": "/ˈʌndə/","us": "/ʌs/","usually": "/ˈjuːʒuəli/","vegetables": "/ˈvedʒtəblz/","very": "/ˈveri/","want": "/wɒnt/","was": "/wɒz/","water": "/ˈwɔːtə/","we": "/wiː/","week": "/wiːk/","well": "/wel/","were": "/wɜː/","why": "/waɪ/","will": "/wɪl/","with": "/wɪð/","without": "/wɪˈðaʊt/","work": "/wɜːk/","world": "/wɜːld/","worse": "/wɜːs/","would": "/wʊd/","yes": "/jes/","you": "/juː/","your": "/jɔː/","yours": "/jɔːz/","yuan": "/jʊˈæn/"};
+
+</script>
+<script type="module">
+/* --- Lit 运行时内联 (lit@3 esm bundle, base64) --- */
+const __LIT_B64 = "dmFyIFI9Z2xvYmFsVGhpcyxMPVIuU2hhZG93Um9vdCYmKFIuU2hhZHlDU1M9PT12b2lkIDB8fFIuU2hhZHlDU1MubmF0aXZlU2hhZG93KSYmImFkb3B0ZWRTdHlsZVNoZWV0cyJpbiBEb2N1bWVudC5wcm90b3R5cGUmJiJyZXBsYWNlImluIENTU1N0eWxlU2hlZXQucHJvdG90eXBlLEQ9U3ltYm9sKCksWT1uZXcgV2Vha01hcCx3PWNsYXNze2NvbnN0cnVjdG9yKHQsZSxzKXtpZih0aGlzLl8kY3NzUmVzdWx0JD0hMCxzIT09RCl0aHJvdyBFcnJvcigiQ1NTUmVzdWx0IGlzIG5vdCBjb25zdHJ1Y3RhYmxlLiBVc2UgYHVuc2FmZUNTU2Agb3IgYGNzc2AgaW5zdGVhZC4iKTt0aGlzLmNzc1RleHQ9dCx0aGlzLnQ9ZX1nZXQgc3R5bGVTaGVldCgpe2xldCB0PXRoaXMubyxlPXRoaXMudDtpZihMJiZ0PT09dm9pZCAwKXtsZXQgcz1lIT09dm9pZCAwJiZlLmxlbmd0aD09PTE7cyYmKHQ9WS5nZXQoZSkpLHQ9PT12b2lkIDAmJigodGhpcy5vPXQ9bmV3IENTU1N0eWxlU2hlZXQpLnJlcGxhY2VTeW5jKHRoaXMuY3NzVGV4dCkscyYmWS5zZXQoZSx0KSl9cmV0dXJuIHR9dG9TdHJpbmcoKXtyZXR1cm4gdGhpcy5jc3NUZXh0fX0saj1vPT5uZXcgdyh0eXBlb2Ygbz09InN0cmluZyI/bzpvKyIiLHZvaWQgMCxEKSx0dD0obywuLi50KT0+e2xldCBlPW8ubGVuZ3RoPT09MT9vWzBdOnQucmVkdWNlKChzLGkscik9PnMrKG49PntpZihuLl8kY3NzUmVzdWx0JD09PSEwKXJldHVybiBuLmNzc1RleHQ7aWYodHlwZW9mIG49PSJudW1iZXIiKXJldHVybiBuO3Rocm93IEVycm9yKCJWYWx1ZSBwYXNzZWQgdG8gJ2NzcycgZnVuY3Rpb24gbXVzdCBiZSBhICdjc3MnIGZ1bmN0aW9uIHJlc3VsdDogIituKyIuIFVzZSAndW5zYWZlQ1NTJyB0byBwYXNzIG5vbi1saXRlcmFsIHZhbHVlcywgYnV0IHRha2UgY2FyZSB0byBlbnN1cmUgcGFnZSBzZWN1cml0eS4iKX0pKGkpK29bcisxXSxvWzBdKTtyZXR1cm4gbmV3IHcoZSxvLEQpfSxldD0obyx0KT0+e2lmKEwpby5hZG9wdGVkU3R5bGVTaGVldHM9dC5tYXAoZT0+ZSBpbnN0YW5jZW9mIENTU1N0eWxlU2hlZXQ/ZTplLnN0eWxlU2hlZXQpO2Vsc2UgZm9yKGxldCBlIG9mIHQpe2xldCBzPWRvY3VtZW50LmNyZWF0ZUVsZW1lbnQoInN0eWxlIiksaT1SLmxpdE5vbmNlO2khPT12b2lkIDAmJnMuc2V0QXR0cmlidXRlKCJub25jZSIsaSkscy50ZXh0Q29udGVudD1lLmNzc1RleHQsby5hcHBlbmRDaGlsZChzKX19LHo9TD9vPT5vOm89Pm8gaW5zdGFuY2VvZiBDU1NTdHlsZVNoZWV0Pyh0PT57bGV0IGU9IiI7Zm9yKGxldCBzIG9mIHQuY3NzUnVsZXMpZSs9cy5jc3NUZXh0O3JldHVybiBqKGUpfSkobyk6bzt2YXJ7aXM6RXQsZGVmaW5lUHJvcGVydHk6YnQsZ2V0T3duUHJvcGVydHlEZXNjcmlwdG9yOkN0LGdldE93blByb3BlcnR5TmFtZXM6d3QsZ2V0T3duUHJvcGVydHlTeW1ib2xzOnh0LGdldFByb3RvdHlwZU9mOlB0fT1PYmplY3QsZj1nbG9iYWxUaGlzLHN0PWYudHJ1c3RlZFR5cGVzLFV0PXN0P3N0LmVtcHR5U2NyaXB0OiIiLEI9Zi5yZWFjdGl2ZUVsZW1lbnRQb2x5ZmlsbFN1cHBvcnQseD0obyx0KT0+byxJPXt0b0F0dHJpYnV0ZShvLHQpe3N3aXRjaCh0KXtjYXNlIEJvb2xlYW46bz1vP1V0Om51bGw7YnJlYWs7Y2FzZSBPYmplY3Q6Y2FzZSBBcnJheTpvPW89PW51bGw/bzpKU09OLnN0cmluZ2lmeShvKX1yZXR1cm4gb30sZnJvbUF0dHJpYnV0ZShvLHQpe2xldCBlPW87c3dpdGNoKHQpe2Nhc2UgQm9vbGVhbjplPW8hPT1udWxsO2JyZWFrO2Nhc2UgTnVtYmVyOmU9bz09PW51bGw/bnVsbDpOdW1iZXIobyk7YnJlYWs7Y2FzZSBPYmplY3Q6Y2FzZSBBcnJheTp0cnl7ZT1KU09OLnBhcnNlKG8pfWNhdGNoe2U9bnVsbH19cmV0dXJuIGV9fSxodD0obyx0KT0+IUV0KG8sdCksaXQ9e2F0dHJpYnV0ZTohMCx0eXBlOlN0cmluZyxjb252ZXJ0ZXI6SSxyZWZsZWN0OiExLHVzZURlZmF1bHQ6ITEsaGFzQ2hhbmdlZDpodH0sb3QsbnQ7KG90PVN5bWJvbC5tZXRhZGF0YSkhPW51bGx8fChTeW1ib2wubWV0YWRhdGE9U3ltYm9sKCJtZXRhZGF0YSIpKSwobnQ9Zi5saXRQcm9wZXJ0eU1ldGFkYXRhKSE9bnVsbHx8KGYubGl0UHJvcGVydHlNZXRhZGF0YT1uZXcgV2Vha01hcCk7dmFyICQ9Y2xhc3MgZXh0ZW5kcyBIVE1MRWxlbWVudHtzdGF0aWMgYWRkSW5pdGlhbGl6ZXIodCl7dmFyIGU7dGhpcy5fJEVpKCksKChlPXRoaXMubCkhPW51bGw/ZTp0aGlzLmw9W10pLnB1c2godCl9c3RhdGljIGdldCBvYnNlcnZlZEF0dHJpYnV0ZXMoKXtyZXR1cm4gdGhpcy5maW5hbGl6ZSgpLHRoaXMuXyRFaCYmWy4uLnRoaXMuXyRFaC5rZXlzKCldfXN0YXRpYyBjcmVhdGVQcm9wZXJ0eSh0LGU9aXQpe2lmKGUuc3RhdGUmJihlLmF0dHJpYnV0ZT0hMSksdGhpcy5fJEVpKCksdGhpcy5wcm90b3R5cGUuaGFzT3duUHJvcGVydHkodCkmJigoZT1PYmplY3QuY3JlYXRlKGUpKS53cmFwcGVkPSEwKSx0aGlzLmVsZW1lbnRQcm9wZXJ0aWVzLnNldCh0LGUpLCFlLm5vQWNjZXNzb3Ipe2xldCBzPVN5bWJvbCgpLGk9dGhpcy5nZXRQcm9wZXJ0eURlc2NyaXB0b3IodCxzLGUpO2khPT12b2lkIDAmJmJ0KHRoaXMucHJvdG90eXBlLHQsaSl9fXN0YXRpYyBnZXRQcm9wZXJ0eURlc2NyaXB0b3IodCxlLHMpe3ZhciBuO2xldHtnZXQ6aSxzZXQ6cn09KG49Q3QodGhpcy5wcm90b3R5cGUsdCkpIT1udWxsP246e2dldCgpe3JldHVybiB0aGlzW2VdfSxzZXQoYSl7dGhpc1tlXT1hfX07cmV0dXJue2dldDppLHNldChhKXtsZXQgaD1pPT1udWxsP3ZvaWQgMDppLmNhbGwodGhpcyk7cj09bnVsbHx8ci5jYWxsKHRoaXMsYSksdGhpcy5yZXF1ZXN0VXBkYXRlKHQsaCxzKX0sY29uZmlndXJhYmxlOiEwLGVudW1lcmFibGU6ITB9fXN0YXRpYyBnZXRQcm9wZXJ0eU9wdGlvbnModCl7dmFyIGU7cmV0dXJuKGU9dGhpcy5lbGVtZW50UHJvcGVydGllcy5nZXQodCkpIT1udWxsP2U6aXR9c3RhdGljIF8kRWkoKXtpZih0aGlzLmhhc093blByb3BlcnR5KHgoImVsZW1lbnRQcm9wZXJ0aWVzIikpKXJldHVybjtsZXQgdD1QdCh0aGlzKTt0LmZpbmFsaXplKCksdC5sIT09dm9pZCAwJiYodGhpcy5sPVsuLi50LmxdKSx0aGlzLmVsZW1lbnRQcm9wZXJ0aWVzPW5ldyBNYXAodC5lbGVtZW50UHJvcGVydGllcyl9c3RhdGljIGZpbmFsaXplKCl7aWYodGhpcy5oYXNPd25Qcm9wZXJ0eSh4KCJmaW5hbGl6ZWQiKSkpcmV0dXJuO2lmKHRoaXMuZmluYWxpemVkPSEwLHRoaXMuXyRFaSgpLHRoaXMuaGFzT3duUHJvcGVydHkoeCgicHJvcGVydGllcyIpKSl7bGV0IGU9dGhpcy5wcm9wZXJ0aWVzLHM9Wy4uLnd0KGUpLC4uLnh0KGUpXTtmb3IobGV0IGkgb2Ygcyl0aGlzLmNyZWF0ZVByb3BlcnR5KGksZVtpXSl9bGV0IHQ9dGhpc1tTeW1ib2wubWV0YWRhdGFdO2lmKHQhPT1udWxsKXtsZXQgZT1saXRQcm9wZXJ0eU1ldGFkYXRhLmdldCh0KTtpZihlIT09dm9pZCAwKWZvcihsZXRbcyxpXW9mIGUpdGhpcy5lbGVtZW50UHJvcGVydGllcy5zZXQocyxpKX10aGlzLl8kRWg9bmV3IE1hcDtmb3IobGV0W2Usc11vZiB0aGlzLmVsZW1lbnRQcm9wZXJ0aWVzKXtsZXQgaT10aGlzLl8kRXUoZSxzKTtpIT09dm9pZCAwJiZ0aGlzLl8kRWguc2V0KGksZSl9dGhpcy5lbGVtZW50U3R5bGVzPXRoaXMuZmluYWxpemVTdHlsZXModGhpcy5zdHlsZXMpfXN0YXRpYyBmaW5hbGl6ZVN0eWxlcyh0KXtsZXQgZT1bXTtpZihBcnJheS5pc0FycmF5KHQpKXtsZXQgcz1uZXcgU2V0KHQuZmxhdCgxLzApLnJldmVyc2UoKSk7Zm9yKGxldCBpIG9mIHMpZS51bnNoaWZ0KHooaSkpfWVsc2UgdCE9PXZvaWQgMCYmZS5wdXNoKHoodCkpO3JldHVybiBlfXN0YXRpYyBfJEV1KHQsZSl7bGV0IHM9ZS5hdHRyaWJ1dGU7cmV0dXJuIHM9PT0hMT92b2lkIDA6dHlwZW9mIHM9PSJzdHJpbmciP3M6dHlwZW9mIHQ9PSJzdHJpbmciP3QudG9Mb3dlckNhc2UoKTp2b2lkIDB9Y29uc3RydWN0b3IoKXtzdXBlcigpLHRoaXMuXyRFcD12b2lkIDAsdGhpcy5pc1VwZGF0ZVBlbmRpbmc9ITEsdGhpcy5oYXNVcGRhdGVkPSExLHRoaXMuXyRFbT1udWxsLHRoaXMuXyRFdigpfV8kRXYoKXt2YXIgdDt0aGlzLl8kRVM9bmV3IFByb21pc2UoZT0+dGhpcy5lbmFibGVVcGRhdGluZz1lKSx0aGlzLl8kQUw9bmV3IE1hcCx0aGlzLl8kRV8oKSx0aGlzLnJlcXVlc3RVcGRhdGUoKSwodD10aGlzLmNvbnN0cnVjdG9yLmwpPT1udWxsfHx0LmZvckVhY2goZT0+ZSh0aGlzKSl9YWRkQ29udHJvbGxlcih0KXt2YXIgZSxzOygoZT10aGlzLl8kRU8pIT1udWxsP2U6dGhpcy5fJEVPPW5ldyBTZXQpLmFkZCh0KSx0aGlzLnJlbmRlclJvb3QhPT12b2lkIDAmJnRoaXMuaXNDb25uZWN0ZWQmJigocz10Lmhvc3RDb25uZWN0ZWQpPT1udWxsfHxzLmNhbGwodCkpfXJlbW92ZUNvbnRyb2xsZXIodCl7dmFyIGU7KGU9dGhpcy5fJEVPKT09bnVsbHx8ZS5kZWxldGUodCl9XyRFXygpe2xldCB0PW5ldyBNYXAsZT10aGlzLmNvbnN0cnVjdG9yLmVsZW1lbnRQcm9wZXJ0aWVzO2ZvcihsZXQgcyBvZiBlLmtleXMoKSl0aGlzLmhhc093blByb3BlcnR5KHMpJiYodC5zZXQocyx0aGlzW3NdKSxkZWxldGUgdGhpc1tzXSk7dC5zaXplPjAmJih0aGlzLl8kRXA9dCl9Y3JlYXRlUmVuZGVyUm9vdCgpe3ZhciBlO2xldCB0PShlPXRoaXMuc2hhZG93Um9vdCkhPW51bGw/ZTp0aGlzLmF0dGFjaFNoYWRvdyh0aGlzLmNvbnN0cnVjdG9yLnNoYWRvd1Jvb3RPcHRpb25zKTtyZXR1cm4gZXQodCx0aGlzLmNvbnN0cnVjdG9yLmVsZW1lbnRTdHlsZXMpLHR9Y29ubmVjdGVkQ2FsbGJhY2soKXt2YXIgdCxlOyh0PXRoaXMucmVuZGVyUm9vdCkhPW51bGx8fCh0aGlzLnJlbmRlclJvb3Q9dGhpcy5jcmVhdGVSZW5kZXJSb290KCkpLHRoaXMuZW5hYmxlVXBkYXRpbmcoITApLChlPXRoaXMuXyRFTyk9PW51bGx8fGUuZm9yRWFjaChzPT57dmFyIGk7cmV0dXJuKGk9cy5ob3N0Q29ubmVjdGVkKT09bnVsbD92b2lkIDA6aS5jYWxsKHMpfSl9ZW5hYmxlVXBkYXRpbmcodCl7fWRpc2Nvbm5lY3RlZENhbGxiYWNrKCl7dmFyIHQ7KHQ9dGhpcy5fJEVPKT09bnVsbHx8dC5mb3JFYWNoKGU9Pnt2YXIgcztyZXR1cm4ocz1lLmhvc3REaXNjb25uZWN0ZWQpPT1udWxsP3ZvaWQgMDpzLmNhbGwoZSl9KX1hdHRyaWJ1dGVDaGFuZ2VkQ2FsbGJhY2sodCxlLHMpe3RoaXMuXyRBSyh0LHMpfV8kRVQodCxlKXt2YXIgcjtsZXQgcz10aGlzLmNvbnN0cnVjdG9yLmVsZW1lbnRQcm9wZXJ0aWVzLmdldCh0KSxpPXRoaXMuY29uc3RydWN0b3IuXyRFdSh0LHMpO2lmKGkhPT12b2lkIDAmJnMucmVmbGVjdD09PSEwKXtsZXQgbj0oKChyPXMuY29udmVydGVyKT09bnVsbD92b2lkIDA6ci50b0F0dHJpYnV0ZSkhPT12b2lkIDA/cy5jb252ZXJ0ZXI6SSkudG9BdHRyaWJ1dGUoZSxzLnR5cGUpO3RoaXMuXyRFbT10LG49PW51bGw/dGhpcy5yZW1vdmVBdHRyaWJ1dGUoaSk6dGhpcy5zZXRBdHRyaWJ1dGUoaSxuKSx0aGlzLl8kRW09bnVsbH19XyRBSyh0LGUpe3ZhciByLG4sYTtsZXQgcz10aGlzLmNvbnN0cnVjdG9yLGk9cy5fJEVoLmdldCh0KTtpZihpIT09dm9pZCAwJiZ0aGlzLl8kRW0hPT1pKXtsZXQgaD1zLmdldFByb3BlcnR5T3B0aW9ucyhpKSxsPXR5cGVvZiBoLmNvbnZlcnRlcj09ImZ1bmN0aW9uIj97ZnJvbUF0dHJpYnV0ZTpoLmNvbnZlcnRlcn06KChyPWguY29udmVydGVyKT09bnVsbD92b2lkIDA6ci5mcm9tQXR0cmlidXRlKSE9PXZvaWQgMD9oLmNvbnZlcnRlcjpJO3RoaXMuXyRFbT1pO2xldCBjPWwuZnJvbUF0dHJpYnV0ZShlLGgudHlwZSk7dGhpc1tpXT0oYT1jIT1udWxsP2M6KG49dGhpcy5fJEVqKT09bnVsbD92b2lkIDA6bi5nZXQoaSkpIT1udWxsP2E6Yyx0aGlzLl8kRW09bnVsbH19cmVxdWVzdFVwZGF0ZSh0LGUscyxpPSExLHIpe3ZhciBuLGE7aWYodCE9PXZvaWQgMCl7bGV0IGg9dGhpcy5jb25zdHJ1Y3RvcjtpZihpPT09ITEmJihyPXRoaXNbdF0pLHMhPW51bGx8fChzPWguZ2V0UHJvcGVydHlPcHRpb25zKHQpKSwhKCgobj1zLmhhc0NoYW5nZWQpIT1udWxsP246aHQpKHIsZSl8fHMudXNlRGVmYXVsdCYmcy5yZWZsZWN0JiZyPT09KChhPXRoaXMuXyRFaik9PW51bGw/dm9pZCAwOmEuZ2V0KHQpKSYmIXRoaXMuaGFzQXR0cmlidXRlKGguXyRFdSh0LHMpKSkpcmV0dXJuO3RoaXMuQyh0LGUscyl9dGhpcy5pc1VwZGF0ZVBlbmRpbmc9PT0hMSYmKHRoaXMuXyRFUz10aGlzLl8kRVAoKSl9Qyh0LGUse3VzZURlZmF1bHQ6cyxyZWZsZWN0Omksd3JhcHBlZDpyfSxuKXt2YXIgYSxoLGw7cyYmISgoYT10aGlzLl8kRWopIT1udWxsP2E6dGhpcy5fJEVqPW5ldyBNYXApLmhhcyh0KSYmKHRoaXMuXyRFai5zZXQodCwoaD1uIT1udWxsP246ZSkhPW51bGw/aDp0aGlzW3RdKSxyIT09ITB8fG4hPT12b2lkIDApfHwodGhpcy5fJEFMLmhhcyh0KXx8KHRoaXMuaGFzVXBkYXRlZHx8c3x8KGU9dm9pZCAwKSx0aGlzLl8kQUwuc2V0KHQsZSkpLGk9PT0hMCYmdGhpcy5fJEVtIT09dCYmKChsPXRoaXMuXyRFcSkhPW51bGw/bDp0aGlzLl8kRXE9bmV3IFNldCkuYWRkKHQpKX1hc3luYyBfJEVQKCl7dGhpcy5pc1VwZGF0ZVBlbmRpbmc9ITA7dHJ5e2F3YWl0IHRoaXMuXyRFU31jYXRjaChlKXtQcm9taXNlLnJlamVjdChlKX1sZXQgdD10aGlzLnNjaGVkdWxlVXBkYXRlKCk7cmV0dXJuIHQhPW51bGwmJmF3YWl0IHQsIXRoaXMuaXNVcGRhdGVQZW5kaW5nfXNjaGVkdWxlVXBkYXRlKCl7cmV0dXJuIHRoaXMucGVyZm9ybVVwZGF0ZSgpfXBlcmZvcm1VcGRhdGUoKXt2YXIgcyxpO2lmKCF0aGlzLmlzVXBkYXRlUGVuZGluZylyZXR1cm47aWYoIXRoaXMuaGFzVXBkYXRlZCl7aWYoKHM9dGhpcy5yZW5kZXJSb290KSE9bnVsbHx8KHRoaXMucmVuZGVyUm9vdD10aGlzLmNyZWF0ZVJlbmRlclJvb3QoKSksdGhpcy5fJEVwKXtmb3IobGV0W24sYV1vZiB0aGlzLl8kRXApdGhpc1tuXT1hO3RoaXMuXyRFcD12b2lkIDB9bGV0IHI9dGhpcy5jb25zdHJ1Y3Rvci5lbGVtZW50UHJvcGVydGllcztpZihyLnNpemU+MClmb3IobGV0W24sYV1vZiByKXtsZXR7d3JhcHBlZDpofT1hLGw9dGhpc1tuXTtoIT09ITB8fHRoaXMuXyRBTC5oYXMobil8fGw9PT12b2lkIDB8fHRoaXMuQyhuLHZvaWQgMCxhLGwpfX1sZXQgdD0hMSxlPXRoaXMuXyRBTDt0cnl7dD10aGlzLnNob3VsZFVwZGF0ZShlKSx0Pyh0aGlzLndpbGxVcGRhdGUoZSksKGk9dGhpcy5fJEVPKT09bnVsbHx8aS5mb3JFYWNoKHI9Pnt2YXIgbjtyZXR1cm4obj1yLmhvc3RVcGRhdGUpPT1udWxsP3ZvaWQgMDpuLmNhbGwocil9KSx0aGlzLnVwZGF0ZShlKSk6dGhpcy5fJEVNKCl9Y2F0Y2gocil7dGhyb3cgdD0hMSx0aGlzLl8kRU0oKSxyfXQmJnRoaXMuXyRBRShlKX13aWxsVXBkYXRlKHQpe31fJEFFKHQpe3ZhciBlOyhlPXRoaXMuXyRFTyk9PW51bGx8fGUuZm9yRWFjaChzPT57dmFyIGk7cmV0dXJuKGk9cy5ob3N0VXBkYXRlZCk9PW51bGw/dm9pZCAwOmkuY2FsbChzKX0pLHRoaXMuaGFzVXBkYXRlZHx8KHRoaXMuaGFzVXBkYXRlZD0hMCx0aGlzLmZpcnN0VXBkYXRlZCh0KSksdGhpcy51cGRhdGVkKHQpfV8kRU0oKXt0aGlzLl8kQUw9bmV3IE1hcCx0aGlzLmlzVXBkYXRlUGVuZGluZz0hMX1nZXQgdXBkYXRlQ29tcGxldGUoKXtyZXR1cm4gdGhpcy5nZXRVcGRhdGVDb21wbGV0ZSgpfWdldFVwZGF0ZUNvbXBsZXRlKCl7cmV0dXJuIHRoaXMuXyRFU31zaG91bGRVcGRhdGUodCl7cmV0dXJuITB9dXBkYXRlKHQpe3RoaXMuXyRFcSYmKHRoaXMuXyRFcT10aGlzLl8kRXEuZm9yRWFjaChlPT50aGlzLl8kRVQoZSx0aGlzW2VdKSkpLHRoaXMuXyRFTSgpfXVwZGF0ZWQodCl7fWZpcnN0VXBkYXRlZCh0KXt9fSxydDskLmVsZW1lbnRTdHlsZXM9W10sJC5zaGFkb3dSb290T3B0aW9ucz17bW9kZToib3BlbiJ9LCRbeCgiZWxlbWVudFByb3BlcnRpZXMiKV09bmV3IE1hcCwkW3goImZpbmFsaXplZCIpXT1uZXcgTWFwLEI9PW51bGx8fEIoe1JlYWN0aXZlRWxlbWVudDokfSksKChydD1mLnJlYWN0aXZlRWxlbWVudFZlcnNpb25zKSE9bnVsbD9ydDpmLnJlYWN0aXZlRWxlbWVudFZlcnNpb25zPVtdKS5wdXNoKCIyLjEuMiIpO3ZhciBVPWdsb2JhbFRoaXMsYXQ9bz0+byxrPVUudHJ1c3RlZFR5cGVzLGx0PWs/ay5jcmVhdGVQb2xpY3koImxpdC1odG1sIix7Y3JlYXRlSFRNTDpvPT5vfSk6dm9pZCAwLGZ0PSIkbGl0JCIsbT1gbGl0JCR7TWF0aC5yYW5kb20oKS50b0ZpeGVkKDkpLnNsaWNlKDIpfSRgLG10PSI/IittLE90PWA8JHttdH0+YCx2PWRvY3VtZW50LE89KCk9PnYuY3JlYXRlQ29tbWVudCgiIiksSD1vPT5vPT09bnVsbHx8dHlwZW9mIG8hPSJvYmplY3QiJiZ0eXBlb2YgbyE9ImZ1bmN0aW9uIixHPUFycmF5LmlzQXJyYXksSHQ9bz0+RyhvKXx8dHlwZW9mKG89PW51bGw/dm9pZCAwOm9bU3ltYm9sLml0ZXJhdG9yXSk9PSJmdW5jdGlvbiIsVj1gWyAJClxmXHJdYCxQPS88KD86KCEtLXxcL1teYS16QS1aXSl8KFwvP1thLXpBLVpdW14+XHNdKil8KFwvPyQpKS9nLGN0PS8tLT4vZyxkdD0vPi9nLGc9UmVnRXhwKGA+fCR7Vn0oPzooW15cXHMiJz49L10rKSgke1Z9Kj0ke1Z9Kig/OlteIAkKXGZcciInXGA8Pj1dfCgifCcpfCkpfCQpYCwiZyIpLHB0PS8nL2csdXQ9LyIvZyxBdD0vXig/OnNjcmlwdHxzdHlsZXx0ZXh0YXJlYXx0aXRsZSkkL2ksUT1vPT4odCwuLi5lKT0+KHtfJGxpdFR5cGUkOm8sc3RyaW5nczp0LHZhbHVlczplfSksTXQ9USgxKSxOdD1RKDIpLGp0PVEoMyksQT1TeW1ib2wuZm9yKCJsaXQtbm9DaGFuZ2UiKSxwPVN5bWJvbC5mb3IoImxpdC1ub3RoaW5nIiksJHQ9bmV3IFdlYWtNYXAseT12LmNyZWF0ZVRyZWVXYWxrZXIodiwxMjkpO2Z1bmN0aW9uIGd0KG8sdCl7aWYoIUcobyl8fCFvLmhhc093blByb3BlcnR5KCJyYXciKSl0aHJvdyBFcnJvcigiaW52YWxpZCB0ZW1wbGF0ZSBzdHJpbmdzIGFycmF5Iik7cmV0dXJuIGx0IT09dm9pZCAwP2x0LmNyZWF0ZUhUTUwodCk6dH12YXIgVHQ9KG8sdCk9PntsZXQgZT1vLmxlbmd0aC0xLHM9W10saSxyPXQ9PT0yPyI8c3ZnPiI6dD09PTM/IjxtYXRoPiI6IiIsbj1QO2ZvcihsZXQgYT0wO2E8ZTthKyspe2xldCBoPW9bYV0sbCxjLGQ9LTEsdT0wO2Zvcig7dTxoLmxlbmd0aCYmKG4ubGFzdEluZGV4PXUsYz1uLmV4ZWMoaCksYyE9PW51bGwpOyl1PW4ubGFzdEluZGV4LG49PT1QP2NbMV09PT0iIS0tIj9uPWN0OmNbMV0hPT12b2lkIDA/bj1kdDpjWzJdIT09dm9pZCAwPyhBdC50ZXN0KGNbMl0pJiYoaT1SZWdFeHAoIjwvIitjWzJdLCJnIikpLG49Zyk6Y1szXSE9PXZvaWQgMCYmKG49Zyk6bj09PWc/Y1swXT09PSI+Ij8obj1pIT1udWxsP2k6UCxkPS0xKTpjWzFdPT09dm9pZCAwP2Q9LTI6KGQ9bi5sYXN0SW5kZXgtY1syXS5sZW5ndGgsbD1jWzFdLG49Y1szXT09PXZvaWQgMD9nOmNbM109PT0nIic/dXQ6cHQpOm49PT11dHx8bj09PXB0P249ZzpuPT09Y3R8fG49PT1kdD9uPVA6KG49ZyxpPXZvaWQgMCk7bGV0IF89bj09PWcmJm9bYSsxXS5zdGFydHNXaXRoKCIvPiIpPyIgIjoiIjtyKz1uPT09UD9oK090OmQ+PTA/KHMucHVzaChsKSxoLnNsaWNlKDAsZCkrZnQraC5zbGljZShkKSttK18pOmgrbSsoZD09PS0yP2E6Xyl9cmV0dXJuW2d0KG8scisob1tlXXx8Ijw/PiIpKyh0PT09Mj8iPC9zdmc+Ijp0PT09Mz8iPC9tYXRoPiI6IiIpKSxzXX0sTT1jbGFzcyBve2NvbnN0cnVjdG9yKHtzdHJpbmdzOnQsXyRsaXRUeXBlJDplfSxzKXtsZXQgaTt0aGlzLnBhcnRzPVtdO2xldCByPTAsbj0wLGE9dC5sZW5ndGgtMSxoPXRoaXMucGFydHMsW2wsY109VHQodCxlKTtpZih0aGlzLmVsPW8uY3JlYXRlRWxlbWVudChsLHMpLHkuY3VycmVudE5vZGU9dGhpcy5lbC5jb250ZW50LGU9PT0yfHxlPT09Myl7bGV0IGQ9dGhpcy5lbC5jb250ZW50LmZpcnN0Q2hpbGQ7ZC5yZXBsYWNlV2l0aCguLi5kLmNoaWxkTm9kZXMpfWZvcig7KGk9eS5uZXh0Tm9kZSgpKSE9PW51bGwmJmgubGVuZ3RoPGE7KXtpZihpLm5vZGVUeXBlPT09MSl7aWYoaS5oYXNBdHRyaWJ1dGVzKCkpZm9yKGxldCBkIG9mIGkuZ2V0QXR0cmlidXRlTmFtZXMoKSlpZihkLmVuZHNXaXRoKGZ0KSl7bGV0IHU9Y1tuKytdLF89aS5nZXRBdHRyaWJ1dGUoZCkuc3BsaXQobSksVD0vKFsuP0BdKT8oLiopLy5leGVjKHUpO2gucHVzaCh7dHlwZToxLGluZGV4OnIsbmFtZTpUWzJdLHN0cmluZ3M6XyxjdG9yOlRbMV09PT0iLiI/SzpUWzFdPT09Ij8iP0Y6VFsxXT09PSJAIj9KOkN9KSxpLnJlbW92ZUF0dHJpYnV0ZShkKX1lbHNlIGQuc3RhcnRzV2l0aChtKSYmKGgucHVzaCh7dHlwZTo2LGluZGV4OnJ9KSxpLnJlbW92ZUF0dHJpYnV0ZShkKSk7aWYoQXQudGVzdChpLnRhZ05hbWUpKXtsZXQgZD1pLnRleHRDb250ZW50LnNwbGl0KG0pLHU9ZC5sZW5ndGgtMTtpZih1PjApe2kudGV4dENvbnRlbnQ9az9rLmVtcHR5U2NyaXB0OiIiO2ZvcihsZXQgXz0wO188dTtfKyspaS5hcHBlbmQoZFtfXSxPKCkpLHkubmV4dE5vZGUoKSxoLnB1c2goe3R5cGU6MixpbmRleDorK3J9KTtpLmFwcGVuZChkW3VdLE8oKSl9fX1lbHNlIGlmKGkubm9kZVR5cGU9PT04KWlmKGkuZGF0YT09PW10KWgucHVzaCh7dHlwZToyLGluZGV4OnJ9KTtlbHNle2xldCBkPS0xO2Zvcig7KGQ9aS5kYXRhLmluZGV4T2YobSxkKzEpKSE9PS0xOyloLnB1c2goe3R5cGU6NyxpbmRleDpyfSksZCs9bS5sZW5ndGgtMX1yKyt9fXN0YXRpYyBjcmVhdGVFbGVtZW50KHQsZSl7bGV0IHM9di5jcmVhdGVFbGVtZW50KCJ0ZW1wbGF0ZSIpO3JldHVybiBzLmlubmVySFRNTD10LHN9fTtmdW5jdGlvbiBiKG8sdCxlPW8scyl7dmFyIG4sYSxoO2lmKHQ9PT1BKXJldHVybiB0O2xldCBpPXMhPT12b2lkIDA/KG49ZS5fJENvKT09bnVsbD92b2lkIDA6bltzXTplLl8kQ2wscj1IKHQpP3ZvaWQgMDp0Ll8kbGl0RGlyZWN0aXZlJDtyZXR1cm4oaT09bnVsbD92b2lkIDA6aS5jb25zdHJ1Y3RvcikhPT1yJiYoKGE9aT09bnVsbD92b2lkIDA6aS5fJEFPKT09bnVsbHx8YS5jYWxsKGksITEpLHI9PT12b2lkIDA/aT12b2lkIDA6KGk9bmV3IHIobyksaS5fJEFUKG8sZSxzKSkscyE9PXZvaWQgMD8oKGg9ZS5fJENvKSE9bnVsbD9oOmUuXyRDbz1bXSlbc109aTplLl8kQ2w9aSksaSE9PXZvaWQgMCYmKHQ9YihvLGkuXyRBUyhvLHQudmFsdWVzKSxpLHMpKSx0fXZhciBxPWNsYXNze2NvbnN0cnVjdG9yKHQsZSl7dGhpcy5fJEFWPVtdLHRoaXMuXyRBTj12b2lkIDAsdGhpcy5fJEFEPXQsdGhpcy5fJEFNPWV9Z2V0IHBhcmVudE5vZGUoKXtyZXR1cm4gdGhpcy5fJEFNLnBhcmVudE5vZGV9Z2V0IF8kQVUoKXtyZXR1cm4gdGhpcy5fJEFNLl8kQVV9dSh0KXt2YXIgbDtsZXR7ZWw6e2NvbnRlbnQ6ZX0scGFydHM6c309dGhpcy5fJEFELGk9KChsPXQ9PW51bGw/dm9pZCAwOnQuY3JlYXRpb25TY29wZSkhPW51bGw/bDp2KS5pbXBvcnROb2RlKGUsITApO3kuY3VycmVudE5vZGU9aTtsZXQgcj15Lm5leHROb2RlKCksbj0wLGE9MCxoPXNbMF07Zm9yKDtoIT09dm9pZCAwOyl7aWYobj09PWguaW5kZXgpe2xldCBjO2gudHlwZT09PTI/Yz1uZXcgTihyLHIubmV4dFNpYmxpbmcsdGhpcyx0KTpoLnR5cGU9PT0xP2M9bmV3IGguY3RvcihyLGgubmFtZSxoLnN0cmluZ3MsdGhpcyx0KTpoLnR5cGU9PT02JiYoYz1uZXcgWihyLHRoaXMsdCkpLHRoaXMuXyRBVi5wdXNoKGMpLGg9c1srK2FdfW4hPT0oaD09bnVsbD92b2lkIDA6aC5pbmRleCkmJihyPXkubmV4dE5vZGUoKSxuKyspfXJldHVybiB5LmN1cnJlbnROb2RlPXYsaX1wKHQpe2xldCBlPTA7Zm9yKGxldCBzIG9mIHRoaXMuXyRBVilzIT09dm9pZCAwJiYocy5zdHJpbmdzIT09dm9pZCAwPyhzLl8kQUkodCxzLGUpLGUrPXMuc3RyaW5ncy5sZW5ndGgtMik6cy5fJEFJKHRbZV0pKSxlKyt9fSxOPWNsYXNzIG97Z2V0IF8kQVUoKXt2YXIgdCxlO3JldHVybihlPSh0PXRoaXMuXyRBTSk9PW51bGw/dm9pZCAwOnQuXyRBVSkhPW51bGw/ZTp0aGlzLl8kQ3Z9Y29uc3RydWN0b3IodCxlLHMsaSl7dmFyIHI7dGhpcy50eXBlPTIsdGhpcy5fJEFIPXAsdGhpcy5fJEFOPXZvaWQgMCx0aGlzLl8kQUE9dCx0aGlzLl8kQUI9ZSx0aGlzLl8kQU09cyx0aGlzLm9wdGlvbnM9aSx0aGlzLl8kQ3Y9KHI9aT09bnVsbD92b2lkIDA6aS5pc0Nvbm5lY3RlZCkhPW51bGw/cjohMH1nZXQgcGFyZW50Tm9kZSgpe2xldCB0PXRoaXMuXyRBQS5wYXJlbnROb2RlLGU9dGhpcy5fJEFNO3JldHVybiBlIT09dm9pZCAwJiYodD09bnVsbD92b2lkIDA6dC5ub2RlVHlwZSk9PT0xMSYmKHQ9ZS5wYXJlbnROb2RlKSx0fWdldCBzdGFydE5vZGUoKXtyZXR1cm4gdGhpcy5fJEFBfWdldCBlbmROb2RlKCl7cmV0dXJuIHRoaXMuXyRBQn1fJEFJKHQsZT10aGlzKXt0PWIodGhpcyx0LGUpLEgodCk/dD09PXB8fHQ9PW51bGx8fHQ9PT0iIj8odGhpcy5fJEFIIT09cCYmdGhpcy5fJEFSKCksdGhpcy5fJEFIPXApOnQhPT10aGlzLl8kQUgmJnQhPT1BJiZ0aGlzLl8odCk6dC5fJGxpdFR5cGUkIT09dm9pZCAwP3RoaXMuJCh0KTp0Lm5vZGVUeXBlIT09dm9pZCAwP3RoaXMuVCh0KTpIdCh0KT90aGlzLmsodCk6dGhpcy5fKHQpfU8odCl7cmV0dXJuIHRoaXMuXyRBQS5wYXJlbnROb2RlLmluc2VydEJlZm9yZSh0LHRoaXMuXyRBQil9VCh0KXt0aGlzLl8kQUghPT10JiYodGhpcy5fJEFSKCksdGhpcy5fJEFIPXRoaXMuTyh0KSl9Xyh0KXt0aGlzLl8kQUghPT1wJiZIKHRoaXMuXyRBSCk/dGhpcy5fJEFBLm5leHRTaWJsaW5nLmRhdGE9dDp0aGlzLlQodi5jcmVhdGVUZXh0Tm9kZSh0KSksdGhpcy5fJEFIPXR9JCh0KXt2YXIgcjtsZXR7dmFsdWVzOmUsXyRsaXRUeXBlJDpzfT10LGk9dHlwZW9mIHM9PSJudW1iZXIiP3RoaXMuXyRBQyh0KToocy5lbD09PXZvaWQgMCYmKHMuZWw9TS5jcmVhdGVFbGVtZW50KGd0KHMuaCxzLmhbMF0pLHRoaXMub3B0aW9ucykpLHMpO2lmKCgocj10aGlzLl8kQUgpPT1udWxsP3ZvaWQgMDpyLl8kQUQpPT09aSl0aGlzLl8kQUgucChlKTtlbHNle2xldCBuPW5ldyBxKGksdGhpcyksYT1uLnUodGhpcy5vcHRpb25zKTtuLnAoZSksdGhpcy5UKGEpLHRoaXMuXyRBSD1ufX1fJEFDKHQpe2xldCBlPSR0LmdldCh0LnN0cmluZ3MpO3JldHVybiBlPT09dm9pZCAwJiYkdC5zZXQodC5zdHJpbmdzLGU9bmV3IE0odCkpLGV9ayh0KXtHKHRoaXMuXyRBSCl8fCh0aGlzLl8kQUg9W10sdGhpcy5fJEFSKCkpO2xldCBlPXRoaXMuXyRBSCxzLGk9MDtmb3IobGV0IHIgb2YgdClpPT09ZS5sZW5ndGg/ZS5wdXNoKHM9bmV3IG8odGhpcy5PKE8oKSksdGhpcy5PKE8oKSksdGhpcyx0aGlzLm9wdGlvbnMpKTpzPWVbaV0scy5fJEFJKHIpLGkrKztpPGUubGVuZ3RoJiYodGhpcy5fJEFSKHMmJnMuXyRBQi5uZXh0U2libGluZyxpKSxlLmxlbmd0aD1pKX1fJEFSKHQ9dGhpcy5fJEFBLm5leHRTaWJsaW5nLGUpe3ZhciBzO2Zvcigocz10aGlzLl8kQVApPT1udWxsP3ZvaWQgMDpzLmNhbGwodGhpcywhMSwhMCxlKTt0IT09dGhpcy5fJEFCOyl7bGV0IGk9YXQodCkubmV4dFNpYmxpbmc7YXQodCkucmVtb3ZlKCksdD1pfX1zZXRDb25uZWN0ZWQodCl7dmFyIGU7dGhpcy5fJEFNPT09dm9pZCAwJiYodGhpcy5fJEN2PXQsKGU9dGhpcy5fJEFQKT09bnVsbHx8ZS5jYWxsKHRoaXMsdCkpfX0sQz1jbGFzc3tnZXQgdGFnTmFtZSgpe3JldHVybiB0aGlzLmVsZW1lbnQudGFnTmFtZX1nZXQgXyRBVSgpe3JldHVybiB0aGlzLl8kQU0uXyRBVX1jb25zdHJ1Y3Rvcih0LGUscyxpLHIpe3RoaXMudHlwZT0xLHRoaXMuXyRBSD1wLHRoaXMuXyRBTj12b2lkIDAsdGhpcy5lbGVtZW50PXQsdGhpcy5uYW1lPWUsdGhpcy5fJEFNPWksdGhpcy5vcHRpb25zPXIscy5sZW5ndGg+Mnx8c1swXSE9PSIifHxzWzFdIT09IiI/KHRoaXMuXyRBSD1BcnJheShzLmxlbmd0aC0xKS5maWxsKG5ldyBTdHJpbmcpLHRoaXMuc3RyaW5ncz1zKTp0aGlzLl8kQUg9cH1fJEFJKHQsZT10aGlzLHMsaSl7bGV0IHI9dGhpcy5zdHJpbmdzLG49ITE7aWYocj09PXZvaWQgMCl0PWIodGhpcyx0LGUsMCksbj0hSCh0KXx8dCE9PXRoaXMuXyRBSCYmdCE9PUEsbiYmKHRoaXMuXyRBSD10KTtlbHNle2xldCBhPXQsaCxsO2Zvcih0PXJbMF0saD0wO2g8ci5sZW5ndGgtMTtoKyspbD1iKHRoaXMsYVtzK2hdLGUsaCksbD09PUEmJihsPXRoaXMuXyRBSFtoXSksbnx8KG49IUgobCl8fGwhPT10aGlzLl8kQUhbaF0pLGw9PT1wP3Q9cDp0IT09cCYmKHQrPShsIT1udWxsP2w6IiIpK3JbaCsxXSksdGhpcy5fJEFIW2hdPWx9biYmIWkmJnRoaXMuaih0KX1qKHQpe3Q9PT1wP3RoaXMuZWxlbWVudC5yZW1vdmVBdHRyaWJ1dGUodGhpcy5uYW1lKTp0aGlzLmVsZW1lbnQuc2V0QXR0cmlidXRlKHRoaXMubmFtZSx0IT1udWxsP3Q6IiIpfX0sSz1jbGFzcyBleHRlbmRzIEN7Y29uc3RydWN0b3IoKXtzdXBlciguLi5hcmd1bWVudHMpLHRoaXMudHlwZT0zfWoodCl7dGhpcy5lbGVtZW50W3RoaXMubmFtZV09dD09PXA/dm9pZCAwOnR9fSxGPWNsYXNzIGV4dGVuZHMgQ3tjb25zdHJ1Y3Rvcigpe3N1cGVyKC4uLmFyZ3VtZW50cyksdGhpcy50eXBlPTR9aih0KXt0aGlzLmVsZW1lbnQudG9nZ2xlQXR0cmlidXRlKHRoaXMubmFtZSwhIXQmJnQhPT1wKX19LEo9Y2xhc3MgZXh0ZW5kcyBDe2NvbnN0cnVjdG9yKHQsZSxzLGkscil7c3VwZXIodCxlLHMsaSxyKSx0aGlzLnR5cGU9NX1fJEFJKHQsZT10aGlzKXt2YXIgbjtpZigodD0obj1iKHRoaXMsdCxlLDApKSE9bnVsbD9uOnApPT09QSlyZXR1cm47bGV0IHM9dGhpcy5fJEFILGk9dD09PXAmJnMhPT1wfHx0LmNhcHR1cmUhPT1zLmNhcHR1cmV8fHQub25jZSE9PXMub25jZXx8dC5wYXNzaXZlIT09cy5wYXNzaXZlLHI9dCE9PXAmJihzPT09cHx8aSk7aSYmdGhpcy5lbGVtZW50LnJlbW92ZUV2ZW50TGlzdGVuZXIodGhpcy5uYW1lLHRoaXMscyksciYmdGhpcy5lbGVtZW50LmFkZEV2ZW50TGlzdGVuZXIodGhpcy5uYW1lLHRoaXMsdCksdGhpcy5fJEFIPXR9aGFuZGxlRXZlbnQodCl7dmFyIGUsczt0eXBlb2YgdGhpcy5fJEFIPT0iZnVuY3Rpb24iP3RoaXMuXyRBSC5jYWxsKChzPShlPXRoaXMub3B0aW9ucyk9PW51bGw/dm9pZCAwOmUuaG9zdCkhPW51bGw/czp0aGlzLmVsZW1lbnQsdCk6dGhpcy5fJEFILmhhbmRsZUV2ZW50KHQpfX0sWj1jbGFzc3tjb25zdHJ1Y3Rvcih0LGUscyl7dGhpcy5lbGVtZW50PXQsdGhpcy50eXBlPTYsdGhpcy5fJEFOPXZvaWQgMCx0aGlzLl8kQU09ZSx0aGlzLm9wdGlvbnM9c31nZXQgXyRBVSgpe3JldHVybiB0aGlzLl8kQU0uXyRBVX1fJEFJKHQpe2IodGhpcyx0KX19O3ZhciBXPVUubGl0SHRtbFBvbHlmaWxsU3VwcG9ydCxfdDtXPT1udWxsfHxXKE0sTiksKChfdD1VLmxpdEh0bWxWZXJzaW9ucykhPW51bGw/X3Q6VS5saXRIdG1sVmVyc2lvbnM9W10pLnB1c2goIjMuMy4zIik7dmFyIHl0PShvLHQsZSk9Pnt2YXIgcixuO2xldCBzPShyPWU9PW51bGw/dm9pZCAwOmUucmVuZGVyQmVmb3JlKSE9bnVsbD9yOnQsaT1zLl8kbGl0UGFydCQ7aWYoaT09PXZvaWQgMCl7bGV0IGE9KG49ZT09bnVsbD92b2lkIDA6ZS5yZW5kZXJCZWZvcmUpIT1udWxsP246bnVsbDtzLl8kbGl0UGFydCQ9aT1uZXcgTih0Lmluc2VydEJlZm9yZShPKCksYSksYSx2b2lkIDAsZSE9bnVsbD9lOnt9KX1yZXR1cm4gaS5fJEFJKG8pLGl9O3ZhciBTPWdsb2JhbFRoaXMsRT1jbGFzcyBleHRlbmRzICR7Y29uc3RydWN0b3IoKXtzdXBlciguLi5hcmd1bWVudHMpLHRoaXMucmVuZGVyT3B0aW9ucz17aG9zdDp0aGlzfSx0aGlzLl8kRG89dm9pZCAwfWNyZWF0ZVJlbmRlclJvb3QoKXt2YXIgZSxzO2xldCB0PXN1cGVyLmNyZWF0ZVJlbmRlclJvb3QoKTtyZXR1cm4ocz0oZT10aGlzLnJlbmRlck9wdGlvbnMpLnJlbmRlckJlZm9yZSkhPW51bGx8fChlLnJlbmRlckJlZm9yZT10LmZpcnN0Q2hpbGQpLHR9dXBkYXRlKHQpe2xldCBlPXRoaXMucmVuZGVyKCk7dGhpcy5oYXNVcGRhdGVkfHwodGhpcy5yZW5kZXJPcHRpb25zLmlzQ29ubmVjdGVkPXRoaXMuaXNDb25uZWN0ZWQpLHN1cGVyLnVwZGF0ZSh0KSx0aGlzLl8kRG89eXQoZSx0aGlzLnJlbmRlclJvb3QsdGhpcy5yZW5kZXJPcHRpb25zKX1jb25uZWN0ZWRDYWxsYmFjaygpe3ZhciB0O3N1cGVyLmNvbm5lY3RlZENhbGxiYWNrKCksKHQ9dGhpcy5fJERvKT09bnVsbHx8dC5zZXRDb25uZWN0ZWQoITApfWRpc2Nvbm5lY3RlZENhbGxiYWNrKCl7dmFyIHQ7c3VwZXIuZGlzY29ubmVjdGVkQ2FsbGJhY2soKSwodD10aGlzLl8kRG8pPT1udWxsfHx0LnNldENvbm5lY3RlZCghMSl9cmVuZGVyKCl7cmV0dXJuIEF9fSx2dDtFLl8kbGl0RWxlbWVudCQ9ITAsRS5maW5hbGl6ZWQ9ITAsKHZ0PVMubGl0RWxlbWVudEh5ZHJhdGVTdXBwb3J0KT09bnVsbHx8dnQuY2FsbChTLHtMaXRFbGVtZW50OkV9KTt2YXIgWD1TLmxpdEVsZW1lbnRQb2x5ZmlsbFN1cHBvcnQ7WD09bnVsbHx8WCh7TGl0RWxlbWVudDpFfSk7dmFyIFN0OygoU3Q9Uy5saXRFbGVtZW50VmVyc2lvbnMpIT1udWxsP1N0OlMubGl0RWxlbWVudFZlcnNpb25zPVtdKS5wdXNoKCI0LjIuMiIpO2V4cG9ydHtFIGFzIExpdEVsZW1lbnQsdHQgYXMgY3NzLE10IGFzIGh0bWwsQSBhcyBub0NoYW5nZSxwIGFzIG5vdGhpbmcsTnQgYXMgc3ZnLGogYXMgdW5zYWZlQ1NTfTsKLyohIEJ1bmRsZWQgbGljZW5zZSBpbmZvcm1hdGlvbjoKCkBsaXQvcmVhY3RpdmUtZWxlbWVudC9jc3MtdGFnLmpzOgogICgqKgogICAqIEBsaWNlbnNlCiAgICogQ29weXJpZ2h0IDIwMTkgR29vZ2xlIExMQwogICAqIFNQRFgtTGljZW5zZS1JZGVudGlmaWVyOiBCU0QtMy1DbGF1c2UKICAgKikKCkBsaXQvcmVhY3RpdmUtZWxlbWVudC9yZWFjdGl2ZS1lbGVtZW50LmpzOgpsaXQtaHRtbC9saXQtaHRtbC5qczoKbGl0LWVsZW1lbnQvbGl0LWVsZW1lbnQuanM6CiAgKCoqCiAgICogQGxpY2Vuc2UKICAgKiBDb3B5cmlnaHQgMjAxNyBHb29nbGUgTExDCiAgICogU1BEWC1MaWNlbnNlLUlkZW50aWZpZXI6IEJTRC0zLUNsYXVzZQogICAqKQoKbGl0LWh0bWwvaXMtc2VydmVyLmpzOgogICgqKgogICAqIEBsaWNlbnNlCiAgICogQ29weXJpZ2h0IDIwMjIgR29vZ2xlIExMQwogICAqIFNQRFgtTGljZW5zZS1JZGVudGlmaWVyOiBCU0QtMy1DbGF1c2UKICAgKikKKi8K";
+const __LIT_SRC = atob(__LIT_B64);
+const __litUrl = URL.createObjectURL(new Blob([__LIT_SRC], { type: "text/javascript" }));
+const { LitElement, html, css, nothing, noChange, svg, unsafeCSS } = await import(__litUrl);
+URL.revokeObjectURL(__litUrl);
+
+// ↑ marker: the Lit runtime (LitElement/html/css/…) is injected above this line.
+
+// ===================== TTS engine (Microsoft Edge Neural) =====================
+// (copied verbatim from skill scripts/tts_engine.js)
+const EDGE_VOICE = 'en-US-AriaNeural';
+const EDGE_TRUSTED_TOKEN = '6A5AA1D4EAFF4E9FB37E23D68491D6F4';
+const EDGE_WSS = 'wss://speech.platform.bing.com/consumer/speech/synthesize/readaloud/edge/v1?TrustedClientToken=' + EDGE_TRUSTED_TOKEN;
+let _edgeBlocked = false;
+const _edgeCache = new Map();
+const RATE_LEVELS = {
+  slow:   { ssml: '-35%', local: 0.65, label: '慢' },
+  normal: { ssml: '-8%',  local: 0.85, label: '正常' },
+  fast:   { ssml: '+15%', local: 1.05, label: '快' }
+};
+let _rate = 'normal';
+function _uuid(){ return 'xxxxxxxxxxxx4xxxyxxxxxxxxxxxxxxx'.replace(/[xy]/g, c => { const r = Math.random()*16|0; return (c==='x'?r:(r&0x3|0x8)).toString(16); }); }
+function _dateStr(){ return new Date().toString().replace(/GMT.*/, 'GMT+0000 (Coordinated Universal Time)'); }
+function _ssml(text){
+  const esc = String(text).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+  const rate = (RATE_LEVELS[_rate] || RATE_LEVELS.normal).ssml;
+  return `<speak version='1.0' xmlns='http://www.w3.org/2001/10/synthesis' xml:lang='en-US'>`
+    + `<voice name='${EDGE_VOICE}'><prosody rate='${rate}' pitch='+0Hz'>${esc}</prosody></voice></speak>`;
+}
+let _ws = null, _wsReady = null;
+const _pending = new Map();
+function _connect(){
+  if (_wsReady) return _wsReady;
+  _wsReady = new Promise((resolve, reject) => {
+    let ws;
+    try { ws = new WebSocket(EDGE_WSS); } catch(e){ _wsReady = null; return reject(e); }
+    ws.binaryType = 'arraybuffer';
+    const openTimer = setTimeout(() => { try{ws.close();}catch(e){} _wsReady=null; reject(new Error('open timeout')); }, 6000);
+    ws.onopen = () => {
+      clearTimeout(openTimer);
+      ws.send(`X-Timestamp:${_dateStr()}\r\nContent-Type:application/json; charset=utf-8\r\nPath:speech.config\r\n\r\n`
+        + `{"context":{"synthesis":{"audio":{"metadataoptions":{"sentenceBoundaryEnabled":"false","wordBoundaryEnabled":"false"},"outputFormat":"audio-24khz-48kbitrate-mono-mp3"}}}}`);
+      _ws = ws; resolve(ws);
+    };
+    ws.onmessage = (ev) => {
+      if (typeof ev.data === 'string') {
+        const m = ev.data.match(/X-RequestId:([0-9a-f]+)/i); const id = m && m[1];
+        if (ev.data.includes('Path:turn.end') && id && _pending.has(id)) {
+          const st = _pending.get(id); _pending.delete(id); clearTimeout(st.timer);
+          if (!st.chunks.length) return st.reject(new Error('no audio'));
+          st.resolve(URL.createObjectURL(new Blob(st.chunks, { type: 'audio/mpeg' })));
+        }
+      } else {
+        const buf = new Uint8Array(ev.data);
+        const headerLen = (buf[0] << 8) | buf[1];
+        const header = new TextDecoder().decode(buf.slice(2, 2 + headerLen));
+        const m = header.match(/X-RequestId:([0-9a-f]+)/i); const id = m && m[1];
+        const audio = buf.slice(2 + headerLen);
+        if (id && _pending.has(id) && audio.length) _pending.get(id).chunks.push(audio);
+      }
+    };
+    const drop = () => { _ws = null; _wsReady = null; _pending.forEach(st => { clearTimeout(st.timer); st.reject(new Error('ws closed')); }); _pending.clear(); };
+    ws.onerror = drop; ws.onclose = drop;
+  });
+  return _wsReady;
+}
+function _edgeSynth(text){
+  return _connect().then(ws => new Promise((resolve, reject) => {
+    const id = _uuid().replace(/-/g,'').toUpperCase();
+    const timer = setTimeout(() => { if (_pending.has(id)) { _pending.delete(id); reject(new Error('timeout')); } }, 5000);
+    _pending.set(id, { chunks: [], resolve, reject, timer });
+    try {
+      ws.send(`X-RequestId:${id}\r\nContent-Type:application/ssml+xml\r\nX-Timestamp:${_dateStr()}Z\r\nPath:ssml\r\n\r\n` + _ssml(text));
+    } catch(e){ _pending.delete(id); clearTimeout(timer); reject(e); }
+  }));
+}
+function _prewarm(sentences){
+  if (_edgeBlocked) return;
+  let i = 0;
+  const step = () => {
+    if (i >= sentences.length || _edgeBlocked) return;
+    const text = sentences[i++]; const key = _rate + '|' + text;
+    if (_edgeCache.has(key)) { step(); return; }
+    _edgeSynth(text).then(url => { _edgeCache.set(key, url); setTimeout(step, 60); }).catch(() => { setTimeout(step, 60); });
+  };
+  setTimeout(step, 120);
+}
+function setRate(r){ if(RATE_LEVELS[r]){ _rate = r; _edgeCache.clear(); if (window.__allSentences) _prewarm(window.__allSentences); } }
+function speak(text, btnEl){
+  if (!text) return;
+  if (btnEl) btnEl.classList.add('playing');
+  const done = () => { if (btnEl) btnEl.classList.remove('playing'); };
+  try { window.speechSynthesis && window.speechSynthesis.cancel(); } catch(e){}
+  if (!window.__ttsAudio) window.__ttsAudio = new Audio();
+  const a = window.__ttsAudio; a.volume = 0.6;
+  try { a.pause(); } catch(e){}
+  const playUrl = (url) => { a.onended = done; a.onerror = () => _localSpeak(text, btnEl); a.src = url; const p = a.play(); if (p && p.catch) p.catch(() => _localSpeak(text, btnEl)); };
+  if (_edgeBlocked) { _localSpeak(text, btnEl); return; }
+  const cacheKey = _rate + '|' + text;
+  if (_edgeCache.has(cacheKey)) { playUrl(_edgeCache.get(cacheKey)); return; }
+  let settled = false;
+  const grace = setTimeout(() => { if (settled) return; settled = true; _localSpeak(text, btnEl); }, 450);
+  _edgeSynth(text).then(url => { _edgeCache.set(cacheKey, url); if (settled) return; settled = true; clearTimeout(grace); playUrl(url); })
+    .catch(() => { if (settled) { _edgeBlocked = true; return; } settled = true; clearTimeout(grace); _edgeBlocked = true; _localSpeak(text, btnEl); });
+}
+let _voices = [], _bestVoice = null;
+function _pickVoice(){
+  try { _voices = window.speechSynthesis.getVoices() || []; } catch(e){ _voices = []; }
+  if (!_voices.length) return null;
+  const en = _voices.filter(v => /^en(-|_)/i.test(v.lang) || /english/i.test(v.name));
+  if (!en.length) { _bestVoice = _voices[0]; return _bestVoice; }
+  const score = (v) => { const n=(v.name||'').toLowerCase(); let s=0;
+    if(/natural|neural|online|wavenet|premium|enhanced/.test(n)) s+=50;
+    if(/google/.test(n)) s+=30; if(/microsoft|aria|jenny|guy|libby|sonia/.test(n)) s+=28;
+    if(/samantha|karen|daniel|serena|moira/.test(n)) s+=20;
+    if(/^en-us/i.test(v.lang)) s+=12; else if(/^en-gb/i.test(v.lang)) s+=10; else s+=4;
+    if(v.localService===false) s+=8; return s; };
+  en.sort((a,b)=>score(b)-score(a)); _bestVoice = en[0]; return _bestVoice;
+}
+if (typeof window!=='undefined' && 'speechSynthesis' in window) { _pickVoice(); window.speechSynthesis.onvoiceschanged = _pickVoice; }
+function _localSpeak(text, btnEl){
+  try {
+    if (!('speechSynthesis' in window)) { if(btnEl) btnEl.classList.remove('playing'); return; }
+    window.speechSynthesis.cancel();
+    const u = new SpeechSynthesisUtterance(text);
+    const v = _bestVoice || _pickVoice();
+    if (v) { u.voice = v; u.lang = v.lang; } else { u.lang = 'en-US'; }
+    u.rate = (RATE_LEVELS[_rate] || RATE_LEVELS.normal).local; u.pitch = 1.0; u.volume = 0.6;
+    if (btnEl) { u.onend = () => btnEl.classList.remove('playing'); u.onerror = () => btnEl.classList.remove('playing'); }
+    window.speechSynthesis.speak(u);
+  } catch (e) { if(btnEl) btnEl.classList.remove('playing'); }
+}
+
+// ===================== icons =====================
+function ico(id){ return svg`<svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><use href="#${id}"></use></svg>`; }
+
+// ===================== annotation + IPA helpers =====================
+const _RMAP  = { s:'subj', v:'verb', o:'obj', a:'other', c:'conj' };
+const _RNAME = { s:'主语', v:'谓语', o:'宾语', a:'状语', c:'引导词' };
+function annUnderline(ann){
+  return html`<span class="sent-underline">${ann.map((p,i)=>{
+    const role=_RMAP[p[0]]||'obj'; const last=i===ann.length-1;
+    return html`<span class="tk-u tk-u--${role}"><span class="tk-u__word">${p[1]}</span><span class="tk-u__tag">${_RNAME[p[0]]||''}</span></span>${last?'':html` `}`;
+  })}</span>`;
+}
+function sentenceIPA(sent){
+  const dict = window.IPA_DICT || {};
+  const words = String(sent).trim().split(/\s+/).map(t=>{
+    let c = t.toLowerCase().replace(/[.,!?;:"()]/g,'').replace(/[’‘]/g,'').replace(/'/g,'');
+    return dict[c] ? dict[c].replace(/^\/|\/$/g,'') : '';
+  }).filter(Boolean);
+  return '/' + words.join(' ') + '/';
+}
+
+// ===================== the app =====================
+const DATA = (typeof window!=='undefined' && window.TOPIC_DATA) ? window.TOPIC_DATA : {};
+
+// Safe storage shim — sandboxed iframes (no allow-same-origin) throw a SecurityError
+// on ANY localStorage property access, even reads. Route everything through here so
+// the app degrades to an in-memory store instead of crashing on boot.
+const LS = (function(){
+  const mem = {};
+  let real = null;
+  try { real = window.localStorage; real.getItem('__t'); } catch(e){ real = null; }
+  return {
+    get(k){ try{ return real ? real.getItem(k) : (k in mem ? mem[k] : null); }catch(e){ return (k in mem)?mem[k]:null; } },
+    set(k,v){ try{ if(real){ real.setItem(k,v); return; } }catch(e){} mem[k]=String(v); }
+  };
+})();
+
+const KEY_WRONG = 'u12_wrong_v1';
+const KEY_FAVS  = 'u12_favs_v1';
+const KEY_THEME = 'u12_theme_v1';
+
+class TopicApp extends LitElement {
+  createRenderRoot(){ return this; }
+  static get properties(){ return {
+    tab:{state:true}, rate:{state:true}, theme:{state:true},
+    // quiz
+    quizMode:{state:true}, quizStage:{state:true}, qIndex:{state:true},
+    picked:{state:true}, score:{state:true}, combo:{state:true}, _tick:{state:true},
+    // exam
+    examStage:{state:true}, examIdx:{state:true},
+  };}
+  constructor(){
+    super();
+    this.data = DATA;
+    this.tab = 'learn';
+    this.rate = 'normal';
+    this.theme = LS.get(KEY_THEME) || '';
+    this.quizMode = 'normal'; this.quizStage = 'idle'; this.qIndex = 0;
+    this.picked = null; this.score = 0; this.combo = 0; this._tick = 0;
+    this._quiz = [];
+    this.wrong = this._loadWrong();
+    this.favs = this._loadFavs();
+    // exam
+    this.examStage = 'intro'; this.examIdx = 0;
+    this.examAnswers = {};
+    this._examFlat = this._shuffleExam();
+  }
+  static get FAV_INTERVALS(){ return [1,2,4,7,15,30]; }
+
+  // ---- storage ----
+  _loadWrong(){ try{ return new Set(JSON.parse(LS.get(KEY_WRONG)||'[]')); }catch(e){ return new Set(); } }
+  _saveWrong(){ try{ LS.set(KEY_WRONG, JSON.stringify([...this.wrong])); }catch(e){} }
+  _loadFavs(){ try{ return new Map(Object.entries(JSON.parse(LS.get(KEY_FAVS)||'{}'))); }catch(e){ return new Map(); } }
+  _saveFavs(){ try{ LS.set(KEY_FAVS, JSON.stringify(Object.fromEntries(this.favs))); }catch(e){} }
+
+  firstUpdated(){
+    if (this.theme) document.documentElement.setAttribute('data-theme', this.theme);
+    (async()=>{
+      try{ await this.updateComplete; }catch(e){}
+      const b = (typeof document!=='undefined') && document.getElementById('boot'); if (b) b.remove();
+      try{
+        const list = this._allSentences(); window.__allSentences = list;
+        if (typeof _connect === 'function') _connect();
+        if (typeof _prewarm === 'function') _prewarm(list);
+      }catch(e){}
+    })();
+  }
+  _allSentences(){
+    const s = new Set();
+    (this.data.scenes||[]).forEach(sc=>sc.words.forEach(w=>{ s.add(w.en); if(w.example) s.add(w.example); }));
+    (this.data.phrases||[]).forEach(p=>s.add(p.en));
+    (this.data.groups||[]).forEach(g=>g.patterns.forEach(p=>p.examples.forEach(e=>s.add(e.en))));
+    (this.data.goodSentences||[]).forEach(x=>s.add(x.en));
+    return [...s];
+  }
+
+  // ---- theme / rate ----
+  toggleTheme(){ this.theme = this.theme==='dark' ? '' : 'dark'; document.documentElement.setAttribute('data-theme', this.theme); LS.set(KEY_THEME,this.theme); }
+  changeRate(r){ setRate(r); this.rate = r; }
+
+  // ---- 收藏本 ----
+  isCollected(en){ return this.favs.has(en); }
+  toggleCollect(en){ const m=new Map(this.favs); if(m.has(en)) m.delete(en); else m.set(en,{level:0,due:Date.now(),added:Date.now()}); this.favs=m; this._saveFavs(); this.requestUpdate(); }
+  _dueWords(){ const now=Date.now(),o=[]; this.favs.forEach((v,w)=>{ if(!v.due||v.due<=now) o.push(w); }); return o; }
+  _reviewFav(word, correct){ const IV=TopicApp.FAV_INTERVALS, m=new Map(this.favs), cur=m.get(word)||{level:0}; const level = correct ? Math.min((cur.level||0)+1, IV.length-1) : 0; m.set(word,{level,due:Date.now()+IV[level]*86400000,added:cur.added||Date.now()}); this.favs=m; this._saveFavs(); }
+  _wordByEn(en){ let f=null; (this.data.scenes||[]).forEach(s=>s.words.forEach(w=>{ if(w.en===en) f=w; })); return f; }
+
+  // ---- 错题本 ----
+  _qWord(q){ return q.word || q.say; }
+  _wrongQuestions(){
+    const byWord=new Map();
+    (this.data.quiz||[]).forEach(q=>{ const k=this._qWord(q); if(this.wrong.has(k)&&!byWord.has(k)) byWord.set(k,q); });
+    return [...byWord.values()];
+  }
+  clearWrong(){ this.wrong = new Set(); this._saveWrong(); this.requestUpdate(); }
+
+  // ================= render =================
+  render(){
+    const tabs = [
+      ['learn','知识讲解','ic-book-open'],
+      ['quiz','闯关练习','ic-target'],
+      ['wrong','错题本','ic-refresh'],
+      ['fav','收藏本','ic-star'],
+      ['exam','摸底测试','ic-award'],
+    ];
+    return html`
+      <header class="appbar">
+        <div class="appbar__title">
+          <span class="brandmark">${ico('ic-book-open')}</span>
+          <div>
+            <div class="ttl">${this.data.title}</div>
+            <div class="sub">${this.data.subtitle}</div>
+          </div>
+        </div>
+        <div class="appbar__tools">
+          <div class="rate-seg" title="朗读语速">
+            ${['slow','normal','fast'].map(r=>html`<button class="rate-opt ${this.rate===r?'rate-opt--on':''}" @click=${()=>this.changeRate(r)}>${RATE_LEVELS[r].label}</button>`)}
+          </div>
+          <button class="icon-btn" @click=${()=>this.toggleTheme()} title="深/浅色">${ico(this.theme==='dark'?'ic-sun':'ic-moon')}</button>
+        </div>
+      </header>
+      <nav class="tabbar">
+        ${tabs.map(([k,label,icon])=>{
+          let badge=''; if(k==='wrong'&&this.wrong.size) badge=this.wrong.size; if(k==='fav'&&this.favs.size) badge=this.favs.size;
+          return html`<button class="tab ${this.tab===k?'tab--on':''}" @click=${()=>{this.tab=k;}}>${ico(icon)}<span>${label}</span>${badge?html`<i class="tab-badge">${badge}</i>`:''}</button>`;
+        })}
+      </nav>
+      <main class="wrap">
+        ${this.tab==='learn'?this.renderLearn():''}
+        ${this.tab==='quiz'?this.renderQuiz():''}
+        ${this.tab==='wrong'?this.renderWrong():''}
+        ${this.tab==='fav'?this.renderFav():''}
+        ${this.tab==='exam'?this.renderExam():''}
+      </main>
+      <footer class="foot">离线单文件 · 真人发音(Edge Neural) · 音标全覆盖 · 外研版六年级上册 Unit 1–2</footer>
+    `;
+  }
+
+  _audioBtn(text){ return html`<button class="play" title="朗读" @click=${e=>speak(text, e.currentTarget)}>${ico('ic-volume')}</button>`; }
+
+  // ---------- 讲解 ----------
+  renderLearn(){
+    const d = this.data;
+    return html`
+      ${this._legend()}
+      ${(d.scenes||[]).map(sc=>html`
+        <section class="card">
+          <div class="card__hd hd--${sc.color}">${ico(sc.icon)}<h2>${sc.name}<small>${sc.en}</small></h2>
+            <button class="btn btn--ghost sm" @click=${()=>this.readAll(sc.words.map(w=>w.en))}>${ico('ic-volume')} 整组朗读</button>
+          </div>
+          <div class="wordgrid">
+            ${sc.words.map(w=>{ const on=this.isCollected(w.en); return html`
+              <div class="wcard">
+                <div class="wcard__top">
+                  <span class="wen">${w.en}</span>
+                  ${this._audioBtn(w.en)}
+                  <button class="collect ${on?'collect--on':''}" title=${on?'已收藏,点按取消':'收藏到生词本(单独记忆·定期复习)'} @click=${()=>this.toggleCollect(w.en)}>${ico('ic-star')}</button>
+                </div>
+                <div class="wipa">${w.ipa}</div>
+                <div class="wzh">${w.zh}</div>
+                <div class="wex">
+                  ${annUnderline(w.ann)}
+                  <div class="wex__ipa">${sentenceIPA(w.example)} ${this._audioBtn(w.example)}</div>
+                  <div class="wex__zh">${(this._exZh(w))}</div>
+                </div>
+              </div>`; })}
+          </div>
+        </section>`)}
+
+      <section class="card">
+        <div class="card__hd hd--amber">${ico('ic-layers')}<h2>重点短语<small>Key Phrases</small></h2></div>
+        <div class="phrasegrid">
+          ${(d.phrases||[]).map(p=>html`<div class="pcard">
+            <div class="pcard__en">${p.en} ${this._audioBtn(p.en)}</div>
+            <div class="pcard__ipa">${p.ipa}</div>
+            <div class="pcard__zh">${p.zh}</div>
+          </div>`)}
+        </div>
+      </section>
+
+      <section class="card">
+        <div class="card__hd hd--brand">${ico('ic-message-square')}<h2>重点句型 · 母题 + 例句<small>Sentence Patterns</small></h2></div>
+        ${(d.groups||[]).map(g=>html`
+          <div class="pat-group">
+            <div class="pat-group__name pgn--${g.color}">${g.name}</div>
+            ${g.patterns.map(p=>html`
+              <div class="pat">
+                <div class="pat__tpl">${ico('ic-git-branch')} <b>${p.tpl}</b></div>
+                <div class="pat__use">${p.use}</div>
+                ${p.examples.map(ex=>html`<div class="pat__ex">
+                  ${annUnderline(ex.ann)}
+                  <div class="wex__ipa">${sentenceIPA(ex.en)} ${this._audioBtn(ex.en)}</div>
+                  <div class="wex__zh">${ex.zh}</div>
+                </div>`)}
+              </div>`)}
+          </div>`)}
+      </section>
+
+      <section class="card">
+        <div class="card__hd hd--green">${ico('ic-git-branch')}<h2>${d.gramCompare.title}<small>Comparatives</small></h2></div>
+        <div class="gram">
+          <div class="gram__col">
+            <div class="gram__sub">规则变化</div>
+            <table class="gtable"><tbody>
+              ${d.gramCompare.rules.map(r=>html`<tr><td class="grule">${r.rule}</td><td class="gex">${r.ex.map(e=>html`<span class="chip"><b>${e[0]}</b> → ${e[1]} ${this._audioBtn(e[1])}</span>`)}</td></tr>`)}
+            </tbody></table>
+          </div>
+          <div class="gram__col">
+            <div class="gram__sub">不规则变化(必背)</div>
+            <div class="irr">${d.gramCompare.irregular.map(e=>html`<span class="chip chip--warn"><b>${e[0]}</b> → ${e[1]} ${this._audioBtn(e[1])}</span>`)}</div>
+          </div>
+        </div>
+      </section>
+
+      <section class="card">
+        <div class="card__hd hd--cyan">${ico('ic-quote')}<h2>教材必背好句<small>Must-recite Sentences</small></h2></div>
+        <div class="good">
+          ${(d.goodSentences||[]).map(s=>html`<div class="pat__ex">
+            ${annUnderline(s.ann)}
+            <div class="wex__ipa">${sentenceIPA(s.en)} ${this._audioBtn(s.en)}</div>
+            <div class="wex__zh">${s.zh}</div>
+          </div>`)}
+        </div>
+      </section>
+    `;
+  }
+  _exZh(w){ return ''; } // word examples show only English + IPA; zh in patterns
+  _legend(){
+    return html`<div class="legend">
+      <div class="legend__t">${ico('ic-info')} 怎么组句子:<b>主语 → 谓语 → 宾语</b>,状语(时间/地点)常放句末(与中文不同)。颜色对应成分:</div>
+      <div class="legend__items">
+        ${[['subj','主语'],['verb','谓语'],['obj','宾语/表语'],['other','状语'],['conj','引导词']].map(([c,n])=>html`<span class="lg lg--${c}">${n}</span>`)}
+      </div>
+    </div>`;
+  }
+  readAll(list){ let i=0; const step=()=>{ if(i>=list.length) return; speak(list[i++]); const a=window.__ttsAudio; if(a){ a.onended=()=>setTimeout(step,180); a.onerror=()=>setTimeout(step,700);} else setTimeout(step,900); }; step(); }
+
+  // ---------- 练习闯关 ----------
+  startQuiz(mode){
+    this.quizMode = mode;
+    let pool;
+    if (mode==='review') pool = this._wrongQuestions();
+    else if (mode==='fav') pool = this._favDueQuestions();
+    else if (mode==='unit1') pool = ((this.data.unit1Drill&&this.data.unit1Drill.items)||[]).slice();
+    else pool = (this.data.quiz||[]).slice();
+    pool = this._shuffle(pool.slice());
+    if (mode==='normal') pool = pool.slice(0, Math.min(25, pool.length));
+    // shuffle each question's options
+    this._quiz = pool.map(q=>({ ...q, opts:this._shuffle(q.options.slice()) }));
+    this.qIndex = 0; this.picked = null; this.score = 0; this.combo = 0;
+    this.quizStage = this._quiz.length ? 'run' : 'empty';
+  }
+  _favDueQuestions(){
+    const due = new Set(this._dueWords());
+    const byWord=new Map();
+    (this.data.quiz||[]).forEach(q=>{ const k=this._qWord(q); if(due.has(k)&&!byWord.has(k)) byWord.set(k,q); });
+    return [...byWord.values()];
+  }
+  pickQ(i){
+    if (this.picked!==null) return;
+    const q=this._quiz[this.qIndex], k=this._qWord(q), correct=q.opts[i]===q.answer;
+    this.picked = i;
+    if (correct){ this.score++; this.combo++; } else { this.combo=0; }
+    if (this.quizMode==='review'){
+      if (correct && this.wrong.has(k)){ const n=new Set(this.wrong); n.delete(k); this.wrong=n; this._saveWrong(); }
+    } else if (this.quizMode==='fav'){ this._reviewFav(k, correct); }
+    else { if (!correct && !this.wrong.has(k)){ this.wrong=new Set([...this.wrong,k]); this._saveWrong(); } }
+    // auto play correct
+    if (q.say) setTimeout(()=>speak(q.say), 250);
+    this.requestUpdate();
+  }
+  nextQ(){
+    if (this.qIndex < this._quiz.length-1){ this.qIndex++; this.picked=null; }
+    else { this.quizStage='done'; }
+  }
+  renderQuiz(){
+    if (this.quizStage==='idle' || this.quizStage==='empty'){
+      return html`<section class="card center">
+        <h2 class="big">${ico('ic-target')} 闯关练习</h2>
+        <p class="muted">题库覆盖全部单词、短语、句型与语法,包含<b>句中填空</b>(考搭配用法,不只是死记)。答错自动进入错题本。</p>
+        ${this.quizStage==='empty'?html`<p class="warn">当前没有可练习的题目。</p>`:''}
+        <div class="btnrow">
+          <button class="btn btn--primary" @click=${()=>this.startQuiz('normal')}>${ico('ic-target')} 开始练习(随机25题)</button>
+          ${this.data.unit1Drill?html`<button class="btn" @click=${()=>this.startQuiz('unit1')}>${ico('ic-layers')} Unit 1 专项(${this.data.unit1Drill.items.length}题)</button>`:''}
+          ${this.wrong.size?html`<button class="btn" @click=${()=>this.startQuiz('review')}>${ico('ic-refresh')} 复习错题(${this.wrong.size})</button>`:''}
+        </div>
+        <div class="qtypes">
+          <span class="chip">中英互译</span><span class="chip">句中填空</span><span class="chip">句型识别</span><span class="chip">比较级</span><span class="chip">句型运用</span>
+        </div>
+      </section>`;
+    }
+    if (this.quizStage==='done'){
+      const total=this._quiz.length, pct=total?Math.round(this.score/total*100):0;
+      const emptyNow = (this.quizMode==='review' && this.wrong.size===0);
+      return html`<section class="card center">
+        <h2 class="big">${ico('ic-award')} 完成!</h2>
+        <div class="scorebig">${this.score} / ${total} <small>(${pct}%)</small></div>
+        ${this.quizMode==='review'?(emptyNow?html`<p class="ok">太棒了,错题本已清空!</p>`:html`<p class="muted">还剩 ${this.wrong.size} 个词在错题本,继续加油。</p>`):''}
+        <div class="btnrow">
+          <button class="btn btn--primary" @click=${()=>this.startQuiz(this.quizMode)}>再来一轮</button>
+          <button class="btn" @click=${()=>{this.quizStage='idle';}}>返回</button>
+        </div>
+      </section>`;
+    }
+    // run
+    const q=this._quiz[this.qIndex], total=this._quiz.length, done=this.qIndex+ (this.picked!==null?1:0);
+    return html`<section class="card">
+      <div class="quiz-hd">
+        <div class="progress"><span style="width:${Math.round((this.qIndex)/total*100)}%"></span></div>
+        <div class="quiz-meta"><span>${this.qIndex+1} / ${total}</span>${this.combo>1?html`<span class="combo">🔥 连对 ${this.combo}</span>`:''}<span>得分 ${this.score}</span></div>
+      </div>
+      <div class="qtype">${this._qTypeName(q)}</div>
+      <div class="qstem">${this._qStem(q)}</div>
+      ${q.promptZh?html`<div class="qzh">${q.promptZh}</div>`:''}
+      ${q.say?html`<div class="qplay">${this._audioBtn(q.say)}</div>`:''}
+      <div class="opts">
+        ${q.opts.map((op,i)=>{
+          let cls='opt';
+          if(this.picked!==null){ if(op===q.answer) cls+=' opt--right'; else if(i===this.picked) cls+=' opt--wrong'; }
+          return html`<button class="${cls}" @click=${()=>this.pickQ(i)}>${op}</button>`;
+        })}
+      </div>
+      ${this.picked!==null?this._qReveal(q):''}
+      ${this.picked!==null?html`<div class="btnrow"><button class="btn btn--primary" @click=${()=>this.nextQ()}>${this.qIndex<total-1?'下一题':'查看结果'} ${ico('ic-arrow-right')}</button></div>`:''}
+    </section>`;
+  }
+  _qTypeName(q){ return ({trans:'中英互译',cloze:'句中填空',identify:'句型识别',grammar:'比较级',order:'句子排序'})[q.type]||'练习'; }
+  _qStem(q){
+    if (q.type==='cloze'){
+      const parts=String(q.prompt).split('___');
+      const out=[];
+      for(let i=0;i<parts.length;i++){ out.push(parts[i]); if(i<parts.length-1) out.push(html`<span class="blank"></span>`); }
+      return html`<span class="stem-clz">${out}</span>`;
+    }
+    return html`<span>${q.prompt}</span>`;
+  }
+  _qReveal(q){
+    const right = q.opts[this.picked]===q.answer;
+    return html`<div class="reveal ${right?'reveal--ok':'reveal--no'}">
+      <div class="reveal__hd">${right?html`${ico('ic-check-circle-2')} 回答正确`:html`${ico('ic-x-circle')} 正确答案:<b>${q.answer}</b>`}</div>
+      ${q.full?html`<div class="reveal__sent">${q.ann?annUnderline(q.ann):q.full}<div class="wex__ipa">${sentenceIPA(q.full)} ${this._audioBtn(q.full)}</div></div>`:''}
+    </div>`;
+  }
+
+  // ---------- 错题本 ----------
+  renderWrong(){
+    const qs = this._wrongQuestions();
+    return html`<section class="card">
+      <div class="card__hd hd--amber">${ico('ic-refresh')}<h2>错题本<small>Mistakes · 按词去重</small></h2>
+        ${qs.length?html`<button class="btn btn--ghost sm" @click=${()=>this.clearWrong()}>一键清空</button>`:''}
+      </div>
+      ${qs.length?html`
+        <p class="muted">共 ${qs.length} 个易错词。开始复习后,答对自动移出错题本,答错保留,直到清空。</p>
+        <div class="btnrow"><button class="btn btn--primary" @click=${()=>{this.tab='quiz';this.startQuiz('review');}}>${ico('ic-target')} 开始复习(${qs.length})</button></div>
+        <div class="miss-list">${qs.map(q=>html`<div class="miss">
+          <span class="miss__w">${q.word}</span>
+          <span class="miss__q">${String(q.prompt).replace(/\n/g,' ')}</span>
+          <span class="miss__a">✔ ${q.answer} ${this._audioBtn(q.say||q.answer)}</span>
+        </div>`)}</div>`
+      :html`<div class="empty">${ico('ic-check-circle-2')}<p>错题本是空的,做题时答错会自动收集到这里。</p></div>`}
+    </section>`;
+  }
+
+  // ---------- 收藏本 ----------
+  renderFav(){
+    const now=Date.now(); const total=this.favs.size; const due=this._dueWords();
+    const IV=TopicApp.FAV_INTERVALS;
+    const list=[...this.favs.entries()];
+    return html`<section class="card">
+      <div class="card__hd hd--cyan">${ico('ic-star')}<h2>收藏本<small>单独记忆 · 间隔重复</small></h2></div>
+      <div class="fav-stat">
+        <div class="fs"><b>${total}</b><span>已收藏</span></div>
+        <div class="fs fs--due"><b>${due.length}</b><span>今天待复习</span></div>
+        <div class="fs"><b>${total-due.length}</b><span>已排期</span></div>
+      </div>
+      ${due.length?html`<div class="btnrow"><button class="btn btn--primary" @click=${()=>{this.tab='quiz';this.startQuiz('fav');}}>${ico('ic-repeat')} 复习到期词(${due.length})</button></div>`:''}
+      ${total?html`<div class="fav-list">
+        ${list.map(([w,v])=>{ const d=v.due||now; const dueNow=d<=now; const days=Math.max(0,Math.ceil((d-now)/86400000));
+          const word=this._wordByEn(w);
+          return html`<div class="fav">
+            <div class="fav__l"><span class="fav__w">${w}</span>${word?html`<span class="fav__zh">${word.zh}</span>`:''}${word?this._audioBtn(w):''}</div>
+            <div class="fav__r">
+              <span class="fav__due ${dueNow?'due-now':''}">${dueNow?'待复习':days+'天后复习'}</span>
+              <span class="fav__lv">熟练度 ${(v.level||0)}/${IV.length-1}</span>
+              <button class="collect collect--on" title="移出收藏本" @click=${()=>this.toggleCollect(w)}>${ico('ic-star')}</button>
+            </div>
+          </div>`;
+        })}
+      </div>`:html`<div class="empty">${ico('ic-star')}<p>还没有收藏词。在“知识讲解”里点单词卡的 ⭐ 收藏,系统会按 1/2/4/7/15/30 天的间隔安排复习。</p></div>`}
+    </section>`;
+  }
+
+  // ---------- 摸底测试卷 ----------
+  _shuffleExam(){
+    const flat=[];
+    (this.data.exam?this.data.exam.sections:[]).forEach(s=>s.items.forEach(it=>flat.push({ ...it, secId:s.id, secName:s.name, secColor:s.color })));
+    return this._shuffle(flat.slice());
+  }
+  examFull(q){ return q.q.replace('___', q.answer==='/'?'':q.answer).replace(/\s+/g,' ').trim(); }
+  pickExam(i){ if(this.examAnswers[i]!==undefined) return; }
+  chooseExam(opt){ this.examAnswers = { ...this.examAnswers, [this.examIdx]: opt }; this.requestUpdate(); }
+  gotoExam(i){ this.examIdx=i; }
+  submitExam(){ this.examStage='result'; window.scrollTo && window.scrollTo(0,0); }
+  examCorrect(){ let n=0; this._examFlat.forEach((q,i)=>{ if(this.examAnswers[i]===q.answer) n++; }); return n; }
+  examWrongAnswered(){ let n=0; this._examFlat.forEach((q,i)=>{ if(this.examAnswers[i]!==undefined && this.examAnswers[i]!==q.answer) n++; }); return n; }
+  examUnanswered(){ let n=0; this._examFlat.forEach((q,i)=>{ if(this.examAnswers[i]===undefined) n++; }); return n; }
+  examSectionScore(id){ let ok=0,tot=0; this._examFlat.forEach((q,i)=>{ if(q.secId===id){ tot++; if(this.examAnswers[i]===q.answer) ok++; } }); return {ok,tot}; }
+  examWrongByBoard(){
+    return (this.data.exam.sections||[]).map(s=>({ sec:s, items:this._examFlat.map((q,g)=>({...q,g})).filter(q=>q.secId===s.id && this.examAnswers[q.g]!==q.answer) })).filter(b=>b.items.length>0);
+  }
+  examAdvice(){
+    const secs=this.data.exam.sections.map(s=>{ const {ok,tot}=this.examSectionScore(s.id); return {name:s.name, pct:tot?Math.round(ok/tot*100):0}; });
+    const weak=secs.filter(s=>s.pct<60), mid=secs.filter(s=>s.pct>=60&&s.pct<85), strong=secs.filter(s=>s.pct>=85);
+    return {weak,mid,strong};
+  }
+  renderExam(){
+    const ex=this.data.exam; if(!ex) return html`<section class="card"><p>暂无测试卷</p></section>`;
+    const per=ex.perQuestion||5, total=this._examFlat.length, full=total*per;
+    if (this.examStage==='intro'){
+      return html`<section class="card center">
+        <h2 class="big">${ico('ic-award')} ${ex.title}</h2>
+        <p class="muted">${ex.intro}</p>
+        <div class="btnrow"><button class="btn btn--primary" @click=${()=>{this.examStage='run';this.examIdx=0;this.examAnswers={};this._examFlat=this._shuffleExam();}}>${ico('ic-edit')} 开始测试</button></div>
+      </section>`;
+    }
+    if (this.examStage==='result'){
+      const c=this.examCorrect(), w=this.examWrongAnswered(), u=this.examUnanswered();
+      const scoreN=c*per, pct=Math.round(c/total*100);
+      const level = pct>=90?'优秀':pct>=75?'良好':pct>=60?'及格':'待提升';
+      const adv=this.examAdvice();
+      const wb=this.examWrongByBoard();
+      return html`<section class="card">
+        <div class="card__hd hd--brand">${ico('ic-award')}<h2>测试报告<small>Diagnosis</small></h2></div>
+        <div class="result-score">
+          <div class="rs__num">${scoreN}<small>/${full}</small></div>
+          <div class="rs__lv rs--${level}">${level} · 正确率 ${pct}%</div>
+        </div>
+        <div class="tally">
+          <div class="ty ty--ok"><b>${c}</b><span>答对</span></div>
+          <div class="ty ty--no"><b>${w}</b><span>答错</span></div>
+          <div class="ty ty--un"><b>${u}</b><span>未答</span></div>
+          <div class="ty"><b>${total}</b><span>总题数</span></div>
+        </div>
+        <div class="board-mastery">
+          <div class="sec-sub">各板块掌握情况</div>
+          ${ex.sections.map(s=>{ const {ok,tot}=this.examSectionScore(s.id); const p=tot?Math.round(ok/tot*100):0; const tag=p>=85?'牢固':p>=60?'一般':'薄弱';
+            return html`<div class="bm">
+              <span class="bm__name">${s.name}</span>
+              <span class="bm__bar"><i style="width:${p}%" class="bar--${p>=85?'ok':p>=60?'mid':'no'}"></i></span>
+              <span class="bm__num">${ok}/${tot}</span>
+              <span class="bm__tag tag--${p>=85?'ok':p>=60?'mid':'no'}">${tag}</span>
+            </div>`; })}
+        </div>
+        <div class="advice">
+          <div class="sec-sub">${ico('ic-lightbulb')} 学习改进建议</div>
+          ${adv.weak.length?html`<p><b class="c-no">需重点突破:</b>${adv.weak.map(s=>s.name+'('+s.pct+'%)').join('、')}。先弄懂错题的原理,再针对性地多做同类题、多造句。</p>`:''}
+          ${adv.mid.length?html`<p><b class="c-mid">仍有提升空间:</b>${adv.mid.map(s=>s.name+'('+s.pct+'%)').join('、')}。把错题重做一遍,并试着用这些词/句型各造一个句子。</p>`:''}
+          ${adv.strong.length?html`<p><b class="c-ok">已经掌握:</b>${adv.strong.map(s=>s.name).join('、')}。保持住!</p>`:''}
+          <p class="plan">复习计划:今天弄懂错题 → 明天重做错题 → 一周后再测一次查漏补缺。</p>
+        </div>
+        ${wb.length?html`<div class="wrong-board">
+          <div class="sec-sub">${ico('ic-refresh')} 错题本(按板块归类)</div>
+          ${wb.map(b=>html`<div class="wb-group">
+            <div class="wb-hd hd--${b.sec.color}">${ico(b.sec.icon)} ${b.sec.name} · 错 ${b.items.length} 题</div>
+            ${b.items.map(q=>{ const full=this.examFull(q); const my=this.examAnswers[q.g];
+              return html`<div class="wb-item">
+                <div class="wb-q">${String(q.q).replace('___','____')}</div>
+                <div class="wb-ans"><span class="c-no">你的答案:${my===undefined?'未答':my}</span> <span class="c-ok">正确:${q.answer}</span></div>
+                <div class="wb-full">${full} <span class="wex__ipa">${sentenceIPA(full)}</span> ${this._audioBtn(full)}</div>
+                <div class="wb-ex">${q.explain}</div>
+              </div>`; })}
+          </div>`)}
+        </div>`:html`<p class="ok">全对,没有错题!</p>`}
+        <div class="btnrow"><button class="btn btn--primary" @click=${()=>{this.examStage='intro';}}>返回</button></div>
+      </section>`;
+    }
+    // run
+    const q=this._examFlat[this.examIdx]; const answered=Object.keys(this.examAnswers).length;
+    const parts=String(q.q).split('___');
+    return html`<section class="card">
+      <div class="quiz-hd">
+        <div class="progress"><span style="width:${Math.round(answered/total*100)}%"></span></div>
+        <div class="quiz-meta"><span>摸底测试 · 单项选择</span><span>已答 ${answered}/${total}</span></div>
+      </div>
+      <div class="exam-q">
+        <span class="exam-no">${this.examIdx+1}.</span>
+        <span class="stem-clz">${parts[0]}<span class="blank"></span>${parts[1]||''}</span>
+      </div>
+      ${q.zh?html`<div class="qzh">${q.zh}</div>`:''}
+      <div class="opts">
+        ${q.options.map(op=>{ const sel=this.examAnswers[this.examIdx]===op; return html`<button class="opt ${sel?'opt--sel':''}" @click=${()=>this.chooseExam(op)}>${op}</button>`; })}
+      </div>
+      <div class="exam-nav">
+        <button class="btn btn--ghost sm" ?disabled=${this.examIdx===0} @click=${()=>this.gotoExam(this.examIdx-1)}>上一题</button>
+        <button class="btn btn--ghost sm" ?disabled=${this.examIdx===total-1} @click=${()=>this.gotoExam(this.examIdx+1)}>下一题</button>
+        <button class="btn btn--primary sm" @click=${()=>this.submitExam()}>${ico('ic-check-circle-2')} 交卷</button>
+      </div>
+      <div class="sheet">
+        <div class="sheet__t">答题卡</div>
+        <div class="sheet__grid">
+          ${this._examFlat.map((_,i)=>{ const done=this.examAnswers[i]!==undefined; const cur=i===this.examIdx;
+            return html`<button class="cell ${done?'cell--done':''} ${cur?'cell--cur':''}" @click=${()=>this.gotoExam(i)}>${i+1}</button>`; })}
+        </div>
+      </div>
+    </section>`;
+  }
+
+  // ---- util ----
+  _shuffle(a){ for(let i=a.length-1;i>0;i--){ const j=Math.floor(Math.random()*(i+1)); [a[i],a[j]]=[a[j],a[i]]; } return a; }
+}
+if (typeof customElements !== 'undefined') customElements.define('topic-app', TopicApp);
+
+</script>
+</body>
+</html>
