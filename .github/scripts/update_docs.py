@@ -18,11 +18,13 @@ import json
 import re
 import subprocess
 import sys
+from datetime import datetime, timedelta, timezone
 from pathlib import Path
 from urllib.parse import quote
 
 ROOT = Path(__file__).resolve().parent.parent.parent  # repo root
 DATE_FIELDS = ("uploaded_ts", "uploaded_at", "updated_ts", "updated_at")
+DISPLAY_TZ = timezone(timedelta(hours=8))
 
 
 def load_page_metadata() -> dict:
@@ -323,13 +325,7 @@ def get_git_last_updated(filename: str) -> tuple[int, str]:
             capture_output=True,
             text=True,
         ).stdout.strip()
-        at = subprocess.run(
-            ["git", "-C", str(ROOT), "log", "-1", "--date=format:%Y-%m-%d %H:%M", "--format=%cd", "--", filename],
-            check=True,
-            capture_output=True,
-            text=True,
-        ).stdout.strip()
-        return (int(ts), at) if ts and at else (0, "")
+        return (int(ts), format_display_time(int(ts))) if ts else (0, "")
     except Exception:
         return 0, ""
 
@@ -342,18 +338,13 @@ def get_git_uploaded_at(filename: str) -> tuple[int, str]:
             capture_output=True,
             text=True,
         ).stdout.strip().splitlines()
-        at = subprocess.run(
-            [
-                "git", "-C", str(ROOT), "log", "--diff-filter=A", "--follow",
-                "--date=format:%Y-%m-%d %H:%M", "--format=%cd", "--", filename,
-            ],
-            check=True,
-            capture_output=True,
-            text=True,
-        ).stdout.strip().splitlines()
-        return (int(ts[-1]), at[-1]) if ts and at else (0, "")
+        return (int(ts[-1]), format_display_time(int(ts[-1]))) if ts else (0, "")
     except Exception:
         return 0, ""
+
+
+def format_display_time(ts: int) -> str:
+    return datetime.fromtimestamp(ts, DISPLAY_TZ).strftime("%Y-%m-%d %H:%M")
 
 
 # ---------------------------------------------------------------------------
