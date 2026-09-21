@@ -1,0 +1,17 @@
+{
+  "provider": "Microsoft Edge Read Aloud TTS",
+  "library": "edge-tts",
+  "voice": "en-GB-SoniaNeural",
+  "rate": "-10%",
+  "clips": {
+    "intro": "Welcome to the Unit Three and Unit Six English test. Listen carefully. Enjoy your journey through nature and around the world.",
+    "l1": "Plateau. Plateau.",
+    "l2": "Girl: Shall we visit the desert on Saturday? Father: It will be too hot. Let us go to the waterfall instead. Girl: What about the lake? Father: We can go there on Sunday.",
+    "l3": "Square kilometre. Square kilometre.",
+    "l4": "Boy: Is this town famous for its old buildings? Girl: No. People come here for its local food. The food festival is very popular.",
+    "l5": "Lucy: I cannot find my passport! Father: Is your flight ticket missing too? Lucy: No, the ticket is on my phone. Father: Does your flight leave at eight thirty? Lucy: That was the old time. It now leaves at nine thirty in the morning.",
+    "l6": "Welcome to Blue Lake. We saw eighteen birds on our walk. The lake is eighty metres deep at its deepest point. It is three kilometres wide.",
+    "l7": "Girl: Ben, why did you travel abroad last month? Ben: I wanted to learn about another culture. Girl: What did you do there? Ben: I tried local food, visited a waterfall and talked to local people.",
+    "l8": "Good luck. Good luck."
+  }
+}
