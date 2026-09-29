@@ -1,0 +1,15 @@
+{
+  "provider": "Microsoft Edge Read Aloud TTS",
+  "library": "edge-tts",
+  "voice": "en-GB-SoniaNeural",
+  "rate": "-10%",
+  "clips": {
+    "intro": "Welcome to the English phrases practice. Listen carefully and choose or complete each answer. Good luck!",
+    "l1": "Nina saves half of her pocket money every week. She wants to buy a birthday present for her mother.",
+    "l2": "Walking every day is good for your health. You can walk to school with your friends.",
+    "l3": "This beautiful lake covers an area of two square kilometres.",
+    "l4": "The invention helps us solve a problem. It gives food to our pets when we are away.",
+    "l5": "Your temperature is high. You have a fever. Please drink some water and get some rest.",
+    "l6": "We are travelling around the country. We see different views every day."
+  }
+}

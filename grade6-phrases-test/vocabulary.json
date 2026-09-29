@@ -1,0 +1,868 @@
+{
+  "source": "外研版(三起)六年级上册英语单词表 (2026秋新版).pdf",
+  "note": "按用户提供的词表整理;【补】沿用原表标记。此处不独立认证教材版本。",
+  "units": [
+    {
+      "unit": 1,
+      "title": "What do you do with money?",
+      "words": [
+        {
+          "word": "money",
+          "ipa": "/ˈmʌni/",
+          "pos": "n.",
+          "meaning": "钱,金钱",
+          "supplement": true
+        },
+        {
+          "word": "pocket money",
+          "ipa": "/ˈpɒkɪt ˈmʌni/",
+          "pos": "n.",
+          "meaning": "零花钱",
+          "supplement": false
+        },
+        {
+          "word": "coin",
+          "ipa": "/kɔɪn/",
+          "pos": "n.",
+          "meaning": "硬币",
+          "supplement": false
+        },
+        {
+          "word": "banknote",
+          "ipa": "/ˈbæŋknəʊt/",
+          "pos": "n.",
+          "meaning": "纸币",
+          "supplement": false
+        },
+        {
+          "word": "wallet",
+          "ipa": "/ˈwɒlɪt/",
+          "pos": "n.",
+          "meaning": "钱包",
+          "supplement": false
+        },
+        {
+          "word": "change",
+          "ipa": "/tʃeɪndʒ/",
+          "pos": "n.",
+          "meaning": "零钱;找零",
+          "supplement": true
+        },
+        {
+          "word": "price",
+          "ipa": "/praɪs/",
+          "pos": "n.",
+          "meaning": "价格",
+          "supplement": true
+        },
+        {
+          "word": "cheap",
+          "ipa": "/tʃiːp/",
+          "pos": "adj.",
+          "meaning": "便宜的",
+          "supplement": false
+        },
+        {
+          "word": "expensive",
+          "ipa": "/ɪkˈspensɪv/",
+          "pos": "adj.",
+          "meaning": "昂贵的",
+          "supplement": false
+        },
+        {
+          "word": "afford",
+          "ipa": "/əˈfɔːd/",
+          "pos": "v.",
+          "meaning": "买得起;负担得起",
+          "supplement": true
+        },
+        {
+          "word": "buy",
+          "ipa": "/baɪ/",
+          "pos": "v.",
+          "meaning": "买",
+          "supplement": false
+        },
+        {
+          "word": "sell",
+          "ipa": "/sel/",
+          "pos": "v.",
+          "meaning": "卖",
+          "supplement": false
+        },
+        {
+          "word": "pay",
+          "ipa": "/peɪ/",
+          "pos": "v.",
+          "meaning": "支付",
+          "supplement": true
+        },
+        {
+          "word": "cost",
+          "ipa": "/kɒst/",
+          "pos": "v.",
+          "meaning": "花费",
+          "supplement": false
+        },
+        {
+          "word": "save",
+          "ipa": "/seɪv/",
+          "pos": "v.",
+          "meaning": "储蓄;存(钱)",
+          "supplement": false
+        },
+        {
+          "word": "spend",
+          "ipa": "/spend/",
+          "pos": "v.",
+          "meaning": "用(钱),花费",
+          "supplement": false
+        },
+        {
+          "word": "share",
+          "ipa": "/ʃeə(r)/",
+          "pos": "v.",
+          "meaning": "分享",
+          "supplement": false
+        },
+        {
+          "word": "donate",
+          "ipa": "/dəʊˈneɪt/",
+          "pos": "v.",
+          "meaning": "捐赠",
+          "supplement": true
+        },
+        {
+          "word": "charity",
+          "ipa": "/ˈtʃærəti/",
+          "pos": "n.",
+          "meaning": "慈善",
+          "supplement": true
+        },
+        {
+          "word": "people in need",
+          "ipa": "—",
+          "pos": "n.",
+          "meaning": "有需要的人",
+          "supplement": false
+        },
+        {
+          "word": "come true",
+          "ipa": "—",
+          "pos": "短语",
+          "meaning": "实现",
+          "supplement": false
+        }
+      ]
+    },
+    {
+      "unit": 2,
+      "title": "What's your opinion?",
+      "words": [
+        {
+          "word": "opinion",
+          "ipa": "/əˈpɪnjən/",
+          "pos": "n.",
+          "meaning": "意⻅,看法,观点",
+          "supplement": false
+        },
+        {
+          "word": "fact",
+          "ipa": "/fækt/",
+          "pos": "n.",
+          "meaning": "事实,真相",
+          "supplement": false
+        },
+        {
+          "word": "truth",
+          "ipa": "/truːθ/",
+          "pos": "n.",
+          "meaning": "事实,真相,实情",
+          "supplement": false
+        },
+        {
+          "word": "idea",
+          "ipa": "/aɪˈdɪə/",
+          "pos": "n.",
+          "meaning": "主意,想法",
+          "supplement": true
+        },
+        {
+          "word": "reason",
+          "ipa": "/ˈriːzn/",
+          "pos": "n.",
+          "meaning": "原因,理由",
+          "supplement": false
+        },
+        {
+          "word": "think",
+          "ipa": "/θɪŋk/",
+          "pos": "v.",
+          "meaning": "想,认为",
+          "supplement": true
+        },
+        {
+          "word": "agree",
+          "ipa": "/əˈɡriː/",
+          "pos": "v.",
+          "meaning": "同意",
+          "supplement": true
+        },
+        {
+          "word": "disagree",
+          "ipa": "/ˌdɪsəˈɡriː/",
+          "pos": "v.",
+          "meaning": "不同意",
+          "supplement": true
+        },
+        {
+          "word": "discuss",
+          "ipa": "/dɪˈskʌs/",
+          "pos": "v.",
+          "meaning": "讨论",
+          "supplement": true
+        },
+        {
+          "word": "debate",
+          "ipa": "/dɪˈbeɪt/",
+          "pos": "n./v.",
+          "meaning": "讨论,辩论",
+          "supplement": false
+        },
+        {
+          "word": "explore",
+          "ipa": "/ɪkˈsplɔː(r)/",
+          "pos": "v.",
+          "meaning": "探讨,探究",
+          "supplement": false
+        },
+        {
+          "word": "health",
+          "ipa": "/helθ/",
+          "pos": "n.",
+          "meaning": "健康(状况)",
+          "supplement": false
+        },
+        {
+          "word": "fairy tale",
+          "ipa": "/ˈfeəri teɪl/",
+          "pos": "n.",
+          "meaning": "童话;神话",
+          "supplement": false
+        },
+        {
+          "word": "dinosaur",
+          "ipa": "/ˈdaɪnəsɔː(r)/",
+          "pos": "n.",
+          "meaning": "恐⻰",
+          "supplement": false
+        },
+        {
+          "word": "grey",
+          "ipa": "/ɡreɪ/",
+          "pos": "n./adj.",
+          "meaning": "灰色;灰色的",
+          "supplement": false
+        },
+        {
+          "word": "peel",
+          "ipa": "/piːl/",
+          "pos": "n.",
+          "meaning": "(水果和蔬菜的)外皮",
+          "supplement": false
+        },
+        {
+          "word": "line",
+          "ipa": "/laɪn/",
+          "pos": "n.",
+          "meaning": "线,线条",
+          "supplement": false
+        },
+        {
+          "word": "than",
+          "ipa": "/ðæn/",
+          "pos": "conj.",
+          "meaning": "比(用于比较)",
+          "supplement": false
+        },
+        {
+          "word": "be good for",
+          "ipa": "—",
+          "pos": "短语",
+          "meaning": "对......有利",
+          "supplement": false
+        },
+        {
+          "word": "talk about",
+          "ipa": "—",
+          "pos": "短语",
+          "meaning": "谈论",
+          "supplement": false
+        }
+      ]
+    },
+    {
+      "unit": 3,
+      "title": "Wonderful nature",
+      "words": [
+        {
+          "word": "nature",
+          "ipa": "/ˈneɪtʃə(r)/",
+          "pos": "n.",
+          "meaning": "大自然,自然",
+          "supplement": true
+        },
+        {
+          "word": "natural",
+          "ipa": "/ˈnætʃrəl/",
+          "pos": "adj.",
+          "meaning": "自然的",
+          "supplement": false
+        },
+        {
+          "word": "wonder",
+          "ipa": "/ˈwʌndə(r)/",
+          "pos": "n.",
+          "meaning": "奇迹",
+          "supplement": false
+        },
+        {
+          "word": "wonderful",
+          "ipa": "/ˈwʌndəfl/",
+          "pos": "adj.",
+          "meaning": "令人惊叹的,奇妙的",
+          "supplement": true
+        },
+        {
+          "word": "scenery",
+          "ipa": "/ˈsiːnəri/",
+          "pos": "n.",
+          "meaning": "⻛景,景色",
+          "supplement": true
+        },
+        {
+          "word": "view",
+          "ipa": "/vjuː/",
+          "pos": "n.",
+          "meaning": "景色,视野",
+          "supplement": false
+        },
+        {
+          "word": "desert",
+          "ipa": "/ˈdezət/",
+          "pos": "n.",
+          "meaning": "沙漠",
+          "supplement": false
+        },
+        {
+          "word": "grassland",
+          "ipa": "/ˈɡrɑːslænd/",
+          "pos": "n.",
+          "meaning": "草原",
+          "supplement": false
+        },
+        {
+          "word": "lake",
+          "ipa": "/leɪk/",
+          "pos": "n.",
+          "meaning": "湖泊",
+          "supplement": false
+        },
+        {
+          "word": "plateau",
+          "ipa": "/ˈplætəʊ/",
+          "pos": "n.",
+          "meaning": "高原",
+          "supplement": false
+        },
+        {
+          "word": "waterfall",
+          "ipa": "/ˈwɔːtəfɔːl/",
+          "pos": "n.",
+          "meaning": "瀑布",
+          "supplement": false
+        },
+        {
+          "word": "deep",
+          "ipa": "/diːp/",
+          "pos": "adj.",
+          "meaning": "深的",
+          "supplement": false
+        },
+        {
+          "word": "wide",
+          "ipa": "/waɪd/",
+          "pos": "adj.",
+          "meaning": "宽的",
+          "supplement": false
+        },
+        {
+          "word": "square kilometre",
+          "ipa": "—",
+          "pos": "n.",
+          "meaning": "平方公里",
+          "supplement": false
+        },
+        {
+          "word": "famous",
+          "ipa": "/ˈfeɪməs/",
+          "pos": "adj.",
+          "meaning": "著名的",
+          "supplement": false
+        },
+        {
+          "word": "traveller",
+          "ipa": "/ˈtrævələ(r)/",
+          "pos": "n.",
+          "meaning": "旅行者",
+          "supplement": false
+        },
+        {
+          "word": "be interested in",
+          "ipa": "—",
+          "pos": "短语",
+          "meaning": "对......感兴趣",
+          "supplement": false
+        },
+        {
+          "word": "be famous for",
+          "ipa": "—",
+          "pos": "短语",
+          "meaning": "因......而闻名",
+          "supplement": false
+        }
+      ]
+    },
+    {
+      "unit": 4,
+      "title": "We can do it!",
+      "words": [
+        {
+          "word": "invention",
+          "ipa": "/ɪnˈvenʃn/",
+          "pos": "n.",
+          "meaning": "发明(物)",
+          "supplement": false
+        },
+        {
+          "word": "inventor",
+          "ipa": "/ɪnˈventə(r)/",
+          "pos": "n.",
+          "meaning": "发明家",
+          "supplement": false
+        },
+        {
+          "word": "exhibition",
+          "ipa": "/ˌeksɪˈbɪʃn/",
+          "pos": "n.",
+          "meaning": "展览",
+          "supplement": false
+        },
+        {
+          "word": "problem",
+          "ipa": "/ˈprɒbləm/",
+          "pos": "n.",
+          "meaning": "问题,难题",
+          "supplement": true
+        },
+        {
+          "word": "solve",
+          "ipa": "/sɒlv/",
+          "pos": "v.",
+          "meaning": "解决",
+          "supplement": true
+        },
+        {
+          "word": "create",
+          "ipa": "/kriˈeɪt/",
+          "pos": "v.",
+          "meaning": "创造",
+          "supplement": true
+        },
+        {
+          "word": "material",
+          "ipa": "/məˈtɪəriəl/",
+          "pos": "n.",
+          "meaning": "材料",
+          "supplement": false
+        },
+        {
+          "word": "cloth",
+          "ipa": "/klɒθ/",
+          "pos": "n.",
+          "meaning": "布料",
+          "supplement": false
+        },
+        {
+          "word": "bamboo",
+          "ipa": "/bæmˈbuː/",
+          "pos": "n.",
+          "meaning": "竹子",
+          "supplement": false
+        },
+        {
+          "word": "umbrella",
+          "ipa": "/ʌmˈbrelə/",
+          "pos": "n.",
+          "meaning": "雨伞",
+          "supplement": false
+        },
+        {
+          "word": "wheelchair",
+          "ipa": "/ˈwiːltʃeə(r)/",
+          "pos": "n.",
+          "meaning": "轮椅",
+          "supplement": false
+        },
+        {
+          "word": "feeder",
+          "ipa": "/ˈfiːdə(r)/",
+          "pos": "n.",
+          "meaning": "喂⻝器",
+          "supplement": false
+        },
+        {
+          "word": "drum",
+          "ipa": "/drʌm/",
+          "pos": "n.",
+          "meaning": "鼓",
+          "supplement": false
+        },
+        {
+          "word": "glue",
+          "ipa": "/ɡluː/",
+          "pos": "n./v.",
+          "meaning": "胶水;黏合",
+          "supplement": false
+        },
+        {
+          "word": "fold",
+          "ipa": "/fəʊld/",
+          "pos": "v.",
+          "meaning": "折叠",
+          "supplement": false
+        },
+        {
+          "word": "hang",
+          "ipa": "/hæŋ/",
+          "pos": "v.",
+          "meaning": "悬挂",
+          "supplement": false
+        },
+        {
+          "word": "easily",
+          "ipa": "/ˈiːzəli/",
+          "pos": "adv.",
+          "meaning": "容易地",
+          "supplement": false
+        },
+        {
+          "word": "step",
+          "ipa": "/step/",
+          "pos": "n.",
+          "meaning": "步骤",
+          "supplement": false
+        },
+        {
+          "word": "first",
+          "ipa": "/fɜːst/",
+          "pos": "adv.",
+          "meaning": "首先",
+          "supplement": false
+        },
+        {
+          "word": "next",
+          "ipa": "/nekst/",
+          "pos": "adv.",
+          "meaning": "接下来",
+          "supplement": false
+        }
+      ]
+    },
+    {
+      "unit": 5,
+      "title": "Health matters",
+      "words": [
+        {
+          "word": "health",
+          "ipa": "/helθ/",
+          "pos": "n.",
+          "meaning": "健康",
+          "supplement": false
+        },
+        {
+          "word": "healthy",
+          "ipa": "/ˈhelθi/",
+          "pos": "adj.",
+          "meaning": "健康的",
+          "supplement": true
+        },
+        {
+          "word": "matter",
+          "ipa": "/ˈmætə(r)/",
+          "pos": "n./v.",
+          "meaning": "问题;要紧",
+          "supplement": false
+        },
+        {
+          "word": "fever",
+          "ipa": "/ˈfiːvə(r)/",
+          "pos": "n.",
+          "meaning": "发烧",
+          "supplement": false
+        },
+        {
+          "word": "flu",
+          "ipa": "/fluː/",
+          "pos": "n.",
+          "meaning": "流感",
+          "supplement": false
+        },
+        {
+          "word": "virus",
+          "ipa": "/ˈvaɪrəs/",
+          "pos": "n.",
+          "meaning": "病毒",
+          "supplement": false
+        },
+        {
+          "word": "headache",
+          "ipa": "/ˈhedeɪk/",
+          "pos": "n.",
+          "meaning": "头痛",
+          "supplement": false
+        },
+        {
+          "word": "toothache",
+          "ipa": "/ˈtuːθeɪk/",
+          "pos": "n.",
+          "meaning": "牙痛",
+          "supplement": false
+        },
+        {
+          "word": "stomachache",
+          "ipa": "/ˈstʌməkeɪk/",
+          "pos": "n.",
+          "meaning": "胃痛;肚子痛",
+          "supplement": true
+        },
+        {
+          "word": "sore throat",
+          "ipa": "/sɔː θrəʊt/",
+          "pos": "n.",
+          "meaning": "喉咙痛",
+          "supplement": false
+        },
+        {
+          "word": "runny nose",
+          "ipa": "/ˈrʌni nəʊz/",
+          "pos": "n.",
+          "meaning": "流鼻涕",
+          "supplement": false
+        },
+        {
+          "word": "medicine",
+          "ipa": "/ˈmedsn/",
+          "pos": "n.",
+          "meaning": "药",
+          "supplement": true
+        },
+        {
+          "word": "rest",
+          "ipa": "/rest/",
+          "pos": "n./v.",
+          "meaning": "休息",
+          "supplement": true
+        },
+        {
+          "word": "recover",
+          "ipa": "/rɪˈkʌvə(r)/",
+          "pos": "v.",
+          "meaning": "恢复;康复",
+          "supplement": true
+        },
+        {
+          "word": "tip",
+          "ipa": "/tɪp/",
+          "pos": "n.",
+          "meaning": "提示;小贴士",
+          "supplement": false
+        },
+        {
+          "word": "have a fever",
+          "ipa": "—",
+          "pos": "短语",
+          "meaning": "发烧",
+          "supplement": false
+        },
+        {
+          "word": "have a headache",
+          "ipa": "—",
+          "pos": "短语",
+          "meaning": "头痛",
+          "supplement": false
+        },
+        {
+          "word": "take medicine",
+          "ipa": "—",
+          "pos": "短语",
+          "meaning": "吃药",
+          "supplement": true
+        },
+        {
+          "word": "take a rest",
+          "ipa": "—",
+          "pos": "短语",
+          "meaning": "休息一下",
+          "supplement": true
+        }
+      ]
+    },
+    {
+      "unit": 6,
+      "title": "See the world",
+      "words": [
+        {
+          "word": "world",
+          "ipa": "/wɜːld/",
+          "pos": "n.",
+          "meaning": "世界",
+          "supplement": true
+        },
+        {
+          "word": "country",
+          "ipa": "/ˈkʌntri/",
+          "pos": "n.",
+          "meaning": "国家",
+          "supplement": false
+        },
+        {
+          "word": "capital",
+          "ipa": "/ˈkæpɪtl/",
+          "pos": "n.",
+          "meaning": "首都",
+          "supplement": false
+        },
+        {
+          "word": "culture",
+          "ipa": "/ˈkʌltʃə(r)/",
+          "pos": "n.",
+          "meaning": "文化",
+          "supplement": false
+        },
+        {
+          "word": "festival",
+          "ipa": "/ˈfestɪvl/",
+          "pos": "n.",
+          "meaning": "节日",
+          "supplement": false
+        },
+        {
+          "word": "view",
+          "ipa": "/vjuː/",
+          "pos": "n.",
+          "meaning": "⻛景,视野",
+          "supplement": false
+        },
+        {
+          "word": "experience",
+          "ipa": "/ɪkˈspɪəriəns/",
+          "pos": "n.",
+          "meaning": "经历",
+          "supplement": false
+        },
+        {
+          "word": "local",
+          "ipa": "/ˈləʊkl/",
+          "pos": "adj.",
+          "meaning": "当地的",
+          "supplement": false
+        },
+        {
+          "word": "abroad",
+          "ipa": "/əˈbrɔːd/",
+          "pos": "adv.",
+          "meaning": "国外;在国外",
+          "supplement": true
+        },
+        {
+          "word": "passport",
+          "ipa": "/ˈpɑːspɔːt/",
+          "pos": "n.",
+          "meaning": "护照",
+          "supplement": true
+        },
+        {
+          "word": "flight",
+          "ipa": "/flaɪt/",
+          "pos": "n.",
+          "meaning": "航班;⻜行",
+          "supplement": true
+        },
+        {
+          "word": "kangaroo",
+          "ipa": "/ˌkæŋɡəˈruː/",
+          "pos": "n.",
+          "meaning": "袋鼠",
+          "supplement": false
+        },
+        {
+          "word": "famous",
+          "ipa": "/ˈfeɪməs/",
+          "pos": "adj.",
+          "meaning": "著名的",
+          "supplement": false
+        },
+        {
+          "word": "travel",
+          "ipa": "/ˈtrævl/",
+          "pos": "v./n.",
+          "meaning": "旅行",
+          "supplement": false
+        },
+        {
+          "word": "trip",
+          "ipa": "/trɪp/",
+          "pos": "n.",
+          "meaning": "旅行",
+          "supplement": false
+        },
+        {
+          "word": "brand-new",
+          "ipa": "/ˌbrændˈnjuː/",
+          "pos": "adj.",
+          "meaning": "崭新的",
+          "supplement": false
+        },
+        {
+          "word": "see different views",
+          "ipa": "—",
+          "pos": "短语",
+          "meaning": "欣赏不同⻛景",
+          "supplement": false
+        },
+        {
+          "word": "local food",
+          "ipa": "—",
+          "pos": "短语",
+          "meaning": "当地美⻝",
+          "supplement": false
+        },
+        {
+          "word": "travel experience",
+          "ipa": "—",
+          "pos": "短语",
+          "meaning": "旅行经历",
+          "supplement": false
+        },
+        {
+          "word": "good luck",
+          "ipa": "—",
+          "pos": "短语",
+          "meaning": "好运",
+          "supplement": false
+        }
+      ]
+    }
+  ]
+}
