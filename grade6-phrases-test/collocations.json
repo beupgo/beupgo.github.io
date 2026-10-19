@@ -1,0 +1,482 @@
+[
+  {
+    "id": "p01",
+    "unit": 1,
+    "phrase": "pocket money",
+    "meaning": "零花钱",
+    "origin": "原词表",
+    "note": "录音说 Nina saves half of her pocket money，pocket money 指零花钱。"
+  },
+  {
+    "id": "p02",
+    "unit": 1,
+    "phrase": "people in need",
+    "meaning": "有需要的人",
+    "origin": "原词表",
+    "note": "people in need 是“有需要的人”；need 在此搭配中用单数形式。"
+  },
+  {
+    "id": "p03",
+    "unit": 1,
+    "phrase": "come true",
+    "meaning": "实现",
+    "origin": "原词表",
+    "note": "come true 表示实现；last year 要用过去式 came true。"
+  },
+  {
+    "id": "p04",
+    "unit": 1,
+    "phrase": "pay for",
+    "meaning": "为……付款",
+    "origin": "词汇拓展",
+    "note": "pay for sth 表示为某物付款；paid 是 pay 的过去式。"
+  },
+  {
+    "id": "p05",
+    "unit": 1,
+    "phrase": "spend money on sth",
+    "meaning": "花钱买某物",
+    "origin": "词汇拓展",
+    "note": "spend money on sth 表示在某物上花钱。"
+  },
+  {
+    "id": "p06",
+    "unit": 1,
+    "phrase": "spend time doing sth",
+    "meaning": "花时间做某事",
+    "origin": "词汇拓展",
+    "note": "spend time doing sth；spent 后接时间，再接动名词 making。"
+  },
+  {
+    "id": "p07",
+    "unit": 1,
+    "phrase": "buy sth from sb",
+    "meaning": "从某人处购买某物",
+    "origin": "词汇拓展",
+    "note": "buy sth from sb 表示从某人处购买某物。"
+  },
+  {
+    "id": "p08",
+    "unit": 1,
+    "phrase": "sell sth to sb",
+    "meaning": "把某物卖给某人",
+    "origin": "词汇拓展",
+    "note": "sell sth to sb 表示把某物卖给某人。"
+  },
+  {
+    "id": "p09",
+    "unit": 1,
+    "phrase": "save money for sth",
+    "meaning": "为某事物存钱",
+    "origin": "词汇拓展",
+    "note": "save money for sth 表示为某物存钱。"
+  },
+  {
+    "id": "p10",
+    "unit": 1,
+    "phrase": "share sth with sb",
+    "meaning": "与某人分享某物",
+    "origin": "词汇拓展",
+    "note": "share sth with sb 表示与某人分享某物。"
+  },
+  {
+    "id": "p11",
+    "unit": 1,
+    "phrase": "donate sth to sb/sth",
+    "meaning": "向某人或机构捐赠某物",
+    "origin": "词汇拓展",
+    "note": "donate sth to sb/sth 表示向某人或机构捐赠某物。"
+  },
+  {
+    "id": "p12",
+    "unit": 1,
+    "phrase": "afford to do sth",
+    "meaning": "负担得起做某事",
+    "origin": "词汇拓展",
+    "note": "afford to do sth 表示负担得起做某事。"
+  },
+  {
+    "id": "p13",
+    "unit": 2,
+    "phrase": "be good for",
+    "meaning": "对……有益",
+    "origin": "原词表",
+    "note": "录音说 is good for your health；be good for 表示对……有益。"
+  },
+  {
+    "id": "p14",
+    "unit": 2,
+    "phrase": "talk about",
+    "meaning": "谈论",
+    "origin": "原词表",
+    "note": "talk about sth 表示谈论某事；后面也可接讨论的具体问题。"
+  },
+  {
+    "id": "p15",
+    "unit": 2,
+    "phrase": "fairy tale",
+    "meaning": "童话",
+    "origin": "原词表",
+    "note": "fairy tale 是童话；单数 tale 与前面的 a 对应。"
+  },
+  {
+    "id": "p16",
+    "unit": 2,
+    "phrase": "in my opinion",
+    "meaning": "在我看来",
+    "origin": "词汇拓展",
+    "note": "in my opinion 用来表达个人观点。"
+  },
+  {
+    "id": "p17",
+    "unit": 2,
+    "phrase": "agree with sb",
+    "meaning": "同意某人的观点",
+    "origin": "词汇拓展",
+    "note": "agree with sb 表示同意某人的观点。"
+  },
+  {
+    "id": "p18",
+    "unit": 2,
+    "phrase": "disagree with sb",
+    "meaning": "不同意某人的观点",
+    "origin": "词汇拓展",
+    "note": "disagree with sb 表示不同意某人的观点。"
+  },
+  {
+    "id": "p19",
+    "unit": 2,
+    "phrase": "think about",
+    "meaning": "思考；考虑",
+    "origin": "词汇拓展",
+    "note": "think about 表示考虑；此处 think over（仔细考虑）也成立，接受 over。"
+  },
+  {
+    "id": "p20",
+    "unit": 2,
+    "phrase": "tell the truth",
+    "meaning": "说实话",
+    "origin": "词汇拓展",
+    "note": "tell the truth 是固定表达，truth 前有 the。"
+  },
+  {
+    "id": "p21",
+    "unit": 2,
+    "phrase": "discuss sth",
+    "meaning": "讨论某事",
+    "origin": "词汇拓展",
+    "note": "discuss 直接接讨论的内容，不加 about；原句是过去时，用 discussed。"
+  },
+  {
+    "id": "p22",
+    "unit": 2,
+    "phrase": "the reason for",
+    "meaning": "……的原因",
+    "origin": "词汇拓展",
+    "note": "the reason for sth/doing sth 表示某事或做某事的原因。"
+  },
+  {
+    "id": "p23",
+    "unit": 3,
+    "phrase": "square kilometre",
+    "meaning": "平方公里",
+    "origin": "原词表",
+    "note": "录音说 two square kilometres；two 后用复数 kilometres。"
+  },
+  {
+    "id": "p24",
+    "unit": 3,
+    "phrase": "be interested in",
+    "meaning": "对……感兴趣",
+    "origin": "原词表",
+    "note": "be interested in 后可接名词、动名词或相应的从句内容。"
+  },
+  {
+    "id": "p25",
+    "unit": 3,
+    "phrase": "be famous for",
+    "meaning": "因……而闻名",
+    "origin": "原词表",
+    "note": "be famous for 表示因……而闻名，for 后接闻名的原因或特色。"
+  },
+  {
+    "id": "p26",
+    "unit": 3,
+    "phrase": "natural wonder",
+    "meaning": "自然奇观",
+    "origin": "词汇拓展",
+    "note": "natural 是形容词，修饰名词 wonder，组成 natural wonder。"
+  },
+  {
+    "id": "p27",
+    "unit": 3,
+    "phrase": "wonderful scenery",
+    "meaning": "美妙的风景",
+    "origin": "词汇拓展",
+    "note": "scenery 通常不可数；wonderful scenery 表示美妙的风景，不用 sceneries。"
+  },
+  {
+    "id": "p28",
+    "unit": 3,
+    "phrase": "a view of",
+    "meaning": "……的景色；看见……的视野",
+    "origin": "词汇拓展",
+    "note": "a view of the lake 表示湖景；此处 a view over the lake 也成立，均接受。"
+  },
+  {
+    "id": "p29",
+    "unit": 3,
+    "phrase": "metres deep",
+    "meaning": "……米深",
+    "origin": "词汇拓展",
+    "note": "数词 + metres deep 表示……米深。"
+  },
+  {
+    "id": "p30",
+    "unit": 3,
+    "phrase": "metres wide",
+    "meaning": "……米宽",
+    "origin": "词汇拓展",
+    "note": "数词 + metres wide 表示……米宽。"
+  },
+  {
+    "id": "p31",
+    "unit": 4,
+    "phrase": "solve a problem",
+    "meaning": "解决问题",
+    "origin": "词汇拓展",
+    "note": "录音说 The invention helps us solve a problem；solve a problem 是解决问题。"
+  },
+  {
+    "id": "p32",
+    "unit": 4,
+    "phrase": "be made of",
+    "meaning": "由……制成（原料可辨）",
+    "origin": "词汇拓展",
+    "note": "原料竹子仍能直接辨认时，用 be made of。"
+  },
+  {
+    "id": "p33",
+    "unit": 4,
+    "phrase": "be made from",
+    "meaning": "由……制成（原料经转化）",
+    "origin": "词汇拓展",
+    "note": "木材经加工变成纸，原料形态改变，用 be made from。"
+  },
+  {
+    "id": "p34",
+    "unit": 4,
+    "phrase": "use sth to do sth",
+    "meaning": "用某物做某事",
+    "origin": "词汇拓展",
+    "note": "use sth to do sth；用胶水粘合，用 to stick。"
+  },
+  {
+    "id": "p35",
+    "unit": 4,
+    "phrase": "fold sth in half",
+    "meaning": "把某物对折",
+    "origin": "词汇拓展",
+    "note": "fold sth in half 是把某物对折。"
+  },
+  {
+    "id": "p36",
+    "unit": 4,
+    "phrase": "hang sth on",
+    "meaning": "把某物挂在……上",
+    "origin": "词汇拓展",
+    "note": "hang sth on a hook 表示把某物挂在钩子上；hang sth from a hook 也成立，均接受。"
+  },
+  {
+    "id": "p37",
+    "unit": 4,
+    "phrase": "step by step",
+    "meaning": "一步一步地",
+    "origin": "词汇拓展",
+    "note": "step by step 表示一步一步地，常用于说明制作过程。"
+  },
+  {
+    "id": "p38",
+    "unit": 4,
+    "phrase": "an invention exhibition",
+    "meaning": "发明展览",
+    "origin": "词汇拓展",
+    "note": "invention 以元音音素开头，用 an；an invention exhibition 表示发明展览。"
+  },
+  {
+    "id": "p39",
+    "unit": 5,
+    "phrase": "have a fever",
+    "meaning": "发烧",
+    "origin": "原词表",
+    "note": "录音说 You have a fever；have a fever 中 fever 前有 a。"
+  },
+  {
+    "id": "p40",
+    "unit": 5,
+    "phrase": "have a headache",
+    "meaning": "头痛",
+    "origin": "原词表",
+    "note": "表示头痛用 have a headache，headache 前用 a。"
+  },
+  {
+    "id": "p41",
+    "unit": 5,
+    "phrase": "take medicine",
+    "meaning": "吃药",
+    "origin": "原词表",
+    "note": "take medicine 表示吃药或服药，不用 eat medicine。"
+  },
+  {
+    "id": "p42",
+    "unit": 5,
+    "phrase": "take a rest",
+    "meaning": "休息一下",
+    "origin": "原词表",
+    "note": "take a rest 表示休息一下。"
+  },
+  {
+    "id": "p43",
+    "unit": 5,
+    "phrase": "have the flu",
+    "meaning": "患流感",
+    "origin": "词汇拓展",
+    "note": "have the flu 是表示患流感的常见搭配。"
+  },
+  {
+    "id": "p44",
+    "unit": 5,
+    "phrase": "have a toothache",
+    "meaning": "牙痛",
+    "origin": "词汇拓展",
+    "note": "have a toothache 表示牙痛；此题选项中只有该项符合症状。"
+  },
+  {
+    "id": "p45",
+    "unit": 5,
+    "phrase": "have a stomachache",
+    "meaning": "胃痛；肚子痛",
+    "origin": "词汇拓展",
+    "note": "have a stomachache 表示肚子痛；也接受分开拼写 stomach ache。"
+  },
+  {
+    "id": "p46",
+    "unit": 5,
+    "phrase": "have a sore throat",
+    "meaning": "喉咙痛",
+    "origin": "词汇拓展",
+    "note": "have a sore throat 表示喉咙痛。"
+  },
+  {
+    "id": "p47",
+    "unit": 5,
+    "phrase": "have a runny nose",
+    "meaning": "流鼻涕",
+    "origin": "词汇拓展",
+    "note": "have a runny nose 表示流鼻涕，runny 前用不定冠词 a。"
+  },
+  {
+    "id": "p48",
+    "unit": 5,
+    "phrase": "What is the matter with …?",
+    "meaning": "……怎么了？",
+    "origin": "词汇拓展",
+    "note": "What is the matter with sb? 用来询问某人怎么了。"
+  },
+  {
+    "id": "p49",
+    "unit": 5,
+    "phrase": "recover from",
+    "meaning": "从……中康复",
+    "origin": "词汇拓展",
+    "note": "recover from an illness 表示从疾病中康复。"
+  },
+  {
+    "id": "p50",
+    "unit": 5,
+    "phrase": "keep healthy",
+    "meaning": "保持健康",
+    "origin": "词汇拓展",
+    "note": "keep healthy 表示保持健康；此处 keep fit 和 keep well 也符合句意，均接受。"
+  },
+  {
+    "id": "p51",
+    "unit": 6,
+    "phrase": "see different views",
+    "meaning": "欣赏不同风景",
+    "origin": "原词表",
+    "note": "录音说 We see different views every day；views 用复数。"
+  },
+  {
+    "id": "p52",
+    "unit": 6,
+    "phrase": "local food",
+    "meaning": "当地美食",
+    "origin": "原词表",
+    "note": "local food 表示当地美食；local 是形容词，修饰 food。"
+  },
+  {
+    "id": "p53",
+    "unit": 6,
+    "phrase": "travel experience",
+    "meaning": "旅行经历",
+    "origin": "原词表",
+    "note": "travel experience 表示旅行经历；此处 travel 作名词修饰 experience。"
+  },
+  {
+    "id": "p54",
+    "unit": 6,
+    "phrase": "good luck",
+    "meaning": "好运",
+    "origin": "原词表",
+    "note": "事情开始前可用 Good luck! 祝好运；祝贺完成的成就用 Congratulations!。"
+  },
+  {
+    "id": "p55",
+    "unit": 6,
+    "phrase": "the capital of",
+    "meaning": "……的首都",
+    "origin": "词汇拓展",
+    "note": "the capital of … 表示……的首都。"
+  },
+  {
+    "id": "p56",
+    "unit": 6,
+    "phrase": "go abroad",
+    "meaning": "出国",
+    "origin": "词汇拓展",
+    "note": "go abroad 中 abroad 是副词，前面不加 to；travel abroad 也成立。"
+  },
+  {
+    "id": "p57",
+    "unit": 6,
+    "phrase": "go on a trip",
+    "meaning": "去旅行",
+    "origin": "词汇拓展",
+    "note": "go on a trip 表示去旅行。"
+  },
+  {
+    "id": "p58",
+    "unit": 6,
+    "phrase": "catch a flight",
+    "meaning": "赶上航班",
+    "origin": "词汇拓展",
+    "note": "catch a flight 表示赶上航班；must 后用动词原形 catch。"
+  },
+  {
+    "id": "p59",
+    "unit": 6,
+    "phrase": "all over the world",
+    "meaning": "世界各地",
+    "origin": "词汇拓展",
+    "note": "all over the world 表示世界各地；all around the world 也成立。"
+  },
+  {
+    "id": "p60",
+    "unit": 6,
+    "phrase": "learn about local culture",
+    "meaning": "了解当地文化",
+    "origin": "词汇拓展",
+    "note": "learn about sth 表示了解有关某事的知识。"
+  }
+]
