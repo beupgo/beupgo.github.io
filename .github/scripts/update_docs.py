@@ -433,20 +433,19 @@ def gen_readme_table(pages: list[dict]) -> str:
         subject_name = SUBJECT_NAMES_ZH.get(subject_slug, "未分类")
         lines.append(f"### {subject_name}")
         lines.append("")
-        lines.append("| 页面 | 在线访问 | 更新时间 |")
-        lines.append("|---|---|---|")
+        lines.append("| 页面 | 在线访问 |")
+        lines.append("|---|---|")
         for p in grouped[subject_slug]:
             url = f"https://beupgo.github.io/{quote(p['file'], safe='')}"
             title = p["title"].replace("|", "\\|")
-            updated_at = p["updated_at"] or "-"
-            lines.append(f"| {title} | [开始学习]({url}) | {updated_at} |")
+            lines.append(f"| {title} | [开始学习]({url}) |")
         lines.append("")
 
     lines.append("### 导航")
     lines.append("")
-    lines.append("| 页面 | 在线访问 | 更新时间 |")
-    lines.append("|---|---|---|")
-    lines.append("| 导航首页 | [进入首页](https://beupgo.github.io/) | - |")
+    lines.append("| 页面 | 在线访问 |")
+    lines.append("|---|---|")
+    lines.append("| 导航首页 | [进入首页](https://beupgo.github.io/) |")
     return "\n".join(lines)
 
 
@@ -472,8 +471,6 @@ def gen_card(p: dict) -> str:
     attrs = []
     if p["time"]:
         attrs.append(f'data-time="{p["time"]}"')
-    if p["updated_at"] or p["uploaded_at"]:
-        attrs.append(f'data-date="{p["updated_at"] or p["uploaded_at"]}"')
     attr_text = (" " + " ".join(attrs)) if attrs else ""
 
     if grade_num:

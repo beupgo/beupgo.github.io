@@ -9,86 +9,86 @@
 <!-- AUTO-TABLE-START -->
 ### 数学
 
-| 页面 | 在线访问 | 更新时间 |
-|---|---|---|
-| 分数灵活运算与应用 · 小升初培优卷 | [开始学习](https://beupgo.github.io/math-fraction-flexible-worksheet.html) | 2026-09-05 14:51 |
-| 工程问题 · 数学培优卷 · 题目卷 | [开始学习](https://beupgo.github.io/math-work-rate-worksheet.html) | 2026-08-24 03:26 |
-| 工程问题 · 数学培优卷 · 答案与解析 | [开始学习](https://beupgo.github.io/math-work-rate-answers.html) | 2026-08-24 03:26 |
-| 按比例分配 · 数学培优卷 · 题目卷 | [开始学习](https://beupgo.github.io/math-ratio-allocation-worksheet.html) | 2026-08-24 03:26 |
-| 按比例分配 · 数学培优卷 · 答案与解析 | [开始学习](https://beupgo.github.io/math-ratio-allocation-answers.html) | 2026-08-24 03:26 |
-| 量率对应 · 数学培优卷 · 题目卷 | [开始学习](https://beupgo.github.io/math-quantity-rate-worksheet.html) | 2026-08-24 03:26 |
-| 量率对应 · 数学培优卷 · 答案与解析 | [开始学习](https://beupgo.github.io/math-quantity-rate-answers.html) | 2026-08-24 03:26 |
-| 浓度问题 · 小升初培优卷 | [开始学习](https://beupgo.github.io/math-concentration-worksheet.html) | 2026-08-24 03:26 |
-| 浓度问题 · 答案与解析 | [开始学习](https://beupgo.github.io/math-concentration-answers.html) | 2026-08-24 03:26 |
-| 圆环面积 · 数学培优卷 · 题目卷 | [开始学习](https://beupgo.github.io/math-annulus-area-worksheet.html) | 2026-08-24 03:26 |
-| 圆环面积 · 数学培优卷 · 答案与解析 | [开始学习](https://beupgo.github.io/math-annulus-area-answers.html) | 2026-08-24 03:26 |
-| 分数乘除法与比例 · 小升初培优卷 | [开始学习](https://beupgo.github.io/math-fraction-ratio-worksheet.html) | 2026-08-09 12:21 |
-| 圆与阴影面积测试卷 · 北京小学 | [开始学习](https://beupgo.github.io/math-circle-shaded-area-worksheet.html) | 2026-08-05 10:04 |
-| 小学奥数 · 圆专题练习卷 | [开始学习](https://beupgo.github.io/primary-circle-lessons-problems.html) | 2026-07-31 09:29 |
-| 简易方程应用题练习卷 | [开始学习](https://beupgo.github.io/equation-word-problems.html) | 2026-07-26 03:41 |
-| 通分专项 · 理解通分的本质 \| 小学数学 | [开始学习](https://beupgo.github.io/Math-G5-Fraction-Common-Denominator.html) | 2026-07-10 13:37 |
-| 裂差 · 裂和 应用练习 · 小学数学专题 | [开始学习](https://beupgo.github.io/g5-math-fraction-split-practice.html) | 2026-07-10 18:57 |
-| 裂差 · 裂和 专项练习题 · 小学数学专题 | [开始学习](https://beupgo.github.io/g5-math-fraction-split-exercises.html) | 2026-07-10 18:57 |
-| 北京六年级数学 · 母题学习系统 | [开始学习](https://beupgo.github.io/grade6-math.html) | 2026-07-04 21:41 |
-| 北京五年级数学 · 母题学习系统 | [开始学习](https://beupgo.github.io/grade5-math.html) | 2026-07-04 21:41 |
-| 图形思想专题 · 用画图解数学题 | [开始学习](https://beupgo.github.io/g6-math-geometric-thinking.html) | 2026-07-04 21:41 |
-| 分数专题 · 彻底学会分数 | [开始学习](https://beupgo.github.io/g6-math-fractions.html) | 2026-07-04 21:41 |
-| 分数除法应用题专题 · 找准单位1 | [开始学习](https://beupgo.github.io/g6-math-fraction-division.html) | 2026-07-04 21:41 |
-| 多边形面积专题 · 割补转化思想 | [开始学习](https://beupgo.github.io/g5-math-polygon-area.html) | 2026-07-04 21:41 |
-| 因数与倍数专题 · 数的秘密 | [开始学习](https://beupgo.github.io/g5-math-factors-multiples.html) | 2026-07-04 21:41 |
-| 简易方程专题 · 从天平到解方程 | [开始学习](https://beupgo.github.io/g5-math-equation.html) | 2026-07-04 21:41 |
-| 运算定律专题 · 拆数凑整巧算 | [开始学习](https://beupgo.github.io/g4-math-simple-calc.html) | 2026-07-04 21:41 |
+| 页面 | 在线访问 |
+|---|---|
+| 分数灵活运算与应用 · 小升初培优卷 | [开始学习](https://beupgo.github.io/math-fraction-flexible-worksheet.html) |
+| 工程问题 · 数学培优卷 · 题目卷 | [开始学习](https://beupgo.github.io/math-work-rate-worksheet.html) |
+| 工程问题 · 数学培优卷 · 答案与解析 | [开始学习](https://beupgo.github.io/math-work-rate-answers.html) |
+| 按比例分配 · 数学培优卷 · 题目卷 | [开始学习](https://beupgo.github.io/math-ratio-allocation-worksheet.html) |
+| 按比例分配 · 数学培优卷 · 答案与解析 | [开始学习](https://beupgo.github.io/math-ratio-allocation-answers.html) |
+| 量率对应 · 数学培优卷 · 题目卷 | [开始学习](https://beupgo.github.io/math-quantity-rate-worksheet.html) |
+| 量率对应 · 数学培优卷 · 答案与解析 | [开始学习](https://beupgo.github.io/math-quantity-rate-answers.html) |
+| 浓度问题 · 小升初培优卷 | [开始学习](https://beupgo.github.io/math-concentration-worksheet.html) |
+| 浓度问题 · 答案与解析 | [开始学习](https://beupgo.github.io/math-concentration-answers.html) |
+| 圆环面积 · 数学培优卷 · 题目卷 | [开始学习](https://beupgo.github.io/math-annulus-area-worksheet.html) |
+| 圆环面积 · 数学培优卷 · 答案与解析 | [开始学习](https://beupgo.github.io/math-annulus-area-answers.html) |
+| 分数乘除法与比例 · 小升初培优卷 | [开始学习](https://beupgo.github.io/math-fraction-ratio-worksheet.html) |
+| 圆与阴影面积测试卷 · 北京小学 | [开始学习](https://beupgo.github.io/math-circle-shaded-area-worksheet.html) |
+| 小学奥数 · 圆专题练习卷 | [开始学习](https://beupgo.github.io/primary-circle-lessons-problems.html) |
+| 简易方程应用题练习卷 | [开始学习](https://beupgo.github.io/equation-word-problems.html) |
+| 通分专项 · 理解通分的本质 \| 小学数学 | [开始学习](https://beupgo.github.io/Math-G5-Fraction-Common-Denominator.html) |
+| 裂差 · 裂和 应用练习 · 小学数学专题 | [开始学习](https://beupgo.github.io/g5-math-fraction-split-practice.html) |
+| 裂差 · 裂和 专项练习题 · 小学数学专题 | [开始学习](https://beupgo.github.io/g5-math-fraction-split-exercises.html) |
+| 北京六年级数学 · 母题学习系统 | [开始学习](https://beupgo.github.io/grade6-math.html) |
+| 北京五年级数学 · 母题学习系统 | [开始学习](https://beupgo.github.io/grade5-math.html) |
+| 图形思想专题 · 用画图解数学题 | [开始学习](https://beupgo.github.io/g6-math-geometric-thinking.html) |
+| 分数专题 · 彻底学会分数 | [开始学习](https://beupgo.github.io/g6-math-fractions.html) |
+| 分数除法应用题专题 · 找准单位1 | [开始学习](https://beupgo.github.io/g6-math-fraction-division.html) |
+| 多边形面积专题 · 割补转化思想 | [开始学习](https://beupgo.github.io/g5-math-polygon-area.html) |
+| 因数与倍数专题 · 数的秘密 | [开始学习](https://beupgo.github.io/g5-math-factors-multiples.html) |
+| 简易方程专题 · 从天平到解方程 | [开始学习](https://beupgo.github.io/g5-math-equation.html) |
+| 运算定律专题 · 拆数凑整巧算 | [开始学习](https://beupgo.github.io/g4-math-simple-calc.html) |
 
 ### 语文
 
-| 页面 | 在线访问 | 更新时间 |
-|---|---|---|
-| 写作提升训练 | [开始学习](https://beupgo.github.io/grade5-chinese-writing.html) | 2026-07-04 21:41 |
-| 作文是怎么"长"出来的 · 五年级写作创作过程 | [开始学习](https://beupgo.github.io/grade5-chinese-essay-process.html) | 2026-07-04 21:41 |
+| 页面 | 在线访问 |
+|---|---|
+| 写作提升训练 | [开始学习](https://beupgo.github.io/grade5-chinese-writing.html) |
+| 作文是怎么"长"出来的 · 五年级写作创作过程 | [开始学习](https://beupgo.github.io/grade5-chinese-essay-process.html) |
 
 ### 英语
 
-| 页面 | 在线访问 | 更新时间 |
-|---|---|---|
-| 小学英语摸底测试（200题） | [开始学习](https://beupgo.github.io/primary-english-placement-test-200.html) | 2026-10-19 17:02 |
-| BJ Primary English Collocations · 学习台 | [开始学习](https://beupgo.github.io/Primary%20English%20Collocations.html) | 2026-09-29 10:43 |
-| 小学+初中英语句型 · 专题训练+综合测试 | [开始学习](https://beupgo.github.io/primary-junior-sentence-patterns.html) | 2026-09-21 11:09 |
-| 小学英语介词专题(讲解 + 综合测试) | [开始学习](https://beupgo.github.io/primary-english-prepositions.html) | 2026-09-21 11:09 |
-| 代词专项训练 · 小学 + 初中 | [开始学习](https://beupgo.github.io/primary-junior-pronouns-practice.html) | 2026-09-20 15:16 |
-| 六年级英语 · Unit 1–6 固定搭配专题 | [开始学习](https://beupgo.github.io/grade6-english-phrases-paper.html) | 2026-09-13 20:42 |
-| 六年级英语 Unit 3＋6 · 自然与旅行联合测试 | [开始学习](https://beupgo.github.io/grade6-english-unit3-6-paper.html) | 2026-09-13 19:30 |
-| 六年级英语 Unit 1–2 · 在线综合试卷 | [开始学习](https://beupgo.github.io/grade6-english-unit1-2-paper.html) | 2026-09-13 16:59 |
-| Unit 2 综合能力测试 - 中考难度 (考试模式) | [开始学习](https://beupgo.github.io/english-unit2.html) | 2026-09-12 22:13 |
-| 六年级上册 Unit 1-2 · 必考精练 | [开始学习](https://beupgo.github.io/primary-english-unit1-2-practice.html) | 2026-09-12 02:52 |
-| 六年级上册 Unit 1-2 · 必考精练 | [开始学习](https://beupgo.github.io/primary-english-unit1-2-practice%20.html) | 2026-09-06 10:25 |
-| 健康很重要 · 6 大场景 | [开始学习](https://beupgo.github.io/health-matters-vocabulary.html) | 2026-08-14 14:20 |
-| 奇妙的大自然专项 · 6 大对话场景 | [开始学习](https://beupgo.github.io/beijing-primary-nature-dialogues.html) | 2026-08-14 14:20 |
-| 表达观点专项 · 6 大对话场景 | [开始学习](https://beupgo.github.io/beijing-primary-opinion-dialogues.html) | 2026-08-14 13:45 |
-| 花钱主题英语单词 · 对比与用法区别 | [开始学习](https://beupgo.github.io/money-spending-vocabulary-contrast-usage.html) | 2026-08-09 05:26 |
-| 生活场景英语单词 · 关联+对比记忆 | [开始学习](https://beupgo.github.io/life-scenes-vocabulary-assoc-contrast.html) | 2026-08-08 13:42 |
-| 小学英语综合语法测试 · 150 题 | [开始学习](https://beupgo.github.io/primary-english-grammar-test-150.html) | 2026-08-06 07:10 |
-| 英语学习摸底测试卷 | [开始学习](https://beupgo.github.io/grade6-grammar-test-100.html) | 2026-08-06 07:10 |
-| 英语学习摸底测试卷 | [开始学习](https://beupgo.github.io/english-advanced-test-150.html) | 2026-08-04 14:56 |
-| 英语学习摸底测试卷 | [开始学习](https://beupgo.github.io/english-placement-test-100.html) | 2026-08-03 14:01 |
-| 英语学习摸底测试卷 | [开始学习](https://beupgo.github.io/english-placement-test-50.html) | 2026-08-03 09:44 |
-| 小学英语常用句式大全 | [开始学习](https://beupgo.github.io/primary-sentence-patterns.html) | 2026-08-02 13:23 |
-| 新增单词专项 · 5 大场景 | [开始学习](https://beupgo.github.io/new-vocabulary-5-scenes.html) | 2026-08-02 06:29 |
-| 北京小学英语 · 单词复习营 | [开始学习](https://beupgo.github.io/vocabulary-review.html) | 2026-07-26 14:29 |
-| 英语固定搭配学习专题 | [开始学习](https://beupgo.github.io/english-collocations.html) | 2026-07-26 05:13 |
-| 英语综合练习 | [开始学习](https://beupgo.github.io/english-mixed-quiz.html) | 2026-07-26 03:13 |
-| 英语时态学习专题 | [开始学习](https://beupgo.github.io/english-tenses.html) | 2026-07-23 10:56 |
-| 英语句子构成专题 | [开始学习](https://beupgo.github.io/english-sentence-structure.html) | 2026-07-23 06:04 |
-| 英语介词学习专题 | [开始学习](https://beupgo.github.io/english-prepositions.html) | 2026-07-23 03:24 |
-| 小学英语词根词缀乐园 · 拆词记单词 | [开始学习](https://beupgo.github.io/word-roots.html) | 2026-07-19 13:27 |
-| 小学英语单词乐园 · 时间 · 交通 · 天气 | [开始学习](https://beupgo.github.io/word-learning.html) | 2026-07-19 13:27 |
-| 英语组句魔法 · 句子小火车 \| 小学英语 | [开始学习](https://beupgo.github.io/English-G6-Sentence-Building.html) | 2026-07-10 14:16 |
-| 英语冒险岛 · 3-6年级暑假 | [开始学习](https://beupgo.github.io/english5.html) | 2026-07-04 21:41 |
+| 页面 | 在线访问 |
+|---|---|
+| 小学英语摸底测试（200题） | [开始学习](https://beupgo.github.io/primary-english-placement-test-200.html) |
+| BJ Primary English Collocations · 学习台 | [开始学习](https://beupgo.github.io/Primary%20English%20Collocations.html) |
+| 小学+初中英语句型 · 专题训练+综合测试 | [开始学习](https://beupgo.github.io/primary-junior-sentence-patterns.html) |
+| 小学英语介词专题(讲解 + 综合测试) | [开始学习](https://beupgo.github.io/primary-english-prepositions.html) |
+| 代词专项训练 · 小学 + 初中 | [开始学习](https://beupgo.github.io/primary-junior-pronouns-practice.html) |
+| 六年级英语 · Unit 1–6 固定搭配专题 | [开始学习](https://beupgo.github.io/grade6-english-phrases-paper.html) |
+| 六年级英语 Unit 3＋6 · 自然与旅行联合测试 | [开始学习](https://beupgo.github.io/grade6-english-unit3-6-paper.html) |
+| 六年级英语 Unit 1–2 · 在线综合试卷 | [开始学习](https://beupgo.github.io/grade6-english-unit1-2-paper.html) |
+| Unit 2 综合能力测试 - 中考难度 (考试模式) | [开始学习](https://beupgo.github.io/english-unit2.html) |
+| 六年级上册 Unit 1-2 · 必考精练 | [开始学习](https://beupgo.github.io/primary-english-unit1-2-practice.html) |
+| 六年级上册 Unit 1-2 · 必考精练 | [开始学习](https://beupgo.github.io/primary-english-unit1-2-practice%20.html) |
+| 健康很重要 · 6 大场景 | [开始学习](https://beupgo.github.io/health-matters-vocabulary.html) |
+| 奇妙的大自然专项 · 6 大对话场景 | [开始学习](https://beupgo.github.io/beijing-primary-nature-dialogues.html) |
+| 表达观点专项 · 6 大对话场景 | [开始学习](https://beupgo.github.io/beijing-primary-opinion-dialogues.html) |
+| 花钱主题英语单词 · 对比与用法区别 | [开始学习](https://beupgo.github.io/money-spending-vocabulary-contrast-usage.html) |
+| 生活场景英语单词 · 关联+对比记忆 | [开始学习](https://beupgo.github.io/life-scenes-vocabulary-assoc-contrast.html) |
+| 小学英语综合语法测试 · 150 题 | [开始学习](https://beupgo.github.io/primary-english-grammar-test-150.html) |
+| 英语学习摸底测试卷 | [开始学习](https://beupgo.github.io/grade6-grammar-test-100.html) |
+| 英语学习摸底测试卷 | [开始学习](https://beupgo.github.io/english-advanced-test-150.html) |
+| 英语学习摸底测试卷 | [开始学习](https://beupgo.github.io/english-placement-test-100.html) |
+| 英语学习摸底测试卷 | [开始学习](https://beupgo.github.io/english-placement-test-50.html) |
+| 小学英语常用句式大全 | [开始学习](https://beupgo.github.io/primary-sentence-patterns.html) |
+| 新增单词专项 · 5 大场景 | [开始学习](https://beupgo.github.io/new-vocabulary-5-scenes.html) |
+| 北京小学英语 · 单词复习营 | [开始学习](https://beupgo.github.io/vocabulary-review.html) |
+| 英语固定搭配学习专题 | [开始学习](https://beupgo.github.io/english-collocations.html) |
+| 英语综合练习 | [开始学习](https://beupgo.github.io/english-mixed-quiz.html) |
+| 英语时态学习专题 | [开始学习](https://beupgo.github.io/english-tenses.html) |
+| 英语句子构成专题 | [开始学习](https://beupgo.github.io/english-sentence-structure.html) |
+| 英语介词学习专题 | [开始学习](https://beupgo.github.io/english-prepositions.html) |
+| 小学英语词根词缀乐园 · 拆词记单词 | [开始学习](https://beupgo.github.io/word-roots.html) |
+| 小学英语单词乐园 · 时间 · 交通 · 天气 | [开始学习](https://beupgo.github.io/word-learning.html) |
+| 英语组句魔法 · 句子小火车 \| 小学英语 | [开始学习](https://beupgo.github.io/English-G6-Sentence-Building.html) |
+| 英语冒险岛 · 3-6年级暑假 | [开始学习](https://beupgo.github.io/english5.html) |
 
 ### 导航
 
-| 页面 | 在线访问 | 更新时间 |
-|---|---|---|
-| 导航首页 | [进入首页](https://beupgo.github.io/) | - |
+| 页面 | 在线访问 |
+|---|---|
+| 导航首页 | [进入首页](https://beupgo.github.io/) |
 <!-- AUTO-TABLE-END -->
 
 ## 功能特点
@@ -202,7 +202,9 @@
 
 `Publish latest artifacts` Action 会生成目录、保存页面日期，并将默认分支替换为**一个最新产物快照提交**，随后主动触发 GitHub Pages 构建。所有文件保留，默认分支不累计历史 commit；合并后的来源分支保留，Action 不删除分支。
 
-页面的上传和更新时间保存在 `.github/page-metadata.json` 中，通过内容摘要识别变更，压缩提交不会重置日期。该文件由工作流维护，更新页面时请一并保留。可在 Actions 中手动运行工作流重试发布。
+首页卡片和 README 目录不展示上传、更新或提交时间；学习时长仍保留。页面日期仅在 `.github/page-metadata.json` 中维护，用于稳定排序及识别变更，不在站内展示。该文件由工作流维护，更新页面时请一并保留。可在 Actions 中手动运行工作流重试发布。
+
+GitHub 仓库界面的最新提交时间由 GitHub 自身显示，无法通过站点代码隐藏。默认分支只有一个快照提交，但旧分支和已合并 PR 仍可能引用旧提交；这不等于彻底删除 GitHub 上的历史对象。
 
 每次发布会改写默认分支历史，后续修改请从最新默认分支新建分支；保留的旧分支可能仍包含原来的历史。发布使用精确版本检查，遇到并发新提交会停止，避免覆盖新内容。Pages 保持 **Deploy from a branch → 默认分支 → / (root)** 配置。
 

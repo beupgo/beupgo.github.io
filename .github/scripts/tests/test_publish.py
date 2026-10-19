@@ -120,6 +120,20 @@ class PublishingTests(unittest.TestCase):
         docs.main()
         self.assertNotIn('demo-math.html', self.metadata())
 
+    def test_generated_navigation_does_not_expose_dates(self):
+        docs.main()
+        readme = (self.root / 'README.md').read_text()
+        index = (self.root / 'index.html').read_text()
+        self.assertNotIn('更新时间', readme)
+        self.assertNotIn('2020-01-01', readme)
+        self.assertNotIn('data-date=', index)
+        self.assertIn('uploaded_at', self.metadata()['demo english.html'])
+        (self.root / 'index.html').write_text(index.replace(
+            'href="demo-math.html"', 'href="demo-math.html" data-time="约 25 分钟"'
+        ))
+        docs.main()
+        self.assertIn('data-time="约 25 分钟"', (self.root / 'index.html').read_text())
+
 
 if __name__ == '__main__':
     unittest.main()
