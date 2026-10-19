@@ -51,6 +51,7 @@
 | 页面 | 在线访问 | 更新时间 |
 |---|---|---|
 | 小学英语摸底测试（200题） | [开始学习](https://beupgo.github.io/primary-english-placement-test-200.html) | 2026-10-19 17:02 |
+| BJ Primary English Collocations · 学习台 | [开始学习](https://beupgo.github.io/Primary%20English%20Collocations.html) | 2026-09-29 10:43 |
 | 小学+初中英语句型 · 专题训练+综合测试 | [开始学习](https://beupgo.github.io/primary-junior-sentence-patterns.html) | 2026-09-21 11:09 |
 | 小学英语介词专题(讲解 + 综合测试) | [开始学习](https://beupgo.github.io/primary-english-prepositions.html) | 2026-09-21 11:09 |
 | 代词专项训练 · 小学 + 初中 | [开始学习](https://beupgo.github.io/primary-junior-pronouns-practice.html) | 2026-09-20 15:16 |
@@ -83,12 +84,6 @@
 | 英语组句魔法 · 句子小火车 \| 小学英语 | [开始学习](https://beupgo.github.io/English-G6-Sentence-Building.html) | 2026-07-10 14:16 |
 | 英语冒险岛 · 3-6年级暑假 | [开始学习](https://beupgo.github.io/english5.html) | 2026-07-04 21:41 |
 
-### 未分类
-
-| 页面 | 在线访问 | 更新时间 |
-|---|---|---|
-| BJ Primary English Collocations · 学习台 | [开始学习](https://beupgo.github.io/Primary%20English%20Collocations.html) | 2026-09-29 10:43 |
-
 ### 导航
 
 | 页面 | 在线访问 | 更新时间 |
@@ -97,6 +92,11 @@
 <!-- AUTO-TABLE-END -->
 
 ## 功能特点
+
+页面学科由 `.github/scripts/update_docs.py` 统一识别，README 与首页使用同一分类结果。
+识别顺序：显式 `subject` 元数据 / `AUTO-SUBJECT` 注释 → 文件名 → 标题 → 描述 → 正文标题和文本。
+支持中英文、空格/连字符/下划线文件名；正文识别忽略脚本、样式、导航和注释。
+新页面建议使用 `<meta name="subject" content="english">`（其他学科同理）以明确归属。
 
 - **三大板块**:知识点(图文/动画讲解)· 母题(典型例题分步精讲)· 应用(生活场景练习)。
 - **图形结合**:大量 SVG 手绘示意图与动画,把抽象概念(如比例、分数除法、数与形)讲直观,帮助形成长期记忆。

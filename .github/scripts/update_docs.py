@@ -19,8 +19,10 @@ import re
 import subprocess
 import sys
 from datetime import datetime, timedelta, timezone
+from html import unescape
+from html.parser import HTMLParser
 from pathlib import Path
-from urllib.parse import quote
+from urllib.parse import quote, unquote
 
 ROOT = Path(__file__).resolve().parent.parent.parent  # repo root
 DATE_FIELDS = ("uploaded_ts", "uploaded_at", "updated_ts", "updated_at")
@@ -91,28 +93,29 @@ SUBJECT_ALIASES = {
 }
 
 SUBJECT_KEYWORDS = [
-    ("english", re.compile(r"英语|单词|词根|词缀|组句|句子|词汇|对话|健康|自然|观点")),
+    ("english", re.compile(r"英语|单词|词根|词缀|组句|词汇|语法|时态|介词|代词|固定搭配|\b(?:collocations?|vocabulary|grammar|pronouns?|prepositions?|phonics)\b", re.IGNORECASE)),
     ("chinese", re.compile(r"语文|作文|写作")),
     ("math", re.compile(r"数学|奥数|方程|分数|几何|多边形|通分|运算|因数|倍数|圆|面积|浓度")),
 ]
 
 # Many uploaded pages do not follow the recommended `gradeN-subject.html`
 # naming convention. Keep filename inference deliberately conservative: only
-# recognize explicit subject tokens, so words such as `primary` or `advanced`
-# do not accidentally determine a category.
+# recognize subject tokens or language-learning topics, so generic words such
+# as `primary`, `advanced`, `health` or `nature` do not determine a category.
 FILENAME_SUBJECT_KEYWORDS = [
-    ("english", re.compile(r"(?:^|[-_])(english|英语)(?:[-_]|$)", re.IGNORECASE)),
-    ("chinese", re.compile(r"(?:^|[-_])(chinese|语文)(?:[-_]|$)", re.IGNORECASE)),
-    ("math", re.compile(r"(?:^|[-_])(math|数学)(?:[-_]|$)", re.IGNORECASE)),
-    ("science", re.compile(r"(?:^|[-_])(science|科学)(?:[-_]|$)", re.IGNORECASE)),
-    ("physics", re.compile(r"(?:^|[-_])(physics|物理)(?:[-_]|$)", re.IGNORECASE)),
-    ("chemistry", re.compile(r"(?:^|[-_])(chemistry|化学)(?:[-_]|$)", re.IGNORECASE)),
-    ("biology", re.compile(r"(?:^|[-_])(biology|生物)(?:[-_]|$)", re.IGNORECASE)),
-    ("history", re.compile(r"(?:^|[-_])(history|历史)(?:[-_]|$)", re.IGNORECASE)),
-    ("geography", re.compile(r"(?:^|[-_])(geography|地理)(?:[-_]|$)", re.IGNORECASE)),
-    ("art", re.compile(r"(?:^|[-_])(art|美术)(?:[-_]|$)", re.IGNORECASE)),
-    ("music", re.compile(r"(?:^|[-_])(music|音乐)(?:[-_]|$)", re.IGNORECASE)),
-    ("pe", re.compile(r"(?:^|[-_])(pe|体育)(?:[-_]|$)", re.IGNORECASE)),
+    (slug, re.compile(rf"(?<![a-z]){re.escape(slug)}(?![a-z])|{name}", re.IGNORECASE))
+    for slug, name in SUBJECT_NAMES_ZH.items()
+]
+FILENAME_SUBJECT_KEYWORDS.append(("english", re.compile(
+    r"(?<![a-z])(?:vocabulary|collocations?|grammar|pronouns?|prepositions?|"
+    r"phonics|dialogues?|sentence[- ]patterns?)(?![a-z])", re.IGNORECASE
+)))
+
+# Explicit subject names outrank topic hints (e.g. a Chinese writing lesson
+# containing a dialogue). Do not infer a subject from arbitrary Latin letters.
+SUBJECT_NAME_KEYWORDS = [
+    (slug, re.compile(rf"\b{re.escape(slug)}\b|{name}", re.IGNORECASE))
+    for slug, name in SUBJECT_NAMES_ZH.items()
 ]
 
 TRUE_VALUES = {"1", "true", "yes", "y", "on"}
@@ -158,7 +161,7 @@ BACK_NAV_HTML = (
 
 def extract_title(text: str, fallback: str) -> str:
     m = re.search(r"<title[^>]*>(.*?)</title>", text, re.IGNORECASE | re.DOTALL)
-    return m.group(1).strip() if m else fallback
+    return unescape(m.group(1)).strip() if m else fallback
 
 
 def extract_meta_content(text: str, names: set[str]) -> str:
@@ -188,14 +191,17 @@ def normalize_subject_slug(value: str) -> str | None:
 
 
 def infer_subject_slug(title: str, description: str = "") -> str | None:
-    searchable = f"{title} {description}"
-    for slug, pattern in SUBJECT_KEYWORDS:
-        if pattern.search(searchable):
-            return slug
+    # Title is stronger evidence than a passing reference in the description.
+    for searchable in (title, description):
+        searchable = unescape(searchable)
+        for slug, pattern in SUBJECT_NAME_KEYWORDS + SUBJECT_KEYWORDS:
+            if pattern.search(searchable):
+                return slug
     return None
 
 
 def infer_subject_from_filename(filename: str) -> str | None:
+    filename = Path(unquote(filename)).stem.replace("_", " ")
     for slug, pattern in FILENAME_SUBJECT_KEYWORDS:
         if pattern.search(filename):
             return slug
@@ -204,6 +210,53 @@ def infer_subject_from_filename(filename: str) -> str | None:
 
 def extract_meta_description(text: str) -> str:
     return extract_meta_content(text, {"description"})
+
+
+class LearningTextParser(HTMLParser):
+    """Extract human-facing content, not JS/CSS, saved-page URLs or navigation."""
+
+    IGNORED = {"head", "script", "style", "svg", "nav", "template", "noscript"}
+    HEADINGS = {"h1", "h2", "h3", "h4", "h5", "h6"}
+
+    def __init__(self):
+        super().__init__(convert_charrefs=True)
+        self.ignored: list[str] = []
+        self.heading: str | None = None
+        self.headings: list[str] = []
+        self.content: list[str] = []
+
+    def handle_starttag(self, tag, attrs):
+        if tag in self.IGNORED:
+            self.ignored.append(tag)
+        if not self.ignored and tag in self.HEADINGS:
+            self.heading = tag
+
+    def handle_startendtag(self, tag, attrs):
+        # A self-closing SVG/script must not hide the rest of the page.
+        pass
+
+    def handle_endtag(self, tag):
+        if tag in self.ignored:
+            # Tolerate incomplete markup in saved/uploaded pages.
+            index = len(self.ignored) - 1 - self.ignored[::-1].index(tag)
+            del self.ignored[index:]
+        if tag == self.heading:
+            self.heading = None
+
+    def handle_data(self, data):
+        if self.ignored or not data.strip():
+            return
+        self.content.append(data.strip())
+        if self.heading:
+            self.headings.append(data.strip())
+
+
+def infer_subject_from_content(text: str) -> str | None:
+    parser = LearningTextParser()
+    parser.feed(text)
+    headings = " ".join(parser.headings)
+    content = " ".join(parser.content)
+    return infer_subject_slug(headings) or infer_subject_slug(content)
 
 
 def extract_subject_slug(text: str, title: str, filename: str = "") -> str | None:
@@ -218,6 +271,7 @@ def extract_subject_slug(text: str, title: str, filename: str = "") -> str | Non
         or normalize_subject_slug(comment_subject)
         or infer_subject_from_filename(filename)
         or infer_subject_slug(title, description)
+        or infer_subject_from_content(text)
     )
 
 
@@ -284,7 +338,7 @@ def collect_pages() -> list[dict]:
         grade_num, filename_subject_slug, extra = parse_filename(f.name)
         title = extract_title(text, f.stem)
         description = extract_meta_description(text)
-        subject_slug = normalize_subject_slug(filename_subject_slug or "") or extract_subject_slug(text, title, f.name)
+        subject_slug = extract_subject_slug(text, title, f.name)
         previous = metadata.get(f.name)
         if previous:
             uploaded_ts, uploaded_at = previous["uploaded_ts"], previous["uploaded_at"]
