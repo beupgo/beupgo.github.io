@@ -1,0 +1,937 @@
+{
+  "version": "u12-school-mixed-v2",
+  "title": "Unit 1–2 在线综合测试",
+  "minutes": 60,
+  "units": [
+    1,
+    2
+  ],
+  "sections": [
+    {
+      "id": "listen",
+      "name": "听力与听写",
+      "en": "LISTEN & WRITE",
+      "desc": "",
+      "focus": "单词听写 / 听后补全"
+    },
+    {
+      "id": "vocab",
+      "name": "单词与词形",
+      "en": "WORDS IN CONTEXT",
+      "desc": "",
+      "focus": "语境选词 / 词形辨析"
+    },
+    {
+      "id": "tense",
+      "name": "四种时态",
+      "en": "VERBS IN TIME",
+      "desc": "",
+      "focus": "现在 / 过去 / 进行 / 将来"
+    },
+    {
+      "id": "phrase",
+      "name": "固定搭配",
+      "en": "WORDS THAT GO TOGETHER",
+      "desc": "",
+      "focus": "介词搭配 / 动词短语"
+    },
+    {
+      "id": "write",
+      "name": "句型填空",
+      "en": "RESHAPE A SENTENCE",
+      "desc": "",
+      "focus": "句子改写 / 补全句子"
+    },
+    {
+      "id": "read",
+      "name": "短文综合填空",
+      "en": "READ & COMPLETE",
+      "desc": "",
+      "focus": "语篇理解 / 综合运用"
+    }
+  ],
+  "questions": [
+    {
+      "id": "u12-mix-01",
+      "section": "listen",
+      "points": 2,
+      "prompt": "听录音，写出你听到的完整单词。",
+      "options": null,
+      "answer": [
+        "wallet"
+      ],
+      "explanation": "wallet：钱包。注意双写 l。",
+      "tag": "单词听写",
+      "words": [
+        "wallet"
+      ],
+      "clip": "l1"
+    },
+    {
+      "id": "u12-mix-02",
+      "section": "listen",
+      "points": 2,
+      "prompt": "听录音，选择你听到的单词。",
+      "options": [
+        "notebook",
+        "banknote",
+        "bank",
+        "book"
+      ],
+      "answer": 1,
+      "explanation": "banknote：纸币，写成一个单词。",
+      "tag": "单词听写",
+      "words": [
+        "banknote"
+      ],
+      "clip": "l2"
+    },
+    {
+      "id": "u12-mix-03",
+      "section": "listen",
+      "points": 2,
+      "prompt": "听录音，写出你听到的完整单词。",
+      "options": null,
+      "answer": [
+        "opinion"
+      ],
+      "explanation": "opinion：意见、看法。注意中间的 i。",
+      "tag": "单词听写",
+      "words": [
+        "opinion"
+      ],
+      "clip": "l3"
+    },
+    {
+      "id": "u12-mix-04",
+      "section": "listen",
+      "points": 2,
+      "prompt": "听录音，选择你听到的单词。",
+      "options": [
+        "disagree",
+        "dinner",
+        "dinosaur",
+        "donate"
+      ],
+      "answer": 2,
+      "explanation": "dinosaur：恐龙。注意末尾是 saur。",
+      "tag": "单词听写",
+      "words": [
+        "dinosaur"
+      ],
+      "clip": "l4"
+    },
+    {
+      "id": "u12-mix-05",
+      "section": "listen",
+      "points": 2,
+      "prompt": "Some children spend all their ______ ______.",
+      "options": null,
+      "answer": [
+        "pocket money"
+      ],
+      "explanation": "听到的是 pocket money（零花钱），不是单独的 money。",
+      "tag": "短语听写",
+      "words": [
+        "pocket money",
+        "money",
+        "spend",
+        "save"
+      ],
+      "clip": "l5"
+    },
+    {
+      "id": "u12-mix-06",
+      "section": "listen",
+      "points": 2,
+      "prompt": "We should always tell the ______.",
+      "options": null,
+      "answer": [
+        "truth"
+      ],
+      "explanation": "tell the truth 表示“说实话”。注意词尾 th。",
+      "tag": "句子听写",
+      "words": [
+        "truth",
+        "idea"
+      ],
+      "clip": "l6"
+    },
+    {
+      "id": "u12-mix-07",
+      "section": "listen",
+      "points": 2,
+      "prompt": "Doing exercise every day is good for our ______.",
+      "options": null,
+      "answer": [
+        "health"
+      ],
+      "explanation": "our 后填名词 health（健康），不能填形容词 healthy。",
+      "tag": "听写与词性",
+      "words": [
+        "health",
+        "be good for"
+      ],
+      "clip": "l7"
+    },
+    {
+      "id": "u12-mix-08",
+      "section": "listen",
+      "points": 2,
+      "prompt": "听录音，选择正确答案：\nActual price of the notebook: ______ yuan.",
+      "options": [
+        "12",
+        "20",
+        "10",
+        "6"
+      ],
+      "answer": 2,
+      "explanation": "标价是 12 元，但当天实际价格为 10 元。题目问实际价格。",
+      "tag": "听后信息记录",
+      "words": [
+        "price",
+        "buy",
+        "pay"
+      ],
+      "clip": "l8"
+    },
+    {
+      "id": "u12-mix-09",
+      "section": "listen",
+      "points": 2,
+      "prompt": "听录音，选择正确答案：\nMoney donated to charity: ______ yuan.",
+      "options": [
+        "10",
+        "4",
+        "6",
+        "20"
+      ],
+      "answer": 1,
+      "explanation": "录音说 Ben 捐了 4 元；找零 10 元、留下 6 元均不是本题答案。",
+      "tag": "听后信息记录",
+      "words": [
+        "donate",
+        "charity",
+        "change"
+      ],
+      "clip": "l8"
+    },
+    {
+      "id": "u12-mix-10",
+      "section": "listen",
+      "points": 2,
+      "prompt": "听后补全购物记录：\nThe charity helps ______ ______ ______.",
+      "options": null,
+      "answer": [
+        "people in need"
+      ],
+      "explanation": "people in need 是“有需要的人”，注意介词 in。",
+      "tag": "听后信息记录",
+      "words": [
+        "people in need"
+      ],
+      "clip": "l8"
+    },
+    {
+      "id": "u12-mix-11",
+      "section": "vocab",
+      "points": 2,
+      "prompt": "There is a small metal ______ in my hand.",
+      "options": [
+        "coin",
+        "banknote",
+        "wallet",
+        "price"
+      ],
+      "answer": 0,
+      "explanation": "coin 是金属硬币。banknote 是纸币，wallet 是钱包，price 是价格。",
+      "tag": "语境拼写",
+      "words": [
+        "coin"
+      ]
+    },
+    {
+      "id": "u12-mix-12",
+      "section": "vocab",
+      "points": 2,
+      "prompt": "The schoolbag is too ______. I cannot afford it.",
+      "options": [
+        "cheap",
+        "expensive",
+        "grey",
+        "good"
+      ],
+      "answer": 1,
+      "explanation": "expensive 表示昂贵的；afford 表示买得起。",
+      "tag": "语境拼写",
+      "words": [
+        "expensive",
+        "afford"
+      ]
+    },
+    {
+      "id": "u12-mix-13",
+      "section": "vocab",
+      "points": 2,
+      "prompt": "The twenty-yuan book is ______ than the thirty-yuan one.",
+      "options": [
+        "cheap",
+        "cheapest",
+        "more cheap",
+        "cheaper"
+      ],
+      "answer": 3,
+      "explanation": "than 提示比较级；cheap 加 er 变成 cheaper。",
+      "tag": "形容词比较级",
+      "words": [
+        "cheap",
+        "than"
+      ]
+    },
+    {
+      "id": "u12-mix-14",
+      "section": "vocab",
+      "points": 2,
+      "prompt": "“The box is grey” is a ______, not an opinion.",
+      "options": null,
+      "answer": [
+        "fact"
+      ],
+      "explanation": "fact 指可核实的事实；opinion 指个人看法。",
+      "tag": "词义辨析",
+      "words": [
+        "fact",
+        "grey"
+      ]
+    },
+    {
+      "id": "u12-mix-15",
+      "section": "vocab",
+      "points": 2,
+      "prompt": "Please give me a ______ for your idea.",
+      "options": [
+        "truth",
+        "money",
+        "reason",
+        "health"
+      ],
+      "answer": 2,
+      "explanation": "a reason for ... 表示“……的理由”。",
+      "tag": "语境拼写",
+      "words": [
+        "reason",
+        "idea"
+      ]
+    },
+    {
+      "id": "u12-mix-16",
+      "section": "vocab",
+      "points": 2,
+      "prompt": "Both children have different ______ about the story.",
+      "options": [
+        "opinion",
+        "opinions",
+        "opinioning",
+        "opinioned"
+      ],
+      "answer": 1,
+      "explanation": "两个人有不同的看法，用 opinion 的复数 opinions。",
+      "tag": "名词复数",
+      "words": [
+        "opinion"
+      ]
+    },
+    {
+      "id": "u12-mix-17",
+      "section": "vocab",
+      "points": 2,
+      "prompt": "We read two fairy ______ before the debate.",
+      "options": null,
+      "answer": [
+        "tales",
+        "stories"
+      ],
+      "explanation": "two 后接复数；fairy tales 表示童话故事，fairy stories 也是正确表达。",
+      "tag": "名词复数",
+      "words": [
+        "fairy tale",
+        "debate"
+      ]
+    },
+    {
+      "id": "u12-mix-18",
+      "section": "vocab",
+      "points": 2,
+      "prompt": "Put the banana ______ in the bin.",
+      "options": null,
+      "answer": [
+        "peel",
+        "skin"
+      ],
+      "explanation": "banana peel 表示香蕉皮，banana skin 也是正确表达。本单元词汇为 peel。",
+      "tag": "语境拼写",
+      "words": [
+        "peel"
+      ]
+    },
+    {
+      "id": "u12-mix-19",
+      "section": "vocab",
+      "points": 2,
+      "prompt": "The teacher drew a straight ______ on the board.",
+      "options": null,
+      "answer": [
+        "line"
+      ],
+      "explanation": "a straight line 表示一条直线。",
+      "tag": "语境拼写",
+      "words": [
+        "line"
+      ]
+    },
+    {
+      "id": "u12-mix-20",
+      "section": "vocab",
+      "points": 2,
+      "prompt": "She does not think I am right. She ______ with me.",
+      "options": [
+        "disagree",
+        "is disagree",
+        "disagrees",
+        "disagreeing"
+      ],
+      "answer": 2,
+      "explanation": "由前句可知她不同意；She 是第三人称单数，填 disagrees。",
+      "tag": "拼写与第三人称单数",
+      "words": [
+        "disagree",
+        "think"
+      ]
+    },
+    {
+      "id": "u12-mix-21",
+      "section": "tense",
+      "points": 2,
+      "prompt": "Every Friday, Amy ______ five yuan from her pocket money.",
+      "options": [
+        "save",
+        "saved",
+        "saving",
+        "saves"
+      ],
+      "answer": 3,
+      "explanation": "Every Friday 表示习惯，用一般现在时；Amy 是第三人称单数，save 加 s。",
+      "tag": "一般现在时",
+      "words": [
+        "save",
+        "pocket money"
+      ]
+    },
+    {
+      "id": "u12-mix-22",
+      "section": "tense",
+      "points": 2,
+      "prompt": "Tom never spends money on expensive toys. He ______ them.",
+      "options": [
+        "doesn't buy",
+        "don't buy",
+        "doesn't buys",
+        "isn't buy"
+      ],
+      "answer": 0,
+      "explanation": "Tom 从不把钱花在昂贵玩具上，因此一般现在时否定用 does not buy，缩写为 doesn’t buy。",
+      "tag": "一般现在时·否定",
+      "words": [
+        "buy",
+        "expensive"
+      ]
+    },
+    {
+      "id": "u12-mix-23",
+      "section": "tense",
+      "points": 2,
+      "prompt": "The two pens usually ______ six yuan altogether.",
+      "options": null,
+      "answer": [
+        "cost"
+      ],
+      "explanation": "主语 two pens 是复数；一般现在时用 cost 原形。",
+      "tag": "一般现在时·主谓一致",
+      "words": [
+        "cost"
+      ]
+    },
+    {
+      "id": "u12-mix-24",
+      "section": "tense",
+      "points": 2,
+      "prompt": "Yesterday, I ______ a book about dinosaurs.",
+      "options": [
+        "buy",
+        "buys",
+        "bought",
+        "buying"
+      ],
+      "answer": 2,
+      "explanation": "Yesterday 提示一般过去时；buy 的不规则过去式是 bought。",
+      "tag": "一般过去时·不规则变化",
+      "words": [
+        "buy",
+        "dinosaur"
+      ]
+    },
+    {
+      "id": "u12-mix-25",
+      "section": "tense",
+      "points": 2,
+      "prompt": "Last Sunday, Jack ______ ten yuan on a fairy tale book.",
+      "options": [
+        "spend",
+        "spent",
+        "spends",
+        "spending"
+      ],
+      "answer": 1,
+      "explanation": "Last Sunday 提示过去时；spend 的过去式是 spent。",
+      "tag": "一般过去时·不规则变化",
+      "words": [
+        "spend",
+        "fairy tale"
+      ]
+    },
+    {
+      "id": "u12-mix-26",
+      "section": "tense",
+      "points": 2,
+      "prompt": "Mum took out twenty yuan and ______ for the wallet yesterday afternoon.",
+      "options": null,
+      "answer": [
+        "paid"
+      ],
+      "explanation": "过去时间 yesterday afternoon；pay 的过去式是 paid，不能写 payed。",
+      "tag": "一般过去时·不规则变化",
+      "words": [
+        "pay",
+        "wallet"
+      ]
+    },
+    {
+      "id": "u12-mix-27",
+      "section": "tense",
+      "points": 2,
+      "prompt": "Look! The children ______ their ideas with each other.",
+      "options": [
+        "share",
+        "shared",
+        "is sharing",
+        "are sharing"
+      ],
+      "answer": 3,
+      "explanation": "Look! 表示正在发生；复数主语用 are + sharing（share 去 e 加 ing）。",
+      "tag": "现在进行时",
+      "words": [
+        "share",
+        "idea"
+      ]
+    },
+    {
+      "id": "u12-mix-28",
+      "section": "tense",
+      "points": 2,
+      "prompt": "Listen! Lily is ______ the price with the shopkeeper.",
+      "options": null,
+      "answer": [
+        "discussing"
+      ],
+      "explanation": "Listen! 表示动作正在发生；is 已在句中给出，只填写 discussing。",
+      "tag": "现在进行时",
+      "words": [
+        "discuss",
+        "price"
+      ]
+    },
+    {
+      "id": "u12-mix-29",
+      "section": "tense",
+      "points": 2,
+      "prompt": "Ben is sitting silently. He is ______ carefully about how to spend his money.",
+      "options": null,
+      "answer": [
+        "thinking"
+      ],
+      "explanation": "正在安静地思考如何花钱，用 is thinking；is 已给出，只填 thinking。",
+      "tag": "现在进行时·动作语义",
+      "words": [
+        "think",
+        "reason"
+      ]
+    },
+    {
+      "id": "u12-mix-30",
+      "section": "tense",
+      "points": 2,
+      "prompt": "Tomorrow, our class ______ the money to charity.",
+      "options": [
+        "donated",
+        "donating",
+        "will donate",
+        "donates"
+      ],
+      "answer": 2,
+      "explanation": "Tomorrow 指向将来；四个选项中 will donate 组成正确的将来时谓语。",
+      "tag": "一般将来时·will",
+      "words": [
+        "donate",
+        "money",
+        "charity"
+      ]
+    },
+    {
+      "id": "u12-mix-31",
+      "section": "tense",
+      "points": 2,
+      "prompt": "They ______ their old books next Saturday.",
+      "options": [
+        "are going to sell",
+        "sold",
+        "are going sell",
+        "going to sell"
+      ],
+      "answer": 0,
+      "explanation": "next Saturday 表将来，They are going to sell 是完整的计划表达。",
+      "tag": "一般将来时·计划",
+      "words": [
+        "sell"
+      ]
+    },
+    {
+      "id": "u12-mix-32",
+      "section": "tense",
+      "points": 2,
+      "prompt": "Yesterday, we did not ______ with that opinion.",
+      "options": [
+        "agreed",
+        "agree",
+        "agrees",
+        "agreeing"
+      ],
+      "answer": 1,
+      "explanation": "did 已表示过去，did not 后面的实义动词必须用原形 agree。",
+      "tag": "过去时助动词后的原形",
+      "words": [
+        "agree",
+        "opinion"
+      ]
+    },
+    {
+      "id": "u12-mix-33",
+      "section": "phrase",
+      "points": 2,
+      "prompt": "We should share our ideas ______ our classmates.",
+      "options": null,
+      "answer": [
+        "with"
+      ],
+      "explanation": "share sth with sb：与某人分享某物。",
+      "tag": "share ... with ...",
+      "words": [
+        "share",
+        "idea"
+      ]
+    },
+    {
+      "id": "u12-mix-34",
+      "section": "phrase",
+      "points": 2,
+      "prompt": "I agree ______ you because your reason is clear.",
+      "options": null,
+      "answer": [
+        "with"
+      ],
+      "explanation": "agree with sb：同意某人的观点。",
+      "tag": "agree with",
+      "words": [
+        "agree",
+        "reason"
+      ]
+    },
+    {
+      "id": "u12-mix-35",
+      "section": "phrase",
+      "points": 2,
+      "prompt": "Amy spent eight yuan ______ the book.",
+      "options": null,
+      "answer": [
+        "on"
+      ],
+      "explanation": "spend money on sth：在某物上花钱。",
+      "tag": "spend ... on ...",
+      "words": [
+        "spend"
+      ]
+    },
+    {
+      "id": "u12-mix-36",
+      "section": "phrase",
+      "points": 2,
+      "prompt": "Amy spent an hour ______ the book.",
+      "options": [
+        "read",
+        "to read",
+        "reading",
+        "reads"
+      ],
+      "answer": 2,
+      "explanation": "spend time doing sth：花时间做某事，动词用 ing 形式。",
+      "tag": "spend ... doing ...",
+      "words": [
+        "spend"
+      ]
+    },
+    {
+      "id": "u12-mix-37",
+      "section": "phrase",
+      "points": 2,
+      "prompt": "Dad paid twenty yuan ______ the wallet.",
+      "options": null,
+      "answer": [
+        "for"
+      ],
+      "explanation": "pay money for sth：付钱买某物。",
+      "tag": "pay ... for ...",
+      "words": [
+        "pay",
+        "wallet"
+      ]
+    },
+    {
+      "id": "u12-mix-38",
+      "section": "phrase",
+      "points": 2,
+      "prompt": "We donated the money ______ a charity.",
+      "options": null,
+      "answer": [
+        "to"
+      ],
+      "explanation": "donate sth to ...：把某物捐给……。",
+      "tag": "donate ... to ...",
+      "words": [
+        "donate",
+        "charity"
+      ]
+    },
+    {
+      "id": "u12-mix-39",
+      "section": "phrase",
+      "points": 2,
+      "prompt": "Doing exercise is good ______ our health.",
+      "options": null,
+      "answer": [
+        "for"
+      ],
+      "explanation": "be good for 表示对……有益。",
+      "tag": "be good for",
+      "words": [
+        "be good for",
+        "health"
+      ]
+    },
+    {
+      "id": "u12-mix-40",
+      "section": "phrase",
+      "points": 2,
+      "prompt": "Let us talk ______ the facts first.",
+      "options": null,
+      "answer": [
+        "about",
+        "over"
+      ],
+      "explanation": "本单元搭配 talk about sth 表示谈论某事；talk over the facts 也可表示讨论这些事实。",
+      "tag": "talk about",
+      "words": [
+        "talk about",
+        "fact",
+        "discuss"
+      ]
+    },
+    {
+      "id": "u12-mix-41",
+      "section": "phrase",
+      "points": 2,
+      "prompt": "I hope your dream will ______.",
+      "options": [
+        "comes true",
+        "come true",
+        "came true",
+        "coming true"
+      ],
+      "answer": 1,
+      "explanation": "come true：实现；will 后用原形 come。",
+      "tag": "come true",
+      "words": [
+        "come true"
+      ]
+    },
+    {
+      "id": "u12-mix-42",
+      "section": "phrase",
+      "points": 2,
+      "prompt": "______ my opinion, we should save some money every week.",
+      "options": null,
+      "answer": [
+        "In"
+      ],
+      "explanation": "in my opinion 表示“在我看来”。",
+      "tag": "in my opinion",
+      "words": [
+        "opinion",
+        "save",
+        "money"
+      ]
+    },
+    {
+      "id": "u12-mix-43",
+      "section": "write",
+      "points": 2,
+      "prompt": "将原句改为否定句，补全下句：\nShe bought a wallet yesterday.\nShe ______ a wallet yesterday.",
+      "options": null,
+      "answer": [
+        "did not buy",
+        "didn't buy"
+      ],
+      "explanation": "过去时否定用 did not + buy；bought 要还原为 buy。",
+      "tag": "过去时否定句",
+      "words": [
+        "buy",
+        "wallet"
+      ]
+    },
+    {
+      "id": "u12-mix-44",
+      "section": "write",
+      "points": 2,
+      "prompt": "对方括号中的内容提问，补全问句：\nThe book cost [fifteen yuan].\n______ did the book cost?",
+      "options": null,
+      "answer": [
+        "How much"
+      ],
+      "explanation": "对花费金额提问用 How much；did the book cost 已给出，只填疑问词组。",
+      "tag": "过去时特殊疑问句",
+      "words": [
+        "cost"
+      ]
+    },
+    {
+      "id": "u12-mix-45",
+      "section": "write",
+      "points": 2,
+      "prompt": "补全句子，使两句意思相同：\nTom paid ten yuan for the book yesterday.\nTom ______ ten yuan on the book yesterday.",
+      "options": null,
+      "answer": [
+        "spent"
+      ],
+      "explanation": "paid ... for ... 可以转换为 spent ... on ...；空格只需填 spent。",
+      "tag": "花费类动词转换",
+      "words": [
+        "pay",
+        "spend"
+      ]
+    },
+    {
+      "id": "u12-mix-46",
+      "section": "write",
+      "points": 2,
+      "prompt": "将原句改为一般疑问句，补全问句：\nThey are going to explore this idea tomorrow.\n______ they going to explore this idea tomorrow?",
+      "options": null,
+      "answer": [
+        "Are"
+      ],
+      "explanation": "原句含 are going to，构成一般疑问句时把 Are 放到句首；其余词已给出。",
+      "tag": "一般将来时疑问句",
+      "words": [
+        "explore",
+        "idea"
+      ]
+    },
+    {
+      "id": "u12-mix-47",
+      "section": "read",
+      "points": 2,
+      "prompt": "第 (47) 空",
+      "options": null,
+      "answer": [
+        "cost"
+      ],
+      "explanation": "短文的时间背景是 Last Saturday；表示书的价格用 cost，它的过去式仍为 cost。",
+      "tag": "语篇中的一般过去时",
+      "words": [
+        "cost",
+        "fairy tale"
+      ]
+    },
+    {
+      "id": "u12-mix-48",
+      "section": "read",
+      "points": 2,
+      "prompt": "第 (48) 空",
+      "options": null,
+      "answer": [
+        "paid"
+      ],
+      "explanation": "pay money for sth 表示付钱买某物；过去时用 paid。",
+      "tag": "语篇中的花费搭配",
+      "words": [
+        "pay",
+        "buy"
+      ]
+    },
+    {
+      "id": "u12-mix-49",
+      "section": "read",
+      "points": 2,
+      "prompt": "第 (49) 空",
+      "options": null,
+      "answer": [
+        "in"
+      ],
+      "explanation": "people in need 是“有需要的人”，固定搭配中的介词是 in。",
+      "tag": "语篇中的固定搭配",
+      "words": [
+        "people in need",
+        "donate",
+        "charity"
+      ]
+    },
+    {
+      "id": "u12-mix-50",
+      "section": "read",
+      "points": 2,
+      "prompt": "第 (50) 空",
+      "options": null,
+      "answer": [
+        "about"
+      ],
+      "explanation": "talk about sth 表示谈论某事；这里填 about。",
+      "tag": "语篇中的固定搭配",
+      "words": [
+        "talk about",
+        "share"
+      ]
+    }
+  ],
+  "clips": {
+    "intro": "Welcome to your English practice for units one and two. Listen carefully, and write your answers. You can play each recording again.",
+    "l1": "wallet. wallet.",
+    "l2": "banknote. banknote.",
+    "l3": "opinion. opinion.",
+    "l4": "dinosaur. dinosaur.",
+    "l5": "Some children spend all their pocket money. Others save some of it. We should learn to use our pocket money well.",
+    "l6": "We may have different ideas, but we should always tell the truth. We should always tell the truth.",
+    "l7": "In my opinion, doing exercise every day is good for our health. Doing exercise every day is good for our health.",
+    "l8": "On Saturday, Ben went to a shop with twenty yuan. The notebook had a price of twelve yuan on it, but the shopkeeper said, Today it is only ten yuan. Ben bought one notebook and paid with a twenty-yuan banknote. He got ten yuan in change. Then he donated four yuan to a charity to help people in need. He put the other six yuan in his wallet."
+  },
+  "reading": "Last Saturday, our class held a charity sale. The books were not free: each book (47) ______ five yuan. Lin bought two books and (48) ______ ten yuan for them. Other children bought old toys and fairy tales.\n\nAfter the sale, we donated all the money to a charity to help people (49) ______ need. Now our teacher is talking (50) ______ the sale. She thinks that sharing our money with others is a good idea.",
+  "scope": "依据用户提供的 Unit 1–2 词库，结合小学基础词汇；六年级校内阶段练习取向。未依据某一学校真卷，不标称北京统一题型。",
+  "choiceCount": 20,
+  "fillCount": 30
+}
